@@ -1,0 +1,75 @@
+/**
+ * Every string the user can read. Nothing here is generated or interpolated
+ * anywhere else, so this file is the whole of the app's voice.
+ */
+
+export const TOTAL_PROBLEMS = 212
+
+export const copy = {
+  login: {
+    label: 'ForgeX 2.0',
+    line: "212 problems. Bet on the one you'd give the next 17 days to.",
+    button: 'Continue with Google',
+    underButton: 'Use your forge27.mesaschool.co or mesaschool.co account.',
+    wrongDomain: 'This is only for Mesa accounts. Sign in with your forge27.mesaschool.co email.',
+  },
+
+  header: {
+    greeting: (firstName: string) => `Hey ${firstName}.`,
+    studentNoBet: (open: number, closes: string) =>
+      `${open} of ${TOTAL_PROBLEMS} still open · Closes ${closes} IST`,
+    studentHasBet: (id: string, title: string) => `Your bet: ${id} · ${title}`,
+    team: (taken: number) => `${taken} of ${TOTAL_PROBLEMS} problems backed so far.`,
+  },
+
+  filters: {
+    openOnly: 'Open only',
+  },
+
+  card: {
+    taken: (name: string) => `Backed by ${name}`,
+    own: 'Your bet',
+    whoLabel: 'Who',
+  },
+
+  modal: {
+    cta: 'I would bet on it',
+    ctaMoving: 'Move my bet here',
+    movingLine: (currentId: string, currentTitle: string) =>
+      `This frees up ${currentId} · ${currentTitle}.`,
+    ownBet: 'Your bet',
+    undo: 'Take it back',
+    takenByOther: (name: string) => `Backed by ${name}`,
+    teamNobody: 'Open',
+    closed: 'Bets are closed.',
+    sections: {
+      problem: 'Problem',
+      who: 'Who experiences it',
+      why: 'Why it matters',
+      challenge: 'Challenge',
+      northStar: 'North star metric',
+      directions: 'Directions (examples)',
+      constraints: 'Constraints',
+      build: 'Build expectation',
+      tools: 'Tools to use',
+    },
+  },
+
+  toast: {
+    race: (name: string) => `${name} just backed this one. Pick another.`,
+    saveFailed: "That didn't save. Try again.",
+  },
+
+  empty: {
+    line: 'Nothing matches.',
+    link: 'Clear filters',
+  },
+
+  backendDown: 'Bets are paused for a minute. Browsing still works.',
+
+  stampRing: (ddMmm: string) => `BET · FORGEX 2.0 · ${ddMmm}`,
+
+  avatarMenu: {
+    signOut: 'Sign out',
+  },
+} as const

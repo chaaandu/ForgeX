@@ -1,0 +1,835 @@
+[
+  {
+    "email": "aadishwar_r@forge27.mesaschool.co",
+    "name": "Aadishwar R",
+    "firstName": "Aadishwar",
+    "photo": "/students/aadishwar-r.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "aarav_shrivastava@forge27.mesaschool.co",
+    "name": "Aarav Shrivastava",
+    "firstName": "Aarav",
+    "photo": "/students/aarav.webp",
+    "track": "guided"
+  },
+  {
+    "email": "abeer_bhati@forge27.mesaschool.co",
+    "name": "Abeer Bhati",
+    "firstName": "Abeer",
+    "photo": "/students/abeer-bhati.webp",
+    "track": "structured"
+  },
+  {
+    "email": "abhishek_kambalath@forge27.mesaschool.co",
+    "name": "Abhishek Bose Kambalath",
+    "firstName": "Abhishek",
+    "photo": "/students/abhishek-kamblath.webp",
+    "track": "guided"
+  },
+  {
+    "email": "abhishek_gaur@forge27.mesaschool.co",
+    "name": "Abhishek Gaur",
+    "firstName": "Abhishek",
+    "photo": "/students/abhishek-gaur.webp",
+    "track": "guided"
+  },
+  {
+    "email": "abhishek_hosmani@forge27.mesaschool.co",
+    "name": "Abhishek Hosmani",
+    "firstName": "Abhishek",
+    "photo": "/students/abhishek-hosmani.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "adithya_rajagopalan@forge27.mesaschool.co",
+    "name": "Adithya Rajagopalan",
+    "firstName": "Adithya",
+    "photo": "/students/adithya-rajagopalan.webp",
+    "track": "guided"
+  },
+  {
+    "email": "aditi_bhateja@forge27.mesaschool.co",
+    "name": "Aditi Bhateja",
+    "firstName": "Aditi",
+    "photo": "/students/aditi.webp",
+    "track": "guided"
+  },
+  {
+    "email": "aditi_roy@forge27.mesaschool.co",
+    "name": "Aditi Roy",
+    "firstName": "Aditi",
+    "photo": "/students/aditi-roy.webp",
+    "track": "structured"
+  },
+  {
+    "email": "aditya_agarwal@forge27.mesaschool.co",
+    "name": "Aditya Agarwal",
+    "firstName": "Aditya",
+    "photo": "/students/aditya-agarwal.webp",
+    "track": "guided"
+  },
+  {
+    "email": "aditya_peyet@forge28.mesaschool.co",
+    "name": "Aditya Peter",
+    "firstName": "Aditya",
+    "photo": "/students/aditya-peter.webp",
+    "track": "structured"
+  },
+  {
+    "email": "aditya_singhal@forge27.mesaschool.co",
+    "name": "Aditya Singhal",
+    "firstName": "Aditya",
+    "photo": "/students/aditya-singhal.webp",
+    "track": "structured"
+  },
+  {
+    "email": "adnaan_r@forge27.mesaschool.co",
+    "name": "Adnaan R",
+    "firstName": "Adnaan",
+    "photo": "/students/adnaan-r.webp",
+    "track": "structured"
+  },
+  {
+    "email": "ajitesh_senthilkumar@forge27.mesaschool.co",
+    "name": "Ajitesh",
+    "firstName": "Ajitesh",
+    "photo": "/students/ajitwsh-s.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "akash_ghorpade@forge27.mesaschool.co",
+    "name": "Akash Ghorpade",
+    "firstName": "Akash",
+    "photo": "/students/akash-ghorpade.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "akassh_puranik@forge27.mesaschool.co",
+    "name": "Akassh Puranik",
+    "firstName": "Akassh",
+    "photo": "/students/akassh.webp",
+    "track": "structured"
+  },
+  {
+    "email": "akhilesh_bijjargi@forge27.mesaschool.co",
+    "name": "Akhilesh Bijjargi",
+    "firstName": "Akhilesh",
+    "photo": "/students/akhilesh.webp",
+    "track": "structured"
+  },
+  {
+    "email": "akristi_mohta@forge27.mesaschool.co",
+    "name": "Akristi Mohta",
+    "firstName": "Akristi",
+    "photo": "/students/akristi-mohta.webp",
+    "track": "guided"
+  },
+  {
+    "email": "akshat_thakur@forge27.mesaschool.co",
+    "name": "Akshat Thakur",
+    "firstName": "Akshat",
+    "photo": "/students/akshat.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "yaswanth_krishna@forge27.mesaschool.co",
+    "name": "Amujuri Yaswanth Krishna",
+    "firstName": "Amujuri",
+    "photo": "/students/yaswanth-krishna.webp",
+    "track": "structured"
+  },
+  {
+    "email": "ananta_tantia@forge27.mesaschool.co",
+    "name": "Ananta Tantia",
+    "firstName": "Ananta",
+    "photo": "/students/ananta-tantia.webp",
+    "track": "structured"
+  },
+  {
+    "email": "annashri_mahato@forge27.mesaschool.co",
+    "name": "Annashri Mahato",
+    "firstName": "Annashri",
+    "photo": "/students/annashri-mahato.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "ansh_loya@forge27.mesaschool.co",
+    "name": "Ansh Loya",
+    "firstName": "Ansh",
+    "photo": "/students/ansh-loya.webp",
+    "track": "guided"
+  },
+  {
+    "email": "anshul_dhapte@forge27.mesaschool.co",
+    "name": "Anshul Dhapte",
+    "firstName": "Anshul",
+    "photo": "/students/anshul-dhapte.webp",
+    "track": "guided"
+  },
+  {
+    "email": "anshuman_katore@forge27.mesaschool.co",
+    "name": "Anshuman Katore",
+    "firstName": "Anshuman",
+    "photo": null,
+    "track": "structured"
+  },
+  {
+    "email": "anubhav_rastogi@forge27.mesaschool.co",
+    "name": "Anubhav Rastogi",
+    "firstName": "Anubhav",
+    "photo": "/students/anubhav.webp",
+    "track": "guided"
+  },
+  {
+    "email": "anuj_bajaj@forge27.mesaschool.co",
+    "name": "Anuj Sunil Bajaj",
+    "firstName": "Anuj",
+    "photo": "/students/anuj-bajaj.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "anushka_ghogre@forge27.mesaschool.co",
+    "name": "Anushka Milind Ghogre",
+    "firstName": "Anushka",
+    "photo": "/students/anushka-ghogre.webp",
+    "track": "guided"
+  },
+  {
+    "email": "archit_pathak@forge27.mesaschool.co",
+    "name": "Archit Pathak",
+    "firstName": "Archit",
+    "photo": "/students/archit-pathak.webp",
+    "track": "structured"
+  },
+  {
+    "email": "arpita_mahata@forge27.mesaschool.co",
+    "name": "Arpita Prakash Mahata",
+    "firstName": "Arpita",
+    "photo": "/students/arpita-mahata.webp",
+    "track": "structured"
+  },
+  {
+    "email": "ashutosh_saxena@forge27.mesaschool.co",
+    "name": "Ashutosh Saxena",
+    "firstName": "Ashutosh",
+    "photo": "/students/ashutosh-saxena.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "atharva_agrawal@forge27.mesaschool.co",
+    "name": "Atharva Agrawal",
+    "firstName": "Atharva",
+    "photo": "/students/atharva-agrawal.webp",
+    "track": "structured"
+  },
+  {
+    "email": "bhadar_singh@forge27.mesaschool.co",
+    "name": "Bhadar Singh Namdhari",
+    "firstName": "Bhadar",
+    "photo": "/students/bhadar-singh.webp",
+    "track": "structured"
+  },
+  {
+    "email": "bhavit_gupta@forge27.mesaschool.co",
+    "name": "Bhavit Gupta",
+    "firstName": "Bhavit",
+    "photo": "/students/bhavit-gupta.webp",
+    "track": "guided"
+  },
+  {
+    "email": "bhavya_tandon@forge27.mesaschool.co",
+    "name": "Bhavya Tandon",
+    "firstName": "Bhavya",
+    "photo": "/students/bhavya.webp",
+    "track": "structured"
+  },
+  {
+    "email": "brijesh_attal@forge27.mesaschool.co",
+    "name": "Brijesh Attal",
+    "firstName": "Brijesh",
+    "photo": "/students/brijesh-attal.webp",
+    "track": "guided"
+  },
+  {
+    "email": "darsh_shah@forge27.mesaschool.co",
+    "name": "Darsh Manish Shah",
+    "firstName": "Darsh",
+    "photo": "/students/darsh-shah.webp",
+    "track": "guided"
+  },
+  {
+    "email": "darshan_chopda@forge27.mesaschool.co",
+    "name": "Darshan Jaykumar Chopda",
+    "firstName": "Darshan",
+    "photo": "/students/darshan-chopda.webp",
+    "track": "guided"
+  },
+  {
+    "email": "dev_mehra@forge27.mesaschool.co",
+    "name": "Dev Mehra",
+    "firstName": "Dev",
+    "photo": "/students/dev-mehra.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "devansh_mehta@forge27.mesaschool.co",
+    "name": "Devansh Mehta",
+    "firstName": "Devansh",
+    "photo": "/students/devansh-mehta.webp",
+    "track": "structured"
+  },
+  {
+    "email": "devansh_vora@forge27.mesaschool.co",
+    "name": "Devansh Vora",
+    "firstName": "Devansh",
+    "photo": "/students/devansh-vora.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "dhruvi_lohiya@forge27.mesaschool.co",
+    "name": "Dhruvi Lohiya",
+    "firstName": "Dhruvi",
+    "photo": "/students/dhruvi-lohiya.webp",
+    "track": "guided"
+  },
+  {
+    "email": "dhyay_popat@forge27.mesaschool.co",
+    "name": "Dhyay Amit Popat",
+    "firstName": "Dhyay",
+    "photo": "/students/dhyay.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "divy_hardenia@forge27.mesaschool.co",
+    "name": "Divy Hardenia",
+    "firstName": "Divy",
+    "photo": "/students/divy-hardenia.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "divyam_arora@forge27.mesaschool.co",
+    "name": "Divyam Pawan Arora",
+    "firstName": "Divyam",
+    "photo": "/students/divyam.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "diya_agrawal@forge27.mesaschool.co",
+    "name": "Diya Agrawal",
+    "firstName": "Diya",
+    "photo": "/students/diya-agarwal.webp",
+    "track": "structured"
+  },
+  {
+    "email": "diya_harish@forge27.mesaschool.co",
+    "name": "Diya H",
+    "firstName": "Diya",
+    "photo": "/students/diya-harish.webp",
+    "track": "guided"
+  },
+  {
+    "email": "diya_ispahani@forge27.mesaschool.co",
+    "name": "Diya Ispahani",
+    "firstName": "Diya",
+    "photo": "/students/diya-ispahani.webp",
+    "track": "guided"
+  },
+  {
+    "email": "haider_millwala@forge27.mesaschool.co",
+    "name": "Haider Zulfikar Millwala",
+    "firstName": "Haider",
+    "photo": "/students/haider.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "happy_panjwani@forge27.mesaschool.co",
+    "name": "Happy Panjwani",
+    "firstName": "Happy",
+    "photo": "/students/happy-panjwani.webp",
+    "track": "guided"
+  },
+  {
+    "email": "harsh_malani@forge27.mesaschool.co",
+    "name": "Harsh Malani",
+    "firstName": "Harsh",
+    "photo": "/students/harsh-malani.webp",
+    "track": "structured"
+  },
+  {
+    "email": "harsh_nain@forge27.mesaschool.co",
+    "name": "Harsh Nain",
+    "firstName": "Harsh",
+    "photo": "/students/harsh-nain.webp",
+    "track": "guided"
+  },
+  {
+    "email": "harsh_dubey@forge27.mesaschool.co",
+    "name": "Harsh Rakesh Dubey",
+    "firstName": "Harsh",
+    "photo": "/students/harsh-dubey.webp",
+    "track": "guided"
+  },
+  {
+    "email": "hritik_gani@forge27.mesaschool.co",
+    "name": "Hritik Gani",
+    "firstName": "Hritik",
+    "photo": "/students/hritik.webp",
+    "track": "structured"
+  },
+  {
+    "email": "itish_pande@forge27.mesaschool.co",
+    "name": "Itish Pande",
+    "firstName": "Itish",
+    "photo": "/students/itish-pande.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "jenessa_bhathena@forge27.mesaschool.co",
+    "name": "Jenessa Bhathena",
+    "firstName": "Jenessa",
+    "photo": "/students/jenessa-bhathena.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "naveen_kolla@forge27.mesaschool.co",
+    "name": "K Naveen",
+    "firstName": "Naveen",
+    "photo": "/students/naveen-kolla.webp",
+    "track": "structured"
+  },
+  {
+    "email": "kaavya_goenka@forge27.mesaschool.co",
+    "name": "Kaavya Goenka",
+    "firstName": "Kaavya",
+    "photo": "/students/kaavya-goenka.webp",
+    "track": "structured"
+  },
+  {
+    "email": "kalika_srivastava@forge27.mesaschool.co",
+    "name": "Kalika Srivastava",
+    "firstName": "Kalika",
+    "photo": "/students/kalika-srivastava.webp",
+    "track": "guided"
+  },
+  {
+    "email": "kavya_zala@forge27.mesaschool.co",
+    "name": "Kavya Zala",
+    "firstName": "Kavya",
+    "photo": "/students/kavya-zala.webp",
+    "track": "structured"
+  },
+  {
+    "email": "lipika_arya@forge27.mesaschool.co",
+    "name": "Lipika Arya",
+    "firstName": "Lipika",
+    "photo": "/students/lipika.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "madymaheshwari12@gmail.com",
+    "name": "Madhuresh Binzani",
+    "firstName": "Madhuresh",
+    "photo": "/students/madhuresh-binzani.webp",
+    "track": "guided"
+  },
+  {
+    "email": "maitree_shah@forge27.mesaschool.co",
+    "name": "Maitree Shah",
+    "firstName": "Maitree",
+    "photo": "/students/maitree-shah.webp",
+    "track": "structured"
+  },
+  {
+    "email": "mayank_agrawal@forge27.mesaschool.co",
+    "name": "Mayank Agrawal",
+    "firstName": "Mayank",
+    "photo": "/students/mayank-agrawal.webp",
+    "track": "guided"
+  },
+  {
+    "email": "meith_jain@forge27.mesaschool.co",
+    "name": "Meith Jain",
+    "firstName": "Meith",
+    "photo": "/students/meith-jain.webp",
+    "track": "structured"
+  },
+  {
+    "email": "naveen_kumar@forge27.mesaschool.co",
+    "name": "Naveen Kumar P",
+    "firstName": "Naveen",
+    "photo": "/students/naveen-kumar.webp",
+    "track": "structured"
+  },
+  {
+    "email": "nikhil_kanjolia@forge27.mesaschool.co",
+    "name": "Nikhil Kanjolia",
+    "firstName": "Nikhil",
+    "photo": "/students/nikhil-kanjolia.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "nirmalya_sah@forge27.mesaschool.co",
+    "name": "Nirmalya Sah",
+    "firstName": "Nirmalya",
+    "photo": "/students/nirmalya-sah.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "param_deora@forge27.mesaschool.co",
+    "name": "Param Deora",
+    "firstName": "Param",
+    "photo": "/students/param.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "parin_kumat@forge27.mesaschool.co",
+    "name": "Parin Kumat",
+    "firstName": "Parin",
+    "photo": "/students/parin-kumat.webp",
+    "track": "guided"
+  },
+  {
+    "email": "pragati_singh@forge27.mesaschool.co",
+    "name": "Pragati Singh",
+    "firstName": "Pragati",
+    "photo": "/students/pragati-singh.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "pratiksha_bengani@forge27.mesaschool.co",
+    "name": "Pratiksha Bengani",
+    "firstName": "Pratiksha",
+    "photo": "/students/pratiksha-bengani.webp",
+    "track": "guided"
+  },
+  {
+    "email": "pratiksha_bihani@forge27.mesaschool.co",
+    "name": "Pratiksha Bihani",
+    "firstName": "Pratiksha",
+    "photo": "/students/pratiksha-bihani.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "preet_jain@forge27.mesaschool.co",
+    "name": "Preet Naresh Jain",
+    "firstName": "Preet",
+    "photo": "/students/preet.webp",
+    "track": "guided"
+  },
+  {
+    "email": "preethi_s@forge27.mesaschool.co",
+    "name": "Preethi S",
+    "firstName": "Preethi",
+    "photo": "/students/preethi-s.webp",
+    "track": "guided"
+  },
+  {
+    "email": "radha_hutkey@forge27.mesaschool.co",
+    "name": "Radha Pankaj Hutkey",
+    "firstName": "Radha",
+    "photo": "/students/radha-hutkey.webp",
+    "track": "guided"
+  },
+  {
+    "email": "rahul_m@forge27.mesaschool.co",
+    "name": "Rahul M",
+    "firstName": "Rahul",
+    "photo": "/students/rahul-m.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "ridhima_gupta@forge27.mesaschool.co",
+    "name": "Ridhima Gupta",
+    "firstName": "Ridhima",
+    "photo": "/students/ridhima-gupta.webp",
+    "track": "structured"
+  },
+  {
+    "email": "risheet_gangar@forge27.mesaschool.co",
+    "name": "Risheet Samir Gangar",
+    "firstName": "Risheet",
+    "photo": "/students/risheet-gangar.webp",
+    "track": "structured"
+  },
+  {
+    "email": "rishika_choudhary@forge27.mesaschool.co",
+    "name": "Rishika Choudhary",
+    "firstName": "Rishika",
+    "photo": "/students/rishika-choudhary.webp",
+    "track": "guided"
+  },
+  {
+    "email": "rishika_uppalapati@forge27.mesaschool.co",
+    "name": "Rishika Uppalapati",
+    "firstName": "Rishika",
+    "photo": "/students/rishika-uppalapati.webp",
+    "track": "structured"
+  },
+  {
+    "email": "ritesh_oswal@forge27.mesaschool.co",
+    "name": "Ritesh Oswal",
+    "firstName": "Ritesh",
+    "photo": "/students/ritesh-oswal.webp",
+    "track": "structured"
+  },
+  {
+    "email": "riya_khurana@forge27.mesaschool.co",
+    "name": "Riya Khurana",
+    "firstName": "Riya",
+    "photo": "/students/riya-khurana.webp",
+    "track": "structured"
+  },
+  {
+    "email": "riya_kothavade@forge27.mesaschool.co",
+    "name": "Riya Rajan Kothavade",
+    "firstName": "Riya",
+    "photo": "/students/riya-kothavade.webp",
+    "track": "structured"
+  },
+  {
+    "email": "rohan_vivek@forge27.mesaschool.co",
+    "name": "Rohan B Vivek",
+    "firstName": "Rohan",
+    "photo": "/students/rohan-vivek.webp",
+    "track": "guided"
+  },
+  {
+    "email": "rohit_singh@forge27.mesaschool.co",
+    "name": "Rohit Singh",
+    "firstName": "Rohit",
+    "photo": null,
+    "track": "autonomous"
+  },
+  {
+    "email": "rushabh_shah@forge27.mesaschool.co",
+    "name": "Rushabh Shital Shah",
+    "firstName": "Rushabh",
+    "photo": "/students/rushabh-shah.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "rydham_jain@forge27.mesaschool.co",
+    "name": "Rydham Jain",
+    "firstName": "Rydham",
+    "photo": "/students/rydham-jain.webp",
+    "track": "structured"
+  },
+  {
+    "email": "sachidananda_dehury@forge27.mesaschool.co",
+    "name": "Sachidananda Dehury",
+    "firstName": "Sachidananda",
+    "photo": "/students/sachidananda-dehury.webp",
+    "track": "structured"
+  },
+  {
+    "email": "sahil_agrawal@forge27.mesaschool.co",
+    "name": "Sahil Agrawal",
+    "firstName": "Sahil",
+    "photo": "/students/sahil-agrawal.webp",
+    "track": "guided"
+  },
+  {
+    "email": "praval_goud@forge27.mesaschool.co",
+    "name": "Sai Santosh Praval Goud Maddhuri",
+    "firstName": "Sai",
+    "photo": "/students/praval-goud-madduri.webp",
+    "track": "guided"
+  },
+  {
+    "email": "sairaj_g@forge27.mesaschool.co",
+    "name": "Sairaj G",
+    "firstName": "Sairaj",
+    "photo": "/students/sairaj-g.webp",
+    "track": "guided"
+  },
+  {
+    "email": "sakshi_awasthi@forge27.mesaschool.co",
+    "name": "Sakshi Awasthi",
+    "firstName": "Sakshi",
+    "photo": "/students/sakshi-awasthi.webp",
+    "track": "structured"
+  },
+  {
+    "email": "sarth_raghuwanshi@forge27.mesaschool.co",
+    "name": "Sarth Raghuwanshi",
+    "firstName": "Sarth",
+    "photo": "/students/sarth.webp",
+    "track": "structured"
+  },
+  {
+    "email": "satvik_bansal@forge27.mesaschool.co",
+    "name": "Satvik Bansal",
+    "firstName": "Satvik",
+    "photo": "/students/satvik.webp",
+    "track": "structured"
+  },
+  {
+    "email": "shashank_pandey@forge27.mesaschool.co",
+    "name": "Shashank Pandey",
+    "firstName": "Shashank",
+    "photo": "/students/shashank-pandey.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "shivansh_sarraf@forge27.mesaschool.co",
+    "name": "Shivansh Sarraf",
+    "firstName": "Shivansh",
+    "photo": "/students/shivansh-sarraf.webp",
+    "track": "guided"
+  },
+  {
+    "email": "shweta_singh@forge27.mesaschool.co",
+    "name": "Shweta Singh",
+    "firstName": "Shweta",
+    "photo": "/students/shweta-singh.webp",
+    "track": "structured"
+  },
+  {
+    "email": "simran_kalra@forge27.mesaschool.co",
+    "name": "Simran Kalra",
+    "firstName": "Simran",
+    "photo": "/students/simran-kalra.webp",
+    "track": "guided"
+  },
+  {
+    "email": "sinchan_rai@forge27.mesaschool.co",
+    "name": "Sinchan Rai B",
+    "firstName": "Sinchan",
+    "photo": "/students/sinchan-rai.webp",
+    "track": "structured"
+  },
+  {
+    "email": "sohum_shikhare@forge27.mesaschool.co",
+    "name": "Sohum Shikhare",
+    "firstName": "Sohum",
+    "photo": "/students/sohum-shikhare.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "somanshu_singhal@forge27.mesaschool.co",
+    "name": "Somanshu Singhal",
+    "firstName": "Somanshu",
+    "photo": "/students/soumanshu.webp",
+    "track": "guided"
+  },
+  {
+    "email": "tanishka_desai@forge27.mesaschool.co",
+    "name": "Tanishka N Desai",
+    "firstName": "Tanishka",
+    "photo": "/students/tanishkha.webp",
+    "track": "structured"
+  },
+  {
+    "email": "tanishq_lomte@forge27.mesaschool.co",
+    "name": "Tanishq Sachin Lomte",
+    "firstName": "Tanishq",
+    "photo": "/students/tanishq-lomte.webp",
+    "track": "structured"
+  },
+  {
+    "email": "tanishque_jain@forge27.mesaschool.co",
+    "name": "Tanishque Jain",
+    "firstName": "Tanishque",
+    "photo": "/students/tanishque-jain.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "tejas_joshi@forge27.mesaschool.co",
+    "name": "Tejas Mandar Joshi",
+    "firstName": "Tejas",
+    "photo": "/students/tejas-joshi.webp",
+    "track": "structured"
+  },
+  {
+    "email": "tushar_ram_reddy@forge27.mesaschool.co",
+    "name": "Tushar Ram Reddy",
+    "firstName": "Tushar",
+    "photo": "/students/tushar.webp",
+    "track": "structured"
+  },
+  {
+    "email": "udhav_kothari@forge27.mesaschool.co",
+    "name": "Udhav Kothari",
+    "firstName": "Udhav",
+    "photo": "/students/udhav-kothari.webp",
+    "track": "structured"
+  },
+  {
+    "email": "ujjwal_sitlani@forge27.mesaschool.co",
+    "name": "Ujjwalsitlani7@gmail.com",
+    "firstName": "Ujjwalsitlani7@gmail.com",
+    "photo": "/students/ujjwal-sitlani.webp",
+    "track": "guided"
+  },
+  {
+    "email": "utkarsh_kapoor@forge27.mesaschool.co",
+    "name": "Utkarsh Kapoor",
+    "firstName": "Utkarsh",
+    "photo": "/students/utkarsh-kapoor.webp",
+    "track": "structured"
+  },
+  {
+    "email": "vatsal_shah@forge27.mesaschool.co",
+    "name": "Vatsal Shah",
+    "firstName": "Vatsal",
+    "photo": "/students/vatsal.webp",
+    "track": "structured"
+  },
+  {
+    "email": "vidhi_agarwal@forge27.mesaschool.co",
+    "name": "Vidhi Agarwal",
+    "firstName": "Vidhi",
+    "photo": "/students/vidhi-agarwal.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "vikram_agarwal@forge27.mesaschool.co",
+    "name": "Vikram Aditya Agarwal",
+    "firstName": "Vikram",
+    "photo": "/students/vikram.webp",
+    "track": "guided"
+  },
+  {
+    "email": "vion_dsouza@forge27.mesaschool.co",
+    "name": "Vion George Dsouza",
+    "firstName": "Vion",
+    "photo": "/students/vion-d-souza.webp",
+    "track": "guided"
+  },
+  {
+    "email": "yashansh_savla@forge27.mesaschool.co",
+    "name": "Yashansh Hitesh Savla",
+    "firstName": "Yashansh",
+    "photo": "/students/yashansh.webp",
+    "track": "autonomous"
+  },
+  {
+    "email": "yashwi_agrawal@forge27.mesaschool.co",
+    "name": "Yashwi Agrawal",
+    "firstName": "Yashwi",
+    "photo": "/students/yashwi.webp",
+    "track": "structured"
+  },
+  {
+    "email": "yogita_bhuwania@forge27.mesaschool.co",
+    "name": "Yogita Bhuwania",
+    "firstName": "Yogita",
+    "photo": "/students/yogita.webp",
+    "track": "guided"
+  },
+  {
+    "email": "zalak_gogri@forge27.mesaschool.co",
+    "name": "Zalak Gogri",
+    "firstName": "Zalak",
+    "photo": "/students/zalak-gogri.webp",
+    "track": "guided"
+  },
+  {
+    "email": "zuha_fathima@forge27.mesaschool.co",
+    "name": "Zuha Fathima G S",
+    "firstName": "Zuha",
+    "photo": "/students/zuha-fathima.webp",
+    "track": "structured"
+  }
+]

@@ -1,0 +1,42 @@
+import { redirect } from 'next/navigation'
+import { LoginPanel } from '@/components/LoginPanel'
+import { copy } from '@/lib/copy'
+import { getViewer } from '@/lib/session'
+import { students } from '@/lib/students'
+
+export const dynamic = 'force-dynamic'
+
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}) {
+  const [viewer, params] = await Promise.all([getViewer(), searchParams])
+  if (viewer) redirect('/')
+
+  const wrongDomain = params.error !== undefined
+
+  const mock = process.env.MOCK_BACKEND === 'true'
+  const picker = mock
+    ? [
+        ...students.slice(0, 2).map((student) => ({
+          email: student.email,
+          name: student.name,
+          role: 'Student',
+        })),
+        { email: 'team@mesaschool.co', name: 'Mesa Team', role: 'Team' },
+      ]
+    : []
+
+  return (
+    <main className="flex min-h-dvh items-center justify-center px-6">
+      <div className="flex w-full max-w-sm flex-col items-center text-center">
+        <p className="label">{copy.login.label}</p>
+        <h1 className="text-primary mt-6 text-[22px] leading-[1.45] font-medium tracking-[-0.02em]">
+          {copy.login.line}
+        </h1>
+        <LoginPanel wrongDomain={wrongDomain} picker={picker} />
+      </div>
+    </main>
+  )
+}
