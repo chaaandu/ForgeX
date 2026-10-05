@@ -41,7 +41,7 @@ export default async function LoginPage({
   return (
     <main className="flex min-h-dvh items-center justify-center px-6">
       <div className="flex w-full max-w-sm flex-col items-center text-center">
-        <p className="label">{copy.login.label}</p>
+        <p className="label tracking-[0.06em] normal-case">{copy.login.label}</p>
         <h1 className="mt-6 flex flex-col gap-1 text-[22px] leading-[1.35] font-medium tracking-[-0.02em]">
           <span className="text-muted">{copy.login.line}</span>
           <span className="text-primary">{copy.login.lineTwo}</span>

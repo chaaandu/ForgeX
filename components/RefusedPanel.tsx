@@ -10,7 +10,7 @@ export function RefusedPanel() {
 
   return (
     <div className="flex w-full max-w-sm flex-col items-center text-center">
-      <p className="label">{copy.refused.label}</p>
+      <p className="label tracking-[0.06em] normal-case">{copy.refused.label}</p>
 
       <h1
         role="alert"
