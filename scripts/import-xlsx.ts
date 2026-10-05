@@ -24,9 +24,15 @@ function main() {
     raw: false,
   })
 
+  // Columns may be removed from the Sheet. Only the three that identify and
+  // sort a problem are required; the rest come back empty and the UI copes.
   const headers = Object.keys(rows[0] ?? {})
-  const missing = PROBLEM_HEADERS.filter((header) => !headers.includes(header))
-  if (missing.length) throw new Error(`Missing headers: ${missing.join(', ')}`)
+  const required = ['ID', 'Title', 'Tag']
+  const fatal = required.filter((header) => !headers.includes(header))
+  if (fatal.length) throw new Error(`Missing required headers: ${fatal.join(', ')}`)
+
+  const absent = PROBLEM_HEADERS.filter((header) => !headers.includes(header))
+  if (absent.length) console.log(`  note: no column for ${absent.join(', ')}`)
 
   const problems = rows.map(toProblem).filter((problem) => problem !== null)
 
