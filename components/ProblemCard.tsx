@@ -5,7 +5,9 @@ import { CardLink } from './CardLink'
 import { TagPill } from './TagPill'
 
 /**
- * Collapsed card: tag, cluster, ID, title, Problem and Who. Nothing else.
+ * Collapsed card: tag, cluster, ID, title, Problem and what you would build.
+ * "Who" was here and said much the same thing on every card; the build
+ * expectation is the line that actually separates one problem from the next.
  * The whole card is the control.
  */
 export function ProblemCard({ problem, href }: { problem: Problem; href: string }) {
@@ -23,8 +25,8 @@ export function ProblemCard({ problem, href }: { problem: Problem; href: string 
       <span className="clamp-3 text-secondary text-[14px]">{problem.problem}</span>
 
       <span className="mt-auto flex flex-col gap-1 pt-1">
-        <span className="label">{copy.card.whoLabel}</span>
-        <span className="clamp-2 text-muted text-[13px]">{problem.who}</span>
+        <span className="label">{copy.card.buildLabel}</span>
+        <span className="clamp-2 text-muted text-[13px]">{problem.buildExpectation}</span>
       </span>
 
       <span className="flex h-5 items-center">

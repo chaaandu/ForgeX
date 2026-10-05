@@ -146,12 +146,51 @@ function main() {
   writeFileSync(resolve(process.cwd(), 'data/edit-report.csv'), `${csv}\n`)
   console.log('\n  wrote data/edit-report.csv')
 
+  warn(edits, byId)
+
   if (!process.argv.includes('--apply')) {
     console.log('\ndry run. nothing written. re-run with --apply to write to the Sheet.')
     return
   }
 
   void write(edits)
+}
+
+/** Things a human should look at before this is written to the Sheet. */
+function warn(edits: Edit[], byId: Map<string, Problem>) {
+  // A north star that still needs a billing cycle, a season or a renewal.
+  const slow =
+    /per month|monthly|a month|per quarter|quarterly|season|annual|per year|renewal|retention|churn|after (two|three|four|\d+) weeks|first term|days sales outstanding/i
+  // A build a student can finish without meeting anyone.
+  const hatch = /or realistic|realistic data|synthetic|simulate|simulated|mock data|for a season/i
+
+  const problems: string[] = []
+
+  for (const edit of edits) {
+    if (edit.status === 'cut') continue
+    const current = byId.get(edit.id)
+    if (!current) continue
+
+    const northStar = edit.northStar ?? current.northStar
+    if (slow.test(northStar)) {
+      problems.push(`${edit.id}  north star still needs a long cycle: "${northStar}"`)
+    }
+
+    const build = edit.buildExpectation ?? current.buildExpectation
+    if (hatch.test(build)) {
+      problems.push(`${edit.id}  build still allows made-up data: "${build}"`)
+    }
+  }
+
+  const uncovered = [...byId.keys()].filter((id) => !edits.some((edit) => edit.id === id))
+  if (uncovered.length) problems.push(`${uncovered.length} problems have no edit: ${uncovered.join(', ')}`)
+
+  if (!problems.length) {
+    console.log('\n  no warnings')
+    return
+  }
+  console.log(`\n  ${problems.length} things to look at:`)
+  for (const line of problems) console.log(`    ${line}`)
 }
 
 async function write(edits: Edit[]) {

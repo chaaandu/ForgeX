@@ -47,18 +47,28 @@ export function ProblemDetail({ problem }: { problem: Problem }) {
         <Body>{problem.who}</Body>
       </Section>
 
-      <Section label={s.why}>
-        <Body>{problem.whyItMatters}</Body>
-      </Section>
-
       <Section label={s.challenge}>
         <Body>{problem.challenge}</Body>
+      </Section>
+
+      <Section label={s.build}>
+        <p className="border-line text-primary rounded-xl border bg-white/[0.03] px-4 py-3 text-[15px]">
+          {problem.buildExpectation}
+        </p>
       </Section>
 
       <Section label={s.northStar}>
         <p className="border-line text-primary rounded-xl border bg-white/[0.03] px-4 py-3 text-[15px]">
           {problem.northStar}
         </p>
+      </Section>
+
+      <Section label={s.constraints}>
+        <Body>{problem.constraints}</Body>
+      </Section>
+
+      <Section label={s.why}>
+        <Body>{problem.whyItMatters}</Body>
       </Section>
 
       <Section label={s.directions}>
@@ -70,14 +80,6 @@ export function ProblemDetail({ problem }: { problem: Problem }) {
             </li>
           ))}
         </ul>
-      </Section>
-
-      <Section label={s.constraints}>
-        <Body>{problem.constraints}</Body>
-      </Section>
-
-      <Section label={s.build}>
-        <Body>{problem.buildExpectation}</Body>
       </Section>
 
       <Section label={s.tools}>

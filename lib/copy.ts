@@ -35,7 +35,7 @@ export const copy = {
   card: {
     taken: (name: string) => `Backed by ${name}`,
     own: 'Your bet',
-    whoLabel: 'Who',
+    buildLabel: 'Build',
   },
 
   modal: {
