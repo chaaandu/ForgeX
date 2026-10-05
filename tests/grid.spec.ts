@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import problems from '../data/problems.json'
 import { copy } from '../lib/copy'
 import { card, resetBoard, signIn, STUDENT_A } from './helpers'
 
@@ -11,12 +12,13 @@ test('filters sync to the URL and can be cleared', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('button', { name: 'Mythic', exact: true }).click()
   await expect(page).toHaveURL(/tag=mythic/)
-  await expect(page.locator('[data-card-id]')).toHaveCount(11)
+  const mythic = problems.filter((problem) => problem.tag === 'mythic').length
+  await expect(page.locator('[data-card-id]')).toHaveCount(mythic)
 
   await page.getByRole('searchbox').fill('zzzzzznothing')
   await expect(page.getByText(copy.empty.line)).toBeVisible()
   await page.getByRole('button', { name: copy.empty.link }).click()
-  await expect(page.locator('[data-card-id]')).toHaveCount(212)
+  await expect(page.locator('[data-card-id]')).toHaveCount(problems.length)
 })
 
 test('a deep link opens the modal, and escape closes it', async ({ page }) => {
@@ -40,7 +42,8 @@ test('the arrow keys move through the filtered list', async ({ page }) => {
 
 test('a card opens the modal and the back button closes it', async ({ page }) => {
   await page.goto('/')
-  await card(page, 'P010').click()
+  const some = problems[9]!.id
+  await card(page, some).click()
   await expect(page.locator('#problem-title')).toBeVisible()
   await page.goBack()
   await expect(page.locator('#problem-title')).toHaveCount(0)

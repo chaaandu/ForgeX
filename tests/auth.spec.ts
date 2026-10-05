@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { copy } from '../lib/copy'
+import problems from '../data/problems.json'
 import { LOOKALIKE, OUTSIDER, signIn, STUDENT_A } from './helpers'
 
 test('an address outside the Mesa domains gets the refused screen', async ({ browser }) => {
@@ -39,11 +40,11 @@ test('a signed out visitor is sent to the login screen', async ({ browser }) => 
   await context.close()
 })
 
-test('a student lands on the grid with all 212 problems', async ({ browser }) => {
+test('a student lands on the grid with every problem on the board', async ({ browser }) => {
   const context = await browser.newContext()
   await signIn(context, STUDENT_A)
   const page = await context.newPage()
   await page.goto('/')
-  await expect(page.locator('[data-card-id]')).toHaveCount(212)
+  await expect(page.locator('[data-card-id]')).toHaveCount(problems.length)
   await context.close()
 })
