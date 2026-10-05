@@ -1,0 +1,532 @@
+[
+  {
+    "id": "P001",
+    "status": "keep",
+    "mechanic": "Risk ranking",
+    "northStar": "Rupees collected against overdue invoices across at least 20 retailer accounts in two weeks.",
+    "buildExpectation": "Import one real distributor's ledger, generate daily collection plans and run them on at least 20 overdue accounts for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Days sales outstanding needs a month to move, so swapped to rupees collected in two weeks; removed 'anonymised' from the build."
+  },
+  {
+    "id": "P002",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Units of flagged stock sold at full price in two weeks, across at least 20 items the retailer acted on.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Seasonal sell-through is unobservable by day 17, so narrowed it to full-price units moved on 20 flagged items in two weeks."
+  },
+  {
+    "id": "P003",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already countable over ten real enquiries; labelled the mechanic as the costing model."
+  },
+  {
+    "id": "P004",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of overcharges found across at least 50 real supplier invoices at one business.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Dropped the per-month framing for a fixed count of real invoices the student can check inside 17 days."
+  },
+  {
+    "id": "P005",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of disputable deductions identified and evidenced across at least 50 real remittance lines.",
+    "buildExpectation": "Reconcile three months of one brand's modern-trade payments and build dispute packs for at least 20 invalid deductions.",
+    "problem": null,
+    "constraints": null,
+    "note": "Recovery depends on the retailer's own cycle, so measured deductions found and evidenced instead."
+  },
+  {
+    "id": "P006",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": "Emerging brands on Blinkit, Zepto and Instamart sell through hundreds of dark stores, the small neighbourhood warehouses these apps deliver from, but see little store-level availability. A product can be missing in key neighbourhoods for days before anyone notices.",
+    "constraints": null,
+    "note": "North star is already a daily observable count; expanded 'dark store' on first use."
+  },
+  {
+    "id": "P007",
+    "status": "keep",
+    "mechanic": "Risk ranking",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Weekly flagged-and-confirmed count is observable inside the sprint; mechanic is exception ranking over till data."
+  },
+  {
+    "id": "P008",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star measurable over the 100 real orders already required; no changes needed."
+  },
+  {
+    "id": "P009",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Repeat orders placed direct at one restaurant in two weeks, out of at least 20 orders.",
+    "buildExpectation": "Set up direct ordering for one independent restaurant in your own Indian city and track at least 20 orders over two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Kept the UAE market framing but moved the pilot to an Indian restaurant the student can walk into, and put a number on the north star."
+  },
+  {
+    "id": "P010",
+    "status": "cut",
+    "mechanic": "Risk ranking",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: converting annual rent cheques to monthly needs lending capital and UAE central bank licensing, and the student has no route to a Dubai landlord or tenant."
+  },
+  {
+    "id": "P011",
+    "status": "keep",
+    "mechanic": "Voice agent",
+    "northStar": null,
+    "buildExpectation": "Run the agent on 50 real order calls to retailers using one distributor's catalogue.",
+    "problem": null,
+    "constraints": null,
+    "note": "Removed the 'role-played' escape hatch so the 50 calls must be real retailer calls."
+  },
+  {
+    "id": "P012",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": null,
+    "buildExpectation": "Build a catalogue for one vehicle family and identify parts for 30 real requests at an Indian spare-parts market.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star is fine; named an Indian market for the pilot since the Lagos framing has no student route."
+  },
+  {
+    "id": "P013",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of near-expiry stock caught in time to return at one chemist, across at least 20 line items.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Credit notes take months, so measured value caught inside the return window rather than value credited."
+  },
+  {
+    "id": "P014",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Factories, out of at least 15 contacted, that confirm capacity and a minimum order against a real brand's brief.",
+    "buildExpectation": "Verify capacity and minimum orders with at least 15 real factories and send matched shortlists to three real brands.",
+    "problem": null,
+    "constraints": null,
+    "note": "Brief-to-approved-sample waits on a factory's production cycle, so measured verified factory responses instead."
+  },
+  {
+    "id": "P015",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": "Reorder or markdown decisions the jeweller makes from your sell-through report, across at least ten design lines.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Days-to-sell on jewellery is far longer than 17 days, so promoted the acted-on decisions already implied by the build."
+  },
+  {
+    "id": "P016",
+    "status": "cut",
+    "mechanic": "Marketplace or directory",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: selling measured retail media needs a supermarket chain to hand over till data and a brand to release ad budget, both enterprise deals; the same chain data is better used in P007."
+  },
+  {
+    "id": "P017",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Vendor confirmations received within an hour on a live run-sheet, across at least 20 vendors.",
+    "buildExpectation": "Run a real run-sheet with at least 20 vendors for one planner's upcoming event and log every confirmation and change.",
+    "problem": null,
+    "constraints": null,
+    "note": "Wedding season starts in November, after day 17, so the metric now rides on a real planner's pre-event vendor traffic instead of the event itself."
+  },
+  {
+    "id": "P018",
+    "status": "keep",
+    "mechanic": "Evidence pack",
+    "northStar": "Disputes out of 20 where the merchant says your evidence pack is complete enough to submit as-is.",
+    "buildExpectation": "Build evidence packs from real order, delivery and chat records for 20 past disputes at one Indian merchant selling cross-border, and have the merchant rate each pack.",
+    "problem": null,
+    "constraints": null,
+    "note": "Win rates sit with the card networks' weeks-long cycle; also moved the pilot to an Indian cross-border merchant and removed 'real or realistic'."
+  },
+  {
+    "id": "P019",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Minutes-to-match over 30 buyer queries is self-observable; no changes needed."
+  },
+  {
+    "id": "P020",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: US permit approval is a municipal decision cycle of weeks, code interpretation needs a licensed professional, and the student has no route to a US contractor or city portal."
+  },
+  {
+    "id": "P021",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": "Meta's policies and template approvals, opt-in rules and India's Digital Personal Data Protection Act.",
+    "note": "Revenue per message is observable in a two-week live test; expanded the DPDP Act on first use."
+  },
+  {
+    "id": "P022",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": "Small and mid-size hospitals run cashless insurance claims through third-party administrators, the firms insurers hire to process claims, and through insurers directly. Pre-authorisation, the insurer's advance approval for a treatment, gets queried, final bills get cut, and billing desks rarely know why or how to push back.",
+    "constraints": "Health data under India's Digital Personal Data Protection Act, insurer rules that change, no data feeds from the third-party administrators, and it must never help inflate claims.",
+    "note": "North star works on 30 historical claims; expanded third-party administrator, pre-authorisation and the DPDP Act."
+  },
+  {
+    "id": "P023",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Patients who collect a refill after your reminder, out of at least 30 reminded in two weeks.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "On-time refill share needs a full monthly cycle, so counted reminder-to-pickup conversions inside two weeks."
+  },
+  {
+    "id": "P024",
+    "status": "keep",
+    "mechanic": "Voice agent",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Check-in completion across five families over ten days is already observable; no changes needed."
+  },
+  {
+    "id": "P025",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: validating pre-screeners needs trial coordinators and patients with a specific condition, neither reachable by a student in 17 days, and final eligibility stays a clinical decision."
+  },
+  {
+    "id": "P026",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": null,
+    "buildExpectation": "Support three to five exercises and test with one physio and at least five patients for ten days.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star is fine; fixed the sample floor at five patients."
+  },
+  {
+    "id": "P027",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of price gap found across at least 50 invoice lines for the same items at three clinics.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Realised savings need a purchase cycle, so measured the price gap found in real invoices instead."
+  },
+  {
+    "id": "P028",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: no route to a Kenyan clinic and the scheme's rules are still shifting; relocated to India it becomes a thin duplicate of P022's claim pre-check."
+  },
+  {
+    "id": "P029",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: needs English pharmacies on NHS clinical pathways and their claiming systems, which a student in India cannot reach; the pre-submission claim check duplicates P022."
+  },
+  {
+    "id": "P030",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Comparable written estimates collected for one procedure from at least five hospitals.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Admissions depend on a patient's months-long decision, so measured the comparable estimates the student can gather directly."
+  },
+  {
+    "id": "P031",
+    "status": "cut",
+    "mechanic": "Scheduling or routing",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: the metric needs a full treatment cycle and the build needs five women mid-cycle to share sensitive fertility data with a student team in ten days; the build already leaned on 'simulated'."
+  },
+  {
+    "id": "P032",
+    "status": "keep",
+    "mechanic": "Evidence pack",
+    "northStar": "Claim files out of at least ten where your checklist catches a missing document before the family submits.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "First-pass payment waits on the insurer, so measured missing documents caught pre-submission across ten real families."
+  },
+  {
+    "id": "P033",
+    "status": "keep",
+    "mechanic": "Scheduling or routing",
+    "northStar": "Roster days out of 30 that the nurse manager accepts without a manual fix.",
+    "buildExpectation": "Generate a month's roster from one real hospital unit's shift, skill and leave data, and have the nurse manager mark every day accept or fix.",
+    "problem": null,
+    "constraints": null,
+    "note": "Call-off fill time needs live operations; replaced with manager-accepted roster days and removed the 'realistic unit' hatch."
+  },
+  {
+    "id": "P034",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": "Faults logged and triaged through the registry at one hospital in two weeks, across at least ten machines.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Downtime per quarter is unobservable by day 17, so counted real faults captured and triaged in two weeks."
+  },
+  {
+    "id": "P035",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: selling or placing UAE health cover needs an insurance licence, and the north star depends on employers actually buying through a licensed broker the student cannot be."
+  },
+  {
+    "id": "P036",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Patients who accept the proposed treatment, out of at least 15 shown your explanation at one clinic.",
+    "buildExpectation": "Pilot with one Indian dental clinic on real treatment plans with names removed, and record accept, defer or decline for at least 15 patients.",
+    "problem": null,
+    "constraints": null,
+    "note": "Put a sample size on the acceptance rate and anchored the pilot to an Indian clinic rather than the US or UAE."
+  },
+  {
+    "id": "P037",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Rupees saved per test across at least 20 real bookings made through the product.",
+    "buildExpectation": null,
+    "problem": "A thyroid profile or an HbA1c test, the three-month blood sugar average, can cost very different amounts at labs a kilometre apart, and patients can't tell which labs are accredited or reliable. Doctors refer out of habit or for a referral fee.",
+    "constraints": "Accreditation data from the National Accreditation Board for Testing and Calibration Laboratories, lab participation, and no medical advice.",
+    "note": "Added a booking floor to the saving metric and expanded HbA1c and the accreditation board on first use."
+  },
+  {
+    "id": "P038",
+    "status": "keep",
+    "mechanic": "Scheduling or routing",
+    "northStar": "Minutes of lateness removed across at least 20 real collections when re-planned with your routing.",
+    "buildExpectation": "Re-plan one day of a small lab's real collection schedule and compare your plan against what actually happened.",
+    "problem": null,
+    "constraints": null,
+    "note": "On-time share needs live dispatch control, so measured lateness removed on real jobs; removed 'realistic' from the build."
+  },
+  {
+    "id": "P039",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Meals per user per day over five users for a week already passes; mechanic is dish recognition from photos."
+  },
+  {
+    "id": "P040",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": "Practice minutes logged per child over ten days, across at least five children.",
+    "buildExpectation": "Build practice for a few target sounds and run it with one therapist and at least five families for ten days.",
+    "problem": null,
+    "constraints": null,
+    "note": "Changed the weekly framing to a ten-day window and fixed the floor at five children."
+  },
+  {
+    "id": "P041",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of questionable charges found across at least ten real hospital bills.",
+    "buildExpectation": "Check ten real itemised hospital bills shared by Indian families, with permission, against the hospital's published rates and raise at least one dispute.",
+    "problem": null,
+    "constraints": null,
+    "note": "Dollars removed waits on the hospital's decision; moved the pilot to Indian hospital bills since US patients are unreachable, keeping the US market framing in the problem."
+  },
+  {
+    "id": "P042",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": "High-risk hours in which a work-rest break was actually taken, logged across at least five workers for two weeks.",
+    "buildExpectation": "Build site-level alerts from weather data and test with one Indian construction site or delivery fleet for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Added worker count and window to the north star and anchored the pilot site in India."
+  },
+  {
+    "id": "P043",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Faculty-graded accuracy on 100 real doubts is observable inside the sprint; no changes needed."
+  },
+  {
+    "id": "P044",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": null,
+    "buildExpectation": "One subject, one rubric and 50 real answer sheets with student names removed, with agreement measured against two teachers.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star already measurable; replaced 'anonymised sheets' with real sheets with names removed."
+  },
+  {
+    "id": "P045",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Rupees collected from at least 30 families in fee arrears in two weeks.",
+    "buildExpectation": "Pilot with one real low-fee school in India, running instalment reminders and payment links for at least 30 families for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Term-fee collection by due date spans a school term, so switched to rupees collected in two weeks and put the pilot in an Indian school."
+  },
+  {
+    "id": "P046",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Shortlist changes across ten families are observable in a sitting; no changes needed."
+  },
+  {
+    "id": "P047",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": "Marks gained between a student's first and third timed answer, across at least ten students in two weeks.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Four weeks is longer than the sprint, so compressed the gain to three timed answers over two weeks with ten students."
+  },
+  {
+    "id": "P048",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": "Score gain on a job-scenario speaking test over ten days, across at least five learners.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Tightened the window to ten days and named the learner floor."
+  },
+  {
+    "id": "P049",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Enrolment intent across 15 real parents is self-observable; no changes needed."
+  },
+  {
+    "id": "P050",
+    "status": "keep",
+    "mechanic": "Compliance mapper",
+    "northStar": "Evidence items out of at least 20 that the college's quality cell accepts as submission-ready.",
+    "buildExpectation": null,
+    "problem": "Indian colleges go through accreditation by the National Assessment and Accreditation Council and the National Board of Accreditation, which needs years of data on faculty, students, research and outcomes. Most assemble it by hand under deadline, and the grade affects funding, admissions and reputation.",
+    "constraints": null,
+    "note": "Hours-to-compile has no baseline the student can observe, so counted evidence items the quality cell accepts; expanded both accreditation bodies."
+  },
+  {
+    "id": "P051",
+    "status": "cut",
+    "mechanic": "Risk ranking",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: the metric needs a full first term, real applicant credentials are protected data, and a student has no route to an overseas admissions team; the build already relied on a 'realistic dataset'."
+  },
+  {
+    "id": "P052",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": "Score gain between a first and second practice test over ten days, across at least ten nurses.",
+    "problem": "Thousands of Indian nurses want jobs in the US, UK, Ireland and the Gulf, which pay several times what Indian hospitals do. They must pass licensing and language exams such as the NCLEX nursing licence test and the Occupational English Test, and preparation is expensive and generic.",
+    "buildExpectation": null,
+    "constraints": null,
+    "note": "Four weeks exceeds the sprint, so compressed to two practice tests over ten days; expanded NCLEX and OET."
+  },
+  {
+    "id": "P053",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": "Teachers who change one named practice after two weeks of feedback, out of at least five.",
+    "buildExpectation": "Analyse at least ten recorded lessons from five teachers at one school, with consent, and run two weeks of feedback.",
+    "problem": null,
+    "constraints": null,
+    "note": "Added a teacher floor of five so the share is a real count rather than a one-teacher anecdote."
+  }
+]

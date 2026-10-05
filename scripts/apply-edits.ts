@@ -78,7 +78,9 @@ async function call(action: string, payload: Record<string, unknown> = {}) {
 
 function load(): Edit[] {
   const dir = resolve(process.cwd(), 'data')
-  const files = readdirSync(dir).filter((name) => /^edits-\d+\.json$/.test(name)).sort()
+  const files = readdirSync(dir)
+    .filter((name) => /^edits-\d+\.json$/.test(name))
+    .sort()
   if (!files.length) throw new Error('No data/edits-*.json files found')
 
   const seen = new Set<string>()
@@ -158,9 +160,10 @@ function main() {
 
 /** Things a human should look at before this is written to the Sheet. */
 function warn(edits: Edit[], byId: Map<string, Problem>) {
-  // A north star that still needs a billing cycle, a season or a renewal.
+  // A north star that still needs a billing cycle or a season. Two weeks is
+  // inside the sprint, so only longer windows are flagged.
   const slow =
-    /per month|monthly|a month|per quarter|quarterly|season|annual|per year|renewal|retention|churn|after (two|three|four|\d+) weeks|first term|days sales outstanding/i
+    /per month|monthly|a month|per quarter|quarterly|annual|per year|after (three|four|five|six|eight|twelve) weeks|first term|days sales outstanding|next season|over the season/i
   // A build a student can finish without meeting anyone.
   const hatch = /or realistic|realistic data|synthetic|simulate|simulated|mock data|for a season/i
 
@@ -183,7 +186,8 @@ function warn(edits: Edit[], byId: Map<string, Problem>) {
   }
 
   const uncovered = [...byId.keys()].filter((id) => !edits.some((edit) => edit.id === id))
-  if (uncovered.length) problems.push(`${uncovered.length} problems have no edit: ${uncovered.join(', ')}`)
+  if (uncovered.length)
+    problems.push(`${uncovered.length} problems have no edit: ${uncovered.join(', ')}`)
 
   if (!problems.length) {
     console.log('\n  no warnings')

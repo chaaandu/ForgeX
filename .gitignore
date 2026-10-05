@@ -14,5 +14,3 @@ next-env.d.ts
 /blob-report
 /playwright/.cache
 /data/the-117-c1
-/data/edits-*.json
-/data/edit-report.csv

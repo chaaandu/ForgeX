@@ -1,0 +1,532 @@
+[
+  {
+    "id": "P107",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": "Collect charger reliability data in one Indian city and test it with ten drivers who charge in public.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes; anchored the pilot in an Indian city since the problem spans Europe and India."
+  },
+  {
+    "id": "P108",
+    "status": "cut",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: once the pilot is relocated to India it is a thin duplicate of P117, which already covers cutting electricity cost from real bills and load shifting, and a Dubai facility manager is not reachable in 17 days."
+  },
+  {
+    "id": "P109",
+    "status": "keep",
+    "mechanic": "Compliance mapper",
+    "northStar": "Emissions per tonne computed from real plant records for five exporter product lines.",
+    "buildExpectation": "Compute embedded emissions for five real product lines across at least two exporters, and have each owner confirm the input data.",
+    "problem": null,
+    "constraints": null,
+    "note": "Old north star depended on third-party verification and a single product line; replaced with a count of real product lines the student can compute and confirm themselves."
+  },
+  {
+    "id": "P110",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star and build expectation already pass with 20 real plots in India; added mechanic only."
+  },
+  {
+    "id": "P111",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": "Log waste in one real Indian kitchen for ten days with the staff doing the logging, in a hostel mess, banquet kitchen or hotel.",
+    "problem": null,
+    "constraints": null,
+    "note": "Relocated the pilot to an Indian kitchen while keeping the Gulf hotel market framing, and removed the either-or wording."
+  },
+  {
+    "id": "P112",
+    "status": "keep",
+    "mechanic": "Evidence pack",
+    "northStar": "Societies that get a costed load, billing and approval pack reviewed with their committee, out of five.",
+    "buildExpectation": "Produce the load check, per-user billing rule and approval pack for five real societies in two weeks, and sit through one committee review.",
+    "problem": null,
+    "constraints": "Electrical safety rules, approval from the local electricity distribution company (the DISCOM) and society politics.",
+    "note": "Old north star waited on a DISCOM approval cycle that runs for months; switched to packs produced and reviewed, and expanded DISCOM in constraints."
+  },
+  {
+    "id": "P113",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": "Advise ten farmers through one farmer producer organisation (FPO) for two weeks and compare the price they got with their usual mandi.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star passes; expanded FPO on first use in the build expectation."
+  },
+  {
+    "id": "P114",
+    "status": "keep",
+    "mechanic": "Voice agent",
+    "northStar": "Animals with complete daily records after two weeks, across ten pilot farmers.",
+    "buildExpectation": "Pilot with ten farmers through one dairy cooperative for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Heat cycles are too rare to give n of five inside 17 days, so the north star moves to records captured, which the student can count daily."
+  },
+  {
+    "id": "P115",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star and build expectation already pass with three dealers and ten farmers; added mechanic only."
+  },
+  {
+    "id": "P116",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": "Litres of water unaccounted for per day across five blocks you meter.",
+    "buildExpectation": "Read meters and past bills for one complex for two weeks with the association's consent, covering at least five blocks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Monthly tanker spend needs a billing cycle; replaced with a daily water gap the student measures themselves across five blocks."
+  },
+  {
+    "id": "P117",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Rupees of shiftable peak-hour charges found in five real businesses' bills.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cost per unit of output needs a month of billing; promoted the shiftable peak-hour cost the student can compute from bills already in hand."
+  },
+  {
+    "id": "P118",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Metres of deadstock sold or under firm order by day 17.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Removed the monthly framing so the quantity lands inside the sprint."
+  },
+  {
+    "id": "P119",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Share of 20 real owners who choose repair after seeing your estimate.",
+    "buildExpectation": "Pick one product category, quote 20 real repairs with three Indian repair shops, and follow what each owner decides.",
+    "problem": null,
+    "constraints": null,
+    "note": "Relocated the pilot to Indian repair shops and owners while keeping the EU repair-rights framing, and put n into the north star."
+  },
+  {
+    "id": "P120",
+    "status": "keep",
+    "mechanic": "Compliance mapper",
+    "northStar": "Hours to produce a filing-ready obligation pack, measured across five real brands.",
+    "buildExpectation": "Compute obligations for five real brands from their actual packaging data.",
+    "problem": "Under India's Extended Producer Responsibility (EPR) rules for plastic packaging, brands must register, report packaging volumes and meet recycling targets through certificates. Small brands find the process confusing, and many aren't compliant.",
+    "constraints": null,
+    "note": "Expanded EPR on first use, and tied the hours metric to five real brands so it has n of five inside the sprint."
+  },
+  {
+    "id": "P121",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": "Run water logging and alerts with three real farms in Andhra Pradesh for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star passes on days logged; removed the online fallback so real farms are required."
+  },
+  {
+    "id": "P122",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Cost per kilometre gap between diesel and electric, computed from five real fleets' own route and fuel data.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "A switching decision is a capital decision the owner will not make in 17 days; promoted the cost gap the student computes from real fleet data."
+  },
+  {
+    "id": "P123",
+    "status": "keep",
+    "mechanic": "Risk ranking",
+    "northStar": "Share of 20 real addresses whose risk report a local resident or agent says matches what they have seen.",
+    "buildExpectation": "Produce reports for 20 real addresses in Chennai or Bengaluru and test them with five buyers or agents.",
+    "problem": null,
+    "constraints": null,
+    "note": "Old north star waited on a buyer's purchase decision; relocated the pilot to an Indian city while keeping the US insurance framing in the problem."
+  },
+  {
+    "id": "P124",
+    "status": "cut",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: needs diagnostic-port hardware, manufacturer battery data and five used EVs plus matching service-centre diagnostics, none of which a student can reach in 17 days."
+  },
+  {
+    "id": "P125",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Share of a dealer's outstanding credit accounts the farmer confirms as correct, across 20 accounts.",
+    "buildExpectation": "Digitise one real dealer's credit ledger and confirm the balances with 20 of their farmers over two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Repayment lands after harvest, so the north star moves to ledger accuracy confirmed with farmers, and the season wording is gone from the build."
+  },
+  {
+    "id": "P126",
+    "status": "keep",
+    "mechanic": "Scheduling or routing",
+    "northStar": "Bookings confirmed through the product for five real equipment owners in two weeks.",
+    "buildExpectation": "Run real bookings for five tractor or power-tiller owners through a Karnataka rental operator or custom hiring centre for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "Removed simulate and for-a-season, relocated the pilot to Karnataka while keeping the African mechanisation framing, and replaced monthly utilisation with bookings confirmed."
+  },
+  {
+    "id": "P127",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": null,
+    "buildExpectation": "Run real price quotes and pickups with two scrap dealers for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star passes on kilos per week; made the build require real trades rather than just working alongside dealers."
+  },
+  {
+    "id": "P128",
+    "status": "keep",
+    "mechanic": "Evidence pack",
+    "northStar": "Condition records signed by both tenant and landlord, out of 15 real tenancies.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Deposit disputes surface months later at move-out; switched to signed records, which the student counts during the sprint."
+  },
+  {
+    "id": "P129",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of over-quoting or missing items found across five real contractor quotes.",
+    "buildExpectation": "Track one live home-building project for two weeks and review five real contractor quotes with the family.",
+    "problem": null,
+    "constraints": null,
+    "note": "A stage overrun takes weeks and had n of one; promoted the quote errors the student finds themselves, across five quotes."
+  },
+  {
+    "id": "P130",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Daily site reports built from real photos and voice notes that the project manager agrees with, out of ten site days.",
+    "buildExpectation": "Run with two sites of one Indian contractor for ten days and compare every daily report against the project manager's own view.",
+    "problem": null,
+    "constraints": null,
+    "note": "Hours-to-detection needs a delay to occur and a ground truth; switched to agreement on ten site days, and anchored the pilot in India."
+  },
+  {
+    "id": "P131",
+    "status": "keep",
+    "mechanic": "Public records research",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes with five real cases checked against a lawyer's opinion; added mechanic only."
+  },
+  {
+    "id": "P132",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Share of one owner's trips in two weeks with a complete profit figure, across at least 20 trips.",
+    "buildExpectation": "Build trip-level profit for one owner's fleet across two weeks of real trips.",
+    "problem": null,
+    "constraints": null,
+    "note": "Replaced the monthly window with two weeks and 20 trips so the count is observable by day 17."
+  },
+  {
+    "id": "P133",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": "Share of 100 real addresses your system pins within 50 metres of the door, checked on foot.",
+    "buildExpectation": "Take one pin code, collect 100 real addresses from local shops and delivery partners, and measure your pins against locations checked on foot.",
+    "problem": null,
+    "constraints": null,
+    "note": "First-attempt delivery rate needs a delivery operator; promoted on-foot pin accuracy and removed the realistic-addresses escape hatch."
+  },
+  {
+    "id": "P134",
+    "status": "cut",
+    "mechanic": "Scheduling or routing",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: running a pooled feeder shuttle needs vehicles, driver pay and an aggregator permit under Karnataka rules, so a student cannot reach a real ride in 17 days."
+  },
+  {
+    "id": "P135",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Rupees of avoidable or wrongly billed charges found across 20 real containers.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Charges paid per container depends on future shipments; promoted the recoverable amount the student finds in invoices already issued."
+  },
+  {
+    "id": "P136",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Verified drivers matched to real vacancies in two weeks, out of 20 vacancies worked.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Idle days per truck depends on the owner's hiring cycle; switched to verified matches the student makes and counts."
+  },
+  {
+    "id": "P137",
+    "status": "cut",
+    "mechanic": "Public records research",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: a thin Dubai sibling of P139, which does the same public-records builder scorecard with Indian data, and no student can check construction progress on a Dubai site."
+  },
+  {
+    "id": "P138",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on 20 real estimates; added mechanic only."
+  },
+  {
+    "id": "P139",
+    "status": "keep",
+    "mechanic": "Public records research",
+    "northStar": "Red flags found per builder in public records, across ten Bengaluru builders.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Old north star waited on a buyer confirming a booking decision; promoted the findings the student produces from public records."
+  },
+  {
+    "id": "P140",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes with a week of sensor data from ten riders; added mechanic only."
+  },
+  {
+    "id": "P141",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: a quarterly filing needs a developer's internal project finance data and a chartered accountant's certification, and the public-records half duplicates P139."
+  },
+  {
+    "id": "P142",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: no route to a real European host in 17 days, and relocated to India it becomes a thin duplicate of the compliance-filing pattern in P120."
+  },
+  {
+    "id": "P143",
+    "status": "cut",
+    "mechanic": "Compliance mapper",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: no route to a Californian homeowner or builder, and the relocated version duplicates P131's public-records title and land-use work."
+  },
+  {
+    "id": "P144",
+    "status": "cut",
+    "mechanic": "Document reconciliation",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Cut: a student cannot reach an East African border crossing or customs agent, and the document-readiness build duplicates P135."
+  },
+  {
+    "id": "P145",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": null,
+    "buildExpectation": "Analyse one operator's bookings on two routes and test your prices on at least ten real departures.",
+    "problem": null,
+    "constraints": null,
+    "note": "North star passes on revenue per trip; set ten real departures so the sample is big enough."
+  },
+  {
+    "id": "P146",
+    "status": "keep",
+    "mechanic": "Field data capture",
+    "northStar": "Share of 30 workers' shifts recorded and confirmed by the worker over two weeks.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Disputes per month are rare and need a full wage cycle; promoted recorded and confirmed shifts, which accumulate daily."
+  },
+  {
+    "id": "P147",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes across 20 real consignments; added mechanic only."
+  },
+  {
+    "id": "P148",
+    "status": "keep",
+    "mechanic": "Marketplace or directory",
+    "northStar": "Verified space listings a brand can act on, out of 20 warehouses contacted.",
+    "buildExpectation": "List verified space from 20 warehouses and place at least five real brand requests against them.",
+    "problem": null,
+    "constraints": null,
+    "note": "Days-to-goods-stored waits on a lease decision; switched to verified listings and real requests, both countable by day 17."
+  },
+  {
+    "id": "P149",
+    "status": "keep",
+    "mechanic": "Risk ranking",
+    "northStar": "How well your scores rank ten of the chain's existing outlets against their actual sales.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Tightened the north star to a back-test on ten real outlets so the quantity has a clear n."
+  },
+  {
+    "id": "P150",
+    "status": "keep",
+    "mechanic": "Visual search",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on minutes per item across 50 real items; added mechanic only."
+  },
+  {
+    "id": "P151",
+    "status": "keep",
+    "mechanic": "Pricing or payback model",
+    "northStar": "Rupee difference between a creator's old rate and the rate they quote using your benchmark, across ten creators.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Live deals may not close inside 17 days; switched to the quoted rate change, which the student sees with each creator."
+  },
+  {
+    "id": "P152",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on royalties identified across five real catalogues; added mechanic only."
+  },
+  {
+    "id": "P153",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Direct bookings taken across three homestays in two weeks.",
+    "buildExpectation": "Set it up with three homestays and run it for two weeks.",
+    "problem": null,
+    "constraints": null,
+    "note": "One property may not see five bookings in two weeks; widened the pilot to three properties and counted direct bookings."
+  },
+  {
+    "id": "P154",
+    "status": "keep",
+    "mechanic": "Document reconciliation",
+    "northStar": "Document gaps found and fixed in ten real applicants' files before they submit.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Rejection rates wait on a consulate decision; promoted the gaps found before submission, which the student counts the same day."
+  },
+  {
+    "id": "P155",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Share of 30 pilgrims whose documents are collected and checked complete within two weeks.",
+    "buildExpectation": "Run document collection for one operator's next group of at least 30 pilgrims.",
+    "problem": null,
+    "constraints": null,
+    "note": "Tied the north star to the two-week window rather than a departure date that may fall outside the sprint."
+  },
+  {
+    "id": "P156",
+    "status": "keep",
+    "mechanic": "Scheduling or routing",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on repeat meetings inside two weeks; added mechanic only."
+  },
+  {
+    "id": "P157",
+    "status": "keep",
+    "mechanic": "Practice coach",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on spoken minutes per child per week across five families; added mechanic only."
+  },
+  {
+    "id": "P158",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": null,
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "North star already passes on errors per hundred meals in two weeks; added mechanic only."
+  },
+  {
+    "id": "P159",
+    "status": "keep",
+    "mechanic": "WhatsApp workflow",
+    "northStar": "Share of a coach's 30 clients who complete a weekly check-in through the product.",
+    "buildExpectation": null,
+    "problem": null,
+    "constraints": null,
+    "note": "Renewal rate waits on a monthly billing cycle; promoted weekly check-in completion, which the coach and student see live."
+  }
+]
