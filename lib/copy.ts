@@ -8,10 +8,17 @@ export const TOTAL_PROBLEMS = 212
 export const copy = {
   login: {
     label: 'ForgeX 2.0',
-    line: "212 problems. Bet on the one you'd give the next 17 days to.",
+    line: "212 problems. Bet on the one you'd build.",
     button: 'Continue with Google',
-    underButton: 'Use your forge27.mesaschool.co or mesaschool.co account.',
-    wrongDomain: 'This is only for Mesa accounts. Sign in with your forge27.mesaschool.co email.',
+    underButton: 'Use your Mesa School account.',
+  },
+
+  /** Shown on its own when somebody signs in with an account we do not take. */
+  refused: {
+    label: 'ForgeX 2.0',
+    line: "That's not a Mesa account.",
+    help: 'Sign in with your Mesa School account.',
+    button: 'Try another account',
   },
 
   header: {
@@ -24,6 +31,7 @@ export const copy = {
 
   filters: {
     openOnly: 'Open only',
+    typeLabel: 'Type',
   },
 
   card: {

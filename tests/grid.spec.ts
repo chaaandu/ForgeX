@@ -9,7 +9,7 @@ test.beforeEach(async ({ context }) => {
 
 test('filters sync to the URL and can be cleared', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Mythic' }).click()
+  await page.getByRole('button', { name: 'Mythic', exact: true }).click()
   await expect(page).toHaveURL(/tag=mythic/)
   await expect(page.locator('[data-card-id]')).toHaveCount(11)
 

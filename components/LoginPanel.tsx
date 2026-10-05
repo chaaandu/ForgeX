@@ -6,13 +6,7 @@ import { copy } from '@/lib/copy'
 
 type PickerEntry = { email: string; name: string; role: string }
 
-export function LoginPanel({
-  wrongDomain,
-  picker,
-}: {
-  wrongDomain: boolean
-  picker: PickerEntry[]
-}) {
+export function LoginPanel({ picker }: { picker: PickerEntry[] }) {
   const [busy, setBusy] = useState(false)
 
   return (
@@ -30,12 +24,6 @@ export function LoginPanel({
       </button>
 
       <p className="text-muted mt-3 text-[13px]">{copy.login.underButton}</p>
-
-      {wrongDomain && (
-        <p role="alert" className="text-mythic mt-5 text-[13px] leading-relaxed">
-          {copy.login.wrongDomain}
-        </p>
-      )}
 
       {picker.length > 0 && (
         <div className="border-line mt-10 flex w-full flex-col gap-2 border-t pt-6">

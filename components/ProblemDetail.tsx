@@ -28,8 +28,6 @@ export function ProblemDetail({ problem }: { problem: Problem }) {
           <span className="text-muted text-[13px]">
             {problem.cluster}
             <span className="text-muted/50 px-1.5">·</span>
-            {problem.region}
-            <span className="text-muted/50 px-1.5">·</span>
             <span className="font-mono text-[11px] tracking-[0.1em]">{problem.id}</span>
           </span>
         </div>

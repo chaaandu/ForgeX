@@ -118,8 +118,8 @@ Do this with two student accounts and one mesaschool.co account.
    `release` row.
 5. A mesaschool.co account sees the bettor's name, email and bet time, and has
    no button to press anywhere.
-6. A personal Gmail is refused at sign-in and lands back on `/login` with
-   "This is only for Mesa accounts."
+6. A personal Gmail is refused at sign-in and lands on the refused screen:
+   "That's not a Mesa account." with a **Try another account** button.
 
 ---
 

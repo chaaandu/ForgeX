@@ -12,12 +12,10 @@ import { Select } from './Select'
 export function FilterBar({
   filters,
   clusters,
-  regions,
   count,
 }: {
   filters: Filters
   clusters: string[]
-  regions: string[]
   count: number
 }) {
   const router = useRouter()
@@ -51,8 +49,9 @@ export function FilterBar({
   }
 
   return (
-    <div className="border-line bg-ink/80 sticky top-0 z-40 -mx-4 border-b px-4 py-3 backdrop-blur-md sm:-mx-6 sm:px-6">
-      <div className="mx-auto flex max-w-[1600px] flex-wrap items-center gap-2">
+    <div className="border-line bg-ink/80 sticky top-0 z-40 border-b px-4 py-3 backdrop-blur-md sm:px-6">
+      <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-2">
+        <span className="label mr-0.5 hidden sm:block">{copy.filters.typeLabel}</span>
         {TAGS.map((tag) => {
           const active = filters.tags.includes(tag)
           return (
@@ -82,15 +81,8 @@ export function FilterBar({
           options={clusters}
           onValueChange={(cluster) => push({ ...filters, cluster })}
         />
-        <Select
-          label="Region"
-          placeholder="Region"
-          value={filters.region}
-          options={regions}
-          onValueChange={(region) => push({ ...filters, region })}
-        />
 
-        <label className="relative flex h-8 min-w-[160px] flex-1 basis-40 items-center">
+        <label className="relative flex h-8 min-w-0 flex-1 basis-40 items-center">
           <Search
             size={16}
             strokeWidth={1.5}

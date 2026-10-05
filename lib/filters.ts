@@ -3,7 +3,6 @@ import { TAGS, type Problem, type Tag, type BetMap } from './types'
 export type Filters = {
   tags: Tag[]
   cluster: string
-  region: string
   q: string
   openOnly: boolean
 }
@@ -11,7 +10,6 @@ export type Filters = {
 export const EMPTY_FILTERS: Filters = {
   tags: [],
   cluster: '',
-  region: '',
   q: '',
   openOnly: false,
 }
@@ -30,20 +28,13 @@ export function parseFilters(params: SearchParams): Filters {
   return {
     tags,
     cluster: one(params.cluster).trim(),
-    region: one(params.region).trim(),
     q: one(params.q).trim(),
     openOnly: one(params.open) === '1',
   }
 }
 
 export function isFiltering(filters: Filters): boolean {
-  return (
-    filters.tags.length > 0 ||
-    filters.cluster !== '' ||
-    filters.region !== '' ||
-    filters.q !== '' ||
-    filters.openOnly
-  )
+  return filters.tags.length > 0 || filters.cluster !== '' || filters.q !== '' || filters.openOnly
 }
 
 /** Turns filters back into a query string, leaving any other params alone. */
@@ -51,7 +42,6 @@ export function toQuery(filters: Filters, extra: Record<string, string> = {}): s
   const query = new URLSearchParams()
   if (filters.tags.length) query.set('tag', filters.tags.join(','))
   if (filters.cluster) query.set('cluster', filters.cluster)
-  if (filters.region) query.set('region', filters.region)
   if (filters.q) query.set('q', filters.q)
   if (filters.openOnly) query.set('open', '1')
   for (const [key, value] of Object.entries(extra)) {
@@ -66,7 +56,6 @@ export function applyFilters(problems: Problem[], filters: Filters, bets: BetMap
   return problems.filter((problem) => {
     if (filters.tags.length && !filters.tags.includes(problem.tag)) return false
     if (filters.cluster && problem.cluster !== filters.cluster) return false
-    if (filters.region && problem.region !== filters.region) return false
     if (filters.openOnly && bets[problem.id]) return false
     if (needle) {
       const haystack = `${problem.title} ${problem.problem} ${problem.who}`.toLowerCase()
@@ -78,8 +67,4 @@ export function applyFilters(problems: Problem[], filters: Filters, bets: BetMap
 
 export function clustersOf(problems: Problem[]): string[] {
   return [...new Set(problems.map((problem) => problem.cluster))].filter(Boolean).sort()
-}
-
-export function regionsOf(problems: Problem[]): string[] {
-  return [...new Set(problems.map((problem) => problem.region))].filter(Boolean).sort()
 }

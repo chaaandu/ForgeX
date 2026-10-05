@@ -3,7 +3,7 @@
 import * as RadixSelect from '@radix-ui/react-select'
 import { Check, ChevronDown } from 'lucide-react'
 
-/** Radix Select in the app's surface colours. Used for Cluster and Region. */
+/** Radix Select in the app's surface colours. Used for the cluster filter. */
 export function Select({
   value,
   onValueChange,

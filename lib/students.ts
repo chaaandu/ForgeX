@@ -14,7 +14,9 @@ export const studentsSchema = z.array(studentSchema)
 export type Student = z.infer<typeof studentSchema>
 
 const byEmail = new Map((roster as Student[]).map((student) => [student.email, student]))
-const byName = new Map((roster as Student[]).map((student) => [student.name.toLowerCase(), student]))
+const byName = new Map(
+  (roster as Student[]).map((student) => [student.name.toLowerCase(), student]),
+)
 
 export const students = roster as Student[]
 

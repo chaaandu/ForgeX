@@ -1,15 +1,32 @@
 import { expect, test } from '@playwright/test'
 import { copy } from '../lib/copy'
-import { OUTSIDER, signIn, STUDENT_A } from './helpers'
+import { LOOKALIKE, OUTSIDER, signIn, STUDENT_A } from './helpers'
 
-test('an address outside the Mesa domains is refused', async ({ browser }) => {
+test('an address outside the Mesa domains gets the refused screen', async ({ browser }) => {
   const context = await browser.newContext()
-  await signIn(context, OUTSIDER)
+  const page = await context.newPage()
+
+  await page.goto('/login')
+  await page.locator(`[data-mock-signin="${OUTSIDER}"]`).click()
+
+  await expect(page).toHaveURL(/error=domain/)
+  await expect(page.getByText(copy.refused.line)).toBeVisible()
+  await expect(page.getByRole('button', { name: copy.refused.button })).toBeVisible()
+
+  // Nothing was signed in, so the grid is still out of reach.
+  await page.goto('/')
+  await expect(page).toHaveURL(/\/login/)
+
+  await context.close()
+})
+
+test('a domain that merely looks like Mesa is refused too', async ({ browser }) => {
+  const context = await browser.newContext()
+  await signIn(context, LOOKALIKE)
 
   const page = await context.newPage()
   await page.goto('/')
   await expect(page).toHaveURL(/\/login/)
-  await expect(page.getByText(copy.login.line)).toBeVisible()
 
   await context.close()
 })

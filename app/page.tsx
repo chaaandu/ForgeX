@@ -15,7 +15,6 @@ import {
   clustersOf,
   isFiltering,
   parseFilters,
-  regionsOf,
   toQuery,
   type SearchParams,
 } from '@/lib/filters'
@@ -63,12 +62,7 @@ export default async function GridPage({ searchParams }: { searchParams: Promise
           </div>
 
           <Suspense fallback={null}>
-            <FilterBar
-              filters={filters}
-              clusters={clustersOf(problems)}
-              regions={regionsOf(problems)}
-              count={filtered.length}
-            />
+            <FilterBar filters={filters} clusters={clustersOf(problems)} count={filtered.length} />
           </Suspense>
 
           <main className="px-4 pt-6 pb-24 sm:px-6">

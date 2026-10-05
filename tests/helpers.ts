@@ -4,7 +4,9 @@ import students from '../data/students.json'
 export const STUDENT_A = students[0]!.email
 export const STUDENT_B = students[1]!.email
 export const TEAM = 'team@mesaschool.co'
-export const OUTSIDER = 'someone@evilmesaschool.co'
+/** In the mock picker, so the refused screen can be reached by clicking. */
+export const OUTSIDER = 'someone@gmail.com'
+export const LOOKALIKE = 'someone@evilmesaschool.co'
 
 /** Signs in through the mock credentials provider, cookies and all. */
 export async function signIn(context: BrowserContext, email: string) {

@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { LoginPanel } from '@/components/LoginPanel'
+import { RefusedPanel } from '@/components/RefusedPanel'
 import { copy } from '@/lib/copy'
 import { getViewer } from '@/lib/session'
 import { students } from '@/lib/students'
@@ -14,7 +15,15 @@ export default async function LoginPage({
   const [viewer, params] = await Promise.all([getViewer(), searchParams])
   if (viewer) redirect('/')
 
-  const wrongDomain = params.error !== undefined
+  // Any sign-in error is a refused account: the only thing that can fail here
+  // is the domain check.
+  if (params.error !== undefined) {
+    return (
+      <main className="flex min-h-dvh items-center justify-center px-6">
+        <RefusedPanel />
+      </main>
+    )
+  }
 
   const mock = process.env.MOCK_BACKEND === 'true'
   const picker = mock
@@ -25,6 +34,7 @@ export default async function LoginPage({
           role: 'Student',
         })),
         { email: 'team@mesaschool.co', name: 'Mesa Team', role: 'Team' },
+        { email: 'someone@gmail.com', name: 'Outside account', role: 'Refused' },
       ]
     : []
 
@@ -35,7 +45,7 @@ export default async function LoginPage({
         <h1 className="text-primary mt-6 text-[22px] leading-[1.45] font-medium tracking-[-0.02em]">
           {copy.login.line}
         </h1>
-        <LoginPanel wrongDomain={wrongDomain} picker={picker} />
+        <LoginPanel picker={picker} />
       </div>
     </main>
   )
