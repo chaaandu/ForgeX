@@ -11,10 +11,10 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'ForgeX 2.0',
-  description: "212 problems. Bet on the one you'd give the next 17 days to.",
+  description: "200+ problems. Bet on the one you'd build.",
   openGraph: {
     title: 'ForgeX 2.0',
-    description: "212 problems. Bet on the one you'd give the next 17 days to.",
+    description: "200+ problems. Bet on the one you'd build.",
   },
 }
 

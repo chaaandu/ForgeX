@@ -8,7 +8,7 @@ export const TOTAL_PROBLEMS = 212
 export const copy = {
   login: {
     label: 'ForgeX 2.0',
-    line: "212 problems. Bet on the one you'd build.",
+    line: "200+ problems. Bet on the one you'd build.",
     button: 'Continue with Google',
     underButton: 'Use your Mesa School account.',
   },
