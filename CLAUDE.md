@@ -75,6 +75,10 @@ pnpm data:students   # data/students.json and public/students/*.webp
   rows inside the lock. That is the only thing standing between two students and
   the same problem.
 - Columns are read by header name, never by position.
+- **Problem IDs are frozen.** They run P001 to P177 with no gaps. An ID is what
+  a deep link, a screenshot and every row of the Bet log point at, so once
+  betting opens nothing may renumber. `data/id-crosswalk.csv` maps the current
+  IDs back to the original 212-problem numbering.
 - The Problems tab carries one app-written column, `Bet by`, holding a name.
   The email and the time come from the Bet log; the photo comes from the roster
   in `lib/students.ts`, joined on email and falling back to the name, which is
