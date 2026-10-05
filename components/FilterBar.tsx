@@ -5,9 +5,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState, useTransition } from 'react'
 import { copy } from '@/lib/copy'
 import { isFiltering, toQuery, type Filters } from '@/lib/filters'
-import { TAGS, type Tag } from '@/lib/types'
-import { TAG_LABEL, tagStyle } from '@/lib/utils'
 import { Select } from './Select'
+import { TagFilter } from './TagFilter'
 
 export function FilterBar({
   filters,
@@ -60,38 +59,10 @@ export function FilterBar({
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  const toggleTag = (tag: Tag) => {
-    const tags = filters.tags.includes(tag)
-      ? filters.tags.filter((value) => value !== tag)
-      : [...filters.tags, tag]
-    push({ ...filters, tags })
-  }
-
   return (
-    <div className="border-line bg-ink/80 sticky top-0 z-40 border-b px-4 py-3 backdrop-blur-md sm:px-6">
+    <div className="border-line bg-ink/45 sticky top-0 z-40 border-b px-4 py-3 backdrop-blur-xl sm:px-6">
       <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-2">
-        <span className="label mr-0.5 hidden sm:block">{copy.filters.typeLabel}</span>
-        {TAGS.map((tag) => {
-          const active = filters.tags.includes(tag)
-          return (
-            <button
-              key={tag}
-              type="button"
-              aria-pressed={active}
-              onClick={() => toggleTag(tag)}
-              style={active ? tagStyle(tag) : undefined}
-              className={
-                active
-                  ? 'h-8 rounded-full border px-3 font-mono text-[11px] tracking-[0.08em] uppercase'
-                  : 'border-line text-muted hover:text-secondary h-8 rounded-full border px-3 font-mono text-[11px] tracking-[0.08em] uppercase transition-colors duration-150 hover:border-white/15'
-              }
-            >
-              {TAG_LABEL[tag]}
-            </button>
-          )
-        })}
-
-        <span className="mx-1 hidden h-5 w-px bg-white/[0.08] sm:block" />
+        <TagFilter value={filters.tags} onChange={(tags) => push({ ...filters, tags })} />
 
         <Select
           label="Cluster"

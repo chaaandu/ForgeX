@@ -10,7 +10,9 @@ test.beforeEach(async ({ context }) => {
 
 test('filters sync to the URL and can be cleared', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Mythic', exact: true }).click()
+  await page.getByRole('button', { name: copy.filters.typeLabel, exact: true }).click()
+  await page.getByRole('checkbox', { name: 'Mythic' }).click()
+  await page.keyboard.press('Escape')
   await expect(page).toHaveURL(/tag=mythic/)
   const mythic = problems.filter((problem) => problem.tag === 'mythic').length
   await expect(page.locator('[data-card-id]')).toHaveCount(mythic)
