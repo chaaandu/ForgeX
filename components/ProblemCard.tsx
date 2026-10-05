@@ -1,5 +1,6 @@
 import { copy } from '@/lib/copy'
 import type { Problem } from '@/lib/types'
+import { TAG_COLOR } from '@/lib/utils'
 import { CardBet } from './CardBet'
 import { CardLink } from './CardLink'
 import { TagPill } from './TagPill'
@@ -12,7 +13,12 @@ import { TagPill } from './TagPill'
  */
 export function ProblemCard({ problem, href }: { problem: Problem; href: string }) {
   return (
-    <CardLink href={href} problemId={problem.id} label={`${problem.id}. ${problem.title}`}>
+    <CardLink
+      href={href}
+      problemId={problem.id}
+      label={`${problem.id}. ${problem.title}`}
+      accent={TAG_COLOR[problem.tag]}
+    >
       <span className="flex items-center gap-2 pr-10">
         <TagPill tag={problem.tag} />
         <span className="text-muted truncate text-[13px]">{problem.cluster}</span>

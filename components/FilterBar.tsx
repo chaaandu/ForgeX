@@ -22,9 +22,10 @@ export function FilterBar({
 }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [, startTransition] = useTransition()
+  const [pending, startTransition] = useTransition()
   const [query, setQuery] = useState(filters.q)
   const typed = useRef(false)
+  const search = useRef<HTMLInputElement>(null)
 
   const push = (next: Filters) => {
     startTransition(() => router.replace(`${pathname}${toQuery(next)}`, { scroll: false }))
@@ -42,6 +43,22 @@ export function FilterBar({
     setQuery(filters.q)
     typed.current = false
   }, [filters.q])
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      const target = event.target as HTMLElement | null
+      const typing = target && /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName)
+      if (event.key === '/' && !typing && !document.body.dataset.modalOpen) {
+        event.preventDefault()
+        search.current?.focus()
+      }
+      if (event.key === 'Escape' && target === search.current) {
+        search.current?.blur()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
 
   const toggleTag = (tag: Tag) => {
     const tags = filters.tags.includes(tag)
@@ -101,6 +118,7 @@ export function FilterBar({
           />
           <span className="sr-only">Search</span>
           <input
+            ref={search}
             type="search"
             value={query}
             onChange={(event) => {
@@ -125,7 +143,15 @@ export function FilterBar({
           {copy.filters.openOnly}
         </button>
 
-        {isFiltering(filters) && <span className="label shrink-0 tabular-nums">{count}</span>}
+        {isFiltering(filters) && (
+          <span
+            aria-live="polite"
+            className="label shrink-0 tabular-nums transition-opacity duration-150"
+            style={{ opacity: pending ? 0.4 : 1 }}
+          >
+            {count}
+          </span>
+        )}
       </div>
     </div>
   )

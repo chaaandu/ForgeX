@@ -48,7 +48,9 @@ export function Header({
             {copy.header.studentHasBet(myBetId, titles[myBetId] ?? '')}
           </button>
         ) : (
-          <p className="text-muted mt-1 text-[14px]">{copy.header.studentNoBet(open, total, closesAt)}</p>
+          <p className="text-muted mt-1 text-[14px]">
+            {copy.header.studentNoBet(open, total, closesAt)}
+          </p>
         )}
       </div>
       <AvatarMenu name={name} email={email} photo={photo} />

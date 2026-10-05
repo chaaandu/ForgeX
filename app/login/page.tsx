@@ -42,8 +42,9 @@ export default async function LoginPage({
     <main className="flex min-h-dvh items-center justify-center px-6">
       <div className="flex w-full max-w-sm flex-col items-center text-center">
         <p className="label">{copy.login.label}</p>
-        <h1 className="text-primary mt-6 text-[22px] leading-[1.45] font-medium tracking-[-0.02em]">
-          {copy.login.line}
+        <h1 className="mt-6 flex flex-col gap-1 text-[22px] leading-[1.35] font-medium tracking-[-0.02em]">
+          <span className="text-muted">{copy.login.line}</span>
+          <span className="text-primary">{copy.login.lineTwo}</span>
         </h1>
         <LoginPanel picker={picker} />
       </div>

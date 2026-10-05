@@ -2,9 +2,9 @@
 
 import * as Dialog from '@radix-ui/react-dialog'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { problemSchema } from '@/lib/schema'
+import { cached, fetchProblem } from '@/lib/problem-cache'
 import type { Problem } from '@/lib/types'
 import { useBets } from './BetsProvider'
 import { ModalFooter } from './ModalFooter'
@@ -20,12 +20,11 @@ const EASE = [0.16, 1, 0.3, 1] as const
  * kept in step by ModalState rather than by the router.
  */
 export function ProblemModal({ titles }: { titles: Record<string, string> }) {
-  const { openId, close, prevId, nextId, goPrev, goNext } = useModal()
+  const { openId, close, prevId, nextId, goPrev, goNext, position } = useModal()
   const { bets, entranceFor } = useBets()
   const reduced = useReducedMotion()
   const [problem, setProblem] = useState<Problem | null>(null)
   const [slammed, setSlammed] = useState(false)
-  const cache = useRef(new Map<string, Problem>())
   const lastOpened = useRef<string | null>(null)
 
   useEffect(() => {
@@ -33,24 +32,17 @@ export function ProblemModal({ titles }: { titles: Record<string, string> }) {
     lastOpened.current = openId
     setSlammed(false)
 
-    const cached = cache.current.get(openId)
-    if (cached) {
-      setProblem(cached)
+    const have = cached(openId)
+    if (have) {
+      setProblem(have)
       return
     }
 
     let live = true
     setProblem(null)
-    void fetch(`/api/problem/${openId}`)
-      .then((response) => (response.ok ? response.json() : null))
-      .then((body: unknown) => {
-        if (!live || !body || typeof body !== 'object') return
-        const parsed = problemSchema.safeParse((body as { problem: unknown }).problem)
-        if (!parsed.success) return
-        cache.current.set(parsed.data.id, parsed.data)
-        setProblem(parsed.data)
-      })
-      .catch(() => undefined)
+    void fetchProblem(openId).then((next) => {
+      if (live && next) setProblem(next)
+    })
     return () => {
       live = false
     }
@@ -129,11 +121,38 @@ export function ProblemModal({ titles }: { titles: Record<string, string> }) {
                 }}
                 className="border-line-strong bg-surface-modal fixed inset-x-0 bottom-0 z-50 flex max-h-[92vh] flex-col overflow-hidden rounded-t-2xl border sm:inset-0 sm:m-auto sm:h-fit sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-3xl sm:rounded-2xl"
               >
-                <div className="relative flex h-12 shrink-0 items-center justify-end px-3 sm:h-14 sm:px-4">
+                <div className="relative flex h-12 shrink-0 items-center justify-between gap-2 px-3 sm:h-14 sm:px-4">
                   <span
                     aria-hidden
                     className="absolute inset-x-0 top-2 mx-auto h-1 w-10 rounded-full bg-white/15 sm:hidden"
                   />
+
+                  <div className="flex items-center gap-1">
+                    <button
+                      type="button"
+                      aria-label="Previous problem"
+                      disabled={!prevId}
+                      onClick={goPrev}
+                      className="border-line text-muted hover:text-primary flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-150 hover:border-white/15 disabled:pointer-events-none disabled:opacity-30"
+                    >
+                      <ChevronLeft size={16} strokeWidth={1.5} />
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Next problem"
+                      disabled={!nextId}
+                      onClick={goNext}
+                      className="border-line text-muted hover:text-primary flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-150 hover:border-white/15 disabled:pointer-events-none disabled:opacity-30"
+                    >
+                      <ChevronRight size={16} strokeWidth={1.5} />
+                    </button>
+                    {position && (
+                      <span className="label ml-2 tabular-nums">
+                        {position.at} / {position.of}
+                      </span>
+                    )}
+                  </div>
+
                   <Dialog.Close
                     aria-label="Close"
                     className="border-line text-muted hover:text-primary flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-150 hover:border-white/15"
@@ -144,7 +163,7 @@ export function ProblemModal({ titles }: { titles: Record<string, string> }) {
 
                 <div
                   data-stamped={bet ? 'true' : 'false'}
-                  className="relative flex-1 overflow-y-auto overscroll-contain px-5 pt-1 pb-6 sm:px-7"
+                  className="quiet-scroll relative flex-1 overflow-y-auto overscroll-contain px-5 pt-1 pb-6 sm:px-7"
                 >
                   {bet && problem && (
                     <span className="absolute top-0 right-5 z-10 sm:right-7">

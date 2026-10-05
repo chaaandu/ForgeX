@@ -17,6 +17,8 @@ type ModalValue = {
   nextId: string | null
   goPrev: () => void
   goNext: () => void
+  /** 1-based position in the filtered list, and how many there are. */
+  position: { at: number; of: number } | null
 }
 
 const ModalContext = createContext<ModalValue | null>(null)
@@ -74,12 +76,13 @@ export function ModalProvider({
     return () => window.removeEventListener('popstate', onPop)
   }, [])
 
-  const { prevId, nextId } = useMemo(() => {
-    if (!openId) return { prevId: null, nextId: null }
+  const { prevId, nextId, position } = useMemo(() => {
+    if (!openId) return { prevId: null, nextId: null, position: null }
     const at = ids.indexOf(openId)
     return {
       prevId: at > 0 ? (ids[at - 1] ?? null) : null,
       nextId: at >= 0 && at < ids.length - 1 ? (ids[at + 1] ?? null) : null,
+      position: at >= 0 ? { at: at + 1, of: ids.length } : null,
     }
   }, [openId, ids])
 
@@ -91,6 +94,7 @@ export function ModalProvider({
     nextId,
     goPrev: useCallback(() => prevId && step(prevId), [prevId, step]),
     goNext: useCallback(() => nextId && step(nextId), [nextId, step]),
+    position,
   }
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>

@@ -60,6 +60,8 @@ pnpm data:students   # data/students.json and public/students/*.webp
   optimistically for the viewer's own actions with a rollback on any error.
 - Only `components/CardBet.tsx` re-renders when a stamp arrives. The cards
   themselves stay server rendered.
+- `lib/problem-cache.ts` holds problem detail for the session. Cards warm it on
+  hover and focus, so the modal almost never shows its skeleton.
 
 ## Rules that must not drift
 
@@ -88,6 +90,9 @@ pnpm data:students   # data/students.json and public/students/*.webp
 - Icons: lucide-react at `size={16} strokeWidth={1.5}`, used sparingly.
 - Motion: 150 to 200ms, ease-out, no bounce. Respect `prefers-reduced-motion`.
 - Add a string to `lib/copy.ts` rather than inlining it in a component.
+- Keyboard: `/` focuses search, Escape leaves it, the arrow keys walk the
+  filtered list inside the modal. The modal also carries visible prev and next
+  controls, both so touch users have them and so the shortcut is discoverable.
 
 ## Mock mode
 

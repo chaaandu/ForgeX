@@ -6,7 +6,8 @@
 export const copy = {
   login: {
     label: 'ForgeX 2.0',
-    line: "170+ problems. Bet on the one you'd build.",
+    line: '100+ problems.',
+    lineTwo: "Bet on the one you'd build.",
     button: 'Continue with Google',
     underButton: 'Use your Mesa School account.',
   },
