@@ -73,11 +73,28 @@ export type Snapshot = {
  * never made to wait for one: it gets whatever we already have, starting with
  * the snapshot that ships with the build, and a refresh runs behind it.
  */
+/**
+ * Apps Script takes about three seconds per call however small the answer, and
+ * two overlapping calls can stall for the best part of a minute. Background
+ * reads therefore queue behind each other. Writes are never queued: a student
+ * tapping a button must not wait on a refresh.
+ */
+let readQueue: Promise<unknown> = Promise.resolve()
+
+function queued<T>(work: () => Promise<T>): Promise<T> {
+  const next = readQueue.then(work, work)
+  readQueue = next.then(
+    () => undefined,
+    () => undefined,
+  )
+  return next
+}
+
 let refreshing: Promise<void> | null = null
 
 function refreshProblems(): void {
   if (refreshing) return
-  refreshing = fetchData()
+  refreshing = queued(() => fetchData())
     .then(({ problems, picks, maxChanges }) => {
       cache.problems = { value: problems, at: Date.now() }
       cache.picks = picks
@@ -108,7 +125,7 @@ let pollingBets: Promise<void> | null = null
 
 function refreshBets(): Promise<void> {
   if (pollingBets) return pollingBets
-  pollingBets = fetchBets()
+  pollingBets = queued(() => fetchBets())
     .then((state) => {
       cache.bets = { value: enrich(state.bets), at: Date.now() }
       cache.picks = state.picks
