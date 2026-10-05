@@ -124,6 +124,7 @@ function doPost(e) {
 
   try {
     if (body.action === 'data') return json(handleData())
+    if (body.action === 'bets') return json(handleBets())
     if (body.action === 'bet') return json(handleBet(body))
     if (body.action === 'release') return json(handleRelease(body))
     if (body.action === 'backup') return json(handleBackup())
@@ -346,6 +347,16 @@ function betsFrom(rows, index, latest) {
 }
 
 /* ------------------------------------------------------------------ actions */
+
+/**
+ * Just who holds what. The app polls this every few seconds, so it skips
+ * parsing 177 problems and returns a couple of kilobytes instead of 227.
+ */
+function handleBets() {
+  var sheet = problemsSheet()
+  var index = headerIndex(sheet)
+  return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
+}
 
 function handleData() {
   var sheet = problemsSheet()

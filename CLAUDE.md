@@ -55,6 +55,13 @@ pnpm data:students   # data/students.json and public/students/*.webp
   the detail from `GET /api/problem/[id]`. This is deliberate: a router
   navigation that unmounts the open dialog stalls and never commits, so opening,
   closing and the arrow keys deliberately avoid the router.
+- **A call to Apps Script costs about three seconds and 227KB, so no request
+  ever waits on one if it can help it.** Problems come from the build's own
+  snapshot and refresh in the background; bets are cached ten seconds and served
+  stale while revalidating, blocking only on a server's very first request. The
+  `bets` action returns the bet map alone, which is why polling is cheap.
+  Serving slightly stale bet state is safe: the Sheet decides who gets a
+  problem, inside the script lock, not this cache.
 - Bet state lives in `components/BetsProvider.tsx`: seeded from the server,
   polled from `GET /api/bets` every 15 seconds and on window focus, and updated
   optimistically for the viewer's own actions with a rollback on any error.

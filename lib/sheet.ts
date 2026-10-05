@@ -1,5 +1,7 @@
 import 'server-only'
+import { z } from 'zod'
 import {
+  betMapSchema,
   dataResponseSchema,
   errorResponseSchema,
   sheetResponseSchema,
@@ -54,6 +56,20 @@ async function post(action: string, payload: Payload = {}): Promise<unknown> {
     }
   }
   throw new SheetUnreachable(lastError)
+}
+
+/**
+ * Who holds what, and nothing else. Falls back to the full `data` call if the
+ * deployed script predates this action, so an older deployment still works.
+ */
+export async function fetchBets(): Promise<BetMap> {
+  const raw = await post('bets')
+  const failure = errorResponseSchema.safeParse(raw)
+  if (failure.success) {
+    if (failure.data.error === 'unknown_action') return (await fetchData()).bets
+    throw new SheetUnreachable(failure.data.error)
+  }
+  return z.object({ ok: z.literal(true), bets: betMapSchema }).parse(raw).bets
 }
 
 /** Everything the grid needs in one call. Throws SheetUnreachable so callers can fall back. */

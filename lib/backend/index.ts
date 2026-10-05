@@ -1,7 +1,7 @@
 import 'server-only'
 import fallbackProblems from '@/data/problems.json'
 import type { ActionResult } from '@/lib/schema'
-import { fetchData, sheetBet, sheetRelease, SheetUnreachable } from '@/lib/sheet'
+import { fetchBets, fetchData, sheetBet, sheetRelease, SheetUnreachable } from '@/lib/sheet'
 import { studentByEmail, studentByName } from '@/lib/students'
 import type { BetMap, Problem } from '@/lib/types'
 import { mockBet, mockBets, mockProblems, mockRelease } from './mock'
@@ -41,13 +41,16 @@ const BETS_TTL_MS = 10_000
 type Cache = {
   problems: { value: Problem[]; at: number } | null
   bets: { value: BetMap; at: number } | null
+  degraded: boolean
 }
 
 const cache: Cache = ((globalThis as { __forgexCache?: Cache }).__forgexCache ??= {
   problems: null,
   bets: null,
+  degraded: false,
 })
 
+/** After a write, the next read must not serve the state from before it. */
 function invalidateBets() {
   cache.bets = null
 }
@@ -59,42 +62,82 @@ export type Snapshot = {
   degraded: boolean
 }
 
-async function refresh(): Promise<Snapshot> {
-  const { problems, bets: raw } = await fetchData()
-  const bets = enrich(raw)
-  const now = Date.now()
-  cache.problems = { value: problems, at: now }
-  cache.bets = { value: bets, at: now }
-  return { problems, bets, degraded: false }
+/**
+ * The problem list changes when somebody edits the Sheet, which is rare, while
+ * a call to Apps Script costs about three seconds and 227KB. So a request is
+ * never made to wait for one: it gets whatever we already have, starting with
+ * the snapshot that ships with the build, and a refresh runs behind it.
+ */
+let refreshing: Promise<void> | null = null
+
+function refreshProblems(): void {
+  if (refreshing) return
+  refreshing = fetchData()
+    .then(({ problems }) => {
+      cache.problems = { value: problems, at: Date.now() }
+      cache.degraded = false
+    })
+    .catch(() => {
+      cache.degraded = true
+    })
+    .finally(() => {
+      refreshing = null
+    })
+}
+
+function problemsNow(): Problem[] {
+  const held = cache.problems
+  if (!held || Date.now() - held.at > PROBLEMS_TTL_MS) refreshProblems()
+  return held?.value ?? (fallbackProblems as Problem[])
 }
 
 export async function getSnapshot(): Promise<Snapshot> {
   if (isMock()) return { problems: mockProblems(), bets: mockBets(), degraded: false }
-
-  const now = Date.now()
-  const problems = cache.problems
-  const bets = cache.bets
-  if (problems && bets && now - problems.at < PROBLEMS_TTL_MS && now - bets.at < BETS_TTL_MS) {
-    return { problems: problems.value, bets: bets.value, degraded: false }
-  }
-
-  try {
-    return await refresh()
-  } catch (error) {
-    if (!(error instanceof SheetUnreachable)) throw error
-    return {
-      problems: cache.problems?.value ?? (fallbackProblems as Problem[]),
-      bets: cache.bets?.value ?? {},
-      degraded: true,
-    }
-  }
+  const { bets, degraded } = await getBets()
+  return { problems: problemsNow(), bets, degraded }
 }
 
-/** Bet state only, never older than ten seconds. */
+let pollingBets: Promise<void> | null = null
+
+function refreshBets(): Promise<void> {
+  if (pollingBets) return pollingBets
+  pollingBets = fetchBets()
+    .then((raw) => {
+      cache.bets = { value: enrich(raw), at: Date.now() }
+      cache.degraded = false
+    })
+    .catch(() => {
+      cache.degraded = true
+    })
+    .finally(() => {
+      pollingBets = null
+    })
+  return pollingBets
+}
+
+/**
+ * Who holds what. Fresh within ten seconds, and only ever blocking on the very
+ * first request a server handles: after that a stale answer goes out at once
+ * while the refresh runs behind it. Serving bet state a few seconds old is safe
+ * because the Sheet, not this cache, decides who actually gets a problem.
+ */
 export async function getBets(): Promise<{ bets: BetMap; degraded: boolean }> {
   if (isMock()) return { bets: mockBets(), degraded: false }
-  const snapshot = await getSnapshot()
-  return { bets: snapshot.bets, degraded: snapshot.degraded }
+
+  const held = cache.bets
+  if (!held) {
+    await refreshBets()
+    return { bets: cache.bets?.value ?? {}, degraded: cache.degraded }
+  }
+
+  if (Date.now() - held.at >= BETS_TTL_MS) void refreshBets()
+  return { bets: held.value, degraded: cache.degraded }
+}
+
+/** Problem detail, straight from memory. Never waits on Apps Script. */
+export function getProblem(problemId: string): Problem | undefined {
+  const problems = isMock() ? mockProblems() : problemsNow()
+  return problems.find((problem) => problem.id === problemId)
 }
 
 export async function placeBetOnBackend(input: {

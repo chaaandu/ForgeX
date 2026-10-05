@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getSnapshot } from '@/lib/backend'
+import { getProblem } from '@/lib/backend'
 import { problemIdSchema } from '@/lib/schema'
 import { getViewer } from '@/lib/session'
 
@@ -14,8 +14,8 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   const parsed = problemIdSchema.safeParse(id)
   if (!parsed.success) return NextResponse.json({ error: 'not_found' }, { status: 404 })
 
-  const { problems } = await getSnapshot()
-  const problem = problems.find((candidate) => candidate.id === parsed.data)
+  // Straight from memory, so opening a card never waits on the Sheet.
+  const problem = getProblem(parsed.data)
   if (!problem) return NextResponse.json({ error: 'not_found' }, { status: 404 })
 
   return NextResponse.json({ problem }, { headers: { 'Cache-Control': 'private, max-age=300' } })
