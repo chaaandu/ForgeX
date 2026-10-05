@@ -12,10 +12,12 @@ import { Select } from './Select'
 export function FilterBar({
   filters,
   clusters,
+  mechanics,
   count,
 }: {
   filters: Filters
   clusters: string[]
+  mechanics: string[]
   count: number
 }) {
   const router = useRouter()
@@ -81,6 +83,15 @@ export function FilterBar({
           options={clusters}
           onValueChange={(cluster) => push({ ...filters, cluster })}
         />
+        {mechanics.length > 0 && (
+          <Select
+            label="Build type"
+            placeholder="Build type"
+            value={filters.mechanic}
+            options={mechanics}
+            onValueChange={(mechanic) => push({ ...filters, mechanic })}
+          />
+        )}
 
         <label className="relative flex h-8 min-w-0 flex-1 basis-40 items-center">
           <Search

@@ -17,6 +17,7 @@ export function Header({
   photo,
   closesAt,
   titles,
+  total,
 }: {
   firstName: string
   name: string
@@ -24,18 +25,20 @@ export function Header({
   photo: string
   closesAt: string
   titles: Record<string, Problem['title']>
+  /** How many problems are on the board, so the count never goes stale. */
+  total: number
 }) {
   const { bets, role, myBetId } = useBets()
   const { open: openProblem } = useModal()
   const taken = Object.keys(bets).length
-  const open = Math.max(0, 212 - taken)
+  const open = Math.max(0, total - taken)
 
   return (
     <header className="mx-auto flex max-w-[1600px] items-start justify-between gap-4 pt-8 pb-6">
       <div className="min-w-0">
         <h1 className="title text-primary">{copy.header.greeting(firstName)}</h1>
         {role === 'team' ? (
-          <p className="text-muted mt-1 text-[14px]">{copy.header.team(taken)}</p>
+          <p className="text-muted mt-1 text-[14px]">{copy.header.team(taken, total)}</p>
         ) : myBetId ? (
           <button
             type="button"
@@ -45,7 +48,7 @@ export function Header({
             {copy.header.studentHasBet(myBetId, titles[myBetId] ?? '')}
           </button>
         ) : (
-          <p className="text-muted mt-1 text-[14px]">{copy.header.studentNoBet(open, closesAt)}</p>
+          <p className="text-muted mt-1 text-[14px]">{copy.header.studentNoBet(open, total, closesAt)}</p>
         )}
       </div>
       <AvatarMenu name={name} email={email} photo={photo} />

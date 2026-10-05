@@ -18,6 +18,9 @@ export const PROBLEM_HEADERS = [
   'Tools to use',
 ] as const
 
+/** Written by the app's editing pass, not part of the original bank. */
+export const EXTRA_HEADERS = ['Mechanic', 'Status'] as const
+
 /** The one column the app writes, after N. */
 export const BET_HEADERS = ['Bet by'] as const
 
@@ -28,6 +31,11 @@ export function normaliseTag(raw: string): Tag | null {
     .trim()
     .toLowerCase()
   return (TAGS as readonly string[]).includes(word) ? (word as Tag) : null
+}
+
+/** `A. SMB, commerce and retail` to `SMB, commerce and retail`. */
+export function stripClusterPrefix(raw: string): string {
+  return raw.replace(/^[A-Z]\.\s+/, '').trim()
 }
 
 /** `a; b; c` to `['a', 'b', 'c']`. */
@@ -64,7 +72,7 @@ export function toProblem(row: RawRow): Problem | null {
     id,
     title: get('Title'),
     tag,
-    cluster: get('Cluster'),
+    cluster: stripClusterPrefix(get('Cluster')),
     region: get('Region'),
     problem: get('Problem'),
     who: get('Who experiences it'),
@@ -75,5 +83,6 @@ export function toProblem(row: RawRow): Problem | null {
     constraints: get('Constraints'),
     buildExpectation: get('Build expectation'),
     tools: parseTools(get('Tools to use')),
+    mechanic: get('Mechanic'),
   }
 }

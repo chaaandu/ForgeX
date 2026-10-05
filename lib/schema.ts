@@ -21,6 +21,7 @@ export const problemSchema = z.object({
   constraints: z.string(),
   buildExpectation: z.string(),
   tools: z.array(toolKitSchema),
+  mechanic: z.string().default(''),
 })
 
 export const problemsSchema = z.array(problemSchema)

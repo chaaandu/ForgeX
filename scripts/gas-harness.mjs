@@ -46,6 +46,9 @@ function makeSheet(name, rows) {
     },
     appendRow: (row) => rows.push([...row]),
     setFrozenRows: () => undefined,
+    copyTo: () => makeSheet('copy', rows.map((r) => [...r])),
+    setName: () => undefined,
+    hideSheet: () => undefined,
   }
 }
 
@@ -206,3 +209,23 @@ console.log(
   data.problems[0].tag,
   data.problems[0].directions,
 )
+
+console.log('\n### edit action')
+console.log(
+  'batch result:',
+  JSON.stringify(
+    call({
+      action: 'edit',
+      edits: [
+        { id: 'P002', values: { 'North star metric': 'rewritten', Mechanic: 'doc-reconcile' } },
+        { id: 'P003', values: { Status: 'cut' } },
+        { id: 'P999', values: { Status: 'cut' } },
+      ],
+    }),
+  ),
+)
+const after = call({ action: 'data' })
+console.log('on the board after cutting P003:', after.problems.map((x) => x.id).join(','))
+console.log('P002 north star :', after.problems.find((x) => x.id === 'P002').northStar)
+console.log('P002 mechanic   :', after.problems.find((x) => x.id === 'P002').mechanic)
+console.log('new headers     :', problemRows[0].slice(14).join(' | '))

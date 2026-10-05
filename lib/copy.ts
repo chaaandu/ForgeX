@@ -3,8 +3,6 @@
  * anywhere else, so this file is the whole of the app's voice.
  */
 
-export const TOTAL_PROBLEMS = 212
-
 export const copy = {
   login: {
     label: 'ForgeX 2.0',
@@ -23,10 +21,10 @@ export const copy = {
 
   header: {
     greeting: (firstName: string) => `Hey ${firstName}.`,
-    studentNoBet: (open: number, closes: string) =>
-      `${open} of ${TOTAL_PROBLEMS} still open · Closes ${closes} IST`,
+    studentNoBet: (open: number, total: number, closes: string) =>
+      `${open} of ${total} still open · Closes ${closes} IST`,
     studentHasBet: (id: string, title: string) => `Your bet: ${id} · ${title}`,
-    team: (taken: number) => `${taken} of ${TOTAL_PROBLEMS} problems backed so far.`,
+    team: (taken: number, total: number) => `${taken} of ${total} problems backed so far.`,
   },
 
   filters: {
@@ -59,7 +57,7 @@ export const copy = {
       directions: 'Directions (examples)',
       constraints: 'Constraints',
       build: 'Build expectation',
-      tools: 'Tools to use',
+      tools: 'Tech stack',
     },
   },
 

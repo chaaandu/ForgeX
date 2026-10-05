@@ -14,6 +14,7 @@ import {
   applyFilters,
   clustersOf,
   isFiltering,
+  mechanicsOf,
   parseFilters,
   toQuery,
   type SearchParams,
@@ -58,11 +59,17 @@ export default async function GridPage({ searchParams }: { searchParams: Promise
               photo={viewer.photo}
               closesAt={formatCloseTime(closeTimeIso())}
               titles={titles}
+              total={problems.length}
             />
           </div>
 
           <Suspense fallback={null}>
-            <FilterBar filters={filters} clusters={clustersOf(problems)} count={filtered.length} />
+            <FilterBar
+              filters={filters}
+              clusters={clustersOf(problems)}
+              mechanics={mechanicsOf(problems)}
+              count={filtered.length}
+            />
           </Suspense>
 
           <main className="px-4 pt-6 pb-24 sm:px-6">

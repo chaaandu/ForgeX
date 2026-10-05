@@ -24,6 +24,91 @@ var BET_HEADERS = [BET_BY]
 
 var LOG_HEADERS = ['Timestamp', 'Action', 'Email', 'Name', 'Problem ID', 'Previous problem ID']
 
+/** Anything other than blank or "keep" takes a problem off the board. */
+var STATUS = 'Status'
+var MECHANIC = 'Mechanic'
+
+/* ---------------------------------------------------------------- plumbing */
+
+/* ------------------------------------------------------------------ editing */
+
+/**
+ * Duplicates the Problems tab so an edit can always be undone by hand.
+ * Returns the name of the copy.
+ */
+function handleBackup() {
+  var book = SpreadsheetApp.getActive()
+  var source = problemsSheet()
+  var name = 'Backup ' + Utilities.formatDate(new Date(), TZ, 'yyyy-MM-dd HH-mm')
+  if (book.getSheetByName(name)) book.deleteSheet(book.getSheetByName(name))
+  var copy = source.copyTo(book)
+  copy.setName(name)
+  copy.hideSheet()
+  return { ok: true, backup: name }
+}
+
+/**
+ * Applies edits to the Problems tab, addressed by problem ID and header name.
+ *
+ *   { action: 'edit', edits: [ { id: 'P001', values: { 'North star metric': '...' } } ] }
+ *
+ * Headers that do not exist yet are created. Nothing is deleted, ever: to take
+ * a problem off the board, set its Status to something other than "keep".
+ */
+function handleEdit(body) {
+  var edits = body.edits
+  if (!edits || !edits.length) return { ok: false, error: 'no_edits' }
+
+  var lock = LockService.getScriptLock()
+  lock.waitLock(30000)
+  try {
+    var sheet = problemsSheet()
+
+    // Collect every header the batch mentions, creating the missing ones once.
+    var wanted = {}
+    for (var e = 0; e < edits.length; e++) {
+      for (var header in edits[e].values) wanted[header] = true
+    }
+    var width = Math.max(sheet.getLastColumn(), 1)
+    var headers = sheet.getRange(1, 1, 1, width).getValues()[0]
+    for (var name in wanted) {
+      if (headers.indexOf(name) === -1) {
+        width += 1
+        sheet.getRange(1, width).setValue(name)
+        headers.push(name)
+      }
+    }
+
+    var index = {}
+    for (var c = 0; c < headers.length; c++) {
+      var header = String(headers[c]).trim()
+      if (header && !(header in index)) index[header] = c
+    }
+
+    var rows = readRows(sheet, index)
+    var rowById = {}
+    for (var r = 0; r < rows.length; r++) rowById[rows[r].id] = rows[r].row
+
+    var applied = 0
+    var missing = []
+    for (var i = 0; i < edits.length; i++) {
+      var row = rowById[edits[i].id]
+      if (!row) {
+        missing.push(edits[i].id)
+        continue
+      }
+      for (var key in edits[i].values) {
+        sheet.getRange(row, index[key] + 1).setValue(edits[i].values[key])
+        applied += 1
+      }
+    }
+    SpreadsheetApp.flush()
+    return { ok: true, applied: applied, missing: missing }
+  } finally {
+    lock.releaseLock()
+  }
+}
+
 /* ---------------------------------------------------------------- plumbing */
 
 function doPost(e) {
@@ -41,6 +126,8 @@ function doPost(e) {
     if (body.action === 'data') return json(handleData())
     if (body.action === 'bet') return json(handleBet(body))
     if (body.action === 'release') return json(handleRelease(body))
+    if (body.action === 'backup') return json(handleBackup())
+    if (body.action === 'edit') return json(handleEdit(body))
     return json({ ok: false, error: 'unknown_action' })
   } catch (err) {
     return json({ ok: false, error: String((err && err.message) || err) })
@@ -175,6 +262,11 @@ function parseTools(raw) {
 function toProblem(row, index) {
   var tag = normaliseTag(cell(row, index, 'Tag'))
   if (!tag) return null
+
+  // A row can be parked without deleting it.
+  var status = cell(row, index, STATUS).toLowerCase()
+  if (status && status !== 'keep') return null
+
   return {
     id: row.id,
     title: cell(row, index, 'Title'),
@@ -189,6 +281,7 @@ function toProblem(row, index) {
     directions: splitList(cell(row, index, 'Potential directions (examples only)')),
     constraints: cell(row, index, 'Constraints'),
     buildExpectation: cell(row, index, 'Build expectation'),
+    mechanic: cell(row, index, MECHANIC),
     tools: parseTools(cell(row, index, 'Tools to use')),
   }
 }

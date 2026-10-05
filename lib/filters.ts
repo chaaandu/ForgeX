@@ -3,6 +3,7 @@ import { TAGS, type Problem, type Tag, type BetMap } from './types'
 export type Filters = {
   tags: Tag[]
   cluster: string
+  mechanic: string
   q: string
   openOnly: boolean
 }
@@ -10,6 +11,7 @@ export type Filters = {
 export const EMPTY_FILTERS: Filters = {
   tags: [],
   cluster: '',
+  mechanic: '',
   q: '',
   openOnly: false,
 }
@@ -28,6 +30,7 @@ export function parseFilters(params: SearchParams): Filters {
   return {
     tags,
     cluster: one(params.cluster).trim(),
+    mechanic: one(params.mechanic).trim(),
     q: one(params.q).trim(),
     openOnly: one(params.open) === '1',
   }
@@ -42,6 +45,7 @@ export function toQuery(filters: Filters, extra: Record<string, string> = {}): s
   const query = new URLSearchParams()
   if (filters.tags.length) query.set('tag', filters.tags.join(','))
   if (filters.cluster) query.set('cluster', filters.cluster)
+  if (filters.mechanic) query.set('mechanic', filters.mechanic)
   if (filters.q) query.set('q', filters.q)
   if (filters.openOnly) query.set('open', '1')
   for (const [key, value] of Object.entries(extra)) {
@@ -56,6 +60,7 @@ export function applyFilters(problems: Problem[], filters: Filters, bets: BetMap
   return problems.filter((problem) => {
     if (filters.tags.length && !filters.tags.includes(problem.tag)) return false
     if (filters.cluster && problem.cluster !== filters.cluster) return false
+    if (filters.mechanic && problem.mechanic !== filters.mechanic) return false
     if (filters.openOnly && bets[problem.id]) return false
     if (needle) {
       const haystack = `${problem.title} ${problem.problem} ${problem.who}`.toLowerCase()
@@ -67,4 +72,8 @@ export function applyFilters(problems: Problem[], filters: Filters, bets: BetMap
 
 export function clustersOf(problems: Problem[]): string[] {
   return [...new Set(problems.map((problem) => problem.cluster))].filter(Boolean).sort()
+}
+
+export function mechanicsOf(problems: Problem[]): string[] {
+  return [...new Set(problems.map((problem) => problem.mechanic))].filter(Boolean).sort()
 }

@@ -3,8 +3,8 @@
     "id": "P001",
     "title": "The credit that never comes back",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Distributors of FMCG, pharma and hardware extend 15 to 60 days of credit to hundreds of retailers and track it in Tally, notebooks and the salesman's memory. Collection depends on who remembers to ask, and disputes over short supply or scheme credits hold payments up for weeks.",
     "who": "Owners of distributorships with a few hundred retail accounts and a handful of salesmen.",
     "whyItMatters": "Distributors finance much of India's retail trade out of their own working capital, and overdue receivables cap how much stock they can carry. Lenders want to fund this layer but can't see a distributor's real ledger.",
@@ -26,14 +26,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P002",
     "title": "Stock that ages in the back room",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Regional apparel and footwear chains end every season with stock they bought too much of, sitting in the wrong stores. Markdowns and transfers happen on gut feel, usually after the stock has lost most of its value.",
     "who": "Owners and merchandisers at chains with 3 to 30 stores.",
     "whyItMatters": "Inventory planning software exists for India's large retailers, while regional chains still plan on spreadsheets. Money stuck in old stock can't buy what's selling.",
@@ -51,14 +52,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P003",
     "title": "Quotes that arrive after the order is gone",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Sheet-metal, machining, packaging and print shops get enquiries as drawings, PDFs and WhatsApp photos. Pricing a job takes an estimator hours or days, and a wrong guess on material or machine time wipes out the margin.",
     "who": "Owners and estimators at manufacturers with 10 to 200 people.",
     "whyItMatters": "Buyers give the order to whoever quotes first with a believable number. Quoting software for job shops is a venture-backed category in the US (Paperless Parts), and Zetwerk grew large on the same pain from the buyer's side.",
@@ -79,14 +81,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P004",
     "title": "The supplier who raised prices without telling you",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "Global",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Restaurants, clinics and small retailers buy from dozens of suppliers whose invoices change quietly: a higher rate, a smaller pack, an extra charge, a quantity that never arrived. Owners pay what the invoice says because nobody has time to check it against what was agreed.",
     "who": "Owners and purchase managers at restaurants, retail chains and clinics.",
     "whyItMatters": "Spend-control software is a large category for big companies, and small businesses have none of it. AI can now read invoice photos well enough to compare every line with agreed rates.",
@@ -108,14 +111,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P005",
     "title": "Deductions modern trade takes from every payment",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Emerging FMCG brands selling to DMart, Reliance Retail, More and regional supermarket chains rarely get paid the invoice amount. Retailers deduct for shortages, damages, expiry, promotions and listing fees, and brands can't match deductions to invoices or dispute them in time.",
     "who": "Founders, finance and key-account teams at emerging FMCG and food brands, and their distributors.",
     "whyItMatters": "Deduction management is a funded software category for consumer brands in the US, where unresolved deductions cost a few percent of sales. Indian brands moving into modern trade face the same leak with nothing but spreadsheets.",
@@ -137,14 +141,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P006",
     "title": "Out of stock in a dark store you can't see",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Emerging brands on Blinkit, Zepto and Instamart sell through hundreds of dark stores but see little store-level availability. A product can be missing in key neighbourhoods for days before anyone notices.",
     "who": "Founders and supply teams at young FMCG and D2C brands.",
     "whyItMatters": "Quick commerce has become one of the main growth channels for new consumer brands in Indian cities. An empty listing loses the sale on the spot and drops the product down search results.",
@@ -166,14 +171,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P007",
     "title": "Cash that leaks at the billing counter",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Regional retail chains, restaurants and pharmacies lose money at the counter through voided bills, unexplained discounts, fake returns and cash that never reaches the bank. Owners see only the daily total and catch problems months later, if ever.",
     "who": "Owners and operations heads at chains with 3 to 50 outlets.",
     "whyItMatters": "Large retailers run loss-prevention analytics on every transaction, and small chains run on trust. Leakage of one or two percent of sales can equal a chain's whole profit.",
@@ -191,14 +197,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P008",
     "title": "Orders that arrive as voice notes and notebook photos",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Wholesalers get WhatsApp orders as voice notes in mixed languages, photos of handwritten lists and forwarded messages. Billing staff type everything in again, with mistakes.",
     "who": "Wholesalers and distributors of groceries, hardware, pharma and stationery, and their billing staff.",
     "whyItMatters": "WhatsApp is the ordering system for much of India's B2B trade, and AI can now read voice notes and handwriting well enough to structure it. Wrong deliveries cause disputes, and peak-hour backlogs cap how many customers a trader can serve.",
@@ -219,14 +226,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P009",
     "title": "A quarter of every delivery order goes to the app",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "Middle East",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Restaurants in Dubai and Abu Dhabi depend on Talabat, Deliveroo and Careem for delivery and hand over a large commission on every order. Regulars who would happily order direct have no easy way to do it, and the restaurant never learns who they are.",
     "who": "Owners of independent restaurants and small chains in the UAE. Indian restaurants face the same split with Swiggy and Zomato.",
     "whyItMatters": "Talabat listed on the Dubai Financial Market in December 2024, which shows how much value sits with the platform. Restaurants keep the food cost and give away both margin and the customer relationship.",
@@ -247,14 +255,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P010",
     "title": "A year's rent in four cheques",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "Middle East",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Tenants in the UAE usually pay a year's rent upfront or in one to four post-dated cheques. New arrivals and young professionals struggle to find that much cash, and landlords prefer fewer cheques because bounced ones are a headache.",
     "who": "Tenants in Dubai and Abu Dhabi, landlords and property managers.",
     "whyItMatters": "Several UAE startups have raised funding to let tenants pay monthly while landlords still get the year upfront. The model works when tenant risk is priced well, and that risk data is the hard part.",
@@ -276,14 +285,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P011",
     "title": "Two hundred order-taking calls a day",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Distributors of FMCG, pharma and building materials employ tele-callers who phone retailers every day to take orders. Calls run long, retailers forget items, and orders get written down wrong in a mix of Hindi, Kannada and English.",
     "who": "Distributor owners and their tele-calling teams, and the retailers who order from them.",
     "whyItMatters": "Phone ordering still carries a large share of India's B2B trade, and voice AI in Indian languages became good and cheap enough for real calls in 2025. A voice agent that takes orders reliably could serve distributors across the country.",
@@ -305,14 +315,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P012",
     "title": "\"Do you have this part?\"",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "Africa",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Auto parts dealers in Lagos's Ladipo market or Delhi's Kashmere Gate get asked for parts by photo, description or broken sample. Finding the exact part across makes, models and aftermarket equivalents depends on a few experienced staff.",
     "who": "Spare-parts retailers, mechanics and their customers.",
     "whyItMatters": "The parts aftermarket is huge and fragmented in Africa and India, and online sellers like Boodmo have shown buyers will order online once identification is solved. Wrong parts mean returns and lost trust.",
@@ -334,14 +345,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P013",
     "title": "Expired medicines and the credit note that never comes",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Chemists return expired and near-expiry medicines to distributors, who return them to manufacturers. Each step has its own rules and windows, credit notes take months, and a lot of stock is simply written off.",
     "who": "Pharmacy owners, pharma distributors and manufacturers' returns teams.",
     "whyItMatters": "Expired stock is a steady loss across India's hundreds of thousands of chemists, and untracked returns create the risk of expired medicines being resold. Nobody tracks returns across the whole chain.",
@@ -363,14 +375,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P014",
     "title": "A D2C brand that can't find a factory",
     "tag": "epic",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Young brands in skincare, snacks, apparel and home goods need contract manufacturers who accept small orders, keep quality steady and move fast. They find them through cold calls and referrals, and many launch late or switch factories after a bad batch.",
     "who": "Founders of early D2C brands, and the small contract manufacturers who could serve them.",
     "whyItMatters": "India produces thousands of new consumer brands a year, and almost all outsource production. Zetwerk built a large business matching factories to big buyers, while small brands with small orders remain badly served.",
@@ -388,14 +401,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P015",
     "title": "Which designs actually sell?",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Family jewellers hold large inventories valued by gold weight but rarely track which designs, weights and price points move fastest. Reorders to karigars follow habit.",
     "who": "Owners of independent and family jewellery stores.",
     "whyItMatters": "Independent jewellers still sell most of India's jewellery, and their stock is gold bought with expensive working capital. Mandatory hallmarking gave every piece a unique ID, which makes design-level tracking practical for the first time.",
@@ -417,14 +431,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P016",
     "title": "Regional supermarkets sitting on unsold ad space",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Blinkit, Zepto, Amazon and Flipkart earn heavily from brands paying to be seen, while regional supermarket chains own shelves, screens, receipts and shopper data they never sell. Brands want to reach those shoppers but can't buy or measure it.",
     "who": "Regional supermarket and pharmacy chains, and the FMCG brands that sell through them.",
     "whyItMatters": "Retail media is one of the fastest-growing advertising channels in the world, and in India it sits with a few large platforms. Regional chains could earn high-margin revenue from assets they already have.",
@@ -446,14 +461,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P017",
     "title": "Forty vendors, one wedding, one exhausted planner",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Indian wedding planners coordinate decorators, caterers, photographers, artists and venues across several functions over WhatsApp and spreadsheets. One late change ripples through every vendor.",
     "who": "Independent wedding and event planners and their vendors.",
     "whyItMatters": "India's wedding industry is one of the largest event markets in the world, and planners cap how many weddings they take because coordination doesn't scale. Software that planners rely on can also carry the vendor payments that flow through them.",
@@ -471,14 +487,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P018",
     "title": "The customer got the parcel and still got a refund",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "Global",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Small online merchants lose money to chargebacks, where a customer disputes a card payment after receiving the goods. Fighting each dispute means gathering tracking proof, messages and policies within tight deadlines, so most merchants give up.",
     "who": "Small online stores in the US and Europe, and Indian brands selling cross-border.",
     "whyItMatters": "Chargeback management is a venture-backed category (Chargeflow and Justt both raised money), yet most small merchants still handle disputes by hand or not at all. Each lost dispute costs the order value plus a fee.",
@@ -495,14 +512,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P019",
     "title": "\"Find me something like this fabric\"",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Textile wholesalers in Surat, Tiruppur and Ludhiana hold thousands of fabric SKUs. Buyers send photos asking for something similar, and staff search through swatches and memory.",
     "who": "Textile wholesalers and their buyers, mostly boutiques and garment makers.",
     "whyItMatters": "India's textile trade runs through these wholesale markets, and B2B textile platforms have raised money on the same problem. Whoever answers first gets the order.",
@@ -519,14 +537,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P020",
     "title": "Permits that hold up every job",
     "tag": "legendary",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "US",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "US contractors wait weeks or months for building permits for remodels, solar installs, HVAC work and new builds. Every city has different forms and codes, applications bounce back for small mistakes, and crews sit idle while they wait.",
     "who": "Residential contractors, solar and HVAC installers, and permit expediters in the US.",
     "whyItMatters": "Permitting delays push back revenue on every job, and permit-software startups such as PermitFlow have raised venture funding. Most small contractors still handle permits by hand.",
@@ -548,14 +567,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P021",
     "title": "Paying per WhatsApp message to customers who never read them",
     "tag": "rare",
-    "cluster": "A. SMB, commerce and retail",
-    "region": "India",
+    "cluster": "SMB, commerce and retail",
+    "region": "",
     "problem": "Indian D2C brands send offers, cart reminders and order updates on WhatsApp. Since Meta moved marketing messages to per-message pricing in July 2025, every broadcast has a visible cost, and most brands still blast their whole list with the same message.",
     "who": "Founders and growth teams at D2C brands, and the agencies that run their WhatsApp marketing.",
     "whyItMatters": "WhatsApp converts better than any other channel for many Indian brands, and tools built on it, such as Interakt and Gallabox, have raised funding. Spend efficiency is now the open question.",
@@ -577,14 +597,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P022",
     "title": "Cashless claims that settle short",
     "tag": "mythic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Small and mid-size hospitals run cashless insurance claims through TPAs and insurers. Pre-authorisations get queried, final bills get cut, and billing desks rarely know why or how to push back.",
     "who": "Insurance desks at 30 to 200 bed hospitals and nursing homes, and their patients.",
     "whyItMatters": "Health insurance is growing fast in India, and the National Health Claims Exchange launched in 2024 is moving claims onto shared digital rails. Every deduction comes out of the hospital's margin or the patient's pocket at discharge.",
@@ -602,14 +623,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P023",
     "title": "The chronic medicine that's out of stock again",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Patients on long-term medicines for diabetes, thyroid or blood pressure buy from the same chemist every month. Independent chemists stock thousands of items and often run out of a regular's brand, so the patient goes elsewhere.",
     "who": "Independent pharmacy owners and their chronic patients.",
     "whyItMatters": "Chronic prescriptions are a chemist's steadiest revenue, and e-pharmacies target exactly those patients with reminders and discounts. Neighbourhood chemists still outnumber every chain but have no tools to keep those customers.",
@@ -631,14 +653,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P024",
     "title": "Ageing parents, children 2,000 km away",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Cross-border",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Millions of Indian parents live alone while their children work in other cities or abroad. Children hear about a fall, a missed bill or loneliness late, and arranging help from far away is exhausting.",
     "who": "Adult children, often NRIs, and their parents over 65.",
     "whyItMatters": "India's over-60 population is growing fast and more of them live alone. Eldercare companies such as Emoha have raised money, and diaspora families already pay for peace of mind.",
@@ -660,14 +683,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P025",
     "title": "Trials that can't find their patients",
     "tag": "mythic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "US",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Most clinical trials miss their enrolment targets. Eligibility criteria are long free text, sites screen patients by hand, and patients rarely hear about trials they qualify for.",
     "who": "Trial coordinators, patient advocacy groups and patients with specific conditions.",
     "whyItMatters": "Each day of delay costs sponsors money and pushes back new treatments. Recruitment is one of the largest lines in a trial budget, and India is growing as a trial location.",
@@ -689,14 +713,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P026",
     "title": "Home exercises nobody does",
     "tag": "legendary",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Global",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Physiotherapy recovery depends on exercises done at home between sessions. Most patients do them rarely or wrongly, and the physio can't see what happens.",
     "who": "Physiotherapists and clinics, and patients recovering from injury or surgery.",
     "whyItMatters": "Digital physiotherapy is a proven venture category, and Hinge Health went public in the US in 2025. Indian clinics have nothing comparable, and poor adherence wastes paid sessions.",
@@ -718,14 +743,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P027",
     "title": "Clinics overpaying for gloves and syringes",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Small clinics, labs and nursing homes buy consumables from several local distributors at prices that vary widely. Owners rarely compare, and stockouts force emergency purchases at a premium.",
     "who": "Owners and administrators of clinics and nursing homes.",
     "whyItMatters": "Medical supply platforms like Medikabazaar raised large rounds on this fragmentation, mostly serving bigger hospitals. Small clinics are the long tail nobody serves well.",
@@ -747,14 +773,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P028",
     "title": "Kenya's new health insurer and the clinics still waiting to be paid",
     "tag": "legendary",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Africa",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Kenya replaced the NHIF with the Social Health Authority in October 2024. Private clinics and small hospitals have reported delayed and rejected claims under the new system, and many still run claims on paper and spreadsheets.",
     "who": "Owners and claims staff at private clinics and small hospitals in Kenya, and the patients enrolled in the scheme.",
     "whyItMatters": "When public insurance becomes a facility's main payer, slow claims turn into a cash crisis. Other African countries are expanding public coverage in similar ways.",
@@ -772,14 +799,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P029",
     "title": "Pharmacy First turned chemists into clinics",
     "tag": "rare",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Europe",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "England's Pharmacy First service, launched in January 2024, lets community pharmacists treat seven common conditions and get paid by the NHS for each consultation. Independent pharmacies must follow clinical pathways, record consultations and claim correctly, mostly with software built for dispensing.",
     "who": "Owners and pharmacists at independent pharmacies in England.",
     "whyItMatters": "Each consultation is new income for pharmacies squeezed on dispensing margins, and other countries are moving pharmacists into minor-illness care too. Missed or rejected claims are lost money.",
@@ -796,14 +824,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P030",
     "title": "What will my surgery in India actually cost?",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Cross-border",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Patients from Africa, the Middle East and South Asia travel to India for surgery. They struggle to compare hospitals, get believable estimates and know what's included, so they rely on facilitators with hidden commissions.",
     "who": "International patients, their families and hospital international desks.",
     "whyItMatters": "India is one of the largest medical travel destinations, and hospitals pay heavily for international patient leads. Patients risk overpaying or choosing badly.",
@@ -825,14 +854,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P031",
     "title": "IVF: expensive, opaque, emotional",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Couples going through IVF face high costs, unclear success rates, complex protocols and constant appointments. Clinics differ widely, and most of the information is marketing.",
     "who": "Couples considering or undergoing fertility treatment, and fertility clinics.",
     "whyItMatters": "Fertility care is one of the fastest-growing parts of Indian healthcare, and large IVF chains have raised money and expanded quickly. Couples spend lakhs per cycle with little help deciding.",
@@ -853,14 +883,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P032",
     "title": "The reimbursement claim rejected for a missing bill",
     "tag": "rare",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "When treatment isn't cashless, families pay first and file a reimbursement claim with their insurer. Claims get rejected or cut for a missing original bill, a pharmacy receipt without a prescription, or a form filled wrongly, and families give up on money they're owed.",
     "who": "Families with individual and employer health insurance, and HR teams handling group policies.",
     "whyItMatters": "Reimbursement claims are a large share of health claims in India, and rejections are a common complaint to the insurance ombudsman. Claim-assistance services charge a fee because the process is so confusing.",
@@ -882,14 +913,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P033",
     "title": "Nurse rosters built on spreadsheets and goodwill",
     "tag": "legendary",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "US",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Hospitals schedule nurses by hand around skills, ratios, labour rules, preferences and leave. A few last-minute call-offs bring in expensive agency staff.",
     "who": "Nurse managers, staffing coordinators and nurses in the US and India.",
     "whyItMatters": "The US nurse shortage drove a wave of venture-backed staffing and scheduling startups, and agency labour is one of a hospital's biggest costs. Indian hospitals face the same shortage as nurses move abroad.",
@@ -907,14 +939,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P034",
     "title": "The X-ray machine has been down for three weeks",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Africa",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Hospitals and diagnostic centres in Africa and smaller Indian cities lose weeks of use when an X-ray, CT or ventilator breaks. Maintenance is reactive, parts arrive slowly and engineers are scarce.",
     "who": "Owners and biomedical engineers at private hospitals and diagnostic centres.",
     "whyItMatters": "Every idle day on a scanner is lost revenue for a diagnostic centre and lost care for patients. Manufacturers dominate equipment service, which leaves multi-brand, smaller sites poorly served.",
@@ -936,14 +969,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P035",
     "title": "Health cover became mandatory for every worker in the UAE",
     "tag": "rare",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Middle East",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "From January 2025, health insurance became mandatory for private-sector employees and domestic workers across the UAE, including the northern emirates. Small businesses and households that employ drivers, nannies or cleaners must buy compliant plans, and comparing them is confusing.",
     "who": "SMEs, households that employ domestic workers, and the workers themselves.",
     "whyItMatters": "A mandate like this adds a large number of insured people almost overnight, and insurance distribution grows fastest at moments like these. Many employers simply pick the cheapest plan without knowing what it covers.",
@@ -965,14 +999,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P036",
     "title": "Treatment plans patients say no to",
     "tag": "rare",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "US",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Dentists propose crowns, implants or aligners that many patients decline or postpone. Explanations are rushed, costs feel opaque and financing is unclear.",
     "who": "Dental clinic owners, treatment coordinators and patients in the US, UAE and India.",
     "whyItMatters": "US dental AI startups such as Overjet and Pearl have raised large rounds, mostly on diagnosis. Getting patients to accept treatment is the revenue problem every clinic owner names first.",
@@ -989,14 +1024,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P037",
     "title": "The same blood test at three different prices",
     "tag": "rare",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "A thyroid profile or HbA1c test can cost very different amounts at labs a kilometre apart, and patients can't tell which labs are accredited or reliable. Doctors refer out of habit or for a referral fee.",
     "who": "Patients paying out of pocket, doctors, and accredited mid-size labs.",
     "whyItMatters": "India's diagnostics market is large and fragmented, and online lab aggregators have raised funding. Patients overpay, and good independent labs lose volume to whoever pays referral fees.",
@@ -1018,14 +1054,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P038",
     "title": "\"The phlebotomist didn't show up\"",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Home sample collection for blood tests is popular but unreliable. Slots get missed, fasting patients wait for hours and samples sit in transit.",
     "who": "Operations teams at diagnostic labs, and patients, many of them elderly.",
     "whyItMatters": "Home collection is now a large share of diagnostics revenue in Indian cities, and each missed slot means a repeat visit and often a lost customer. Mid-size labs run it on WhatsApp and phone calls.",
@@ -1043,14 +1080,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P039",
     "title": "Diabetes apps don't understand dosa",
     "tag": "legendary",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Food-logging and glucose apps are built for Western diets. Indian meals are mixed dishes with variable portions, so people with diabetes can't see how their real meals affect glucose.",
     "who": "People with type 2 diabetes or prediabetes, diabetes educators and dieticians.",
     "whyItMatters": "India has one of the world's largest diabetic populations, and metabolic health startups like Sugar.fit and Fitterfly have raised money. Cheaper glucose sensors make meal-level feedback possible.",
@@ -1072,14 +1110,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P040",
     "title": "Speech therapy happens 30 minutes a week",
     "tag": "legendary",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "India",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Children with speech delays in India see a therapist rarely, often once a week. Progress depends on home practice, and parents don't know what to do or whether it's working.",
     "who": "Parents of children with speech and language delays, and speech-language pathologists.",
     "whyItMatters": "There are far too few speech therapists for the number of children who need them, in India and in the US. Practice between sessions is where most progress happens.",
@@ -1101,14 +1140,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P041",
     "title": "The hospital bill nobody can read",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "US",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "US patients get medical bills with errors, duplicate charges and opaque codes. Most pay without checking because disputing a bill is confusing and slow.",
     "who": "US patients and caregivers, especially those uninsured or on high-deductible plans.",
     "whyItMatters": "Medical debt is a leading cause of financial distress in the US, and price transparency rules now make hospitals publish their prices, which gives patients something to check against.",
@@ -1126,14 +1166,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P042",
     "title": "Working outdoors at 45°C",
     "tag": "epic",
-    "cluster": "B. Healthcare and wellbeing",
-    "region": "Middle East",
+    "cluster": "Healthcare and wellbeing",
+    "region": "",
     "problem": "Construction, delivery and farm workers in the Gulf and India work in extreme heat. The UAE bans midday outdoor work in summer, but real heat-stress risk depends on humidity, workload and the person, which site managers rarely track.",
     "who": "Safety officers and HR at construction and logistics firms, and outdoor workers.",
     "whyItMatters": "Heatwaves are getting longer, and employers face growing legal and contractual pressure on heat safety. Workplace safety software is an established category with little built specifically for heat.",
@@ -1155,14 +1196,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P043",
     "title": "Ten thousand unanswered doubts",
     "tag": "legendary",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Coaching institutes for JEE, NEET and CA collect thousands of student doubts a day through apps and WhatsApp. Faculty answer a fraction, and generic AI answers are unreliable on multi-step physics, chemistry and maths with diagrams.",
     "who": "Academic heads, faculty and students at coaching institutes.",
     "whyItMatters": "Test prep is one of the few Indian education markets that kept growing after 2022, mostly through offline and hybrid institutes. Unanswered doubts drive dropouts and refund requests.",
@@ -1184,14 +1226,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P044",
     "title": "300 handwritten answer sheets by Monday",
     "tag": "mythic",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Teachers grade stacks of handwritten long answers against rubrics on evenings and weekends. Feedback is thin, and marks vary with the grader and their fatigue.",
     "who": "Teachers and exam departments at schools, colleges and coaching institutes.",
     "whyItMatters": "Boards and universities are moving to on-screen marking, and handwriting recognition is finally good enough to help. A grading assistant becomes a recurring workflow in every institution that adopts it.",
@@ -1213,14 +1256,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P045",
     "title": "Budget schools chasing fees",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Africa",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Low-fee private schools in Kenya, Nigeria and India run on fees parents pay in irregular instalments. Tracking payments and chasing families takes hours, and teachers get paid late.",
     "who": "Owners and bursars of low-fee private schools, and parents.",
     "whyItMatters": "Low-fee private schools educate a large share of children in these countries. School fee platforms such as Jodo and Varthana in India have raised money on exactly this problem.",
@@ -1242,14 +1286,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P046",
     "title": "Is studying abroad still worth it?",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Cross-border",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Indian families spend tens of lakhs on foreign degrees. The US H-1B fee increase, cuts to the UK graduate route and Canadian study-permit caps make the return uncertain, and many consultants are paid by universities.",
     "who": "Students and parents deciding on study abroad.",
     "whyItMatters": "India sends more students abroad than almost any other country, and loans for overseas study have become a large lending market. Families need honest return numbers before they borrow.",
@@ -1267,14 +1312,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P047",
     "title": "Three attempts at the CA Final",
     "tag": "legendary",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Lakhs of students prepare for the CA, CMA and CS exams every year, and pass rates at the final level are often low. Students write long answers that nobody marks between mock tests, so they repeat the same mistakes for months.",
     "who": "CA, CMA, CS and ACCA students, and the faculty who coach them.",
     "whyItMatters": "Professional exam prep has high willingness to pay because passing changes a career, and each failed attempt costs about six months. AI can now evaluate written accounting and law answers against model answers.",
@@ -1292,14 +1338,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P048",
     "title": "Learning Japanese to work in a Japanese care home",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Cross-border",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Workers from India, Nepal and the Philippines move to Japan, Germany and the Gulf for nursing, care and skilled trades. Visas often require language tests, and general language apps don't teach the language of the job.",
     "who": "Aspiring migrant workers and the agencies that train and place them.",
     "whyItMatters": "Japan and Germany both opened visa routes for foreign care and skilled workers because of labour shortages, and India has mobility agreements with both. Placement agencies earn on every worker who passes.",
@@ -1317,14 +1364,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P049",
     "title": "Choosing a daycare with nothing but a WhatsApp review",
     "tag": "rare",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Working parents in Indian cities pick preschools and daycares after one visit, a few reviews and word of mouth. They can't check safety practices, staff ratios or what children actually do all day.",
     "who": "Working parents of children under six, and daycare and preschool operators.",
     "whyItMatters": "More dual-income families and the return to offices have made childcare a major urban need, and childcare chains such as Klay have raised money. Trust is the bottleneck for parents and for good operators.",
@@ -1346,14 +1394,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P050",
     "title": "Accreditation season at India's colleges",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Indian colleges go through NAAC and NBA accreditation, which needs years of data on faculty, students, research and outcomes. Most assemble it by hand under deadline, and the grade affects funding, admissions and reputation.",
     "who": "Principals, quality-cell coordinators and administrators at colleges and universities.",
     "whyItMatters": "India has tens of thousands of colleges, and recent accreditation reforms push toward ongoing, data-driven assessment. Colleges already pay consultants to prepare.",
@@ -1375,14 +1424,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P051",
     "title": "Universities paying agents for students who never show up",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Global",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Universities in the UK, Canada and Australia recruit many international students through agents paid per enrolment. Applications are often weak or fraudulent, and many admitted students never arrive or drop out after a term.",
     "who": "International admissions teams at universities, and recruitment agents.",
     "whyItMatters": "International fees fund a large part of these universities' budgets, and governments have tightened rules on agents and visa fraud. ApplyBoard built a large company in this market.",
@@ -1404,14 +1454,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P052",
     "title": "Nurses who need to pass the NCLEX to work abroad",
     "tag": "legendary",
-    "cluster": "C. Education, skills and careers",
-    "region": "Cross-border",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Thousands of Indian nurses want jobs in the US, UK, Ireland and the Gulf, which pay several times what Indian hospitals do. They must pass licensing and language exams such as the NCLEX and OET, and preparation is expensive and generic.",
     "who": "Nursing graduates and working nurses in India, and the recruiters who place them abroad.",
     "whyItMatters": "Rich countries face lasting nurse shortages and recruit heavily from India and the Philippines. Each placement is worth a lot to recruiters, so they will pay for candidates who pass.",
@@ -1433,14 +1484,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P053",
     "title": "A teacher nobody has observed in years",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Teachers in budget private schools rarely get feedback on their teaching. Principals have no time to sit in classes, training is a few workshops a year, and nobody knows what actually happens in a lesson.",
     "who": "Teachers, principals and owners of low-fee and mid-fee private schools.",
     "whyItMatters": "Teacher quality shapes learning more than almost anything else, and AI can now give useful feedback from classroom audio. TeachFX raised funding doing this in the US, and Indian schools have nothing similar.",
@@ -1458,14 +1510,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P054",
     "title": "Practising the wrong thing for a week",
     "tag": "legendary",
-    "cluster": "C. Education, skills and careers",
-    "region": "Global",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Music students see their teacher once a week and practise alone in between, often repeating mistakes in rhythm, pitch or technique.",
     "who": "Instrument and vocal students and independent music teachers.",
     "whyItMatters": "Music learning apps such as Yousician and Simply have built large subscription businesses, almost entirely for Western music. Learners of Indian classical and film music have very little.",
@@ -1482,14 +1535,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P055",
     "title": "₹5 lakh for a college admissions counsellor",
     "tag": "rare",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "More Indian students apply to US and UK undergraduate programmes each year. Families pay private counsellors several lakh rupees for essay help, school lists and deadlines, and many students can't afford it.",
     "who": "Class 11 and 12 students applying abroad, their parents and school counsellors.",
     "whyItMatters": "Admissions counselling is a large, fragmented market with high prices and uneven quality. AI can coach essays and planning for a fraction of the cost, as long as the student does the writing.",
@@ -1507,14 +1561,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P056",
     "title": "Every company with ten staff needs a POSH committee",
     "tag": "rare",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "India's POSH Act requires every workplace with ten or more employees to set up an internal committee, train staff and file annual reports. Many small and mid-size companies haven't done this properly, and the penalties and reputational risk are real.",
     "who": "Founders, HR managers and committee members at SMEs and startups.",
     "whyItMatters": "In 2023 the Supreme Court directed authorities to check that these committees actually exist, and compliance training is a recurring annual spend for every covered company.",
@@ -1536,14 +1591,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P057",
     "title": "Fighting for your child's IEP",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "US",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "US parents of children with disabilities navigate Individualized Education Program meetings, legal rights and school bureaucracy. Many don't know what to ask for, and advocates are expensive.",
     "who": "Parents of children with IEPs or 504 plans, and special-education advocates.",
     "whyItMatters": "Millions of US students have IEPs, and outcomes depend heavily on how well parents advocate. Parents already pay advocates and lawyers when they can afford it.",
@@ -1561,14 +1617,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P058",
     "title": "WAEC and JAMB prep on a cheap Android phone",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Africa",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Millions of Nigerian students sit the WAEC and JAMB exams each year to finish school and enter university. Most can't afford coaching, mobile data is expensive, and many learn on shared, low-end phones.",
     "who": "Secondary school students in Nigeria and Ghana, their parents and low-fee schools.",
     "whyItMatters": "These exams decide university places, and parents spend a lot on preparation relative to income. Edtech companies such as uLesson raised money in this market.",
@@ -1586,14 +1643,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P059",
     "title": "Paying ₹17,000 to retake IELTS for half a band",
     "tag": "rare",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Lakhs of Indians take IELTS, PTE or TOEFL every year for study and work visas. Speaking and writing are where most lose marks, and practice with real feedback costs money and time.",
     "who": "Students and workers applying abroad, and coaching centres.",
     "whyItMatters": "Each attempt costs roughly ₹17,000, and missing a target by half a band can block a visa. AI can now score speaking and writing practice close to examiner rubrics.",
@@ -1614,14 +1672,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P060",
     "title": "Students who quietly drop out of coaching by December",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Coaching institutes for JEE, NEET and government exams lose many students mid-year. Attendance slips, test scores fall and fees stop, but institutes notice only when a refund request or an empty seat arrives.",
     "who": "Owners, academic heads and counsellors at coaching institutes, and their students' parents.",
     "whyItMatters": "Test prep is a large, growing market, and every dropout means lost fees and a bad review. Institutes already hold the attendance and test data that shows who is struggling.",
@@ -1643,14 +1702,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P061",
     "title": "Training budgets with nothing to show",
     "tag": "epic",
-    "cluster": "C. Education, skills and careers",
-    "region": "Global",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "Companies spend heavily on training sales teams, managers and frontline staff, then measure attendance and course completion. Nobody can say whether people do their jobs differently afterwards.",
     "who": "L&D heads, sales enablement teams and the managers whose teams get trained.",
     "whyItMatters": "Corporate training is a very large global market, and budgets get cut wherever results can't be shown. AI role-play and on-the-job data make skill change measurable for the first time.",
@@ -1672,14 +1732,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P062",
     "title": "Government money for apprentices that companies never claim",
     "tag": "rare",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "India's apprenticeship schemes reimburse part of an apprentice's stipend, but many employers never register or never claim. The portal paperwork puts them off, and young people miss out on paid training.",
     "who": "HR teams at manufacturers, retailers and service companies, and young job seekers.",
     "whyItMatters": "The government keeps expanding apprenticeships, and the 2024 budget added a large internship scheme with top companies. Employers who claim properly get cheaper talent, and staffing firms already run this as a business.",
@@ -1701,14 +1762,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P063",
     "title": "Class 6 students who can't do Class 3 maths",
     "tag": "legendary",
-    "cluster": "C. Education, skills and careers",
-    "region": "India",
+    "cluster": "Education, skills and careers",
+    "region": "",
     "problem": "National surveys such as ASER keep finding that many middle-school students can't do basic arithmetic or read a simple paragraph. Teachers teach the grade-level syllabus anyway, and those students fall further behind.",
     "who": "Students in low-fee private and government schools, their teachers and the schools that pay for learning tools.",
     "whyItMatters": "Foundational learning is a national priority under NIPUN Bharat and the NEP, and low-fee private schools compete on results. Practice at a child's real level can close gaps that grade-level teaching can't.",
@@ -1730,14 +1792,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P064",
     "title": "Rupee moves that wipe out a small importer's margin",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Small importers and exporters price deals in dollars, euros or dirhams and settle weeks later. A few percent move in the rupee can erase the margin, and banks offer forward contracts mainly to larger customers.",
     "who": "Owners and finance staff at small importers and exporters.",
     "whyItMatters": "India's MSME trade keeps growing, and currency swings have made FX risk a daily worry for small traders. Treasury tools for small businesses are a gap that banks and fintechs are only starting to fill.",
@@ -1755,14 +1818,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P065",
     "title": "The US duty bill that arrived after the sale",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Cross-border",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "The US ended duty-free entry for low-value parcels in 2025. Small Indian brands and artisans selling directly to US customers now face duties, broker fees and refused parcels they never priced in.",
     "who": "Small exporters and D2C brands selling to US consumers through Etsy, Shopify or Amazon.",
     "whyItMatters": "Cross-border e-commerce from India to the US had grown on duty-free parcels. Sellers who solve landed cost keep the market while others pause.",
@@ -1784,14 +1848,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P066",
     "title": "The 45-day rule nobody enforces",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "MSME suppliers to large companies often wait 90 days or more for payment. Section 43B(h) of the Income Tax Act pushes buyers to pay registered micro and small suppliers within 45 days, and TReDS platforms allow invoice discounting, yet few suppliers use either well.",
     "who": "MSME suppliers to corporates and their finance staff.",
     "whyItMatters": "Late payment is one of the most common reasons MSMEs run short of cash, and larger companies are required to register on TReDS. The rails exist; small suppliers struggle to use them.",
@@ -1813,14 +1878,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P067",
     "title": "E-invoicing arrives in the UAE",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Middle East",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "The UAE's e-invoicing pilot opened in July 2026. Businesses with revenue of AED 50 million or more must appoint an accredited provider by Oct 30, 2026 and go live on Jan 1, 2027, and smaller businesses follow on Jul 1, 2027. Many SMEs still email PDF invoices built in spreadsheets.",
     "who": "SME owners, accountants and bookkeepers in the UAE.",
     "whyItMatters": "Every VAT-registered business in the UAE has to switch within a year, and similar mandates created large software companies in Europe and Latin America. Penalties apply to those who miss it.",
@@ -1838,14 +1904,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P068",
     "title": "Discovering your policy's exclusions in the hospital",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Families buy health insurance but rarely understand waiting periods, sub-limits, room-rent caps or exclusions until they claim. Claims get cut and families pay unexpectedly.",
     "who": "Families with individual or family-floater policies, and insurance advisers.",
     "whyItMatters": "Retail health insurance is growing quickly in India, and advisory startups like Ditto built businesses on explaining policies. Most families still buy on price and learn the terms in hospital.",
@@ -1863,14 +1930,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P069",
     "title": "₹900 one day, ₹200 the next",
     "tag": "legendary",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Delivery and ride-hailing workers earn very different amounts from day to day. With no salary slips or credit history, they turn to informal lenders or predatory loan apps when expenses spike.",
     "who": "Platform gig workers in India, and in Brazil or Mexico.",
     "whyItMatters": "India's gig workforce is growing quickly, and earned-wage-access and gig-credit startups have raised money. State laws in Rajasthan and Karnataka are adding welfare obligations for platforms.",
@@ -1892,14 +1960,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P070",
     "title": "Money sent home that misses its purpose",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Africa",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Migrants in the Gulf, UK and US send money home for school fees, medicine or building a house. Some of it goes elsewhere, senders can't see where, and families get cash instead of paid bills.",
     "who": "Diaspora senders from Kenya, Nigeria, the Philippines and India, and their families.",
     "whyItMatters": "Remittances to low- and middle-income countries are larger than foreign aid, and digital remittance companies have raised big rounds. Paying the bill directly is a better product for many senders.",
@@ -1916,14 +1985,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P071",
     "title": "The savings group that runs on trust and a notebook",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Africa",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Rotating savings groups (chamas in Kenya, chit funds and kitty parties in India, tandas in Mexico) pool money among members. Records live in notebooks and WhatsApp, and disputes or defaults break groups apart.",
     "who": "Members and treasurers of savings groups.",
     "whyItMatters": "Hundreds of millions of people use these groups for lump sums. Their payment records could become credit histories for people banks can't score today.",
@@ -1944,14 +2014,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P072",
     "title": "Will we run out of cash in March?",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Global",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Small business owners know their bank balance but not their runway. Seasonal swings, late customers and lumpy expenses surprise them, often too late to arrange credit.",
     "who": "Owners and finance staff at small businesses and startups.",
     "whyItMatters": "Running out of cash kills profitable businesses, and India's Account Aggregator framework now lets businesses share bank data with consent. Lenders want exactly this forecast before they lend.",
@@ -1969,14 +2040,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P073",
     "title": "\"This is the CBI. You are under digital arrest.\"",
     "tag": "mythic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Scammers impersonating police, customs or courier firms keep victims on video calls for hours and push them to transfer savings. Retirees and professionals alike lose life savings before their families find out.",
     "who": "Older adults and their families, and bank fraud teams.",
     "whyItMatters": "Reported cyber fraud losses in India run into thousands of crores a year, and the Prime Minister warned the public about digital arrest scams in 2024. Banks and insurers want ways to stop transfers in the moment.",
@@ -1998,14 +2070,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P074",
     "title": "Tax credit lost because a supplier didn't file",
     "tag": "rare",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Indian businesses can claim GST input tax credit only when their suppliers file returns correctly. Small businesses rarely reconcile their purchase records with GSTR-2B each month, so credits slip away and notices arrive later.",
     "who": "SME owners, their accountants and the CA firms handling their GST.",
     "whyItMatters": "Input credit is real cash for every GST-registered business, and the GST system keeps tightening its matching rules. Most small businesses don't know how much credit they lose each year.",
@@ -2027,14 +2100,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P075",
     "title": "NRI tax and the property sale nobody planned for",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Cross-border",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "NRIs selling property, earning rent or holding deposits in India face TDS, treaty rules and residency tests. Many overpay, get notices or struggle to move the money out.",
     "who": "NRIs, their families in India and the CAs who serve them.",
     "whyItMatters": "India has one of the largest diasporas in the world, and NRI-focused finance startups have raised money. The sums involved are large, so mistakes are expensive.",
@@ -2052,14 +2126,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P076",
     "title": "Insurance that pays when the heatwave stops work",
     "tag": "legendary",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Southeast Asia",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Street vendors, labourers and delivery workers in Southeast Asia and India lose income on extreme-heat or heavy-rain days. Traditional insurance doesn't cover lost earnings, and claims are impossible for informal workers.",
     "who": "Informal workers, worker cooperatives and microinsurers.",
     "whyItMatters": "Parametric insurance, which pays automatically when a weather trigger is hit, has been piloted with SEWA in India and is spreading across Asia. Climate shocks keep getting more frequent.",
@@ -2081,14 +2156,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P077",
     "title": "Recurring billing finally works on Pix",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Latin America",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Brazil's Pix instant payments dominate, and Pix Automático, launched in June 2025, allows recurring debits. Gyms, schools, clubs and software businesses still chase monthly payments by hand or pay card fees.",
     "who": "Brazilian small businesses with recurring revenue.",
     "whyItMatters": "Pix now handles more payments than cards in Brazil, and recurring Pix opens a new market for subscription billing. India's UPI AutoPay shows how large that can get.",
@@ -2106,14 +2182,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P078",
     "title": "Rejected for a loan, no reason given",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "MSME loan applications stall or fail because of incomplete documents, poor books, or GST and bank data that don't match. Owners don't know what lenders want or which lender fits.",
     "who": "MSME owners looking for working capital or term loans.",
     "whyItMatters": "India's MSME credit gap is very large, and rails like Account Aggregators and OCEN make data-driven lending possible. Lenders pay for qualified borrowers.",
@@ -2135,14 +2212,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P079",
     "title": "Thirty accounts, four generations, one spreadsheet",
     "tag": "legendary",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Business families hold wealth across bank accounts, deposits, shares, mutual funds, property, gold, insurance and private investments in many names. Nobody holds the full picture, so succession and emergencies turn into chaos.",
     "who": "Business-family members and their family offices or CAs.",
     "whyItMatters": "Wealth platforms for affluent Indian families, such as Dezerv, have raised large rounds. Lost assets, missed maturities and inheritance disputes are common.",
@@ -2164,14 +2242,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P080",
     "title": "Every loan now comes with a Key Fact Statement nobody reads",
     "tag": "rare",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Since October 2024 the RBI has required lenders to give every retail and MSME borrower a Key Fact Statement showing the true annual rate and all charges. Borrowers still sign without reading it, and comparing two offers is still hard.",
     "who": "Individuals and small businesses taking personal, gold, vehicle or business loans.",
     "whyItMatters": "India's retail lending has grown fast, and hidden charges are a common complaint. A standard document makes honest comparison possible for the first time.",
@@ -2189,14 +2268,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P081",
     "title": "Thousands of crores in CSR, little evidence of impact",
     "tag": "epic",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Indian companies above set thresholds must spend 2% of profits on CSR. They struggle to find credible NGOs and measure impact, while NGOs spend heavily on reports.",
     "who": "CSR heads at mid-size companies and NGO founders.",
     "whyItMatters": "Mandatory CSR creates a large budget every year, and CSR platforms have raised funding. Funders want evidence, and good NGOs want less paperwork.",
@@ -2218,14 +2298,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P082",
     "title": "The part-time insurance agent with no system",
     "tag": "rare",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "India has a large base of part-time insurance agents selling motor, health and life cover. They track leads, renewals and follow-ups in WhatsApp and memory, and renewals slip.",
     "who": "POSP agents and small insurance brokers.",
     "whyItMatters": "Platforms that serve these agents, such as Turtlemint and InsuranceDekho, have raised large rounds. Renewals are where agents earn, and missed renewals go to direct channels.",
@@ -2247,14 +2328,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P083",
     "title": "Money in accounts the family forgot about",
     "tag": "rare",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "India",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Indian banks hold tens of thousands of crores in unclaimed deposits, and more sits in forgotten insurance policies, mutual funds, shares and provident funds. Families often don't know these assets exist, especially after a death, and claiming them means paperwork across many institutions.",
     "who": "Families settling a relative's affairs, and people with old accounts from past jobs and cities.",
     "whyItMatters": "The RBI launched the UDGAM portal in 2023 to search unclaimed deposits, and regulators keep pushing institutions to return dormant money. Searching has become easier, and claiming is still hard.",
@@ -2276,14 +2358,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P084",
     "title": "The letter of credit rejected for a typo",
     "tag": "legendary",
-    "cluster": "D. Money: fintech, insurance and cross-border",
-    "region": "Cross-border",
+    "cluster": "Money: fintech, insurance and cross-border",
+    "region": "",
     "problem": "Exporters paid by letter of credit must present documents that match its terms exactly. Discrepancies on first presentation are common and cause delays, fees or refusals.",
     "who": "Exporters, freight forwarders and trade finance teams.",
     "whyItMatters": "Trade finance is still heavy on paper, and laws such as the UK's Electronic Trade Documents Act are pushing it online. Most discrepancies are preventable.",
@@ -2300,14 +2383,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P085",
     "title": "Half the shop floor leaves every quarter",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Factories and warehouses that rely on contract and migrant workers see very high attrition. New workers get little onboarding, make mistakes and leave within weeks, and supervisors spend their days re-hiring.",
     "who": "Plant HR, supervisors, labour contractors and frontline workers.",
     "whyItMatters": "India's manufacturing push depends on a stable blue-collar workforce, and blue-collar HR platforms such as Apna and Betterplace have raised large rounds. Attrition hurts quality, safety and output.",
@@ -2329,14 +2413,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P086",
     "title": "Tax season: chasing 300 clients for documents",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "CA firms spend weeks chasing clients for Form 16, bank statements, capital-gains reports and rent receipts over WhatsApp and email. Documents arrive incomplete, late and in random formats.",
     "who": "Small and mid-size CA firms and their individual and SME clients.",
     "whyItMatters": "Hundreds of thousands of accountants serve tens of millions of Indian taxpayers, and practice software is a growing category. Collecting documents takes more staff time than doing the computation.",
@@ -2358,14 +2443,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P087",
     "title": "Contracts signed and forgotten",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Global",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "SMEs sign vendor, customer, lease and distribution contracts, then lose track of renewals, penalties, exclusivity clauses and payment terms. Problems surface only when something goes wrong.",
     "who": "SME founders and finance and operations managers.",
     "whyItMatters": "Contract management software such as India's SpotDraft is a funded category built for legal teams. Most SMEs have no legal team, so their obligations go untracked.",
@@ -2383,14 +2469,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P088",
     "title": "The due diligence that delays the term sheet",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Early-stage Indian startups raising money discover their records are a mess: missing board minutes, wrong filings with the Registrar of Companies, unsigned founder agreements, a cap table that doesn't match the share register. Due diligence drags for weeks and sometimes kills the deal.",
     "who": "Founders of seed and Series A startups, their CAs and company secretaries, and investors' legal teams.",
     "whyItMatters": "Thousands of Indian startups raise money every year, and every investor runs the same checks. Equity-management platforms like Qapita have raised funding, but getting ready for diligence is still manual.",
@@ -2408,14 +2495,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P089",
     "title": "The cheque bounced, now what?",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Cheque bounce cases under Section 138 of the Negotiable Instruments Act make up a large share of pending cases in Indian courts. Small businesses owed money miss the notice deadlines, send weak notices or give up on recovery.",
     "who": "SME owners and traders, and the lawyers who handle recovery for them.",
     "whyItMatters": "Unpaid dues drain small businesses constantly, and legal recovery and online dispute resolution startups have raised money. A correct notice sent on time often gets the money paid without going to court.",
@@ -2432,14 +2520,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P090",
     "title": "Junior associates spending nights on first drafts",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Indian law firms bill for drafting agreements, notices and filings, and juniors spend long hours writing first drafts from old precedents. Partners then spend more hours fixing them, and clients push back on fees.",
     "who": "Partners and associates at small and mid-size Indian law firms, and in-house legal teams.",
     "whyItMatters": "Legal AI is one of the most heavily funded AI categories in the world, and Harvey has raised at multi-billion-dollar valuations. Indian firms are only starting to adopt it, and Indian law, courts and languages need local work.",
@@ -2457,14 +2546,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P091",
     "title": "Small businesses that are months behind on their books",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Global",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Many small businesses fall months behind on bookkeeping until a tax deadline, loan application or audit forces a rush. When Bench, a large US bookkeeping provider, shut down in December 2024, thousands of customers had to catch up elsewhere at short notice.",
     "who": "Owners of small businesses and freelancers in the US, UK and India, and their bookkeepers.",
     "whyItMatters": "Bookkeeping is a large market moving from people to software with human review. Catch-up work is urgent, and businesses pay for it.",
@@ -2486,14 +2576,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P092",
     "title": "The lead that waited two days for a reply",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Global",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Small B2B companies and service firms get enquiries through website forms, email and WhatsApp, then reply hours or days later. By then the buyer has spoken to a competitor.",
     "who": "Founders and sales teams at small B2B companies, agencies and service firms.",
     "whyItMatters": "The first company to reply often wins the deal, and AI sales assistants are a heavily funded category. Small firms have nobody watching the inbox.",
@@ -2514,14 +2605,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P093",
     "title": "Export incentives small exporters forget to claim",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Indian exporters are entitled to duty refunds and incentives such as RoDTEP and drawback, but small exporters often miss claims or file late. The paperwork across shipping bills and portals is tedious.",
     "who": "Small exporters, their freight forwarders and customs brokers.",
     "whyItMatters": "These refunds are a few percent of export value, which can be the whole margin for a small exporter. Trade compliance software mostly serves large companies.",
@@ -2543,14 +2635,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P094",
     "title": "The invoice, the PO and the goods receipt don't match",
     "tag": "legendary",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Accounts payable teams at mid-size companies match vendor invoices against purchase orders and goods receipts by hand. Mismatches in quantity, price or tax delay payments, annoy vendors and hide overbilling.",
     "who": "AP teams and controllers at mid-size manufacturers and distributors, and their vendors.",
     "whyItMatters": "Accounts payable automation is a large global software market, and India's rule on paying MSME vendors within 45 days adds urgency. Mid-size Indian companies are poorly served by global tools.",
@@ -2572,14 +2665,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P095",
     "title": "Sales reps who never update the CRM",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Field and inside sales reps hate data entry, so the CRM holds stale, partial information. Managers forecast blind and coach without facts.",
     "who": "Sales managers and reps at Indian SMBs and mid-market companies, many of whom spend the day on the road.",
     "whyItMatters": "Revenue intelligence tools like Gong were built for US inside-sales teams on video calls. Indian field teams sell in person and in mixed languages, and nothing captures those conversations.",
@@ -2597,14 +2691,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P096",
     "title": "Two percent of calls get reviewed",
     "tag": "legendary",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Southeast Asia",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Contact centres in Manila and India audit a tiny sample of calls for quality and compliance. Coaching is generic, and serious problems surface late.",
     "who": "QA managers, team leads and agents at BPOs and in-house support teams.",
     "whyItMatters": "The Philippines and India handle much of the world's outsourced customer support, and clients now expect every call to be analysed. Conversation analytics is a well-funded category with gaps in accents and code-mixed speech.",
@@ -2626,14 +2721,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P097",
     "title": "Five years of five-star ratings, usable nowhere else",
     "tag": "legendary",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Global",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Gig workers build reputations on Urban Company, Uber or Upwork, but ratings stay locked inside each platform. Switching platforms, applying for a loan or renting a flat means starting from zero.",
     "who": "Platform workers, and the lenders, landlords and employers who need trust signals.",
     "whyItMatters": "India is building public infrastructure for credentials and consented data sharing, and portable work histories would let lenders serve millions of people who have no payslips.",
@@ -2651,14 +2747,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P098",
     "title": "The retired CFO an MSME can't find",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Growing MSMEs need senior expertise in finance, exports, quality or operations but can't afford full-time executives. Thousands of experienced professionals retire every year and would happily work a few days a month, yet the two sides rarely meet.",
     "who": "MSME owners, and retired or semi-retired professionals.",
     "whyItMatters": "Fractional executives are an established model in the US and UK, and many Indian MSMEs have reached the size where professional help pays for itself. Trust and scoping are what stop it.",
@@ -2676,14 +2773,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P099",
     "title": "Three weeks to onboard one vendor",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Mid-size Indian companies take weeks to onboard a supplier. Teams chase PAN, GST, bank details, MSME certificates and agreements over email, check them by hand, and still end up paying fake or duplicate vendors.",
     "who": "Procurement and finance teams at mid-size companies, and the vendors trying to get registered.",
     "whyItMatters": "Every company onboards vendors constantly, and verification APIs for GST, PAN and bank accounts now make most checks instant. Fake-vendor fraud is one of the most common corporate frauds.",
@@ -2705,14 +2803,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P100",
     "title": "Paying for a guard who wasn't at the gate",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Housing societies, offices and warehouses hire security guards through agencies, and nobody can easily check who was on duty, for how long, or whether patrols happened. Billing disputes are constant and guard turnover is high.",
     "who": "Security agencies, facility managers and housing society committees.",
     "whyItMatters": "Private security is one of India's largest employers, run mostly by small agencies on paper registers. Facility management buyers pay for proof of service.",
@@ -2734,14 +2833,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P101",
     "title": "The third visit for the same AC",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "India",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Appliance and AC technicians often need several visits because they misdiagnose faults or arrive without the right part. Service companies lose money and customers lose patience.",
     "who": "Field technicians, service companies and brands' service networks.",
     "whyItMatters": "Field service AI is a funded category, and India's installed base of appliances is growing fast with rising incomes and hotter summers. First-time fix rate drives cost and customer satisfaction.",
@@ -2763,14 +2863,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P102",
     "title": "Selling in 30 US states means owing tax in 30 states",
     "tag": "rare",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "US",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "Since the 2018 Wayfair ruling, US states can require online sellers to collect sales tax once they pass a sales threshold in that state. Small sellers, including Indian brands selling into the US, often don't know where they've crossed thresholds.",
     "who": "Small online sellers in the US and foreign brands selling to US customers.",
     "whyItMatters": "Sales tax compliance is a large software market led by Avalara, which is mostly priced for bigger companies. Small sellers face back taxes and penalties when states catch up.",
@@ -2787,14 +2888,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P103",
     "title": "Training staff who speak ten languages",
     "tag": "epic",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Middle East",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "UAE hotels, restaurants and retailers employ staff from South Asia, the Philippines, Africa and beyond. English-only SOP and safety training is poorly understood, and turnover means constant retraining.",
     "who": "Training managers, supervisors and frontline staff.",
     "whyItMatters": "Training platforms for frontline workers are a funded category, and the UAE's hospitality sector keeps growing with tourism. Quality and safety depend on staff actually understanding the rules.",
@@ -2815,14 +2917,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P104",
     "title": "Not enough accountants to review the books",
     "tag": "legendary",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "US",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "US accounting firms face a shortage of CPAs as fewer graduates enter the profession. Senior reviewers bottleneck month-end close, tax and audit work, and many firms send preparation to India.",
     "who": "Small and mid-size US CPA firms and their offshore teams.",
     "whyItMatters": "AI for accounting firms has drawn large venture rounds, and private equity is buying up US accounting firms. India's offshore accounting industry sits right in the middle of this.",
@@ -2843,14 +2946,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P105",
     "title": "The security questionnaire that stalls the deal",
     "tag": "legendary",
-    "cluster": "E. Work: workforce, legal and knowledge work",
-    "region": "Global",
+    "cluster": "Work: workforce, legal and knowledge work",
+    "region": "",
     "problem": "B2B startups selling to enterprises receive long security and compliance questionnaires. Founders and engineers spend days on repetitive questions while deals stall.",
     "who": "Founders, sales engineers and security leads at B2B SaaS startups.",
     "whyItMatters": "Compliance automation companies such as Vanta reached unicorn scale, and Indian SaaS companies selling abroad face these reviews on almost every deal.",
@@ -2868,14 +2972,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P106",
     "title": "Rooftop solar: subsidy, sizing, vendor, maze",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "The PM Surya Ghar scheme subsidises rooftop solar for households, but homeowners struggle to size a system, compare vendors, get net-metering approval from the electricity company and judge the savings.",
     "who": "Homeowners, housing societies and empanelled installers.",
     "whyItMatters": "The scheme targets ten million homes with a large subsidy budget, and residential solar companies such as SolarSquare have raised money. Many households drop out somewhere between interest and installation.",
@@ -2897,14 +3002,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P107",
     "title": "The charger that says \"available\" but isn't working",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Europe",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "EV drivers in Europe and India often arrive at public chargers that are broken, occupied or slower than advertised. Operators struggle with uptime, and reliability data is scattered.",
     "who": "EV drivers, fleet operators and charge point operators.",
     "whyItMatters": "EU rules now require card payment and live availability data at new public chargers, and charging networks have raised large sums. Reliability is what drivers complain about most.",
@@ -2926,14 +3032,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P108",
     "title": "Cooling a tower in the desert",
     "tag": "legendary",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Middle East",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Air conditioning dominates electricity use in Gulf buildings. Many commercial buildings run cooling on fixed schedules with little visibility, wasting energy in empty or overcooled spaces.",
     "who": "Facility managers and building owners in Dubai and Abu Dhabi.",
     "whyItMatters": "Cooling drives peak electricity demand across the Gulf, and the UAE has committed to net zero by 2050. Building energy software is a proven category with few products tuned to desert climates.",
@@ -2951,14 +3058,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P109",
     "title": "The EU wants your steel's carbon footprint",
     "tag": "legendary",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Cross-border",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "The EU's Carbon Border Adjustment Mechanism entered its definitive phase on Jan 1, 2026. EU importers bringing in more than 50 tonnes a year of steel, aluminium, cement or fertiliser must buy certificates for embedded emissions, and exporters without verified data get punitive default values.",
     "who": "Indian MSME exporters and their EU buyers.",
     "whyItMatters": "India is one of the largest exporters of these goods to the EU, and buyers are shifting orders to suppliers with verified data. Carbon accounting is becoming a requirement for selling into Europe.",
@@ -2980,14 +3088,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P110",
     "title": "Proving the coffee didn't cost a forest",
     "tag": "mythic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Africa",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "The EU Deforestation Regulation requires coffee, cocoa, rubber, soy, palm oil and timber to come from land not deforested after 2020, with plot geolocation. It applies from Dec 30, 2026 for large operators and Jun 30, 2027 for small ones. Smallholder cooperatives in Ethiopia, Uganda and Colombia lack the data.",
     "who": "Cooperatives, exporters, smallholder farmers and EU importers, including India's coffee and rubber growers.",
     "whyItMatters": "Produce without proof loses access to one of the world's biggest markets, and traceability startups have raised money ahead of the deadline.",
@@ -3009,14 +3118,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P111",
     "title": "The buffet that feeds the bin",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Middle East",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Hotels and banquet kitchens in Dubai throw away large amounts of food from buffets and overproduction. Chefs rarely know which items are wasted or why.",
     "who": "Executive chefs, F&B managers and hotel sustainability leads.",
     "whyItMatters": "Food waste measurement companies such as Winnow and Leanpath have built real businesses with hotel chains, and the UAE has a national target to cut food waste. Waste is food cost thrown away.",
@@ -3037,14 +3147,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P112",
     "title": "Twenty EV owners, one parking lot, no charger",
     "tag": "rare",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Residents of Indian apartment complexes who buy EVs often can't install a charger in their parking spot. Societies worry about safety, wiring and who pays for the electricity, so requests sit for months.",
     "who": "EV owners in apartments, housing society committees and charger installers.",
     "whyItMatters": "EV sales in India are rising quickly, and most urban owners live in apartments. Shared, metered charging for societies is a business several startups are chasing.",
@@ -3066,14 +3177,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P113",
     "title": "Selling tomatoes at a loss because the truck was already loaded",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Farmers selling perishables often don't know prices across nearby mandis or buyers until they arrive, and they can't afford to turn back. Prices swing from day to day.",
     "who": "Vegetable and fruit farmers, FPOs and small aggregators.",
     "whyItMatters": "Agri marketplaces like Ninjacart have raised large sums on this, and price crashes keep making headlines. Choosing a better market raises farmer income directly.",
@@ -3095,14 +3207,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P114",
     "title": "A sick cow is a lost month of income",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Dairy farmers with a few cows lose income to mastitis, infertility and missed heat cycles. Records are rare, and vet visits are expensive or slow.",
     "who": "Small dairy farmers, dairy cooperatives and paravets.",
     "whyItMatters": "India is the world's largest milk producer, mostly from small herds, and dairy tech companies such as Stellapps have raised money. Small gains per animal add up across millions of farmers.",
@@ -3124,14 +3237,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P115",
     "title": "The fake pesticide bottle",
     "tag": "legendary",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Africa",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Counterfeit and substandard seeds, fertilisers and pesticides are widespread in Kenya, Nigeria and India. Farmers lose whole seasons and can't check products at the counter.",
     "who": "Smallholder farmers, agro-dealers and input manufacturers.",
     "whyItMatters": "Brands lose sales and farmers lose trust, so manufacturers will pay for authentication. Product authentication is established in pharma and is now moving into farm inputs.",
@@ -3153,14 +3267,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P116",
     "title": "Bengaluru's tanker-water dependency",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Many Bengaluru apartments depend on borewells and private tankers, with unreliable supply and prices that jump in summer. Associations rarely know their consumption patterns or where water leaks.",
     "who": "Apartment associations, facility managers and residents.",
     "whyItMatters": "The 2024 water crisis made water a top issue for every large complex, and smart water metering is spreading. Tanker spending is one of the largest lines in a society's budget.",
@@ -3178,14 +3293,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P117",
     "title": "Peak-hour electricity at peak-hour prices",
     "tag": "rare",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Time-of-day electricity tariffs are rolling out across Indian states and charge commercial and industrial users more at peak hours. Small factories and cold stores don't know how their usage maps to the tariff or how to shift it.",
     "who": "Owners of small factories, cold storages and restaurants.",
     "whyItMatters": "Smart meters are being installed across India, which makes time-of-day billing the norm. Electricity is one of the largest costs for small manufacturers.",
@@ -3207,14 +3323,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P118",
     "title": "Deadstock fabric piling up in warehouses",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Garment exporters and mills accumulate surplus and deadstock fabric. Small designers and brands want small quantities but can't find it or trust it.",
     "who": "Mills and exporters with deadstock, and small fashion labels.",
     "whyItMatters": "Europe is introducing producer responsibility for textiles, and deadstock is cash stuck in warehouses. Small labels want sustainable fabric at low minimums.",
@@ -3235,14 +3352,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P119",
     "title": "Repair, don't replace",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Europe",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "The EU Right to Repair Directive, which member states must apply from July 2026, requires manufacturers to repair certain products and supports independent repair. Consumers still don't know where to repair, what it costs or whether it's worth it, and independent repairers are hard to find.",
     "who": "European consumers and independent repair shops.",
     "whyItMatters": "New repair rights create demand, and countries such as France and Austria pay repair bonuses that cut the cost. Whoever routes consumers to repairers sits on that flow.",
@@ -3264,14 +3382,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P120",
     "title": "Plastic EPR targets nobody understands",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Under India's EPR rules for plastic packaging, brands must register, report packaging volumes and meet recycling targets through certificates. Small brands find the process confusing, and many aren't compliant.",
     "who": "D2C and FMCG brand owners, importers and EPR consultants.",
     "whyItMatters": "Recykal raised large rounds on EPR and waste markets, and marketplaces increasingly ask brands for proof of compliance. Every brand that uses plastic packaging is covered.",
@@ -3293,14 +3412,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P121",
     "title": "A shrimp pond that dies overnight",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Southeast Asia",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Shrimp farmers in Indonesia, Vietnam and Andhra Pradesh can lose a whole pond to disease or bad water within days. Most check water quality by hand, feed by guesswork and sell to the first trader who offers.",
     "who": "Small and mid-size shrimp farmers, hatcheries and feed suppliers.",
     "whyItMatters": "Shrimp is one of Asia's most valuable aquaculture exports, and aquaculture tech companies such as JALA have raised money. One crop failure can wipe out a farmer's year.",
@@ -3322,14 +3442,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P122",
     "title": "Should the delivery fleet go electric?",
     "tag": "rare",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Logistics companies and small fleet owners hear that electric three-wheelers and vans are cheaper to run, but they can't tell what that means for their routes, loads and financing. Many delay the switch or buy the wrong vehicle.",
     "who": "Small fleet owners, last-mile logistics companies and EV dealers.",
     "whyItMatters": "Commercial vehicles are electrifying faster than any other segment in India, and EV fleet leasing companies have raised large rounds. Total cost of ownership decides adoption.",
@@ -3347,14 +3468,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P123",
     "title": "The flood risk no listing mentions",
     "tag": "legendary",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "US",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Homebuyers in Florida, Texas, Chennai or Bengaluru often learn about flood risk only after buying. US insurers are raising premiums or leaving high-risk areas, and climate-risk data on listing portals remains contested.",
     "who": "Homebuyers, renters, mortgage brokers and agents.",
     "whyItMatters": "Climate risk data companies such as First Street have raised money, and lenders and insurers are starting to price risk. Most buyers still don't see it at the moment they decide.",
@@ -3376,14 +3498,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P124",
     "title": "A used EV with a mystery battery",
     "tag": "legendary",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Europe",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Used-EV buyers can't easily check battery health, the most expensive part of the car. Dealers price that uncertainty in, which slows the used-EV market.",
     "who": "Used-EV buyers and sellers, dealers and fleet remarketers.",
     "whyItMatters": "The EU's battery regulation requires battery passports from 2027, and battery health certification is a funded category. Resale values affect whether people buy EVs new.",
@@ -3400,14 +3523,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P125",
     "title": "The agri-input shop that is also the village bank",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Farmers buy seed, fertiliser and pesticide on credit from local input dealers and pay after harvest. Dealers carry this credit on their own books with little data, and defaults in a bad season can sink them.",
     "who": "Agri-input dealers and farmers, and the companies and lenders behind them.",
     "whyItMatters": "Input dealers are a main source of informal farm credit in rural India, and agritech companies like DeHaat and AgroStar built large businesses around them. Formal lenders want to reach farmers through this channel but lack data.",
@@ -3429,14 +3553,15 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P126",
     "title": "A tractor for one day",
     "tag": "epic",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "Africa",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Smallholders in Nigeria and Kenya can't afford tractors, while tractor owners can't find enough paying work. Booking runs through agents, with long waits during planting.",
     "who": "Smallholder farmers, tractor owners and booking agents.",
     "whyItMatters": "Hello Tractor has shown the model works, and mechanisation remains very low across sub-Saharan Africa. Planting delays cut harvests.",
@@ -3458,14 +3583,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P127",
     "title": "The kabadiwala economy runs on cash and guesswork",
     "tag": "rare",
-    "cluster": "F. Climate, energy, food and agriculture",
-    "region": "India",
+    "cluster": "Climate, energy, food and agriculture",
+    "region": "",
     "problem": "Much of India's recycling runs through kabadiwalas and scrap dealers who buy paper, plastic and metal from homes and shops. Prices are opaque, weights are disputed, and recyclers can't get steady, sorted supply.",
     "who": "Scrap dealers, the households and businesses selling scrap, and the recyclers buying it.",
     "whyItMatters": "EPR rules make brands pay for recycling, which pushes money into collection, and scrap-collection startups have raised funding. The informal network already does most of the work.",
@@ -3487,14 +3613,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P128",
     "title": "Getting the deposit back",
     "tag": "rare",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Tenants in Bengaluru often pay deposits of six to ten months' rent. At move-out, landlords deduct for painting and damage with little proof, and the tenant has no record of what the flat looked like on day one.",
     "who": "Students and young professionals who rent, along with small landlords and brokers.",
     "whyItMatters": "A deposit can run past a lakh, which is a lot of money for a 23-year-old. Most disputes end with the tenant giving up.",
@@ -3515,14 +3642,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P129",
     "title": "Building your own house without getting cheated",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Many Indian families build their own home with a local contractor. Steel and cement prices move mid-project, contractors ask for stage payments early, and the family can't tell whether the work matches what they paid for.",
     "who": "Families building independent houses in metros and smaller cities, and the contractors and site engineers they hire.",
     "whyItMatters": "It's usually the biggest purchase a family ever makes, and overruns are common enough that most families expect one. Home construction platforms such as Brick&Bolt have raised money on this.",
@@ -3544,14 +3672,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P130",
     "title": "Site photos nobody reads",
     "tag": "legendary",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Middle East",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Mid-size contractors in the Gulf and India get daily progress as WhatsApp photos and voice notes from site supervisors. Project managers piece it together late, so delays surface at the monthly review.",
     "who": "Project managers and owners at contractors running 5 to 30 sites, and their clients.",
     "whyItMatters": "A delay found a month late brings penalties, idle labour and arguments with the client over payment. Construction apps such as Powerplay have raised funding to digitise sites.",
@@ -3572,14 +3701,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P131",
     "title": "Is this land title clean?",
     "tag": "mythic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Buying a plot in India means checking title history, encumbrances, land-use conversion and court cases across Bhoomi records, sub-registrar offices and court portals. Buyers depend on lawyers and brokers, and forged-document frauds still happen.",
     "who": "Plot and flat buyers, small developers, property lawyers and lenders.",
     "whyItMatters": "A bad title can wipe out a family's savings, and property disputes take years in civil courts.",
@@ -3596,14 +3726,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P132",
     "title": "Which truck actually makes money?",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Owners of 5 to 20 trucks track fuel, tolls, driver advances, tyres and repairs in diaries. They know the month's bank balance but not which truck, route or driver loses money.",
     "who": "Small fleet owners, their accountants and drivers.",
     "whyItMatters": "Small operators own most of India's trucks, and margins are thin enough that one bad route can wipe out a month. BlackBuck, which serves these truckers, listed on the stock market in 2024.",
@@ -3621,14 +3752,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P133",
     "title": "\"Near the temple, opposite the old bank\"",
     "tag": "mythic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Indian addresses are often descriptive and inconsistent. Delivery partners call customers for directions, deliveries fail, and every company maps the same house differently.",
     "who": "Delivery and quick-commerce operators, and customers in unplanned neighbourhoods.",
     "whyItMatters": "Each failed attempt costs money, and India Post's DIGIPIN shows the government sees it as a national problem.",
@@ -3650,14 +3782,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P134",
     "title": "The last two kilometres from the metro",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Bengaluru's metro keeps growing, but many riders still need an auto, a bike taxi or a long walk at each end. Feeder buses are infrequent and hard to track, so people drive.",
     "who": "Metro commuters, office parks, and feeder bus and shuttle operators.",
     "whyItMatters": "Weak last-mile links keep metro ridership below what the network could carry and keep cars on the road.",
@@ -3674,14 +3807,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P135",
     "title": "Paying for containers that sit at the port",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Global",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Importers pay detention and demurrage when containers stay at ports or depots past their free days. Customs holds, missing documents and slow trucking cause the delays, and shipping-line invoices are hard to check.",
     "who": "SME importers and exporters, freight forwarders and customs brokers.",
     "whyItMatters": "On a badly delayed shipment the charges can rival the freight bill, and some are billed in error.",
@@ -3703,14 +3837,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P136",
     "title": "Trucks parked because there's no driver",
     "tag": "rare",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Indian truck owners say a large share of their trucks sit idle for lack of drivers. Finding a reliable, licensed driver takes days of calls through agents, and drivers have no easy way to find good employers.",
     "who": "Small fleet owners, transport companies and truck drivers.",
     "whyItMatters": "India's truck-driver shortage is widely reported, and every idle day is lost revenue on an expensive asset. Blue-collar job platforms serve warehouses and delivery well and long-haul trucking poorly.",
@@ -3732,14 +3867,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P137",
     "title": "Paying for a flat that isn't built yet",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Middle East",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Off-plan sales drive much of Dubai's property boom. Buyers pay instalments tied to construction milestones but have little independent view of progress or delay risk, especially when they live abroad.",
     "who": "Off-plan buyers (many of them Indian), brokers and small developers in the UAE.",
     "whyItMatters": "Stalled projects hurt buyers in past cycles, and buyers want warning before the next instalment is due.",
@@ -3760,14 +3896,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P138",
     "title": "The service bill that doubled at the dealership",
     "tag": "rare",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Car owners in India pay dealership service centres well above independent garages for the same work, but many distrust garages after a bad experience. Nobody tells them what a job should cost or whether it's needed at all.",
     "who": "Car owners outside warranty, independent garages and spare-parts suppliers.",
     "whyItMatters": "India's car parc is large and ageing, and organised car-service startups have raised money with mixed results. Trust in the garage is still the missing piece.",
@@ -3789,14 +3926,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P139",
     "title": "Will this builder hand over on time?",
     "tag": "rare",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Indian homebuyers book flats years before possession. Many projects run late, and buyers can't easily see a builder's delivery record, complaints or financial health before paying a large booking amount.",
     "who": "Homebuyers, home-loan advisors and channel partners.",
     "whyItMatters": "Delayed projects have left many families paying rent and EMIs at the same time. RERA portals publish registration, progress and complaint data, but it's scattered and hard to read.",
@@ -3817,14 +3955,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P140",
     "title": "Delivery riders and the roads that hurt them",
     "tag": "legendary",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Delivery riders spend ten or more hours a day on two-wheelers under time pressure. Accidents are common, and companies know little about where and why they happen.",
     "who": "Fleet managers at delivery and logistics companies, riders and insurers.",
     "whyItMatters": "Injuries and deaths are a human and financial cost, and platforms face growing pressure on rider welfare.",
@@ -3846,14 +3985,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P141",
     "title": "Quarterly RERA filings for 200 projects",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Real estate developers must file quarterly progress, finance and sales updates for every registered project with their state's RERA authority. Mid-size developers juggle these across projects in spreadsheets, and late filings bring penalties and buyer complaints.",
     "who": "Compliance and project teams at developers, and the CAs and engineers who certify the filings.",
     "whyItMatters": "RERA covers new residential projects above a size threshold, and buyers check the portals before booking. Developers already pay consultants for this work.",
@@ -3875,14 +4015,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P142",
     "title": "Hosting a short-term rental in Europe now means paperwork",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Europe",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "The EU's short-term rental regulation, which applies from May 2026, requires registration numbers and data sharing with authorities. Cities such as Barcelona and Amsterdam add their own limits, and small hosts struggle to keep up.",
     "who": "Small hosts and property managers in European cities.",
     "whyItMatters": "Listings without valid registration can be taken down, and city fines are heavy.",
@@ -3899,14 +4040,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P143",
     "title": "Can I build a backyard unit?",
     "tag": "legendary",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "US",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "California has eased the rules for accessory dwelling units, but homeowners still can't easily tell what they can build on their lot, what it will cost or how long permits take.",
     "who": "California homeowners, ADU builders and architects.",
     "whyItMatters": "ADUs add housing and rental income, and many interested homeowners give up at the feasibility stage.",
@@ -3928,14 +4070,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P144",
     "title": "A truck waiting four days at the Malaba border",
     "tag": "legendary",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Africa",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Trucks moving goods between Kenya, Uganda, Rwanda and Tanzania lose days at border posts waiting on customs documents, clearances and payments. Shippers can't predict arrival, and truckers lose trips.",
     "who": "Freight forwarders, trucking companies, shippers and customs agents in East Africa.",
     "whyItMatters": "The African Continental Free Trade Area aims to raise trade between African countries, and East African trucking startups such as Lori Systems raised money on this corridor. Border delays are among the largest costs in the trip.",
@@ -3957,14 +4100,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P145",
     "title": "Empty seats on the overnight bus",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Private intercity bus operators sell through booking platforms and agents. Prices are set by gut, seats go empty midweek, and platform commissions are steep.",
     "who": "Operators running 10 to 100 buses, and their passengers.",
     "whyItMatters": "Occupancy and pricing decide whether a route makes money at all.",
@@ -3982,14 +4126,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P146",
     "title": "Wages for work nobody recorded",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Construction sites hire daily-wage migrant workers through labour contractors. Attendance is kept on paper or not at all, wages are paid in cash after deductions, and disputes are frequent.",
     "who": "Construction firms, labour contractors and workers.",
     "whyItMatters": "Wage disputes lead to walkouts and legal risk, and workers lose money they earned.",
@@ -4010,14 +4155,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P147",
     "title": "Shipping 200 kilos to another city",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Small manufacturers and traders often ship part loads between cities. Rates are opaque, transporters are unreliable, and goods arrive late or damaged with nobody accountable.",
     "who": "SME shippers, transporters and the customers waiting for the goods.",
     "whyItMatters": "Freight is a large cost for small firms, and late deliveries lose customers.",
@@ -4039,14 +4185,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P148",
     "title": "Empty warehouse space next to brands that need it",
     "tag": "epic",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "India",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Brands and online sellers need short-term warehouse space close to their customers, while many warehouses in hubs like Bhiwandi and Hoskote sit partly empty. Leases are long, minimums are high, and finding space takes weeks of broker calls.",
     "who": "D2C brands, importers and SMEs, and owners of small and mid-size warehouses.",
     "whyItMatters": "Faster delivery promises have pushed inventory closer to cities, and on-demand warehousing companies such as WareIQ have raised money. Empty space is lost income for owners.",
@@ -4068,14 +4215,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P149",
     "title": "Where should the next outlet go?",
     "tag": "legendary",
-    "cluster": "G. Cities, mobility, logistics and real estate",
-    "region": "Middle East",
+    "cluster": "Cities, mobility, logistics and real estate",
+    "region": "",
     "problem": "Restaurant chains, clinics and retail brands in India and the Gulf pick new locations by visiting and guessing. A bad site locks them into a lease that loses money for years.",
     "who": "Expansion teams at franchise and retail chains, and franchisees.",
     "whyItMatters": "Each outlet is a large investment, and location is the one thing they can't change after signing.",
@@ -4096,14 +4244,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P150",
     "title": "A wardrobe full of clothes worn twice",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "People own clothes they rarely wear, and reselling them is a chore: photographing, pricing, listing and shipping one item at a time. Most of it ends up stored or thrown away.",
     "who": "Young urban consumers in India and abroad, and resale platforms.",
     "whyItMatters": "Resale platforms such as Vinted and ThredUp have built large businesses, and Europe is introducing producer responsibility for textiles. The effort of listing is the biggest barrier for sellers.",
@@ -4121,14 +4270,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P151",
     "title": "Creators who don't know what to charge",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Indian creators with 10,000 to 200,000 followers get brand deals through DMs. They underprice, sign vague agreements and wait months to be paid.",
     "who": "Micro-creators, small talent agencies and the brands that hire them.",
     "whyItMatters": "Most of India's creator economy is small creators negotiating alone with no reference point.",
@@ -4150,14 +4300,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P152",
     "title": "Royalties Indian musicians never collect",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Independent musicians and lyricists in India earn royalties from streaming, broadcast, live performance and sync, but collection is split across distributors, collecting societies and labels. Many never register their works or claim what they're owed.",
     "who": "Independent artists, songwriters, small labels and music publishers.",
     "whyItMatters": "Music streaming in India is growing fast, and music rights companies around the world have raised large sums. Unclaimed royalties are money artists earned and never see.",
@@ -4179,14 +4330,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P153",
     "title": "A fifth of every booking goes to the OTA",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Homestays and small hotels in Goa, Kerala and the hills get most bookings through online travel agents that take large commissions. Guests rarely book direct because they can't find the property's own channel or don't trust it.",
     "who": "Homestay owners and small hotel operators.",
     "whyItMatters": "Commissions take most of a small property's margin.",
@@ -4208,14 +4360,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P154",
     "title": "Three months for a Schengen appointment",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Cross-border",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Indians applying for Schengen and UK visas face appointment slots that vanish in minutes, agents who resell slots, rejections over documents and requirements that differ by consulate.",
     "who": "Indian travellers, students, business visitors and travel agents.",
     "whyItMatters": "People miss trips, lose money on bookings and carry a rejection on their record. Visa-processing startups such as Atlys have raised money on this.",
@@ -4232,14 +4385,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P155",
     "title": "A thousand pilgrims, one tour operator",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Middle East",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Operators running Umrah, Char Dham or Kailash trips handle registrations, permits, medical certificates, rooms and transport for large groups through spreadsheets and calls.",
     "who": "Pilgrimage operators, group leaders and pilgrims, many of them elderly.",
     "whyItMatters": "A missing permit or certificate can leave an elderly pilgrim stranded or turned back.",
@@ -4261,14 +4415,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P156",
     "title": "New city, no friends",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Young professionals who move cities for work often stay lonely for months. Meetup apps feel awkward, and office friendships rarely carry into weekends.",
     "who": "People aged 21 to 30 who relocate to Bengaluru, Dubai, London or similar cities.",
     "whyItMatters": "Loneliness affects health and work, and companies lose new hires who never settle.",
@@ -4285,14 +4440,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P157",
     "title": "Kids in New Jersey who can't speak to their grandparents",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Children of the Indian diaspora often understand little of their family's language, whether Tamil, Telugu, Gujarati or Punjabi. Weekend classes are hard to fit in, and language apps teach tourist phrases rather than family conversation.",
     "who": "Diaspora parents in the US, UK, Canada, Australia and the Gulf, their children, and heritage-language teachers.",
     "whyItMatters": "The Indian diaspora is one of the largest and highest-earning in the world, and parents already pay for weekend schools and private tutors. Voice AI can now hold simple conversations in Indian languages.",
@@ -4309,14 +4465,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P158",
     "title": "The tiffin service run from a notebook",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Home chefs and small tiffin services feed office workers, students and elderly people on monthly subscriptions. Orders, skips, menus, payments and delivery routes live in notebooks and WhatsApp, and mistakes cost customers.",
     "who": "Home chefs, tiffin and meal-subscription businesses, and their customers.",
     "whyItMatters": "Home-style daily meals are a huge informal market in Indian cities, and meal-subscription startups have raised funding. Most operators can't grow past a few dozen customers without better tools.",
@@ -4338,14 +4495,15 @@
         "kit": "Maps",
         "tools": "Google Maps Platform, Mapbox, Ola Maps, OpenStreetMap"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P159",
     "title": "An online coach with 80 clients and a spreadsheet",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Thousands of fitness, yoga and wellness coaches in India run online programmes through WhatsApp, Google Sheets and UPI. Check-ins, plan updates and renewals take hours, and clients drop off without the coach noticing.",
     "who": "Independent online coaches and their clients.",
     "whyItMatters": "Coaching is one of the largest creator businesses in India, and global platforms such as Trainerize are priced and designed for other markets. Better tools let a coach serve more clients without burning out.",
@@ -4367,14 +4525,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P160",
     "title": "A dive shop in Bali booking through Instagram DMs",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Southeast Asia",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Tour operators, dive shops and activity providers in Bali, Phuket and Vietnam take most bookings through Instagram and WhatsApp messages. The same questions repeat, deposits are chased by hand, and double bookings happen in peak season.",
     "who": "Small tour and activity operators in Southeast Asia, and their guests.",
     "whyItMatters": "Tourism to Southeast Asia keeps growing, and booking software for tours and activities is a proven category (Booking Holdings bought FareHarbor). Small operators still run on chat.",
@@ -4395,14 +4554,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P161",
     "title": "A medium in one brand, a large in the next",
     "tag": "legendary",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Indian shoppers return many fashion orders because sizes vary between brands. Size charts confuse people, and Indian body shapes differ from the fit models brands design for.",
     "who": "Online fashion shoppers and D2C fashion brands.",
     "whyItMatters": "Returns cost brands shipping both ways and cost shoppers time.",
@@ -4424,14 +4584,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P162",
     "title": "African creators who can't get paid",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Africa",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Creators in Nigeria, Kenya and Ghana build big audiences but struggle to receive money from fans and global platforms. Payment rails are restricted, and currency swings eat their earnings.",
     "who": "African creators, their fans and diaspora supporters.",
     "whyItMatters": "Audiences are growing much faster than creators' ability to earn from them.",
@@ -4448,14 +4609,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P163",
     "title": "Arriving in Toronto with no credit history",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Students and workers who move to Canada, the US, the UK or Australia arrive with no local credit history. They struggle to rent a flat, get a phone plan or a credit card, even with a strong record at home.",
     "who": "International students and skilled migrants, and the landlords and lenders who serve them.",
     "whyItMatters": "Nova Credit raised money translating foreign credit histories, and millions of people move abroad for study and work each year. The first months cost newcomers larger deposits and higher prices.",
@@ -4477,14 +4639,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P164",
     "title": "Sports academies running on WhatsApp",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Cricket, football, badminton and swimming academies run batches, fees, attendance and parent updates on WhatsApp and registers. Coaches can't track each child's progress, and parents can't see what they're paying for.",
     "who": "Academy owners, coaches and parents.",
     "whyItMatters": "Youth sports participation is growing in Indian cities, and sports-tech startups have raised funding. Academies lose students when parents can't see progress.",
@@ -4505,14 +4668,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P165",
     "title": "Reward points that expire before anyone uses them",
     "tag": "legendary",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "People hold credit card points, airline miles and hotel points across many programmes. Transfer partners and redemption values change constantly, so most points get redeemed for little or expire unused.",
     "who": "Credit card holders and frequent travellers in India, the US and the Gulf.",
     "whyItMatters": "India's premium credit card market has grown quickly, and points-optimisation companies such as point.me have raised funding in the US. Unused points are value consumers already own.",
@@ -4534,14 +4698,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P166",
     "title": "The first 90 days in Dubai",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Middle East",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "New expats in Dubai need an Emirates ID, medical test, bank account, housing, utilities, a phone plan and school places, in a particular order. Each step depends on another, and mistakes add weeks.",
     "who": "New expats and HR teams at the companies hiring them.",
     "whyItMatters": "A slow start costs new hires money and time at work.",
@@ -4558,14 +4723,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P167",
     "title": "The concert ticket that was already sold",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Tickets for big concerts in India sell out in minutes and reappear in resale groups at several times the price. Many buyers end up with fake or duplicate tickets.",
     "who": "Concert-goers, organisers and ticketing platforms.",
     "whyItMatters": "Fans lose money, and organisers lose trust.",
@@ -4582,14 +4748,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P168",
     "title": "Followers you can't trust",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Global",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Brands paying influencers can't tell real reach from fake followers, engagement pods and bought likes. Campaigns disappoint and nobody knows why.",
     "who": "Brand marketers, agencies and D2C founders.",
     "whyItMatters": "Influencer budgets are rising, and fake engagement wastes part of every one.",
@@ -4607,14 +4774,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P169",
     "title": "Travelling with a parent in a wheelchair",
     "tag": "rare",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "India",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Families planning trips with older or disabled relatives who use wheelchairs can't tell which hotels, attractions, taxis and stations are actually accessible. Listings say \"accessible\" without details, and trips end at stairs nobody mentioned.",
     "who": "Families travelling with older or disabled relatives, and the hotels and tour operators that want their business.",
     "whyItMatters": "India's elderly population is growing fast, and accessible travel is a recognised market abroad. Verified accessibility information barely exists in India.",
@@ -4636,14 +4804,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P170",
     "title": "Selling live to 300 viewers in Jakarta",
     "tag": "epic",
-    "cluster": "H. Consumer, creators, travel and hospitality",
-    "region": "Southeast Asia",
+    "cluster": "Consumer, creators, travel and hospitality",
+    "region": "",
     "problem": "Small sellers in Indonesia, Vietnam and the Philippines sell through live streams on TikTok Shop and Shopee. One person hosts, reads comments, takes orders and tracks stock at the same time, and orders slip.",
     "who": "Small live-commerce sellers and their helpers.",
     "whyItMatters": "Live selling is a large share of online retail in Southeast Asia.",
@@ -4665,14 +4834,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P171",
     "title": "The machine stopped and nobody wrote down why",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small manufacturers rarely record machine downtime. Operators restart and move on, so owners never learn which machines lose the most hours or why.",
     "who": "Owners and production supervisors at MSME factories.",
     "whyItMatters": "Downtime is lost output, and small factories can't pay for sensors or manufacturing software.",
@@ -4693,14 +4863,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P172",
     "title": "Spotting defects with a phone camera",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small factories inspect parts by eye at the end of the line. Inspectors get tired, defects slip through, and customers send back whole batches.",
     "who": "Quality heads and inspectors at MSME manufacturers, and their customers.",
     "whyItMatters": "One rejected batch can cost a small supplier the customer.",
@@ -4717,14 +4888,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P173",
     "title": "The production plan that changes every morning",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Job shops schedule orders on Excel and whiteboards. Rush orders, breakdowns and late material force constant replanning, and promised dates slip.",
     "who": "Production planners and owners at job shops.",
     "whyItMatters": "Late deliveries lose customers, and overtime eats the margin.",
@@ -4742,14 +4914,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P174",
     "title": "One supplier away from shutting down",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Mid-size manufacturers often rely on one supplier for a critical part. They hear about that supplier's fire, insolvency or port delay when the shipment doesn't arrive.",
     "who": "Procurement and supply-chain heads at mid-size manufacturers.",
     "whyItMatters": "A single missing part can stop a line for weeks.",
@@ -4771,14 +4944,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P175",
     "title": "The factory audit staged for the day",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Southeast Asia",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Garment factories in Tamil Nadu, Bangladesh and Vietnam face social compliance audits from global brands. Audits are announced, conditions are tidied up for the day, and workers' real complaints stay hidden.",
     "who": "Brand compliance teams, factory managers and workers.",
     "whyItMatters": "European supply-chain due-diligence laws are raising the stakes for brands, and workers bear the cost of what audits miss.",
@@ -4799,14 +4973,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P176",
     "title": "Near misses nobody reports",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "For every serious factory accident there are many near misses that go unreported. Paper forms are a chore, and workers fear being blamed.",
     "who": "Safety officers, supervisors and workers in factories and warehouses.",
     "whyItMatters": "Each ignored near miss is a warning that nobody acted on.",
@@ -4827,14 +5002,15 @@
         "kit": "Vision",
         "tools": "Claude vision, Roboflow"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P177",
     "title": "\"Please update our bank details\"",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Fraudsters pose as a vendor over email and ask the finance team to change bank details. Small companies pay the fraudster and rarely get the money back.",
     "who": "Finance teams at SMEs, and their vendors.",
     "whyItMatters": "Business email compromise causes heavy losses worldwide, and small firms have the weakest controls.",
@@ -4851,14 +5027,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P178",
     "title": "The ex-employee who still has the password",
     "tag": "rare",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small businesses share passwords over WhatsApp and spreadsheets. When someone leaves, nobody revokes their access to email, banking, social accounts or the accounting software.",
     "who": "SME owners and office managers.",
     "whyItMatters": "Former staff and leaked passwords are a common route to data theft and fraud.",
@@ -4876,14 +5053,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P179",
     "title": "Denied cyber insurance for missing two-factor login",
     "tag": "rare",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small businesses applying for cyber insurance face questionnaires on two-factor login, backups and endpoint protection. Many get declined or pay high premiums, and they don't know what to fix first.",
     "who": "SME owners, their IT providers and insurance brokers.",
     "whyItMatters": "Cyber insurers such as Coalition and At-Bay built large businesses by pairing cover with security checks. Ransomware keeps hitting small companies, and insurers keep tightening their requirements.",
@@ -4905,14 +5083,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P180",
     "title": "Sourcing 40 components for a prototype",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Hardware startups in India source electronic components from distributors, marketplaces and Shenzhen suppliers. Prices and lead times vary, and finding a substitute for an out-of-stock part takes days.",
     "who": "Hardware founders, engineers and contract manufacturers.",
     "whyItMatters": "Component delays push back launches, and component cost decides the margin.",
@@ -4934,14 +5113,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P181",
     "title": "Batch records filled in at the end of the shift",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Food, cosmetics and pharma manufacturers must keep batch records for quality and audits. Records are often written from memory at shift end, and gaps surface during audits or recalls.",
     "who": "Quality managers and production staff at small manufacturers.",
     "whyItMatters": "A failed audit or recall can shut a small manufacturer down. Indian pharma compliance software such as Leucine has raised venture funding.",
@@ -4963,14 +5143,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P182",
     "title": "A BIS licence before you can sell",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "India's Quality Control Orders now require BIS certification for many products, from toys and footwear to electrical goods. Small manufacturers and importers struggle to know whether they're covered and what to do.",
     "who": "Small manufacturers, importers and D2C brands.",
     "whyItMatters": "Uncertified goods can't be sold or imported, and certification delays cost months.",
@@ -4987,14 +5168,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P183",
     "title": "Wrong item in the box",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small third-party warehouses serving D2C brands pick orders by hand. Wrong items, wrong sizes and missing pieces lead to returns and lost clients.",
     "who": "3PL operators, warehouse staff and their brand clients.",
     "whyItMatters": "Accuracy is the main thing brands pay a 3PL for.",
@@ -5015,14 +5197,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P184",
     "title": "Buying steel on the wrong day",
     "tag": "rare",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Small manufacturers buy steel, plastic granules or copper at prices that move every week. Most buy when stock runs out, which is often the worst time.",
     "who": "Owners and purchase managers at small manufacturers.",
     "whyItMatters": "Raw material is the largest cost for many of them.",
@@ -5039,14 +5222,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P185",
     "title": "Fakes of your product on every marketplace",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Brands that do well find counterfeit and lookalike versions on marketplaces and social commerce. Small brands don't have the people to find and remove them.",
     "who": "Brand owners, D2C founders and marketplace brand-protection teams.",
     "whyItMatters": "Fakes take sales and damage the brand when buyers get a bad product.",
@@ -5068,14 +5252,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P186",
     "title": "The label that fails inspection",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Food and FMCG products must carry labels that meet FSSAI rules on ingredients, nutrition, allergens, logos and font sizes. Small brands get labels wrong and face rejections, recalls and fines.",
     "who": "Founders and packaging designers at small food brands.",
     "whyItMatters": "A wrong label can block a product from shelves and marketplaces.",
@@ -5096,14 +5281,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P187",
     "title": "The cloud bill nobody expected",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "Global",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Startups using AWS, GCP and AI APIs get surprise bills from idle resources, misconfigured services and runaway API usage. Small teams have nobody watching costs.",
     "who": "Startup founders and engineers.",
     "whyItMatters": "For many startups, cloud and AI spend is the biggest cost after salaries.",
@@ -5125,14 +5311,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P188",
     "title": "Crates that never come back",
     "tag": "rare",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Dairies, bakeries, beverage and produce companies ship goods in returnable crates and pallets. Many never come back from retailers and distributors, and the loss gets written off every year.",
     "who": "Logistics heads at FMCG and food companies, and their distributors.",
     "whyItMatters": "It's a steady cost that nobody tracks.",
@@ -5154,14 +5341,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P189",
     "title": "DPDP compliance for a 20-person startup",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "India's DPDP Rules were notified in November 2025, and most obligations on notices, consent, breach reporting and children's data apply from May 2027. Small startups don't know what personal data they hold or what they need to change.",
     "who": "Founders and engineers at Indian startups and SMEs.",
     "whyItMatters": "Penalties under the Act can reach ₹250 crore, and enterprise customers are already asking vendors about compliance.",
@@ -5183,14 +5371,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P190",
     "title": "Paying for leads that go nowhere",
     "tag": "epic",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "SMEs pay for leads on B2B marketplaces like IndiaMART. Many are fake, irrelevant or already contacted by ten competitors, and sales staff waste hours calling them.",
     "who": "SME owners and their sales staff.",
     "whyItMatters": "Lead subscriptions are expensive, and bad leads use up the sales team's day.",
@@ -5208,14 +5397,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P191",
     "title": "Business data locked inside Tally",
     "tag": "legendary",
-    "cluster": "I. Industry, supply chain, security and dev tools",
-    "region": "India",
+    "cluster": "Industry, supply chain, security and dev tools",
+    "region": "",
     "problem": "Millions of Indian SMEs keep their accounts in Tally on one office computer. Owners can't see their numbers when they're away, and the data can't easily feed other tools.",
     "who": "SME owners and their accountants.",
     "whyItMatters": "Decisions wait for the accountant, and every integration is a custom job.",
@@ -5233,14 +5423,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P192",
     "title": "Your brand doesn't come up when people ask ChatGPT",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "More shoppers now ask ChatGPT, Gemini or Perplexity what to buy before they search. Small brands have no idea whether they get mentioned, how they're described, or why a competitor gets recommended instead.",
     "who": "D2C founders, marketers and SEO agencies.",
     "whyItMatters": "Product discovery is moving into AI answers, and the old search playbook doesn't explain how to show up there. Startups in this new category, such as Profound, raised large rounds in 2025.",
@@ -5262,14 +5453,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P193",
     "title": "When the shopper is an AI agent",
     "tag": "mythic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "US",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "AI agents can now buy on a user's behalf through protocols such as OpenAI's Agentic Commerce Protocol and Google's AP2. Most small merchants' catalogs, policies and checkouts can't be read or used by an agent.",
     "who": "Small online merchants and the agencies that build their stores.",
     "whyItMatters": "Merchants that agents can't use will miss this channel while it's still forming.",
@@ -5291,14 +5483,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P194",
     "title": "The person on the interview call isn't the candidate",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Remote hiring now sees impostors using deepfake video, voice changers or stand-ins during interviews. Recruiters struggle to check identity without treating honest candidates as suspects.",
     "who": "Recruiters and hiring managers at companies that hire remotely.",
     "whyItMatters": "A fraudulent hire can get access to systems, data and payroll.",
@@ -5319,14 +5512,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P195",
     "title": "Assignments ChatGPT finishes in a minute",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Teachers and professors can't tell whether students wrote their own work. Detection tools are unreliable, and many old assignments no longer measure learning.",
     "who": "School teachers, college faculty and programme designers, Mesa's included.",
     "whyItMatters": "Grades lose meaning when the work can be generated on request.",
@@ -5348,14 +5542,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P196",
     "title": "Testing a voice agent before customers do",
     "tag": "mythic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Companies launching AI voice and chat agents find the failures when customers hit them: wrong answers, broken flows, unsafe replies. Manual testing covers a handful of scenarios.",
     "who": "Teams building customer-facing AI agents.",
     "whyItMatters": "One failure that spreads online can end an AI rollout.",
@@ -5377,14 +5572,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P197",
     "title": "Five-star reviews written by a model",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "AI makes fake reviews cheap. Small businesses get hit by waves of fake negative reviews from competitors, and shoppers stop trusting ratings.",
     "who": "Restaurants, clinics, online sellers, shoppers and review platforms.",
     "whyItMatters": "Ratings drive most choices for local businesses, so one fake wave can cut bookings.",
@@ -5401,14 +5597,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P198",
     "title": "The app built in a weekend that leaks its database",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Founders and non-engineers now ship apps built with AI coding tools. Many go live with exposed databases, leaked API keys and missing access rules, and the people who built them don't know how to check.",
     "who": "Non-technical founders, indie developers and small agencies building with AI tools.",
     "whyItMatters": "AI app builders have grown extremely fast, and security researchers reported apps built this way leaking user data in 2025. App security scanning is a funded category, but it was designed for professional engineers.",
@@ -5426,14 +5623,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P199",
     "title": "Customer support in Bahasa, Tagalog and Tamil",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Southeast Asia",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Banks, telcos and online retailers in Southeast Asia and India serve customers in many local languages. Voice and chat bots work poorly outside English, so most calls still go to large human teams with long queues.",
     "who": "Customer support leaders at banks, telcos and consumer companies, and their customers.",
     "whyItMatters": "Voice AI in local languages is one of the most active startup areas in Asia, with Indian companies such as Sarvam raising large rounds. In markets where each customer spends little, support cost decides the margin.",
@@ -5450,14 +5648,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P200",
     "title": "The EU AI Act for a 30-person company",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Europe",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "The EU AI Act's transparency obligations started on Aug 2, 2026, and the high-risk rules follow in December 2027. Small companies that use or build AI don't know which of their systems are covered or what they have to do.",
     "who": "SMEs and startups selling into the EU, and their legal advisers.",
     "whyItMatters": "Fines are large, and enterprise buyers already ask suppliers for evidence.",
@@ -5474,14 +5673,15 @@
         "kit": "Docs",
         "tools": "Claude (reads PDFs and photos), Google Document AI or AWS Textract"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P201",
     "title": "Confidential data pasted into a chatbot",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Employees paste customer data, code and contracts into public AI tools. Companies either ban AI and lose the productivity, or allow it without knowing what leaves.",
     "who": "IT and security leads at mid-size companies, and the employees using AI.",
     "whyItMatters": "One leak can create legal exposure and hand over trade secrets.",
@@ -5498,14 +5698,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P202",
     "title": "A voice cloned without permission",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "India",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Voice actors and dubbing artists in India are hearing AI clones of their voices. They have no way to control or license their voice, and studios have no clean source of consented voices.",
     "who": "Voice artists, dubbing studios and ad agencies.",
     "whyItMatters": "Indian dubbing employs many artists, and unlicensed cloning takes their work.",
@@ -5527,14 +5728,15 @@
         "kit": "Payments",
         "tools": "Razorpay or Stripe in test mode, Setu sandbox"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P203",
     "title": "Hidden instructions that hijack your AI agent",
     "tag": "mythic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "AI agents that browse the web or chat with customers can be steered by instructions hidden in pages, documents or messages, known as prompt injection. A hijacked agent can leak data or take the wrong action.",
     "who": "Companies building browsing agents, and banks, fintechs and insurers running customer-facing AI agents, along with their security and compliance teams.",
     "whyItMatters": "Agents can't be trusted with real tasks until this is handled, and in regulated industries a leak is also a compliance breach.",
@@ -5552,14 +5754,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P204",
     "title": "An AI agent calling the restaurant",
     "tag": "mythic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "US",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "AI assistants are starting to phone businesses to book tables, check stock or ask questions for their users. Small businesses don't know how to handle these calls, and some just hang up.",
     "who": "Restaurants, salons and clinics, and the developers of AI assistants.",
     "whyItMatters": "This channel could bring in bookings or swamp the front desk.",
@@ -5580,14 +5783,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P205",
     "title": "Indian apps a blind user can't use",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "India",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Many Indian apps for payments, food delivery and government services are hard or impossible to use with a screen reader. Blind and low-vision users depend on others for everyday tasks.",
     "who": "Blind and low-vision users, and the teams that build these apps.",
     "whyItMatters": "India has a large visually impaired population, and more essential services are moving to apps.",
@@ -5604,14 +5808,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P206",
     "title": "Captions for a lecture in Kannada and English",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "India",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Deaf and hard-of-hearing students struggle in lectures that mix English with Indian languages. Live captioning tools handle this mixing badly.",
     "who": "Deaf and hard-of-hearing students, their colleges and teachers.",
     "whyItMatters": "Without access, these students fall behind or drop out.",
@@ -5629,14 +5834,15 @@
         "kit": "Voice",
         "tools": "Sarvam AI, Deepgram or Whisper, ElevenLabs, Vapi or Retell, Exotel or Twilio"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P207",
     "title": "An online store the EU says is inaccessible",
     "tag": "epic",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Europe",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "The European Accessibility Act has applied since June 28, 2025, and covers many e-commerce sites and apps. Small online stores selling in the EU are often non-compliant and don't know where to start.",
     "who": "Small e-commerce businesses selling in the EU, and the agencies that build their sites.",
     "whyItMatters": "Non-compliance risks fines, and inaccessible stores turn away customers.",
@@ -5654,14 +5860,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P208",
     "title": "The forms that pile up when you have ADHD",
     "tag": "rare",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Adults with ADHD often miss bill payments, renewals, tax deadlines and forms. Standard to-do apps don't work for them.",
     "who": "Adults with ADHD or similar executive-function difficulties.",
     "whyItMatters": "Missed deadlines bring fines, stress and damaged credit.",
@@ -5683,14 +5890,15 @@
         "kit": "Mobile",
         "tools": "Progressive web app, Expo (React Native), MSG91 or Twilio SMS"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P209",
     "title": "A deepfake of your founder selling a scam",
     "tag": "rare",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "India",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Scam ads using AI-generated videos of founders, celebrities and finance influencers promote fake investment schemes on social media. Brands and public figures find them late, and takedown requests are slow and manual.",
     "who": "Brands, founders, public figures and their agencies, and the people who get scammed.",
     "whyItMatters": "Deepfake scam ads became a serious problem in India in 2024 and 2025, and Indian courts have granted personality-rights orders to several public figures. Brand protection is already a paid service.",
@@ -5712,14 +5920,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P210",
     "title": "AI crawlers read your site and send no visitors",
     "tag": "rare",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "AI companies' crawlers read publishers' and businesses' websites to train models and answer questions, and those answers send far fewer visitors back than search did. Most site owners don't know which bots visit, what they take, or how to charge for it.",
     "who": "Publishers, content sites, documentation teams and online stores.",
     "whyItMatters": "Cloudflare launched pay-per-crawl in July 2025 so sites can charge AI crawlers, and large publishers are signing licensing deals with AI companies. Small and mid-size sites need the same leverage.",
@@ -5737,14 +5946,15 @@
         "kit": "Data",
         "tools": "Google Sheets, Python + pandas in Colab, Metabase or Supabase dashboards"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P211",
     "title": "Is this video real?",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "Global",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Newsrooms and fact-checkers receive photos and videos from conflicts, protests and disasters. AI-generated and edited media make checking slower and harder.",
     "who": "Journalists, fact-checkers and newsroom editors.",
     "whyItMatters": "Publishing one fake can damage a newsroom's credibility for years.",
@@ -5765,14 +5975,15 @@
         "kit": "Agents",
         "tools": "Claude tool use and MCP, Playwright or Browserbase, Firecrawl"
       }
-    ]
+    ],
+    "mechanic": ""
   },
   {
     "id": "P212",
     "title": "Ordering by voice when you can't read the screen",
     "tag": "legendary",
-    "cluster": "J. Problems created by AI, AI agents and accessibility",
-    "region": "India",
+    "cluster": "AI agents and accessibility",
+    "region": "",
     "problem": "Many Indians with low literacy struggle with text-heavy apps for booking gas cylinders, ordering groceries or paying bills. They ask others for help or skip digital services entirely.",
     "who": "Low-literacy users and the businesses that serve them.",
     "whyItMatters": "A very large number of people could use digital services if the interface suited them.",
@@ -5794,6 +6005,7 @@
         "kit": "WhatsApp",
         "tools": "WhatsApp Cloud API (test number), Interakt or Gupshup, n8n"
       }
-    ]
+    ],
+    "mechanic": ""
   }
 ]

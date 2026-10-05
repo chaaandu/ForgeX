@@ -25,6 +25,8 @@ export type Problem = {
   constraints: string
   buildExpectation: string
   tools: ToolKit[]
+  /** What a student would actually build. Used to spread the cohort out. */
+  mechanic: string
 }
 
 /** Columns O to R, for a problem somebody holds. `email` is team-only. */
