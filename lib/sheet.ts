@@ -76,10 +76,10 @@ function toActionResult(raw: unknown): ActionResult {
   return { ok: true, bets: ok.bets ?? {} }
 }
 
+/** The Sheet only needs to know who, so the photo stays out of it. */
 export async function sheetBet(input: {
   email: string
   name: string
-  photo: string
   problemId: string
 }): Promise<ActionResult> {
   return toActionResult(await post('bet', input))

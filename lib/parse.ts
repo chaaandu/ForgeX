@@ -18,8 +18,8 @@ export const PROBLEM_HEADERS = [
   'Tools to use',
 ] as const
 
-/** The four columns the app writes. Columns O to R. */
-export const BET_HEADERS = ['Bet by', 'Bet email', 'Bet photo', 'Bet at'] as const
+/** The one column the app writes, after N. */
+export const BET_HEADERS = ['Bet by'] as const
 
 /** `🟣 Epic` to `epic`. Returns null for anything unrecognised. */
 export function normaliseTag(raw: string): Tag | null {

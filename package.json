@@ -12,7 +12,8 @@
     "test": "playwright test",
     "test:ui": "playwright test --ui",
     "data:problems": "tsx scripts/import-xlsx.ts",
-    "data:students": "tsx scripts/import-students.ts"
+    "data:students": "tsx scripts/import-students.ts",
+    "test:script": "node scripts/gas-harness.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",

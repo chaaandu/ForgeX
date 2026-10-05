@@ -73,6 +73,11 @@ pnpm data:students   # data/students.json and public/students/*.webp
   rows inside the lock. That is the only thing standing between two students and
   the same problem.
 - Columns are read by header name, never by position.
+- The Problems tab carries one app-written column, `Bet by`, holding a name.
+  The email and the time come from the Bet log; the photo comes from the roster
+  in `lib/students.ts`, joined on email and falling back to the name, which is
+  unique across all 119 students. `enrich()` in `lib/backend/index.ts` is where
+  that join happens.
 - Never let `APPS_SCRIPT_URL` or `APPS_SCRIPT_SECRET` reach the browser. Both
   `lib/sheet.ts` and `lib/backend/index.ts` import `server-only` to enforce it.
 

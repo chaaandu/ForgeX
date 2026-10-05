@@ -14,16 +14,19 @@ admin panel. There is no admin screen in the app, by design.
    mesaschool.co account.
 2. Right-click it, choose **Open with → Google Sheets**, then
    **File → Save as Google Sheets**. Use only this copy from now on.
-3. In the **Problems** tab, type these headers in `O1` to `R1`:
-   `Bet by`, `Bet email`, `Bet photo`, `Bet at`.
-   The script adds them itself if they are missing, but having them there makes
-   the sheet easier to read from day one.
+3. In the **Problems** tab, type one header in `O1`: `Bet by`. That is the only
+   column the app writes, and it holds the bettor's name. The script adds the
+   header itself if it is missing.
+
+   Who that person is and when they bet is not duplicated here: the **Bet log**
+   tab already records the email and the timestamp of every bet, move and
+   release, and the app reads them from there.
 4. Add a tab named **Bet log** with headers `Timestamp`, `Action`, `Email`,
    `Name`, `Problem ID`, `Previous problem ID` in `A1` to `F1`. The script
    creates this tab too if it is absent.
-5. Optional, and worth it: select `A2:R213`, open
+5. Optional, and worth it: select `A2:O213`, open
    **Format → Conditional formatting**, choose "Custom formula is" with
-   `=$P2<>""`, and pick a light fill. Taken rows then stand out at a glance.
+   `=$O2<>""`, and pick a light fill. Taken rows then stand out at a glance.
 6. Do not rename the Problems tab, its headers, or the problem IDs. The app
    reads every column by header name, so the order of columns can change but the
    names cannot.
@@ -104,7 +107,8 @@ admin panel. There is no admin screen in the app, by design.
 Do this with two student accounts and one mesaschool.co account.
 
 1. Student A signs in and bets on a problem. Check the Sheet: that row's
-   `O` to `R` fill in, and a `bet` row appears in **Bet log**.
+   `Bet by` fills in with their name, and a `bet` row appears in **Bet log**
+   with their email and the time.
 2. Student B sees the stamp and the name within 15 seconds without reloading,
    and the button on that problem is dead and reads "Backed by {name}".
 3. Student A opens another problem and presses **Move my bet here**. The old row
@@ -121,13 +125,14 @@ Do this with two student accounts and one mesaschool.co account.
 
 ## F. Running it during ForgeX
 
-- **To free a problem by hand**, clear its cells in `O` to `R`. The site picks
-  that up within about ten seconds. The Bet log keeps the history either way.
+- **To free a problem by hand**, clear its `Bet by` cell. The site picks that up
+  within about ten seconds. The Bet log keeps the history either way.
 - **To change the deadline**, update `BETS_CLOSE_AT` in both the script
   properties and the Vercel environment variables, then redeploy on Vercel.
   Both are checked, so the earlier of the two wins in practice.
-- **To see who has what**, read the Sheet. Column `P` is the bettor's email, and
-  an empty `P` means the problem is open.
+- **To see who has what**, read column `O` of the Problems tab: the name of
+  whoever holds each problem, and empty where it is still open. For emails and
+  times, read the Bet log.
 - **If the site shows "Bets are paused for a minute"**, Apps Script is not
   answering. Browsing still works from a local snapshot of the problems. Open
   the Apps Script editor and check the execution log; usually it is a quota

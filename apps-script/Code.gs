@@ -6,6 +6,10 @@
  * takes the script lock and re-reads the row inside it, and the Bet log tab is
  * append-only.
  *
+ * The Problems tab carries one extra column, "Bet by", holding the bettor's
+ * name and nothing else. Who that is and when they bet comes from the Bet log,
+ * which already records the email and the timestamp of every move.
+ *
  * Script properties this expects:
  *   SHARED_SECRET   long random string, the same as APPS_SCRIPT_SECRET on Vercel
  *   BETS_CLOSE_AT   ISO 8601 with offset, e.g. 2026-10-22T23:59:00+05:30
@@ -16,10 +20,7 @@ var LOG_TAB = 'Bet log'
 var TZ = 'Asia/Kolkata'
 
 var BET_BY = 'Bet by'
-var BET_EMAIL = 'Bet email'
-var BET_PHOTO = 'Bet photo'
-var BET_AT = 'Bet at'
-var BET_HEADERS = [BET_BY, BET_EMAIL, BET_PHOTO, BET_AT]
+var BET_HEADERS = [BET_BY]
 
 var LOG_HEADERS = ['Timestamp', 'Action', 'Email', 'Name', 'Problem ID', 'Previous problem ID']
 
@@ -56,8 +57,10 @@ function json(value) {
   )
 }
 
+var STAMP = "yyyy-MM-dd'T'HH:mm:ss'+05:30'"
+
 function now() {
-  return Utilities.formatDate(new Date(), TZ, "yyyy-MM-dd'T'HH:mm:ss'+05:30'")
+  return Utilities.formatDate(new Date(), TZ, STAMP)
 }
 
 function isClosed() {
@@ -132,7 +135,7 @@ function cell(row, index, header) {
   var at = index[header]
   if (at === undefined) return ''
   var value = row.values[at]
-  if (value instanceof Date) return Utilities.formatDate(value, TZ, "yyyy-MM-dd'T'HH:mm:ss'+05:30'")
+  if (value instanceof Date) return Utilities.formatDate(value, TZ, STAMP)
   return value === null || value === undefined ? '' : String(value).trim()
 }
 
@@ -190,16 +193,60 @@ function toProblem(row, index) {
   }
 }
 
-function betsFrom(rows, index) {
+/**
+ * The last bet or move per problem, from the Bet log. Release rows clear the
+ * entry, so what comes back is whoever the log says holds each problem now.
+ */
+function latestFromLog() {
+  var sheet = logSheet()
+  var last = sheet.getLastRow()
+  if (last < 2) return {}
+
+  var values = sheet.getRange(2, 1, last - 1, LOG_HEADERS.length).getValues()
+  var latest = {}
+  for (var r = 0; r < values.length; r++) {
+    var row = values[r]
+    var action = String(row[1] || '').trim()
+    var problemId = String(row[4] || '').trim()
+    if (!problemId) continue
+
+    if (action === 'release') {
+      delete latest[problemId]
+      continue
+    }
+    if (action !== 'bet' && action !== 'move') continue
+
+    var at = row[0]
+    latest[problemId] = {
+      at: at instanceof Date ? Utilities.formatDate(at, TZ, STAMP) : String(at || ''),
+      email: String(row[2] || '').trim().toLowerCase(),
+      name: String(row[3] || '').trim(),
+    }
+
+    // A move frees the problem it came from.
+    var previousId = String(row[5] || '').trim()
+    if (previousId) delete latest[previousId]
+  }
+  return latest
+}
+
+/**
+ * Who holds what. The Problems tab decides occupancy, so clearing "Bet by" by
+ * hand frees a problem, and the log fills in the email and the time.
+ */
+function betsFrom(rows, index, latest) {
   var bets = {}
   for (var i = 0; i < rows.length; i++) {
-    var email = cell(rows[i], index, BET_EMAIL).toLowerCase()
-    if (!email) continue
+    var name = cell(rows[i], index, BET_BY)
+    if (!name) continue
+
+    var logged = latest[rows[i].id]
+    var matches = logged && logged.name === name
     bets[rows[i].id] = {
-      name: cell(rows[i], index, BET_BY),
-      email: email,
-      photo: cell(rows[i], index, BET_PHOTO),
-      at: cell(rows[i], index, BET_AT),
+      name: name,
+      email: matches ? logged.email : '',
+      photo: '',
+      at: matches ? logged.at : '',
     }
   }
   return bets
@@ -218,24 +265,20 @@ function handleData() {
     if (problem) problems.push(problem)
   }
 
-  return { ok: true, problems: problems, bets: betsFrom(rows, index) }
+  return { ok: true, problems: problems, bets: betsFrom(rows, index, latestFromLog()) }
 }
 
-function writeBet(sheet, index, row, name, email, photo, at) {
+function writeBet(sheet, index, row, name) {
   sheet.getRange(row, index[BET_BY] + 1).setValue(name)
-  sheet.getRange(row, index[BET_EMAIL] + 1).setValue(email)
-  sheet.getRange(row, index[BET_PHOTO] + 1).setValue(photo)
-  sheet.getRange(row, index[BET_AT] + 1).setValue(at)
 }
 
 function clearBet(sheet, index, row) {
-  writeBet(sheet, index, row, '', '', '', '')
+  writeBet(sheet, index, row, '')
 }
 
 function handleBet(body) {
   var email = String(body.email || '').trim().toLowerCase()
   var name = String(body.name || '').trim()
-  var photo = String(body.photo || '').trim()
   var problemId = String(body.problemId || '').trim()
   if (!email || !problemId) return { ok: false, error: 'bad_request' }
   if (isClosed()) return { ok: false, error: 'closed' }
@@ -248,35 +291,45 @@ function handleBet(body) {
     var sheet = problemsSheet()
     var index = headerIndex(sheet)
     var rows = readRows(sheet, index)
+    var bets = betsFrom(rows, index, latestFromLog())
 
     var target = null
-    var previous = null
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].id === problemId) target = rows[i]
-      if (cell(rows[i], index, BET_EMAIL).toLowerCase() === email) previous = rows[i]
     }
-
     if (!target) return { ok: false, error: 'not_found' }
 
-    var holder = cell(target, index, BET_EMAIL).toLowerCase()
-    if (holder === email) return { ok: true, bets: betsFrom(rows, index) }
-    if (holder) return { ok: false, error: 'taken', by: cell(target, index, BET_BY) }
+    // Matching on the name as well as the email picks up rows somebody filled
+    // in by hand, which carry no email.
+    var mine = function (bet) {
+      return bet.email ? bet.email === email : bet.name === name
+    }
 
-    var at = now()
-    var action = 'bet'
+    var holder = bets[problemId]
+    if (holder) {
+      if (mine(holder)) return { ok: true, bets: bets }
+      return { ok: false, error: 'taken', by: holder.name }
+    }
+
+    // One problem per student.
     var previousId = ''
+    for (var id in bets) {
+      if (mine(bets[id])) previousId = id
+    }
 
-    if (previous) {
-      clearBet(sheet, index, previous.row)
-      previousId = previous.id
+    var action = 'bet'
+    if (previousId) {
+      for (var j = 0; j < rows.length; j++) {
+        if (rows[j].id === previousId) clearBet(sheet, index, rows[j].row)
+      }
       action = 'move'
     }
 
-    writeBet(sheet, index, target.row, name, email, photo, at)
+    writeBet(sheet, index, target.row, name)
     SpreadsheetApp.flush()
     appendLog(action, email, name, problemId, previousId)
 
-    return { ok: true, bets: betsFrom(readRows(sheet, index), index) }
+    return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
   } finally {
     lock.releaseLock()
   }
@@ -294,6 +347,7 @@ function handleRelease(body) {
     var sheet = problemsSheet()
     var index = headerIndex(sheet)
     var rows = readRows(sheet, index)
+    var bets = betsFrom(rows, index, latestFromLog())
 
     var target = null
     for (var i = 0; i < rows.length; i++) {
@@ -301,14 +355,14 @@ function handleRelease(body) {
     }
     if (!target) return { ok: false, error: 'not_found' }
 
-    if (cell(target, index, BET_EMAIL).toLowerCase() === email) {
-      var name = cell(target, index, BET_BY)
+    var holder = bets[problemId]
+    if (holder && holder.email === email) {
       clearBet(sheet, index, target.row)
       SpreadsheetApp.flush()
-      appendLog('release', email, name, problemId, '')
+      appendLog('release', email, holder.name, problemId, '')
     }
 
-    return { ok: true, bets: betsFrom(readRows(sheet, index), index) }
+    return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
   } finally {
     lock.releaseLock()
   }

@@ -2,6 +2,7 @@ import 'server-only'
 import fallbackProblems from '@/data/problems.json'
 import type { ActionResult } from '@/lib/schema'
 import { fetchData, sheetBet, sheetRelease, SheetUnreachable } from '@/lib/sheet'
+import { studentByEmail, studentByName } from '@/lib/students'
 import type { BetMap, Problem } from '@/lib/types'
 import { mockBet, mockBets, mockProblems, mockRelease } from './mock'
 
@@ -13,6 +14,25 @@ import { mockBet, mockBets, mockProblems, mockRelease } from './mock'
 
 export function isMock(): boolean {
   return process.env.MOCK_BACKEND === 'true'
+}
+
+/**
+ * The Sheet stores the bettor's name and nothing else, so the email and the
+ * face are filled in here from the roster. A bet placed by hand in the Sheet,
+ * with no matching log row, still gets both.
+ */
+function enrich(bets: BetMap): BetMap {
+  const out: BetMap = {}
+  for (const [id, bet] of Object.entries(bets)) {
+    const student = bet.email ? studentByEmail(bet.email) : studentByName(bet.name)
+    out[id] = {
+      name: bet.name,
+      email: bet.email || student?.email || '',
+      photo: bet.photo || student?.photo || '',
+      at: bet.at,
+    }
+  }
+  return out
 }
 
 const PROBLEMS_TTL_MS = 5 * 60_000
@@ -40,7 +60,8 @@ export type Snapshot = {
 }
 
 async function refresh(): Promise<Snapshot> {
-  const { problems, bets } = await fetchData()
+  const { problems, bets: raw } = await fetchData()
+  const bets = enrich(raw)
   const now = Date.now()
   cache.problems = { value: problems, at: now }
   cache.bets = { value: bets, at: now }
@@ -84,9 +105,13 @@ export async function placeBetOnBackend(input: {
 }): Promise<ActionResult> {
   if (isMock()) return mockBet(input)
   try {
-    const result = await sheetBet(input)
+    const result = await sheetBet({
+      email: input.email,
+      name: input.name,
+      problemId: input.problemId,
+    })
     invalidateBets()
-    return result
+    return result.ok ? { ok: true, bets: enrich(result.bets) } : result
   } catch (error) {
     if (error instanceof SheetUnreachable) return { ok: false, error: 'unreachable' }
     throw error
@@ -101,7 +126,7 @@ export async function releaseBetOnBackend(input: {
   try {
     const result = await sheetRelease(input)
     invalidateBets()
-    return result
+    return result.ok ? { ok: true, bets: enrich(result.bets) } : result
   } catch (error) {
     if (error instanceof SheetUnreachable) return { ok: false, error: 'unreachable' }
     throw error
