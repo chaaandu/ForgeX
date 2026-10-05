@@ -78,6 +78,9 @@ pnpm data:students   # data/students.json and public/students/*.webp
   script property, so the number can change without a deploy. At zero left, a
   student can neither move nor take their bet back: taking it back would leave
   them with nothing and nothing left to spend.
+  Clearing a `Bet by` cell frees the problem but refunds nothing, because the
+  count comes from the log and not from the Problems tab. Refunding a change
+  means deleting that student's last `bet` or `move` row from the Bet log.
 
 - Identity for a bet comes from the session and nowhere else. `placeBet` takes a
   problem ID and nothing more.

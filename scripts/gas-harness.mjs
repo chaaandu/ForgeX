@@ -244,3 +244,30 @@ const end = call({ action: 'data' })
 console.log('  C ends on   :', Object.entries(end.bets).find(([, b]) => b.email === C.email)?.[0])
 console.log('  picks logged:', end.picks[C.email], '| max changes:', end.maxChanges)
 console.log('  release now :', JSON.stringify(call({ action: 'release', email: C.email, problemId: 'P001' })))
+
+console.log('\n### clearing a Bet by cell by hand')
+// Fresh board and a fresh student.
+for (const row of problemRows.slice(1)) row[14] = ''
+logTab.rows.length = 1
+const D = { email: 'd@forge27.mesaschool.co', name: 'Student D' }
+
+call({ action: 'bet', ...D, problemId: 'P001' })
+let state = call({ action: 'data' })
+console.log('  after betting P001   : holder =', state.bets.P001?.name, '| picks =', state.picks[D.email])
+
+// The owner clears the cell, the way they would in the Sheet.
+problemRows[1][14] = ''
+state = call({ action: 'data' })
+console.log('  after clearing cell  : P001 held =', !!state.bets.P001, '| picks still =', state.picks[D.email])
+
+const again = call({ action: 'bet', ...D, problemId: 'P002' })
+state = call({ action: 'data' })
+console.log('  student bets again   :', again.ok ? 'allowed' : JSON.stringify(again), '| picks now =', state.picks[D.email])
+console.log('  so changes used      :', state.picks[D.email] - 1, 'of', state.maxChanges)
+
+// Removing the log row is what actually gives the change back. Mutate in
+// place: the fake sheet captured this array, so reassigning it does nothing.
+const keep = logTab.rows.filter((r) => !(r[2] === D.email && r[4] === 'P001'))
+logTab.rows.splice(0, logTab.rows.length, ...keep)
+state = call({ action: 'data' })
+console.log('  after deleting the log row for P001: picks =', state.picks[D.email], '-> changes used =', state.picks[D.email] - 1)

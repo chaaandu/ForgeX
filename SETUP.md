@@ -129,7 +129,17 @@ Do this with two student accounts and one mesaschool.co account.
 ## F. Running it during ForgeX
 
 - **To free a problem by hand**, clear its `Bet by` cell. The site picks that up
-  within about ten seconds. The Bet log keeps the history either way.
+  within about ten seconds, and the problem is open to everyone again.
+
+  This does **not** refund the student a change. Changes are counted from the
+  **Bet log**, not from the Problems tab, so their next pick still costs one.
+  That is deliberate: nobody can get extra picks by asking you to clear a cell.
+
+- **To genuinely give a student a change back**, after clearing the cell, delete
+  that student's most recent `bet` or `move` row from the **Bet log**. That is
+  the only thing the count reads. Do this only to correct your own mistake: the
+  Bet log is the record of what happened, and every row you remove is a piece of
+  that record gone.
 - **To change the deadline**, update `BETS_CLOSE_AT` in both the script
   properties and the Vercel environment variables, then redeploy on Vercel.
   Both are checked, so the earlier of the two wins in practice.
