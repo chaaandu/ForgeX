@@ -72,6 +72,13 @@ pnpm data:students   # data/students.json and public/students/*.webp
 
 ## Rules that must not drift
 
+- **A student's first pick is free, then they get three changes.** Counted from
+  the Bet log, in the script, inside the lock: `picksFromLog` counts every bet
+  and move per email, and one less than that is changes used. `MAX_CHANGES` is a
+  script property, so the number can change without a deploy. At zero left, a
+  student can neither move nor take their bet back: taking it back would leave
+  them with nothing and nothing left to spend.
+
 - Identity for a bet comes from the session and nowhere else. `placeBet` takes a
   problem ID and nothing more.
 - A student may see an email only on their own bet. The team sees every email.

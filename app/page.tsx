@@ -9,7 +9,7 @@ import { PausedNotice } from '@/components/PausedNotice'
 import { ProblemCard } from '@/components/ProblemCard'
 import { ProblemModal } from '@/components/ProblemModal'
 import { ToastProvider } from '@/components/Toast'
-import { getSnapshot } from '@/lib/backend'
+import { getChangesLeft, getSnapshot } from '@/lib/backend'
 import {
   applyFilters,
   clustersOf,
@@ -49,6 +49,7 @@ export default async function GridPage({ searchParams }: { searchParams: Promise
         photo={viewer.photo}
         closed={isClosed()}
         degraded={degraded}
+        changesLeft={viewer.role === 'student' ? await getChangesLeft(viewer.email) : 0}
       >
         <ModalProvider initialOpenId={openId} ids={filtered.map((problem) => problem.id)}>
           <div className="px-4 pb-4 sm:px-6">

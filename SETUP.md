@@ -42,6 +42,9 @@ admin panel. There is no admin screen in the app, by design.
      `openssl rand -hex 32`. Keep it for step D.
    - `BETS_CLOSE_AT` — when betting closes, ISO 8601 with the offset, for
      example `2026-10-22T23:59:00+05:30`. Use the same value in Vercel.
+   - `MAX_CHANGES` — optional, defaults to 3. How many times a student may
+     change their pick after their first one. Change it here and it takes effect
+     at once, with no deploy.
 3. Click **Deploy → New deployment**, choose **Web app**, set
    **Execute as: Me** and **Who has access: Anyone**, then **Deploy** and
    approve the permissions Google asks for.

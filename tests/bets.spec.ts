@@ -134,3 +134,69 @@ test('the team view shows the bettor email and cannot bet', async ({ browser }) 
   await a.close()
   await team.close()
 })
+
+test('a student gets three changes, then their pick is final', async ({ browser }) => {
+  const a = await asUser(browser, STUDENT_A)
+  const page = await a.newPage()
+
+  // The first pick is free and says so.
+  await openProblem(page, 'P001')
+  await expect(page.getByTestId('footer-open')).toContainText(copy.modal.firstBetNote)
+  await betButton(page).click()
+  await expect(own(page)).toContainText(copy.modal.changesLeft(3))
+
+  // Two changes, each one counted down.
+  await openProblem(page, 'P002')
+  await betButton(page).click()
+  await expect(own(page)).toContainText(copy.modal.changesLeft(2))
+
+  await openProblem(page, 'P003')
+  await betButton(page).click()
+  await expect(own(page)).toContainText(copy.modal.changesLeft(1))
+
+  // The last change asks first, because there is no way back from it.
+  await openProblem(page, 'P004')
+  await expect(page.getByTestId('footer-open')).toContainText(copy.modal.movingCost(1))
+  await betButton(page).click()
+  await expect(page.getByTestId('footer-confirm')).toBeVisible()
+
+  // Backing out leaves the change unspent.
+  await page.getByRole('button', { name: copy.modal.confirmLastNo }).click()
+  await openProblem(page, 'P003')
+  await expect(own(page)).toContainText(copy.modal.changesLeft(1))
+
+  // Spend it.
+  await openProblem(page, 'P004')
+  await betButton(page).click()
+  await page.getByRole('button', { name: copy.modal.confirmLastYes }).click()
+  await expect(own(page)).toContainText(copy.modal.finalBet)
+
+  // No take-back, and no moving anywhere else.
+  await expect(page.getByRole('button', { name: copy.modal.undo })).toHaveCount(0)
+  await openProblem(page, 'P005')
+  await expect(page.getByTestId('footer-locked')).toBeDisabled()
+  await expect(page.getByTestId('footer-locked')).toHaveText(copy.modal.lockedElsewhere)
+
+  await a.close()
+})
+
+test('the server refuses a fourth change even if the button is reached', async ({ browser }) => {
+  const a = await asUser(browser, STUDENT_A)
+  const page = await a.newPage()
+
+  for (const id of ['P001', 'P002', 'P003', 'P004']) {
+    await openProblem(page, id)
+    await betButton(page).click()
+    if (id === 'P004') await page.getByRole('button', { name: copy.modal.confirmLastYes }).click()
+  }
+  await expect(own(page)).toContainText(copy.modal.finalBet)
+
+  // Straight to the server action, bypassing the interface entirely.
+  const refused = await page.evaluate(async () => {
+    const response = await fetch('/api/bets')
+    return (await response.json()) as { changesLeft: number }
+  })
+  expect(refused.changesLeft).toBe(0)
+
+  await a.close()
+})

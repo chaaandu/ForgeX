@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getBets } from '@/lib/backend'
+import { getBets, getChangesLeft } from '@/lib/backend'
 import { betsRouteSchema } from '@/lib/schema'
 import { getViewer } from '@/lib/session'
 import { isClosed } from '@/lib/time'
@@ -15,7 +15,12 @@ export async function GET() {
   const { bets, degraded } = await getBets()
   const visible = visibleBets(viewer.role, viewer.email, bets)
 
-  const body = betsRouteSchema.parse({ bets: visible, closed: isClosed(), degraded })
+  const body = betsRouteSchema.parse({
+    bets: visible,
+    closed: isClosed(),
+    degraded,
+    changesLeft: viewer.role === 'student' ? await getChangesLeft(viewer.email) : null,
+  })
   return NextResponse.json(body, {
     headers: { 'Cache-Control': 'no-store' },
   })

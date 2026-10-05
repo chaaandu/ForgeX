@@ -1,6 +1,6 @@
 'use server'
 
-import { getBets, placeBetOnBackend, releaseBetOnBackend } from '@/lib/backend'
+import { getBets, getChangesLeft, placeBetOnBackend, releaseBetOnBackend } from '@/lib/backend'
 import { problemIdSchema, type ActionResult } from '@/lib/schema'
 import { requireViewer } from '@/lib/session'
 import { studentByEmail } from '@/lib/students'
@@ -31,7 +31,12 @@ export async function placeBet(rawProblemId: string): Promise<ActionResult> {
   if (!parsed.success) return { ok: false, error: 'not_found' }
 
   const result = await placeBetOnBackend({ ...who, problemId: parsed.data })
-  return result.ok ? { ok: true, bets: visibleBets('student', who.email, result.bets) } : result
+  if (!result.ok) return result
+  return {
+    ok: true,
+    bets: visibleBets('student', who.email, result.bets),
+    changesLeft: result.changesLeft ?? (await getChangesLeft(who.email)),
+  }
 }
 
 export async function releaseBet(): Promise<ActionResult> {
@@ -41,8 +46,19 @@ export async function releaseBet(): Promise<ActionResult> {
 
   const { bets } = await getBets()
   const held = Object.keys(bets).find((id) => bets[id]?.email === who.email)
-  if (!held) return { ok: true, bets: visibleBets('student', who.email, bets) }
+  if (!held) {
+    return {
+      ok: true,
+      bets: visibleBets('student', who.email, bets),
+      changesLeft: await getChangesLeft(who.email),
+    }
+  }
 
   const result = await releaseBetOnBackend({ email: who.email, problemId: held })
-  return result.ok ? { ok: true, bets: visibleBets('student', who.email, result.bets) } : result
+  if (!result.ok) return result
+  return {
+    ok: true,
+    bets: visibleBets('student', who.email, result.bets),
+    changesLeft: result.changesLeft ?? (await getChangesLeft(who.email)),
+  }
 }

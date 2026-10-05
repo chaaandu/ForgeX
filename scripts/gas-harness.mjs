@@ -229,3 +229,18 @@ console.log('on the board after cutting P003:', after.problems.map((x) => x.id).
 console.log('P002 north star :', after.problems.find((x) => x.id === 'P002').northStar)
 console.log('P002 mechanic   :', after.problems.find((x) => x.id === 'P002').mechanic)
 console.log('new headers     :', problemRows[0].slice(14).join(' | '))
+
+console.log('\n### three changes, then the pick is final')
+const C = { email: 'c@forge27.mesaschool.co', name: 'Student C' }
+// Clear the board so C has somewhere to go.
+for (const row of problemRows.slice(1)) row[14] = ''
+const picks = ['P001', 'P002', 'P003', 'P001', 'P002']
+picks.forEach((id, i) => {
+  const r = call({ action: 'bet', ...C, problemId: id })
+  const label = i === 0 ? 'first pick ' : `change ${i}  `
+  console.log(`  ${label} -> ${id}: ${r.ok ? 'ok' : JSON.stringify(r)}`)
+})
+const end = call({ action: 'data' })
+console.log('  C ends on   :', Object.entries(end.bets).find(([, b]) => b.email === C.email)?.[0])
+console.log('  picks logged:', end.picks[C.email], '| max changes:', end.maxChanges)
+console.log('  release now :', JSON.stringify(call({ action: 'release', email: C.email, problemId: 'P001' })))

@@ -16,6 +16,8 @@ type BetsValue = {
   email: string
   closed: boolean
   degraded: boolean
+  /** Changes this student has left. The first pick does not spend one. */
+  changesLeft: number
   /** The problem this viewer holds, if any. */
   myBetId: string | null
   /** IDs whose stamp arrived from polling, so they fade in rather than slam. */
@@ -46,6 +48,7 @@ export function BetsProvider({
   photo,
   closed,
   degraded: initialDegraded,
+  changesLeft: initialChangesLeft,
 }: {
   children: React.ReactNode
   initialBets: BetMap
@@ -55,9 +58,12 @@ export function BetsProvider({
   photo: string
   closed: boolean
   degraded: boolean
+  /** Changes this student has left. The first pick does not spend one. */
+  changesLeft: number
 }) {
   const [bets, setBets] = useState<BetMap>(initialBets)
   const [degraded, setDegraded] = useState(initialDegraded)
+  const [changesLeft, setChangesLeft] = useState(initialChangesLeft)
   const [pending, setPending] = useState(false)
   const [quiet, setQuiet] = useState<Set<string>>(new Set())
   const [slamId, setSlamId] = useState<string | null>(null)
@@ -99,6 +105,7 @@ export function BetsProvider({
       if (!parsed.success) return
       adopt(parsed.data.bets, true)
       setDegraded(parsed.data.degraded)
+      if (parsed.data.changesLeft !== null) setChangesLeft(parsed.data.changesLeft)
     } catch {
       /* a dropped poll is not worth telling anyone about */
     }
@@ -137,6 +144,7 @@ export function BetsProvider({
 
       if (result.ok) {
         adopt(result.bets, false)
+        if (result.changesLeft !== undefined) setChangesLeft(result.changesLeft)
         setSlamId(problemId)
         return true
       }
@@ -144,6 +152,9 @@ export function BetsProvider({
       if (result.error === 'taken') {
         toast(copy.toast.race(result.by ?? ''))
         void poll()
+      } else if (result.error === 'locked') {
+        setChangesLeft(0)
+        toast(copy.toast.locked)
       } else {
         toast(copy.toast.saveFailed)
       }
@@ -165,10 +176,16 @@ export function BetsProvider({
     setPending(false)
     if (result.ok) {
       adopt(result.bets, false)
+      if (result.changesLeft !== undefined) setChangesLeft(result.changesLeft)
       return true
     }
     setBets(before)
-    toast(copy.toast.saveFailed)
+    if (result.error === 'locked') {
+      setChangesLeft(0)
+      toast(copy.toast.locked)
+    } else {
+      toast(copy.toast.saveFailed)
+    }
     return false
   }, [bets, email, adopt, toast])
 
@@ -187,6 +204,7 @@ export function BetsProvider({
     email,
     closed,
     degraded,
+    changesLeft,
     myBetId,
     quiet,
     slamId,

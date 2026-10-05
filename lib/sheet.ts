@@ -3,6 +3,7 @@ import { z } from 'zod'
 import {
   betMapSchema,
   dataResponseSchema,
+  picksSchema,
   errorResponseSchema,
   sheetResponseSchema,
   writeResponseSchema,
@@ -62,23 +63,53 @@ async function post(action: string, payload: Payload = {}): Promise<unknown> {
  * Who holds what, and nothing else. Falls back to the full `data` call if the
  * deployed script predates this action, so an older deployment still works.
  */
-export async function fetchBets(): Promise<BetMap> {
+export type BetState = { bets: BetMap; picks: Record<string, number>; maxChanges: number }
+
+export async function fetchBets(): Promise<BetState> {
   const raw = await post('bets')
   const failure = errorResponseSchema.safeParse(raw)
   if (failure.success) {
-    if (failure.data.error === 'unknown_action') return (await fetchData()).bets
+    if (failure.data.error === 'unknown_action') {
+      const { bets, picks, maxChanges } = await fetchData()
+      return { bets, picks, maxChanges }
+    }
     throw new SheetUnreachable(failure.data.error)
   }
-  return z.object({ ok: z.literal(true), bets: betMapSchema }).parse(raw).bets
+  const parsed = z
+    .object({
+      ok: z.literal(true),
+      bets: betMapSchema,
+      picks: picksSchema.optional(),
+      maxChanges: z.number().optional(),
+    })
+    .parse(raw)
+  return { bets: parsed.bets, picks: parsed.picks ?? {}, maxChanges: parsed.maxChanges ?? 3 }
 }
 
 /** Everything the grid needs in one call. Throws SheetUnreachable so callers can fall back. */
-export async function fetchData(): Promise<{ problems: Problem[]; bets: BetMap }> {
+export async function fetchData(): Promise<{
+  problems: Problem[]
+  bets: BetMap
+  picks: Record<string, number>
+  maxChanges: number
+}> {
   const raw = await post('data')
   const failure = errorResponseSchema.safeParse(raw)
   if (failure.success) throw new SheetUnreachable(failure.data.error)
   const parsed = dataResponseSchema.parse(raw)
-  return { problems: parsed.problems, bets: parsed.bets }
+  return {
+    problems: parsed.problems,
+    bets: parsed.bets,
+    picks: parsed.picks ?? {},
+    maxChanges: parsed.maxChanges ?? 3,
+  }
+}
+
+/** The pick counts that came back with a write, for working out changes left. */
+export function picksFrom(raw: unknown): { picks: Record<string, number>; maxChanges: number } {
+  const ok = writeResponseSchema.safeParse(raw)
+  if (!ok.success) return { picks: {}, maxChanges: 3 }
+  return { picks: ok.data.picks ?? {}, maxChanges: ok.data.maxChanges ?? 3 }
 }
 
 function toActionResult(raw: unknown): ActionResult {
@@ -97,13 +128,15 @@ export async function sheetBet(input: {
   email: string
   name: string
   problemId: string
-}): Promise<ActionResult> {
-  return toActionResult(await post('bet', input))
+}): Promise<{ result: ActionResult; picks: Record<string, number>; maxChanges: number }> {
+  const raw = await post('bet', input)
+  return { result: toActionResult(raw), ...picksFrom(raw) }
 }
 
 export async function sheetRelease(input: {
   email: string
   problemId: string
-}): Promise<ActionResult> {
-  return toActionResult(await post('release', input))
+}): Promise<{ result: ActionResult; picks: Record<string, number>; maxChanges: number }> {
+  const raw = await post('release', input)
+  return { result: toActionResult(raw), ...picksFrom(raw) }
 }

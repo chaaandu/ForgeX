@@ -24,6 +24,9 @@ var BET_HEADERS = [BET_BY]
 
 var LOG_HEADERS = ['Timestamp', 'Action', 'Email', 'Name', 'Problem ID', 'Previous problem ID']
 
+/** How many times a student may change their pick after the first one. */
+var DEFAULT_MAX_CHANGES = 3
+
 /** Anything other than blank or "keep" takes a problem off the board. */
 var STATUS = 'Status'
 var MECHANIC = 'Mechanic'
@@ -149,6 +152,40 @@ var STAMP = "yyyy-MM-dd'T'HH:mm:ss'+05:30'"
 
 function now() {
   return Utilities.formatDate(new Date(), TZ, STAMP)
+}
+
+function maxChanges() {
+  var raw = PropertiesService.getScriptProperties().getProperty('MAX_CHANGES')
+  var parsed = parseInt(raw, 10)
+  return isNaN(parsed) ? DEFAULT_MAX_CHANGES : parsed
+}
+
+/**
+ * How many problems each email has picked, counted from the log. The first pick
+ * is free, so changes used is this minus one.
+ */
+function picksFromLog() {
+  var sheet = logSheet()
+  var last = sheet.getLastRow()
+  var picks = {}
+  if (last < 2) return picks
+
+  var values = sheet.getRange(2, 1, last - 1, LOG_HEADERS.length).getValues()
+  for (var r = 0; r < values.length; r++) {
+    var action = String(values[r][1] || '').trim()
+    if (action !== 'bet' && action !== 'move') continue
+    var email = String(values[r][2] || '')
+      .trim()
+      .toLowerCase()
+    if (!email) continue
+    picks[email] = (picks[email] || 0) + 1
+  }
+  return picks
+}
+
+/** True once a student has spent every change they get. */
+function isLocked(email, picks) {
+  return (picks[email] || 0) >= maxChanges() + 1
 }
 
 function isClosed() {
@@ -313,7 +350,9 @@ function latestFromLog() {
     var at = row[0]
     latest[problemId] = {
       at: at instanceof Date ? Utilities.formatDate(at, TZ, STAMP) : String(at || ''),
-      email: String(row[2] || '').trim().toLowerCase(),
+      email: String(row[2] || '')
+        .trim()
+        .toLowerCase(),
       name: String(row[3] || '').trim(),
     }
 
@@ -355,7 +394,12 @@ function betsFrom(rows, index, latest) {
 function handleBets() {
   var sheet = problemsSheet()
   var index = headerIndex(sheet)
-  return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
+  return {
+    ok: true,
+    bets: betsFrom(readRows(sheet, index), index, latestFromLog()),
+    picks: picksFromLog(),
+    maxChanges: maxChanges(),
+  }
 }
 
 function handleData() {
@@ -369,7 +413,13 @@ function handleData() {
     if (problem) problems.push(problem)
   }
 
-  return { ok: true, problems: problems, bets: betsFrom(rows, index, latestFromLog()) }
+  return {
+    ok: true,
+    problems: problems,
+    bets: betsFrom(rows, index, latestFromLog()),
+    picks: picksFromLog(),
+    maxChanges: maxChanges(),
+  }
 }
 
 function writeBet(sheet, index, row, name) {
@@ -381,7 +431,9 @@ function clearBet(sheet, index, row) {
 }
 
 function handleBet(body) {
-  var email = String(body.email || '').trim().toLowerCase()
+  var email = String(body.email || '')
+    .trim()
+    .toLowerCase()
   var name = String(body.name || '').trim()
   var problemId = String(body.problemId || '').trim()
   if (!email || !problemId) return { ok: false, error: 'bad_request' }
@@ -396,6 +448,7 @@ function handleBet(body) {
     var index = headerIndex(sheet)
     var rows = readRows(sheet, index)
     var bets = betsFrom(rows, index, latestFromLog())
+    var picks = picksFromLog()
 
     var target = null
     for (var i = 0; i < rows.length; i++) {
@@ -411,8 +464,13 @@ function handleBet(body) {
 
     var holder = bets[problemId]
     if (holder) {
-      if (mine(holder)) return { ok: true, bets: bets }
+      if (mine(holder)) return { ok: true, bets: bets, picks: picks, maxChanges: maxChanges() }
       return { ok: false, error: 'taken', by: holder.name }
+    }
+
+    // Every change is spent, so this pick stands.
+    if (isLocked(email, picks)) {
+      return { ok: false, error: 'locked' }
     }
 
     // One problem per student.
@@ -433,14 +491,21 @@ function handleBet(body) {
     SpreadsheetApp.flush()
     appendLog(action, email, name, problemId, previousId)
 
-    return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
+    return {
+      ok: true,
+      bets: betsFrom(readRows(sheet, index), index, latestFromLog()),
+      picks: picksFromLog(),
+      maxChanges: maxChanges(),
+    }
   } finally {
     lock.releaseLock()
   }
 }
 
 function handleRelease(body) {
-  var email = String(body.email || '').trim().toLowerCase()
+  var email = String(body.email || '')
+    .trim()
+    .toLowerCase()
   var problemId = String(body.problemId || '').trim()
   if (!email || !problemId) return { ok: false, error: 'bad_request' }
   if (isClosed()) return { ok: false, error: 'closed' }
@@ -452,12 +517,17 @@ function handleRelease(body) {
     var index = headerIndex(sheet)
     var rows = readRows(sheet, index)
     var bets = betsFrom(rows, index, latestFromLog())
+    var picks = picksFromLog()
 
     var target = null
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].id === problemId) target = rows[i]
     }
     if (!target) return { ok: false, error: 'not_found' }
+
+    // Taking it back now would leave them with nothing and no pick left to
+    // spend getting something else.
+    if (isLocked(email, picks)) return { ok: false, error: 'locked' }
 
     var holder = bets[problemId]
     if (holder && holder.email === email) {
@@ -466,7 +536,12 @@ function handleRelease(body) {
       appendLog('release', email, holder.name, problemId, '')
     }
 
-    return { ok: true, bets: betsFrom(readRows(sheet, index), index, latestFromLog()) }
+    return {
+      ok: true,
+      bets: betsFrom(readRows(sheet, index), index, latestFromLog()),
+      picks: picksFromLog(),
+      maxChanges: maxChanges(),
+    }
   } finally {
     lock.releaseLock()
   }

@@ -36,16 +36,23 @@ export const betSchema = z.object({
 export const betMapSchema = z.record(z.string(), betSchema)
 
 /** `action: "data"` response from Apps Script. */
+/** How many problems each email has picked, and how many changes are allowed. */
+export const picksSchema = z.record(z.string(), z.number())
+
 export const dataResponseSchema = z.object({
   ok: z.literal(true),
   problems: problemsSchema,
   bets: betMapSchema,
+  picks: picksSchema.optional(),
+  maxChanges: z.number().optional(),
 })
 
 /** `action: "bet"` and `action: "release"` responses. */
 export const writeResponseSchema = z.object({
   ok: z.literal(true),
   bets: betMapSchema.optional(),
+  picks: picksSchema.optional(),
+  maxChanges: z.number().optional(),
 })
 
 export const errorResponseSchema = z.object({
@@ -65,16 +72,26 @@ export const betsRouteSchema = z.object({
   bets: betMapSchema,
   closed: z.boolean(),
   degraded: z.boolean(),
+  /** Changes this viewer has left. Null for the team, who never bet. */
+  changesLeft: z.number().nullable(),
 })
 
 export type BetsRoute = z.infer<typeof betsRouteSchema>
 
 /** Server action results. */
 export const actionResultSchema = z.discriminatedUnion('ok', [
-  z.object({ ok: z.literal(true), bets: betMapSchema }),
+  z.object({ ok: z.literal(true), bets: betMapSchema, changesLeft: z.number().optional() }),
   z.object({
     ok: z.literal(false),
-    error: z.enum(['taken', 'closed', 'not_found', 'forbidden', 'unreachable', 'unknown']),
+    error: z.enum([
+      'taken',
+      'closed',
+      'locked',
+      'not_found',
+      'forbidden',
+      'unreachable',
+      'unknown',
+    ]),
     by: z.string().optional(),
   }),
 ])

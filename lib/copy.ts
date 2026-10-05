@@ -46,6 +46,20 @@ export const copy = {
       `This frees up ${currentId} · ${currentTitle}.`,
     ownBet: 'Your bet',
     undo: 'Take it back',
+
+    /** The first pick is free. After that a student has three changes. */
+    changesLeft: (n: number) =>
+      n === 0 ? 'No changes left' : n === 1 ? '1 change left' : `${n} changes left`,
+    /** Under the first bet button, so nobody commits without knowing the rule. */
+    firstBetNote: 'You can change your pick 3 times after this.',
+    /** Under the move button, so the cost of moving is visible before the tap. */
+    movingCost: (n: number) =>
+      n === 1 ? 'This is your last change.' : `You'll have ${n - 1} left after this.`,
+    confirmLast: 'This is your last change. After it, your pick is final.',
+    confirmLastYes: 'Move anyway',
+    confirmLastNo: 'Keep what I have',
+    finalBet: 'Your pick is final.',
+    lockedElsewhere: "You've used all 3 changes",
     takenByOther: (name: string) => `Backed by ${name}`,
     teamNobody: 'Open',
     closed: 'Bets are closed.',
@@ -65,6 +79,7 @@ export const copy = {
   toast: {
     race: (name: string) => `${name} just backed this one. Pick another.`,
     saveFailed: "That didn't save. Try again.",
+    locked: "You've used all 3 changes. Your pick is final.",
   },
 
   empty: {
