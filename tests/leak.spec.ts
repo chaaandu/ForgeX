@@ -16,7 +16,7 @@ function files(dir: string): string[] {
 }
 
 test('client bundles carry no roster emails and no team-only fields', () => {
-  const chunks = files(join(process.cwd(), '.next/static'))
+  const chunks = files(join(process.cwd(), process.env.NEXT_DIST_DIR ?? '.next-test', 'static'))
   expect(chunks.length).toBeGreaterThan(0)
   const text = chunks.map((path) => readFileSync(path, 'utf8')).join('\n')
   for (const student of students as { email: string }[]) {

@@ -1,9 +1,13 @@
 import type { Metadata, Viewport } from 'next'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
-import { Instrument_Serif } from 'next/font/google'
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import { meta } from '@/content/copy'
 import './globals.css'
+
+/* Latin subsets only, and only the headline serif is preloaded: it is the
+   largest paint on the landing. Geist has a metric-matched fallback, so it
+   can arrive a moment later without moving anything. */
+const sans = Geist({ subsets: ['latin'], variable: '--font-geist-sans', display: 'swap', preload: false })
+const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono', display: 'swap', preload: false })
 
 const instrument = Instrument_Serif({
   subsets: ['latin'],
@@ -31,7 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${instrument.variable}`}>
       <body>{children}</body>
     </html>
   )

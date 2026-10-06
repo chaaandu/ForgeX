@@ -415,15 +415,17 @@
 }
 
 /* A slow, staggered breath, so the wall is alive without anything moving far. */
+/* The wall assembles face by face, then breathes as one: a single slow
+   drift on the whole grid rather than 117 animations fighting for frames. */
+.wall {
+  animation: drift 12s ease-in-out infinite alternate;
+}
 .wall-cell {
-  animation:
-    wall-in 700ms var(--ease-out) calc(var(--i) * 9ms) both,
-    drift 9s ease-in-out calc(var(--i) * -470ms) infinite alternate;
+  animation: wall-in 600ms var(--ease-out) calc(var(--i) * 8ms) both;
 }
 @keyframes wall-in {
   from {
     opacity: 0;
-    scale: 0.92;
   }
 }
 /* One face at a time comes into colour, so the wall reads as people. */
@@ -433,10 +435,10 @@
 }
 @keyframes drift {
   from {
-    translate: 0 -3px;
+    translate: 0 -6px;
   }
   to {
-    translate: 0 3px;
+    translate: 0 6px;
   }
 }
 

@@ -1,5 +1,4 @@
-import { NextResponse } from 'next/server'
-import { auth } from '@/auth'
+import { NextResponse, type NextRequest } from 'next/server'
 
 /** Pages anyone may see. Everything else needs a session. */
 function isOpen(pathname: string): boolean {
@@ -13,11 +12,20 @@ function isOpen(pathname: string): boolean {
   )
 }
 
-export default auth((request) => {
+const SESSION_COOKIES = ['authjs.session-token', '__Secure-authjs.session-token']
+
+/**
+ * A redirect for the signed-out, nothing more. It only looks for the session
+ * cookie, so Auth.js stays out of the edge bundle; every page, route and
+ * action verifies the session itself on the server, so a forged cookie gets
+ * as far as the login screen and no further.
+ */
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
-  if (isOpen(pathname) || request.auth) return NextResponse.next()
+  const signedIn = SESSION_COOKIES.some((name) => request.cookies.has(name))
+  if (isOpen(pathname) || signedIn) return NextResponse.next()
   return NextResponse.redirect(new URL('/login', request.nextUrl.origin))
-})
+}
 
 /**
  * Everything except Next's own assets and static files. The exemption is by
@@ -26,6 +34,6 @@ export default auth((request) => {
  */
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|.*\\.png$|.*\\.webp$|.*\\.avif$|.*\\.jpg$|.*\\.jpeg$|.*\\.svg$|.*\\.ico$|.*\\.woff2?$).*)',
+    '/((?!_next/static|_next/image|robots.txt|.*\\.png$|.*\\.webp$|.*\\.avif$|.*\\.jpg$|.*\\.jpeg$|.*\\.svg$|.*\\.ico$|.*\\.woff2?$).*)',
   ],
 }

@@ -38,7 +38,7 @@ export type BankItem = {
  */
 export function Bank({ items }: { items: BankItem[] }) {
   const router = useRouter()
-  const [filter, setFilter] = useState<Status | 'all'>('draft')
+  const [filter, setFilter] = useState<Status | 'all'>(() => (items.some((item) => item.status === 'draft') ? 'draft' : 'all'))
   const [index, setIndex] = useState(0)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState({ title: '', problem: '', challenge: '', rarity: 'epic' as Rarity })

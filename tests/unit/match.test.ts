@@ -71,6 +71,15 @@ describe('topMatches', () => {
     }
   })
 
+  it('counts a secondary industry for half and never chips it', () => {
+    const farming = problem({ industries: ['agri', 'retail'], side: 'business', learn: ['data'] })
+    const shop = problem({ industries: ['retail'], side: 'business', learn: ['data'] })
+    const [first, second] = topMatches([farming, shop], { world, archetype: null })
+    expect(first?.problem.id).toBe(shop.id)
+    expect(second?.chips).not.toContain(chips.access)
+    expect(second?.chips).not.toContain(chips.industry('Retail'))
+  })
+
   it('breaks near-ties toward an industry it has not shown yet', () => {
     const both: World = { ...world, industries: ['health', 'money'], access: [] }
     const h1 = problem({ industries: ['health'], side: 'consumer', learn: ['voice'] })

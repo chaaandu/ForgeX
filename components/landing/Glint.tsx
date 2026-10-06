@@ -9,16 +9,25 @@ export function Glint() {
     const cells = Array.from(document.querySelectorAll<HTMLElement>('.wall-cell'))
     if (!cells.length) return
     let last: HTMLElement | null = null
-    const timer = window.setInterval(() => {
-      last?.removeAttribute('data-glint')
-      const visible = cells.filter((cell) => cell.getBoundingClientRect().top < window.innerHeight * 0.45)
-      const pick = visible[Math.floor(Math.random() * visible.length)]
-      if (pick) {
-        pick.setAttribute('data-glint', '')
-        last = pick
-      }
-    }, 1800)
-    return () => window.clearInterval(timer)
+    let timer = 0
+    // Start after the page has settled, so it never competes with the first paint.
+    const start = window.setTimeout(() => {
+      timer = window.setInterval(() => {
+        last?.removeAttribute('data-glint')
+        const visible = cells.filter(
+          (cell) => cell.getBoundingClientRect().top < window.innerHeight * 0.45,
+        )
+        const pick = visible[Math.floor(Math.random() * visible.length)]
+        if (pick) {
+          pick.setAttribute('data-glint', '')
+          last = pick
+        }
+      }, 1800)
+    }, 2500)
+    return () => {
+      window.clearTimeout(start)
+      window.clearInterval(timer)
+    }
   }, [])
   return null
 }

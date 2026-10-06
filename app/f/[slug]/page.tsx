@@ -82,7 +82,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
                 <p className="m-0 max-w-[40ch] text-lead text-ink-2">{archetypes[kind.id].identity}</p>
               </>
             ) : null}
-            {founder.profile.bio ? (
+            {founder.profile.bio && !own ? (
               <p className="display m-0 mt-2 max-w-[30ch] text-[clamp(20px,2.2vw,26px)] leading-snug italic">{founder.profile.bio}</p>
             ) : null}
           </div>

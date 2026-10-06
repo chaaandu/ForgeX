@@ -15,10 +15,11 @@ const config = [
   {
     ignores: [
       '.next/**',
+      '.next-prod/**',
+      '.next-test/**',
       'next-env.d.ts',
       'node_modules/**',
       'data/the-117-c1/**',
-      'apps-script/**',
       'playwright-report/**',
       'test-results/**',
     ],

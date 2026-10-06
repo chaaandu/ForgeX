@@ -28,6 +28,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,
     env: {
+      NEXT_DIST_DIR: '.next-test',
       MOCK_BACKEND: 'true',
       AUTH_SECRET: 'playwright-secret-playwright-secret',
       AUTH_TRUST_HOST: 'true',

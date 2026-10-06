@@ -1,7 +1,7 @@
 import 'server-only'
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import archetypeRows from '@/data/archetypes.json'
-import internalRows from '@/data/problems.internal.json'
-import problemRows from '@/data/problems.json'
 import profileRows from '@/data/profiles.json'
 import { archetypeOf } from '@/lib/archetype'
 import { problemInternalSchema, problemSchema } from '@/lib/problem'
@@ -17,6 +17,11 @@ import { cohort } from '@/lib/students'
  * name, photo, track, the Hackathon 1 result and their degree. Problems come
  * from the research pipeline's output.
  */
+
+/** The bank is read from disk rather than bundled: it is large and only seeds. */
+function readData(name: string): unknown[] {
+  return JSON.parse(readFileSync(join(process.cwd(), 'data', name), 'utf8')) as unknown[]
+}
 
 type H1 = {
   email: string
@@ -61,7 +66,7 @@ export function founderSeedRows(): Partial<Record<Header<'founders'>, string>>[]
 
 /** Problems as rows. Live they start as drafts until approved; mock opens them all. */
 export function problemSeedRows(status: 'draft' | 'approved'): Partial<Record<Header<'problems'>, string>>[] {
-  return (problemRows as unknown[]).map((raw) => {
+  return readData('problems.json').map((raw) => {
     const problem = problemSchema.parse(raw)
     return {
       ID: problem.id,
@@ -82,7 +87,7 @@ export function problemSeedRows(status: 'draft' | 'approved'): Partial<Record<He
 }
 
 export function internalSeedRows(): Partial<Record<Header<'internal'>, string>>[] {
-  return (internalRows as unknown[]).map((raw) => {
+  return readData('problems.internal.json').map((raw) => {
     const item = problemInternalSchema.parse(raw)
     return {
       ID: item.id,

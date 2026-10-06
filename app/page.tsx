@@ -1,11 +1,11 @@
-import Link from 'next/link'
 import { Brand } from '@/components/shell/Brand'
 import { Wall } from '@/components/landing/Wall'
 import { landing as copy } from '@/content/copy'
 import { allFounders } from '@/lib/data/founders'
 import { openProblems } from '@/lib/data/problems'
-import { currentPath } from '@/lib/journey'
-import { getViewer } from '@/lib/session'
+
+/** Regenerated every five minutes: a new face on the wall, or a newly approved problem. */
+export const revalidate = 300
 
 /**
  * The door. The whole cohort's faces, one line, how many problems are open,
@@ -13,13 +13,7 @@ import { getViewer } from '@/lib/session'
  * the levels, not browsed from the doorway.
  */
 export default async function Landing() {
-  const [viewer, founders, problems] = await Promise.all([getViewer(), allFounders(), openProblems()])
-  let enter = '/login'
-  if (viewer?.role === 'team') enter = '/team'
-  if (viewer?.role === 'founder') {
-    const me = founders.find((founder) => founder.email === viewer.email)
-    if (me) enter = currentPath(me)
-  }
+  const [founders, problems] = await Promise.all([allFounders(), openProblems()])
   const faces = founders
     .filter((founder) => founder.wall)
     .map((founder) => ({
@@ -41,9 +35,10 @@ export default async function Landing() {
           {copy.lineStart} <em>{copy.lineEm}</em> {copy.lineEnd}
         </h1>
         <div className="pointer-events-auto flex flex-wrap items-center gap-x-6 gap-y-4">
-          <Link href={enter} className="btn btn-primary press min-h-[52px] px-8 text-[16px]">
+          {/* A plain link: /enter is a redirect, and a full navigation follows it cleanly. */}
+          <a href="/enter" className="btn btn-primary press min-h-[52px] px-8 text-[16px]">
             {copy.enter}
-          </Link>
+          </a>
           {problems.length ? (
             <p className="m-0 inline-flex items-center gap-2.5 font-mono text-[13px] text-ink-2">
               <span aria-hidden="true" className="live-dot" />

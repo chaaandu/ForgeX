@@ -70,15 +70,20 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   const { world, archetype } = input
   const parts: Scored['parts'] = []
 
-  const reachable = new Set(world.access.flatMap((entry) => entry.worlds))
-  const reach = problem.industries.some((industry) => reachable.has(industry))
-  parts.push({ factor: 'access', value: reach ? 1 : 0, chip: reach ? chipCopy.access : null })
+  // A problem's first industry is what it is about; the others are where it
+  // also shows up. Those count for a little and never earn a chip, so a
+  // farming problem that touches retail cannot pass itself off as a retail one.
+  const [primary, ...secondary] = problem.industries
+  const reachable = new Set<string>(world.access.flatMap((entry) => entry.worlds))
+  const reach = primary && reachable.has(primary) ? 1 : secondary.some((industry) => reachable.has(industry)) ? SECONDARY : 0
+  parts.push({ factor: 'access', value: reach, chip: reach === 1 ? chipCopy.access : null })
 
-  const picked = problem.industries.find((industry) => (world.industries as string[]).includes(industry))
+  const liked = new Set<string>(world.industries)
+  const like = primary && liked.has(primary) ? 1 : secondary.some((industry) => liked.has(industry)) ? SECONDARY : 0
   parts.push({
     factor: 'industry',
-    value: picked ? 1 : 0,
-    chip: picked ? chipCopy.industry(labelOf.industryShort(picked)) : null,
+    value: like,
+    chip: like === 1 && primary ? chipCopy.industry(labelOf.industryShort(primary)) : null,
   })
 
   const wanted = world.learn.filter((id): id is LearnId => id !== 'other')
@@ -93,7 +98,7 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   parts.push({
     factor: 'comfort',
     value: fit,
-    chip: fit >= 0.75 ? (rank > target - 0.25 ? chipCopy.stretch : chipCopy.sized) : null,
+    chip: fit >= 0.75 ? (rank > target + 0.25 ? chipCopy.stretch : chipCopy.sized) : null,
   })
 
   const sideValue = world.side === 'unsure' ? 0.5 : world.side === problem.side ? 1 : 0
@@ -128,18 +133,29 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
 /** The best two or three reasons, strongest first. */
 function chipsOf(scored: Scored): string[] {
   return scored.parts
-    .filter((part) => part.chip && part.value > 0)
+    .filter((part) => part.chip !== null && part.value > 0)
     .sort((a, b) => WEIGHTS[b.factor] * b.value - WEIGHTS[a.factor] * a.value)
     .slice(0, 3)
     .map((part) => part.chip as string)
 }
 
+/** How much a problem's secondary industries count, against 1 for its first. */
+const SECONDARY = 0.3
+
+/**
+ * Spreading the four: each repeat of an industry or a rarity already on
+ * screen costs more, and an industry the founder chose or can reach that is
+ * not on screen yet earns a little, so every answer they gave gets a look in.
+ */
+export const SPREAD = { industry: 12, rarity: 6, coverage: 14 } as const
+
 /** Below this, a problem has not really matched anything the founder said. */
 export const MATCH_FLOOR = 25
 
 /**
- * The four. Greedy by score, with a penalty for repeating an industry or a
- * rarity already chosen, so a founder never gets four of the same thing.
+ * The four. Greedy by score, with a growing penalty for repeating an
+ * industry or a rarity already chosen, so a founder never gets four of the
+ * same thing.
  * If fewer than four clear the floor, the gentlest open problems fill in and
  * say so, because nobody who just answered six questions gets an empty screen.
  */
@@ -161,15 +177,25 @@ export function topMatches(problems: Problem[], input: MatchInput, count = 4): M
     .filter((item) => item.score >= MATCH_FLOOR)
     .sort((a, b) => b.score - a.score || a.problem.id.localeCompare(b.problem.id))
 
+  const wanted = new Set<string>([
+    ...input.world.industries,
+    ...input.world.access.flatMap((entry) => entry.worlds),
+  ])
+
   while (out.length < count) {
     const used = taken()
-    const industries = new Set(out.flatMap((match) => match.problem.industries))
-    const rarities = new Set(out.map((match) => match.problem.rarity))
+    const industries = out.map((match) => match.problem.industries[0])
+    const rarities = out.map((match) => match.problem.rarity)
     let best: { item: Scored; adjusted: number } | null = null
     for (const item of remaining) {
       if (used.has(item.problem.id)) continue
-      const repeatIndustry = item.problem.industries.some((industry) => industries.has(industry))
-      const adjusted = item.score - (repeatIndustry ? 8 : 0) - (rarities.has(item.problem.rarity) ? 5 : 0)
+      // Each repeat costs more than the last, so a strong industry can take
+      // two cards but rarely four, and the founder's other picks get a look in.
+      const sameIndustry = industries.filter((industry) => industry === item.problem.industries[0]).length
+      const sameRarity = rarities.filter((rarity) => rarity === item.problem.rarity).length
+      const primary = item.problem.industries[0] ?? ''
+      const fresh = out.length > 0 && wanted.has(primary) && sameIndustry === 0 ? SPREAD.coverage : 0
+      const adjusted = item.score - SPREAD.industry * sameIndustry - SPREAD.rarity * sameRarity + fresh
       if (!best || adjusted > best.adjusted) best = { item, adjusted }
     }
     if (!best) break

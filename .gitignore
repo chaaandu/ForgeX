@@ -29,3 +29,5 @@ next-env.d.ts
 /data/Hackathon*Types*.xls*
 /data/Hackathon*Types*.csv
 scripts/.*.mjs
+/.next-prod
+/.next-test
