@@ -138,7 +138,8 @@ A service account gets about 60 read requests and 60 write requests per minute.
 
 | Route | Who | Kind |
 | --- | --- | --- |
-| `/` | Public | Landing and founder wall. The wall is built from the roster at build time and revalidated hourly |
+| `/` | Public | Landing and founder wall. Static, revalidated every five minutes |
+| `/enter` | Anyone | Where the landing's Enter goes: a relative redirect to sign-in, the founder's level, or the console |
 | `/login` | Public | Google sign-in, and the refused state |
 | `/arrive`, `/archetype`, `/profile`, `/world`, `/matches`, `/matches/new`, `/why` | Founder | The levels. A server-side guard redirects to the furthest level reached |
 | `/f/[slug]` | Founder (own page), Team | Profile and response thread. 404 for anyone else |
@@ -175,6 +176,8 @@ Identity always comes from the session. It is never accepted as input.
 
 ## Security and privacy
 
+- **Middleware** only redirects the signed-out, by the presence of the session cookie, which keeps Auth.js off the edge. Every page, route handler and action verifies the session itself on the server.
+
 - **Roles** come from the email domain only (`lib/roles.ts`). The matching is suffix-exact, so `evilmesaschool.co` is refused.
 - **`server-only`** guards everything that touches the roster, the cohort sheet, H1 data, the Sheet client or secrets.
   - Data that crosses to the browser is built as a named public type, field by field, never by deleting private fields.
@@ -192,8 +195,8 @@ Matching is pure, deterministic, and has no network calls. It runs on the server
 
 | Factor | Weight |
 | --- | --- |
-| Access (a world they can reach matches the problem's industry) | 30 |
-| Industry | 20 |
+| Access (a world they can reach is the problem's first industry; 0.3 if only a secondary one) | 30 |
+| Industry (the problem's first industry; 0.3 for a secondary one) | 20 |
 | Learn (overlap with what the problem teaches) | 15 |
 | Comfort fit (problem rarity against the target for their comfort and intent) | 15 |
 | Side | 10 |
@@ -207,7 +210,7 @@ Matching is pure, deterministic, and has no network calls. It runs on the server
 
 **Choosing the four:**
 1. Take the best-scoring problem first.
-2. Each next pick is penalised for repeating an industry or rarity already chosen.
+2. Each next pick pays 12 for every card already showing its first industry and 6 for every card already at its rarity, and earns 14 if its first industry is one the founder chose or can reach but is not yet on screen.
 3. Exclude problems the founder has already tried.
 4. If fewer than four score at all, fill from the gentlest open problems and mark them `gentle`.
 

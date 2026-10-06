@@ -173,7 +173,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
             <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Response">
               {TYPES.map((value) => (
                 <button key={value} type="button" role="radio" aria-checked={type === value} className="chip press" onClick={() => setType(value)}>
-                  <span className="font-mono text-[11px] opacity-70">{copy.keys[value]}</span>
+                  <span className="font-mono text-[11px]">{copy.keys[value]}</span>
                   {copy.types[value]}
                 </button>
               ))}
@@ -208,7 +208,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
             ) : null}
             <div className="flex flex-wrap items-center gap-4">
               <button type="button" className="btn btn-primary press min-w-[140px]" disabled={!type || pending} onClick={send}>
-                {copy.send} <span className="font-mono text-[11px] opacity-70">⌘↵</span>
+                {copy.send} <span className="font-mono text-[11px]">⌘↵</span>
               </button>
               {message ? <p className="m-0 text-[14px] text-ink-2" role="status">{message}</p> : null}
             </div>

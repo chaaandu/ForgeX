@@ -127,6 +127,8 @@ Every animation must explain something: a transition, a reveal or a change of st
 
 ## The founder wall
 
+**Shipped:** the DOM mosaic only. Server-rendered buttons with one delegated listener for the flip, one drift on the whole grid, and card backs filled when flipped. On a throttled phone it scores 99 on Lighthouse. React Three Fiber earns its place in the archetype relics instead, where it loads after the reveal, once the browser is idle.
+
 **Base layer:** a DOM/CSS mosaic. A CSS grid holds the 117 faces as 96px AVIF/WebP images, served from `next/image` with explicit sizes.
 - The images are lazy, except the first row, which forms the LCP.
 - Faces drift slowly with CSS transforms on the compositor thread.

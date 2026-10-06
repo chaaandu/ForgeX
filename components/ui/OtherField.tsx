@@ -24,7 +24,7 @@ export function OtherField({
   const id = useId()
   return (
     <div className="contents">
-      <button type="button" className="chip press" aria-pressed={on} aria-controls={id} onClick={onToggle}>
+      <button type="button" className="chip press" aria-pressed={on} aria-expanded={on} aria-controls={on ? id : undefined} onClick={onToggle}>
         {label}
       </button>
       {on ? (

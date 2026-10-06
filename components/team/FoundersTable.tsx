@@ -54,27 +54,27 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
           {copy.export}
         </a>
       </div>
-      <div className="flex flex-wrap items-center gap-2">
-        <input className="field h-10 min-h-0 w-full max-w-[260px] py-0 text-[14px]" placeholder={copy.search} aria-label={copy.search} value={query} onChange={(event) => setQuery(event.target.value)} />
-        <button type="button" className="chip press min-h-9 text-[13px]" aria-pressed={status === 'all'} onClick={() => setStatus('all')}>
+      <div className="quiet-scroll -mx-5 flex items-center gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0">
+        <input className="field h-10 min-h-0 w-[220px] shrink-0 py-0 text-[14px]" placeholder={copy.search} aria-label={copy.search} value={query} onChange={(event) => setQuery(event.target.value)} />
+        <button type="button" className="chip press min-h-9 shrink-0 text-[13px]" aria-pressed={status === 'all'} onClick={() => setStatus('all')}>
           {copy.all}
         </button>
         {counts.map(([key, count]) => (
-          <button key={key} type="button" className="chip press min-h-9 text-[13px]" aria-pressed={status === key} onClick={() => setStatus(key)}>
-            {copy.statuses[key]} <span className="font-mono text-[11px] opacity-70">{count}</span>
+          <button key={key} type="button" className="chip press min-h-9 shrink-0 text-[13px]" aria-pressed={status === key} onClick={() => setStatus(key)}>
+            {copy.statuses[key]} <span className="font-mono text-[11px]">{count}</span>
           </button>
         ))}
       </div>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[860px] border-collapse text-[14px]">
+        <table className="w-full min-w-[860px] table-fixed border-collapse text-[14px]">
           <thead className="border-b border-line">
             <tr>
-              {header('name', copy.columns.name)}
-              {header('archetype', copy.columns.archetype)}
-              {header('level', copy.columns.level)}
-              {header('pick', copy.columns.pick, 'w-[32%]')}
-              {header('status', copy.columns.status)}
-              {header('lastActive', copy.columns.active)}
+              {header('name', copy.columns.name, 'w-[24%]')}
+              {header('archetype', copy.columns.archetype, 'w-[19%]')}
+              {header('level', copy.columns.level, 'w-[7%]')}
+              {header('pick', copy.columns.pick, 'w-[28%]')}
+              {header('status', copy.columns.status, 'w-[10%]')}
+              {header('lastActive', copy.columns.active, 'w-[12%]')}
             </tr>
           </thead>
           <tbody>
@@ -82,13 +82,13 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
               <tr key={row.slug} className="border-b border-line hover:bg-white/[0.025]">
                 <td className="py-2.5 pr-4">
                   <Link href={`/f/${row.slug}`} className="flex items-center gap-3 text-ink-1 no-underline hover:text-pink-ink">
-                    <Image src={row.photo} alt="" width={36} height={36} className="size-9 rounded-lg object-cover" />
-                    <span>{row.name}</span>
+                    <Image src={row.photo} alt="" width={36} height={36} className="size-9 shrink-0 rounded-lg object-cover" />
+                    <span className="truncate">{row.name}</span>
                   </Link>
                 </td>
-                <td className="py-2.5 pr-4 text-ink-2">{row.archetype ? `${row.family} · ${row.archetype}` : '—'}</td>
+                <td className="truncate py-2.5 pr-4 text-ink-2">{row.archetype ? `${row.family} · ${row.archetype}` : '—'}</td>
                 <td className="py-2.5 pr-4 font-mono text-ink-2">{row.level}/6</td>
-                <td className="py-2.5 pr-4 text-ink-2">{row.pick || copy.noPick}</td>
+                <td className="truncate py-2.5 pr-4 text-ink-2" title={row.pick || undefined}>{row.pick || copy.noPick}</td>
                 <td className="py-2.5 pr-4">
                   <span className={row.status === 'waiting' ? 'text-pink-ink' : row.status === 'none' ? 'text-ink-3' : 'text-ink-1'}>
                     {copy.statuses[row.status]}

@@ -102,12 +102,12 @@ export function Bank({ items }: { items: BankItem[] }) {
           </button>
         ) : null}
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="quiet-scroll -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0">
         {(['draft', 'approved', 'rejected', 'all'] as const).map((key) => (
           <button
             key={key}
             type="button"
-            className="chip press min-h-9 text-[13px]"
+            className="chip press min-h-9 shrink-0 text-[13px]"
             aria-pressed={filter === key}
             onClick={() => {
               setFilter(key)
@@ -115,7 +115,7 @@ export function Bank({ items }: { items: BankItem[] }) {
             }}
           >
             {copy.filters[key]}{' '}
-            <span className="font-mono text-[11px] opacity-70">{key === 'all' ? items.length : items.filter((entry) => entry.status === key).length}</span>
+            <span className="font-mono text-[11px]">{key === 'all' ? items.length : items.filter((entry) => entry.status === key).length}</span>
           </button>
         ))}
         <p className="m-0 ml-auto self-center text-[12px] text-ink-3">{copy.help}</p>
@@ -201,10 +201,10 @@ export function Bank({ items }: { items: BankItem[] }) {
                 </p>
                 <div className="flex flex-wrap gap-2 border-t border-line pt-4">
                   <button type="button" className="btn btn-primary press" disabled={pending} onClick={() => mark('approved')}>
-                    {copy.approve} <span className="font-mono text-[11px] opacity-70">Y</span>
+                    {copy.approve} <span className="font-mono text-[11px]">Y</span>
                   </button>
                   <button type="button" className="btn btn-secondary press" disabled={pending} onClick={() => mark('rejected')}>
-                    {copy.reject} <span className="font-mono text-[11px] opacity-70">R</span>
+                    {copy.reject} <span className="font-mono text-[11px]">R</span>
                   </button>
                   <button
                     type="button"
@@ -214,7 +214,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                       setEditing(true)
                     }}
                   >
-                    {copy.edit} <span className="font-mono text-[11px] opacity-70">E</span>
+                    {copy.edit} <span className="font-mono text-[11px]">E</span>
                   </button>
                   {item.status !== 'draft' ? (
                     <button type="button" className="btn btn-quiet press" disabled={pending} onClick={() => mark('draft')}>

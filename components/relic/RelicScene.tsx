@@ -20,6 +20,8 @@ import type { ArchetypeId } from '@/lib/archetype'
  */
 
 type Props = {
+  /** Called once the first frame is on screen, so a still can step aside. */
+  onReady?: () => void
   id: ArchetypeId
   tint: string
   /** Spin slowly. Off under reduced motion regardless. */
@@ -29,7 +31,7 @@ type Props = {
   className?: string
 }
 
-export default function RelicScene({ id, tint, spin = true, still = false, className }: Props) {
+export default function RelicScene({ id, tint, spin = true, still = false, className, onReady }: Props) {
   const reduced =
     typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const moving = spin && !reduced && !still
@@ -40,6 +42,7 @@ export default function RelicScene({ id, tint, spin = true, still = false, class
       frameloop={moving ? 'always' : 'demand'}
       camera={{ position: [0, 0.6, 5.6], fov: 32 }}
       gl={{ alpha: true, antialias: true, preserveDrawingBuffer: still }}
+      onCreated={() => window.requestAnimationFrame(() => onReady?.())}
       aria-hidden="true"
     >
       <Lighting />
