@@ -32,7 +32,7 @@ export function Arrive({ first, card, numbered }: { first: string; card: Founder
           <h1 className="display rise m-0 text-[clamp(56px,9vw,120px)] leading-[0.92]">{copy.hi(first)}</h1>
           <p className="rise m-0 max-w-[34ch] text-lead text-ink-2 [animation-delay:120ms]">{copy.lead}</p>
         </div>
-        <ol className="m-0 grid list-none gap-0 p-0" aria-label="The six levels">
+        <ol className="m-0 grid list-none gap-0 p-0" aria-label={copy.steps}>
           {copy.path.map((step, index) => (
             <li
               key={step.name}

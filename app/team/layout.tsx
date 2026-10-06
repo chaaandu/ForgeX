@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { Brand } from '@/components/shell/Brand'
 import { SignOut } from '@/components/shell/SignOut'
 import { TeamNav } from '@/components/team/TeamNav'
@@ -6,7 +7,7 @@ import { allPicks, allResponses, statusOf } from '@/lib/data/picks'
 import { bank } from '@/lib/data/problems'
 import { requireTeam } from '@/lib/session'
 
-export const metadata: Metadata = { title: { default: 'Console', template: '%s · Console' }, robots: { index: false, follow: false } }
+export const metadata: Metadata = { title: { default: meta.pages.console, template: meta.pages.consoleTemplate }, robots: { index: false, follow: false } }
 
 export default async function TeamLayout({ children }: { children: React.ReactNode }) {
   await requireTeam()

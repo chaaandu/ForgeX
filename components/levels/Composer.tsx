@@ -14,12 +14,12 @@ import { Why } from './Why'
  * It is held in the browser until the why is sent, so a half-written problem
  * never reaches the team.
  */
-export function Composer({ card, slug }: { card: FounderCardData; slug: string }) {
+export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug: string; closesAt: string }) {
   const [draft, setDraft] = useState<CustomProblem>({ title: '', problem: '', challenge: '', industry: 'retail', side: 'business' })
   const [picked, setPicked] = useState(false)
   const [ready, setReady] = useState(false)
 
-  if (ready) return <Why problem={null} custom={draft} card={card} slug={slug} onBack={() => setReady(false)} />
+  if (ready) return <Why problem={null} custom={draft} card={card} slug={slug} closesAt={closesAt} onBack={() => setReady(false)} />
 
   const valid =
     draft.title.trim().length >= 3 &&
@@ -46,13 +46,14 @@ export function Composer({ card, slug }: { card: FounderCardData; slug: string }
             onChange={(event) => setDraft((current) => ({ ...current, [name]: event.target.value }))}
           />
         ) : (
-          <input
+          <textarea
             id={id}
-            className={`field ${name === 'title' ? 'display h-14 text-[22px]' : ''}`}
+            rows={2}
+            className={`field min-h-0 resize-none ${name === 'title' ? 'display text-[22px] leading-tight' : ''}`}
             value={draft[name]}
             maxLength={max}
             placeholder={copy.fields[name].placeholder}
-            onChange={(event) => setDraft((current) => ({ ...current, [name]: event.target.value }))}
+            onChange={(event) => setDraft((current) => ({ ...current, [name]: event.target.value.replace(/\n/g, ' ') }))}
           />
         )}
         <span className="min-h-5 text-[13px] text-pink-ink" aria-live="polite">

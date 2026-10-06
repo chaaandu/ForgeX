@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { Bank, type BankItem } from '@/components/team/Bank'
 import { bank, internalFor } from '@/lib/data/problems'
 import { labelOf } from '@/lib/taxonomy'
 
-export const metadata: Metadata = { title: 'Bank' }
+export const metadata: Metadata = { title: meta.pages.bank }
 
 export default async function BankPage() {
   const problems = await bank()

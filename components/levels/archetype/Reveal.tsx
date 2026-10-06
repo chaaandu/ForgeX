@@ -44,7 +44,7 @@ export function Reveal({
           <Image
             className="rv-portrait"
             src={family.art}
-            alt={`${families[kind.family].name} portrait`}
+            alt={copy.portraitAlt[kind.family]}
             width={768}
             height={768}
             sizes="(max-width: 960px) 64vw, 40vw"
@@ -58,9 +58,10 @@ export function Reveal({
             <em>{families[kind.family].line}</em>
           </p>
           <h1 id="rv-name" className="display m-0 text-[clamp(52px,8vw,112px)] leading-[0.92]">
-            {copy.reveal.youAre} <em>{words.name}</em>.
+            {copy.reveal.youAre} <em>{words.name}</em>
+            {copy.reveal.exclaim}
           </h1>
-          <p className="display m-0 max-w-[24ch] text-[clamp(22px,2.4vw,30px)] leading-[1.2]">{words.identity}</p>
+          <p className="display m-0 max-w-[32ch] text-[clamp(22px,2.4vw,30px)] leading-[1.2]">{words.identity}</p>
           {fromH1 ? <p className="m-0 text-[14px] text-ink-3">{copy.reveal.h1(families[kind.family].name, words.name)}</p> : null}
           <dl className="rv-traits">
             {traits.map(([label, text]) => (

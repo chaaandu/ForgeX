@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { redirect } from 'next/navigation'
 import { Profile } from '@/components/levels/Profile'
 import { LevelShell } from '@/components/shell/LevelShell'
@@ -6,7 +7,7 @@ import { founderContext } from '@/lib/context'
 import { currentPath, mayEnter } from '@/lib/journey'
 import { requireFounder } from '@/lib/session'
 
-export const metadata: Metadata = { title: 'Profile' }
+export const metadata: Metadata = { title: meta.pages.profile }
 
 export default async function ProfilePage() {
   const { founder } = await requireFounder()

@@ -4,14 +4,25 @@ const IST = 'Asia/Kolkata'
 export function shortDate(iso: string): string {
   const date = new Date(iso)
   if (Number.isNaN(date.getTime())) return ''
-  return new Intl.DateTimeFormat('en-GB', {
+  return `${new Intl.DateTimeFormat('en-GB', {
     timeZone: IST,
     day: 'numeric',
     month: 'short',
     hour: 'numeric',
     minute: '2-digit',
     hour12: true,
-  }).format(date)
+  }).format(date)} IST`
+}
+
+/** `15 Oct at 11:59 pm IST`, for when picks close. */
+export function closeLabel(iso: string): string {
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  const day = new Intl.DateTimeFormat('en-GB', { timeZone: IST, day: 'numeric', month: 'short' }).format(date)
+  const time = new Intl.DateTimeFormat('en-GB', { timeZone: IST, hour: 'numeric', minute: '2-digit', hour12: true })
+    .format(date)
+    .replace(':00', '')
+  return `${day} at ${time} IST`
 }
 
 /** `3 hours ago` style, for last active. */

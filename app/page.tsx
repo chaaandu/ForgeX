@@ -31,7 +31,7 @@ export default async function Landing() {
       <main className="pointer-events-none absolute inset-x-0 bottom-0 z-20 mx-auto grid max-w-[1400px] gap-6 px-5 pb-10 md:gap-8 md:px-12 md:pb-16">
         <p className="meta m-0">{copy.kicker}</p>
         <h1 className="display m-0 max-w-[14ch] text-[clamp(44px,min(8vw,11.5svh),128px)] leading-[0.95]">
-          {copy.lineStart} <em>{copy.lineEm}</em>
+          {copy.lineStart} <em className="block">{copy.lineEm}</em>
         </h1>
         <div className="pointer-events-auto flex flex-wrap items-center gap-x-6 gap-y-4">
           {/* A plain link: /enter is a redirect, and a full navigation follows it cleanly. */}

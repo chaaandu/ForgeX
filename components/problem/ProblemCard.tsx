@@ -1,3 +1,4 @@
+import { problem as copy } from '@/content/copy'
 import type { Problem } from '@/lib/problem'
 
 /**
@@ -23,13 +24,13 @@ export function ProblemCard({
     <>
       {note ? <span className="meta">{note}</span> : null}
       <h3 className="display m-0 text-[26px] leading-[1.05]">{problem.title}</h3>
-      <p className="clamp-3 m-0 text-[15px] leading-relaxed text-ink-2">{problem.problem}</p>
+      <p className="m-0 text-[15px] leading-relaxed text-ink-2">{problem.problem}</p>
       <p className="m-0 grid gap-1.5 rounded-xl bg-black/25 px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_var(--color-line)]">
-        <span className="meta text-[11px]">Challenge</span>
+        <span className="meta text-[11px]">{copy.challenge}</span>
         {problem.challenge}
       </p>
       {chips.length ? (
-        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label="Why this fits you">
+        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={copy.whyFits}>
           {chips.map((chip) => (
             <li key={chip} className="tag">
               {chip}

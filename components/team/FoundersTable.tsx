@@ -55,7 +55,7 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
         </a>
       </div>
       <div className="quiet-scroll -mx-5 flex items-center gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0">
-        <input className="field h-10 min-h-0 w-[220px] shrink-0 py-0 text-[14px]" placeholder={copy.search} aria-label={copy.search} value={query} onChange={(event) => setQuery(event.target.value)} />
+        <input className="field h-10 min-h-0 w-[220px] shrink-0 py-0 text-[14px]" placeholder={copy.searchPlaceholder} aria-label={copy.search} value={query} onChange={(event) => setQuery(event.target.value)} />
         <button type="button" className="chip press min-h-9 shrink-0 text-[13px]" aria-pressed={status === 'all'} onClick={() => setStatus('all')}>
           {copy.all}
         </button>

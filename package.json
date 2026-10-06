@@ -24,7 +24,9 @@
     "research:collect": "tsx scripts/research/collect-hn.ts && tsx scripts/research/collect-fixmyitch.ts && tsx scripts/research/collect-yc.ts",
     "research:signal": "tsx scripts/research/add-signal.ts",
     "research:validate": "tsx scripts/research/validate.ts",
-    "bank:list": "tsx scripts/research/list.ts"
+    "bank:list": "tsx scripts/research/list.ts",
+    "bank:lint": "tsx scripts/research/lint-bank.ts",
+    "sheet:sync": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --sync"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",

@@ -61,9 +61,7 @@ export function PickStatus({
           </div>
         ) : (
           <div className="grid gap-4">
-            <p className="m-0 inline-flex w-fit items-center rounded-lg px-3 py-1.5 text-[15px] font-bold tracking-wide text-pink uppercase shadow-[inset_0_0_0_2px_var(--color-pink)]">
-              {copy.status[status]}
-            </p>
+            <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">{copy.headline[status]}</p>
             {note ? <p className="m-0 text-[17px] leading-relaxed whitespace-pre-line">{note}</p> : null}
             {status === 'another' ? (
               <div className="grid gap-3">

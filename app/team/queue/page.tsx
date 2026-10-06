@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { Queue, type QueueItem } from '@/components/team/Queue'
-import { archetypes, families } from '@/content/copy'
+import { archetypes, consoleCopy, families } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
 import { allFounders } from '@/lib/data/founders'
 import { allPicks, allResponses, statusOf } from '@/lib/data/picks'
 import { bank } from '@/lib/data/problems'
 import { INTENTS, labelOf } from '@/lib/taxonomy'
 
-export const metadata: Metadata = { title: 'Queue' }
+export const metadata: Metadata = { title: meta.pages.queue }
+
+const facts = consoleCopy.queue.facts
 
 export default async function QueuePage() {
   const [picks, responses, founders, problems] = await Promise.all([allPicks(), allResponses(), allFounders(), bank()])
@@ -36,17 +39,23 @@ export default async function QueuePage() {
             facts: [
               founder.profile.degree,
               founder.profile.city,
-              founder.profile.goodAt.length ? `Good at ${founder.profile.goodAt.join(', ')}` : '',
-              founder.profile.wantToLearn.length ? `Wants ${founder.profile.wantToLearn.join(', ')}` : '',
+              founder.profile.goodAt.length ? facts.goodAt(founder.profile.goodAt.join(', ')) : '',
+              founder.profile.wantToLearn.length ? facts.wants(founder.profile.wantToLearn.join(', ')) : '',
             ].filter(Boolean),
             world: world
               ? [
-                  `Industries: ${world.industries.map((id) => (id === 'other' ? (world.industryOther ?? 'Other') : labelOf.industryShort(id))).join(', ')}`,
-                  `For: ${world.side}`,
-                  `Can reach: ${world.access.length ? world.access.map((entry) => `${entry.kind === 'other' ? (entry.other ?? 'Other') : labelOf.access(entry.kind)} (${entry.worlds.map((id) => (id === 'elsewhere' ? (entry.elsewhere ?? 'elsewhere') : labelOf.industryShort(id))).join(', ')})`).join('; ') : 'nobody yet'}`,
-                  `Learn: ${world.learn.map((id) => (id === 'other' ? (world.learnOther ?? 'Other') : labelOf.learn(id))).join(', ')}`,
-                  `Here for: ${INTENTS.find((intent) => intent.id === world.intent)?.label ?? ''}`,
-                  `Tech comfort: ${world.comfort} of 5`,
+                  facts.industries(world.industries.map((id) => (id === 'other' ? (world.industryOther ?? 'Other') : labelOf.industryShort(id))).join(', ')),
+                  facts.side(world.side === 'unsure' ? 'not sure yet' : labelOf.side(world.side).toLowerCase()),
+                  facts.reach(
+                    world.access.length
+                      ? world.access
+                          .map((entry) => `${entry.kind === 'other' ? (entry.other ?? 'Other') : labelOf.access(entry.kind)} (${entry.worlds.map((id) => (id === 'elsewhere' ? (entry.elsewhere ?? 'elsewhere') : labelOf.industryShort(id))).join(', ')})`)
+                          .join('; ')
+                      : facts.nobody,
+                  ),
+                  facts.learn(world.learn.map((id) => (id === 'other' ? (world.learnOther ?? 'Other') : labelOf.learn(id))).join(', ')),
+                  facts.intent(INTENTS.find((intent) => intent.id === world.intent)?.label ?? ''),
+                  facts.comfort(world.comfort),
                 ]
               : [],
             previous,

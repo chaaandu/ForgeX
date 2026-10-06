@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useRef, useState, useTransition } from 'react'
 import { finishProfile, saveProfile } from '@/app/actions/founder'
 import { ChipList } from '@/components/ui/ChipList'
+import { Lines } from '@/components/ui/Lines'
 import { InlineField, type SaveResult } from '@/components/ui/InlineField'
 import { profile as copy } from '@/content/copy'
 import { linkLabel, LINK_FIELDS, type LinkField } from '@/lib/links'
@@ -84,7 +85,7 @@ export function Profile({
 
   return (
     <div className="grid gap-10">
-      {onboarding ? <h1 className="display rise m-0 max-w-[18ch] text-[clamp(34px,5vw,60px)] leading-[1.02]">{copy.heading}</h1> : null}
+      {onboarding ? <h1 className="display rise m-0 max-w-[22ch] text-[clamp(34px,5vw,60px)] leading-[1.02]"><Lines text={copy.heading} /></h1> : null}
 
       <section className={`grid gap-6 ${onboarding ? 'grid-cols-[72px_1fr] items-center md:grid-cols-[120px_1fr]' : ''}`}>
         {onboarding ? (

@@ -39,7 +39,7 @@ Mock mode never runs on a Vercel production deploy, whatever the flag says.
 | `SHEET_ID` | The Sheet's ID, from its URL |
 | `GOOGLE_SA_EMAIL` | The service account email |
 | `GOOGLE_SA_KEY` | The `private_key` from the service account JSON, `\n` escapes included, in quotes |
-| `PICKS_CLOSE_AT` | When picks lock, for example `2026-11-01T23:59:00+05:30` |
+| `PICKS_CLOSE_AT` | When picks lock: `2026-10-15T23:59:00+05:30` (15 Oct, 11:59 pm IST) |
 | `RESEND_API_KEY`, `EMAIL_FROM` | Response emails. Optional; without them nothing is sent and nothing breaks |
 | `NEXT_PUBLIC_SITE_URL` | The public URL, for example `https://forgex.mesaschool.co`. Used in email links |
 | `MOCK_BACKEND` | `false` everywhere except your laptop |
@@ -72,6 +72,7 @@ Who can get in depends only on the email domain:
 ```sh
 pnpm sheet:init        # tabs, headers, any founder not yet listed. Safe to re-run.
 pnpm sheet:problems    # adds the research bank as drafts. Safe to re-run.
+pnpm sheet:sync        # after a bank rewrite: rewords problems nobody on the team has edited
 ```
 
 Neither script overwrites a cell you've edited or removes anything.

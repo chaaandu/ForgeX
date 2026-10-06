@@ -4,6 +4,8 @@
  *   pnpm sheet:init             tabs, headers, and any founder not yet listed
  *   pnpm sheet:init --problems  also adds any problem not yet in the bank, as a draft
  *
+ *   pnpm sheet:problems --sync      also rewords problems nobody has edited, after a bank rewrite
+ *
  * It never overwrites a cell somebody has edited, never reorders rows, and
  * never removes anything. Missing headers are added at the end of the row.
  */
@@ -12,6 +14,7 @@ import { TABS, type TabKey } from '../lib/sheet/tabs'
 import { founderSeedRows, internalSeedRows, problemSeedRows } from '../lib/seed'
 
 const withProblems = process.argv.includes('--problems')
+const syncWording = process.argv.includes('--sync')
 
 async function ensureTabs() {
   const meta = await sheetsMeta()
@@ -104,6 +107,31 @@ async function addMissing(
   return fresh.length
 }
 
+/**
+ * Brings the Sheet's wording in line with data/problems.json after a rewrite,
+ * but only on rows nobody on the team has edited: a hand edit in the Sheet or
+ * the console always wins over the file.
+ */
+async function syncProblemWording(): Promise<number> {
+  const name = TABS.problems.name
+  const grid = (await batchGet([name]))[name] ?? []
+  const head = (grid[0] ?? []).map((cell) => cell.trim())
+  const col = (header: string) => head.indexOf(header)
+  const wanted = new Map(problemSeedRows('draft').map((row) => [row.ID ?? '', row]))
+  const writes: { a1: string; values: string[][] }[] = []
+  grid.slice(1).forEach((row, offset) => {
+    const id = (row[col('ID')] ?? '').trim()
+    const next = wanted.get(id)
+    if (!next || (row[col('Edited by')] ?? '').trim()) return
+    for (const header of ['Title', 'Problem', 'Challenge'] as const) {
+      const value = next[header] ?? ''
+      if ((row[col(header)] ?? '') !== value) writes.push({ a1: `${columnLetter(col(header) + 1)}${offset + 2}`, values: [[value]] })
+    }
+  })
+  for (let index = 0; index < writes.length; index += 200) await update(name, writes.slice(index, index + 200))
+  return new Set(writes.map((write) => write.a1.replace(/^[A-Z]+/, ''))).size
+}
+
 async function main() {
   await ensureTabs()
   const names = Object.values(TABS).map((tab) => tab.name)
@@ -117,6 +145,7 @@ async function main() {
     const internal = await addMissing('internal', 'ID', internalSeedRows())
     console.log(`· Problems: ${problems} added as drafts, ${internal} internal rows`)
   }
+  if (syncWording) console.log(`· Problems: ${await syncProblemWording()} rows reworded`)
   console.log('Sheet ready.')
 }
 

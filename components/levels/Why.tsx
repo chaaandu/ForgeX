@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useTransition } from 'react'
 import { submitPick } from '@/app/actions/founder'
 import { FounderCard, type FounderCardData } from '@/components/card/FounderCard'
+import { Lines } from '@/components/ui/Lines'
 import { why as copy } from '@/content/copy'
 import type { CustomProblem } from '@/lib/data/picks'
 import { nudgeFor, wordCount, type WhyField } from '@/lib/nudges'
@@ -23,12 +24,15 @@ export function Why({
   custom,
   card,
   slug,
+  closesAt,
   onBack,
 }: {
   problem: Problem | null
   custom: CustomProblem | null
   card: FounderCardData
   slug: string
+  /** When picks close, already formatted, for the closed message. */
+  closesAt: string
   onBack?: () => void
 }) {
   const [fields, setFields] = useState<Fields>({
@@ -55,7 +59,7 @@ export function Why({
       else
         setError(
           result.error === 'closed'
-            ? copy.closed
+            ? copy.closed(closesAt)
             : result.error === 'locked'
               ? copy.locked
               : copy.failed,
@@ -100,7 +104,7 @@ export function Why({
     <div className="grid max-w-[760px] gap-10">
       <div className="grid gap-5">
         <h1 className="display rise m-0 text-[clamp(32px,4.4vw,52px)] leading-[1.04]">
-          {copy.heading}
+          <Lines text={copy.heading} />
         </h1>
         <div className="border-line flex flex-wrap items-baseline gap-x-4 gap-y-1 border-y py-4">
           <span className="meta">{copy.for}</span>

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { Arrive } from '@/components/levels/Arrive'
 import { LevelShell } from '@/components/shell/LevelShell'
 import { founderContext } from '@/lib/context'
 import { requireFounder } from '@/lib/session'
 
-export const metadata: Metadata = { title: 'Arrive' }
+export const metadata: Metadata = { title: meta.pages.arrive }
 
 export default async function ArrivePage() {
   const { founder } = await requireFounder()

@@ -121,14 +121,14 @@ export function InlineField({
           type="button"
           ref={inputRef}
           className="inline-read press text-left"
-          aria-label={`${label}: ${value || placeholder}. ${copy.edit}`}
+          aria-label={copy.fieldEdit(label, value || placeholder)}
           onClick={() => setEditing(true)}
         >
-          <span className={value ? '' : 'text-ink-3'}>{value ? (display ? display(value) : value) : placeholder}</span>
+          <span className={value ? '' : 'text-ink-3'}>{value ? (display ? display(value) : value) : copy.empty}</span>
           <Pencil size={14} strokeWidth={1.5} className="inline-pen" aria-hidden="true" />
         </button>
       )}
-      <span className="min-h-[18px] text-[13px]" aria-live="polite">
+      <span className="min-h-[18px] font-sans text-[13px] not-italic" aria-live="polite">
         {shown ? <span className="text-pink-ink">{shown}</span> : status ? <span className="meta">{status}</span> : null}
       </span>
     </div>

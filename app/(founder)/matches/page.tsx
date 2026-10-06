@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { redirect } from 'next/navigation'
 import { Matches } from '@/components/levels/Matches'
 import { LevelShell } from '@/components/shell/LevelShell'
@@ -8,7 +9,7 @@ import { currentPath, mayEnter } from '@/lib/journey'
 import { topMatches } from '@/lib/match'
 import { requireFounder } from '@/lib/session'
 
-export const metadata: Metadata = { title: 'Matches' }
+export const metadata: Metadata = { title: meta.pages.matches }
 
 export default async function MatchesPage() {
   const { founder } = await requireFounder()

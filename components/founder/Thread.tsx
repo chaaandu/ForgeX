@@ -19,7 +19,7 @@ export function Thread({ entries }: { entries: ThreadEntry[] }) {
         <li key={entry.pick.id} className="grid gap-4">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <p className="display m-0 text-[24px] leading-tight">{entry.title}</p>
-            <span className="meta">{copy.sentOn(shortDate(entry.pick.submittedAt))}</span>
+            <span className="font-mono text-[12px] whitespace-nowrap text-ink-3">{copy.sentOn(shortDate(entry.pick.submittedAt))}</span>
           </div>
           {entry.pick.custom ? (
             <div className="grid gap-2 rounded-xl px-4 py-3 text-[15px] text-ink-2 shadow-[inset_0_0_0_1px_var(--color-line)]">
@@ -50,14 +50,14 @@ export function Thread({ entries }: { entries: ThreadEntry[] }) {
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <span className="text-[15px] font-semibold text-pink-ink">{copy.status[response.type]}</span>
-                <span className="meta">
-                  {copy.team} · {shortDate(response.sentAt)}
+                <span className="font-mono text-[12px] text-ink-3">
+                  {copy.team} · <span className="whitespace-nowrap">{shortDate(response.sentAt)}</span>
                 </span>
               </div>
               {response.note ? <p className="m-0 text-[16px] leading-relaxed whitespace-pre-line">{response.note}</p> : null}
             </div>
           ))}
-          {entry.pick.withdrawnAt ? <p className="meta m-0">Withdrawn {shortDate(entry.pick.withdrawnAt)}</p> : null}
+          {entry.pick.withdrawnAt ? <p className="m-0 font-mono text-[12px] text-ink-3">{copy.withdrawnOn(shortDate(entry.pick.withdrawnAt))}</p> : null}
         </li>
       ))}
     </ol>

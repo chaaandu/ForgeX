@@ -79,6 +79,18 @@
     outline-offset: 3px;
   }
 
+  /* Paragraphs never end on a single orphaned word; headings balance their lines. */
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   ::selection {
     background: var(--color-pink);
     color: var(--color-on-pink);

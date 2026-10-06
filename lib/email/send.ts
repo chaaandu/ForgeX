@@ -1,4 +1,6 @@
 import 'server-only'
+import { email, page } from '@/content/copy'
+import type { ResponseType } from '@/lib/data/picks'
 
 /**
  * Response emails, through Resend's HTTP API. Without RESEND_API_KEY nothing
@@ -24,14 +26,22 @@ export async function sendEmail(message: { to: string; subject: string; text: st
 const escape = (value: string) =>
   value.replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char] ?? char)
 
-export function responseEmail(input: { first: string; title: string; status: string; note: string; url: string }) {
-  const subject = `ForgeX: we read your why for ${input.title}`
-  const text = `Hi ${input.first},\n\nWe've answered your why for "${input.title}": ${input.status}.\n\n${input.note ? `${input.note}\n\n` : ''}Read it on your page: ${input.url}\n\nThe ForgeX team`
+export function responseEmail(input: {
+  first: string
+  title: string
+  type: ResponseType
+  note: string
+  url: string
+}) {
+  const subject = email.subject[input.type](input.title)
+  const headline = page.headline[input.type]
+  const parts = [email.hi(input.first), headline, input.note, `${email.readMore} ${input.url}`, email.signOff].filter(Boolean)
+  const text = parts.join('\n\n')
   const html = `<div style="font-family:system-ui,sans-serif;font-size:16px;line-height:1.5;color:#111;max-width:520px">
-<p>Hi ${escape(input.first)},</p>
-<p>We've answered your why for <strong>${escape(input.title)}</strong>: <strong>${escape(input.status)}</strong>.</p>
+<p>${escape(email.hi(input.first))}</p>
+<p><strong>${escape(headline)}</strong></p>
 ${input.note ? `<p style="white-space:pre-line">${escape(input.note)}</p>` : ''}
-<p><a href="${escape(input.url)}" style="color:#c2187a">Read it on your page</a></p>
-<p>The ForgeX team</p></div>`
+<p>${escape(email.readMore)} <a href="${escape(input.url)}" style="color:#c2187a">${escape(input.url)}</a></p>
+<p>${escape(email.signOff)}</p></div>`
   return { subject, text, html }
 }

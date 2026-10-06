@@ -12,8 +12,8 @@ test('a founder placed in Hackathon 1 keeps their archetype and walks to a sent 
   await page.waitForURL('**/arrive', { waitUntil: 'commit' })
   await expect(page.getByRole('heading', { name: 'Hi, Aarav.' })).toBeVisible()
 
-  await page.getByRole('link', { name: "Let's go" }).click()
-  await expect(page.getByText(/In Hackathon 1 you came out a Cartographer/)).toBeVisible()
+  await page.getByRole('link', { name: 'Find my archetype' }).click()
+  await expect(page.getByText(/Hackathon 1 placed you as a Cartographer/)).toBeVisible()
   await page.getByRole('button', { name: "That's me" }).click()
   await page.waitForURL('**/profile')
   await expect(page.getByRole('heading', { name: /This is you so far/ })).toBeVisible()
@@ -21,7 +21,7 @@ test('a founder placed in Hackathon 1 keeps their archetype and walks to a sent 
   await throughProfile(page)
   await throughWorld(page)
 
-  const cards = page.getByRole('list', { name: 'Four problems picked for you.' }).locator(':scope > li')
+  const cards = page.getByRole('list', { name: '4 problems picked for you.' }).locator(':scope > li')
   await expect(cards).toHaveCount(4)
   await expect(page.getByText('None of these? Write your own.')).toBeVisible()
   // Every card says why it fits, and nothing on a founder's card ranks it beyond rarity.
@@ -37,10 +37,10 @@ test('a founder placed in Hackathon 1 keeps their archetype and walks to a sent 
   await page.getByLabel('Why this problem?').fill(WHY.whyProblem)
   await page.getByLabel('Who would use what you build, and why?').fill(WHY.whyUser)
   await page.getByLabel('Why would they pay for it, or how would it make money?').fill(WHY.whyPay)
-  await page.getByRole('button', { name: 'Send it' }).click()
+  await page.getByRole('button', { name: 'Send my why' }).click()
   await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
 
-  await page.getByRole('link', { name: 'Go to your page' }).click()
+  await page.getByRole('link', { name: 'See my page' }).click()
   await page.waitForURL('**/f/aarav-shrivastava')
   await expect(page.getByText("You'll see our response here.")).toBeVisible()
 })
@@ -51,7 +51,7 @@ test('a founder without an archetype sits the quiz, and the server decides the r
   await expect(page).toHaveURL(/\/profile$/)
   // One retake is offered after the first placement.
   await page.goto('/archetype')
-  await expect(page.getByRole('link', { name: 'Retake it' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Retake the quiz' })).toBeVisible()
 })
 
 test('levels cannot be skipped', async ({ page }) => {
@@ -74,7 +74,7 @@ test('a founder can write their own problem and send a why for it', async ({ pag
   await page.getByLabel('Why this problem?').fill(WHY.whyProblem)
   await page.getByLabel('Who would use what you build, and why?').fill(WHY.whyUser)
   await page.getByLabel('Why would they pay for it, or how would it make money?').fill(WHY.whyPay)
-  await page.getByRole('button', { name: 'Send it' }).click()
+  await page.getByRole('button', { name: 'Send my why' }).click()
   await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
 })
 

@@ -130,7 +130,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
             </li>
           ))}
         </ol>
-        <p className="mt-2 text-[12px] leading-relaxed text-ink-3">{copy.help}</p>
+        <p className="mt-2 hidden text-[12px] leading-relaxed text-ink-3 md:block">{copy.help}</p>
       </aside>
 
       <article className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]" aria-label={item.founder.name}>
@@ -141,7 +141,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
               <h1 className="display m-0 text-[32px] leading-none">{item.founder.name}</h1>
               <p className="m-0 text-[14px] text-ink-2">
                 {item.founder.archetype} · {copy.waitingFor(ago(item.submittedAt))}
-                {item.founder.previous ? ` · pick ${item.founder.previous + 1}` : ''}
+                {item.founder.previous ? ` · ${copy.pickNumber(item.founder.previous + 1)}` : ''}
               </p>
             </div>
             <Link href={`/f/${item.founder.slug}`} className="btn btn-quiet press ml-auto text-[13px]" target="_blank">
@@ -151,7 +151,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
 
           <section className="panel grid gap-3 p-5">
             <div className="flex items-center justify-between">
-              {item.problem.rarity ? <RarityTag rarity={item.problem.rarity} /> : <span className="meta">Their own</span>}
+              {item.problem.rarity ? <RarityTag rarity={item.problem.rarity} /> : <span className="meta">{copy.theirOwn}</span>}
             </div>
             <h2 className="display m-0 text-[26px] leading-tight">{item.problem.title}</h2>
             <p className="m-0 text-[14px] leading-relaxed text-ink-2">{item.problem.problem}</p>
@@ -169,8 +169,8 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
             )}
           </dl>
 
-          <section className="grid gap-4 border-t border-line pt-6" aria-label="Respond">
-            <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Response">
+          <section className="grid gap-4 border-t border-line pt-6" aria-label={copy.respond}>
+            <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={copy.responseType}>
               {TYPES.map((value) => (
                 <button key={value} type="button" role="radio" aria-checked={type === value} className="chip press" onClick={() => setType(value)}>
                   <span className="font-mono text-[11px]">{copy.keys[value]}</span>
@@ -194,7 +194,7 @@ export function Queue({ items, bank }: { items: QueueItem[]; bank: { id: string;
                 </div>
                 <input className="field" placeholder={copy.suggestPlaceholder} aria-label={copy.suggestPlaceholder} value={search} onChange={(event) => setSearch(event.target.value)} />
                 {matches.length ? (
-                  <ul className="m-0 grid list-none gap-1 p-0" aria-label="Matching problems">
+                  <ul className="m-0 grid list-none gap-1 p-0" aria-label={copy.suggestResults}>
                     {matches.map((problem) => (
                       <li key={problem.id}>
                         <button type="button" className="press w-full rounded-lg border-0 bg-white/5 px-3 py-2 text-left text-[14px] text-ink-1 hover:bg-white/10" onClick={() => setSuggested((list) => [...list, problem.id].slice(0, 6))}>

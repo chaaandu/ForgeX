@@ -27,15 +27,15 @@ export async function signIn(page: Page, email: string) {
 export async function throughArchetype(page: Page, quiz: boolean) {
   await page.goto('/arrive')
   await expect(page.getByText(/^#\d{3} \/ 117$/).first()).toBeVisible()
-  await page.getByRole('link', { name: "Let's go" }).click()
+  await page.getByRole('link', { name: 'Find my archetype' }).click()
   if (quiz) {
-    await page.getByRole('button', { name: 'Start' }).click()
+    await page.getByRole('button', { name: 'Find out' }).click()
     for (let index = 0; index < 7; index += 1) {
       await page.getByRole('radio').first().click()
       await page.waitForTimeout(260)
     }
     await expect(page.locator('#rv-name')).toBeVisible()
-    await page.getByRole('link', { name: 'Next' }).click()
+    await page.getByRole('link', { name: 'Next: your profile' }).click()
   } else {
     await page.getByRole('button', { name: "That's me" }).click()
   }

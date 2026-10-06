@@ -168,8 +168,8 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
               color: '#8f8c85',
             }}
           >
-            <span>FORGEX</span>
-            <span>MESA SCHOOL OF BUSINESS</span>
+            <span>{copy.footer.brand}</span>
+            <span>{copy.footer.school}</span>
           </div>
         </div>
       </div>

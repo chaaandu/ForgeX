@@ -5,6 +5,7 @@ import { saveTrial } from '@/app/actions/founder'
 import { setLevelProgress } from '@/components/shell/progress'
 import { archetypeFlow as copy, trial as trialCopy } from '@/content/copy'
 import { TRIAL, type ArchetypeId } from '@/lib/archetype'
+import { Lines } from '@/components/ui/Lines'
 
 /**
  * Seven questions, one card at a time. Tap an answer and the next card slides
@@ -105,7 +106,7 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
 
       <div key={question.id} className="quiz-card grid gap-6">
         <h2 className="ask m-0" id={`q-${question.id}`}>
-          {text?.prompt}
+          <Lines text={text?.prompt ?? ''} />
         </h2>
         <div className="grid gap-2.5" role="radiogroup" aria-labelledby={`q-${question.id}`}>
           {question.options.map((option, index) => (

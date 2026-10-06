@@ -29,6 +29,8 @@ pnpm sheet:init         # tabs, headers, founders. Only ever adds
 pnpm sheet:problems     # adds the bank as drafts
 pnpm research           # cluster → score → drop → balance → write → validate
 pnpm bank:list         # docs/PROBLEMS.md, the whole bank, readable
+pnpm bank:lint         # every problem statement against docs/VOICE.md; fails on any flag
+pnpm sheet:sync        # push reworded problems to the Sheet, only on rows nobody has edited
 ```
 
 ## Where things live
@@ -69,6 +71,23 @@ pnpm bank:list         # docs/PROBLEMS.md, the whole bank, readable
 - **Picks close** at `PICKS_CLOSE_AT`, checked in `submitPick` and `withdrawPick`.
 - **Mock mode** needs `MOCK_BACKEND=true` and a deploy that is not Vercel production (`lib/store/mode.ts`).
 - **Copy:** second person, short. No decorative quote or comma glyphs anywhere. The fixed lines in `docs/PRODUCT.md` are the owner's, so use them verbatim.
+
+## Copy
+
+Copy is as important as the design. Every string is written to `docs/VOICE.md`.
+
+- Every string lives in `content/copy.ts`. The copy lint (`tests/unit/copy.test.ts`, run by `pnpm test:unit`) fails the build on:
+  - banned words;
+  - buttons of 24 characters or more;
+  - headings over 8 words;
+  - stray exclamation marks or decorative quotes;
+  - images without alt text;
+  - any word written directly into a component.
+- A new button or heading is added to the lint's `BUTTONS` or `HEADINGS` list.
+- Digits for numbers; "6 Oct"; "6 pm IST"; British spelling as used in India.
+- Problem statements follow the rules in `docs/VOICE.md` and pass `pnpm bank:lint`. A rewrite may sharpen a problem but never add a fact its evidence doesn't hold.
+- `docs/COPY_CHOICES.md` records the options for the key moments and which one is live. `docs/COPY_AUDIT.md` is the string-by-string audit.
+- Two-sentence headings break between sentences through `components/ui/Lines.tsx`. Paragraphs use `text-wrap: pretty` and headings use `balance`.
 
 ## Design
 

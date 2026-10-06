@@ -71,7 +71,7 @@ export function ChipList({
         ) : null}
       </ul>
       {open.length && items.length < max ? (
-        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={`${label}, suggestions`}>
+        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={copy.suggestions(label)}>
           {open.map((item) => (
             <li key={item}>
               <button type="button" className="press inline-flex min-h-9 items-center gap-1 rounded-full px-3 text-[13px] text-ink-2 shadow-[inset_0_0_0_1px_var(--color-line)] hover:text-ink-1" onClick={() => add(item)}>

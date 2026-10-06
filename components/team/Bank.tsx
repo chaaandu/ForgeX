@@ -118,7 +118,7 @@ export function Bank({ items }: { items: BankItem[] }) {
             <span className="font-mono text-[11px]">{key === 'all' ? items.length : items.filter((entry) => entry.status === key).length}</span>
           </button>
         ))}
-        <p className="m-0 ml-auto self-center text-[12px] text-ink-3">{copy.help}</p>
+        <p className="m-0 ml-auto hidden self-center text-[12px] text-ink-3 md:block">{copy.help}</p>
       </div>
 
       {!item ? (
@@ -147,10 +147,10 @@ export function Bank({ items }: { items: BankItem[] }) {
           <article className="grid content-start gap-6">
             {editing ? (
               <div className="panel grid gap-4 p-6">
-                <input className="field display h-14 text-[22px]" value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} aria-label="Title" />
-                <textarea className="field" value={draft.problem} onChange={(event) => setDraft({ ...draft, problem: event.target.value })} aria-label="Problem" />
-                <input className="field" value={draft.challenge} onChange={(event) => setDraft({ ...draft, challenge: event.target.value })} aria-label="Challenge" />
-                <select className="field" value={draft.rarity} onChange={(event) => setDraft({ ...draft, rarity: event.target.value as Rarity })} aria-label="Rarity">
+                <input className="field display h-14 text-[22px]" value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} aria-label={copy.fields.title} />
+                <textarea className="field" value={draft.problem} onChange={(event) => setDraft({ ...draft, problem: event.target.value })} aria-label={copy.fields.problem} />
+                <input className="field" value={draft.challenge} onChange={(event) => setDraft({ ...draft, challenge: event.target.value })} aria-label={copy.fields.challenge} />
+                <select className="field" value={draft.rarity} onChange={(event) => setDraft({ ...draft, rarity: event.target.value as Rarity })} aria-label={copy.fields.rarity}>
                   {RARITIES.map((rarity) => (
                     <option key={rarity} value={rarity}>
                       {RARITY_LABEL[rarity]}
@@ -183,7 +183,7 @@ export function Bank({ items }: { items: BankItem[] }) {
               <div className="panel grid gap-4 p-6 md:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <RarityTag rarity={item.rarity} />
-                  <span className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-pink-ink' : ''}`}>{item.status}</span>
+                  <span className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-pink-ink' : ''}`}>{copy.status[item.status]}</span>
                 </div>
                 <h2 className="display m-0 text-[clamp(28px,3vw,40px)] leading-[1.05]">{item.title}</h2>
                 <p className="m-0 text-[16px] leading-relaxed text-ink-2">{item.problem}</p>
@@ -196,15 +196,15 @@ export function Bank({ items }: { items: BankItem[] }) {
                   ))}
                 </div>
                 <p className="m-0 flex items-center gap-3 text-[14px] text-ink-2">
-                  <Signal strength={item.strength} label={`${item.strength} of 5`} />
+                  <Signal strength={item.strength} label={copy.strength(item.strength)} />
                   {item.signal}
                 </p>
                 <div className="flex flex-wrap gap-2 border-t border-line pt-4">
                   <button type="button" className="btn btn-primary press" disabled={pending} onClick={() => mark('approved')}>
-                    {copy.approve} <span className="font-mono text-[11px]">Y</span>
+                    {copy.approve} <span className="font-mono text-[11px]">{copy.keys.approve}</span>
                   </button>
                   <button type="button" className="btn btn-secondary press" disabled={pending} onClick={() => mark('rejected')}>
-                    {copy.reject} <span className="font-mono text-[11px]">R</span>
+                    {copy.reject} <span className="font-mono text-[11px]">{copy.keys.reject}</span>
                   </button>
                   <button
                     type="button"
@@ -214,7 +214,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                       setEditing(true)
                     }}
                   >
-                    {copy.edit} <span className="font-mono text-[11px]">E</span>
+                    {copy.edit} <span className="font-mono text-[11px]">{copy.keys.edit}</span>
                   </button>
                   {item.status !== 'draft' ? (
                     <button type="button" className="btn btn-quiet press" disabled={pending} onClick={() => mark('draft')}>

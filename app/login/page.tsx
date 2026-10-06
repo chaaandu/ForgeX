@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { meta } from '@/content/copy'
 import { redirect } from 'next/navigation'
 import { signIn } from '@/auth'
 import { Brand } from '@/components/shell/Brand'
@@ -7,7 +8,7 @@ import { isMock } from '@/lib/store/mode'
 import { safeNext } from '@/lib/next-path'
 import { getViewer } from '@/lib/session'
 
-export const metadata: Metadata = { title: 'Sign in' }
+export const metadata: Metadata = { title: meta.pages.signIn }
 
 /** Mock personas: one placed in Hackathon 1, one who sits the quiz, one teammate. */
 const PERSONAS = [

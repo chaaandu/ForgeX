@@ -1,7 +1,8 @@
 /**
- * Every word a founder or the team reads. Second person, short, direct.
- * No decorative quote marks or comma glyphs anywhere: a line that needs
- * quoting to land needs rewriting instead.
+ * Every word a founder or the team reads, in one place. The rules are in
+ * docs/VOICE.md and the copy lint enforces them: no banned words, buttons
+ * under 24 characters, no exclamation marks outside the reveal and the card,
+ * no decorative quote marks. Choices among options are in docs/COPY_CHOICES.md.
  */
 
 import type { ArchetypeId, FamilyId } from '@/lib/archetype'
@@ -18,44 +19,44 @@ export const archetypes: Record<
 > = {
   surveyor: {
     name: 'Surveyor',
-    identity: 'You map it before you move, and your map is precise.',
-    strengths: ['Finds the real question under the obvious one', 'Turns a mess into a picture others can follow'],
+    identity: 'You map the ground before you take a step.',
+    strengths: ['You find the real question under the obvious one', 'You turn a mess into a picture others can follow'],
     blindSpot: 'The map can quietly become the work.',
     loves: 'Problems tangled in information. Search, research, dashboards, AI that reads and explains.',
   },
   scout: {
     name: 'Scout',
-    identity: 'You go and look for yourself.',
-    strengths: ['Talks to people before deciding anything', 'Notices what everyone else walks past'],
-    blindSpot: 'Keeps exploring when it is time to commit.',
+    identity: "You'd rather ask 10 people than guess once.",
+    strengths: ['You talk to people before you decide anything', 'You notice what everyone else walks past'],
+    blindSpot: "You keep exploring when it's time to commit.",
     loves: 'Problems you only understand by being there. Communities, voice, WhatsApp, quick prototypes.',
   },
   inventor: {
     name: 'Inventor',
-    identity: 'You try it, then work out why it worked.',
-    strengths: ['A first version before anyone else', 'At home with tools that came out this month'],
+    identity: 'You make the first version while others are still planning.',
+    strengths: ['You have a working version before anyone else', "You're at home with tools that came out this month"],
     blindSpot: 'Speed hides the reason it worked.',
     loves: 'AI agents, new models, creative and consumer tools.',
   },
   tinkerer: {
     name: 'Tinkerer',
-    identity: 'You build the rough thing, then make it hold.',
-    strengths: ['Turns hacks into tools people rely on', 'Improves in small, safe steps'],
-    blindSpot: 'Can build before asking whether anyone needs it.',
+    identity: 'You make it work today and make it good tomorrow.',
+    strengths: ['You turn quick fixes into tools people rely on', 'You improve things in small, safe steps'],
+    blindSpot: 'You can build before asking whether anyone needs it.',
     loves: 'Automation, integrations and the internal tools small businesses run on.',
   },
   strategist: {
     name: 'Strategist',
-    identity: 'You see the whole system before the first move.',
-    strengths: ['Plans that survive contact with reality', 'Work a team can split up cleanly'],
+    identity: 'You see the whole board before your first move.',
+    strengths: ['Your plans survive contact with reality', 'You split work so a team can move at once'],
     blindSpot: 'A shape drawn too early is the wrong shape.',
     loves: 'Operations for businesses, data models and full-stack products.',
   },
   builder: {
     name: 'Builder',
-    identity: 'You plan it, then test the plan.',
-    strengths: ['Structure with fast feedback loops', 'Finishes what it starts'],
-    blindSpot: 'Can polish the plan longer than the problem deserves.',
+    identity: 'You make a plan, then prove it works.',
+    strengths: ['You build structure with fast feedback', 'You finish what you start'],
+    blindSpot: 'You can polish the plan longer than the problem deserves.',
     loves: 'Payments, platforms and anything with a hard technical edge.',
   },
 }
@@ -63,12 +64,12 @@ export const archetypes: Record<
 /** The seven questions, in the founder's words. Scoring lives in lib/archetype.ts. */
 export const trial: Record<string, { prompt: string; options: Record<string, string> }> = {
   'new-city': {
-    prompt: "Three days in a city you've never seen. First move?",
-    options: { read: 'Read up before you go', walk: 'Walk out and see', plan: 'Plan all three days' },
+    prompt: 'You have 3 days in a new city. What do you do first?',
+    options: { read: 'Read up before you go', walk: 'Walk out and see', plan: 'Plan all 3 days' },
   },
   'new-tool': {
     prompt: 'The last time you learned a new tool, what did you do first?',
-    options: { read: 'Read how it worked', use: 'Used it till it clicked', tutorial: 'Followed a tutorial' },
+    options: { read: 'Read how it worked', use: 'Played with it until it clicked', tutorial: 'Followed a tutorial' },
   },
   'first-prompt': {
     prompt: 'A messy task and an AI. What do you type first?',
@@ -79,7 +80,7 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
     },
   },
   'in-a-team': {
-    prompt: 'In a team of four, what do you do without being asked?',
+    prompt: 'In a team of 4, what do you do without being asked?',
     options: {
       agree: "Get everyone agreeing on what we're building",
       rough: 'Make the first rough version',
@@ -91,15 +92,15 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
     options: { why: 'Work out why', own: 'Try your own way', follow: 'Follow them, then say so' },
   },
   'it-broke': {
-    prompt: "It worked yesterday. Today it doesn't.",
+    prompt: "It worked yesterday. Today it doesn't. What do you do?",
     options: {
       changed: 'Find what changed',
-      tweak: 'Change things till it works',
-      rollback: 'Roll back to the last good version',
+      tweak: 'Change things until it works',
+      rollback: 'Go back to the version that worked',
     },
   },
   'better-way': {
-    prompt: 'Halfway in, you see a better way.',
+    prompt: 'Halfway through, you see a better way. What now?',
     options: { finish: 'Finish this part, then decide', think: 'Stop and think it through', scrap: 'Scrap it and rebuild' },
   },
 }
@@ -116,8 +117,7 @@ export const problem = {
   writeOwn: 'None of these? Write your own.',
   learn: "What you'll learn",
   challenge: 'Challenge',
-  signal: 'Signal',
-  signalOf: (n: number) => `Signal strength ${n} of 5`,
+  whyFits: 'Why this fits you',
   close: 'Close',
 }
 
@@ -130,25 +130,55 @@ export const card = {
   download: 'Download card',
   share: 'Share',
   shareText: (name: string) => `${name} on ForgeX`,
+  footer: { brand: 'FORGEX', school: 'MESA SCHOOL OF BUSINESS' },
 }
 
 /** Why a problem was matched. Each one names a factor that actually scored. */
 export const chips = {
-  access: 'You can reach this user',
+  access: 'You know someone who has this',
   industry: (short: string) => `${short}, your pick`,
-  side: { business: 'Built for businesses', consumer: 'Built for consumers', creator: 'Built for creators' },
+  side: { business: 'Businesses, your pick', consumer: 'Consumers, your pick', creator: 'Creators, your pick' },
   stretch: 'A stretch you can finish',
   sized: 'Sized for where you are',
-  demand: 'Lots of people want this fixed',
-  portfolio: 'Two skills in one build',
+  demand: 'Many people want this fixed',
+  portfolio: '2 skills in 1 build',
   archetype: (name: string) => `Suits a ${name}`,
-  suggested: 'Suggested by the team',
+  suggested: 'The team suggested this',
   gentle: 'A good place to start',
 }
 
 export const meta = {
   title: 'ForgeX',
-  description: "Find the problem you can't ignore.",
+  template: '%s · ForgeX',
+  description: "Find the problem you can't ignore. A 3-week build sprint for Mesa founders.",
+  brand: 'ForgeX home',
+  pages: {
+    signIn: 'Sign in',
+    arrive: 'Arrive',
+    archetype: 'Archetype',
+    profile: 'Profile',
+    world: 'Your world',
+    matches: 'Matches',
+    writeOwn: 'Write your own',
+    why: 'Your why',
+    console: 'Console',
+    consoleTemplate: '%s · Console',
+    founders: 'Founders',
+    queue: 'Queue',
+    bank: 'Bank',
+  },
+}
+
+export const notFound = {
+  title: "This page isn't here.",
+  lead: 'The link may be old, or have a typo.',
+  home: 'Go to the start',
+}
+
+export const crashed = {
+  title: "This page didn't load.",
+  lead: 'Nothing you wrote is lost. Try again in a moment.',
+  retry: 'Try again',
 }
 
 export const wall = {
@@ -166,7 +196,7 @@ export const levels = {
     matches: 'Matches',
     why: 'Your why',
   },
-  of: (at: number, of: number, name: string) => `Level ${at} of ${of}, ${name}`,
+  of: (at: number, of: number, name: string) => `Step ${at} of ${of}: ${name}`,
   card: 'Your founder card',
   signOut: 'Sign out',
 }
@@ -180,7 +210,7 @@ export const world = {
   industries: {
     ask: 'Which industries pull you in?',
     other: 'Other',
-    otherPlaceholder: 'Which one?',
+    otherPlaceholder: 'Sports',
   },
   side: {
     ask: 'Who do you want to build for?',
@@ -188,12 +218,12 @@ export const world = {
   },
   access: {
     ask: 'Who can you reach this week?',
-    hint: 'People you can talk to beat ideas you are excited about.',
+    hint: "People you can talk to beat ideas you're excited about.",
     other: 'Other',
-    otherPlaceholder: 'Who?',
-    worlds: (who: string) => `What world is ${who} in?`,
+    otherPlaceholder: 'My cricket club',
+    worlds: (who: string) => `Which industry is ${who} in?`,
     elsewhere: 'Somewhere else',
-    elsewherePlaceholder: 'Where?',
+    elsewherePlaceholder: 'Pharma distribution',
     none: 'Nobody yet',
     whoLabel: {
       family: 'your family business',
@@ -207,14 +237,14 @@ export const world = {
   learn: {
     ask: 'What do you want to learn by building?',
     other: 'Other',
-    otherPlaceholder: 'What?',
+    otherPlaceholder: 'Blockchain',
   },
   intent: {
     ask: 'What are you here for?',
   },
   comfort: {
     ask: 'How comfortable are you with tech today?',
-    hint: 'No wrong answer. It only decides how big a problem we suggest.',
+    hint: "There's no wrong answer. It sets how ambitious your matches are.",
     stops: [
       "I use apps. I haven't built one.",
       "I've followed a few tutorials.",
@@ -237,9 +267,9 @@ export const login = {
   lead: 'Use your Mesa Google account.',
   google: 'Continue with Google',
   refused: {
-    domain: "That account isn't on the ForgeX list. Use your forge27 Mesa account.",
-    roster: "That account isn't in the ForgeX cohort. If that's wrong, tell the team.",
-    other: "Sign-in didn't finish. Try again.",
+    domain: "That's not a Mesa founder account. Sign in with your @forge27.mesaschool.co address.",
+    roster: "This account isn't on the ForgeX roster. If it should be, message the Mesa team.",
+    other: "Sign-in didn't finish. Try again in a moment.",
   },
   another: 'Use another account',
   mock: 'Mock sign-in',
@@ -248,46 +278,52 @@ export const login = {
 
 export const arrive = {
   hi: (first: string) => `Hi, ${first}.`,
-  lead: "Six steps. By the last one, you'll have a problem worth building.",
+  lead: "6 steps. By the last one, you'll have a problem worth building.",
+  steps: 'The 6 steps',
   path: [
     { name: 'Arrive', line: "You're here." },
-    { name: 'Archetype', line: 'What kind of builder you are.' },
+    { name: 'Archetype', line: 'The kind of builder you are.' },
     { name: 'Profile', line: 'You, in your own words.' },
-    { name: 'Your world', line: 'Where you already have an edge.' },
-    { name: 'Matches', line: 'Four problems picked for you.' },
+    { name: 'Your world', line: 'Tell us where to look for your problem.' },
+    { name: 'Matches', line: '4 problems picked for you.' },
     { name: 'Your why', line: 'Make your case. We reply to every one.' },
   ],
-  go: "Let's go",
+  go: 'Find my archetype',
   numbering: 'Numbering your card',
 }
 
 export const archetypeFlow = {
   intro: {
     title: 'What kind of builder are you?',
-    lead: 'Seven questions. Answer on instinct.',
-    start: 'Start',
+    lead: '7 questions. Answer on instinct.',
+    start: 'Find out',
     retakeTitle: 'One more go',
     retakeLead: 'Your new result replaces the old one. This is your only retake.',
   },
   question: (at: number, of: number) => `${at} of ${of}`,
   back: 'Back',
   keys: 'Press 1, 2 or 3',
-  placing: 'Placing you',
+  placing: 'Working out your archetype',
   retry: 'Try again',
   error: "That didn't save. Your answers are still here. Try again.",
   reveal: {
     youAre: "You're a",
-    h1: (family: string, kind: string) => `In Hackathon 1 you came out a ${family}. More precisely, a ${kind}.`,
+    exclaim: '!',
+    h1: (family: string, kind: string) => `Hackathon 1 placed you as a ${family}. More precisely, a ${kind}.`,
     strengths: 'Strengths',
     blindSpot: 'Blind spot',
     loves: 'Loves',
     keep: "That's me",
-    next: 'Next',
-    retake: 'Retake it',
+    next: 'Next: your profile',
+    retake: 'Retake the quiz',
     retakeUsed: 'Retake used',
     cardTitle: 'Your founder card',
     cardLead: 'It fills in as you go. Download it now, or wait until it carries your problem.',
-    replay: 'Replay',
+  },
+  portraitAlt: {
+    cartographer: 'Cartographer, holding a compass, a map under one arm',
+    alchemist: 'Alchemist, in goggles, holding a glowing flask',
+    architect: 'Architect, in a visor, beside a glowing blueprint',
   },
 }
 
@@ -295,23 +331,23 @@ export const profile = {
   heading: "This is you so far. Change anything that doesn't feel like you.",
   bio: {
     label: 'One line about you',
-    placeholder: 'One line a stranger should know about you.',
-    required: 'One line is all we need.',
+    placeholder: "I sell my mum's pickles on Instagram and want it to be a real business.",
+    required: 'Add one line about you to carry on.',
     add: 'Add one line about you',
   },
   facts: {
-    city: { label: 'Lives in', placeholder: 'Your city' },
-    languages: { label: 'Speaks', placeholder: 'Add a language' },
-    degree: { label: 'Studies', placeholder: 'Your degree' },
+    city: { label: 'Lives in', placeholder: 'Pune' },
+    languages: { label: 'Speaks', placeholder: 'Marathi' },
+    degree: { label: 'Studies', placeholder: 'BBA, Commerce and Management' },
   },
   goodAt: {
     label: 'Good at today',
-    placeholder: 'Add something',
+    placeholder: 'Cold calling',
     suggestions: ['Sales', 'Research', 'Writing', 'Design', 'Excel', 'Video', 'Coding', 'Public speaking', 'Operations'],
   },
   wantToLearn: {
     label: 'Wants to learn',
-    placeholder: 'Add something',
+    placeholder: 'Voice AI',
     suggestions: ['AI agents', 'Voice AI', 'Full-stack web', 'Data', 'Product design', 'Growth marketing', 'Mobile apps'],
   },
   links: {
@@ -320,14 +356,16 @@ export const profile = {
     linkedin: 'LinkedIn',
     portfolio: 'Portfolio or personal site',
     add: 'Add',
-    placeholder: { github: 'github.com/you or @you', linkedin: 'linkedin.com/in/you', portfolio: 'yoursite.com' },
-    invalid: "That doesn't look like a link we can use.",
+    placeholder: { github: 'github.com/ananya', linkedin: 'linkedin.com/in/ananya-rao', portfolio: 'ananya.dev' },
+    invalid: "That link won't work here. Paste the full address, like github.com/ananya.",
   },
-  edit: 'Edit',
+  edit: 'Edit profile',
   editProfile: 'Edit profile',
   finishEditing: 'Done editing',
   empty: 'Not added yet',
   remove: (item: string) => `Remove ${item}`,
+  suggestions: (label: string) => `${label}, suggestions`,
+  fieldEdit: (label: string, value: string) => `${label}: ${value}. Edit`,
   saving: 'Saving',
   saved: 'Saved',
   failed: "That didn't save. Try again.",
@@ -335,18 +373,18 @@ export const profile = {
 }
 
 export const matches = {
-  title: 'Four problems picked for you.',
-  lead: 'Each one is open. Who has it, what they would pay for, and what to build is yours to find.',
+  title: '4 problems picked for you.',
+  lead: 'All 4 are open. Who has it, and what to build, is yours to find.',
   gentleTitle: 'Good places to start.',
-  gentleLead: 'Your answers were specific, so these are open problems that suit a first build.',
+  gentleLead: 'Your answers were specific, so here are 4 open problems that make a strong first build.',
   again: "Fresh matches, with the team's suggestions first.",
   empty: {
     title: 'The problem bank opens soon.',
-    lead: 'Your four will appear here as soon as it does. You can write your own now if one is already on your mind.',
+    lead: 'Your 4 matches appear here when it does. If a problem is already on your mind, write it up now.',
   },
-  waiting: (title: string) => `You've sent your why for ${title}. Picking another replaces it.`,
+  waiting: (title: string) => `You sent your why for ${title}. Picking another one replaces it.`,
   writeOwn: 'None of these? Write your own.',
-  writeOwnLead: 'Same shape as ours: a title, what is broken, and the challenge.',
+  writeOwnLead: "Same shape as ours: a title, what's broken and the challenge.",
   changeAnswers: 'Change my answers',
 }
 
@@ -355,41 +393,57 @@ export const why = {
   for: 'You picked',
   change: 'Pick another',
   prompts: {
-    whyProblem: { label: 'Why this problem?', placeholder: 'What did you see, hear or live through that makes this one matter to you?' },
-    whyUser: { label: 'Who would use what you build, and why?', placeholder: 'Picture one real person. What do they do today, and what does it cost them?' },
-    whyPay: { label: 'Why would they pay for it, or how would it make money?', placeholder: 'Who hands over money, how much, and for what?' },
-    contact: { label: 'Who could you talk to about it this week?', optional: 'Optional', placeholder: 'A name, a shop, a group. Anyone you can actually reach.' },
+    whyProblem: {
+      label: 'Why this problem?',
+      placeholder: "My uncle's shop runs out of its best sellers every week, and he only finds out at the counter.",
+    },
+    whyUser: {
+      label: 'Who would use what you build, and why?',
+      placeholder: 'Shop owners like him, who restock from memory and lose a few sales every day.',
+    },
+    whyPay: {
+      label: 'Why would they pay for it, or how would it make money?',
+      placeholder: 'He already pays ₹500 a month for billing software. Lost sales cost him more.',
+    },
+    contact: {
+      label: 'Who could you talk to about it this week?',
+      optional: 'Optional',
+      placeholder: 'My uncle, and the 2 shops either side of his',
+    },
   },
   nudges: {
     solution: "That's a solution. What's broken before it exists?",
     person: 'Picture one person. Who are they?',
     money: 'Who hands over money, and for what?',
-    short: 'A little more. Two or three sentences is plenty.',
+    short: 'A little more. 2 or 3 sentences is plenty.',
     prescribes: 'Set the task, not the product.',
-    title: 'Under ten words.',
+    title: 'Under 10 words.',
   },
   words: (n: number) => `${n} ${n === 1 ? 'word' : 'words'}`,
-  send: 'Send it',
+  send: 'Send my why',
   sending: 'Sending',
   failed: "That didn't send. Everything you wrote is still here. Try again.",
-  closed: 'Picks are closed now.',
-  locked: 'The team has already answered your pick, so it is settled.',
+  closed: (when: string) => `Picks closed on ${when}.`,
+  locked: "The team has answered this pick, so it's settled.",
   sent: {
     title: 'Sent.',
-    lead: "Your card now carries your problem. We read every why and answer each one personally. You'll see our response on your page.",
-    go: 'Go to your page',
+    lead: "Your card now carries your problem. We read every why and reply to each one. You'll see our reply on your page.",
+    go: 'See my page',
   },
 }
 
 export const composer = {
   title: 'Write your own',
-  lead: 'Same shape as ours. Say what is broken, not what you will build.',
+  lead: "Same shape as ours. Say what's broken, not what you'll build.",
   fields: {
-    title: { label: 'Title', placeholder: 'Under ten words, concrete' },
-    problem: { label: 'The problem', placeholder: 'Two or three sentences on what is broken in the world, and what it costs.' },
-    challenge: { label: 'The challenge', placeholder: 'One line that sets the task without naming the product.' },
-    industry: 'Which world is it in?',
-    side: 'Who lives with it?',
+    title: { label: 'Title', placeholder: 'Weekend markets lose their regulars by Monday' },
+    problem: {
+      label: 'The problem',
+      placeholder: "Stall owners can't tell regulars where they'll be next week, so footfall depends on luck.",
+    },
+    challenge: { label: 'The challenge', placeholder: 'Help a stall keep its regulars between markets.' },
+    industry: 'Which industry is it in?',
+    side: 'Who has this problem?',
   },
   next: 'Next: your why',
   back: 'Back to matches',
@@ -400,13 +454,21 @@ export const page = {
   yourPick: 'Your pick',
   noPick: 'No pick yet.',
   waiting: "You'll see our response here.",
+  headline: {
+    go: "Go. This one's yours.",
+    tweak: 'Go, with a tweak. Read our note first.',
+    talk: "Let's talk. We'll find 15 minutes this week.",
+    another: "Let's find you a better fit.",
+  },
   pickAnother: 'Pick another instead',
   backToMatches: 'Back to matches',
   status: { waiting: 'Waiting', go: 'Go', tweak: 'Go, with a tweak', talk: "Let's talk", another: 'Try another' },
-  thread: 'The thread',
+  thread: 'Your why and our replies',
   you: 'You',
   team: 'The ForgeX team',
   sentOn: (date: string) => `Sent ${date}`,
+  withdrawnOn: (date: string) => `You withdrew this on ${date}`,
+  console: 'Back to console',
   suggested: 'Try one of these',
   own: 'Your own problem',
   about: 'About',
@@ -425,10 +487,11 @@ export const page = {
 }
 
 export const consoleCopy = {
-  nav: { founders: 'Founders', queue: 'Queue', bank: 'Bank' },
+  nav: { label: 'Console', founders: 'Founders', queue: 'Queue', bank: 'Bank' },
   founders: {
     title: 'Founders',
-    search: 'Search by name',
+    search: 'Search founders',
+    searchPlaceholder: 'Ananya',
     export: 'Export CSV',
     columns: { name: 'Founder', archetype: 'Archetype', level: 'Level', pick: 'Pick', status: 'Status', active: 'Last active' },
     all: 'All',
@@ -438,7 +501,7 @@ export const consoleCopy = {
   },
   queue: {
     title: 'Queue',
-    empty: 'Nobody is waiting. Every why has an answer.',
+    empty: 'No one is waiting. Every why has a reply.',
     oldest: 'Oldest first',
     waitingFor: (time: string) => `Waiting ${time}`,
     types: { go: 'Go', tweak: 'Go, with a tweak', talk: "Let's talk", another: 'Try another' },
@@ -447,8 +510,24 @@ export const consoleCopy = {
     notePlaceholder: 'What you liked, what to change, what to try. They read every word.',
     noteNeeded: 'A tweak needs a note.',
     suggest: 'Suggest problems',
-    suggestPlaceholder: 'Search the bank',
-    send: 'Send',
+    suggestPlaceholder: 'kirana',
+    suggestResults: 'Matching problems',
+    send: 'Send reply',
+    respond: 'Reply',
+    responseType: 'Type of reply',
+    theirOwn: 'Their own problem',
+    pickNumber: (n: number) => `pick ${n}`,
+    facts: {
+      industries: (list: string) => `Industries: ${list}`,
+      side: (side: string) => `For: ${side}`,
+      reach: (list: string) => `Can reach: ${list}`,
+      nobody: 'nobody yet',
+      learn: (list: string) => `Learn: ${list}`,
+      intent: (intent: string) => `Here for: ${intent}`,
+      comfort: (n: number) => `Tech comfort: ${n} of 5`,
+      goodAt: (list: string) => `Good at ${list}`,
+      wants: (list: string) => `Wants to learn ${list}`,
+    },
     sent: 'Sent',
     failed: "That didn't send. Try again.",
     help: 'J and K move, G W L A choose, N writes a note, ⌘ Enter sends.',
@@ -469,8 +548,26 @@ export const consoleCopy = {
     evidence: 'Evidence',
     scores: 'Scores',
     whyNow: 'Why now',
-    players: 'Who is there already',
+    players: "Who's there already",
     help: 'J and K move, Y approves, R rejects, E edits.',
-    empty: 'Nothing here.',
+    empty: 'No problems with this status.',
+    status: { draft: 'Draft', approved: 'Approved', rejected: 'Rejected' },
+    keys: { approve: 'Y', reject: 'R', edit: 'E' },
+    fields: { title: 'Title', problem: 'Problem', challenge: 'Challenge', rarity: 'Rarity' },
+    strength: (n: number) => `Signal strength ${n} of 5`,
   },
+}
+
+/** Reply emails. One subject per reply, chosen in docs/COPY_CHOICES.md. */
+export const email = {
+  subject: {
+    go: (title: string) => `You're building ${title}`,
+    tweak: (title: string) => `One change, then build ${title}`,
+    talk: (title: string) => `Before you build ${title}, let's talk`,
+    another: () => 'A few problems we think fit you better',
+  },
+  hi: (first: string) => `Hi ${first},`,
+  readMore: 'Read the full reply on your page:',
+  fallbackTitle: 'your problem',
+  signOff: 'The ForgeX team',
 }

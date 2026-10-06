@@ -1,7 +1,7 @@
 'use server'
 
 import { z } from 'zod'
-import { page as copy } from '@/content/copy'
+import { email } from '@/content/copy'
 import { logEvent } from '@/lib/data/events'
 import { allFounders, patchFounder } from '@/lib/data/founders'
 import { addResponse, allPicks, allResponses, RESPONSE_TYPES, statusOf } from '@/lib/data/picks'
@@ -50,12 +50,12 @@ export async function respond(raw: unknown): Promise<TeamResult> {
     await logEvent(author, 'response', { pickId: pick.id, founder: founder.email, type: parsed.data.type, previous: statusOf(pick, responses) })
 
     const problem = pick.problemId ? await problemById(pick.problemId) : null
-    const title = problem?.title ?? pick.custom?.title ?? 'your problem'
+    const title = problem?.title ?? pick.custom?.title ?? email.fallbackTitle
     const base = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.AUTH_URL ?? 'http://localhost:3000'
     const message = responseEmail({
       first: founder.first,
       title,
-      status: copy.status[parsed.data.type],
+      type: parsed.data.type,
       note: parsed.data.note,
       url: `${base.replace(/\/$/, '')}/f/${founder.slug}`,
     })

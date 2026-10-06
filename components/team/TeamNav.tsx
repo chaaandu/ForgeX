@@ -12,7 +12,7 @@ export function TeamNav({ waiting, drafts }: { waiting: number; drafts: number }
     { href: '/team/bank', label: copy.nav.bank, count: drafts },
   ]
   return (
-    <nav aria-label="Console" className="flex gap-1">
+    <nav aria-label={copy.nav.label} className="flex gap-1">
       {items.map((item) => {
         const active = item.href === '/team' ? path === '/team' : path.startsWith(item.href)
         return (

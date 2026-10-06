@@ -13,13 +13,13 @@ test('an account outside Mesa is refused, calmly', async ({ page }) => {
   })
   expect(response.headers()['location']).toContain('error=domain')
   await page.goto('/login?error=domain')
-  await expect(page.getByText("That account isn't on the ForgeX list. Use your forge27 Mesa account.")).toBeVisible()
+  await expect(page.getByText("That's not a Mesa founder account. Sign in with your @forge27.mesaschool.co address.")).toBeVisible()
   await expect(page.getByRole('button', { name: 'Use another account' })).toBeVisible()
 })
 
 test('a founder-domain account off the roster is refused with its own message', async ({ page }) => {
   await page.goto('/login?error=roster')
-  await expect(page.getByText(/isn't in the ForgeX cohort/)).toBeVisible()
+  await expect(page.getByText(/isn't on the ForgeX roster/)).toBeVisible()
 })
 
 test("a founder cannot see another founder's page, card or the console", async ({ page }) => {

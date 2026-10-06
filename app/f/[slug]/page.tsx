@@ -9,7 +9,7 @@ import { Thread } from '@/components/founder/Thread'
 import { Profile } from '@/components/levels/Profile'
 import { Brand } from '@/components/shell/Brand'
 import { SignOut } from '@/components/shell/SignOut'
-import { archetypes, families, levels, page as copy } from '@/content/copy'
+import { archetypes, families, levels, meta, page as copy } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
 import { founderContext } from '@/lib/context'
 import { founderBySlug } from '@/lib/data/founders'
@@ -20,7 +20,10 @@ import { requireViewer } from '@/lib/session'
 import { INTENTS, labelOf } from '@/lib/taxonomy'
 import { world as worldCopy } from '@/content/copy'
 
-export const metadata: Metadata = { title: 'Founder', robots: { index: false, follow: false } }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const founder = await founderBySlug((await params).slug)
+  return { title: founder?.name ?? meta.title, robots: { index: false, follow: false } }
+}
 
 const NEXT_LEVEL = ['Arrive', 'Archetype', 'Profile', 'Your world', 'Matches', 'Matches']
 
@@ -53,7 +56,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
         <div className="flex items-center gap-2">
           {viewer.role === 'team' ? (
             <Link href="/team" className="btn btn-quiet press text-[13px]">
-              Console
+              {copy.console}
             </Link>
           ) : null}
           <SignOut />
