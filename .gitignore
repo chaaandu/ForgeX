@@ -28,3 +28,4 @@ next-env.d.ts
 /data/*Evidence_Book*.xls*
 /data/Hackathon*Types*.xls*
 /data/Hackathon*Types*.csv
+scripts/.*.mjs

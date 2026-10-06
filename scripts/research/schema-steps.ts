@@ -91,6 +91,7 @@ export const DROP_REASONS = [
   'a feature an incumbent will ship',
   'buildability 2 or below',
   'fewer than 3 independent signals',
+  // Counted after signals dated before 2024-01 are set aside (see MIN_SIGNAL_DATE).
   'only one source type',
 ] as const
 export type DropReason = (typeof DROP_REASONS)[number]

@@ -105,7 +105,10 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
 }
 
 export const landing = {
-  line: 'Find a problem worth three weeks of your life.',
+  kicker: 'ForgeX 2.0 · Mesa School of Business',
+  lineStart: 'Find a problem worth',
+  lineEm: 'three weeks',
+  lineEnd: 'of your life.',
   open: (count: number) => `${count} open problems`,
   enter: 'Enter',
 }
@@ -114,11 +117,21 @@ export const problem = {
   build: "I'll build this",
   writeOwn: 'None of these? Write your own.',
   learn: "What you'll learn",
+  challenge: 'Challenge',
+  signal: 'Signal',
+  signalOf: (n: number) => `Signal strength ${n} of 5`,
+  close: 'Close',
 }
 
 export const card = {
   number: (n: number, of: number) => `#${String(n).padStart(3, '0')} / ${of}`,
+  unnumbered: 'ForgeX 2.0',
   original: 'Original',
+  noArchetype: 'Archetype to come',
+  building: 'Building',
+  download: 'Download card',
+  share: 'Share',
+  shareText: (name: string) => `${name} on ForgeX 2.0`,
 }
 
 /** Why a problem was matched. Each one names a factor that actually scored. */
@@ -133,4 +146,193 @@ export const chips = {
   archetype: (name: string) => `Suits a ${name}`,
   suggested: 'Suggested by the team',
   gentle: 'A good place to start',
+}
+
+export const meta = {
+  title: 'ForgeX 2.0',
+  description: 'Find a problem worth three weeks of your life.',
+}
+
+export const wall = {
+  face: (first: string, archetype: string | null) => (archetype ? `${first}, ${archetype}` : first),
+  unplaced: 'Archetype to come',
+  label: 'The 117 founders of ForgeX 2.0',
+}
+
+export const levels = {
+  names: {
+    arrive: 'Arrive',
+    archetype: 'Archetype',
+    profile: 'Profile',
+    world: 'Your world',
+    matches: 'Matches',
+    why: 'Your why',
+  },
+  of: (at: number, of: number, name: string) => `Level ${at} of ${of}, ${name}`,
+  card: 'Your founder card',
+  signOut: 'Sign out',
+}
+
+/** Level 4. Six questions, about two minutes, every one with a way out. */
+export const world = {
+  intro: {
+    title: 'Your world',
+    lead: 'Six quick questions. Your answers decide which problems you see.',
+  },
+  industries: {
+    ask: 'Which industries pull you in?',
+    hint: 'Pick up to three.',
+    other: 'Other',
+    otherPlaceholder: 'Which one?',
+  },
+  side: {
+    ask: 'Who do you want to build for?',
+    options: { business: 'Businesses', consumer: 'Consumers', creator: 'Creators', unsure: 'Not sure yet' },
+  },
+  access: {
+    ask: 'Who can you reach this week?',
+    hint: 'People you can talk to beat ideas you are excited about.',
+    other: 'Other',
+    otherPlaceholder: 'Who?',
+    worlds: (who: string) => `What world is ${who} in?`,
+    elsewhere: 'Somewhere else',
+    elsewherePlaceholder: 'Where?',
+    none: 'Nobody yet',
+    whoLabel: {
+      family: 'your family business',
+      relatives: "your relatives' work",
+      internship: 'your past internship or job',
+      parents: "your friends' parents",
+      community: 'your community',
+      other: 'them',
+    },
+  },
+  learn: {
+    ask: 'What do you want to learn by building?',
+    hint: 'Pick up to three.',
+    other: 'Other',
+    otherPlaceholder: 'What?',
+  },
+  intent: {
+    ask: 'What are you here for?',
+  },
+  comfort: {
+    ask: 'How comfortable are you with tech today?',
+    hint: 'No wrong answer. It only decides how big a problem we suggest.',
+    stops: [
+      "I use apps. I haven't built one.",
+      "I've followed a few tutorials.",
+      "I've built something small with AI tools.",
+      "I've shipped something people used.",
+      'I write code comfortably.',
+    ],
+  },
+  next: 'Next',
+  back: 'Back',
+  done: 'Show my matches',
+  saving: 'Finding your matches',
+  error: "That didn't save. Your answers are still here. Try again.",
+}
+
+export const login = {
+  title: 'Sign in',
+  lead: 'Use your Mesa Google account.',
+  google: 'Continue with Google',
+  refused: {
+    domain: "That account isn't on the ForgeX list. Use your forge27 Mesa account.",
+    roster: "That account isn't in the ForgeX 2.0 cohort. If that's wrong, tell the team.",
+    other: "Sign-in didn't finish. Try again.",
+  },
+  another: 'Use another account',
+  mock: 'Mock sign-in',
+  mockAs: (who: string) => `Sign in as ${who}`,
+}
+
+export const arrive = {
+  hi: (first: string) => `Hi, ${first}.`,
+  lead: 'About ten minutes. Six steps. At the end, a problem worth building.',
+  path: [
+    { name: 'Arrive', line: "You're here." },
+    { name: 'Archetype', line: 'What kind of builder you are.' },
+    { name: 'Profile', line: 'You, in your own words.' },
+    { name: 'Your world', line: 'Who you can reach and what you want to learn.' },
+    { name: 'Matches', line: 'Four problems picked for you.' },
+    { name: 'Your why', line: 'Why you would build it. We answer every one.' },
+  ],
+  go: "Let's go",
+  numbering: 'Numbering your card',
+}
+
+export const archetypeFlow = {
+  intro: {
+    title: 'What kind of builder are you?',
+    lead: 'Seven quick questions. Go with your first instinct. There are no right answers.',
+    start: 'Start',
+    retakeTitle: 'One more go',
+    retakeLead: 'Your newest answer replaces your archetype. You get this one retake.',
+  },
+  question: (at: number, of: number) => `${at} of ${of}`,
+  back: 'Back',
+  keys: 'Press 1, 2 or 3',
+  placing: 'Placing you',
+  retry: 'Try again',
+  error: "That didn't save. Your answers are still here. Try again.",
+  reveal: {
+    youAre: "You're a",
+    h1: (family: string, kind: string) => `In Hackathon 1 you came out a ${family}. More precisely, a ${kind}.`,
+    strengths: 'Strengths',
+    blindSpot: 'Blind spot',
+    loves: 'Loves',
+    keep: "That's me",
+    next: 'Next',
+    retake: 'Retake it',
+    retakeUsed: 'Retake used',
+    cardTitle: 'Your founder card',
+    cardLead: 'It fills in as you go. Download it now, or wait until it carries your problem.',
+    replay: 'Replay',
+  },
+}
+
+export const profile = {
+  heading: "This is you so far. Change anything that doesn't feel like you.",
+  fromMesa: 'Your name and photo come from Mesa. Ask the team to change them.',
+  bio: {
+    label: 'One line about you',
+    placeholder: 'One line a stranger should know about you.',
+    required: 'One line is all we need.',
+  },
+  facts: {
+    city: { label: 'Lives in', placeholder: 'Your city' },
+    languages: { label: 'Speaks', placeholder: 'Add a language' },
+    degree: { label: 'Studies', placeholder: 'Your degree' },
+  },
+  goodAt: {
+    label: 'Good at today',
+    placeholder: 'Add something',
+    suggestions: ['Sales', 'Research', 'Writing', 'Design', 'Excel', 'Video', 'Coding', 'Public speaking', 'Operations'],
+  },
+  wantToLearn: {
+    label: 'Wants to learn',
+    placeholder: 'Add something',
+    suggestions: ['AI agents', 'Voice AI', 'Full-stack web', 'Data', 'Product design', 'Growth marketing', 'Mobile apps'],
+  },
+  links: {
+    label: 'Find me',
+    github: 'GitHub',
+    linkedin: 'LinkedIn',
+    portfolio: 'Portfolio or personal site',
+    add: 'Add',
+    placeholder: { github: 'github.com/you or @you', linkedin: 'linkedin.com/in/you', portfolio: 'yoursite.com' },
+    invalid: "That doesn't look like a link we can use.",
+  },
+  edit: 'Edit',
+  remove: (item: string) => `Remove ${item}`,
+  saving: 'Saving',
+  saved: 'Saved',
+  failed: "That didn't save. Try again.",
+  done: 'Looks like me',
+  wall: {
+    label: 'Show me on the founder wall',
+    hint: 'The public wall on the ForgeX home page. Your first name, photo and archetype.',
+  },
 }

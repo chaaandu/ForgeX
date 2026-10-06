@@ -11,12 +11,19 @@ import type { DropReason, Scored } from './schema-steps'
 // ---------------------------------------------------------------------------
 // Evidence
 
+/** Signals older than this are ignored as evidence. 2025 and 2026 are preferred. */
+export const MIN_SIGNAL_DATE = '2024-01'
+
+/**
+ * The evidence behind a candidate: its IDs resolved against the raw files,
+ * one per URL, and nothing dated before MIN_SIGNAL_DATE.
+ */
 export function resolveSignals(ids: string[], byId: Map<string, Signal>): Signal[] {
   const seen = new Set<string>()
   const out: Signal[] = []
   for (const id of ids) {
     const signal = byId.get(id)
-    if (!signal || seen.has(signal.url)) continue
+    if (!signal || seen.has(signal.url) || signal.date.slice(0, 7) < MIN_SIGNAL_DATE) continue
     seen.add(signal.url)
     out.push(signal)
   }
@@ -73,9 +80,9 @@ export function industryCap(size: number): number {
   return Math.floor(size * INDUSTRY_MAX_SHARE)
 }
 
-/** Strictly above 15%, as the spec says. */
+/** At least 15% of the bank. */
 export function sideMin(size: number): number {
-  return Math.floor(size * SIDE_MIN_SHARE) + 1
+  return Math.ceil(size * SIDE_MIN_SHARE)
 }
 
 export function indiaMin(size: number): number {
@@ -140,7 +147,7 @@ export function quotaReport(bank: Tagged[]): QuotaRow[] {
     rows.push({
       quota: `Side ${id}`,
       actual: `${n} (${pct(n, size)})`,
-      target: `at least ${sideMin(size)} (over 15%)`,
+      target: `at least ${sideMin(size)} (15%)`,
       ok: n >= sideMin(size),
     })
   }

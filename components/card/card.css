@@ -1,0 +1,413 @@
+/* ==========================================================================
+   The founder card. 5:7, thick stock, sized in container units.
+   ========================================================================== */
+
+.fc-wrap {
+  container-type: inline-size;
+  width: 100%;
+  perspective: 1200px;
+}
+
+.fc-wrap[data-size='sm'] {
+  max-width: 150px;
+}
+.fc-wrap[data-size='md'] {
+  max-width: 320px;
+}
+.fc-wrap[data-size='lg'] {
+  max-width: 380px;
+}
+
+.fc-tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 0.5;
+  --my: 0.3;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  transition: transform 300ms var(--ease-out);
+}
+
+.fc-tilt[data-live] {
+  transition: transform 60ms linear;
+}
+
+.fc {
+  --mx: 0.5;
+  --my: 0.3;
+  --fam: #8f8c85;
+  --r: #3a3a40;
+  --r-hi: #5a5a62;
+  position: relative;
+  aspect-ratio: 5 / 7;
+  border-radius: 6cqi;
+  padding: 3cqi;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(150deg, var(--r-hi) 0%, var(--r) 35%, color-mix(in oklab, var(--r) 55%, black) 100%);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.3),
+    inset 0 -2px 0 rgb(0 0 0 / 0.35),
+    0 2px 2px rgb(0 0 0 / 0.5),
+    0 12cqi 24cqi -8cqi rgb(0 0 0 / 0.95);
+  color: var(--color-ink-1);
+  font-family: var(--font-sans);
+  transition: background 600ms var(--ease-out);
+}
+
+.fc[data-finish='rare'] {
+  --r: var(--color-rare);
+  --r-hi: color-mix(in oklab, var(--color-rare) 60%, white);
+}
+.fc[data-finish='epic'] {
+  --r: var(--color-epic);
+  --r-hi: color-mix(in oklab, var(--color-epic) 60%, white);
+}
+.fc[data-finish='legendary'] {
+  --r: var(--color-legendary);
+  --r-hi: color-mix(in oklab, var(--color-legendary) 55%, white);
+}
+.fc[data-finish='mythic'] {
+  --r: var(--color-mythic);
+  --r-hi: color-mix(in oklab, var(--color-mythic) 55%, white);
+}
+.fc[data-finish='original'] {
+  --r: #cfc8ba;
+  --r-hi: #fbf8f2;
+}
+
+/* Foil on the frame only, never across a face. Legendary and Mythic get a
+   spectrum printed through a guilloché; Original gets pearl. */
+.fc-foil {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.fc[data-finish='legendary'] .fc-foil,
+.fc[data-finish='mythic'] .fc-foil,
+.fc[data-finish='original'] .fc-foil {
+  opacity: 0.9;
+  mix-blend-mode: color-dodge;
+  background: conic-gradient(
+    from calc(var(--mx) * 300deg + 40deg) at calc(var(--mx) * 100%) calc(var(--my) * 100%),
+    #ff4d6d,
+    #ffb84d,
+    #fff47a,
+    #5cffc1,
+    #5cb8ff,
+    #b77cff,
+    #ff4d6d
+  );
+  -webkit-mask: url('/brand/guilloche.svg') center / cover no-repeat;
+  mask: url('/brand/guilloche.svg') center / cover no-repeat;
+}
+
+.fc[data-finish='original'] .fc-foil {
+  opacity: 0.5;
+  background: conic-gradient(
+    from calc(var(--mx) * 300deg) at calc(var(--mx) * 100%) calc(var(--my) * 100%),
+    #fff,
+    #e3e8ff,
+    #ffe9f4,
+    #e6fff7,
+    #fff
+  );
+}
+
+.fc-face {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  border-radius: 4cqi;
+  background: #121214;
+  overflow: hidden;
+}
+
+.fc-top {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 3.5cqi 4cqi;
+  font: 500 3.4cqi/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.82);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 0.6);
+}
+
+.fc-finish {
+  color: color-mix(in oklab, var(--r) 70%, white);
+}
+
+.fc-photo {
+  position: relative;
+  grid-row: 1 / 3;
+  min-height: 0;
+  background: var(--color-s2);
+}
+
+.fc-photo img {
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+.fc-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.35), transparent 22%, transparent 70%, #121214);
+}
+
+.fc-relic {
+  position: absolute;
+  z-index: 3;
+  right: 4cqi;
+  top: 54%;
+  width: 17cqi;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #121214;
+  box-shadow:
+    0 0 0 1cqi #121214,
+    0 0 0 1.4cqi color-mix(in oklab, var(--fam) 60%, transparent);
+}
+
+.fc-relic img {
+  width: 82%;
+  height: 82%;
+}
+
+.fc-relic[data-empty] {
+  box-shadow:
+    0 0 0 1cqi #121214,
+    0 0 0 1.4cqi transparent;
+  outline: 0.6cqi dashed var(--color-line-2);
+  outline-offset: -0.6cqi;
+  font: 400 7cqi/1 var(--font-display);
+  color: var(--color-ink-3);
+}
+
+.fc-meta {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 1.2cqi;
+  padding: 3cqi 5cqi 4cqi;
+}
+
+.fc-name {
+  margin: 0;
+  font: 400 9.5cqi/1 var(--font-display);
+  letter-spacing: -0.01em;
+  padding-right: 20cqi;
+}
+
+.fc-kind {
+  margin: 0;
+  font: italic 400 5.4cqi/1.15 var(--font-display);
+  color: color-mix(in oklab, var(--fam) 55%, white);
+}
+
+.fc-empty {
+  color: var(--color-ink-3);
+}
+
+.fc-line {
+  margin: 0.8cqi 0 0;
+  font-size: 3.9cqi;
+  line-height: 1.4;
+  color: var(--color-ink-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fc-building span {
+  font: 500 3.2cqi/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+.fc-marks {
+  margin: 0;
+  padding: 2cqi 5cqi 3cqi;
+  border-top: 1px solid var(--color-line);
+  font: 500 3cqi/1.2 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The team's answer, pressed into the card. */
+.fc-stamp {
+  position: absolute;
+  z-index: 4;
+  left: 8cqi;
+  top: 30%;
+  padding: 2cqi 4cqi;
+  border: 1.2cqi solid currentColor;
+  border-radius: 3cqi;
+  font: 700 8cqi/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-pink);
+  rotate: -12deg;
+  mix-blend-mode: screen;
+  animation: fc-stamp 420ms var(--ease-impact) both;
+}
+
+@keyframes fc-stamp {
+  from {
+    opacity: 0;
+    scale: 1.6;
+  }
+  60% {
+    opacity: 1;
+    scale: 0.94;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+.fc-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  opacity: 0.55;
+  background: radial-gradient(
+    circle at calc(var(--mx) * 100%) calc(var(--my) * 100%),
+    rgb(255 255 255 / 0.5),
+    transparent 45%
+  );
+}
+
+/* ==========================================================================
+   A face on the wall: a tiny card that flips.
+   ========================================================================== */
+
+.wf {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 600px;
+  border-radius: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wf-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition:
+    transform 520ms var(--ease-impact),
+    translate 200ms var(--ease-out);
+}
+
+.wf:hover .wf-inner {
+  translate: 0 -4px;
+}
+
+.wf-inner[data-flipped] {
+  transform: rotateY(180deg);
+}
+
+.wf-front,
+.wf-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.wf-front {
+  background: var(--color-s2);
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+.wf-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.62) contrast(1.06) sepia(0.12);
+  transition: filter 200ms var(--ease-out);
+}
+
+.wf:hover .wf-front img,
+.wf:focus-visible .wf-front img {
+  filter: none;
+}
+
+.wf-back {
+  transform: rotateY(180deg);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 2px;
+  padding: 8px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 30%, rgb(255 72 176 / 0.2), transparent 70%),
+    linear-gradient(160deg, var(--color-s3), var(--color-s1));
+  box-shadow:
+    inset 0 0 0 1px rgb(255 72 176 / 0.45),
+    0 14px 30px -12px rgb(0 0 0 / 0.9);
+}
+
+.wf-relic {
+  width: 42%;
+  height: auto;
+  margin-bottom: 2px;
+}
+
+.wf-back b {
+  font: 400 clamp(14px, 1.5vw, 19px) / 1 var(--font-display);
+  color: var(--color-ink-1);
+}
+
+.wf-back i {
+  font: 500 clamp(8px, 0.75vw, 10px) / 1.25 var(--font-mono);
+  font-style: normal;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-pink-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wf-inner,
+  .wf-inner[data-flipped] {
+    transform: none;
+  }
+  .wf-back {
+    transform: none;
+    opacity: 0;
+    transition: opacity 150ms linear;
+  }
+  .wf-inner[data-flipped] .wf-back {
+    opacity: 1;
+  }
+}
