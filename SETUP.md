@@ -24,10 +24,13 @@ admin panel. There is no admin screen in the app, by design.
 4. Add a tab named **Bet log** with headers `Timestamp`, `Action`, `Email`,
    `Name`, `Problem ID`, `Previous problem ID` in `A1` to `F1`. The script
    creates this tab too if it is absent.
-5. Optional, and worth it: select `A2:O213`, open
+5. The app also writes two more tabs, **Profiles** and **Challenges**. You do
+   not have to create either: the script adds them with their headers the first
+   time it needs them. What they hold is in step F.
+6. Optional, and worth it: select `A2:O213`, open
    **Format → Conditional formatting**, choose "Custom formula is" with
    `=$O2<>""`, and pick a light fill. Taken rows then stand out at a glance.
-6. Do not rename the Problems tab, its headers, or the problem IDs. The app
+7. Do not rename the Problems tab, its headers, or the problem IDs. The app
    reads every column by header name, so the order of columns can change but the
    names cannot.
 
@@ -124,6 +127,24 @@ Do this with two student accounts and one mesaschool.co account.
 6. A personal Gmail is refused at sign-in and lands on the refused screen:
    "That's not a Mesa account." with a **Try another account** button.
 
+### The onboarding flow
+
+7. Sign in as a student who has never used the site. You should land on
+   **Act 1 of 5**, not on the board — the board turns away anyone who has not
+   answered yet.
+8. Walk the five acts. Act 1 shows what the cohort sheets know about them;
+   correct a field and check it sticks. Acts 2 to 4 ask for industries, a
+   focus and tool comfort. Act 5 deals four problems, each listing the answers
+   that earned it.
+9. Check the **Profiles** tab: one row for that student, with their answers as
+   ids and a `Completed at` time.
+10. Press **None of these are mine** and send in a problem statement — three
+    fields: the problem, the industry, and why them. Check the **Challenges**
+    tab: one row, `Status` of `pending`.
+11. Type `approved` in that row's `Status` and something in `Reviewer note`.
+    Within about five minutes the student sees it on `/me` as **Approved** with
+    your note. To see it at once, redeploy or wait out the cache.
+
 ---
 
 ## F. Running it during ForgeX
@@ -140,6 +161,30 @@ Do this with two student accounts and one mesaschool.co account.
   the only thing the count reads. Do this only to correct your own mistake: the
   Bet log is the record of what happened, and every row you remove is a piece of
   that record gone.
+- **To approve somebody's own problem statement**, open the **Challenges** tab.
+  Each row is one submission: their email, the industry they picked, the
+  problem, why them, a `Status` and a `Reviewer note`. Type one of `approved`, `changes` or
+  `declined` into `Status`, and write the why in `Reviewer note`. The student
+  sees both on their profile.
+
+  Anything else in that cell — a typo, a half-typed word, your own shorthand —
+  reads as **pending**, on purpose. A misspelt `aproved` must never look to a
+  student like permission to start building.
+
+  The tab is append-only, like the Bet log. One submission each: this is the
+  idea a student wants to spend seventeen days on, not a pitch round, and three
+  attempts only ever produced three thin ones instead of one considered one.
+
+- **An approved challenge does not take a problem off the board**, and it does
+  not spend one of their three changes. If you want them to also stop holding a
+  listed problem, clear its `Bet by` cell as above and tell them.
+
+- **The Profiles tab** has one row per student: their answers, anything they
+  corrected about themselves, and when they finished. Editing a row by hand is
+  safe — the app reads it by header name like everything else — but their
+  answers drive what gets recommended, so it is usually better to ask them to
+  change it themselves from `/me`.
+
 - **To change the deadline**, update `BETS_CLOSE_AT` in both the script
   properties and the Vercel environment variables, then redeploy on Vercel.
   Both are checked, so the earlier of the two wins in practice.
@@ -182,8 +227,25 @@ pnpm build
 ```sh
 pnpm data:problems   # data/problems.json from the xlsx, columns A to N
 pnpm data:students   # data/students.json and public/students/*.webp
+pnpm data:profiles   # data/profiles.json from the cohort exports
 ```
 
 `pnpm data:students` reads `data/Emails.xlsx` and the portrait repo at
 `data/the-117-c1`. Both outputs are committed, so you only need this if the
 roster changes.
+
+`pnpm data:profiles` builds what Act 1 shows a student about themselves. Put
+the cohort exports in `data/` — it looks for filenames containing
+*segmentation*, *readiness* or *evidence book*, and *curation* — and run it. It
+joins on the forge email where there is one and on the name where there is not,
+prints every row it could not place, and never writes anything but
+`data/profiles.json`.
+
+It imports facts and the students' own words: family business, prior work,
+degree, the industry they said they want to build in, and their own answer to
+what they are good at. It does **not** import the assessment columns that sit
+beside them in the same sheets — segmentation, confidence, top-student and
+priority-pool flags, readiness tiers, gaps, Sherpa and mentor notes, or
+anything financial — and it aborts the run if a mapping ever reaches for one.
+Everything in that file is shown back to the student it describes, which is the
+whole reason for the line.

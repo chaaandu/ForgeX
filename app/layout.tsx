@@ -1,7 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
-import { Background } from '@/components/Background'
 import './globals.css'
 
 const siteUrl =
@@ -11,24 +8,17 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'ForgeX 2.0',
-  description: "100+ problems. Bet on the one you'd build.",
-  openGraph: {
-    title: 'ForgeX 2.0',
-    description: "100+ problems. Bet on the one you'd build.",
-  },
+  description: 'Find a problem worth three weeks of your life.',
 }
 
 export const viewport: Viewport = {
-  themeColor: '#09090B',
+  themeColor: '#0c0c0e',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body>
-        <Background />
-        {children}
-      </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   )
 }

@@ -31,6 +31,20 @@ const SLUG_ALIASES: Record<string, string> = {
   praval_goud: 'praval-goud-madduri',
 }
 
+/**
+ * Corrections to the roster workbook, confirmed by the owner on 2026-10-06.
+ * The workbook carries a typo and a personal address for these two.
+ */
+const EMAIL_FIXES: Record<string, string> = {
+  'aditya_peyet@forge28.mesaschool.co': 'aditya_peter@forge27.mesaschool.co',
+  'madymaheshwari12@gmail.com': 'madhuresh_binzani@forge27.mesaschool.co',
+}
+
+/** Names the workbook got wrong. One row carries an email address where the name should be. */
+const NAME_FIXES: Record<string, string> = {
+  'ujjwal_sitlani@forge27.mesaschool.co': 'Ujjwal Sitlani',
+}
+
 type Founder = { slug: string; name: string; photo: string }
 
 const letters = (value: string) => value.toLowerCase().replace(/[^a-z]/g, '')
@@ -61,9 +75,10 @@ function readRoster() {
   for (const column of TRACKS) {
     for (let row = 2; row < 500; row += 1) {
       const name = cell(`${column.name}${row}`)
-      const email = cell(`${column.email}${row}`).toLowerCase()
+      const raw = cell(`${column.email}${row}`).toLowerCase()
+      const email = EMAIL_FIXES[raw] ?? raw
       if (!name || !email.includes('@')) continue
-      out.push({ name, email, track: column.track })
+      out.push({ name: NAME_FIXES[email] ?? name, email, track: column.track })
     }
   }
   return out

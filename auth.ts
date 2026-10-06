@@ -2,7 +2,8 @@ import NextAuth, { type DefaultSession } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import Google from 'next-auth/providers/google'
 import { normaliseEmail, roleForEmail } from '@/lib/roles'
-import { studentByEmail } from '@/lib/students'
+import { isMock } from '@/lib/store/mode'
+import { inCohort, studentByEmail } from '@/lib/students'
 import type { Role } from '@/lib/types'
 
 declare module 'next-auth' {
@@ -17,7 +18,6 @@ declare module 'next-auth' {
   }
 }
 
-const mockMode = process.env.MOCK_BACKEND === 'true'
 
 function firstNameOf(name: string | null | undefined, email: string): string {
   const fromName = (name ?? '')
@@ -56,14 +56,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       authorization: { params: { prompt: 'select_account' } },
       allowDangerousEmailAccountLinking: true,
     }),
-    ...(mockMode ? [mockProvider] : []),
+    ...(isMock() ? [mockProvider] : []),
   ],
   session: { strategy: 'jwt' },
   pages: { signIn: '/login', error: '/login' },
   callbacks: {
     signIn({ user }) {
-      if (roleForEmail(user.email)) return true
-      return '/login?error=domain'
+      const role = roleForEmail(user.email)
+      if (!role) return '/login?error=domain'
+      // A founder-domain account that is not on the ForgeX roster is refused
+      // here, with its own message, rather than let in to a 404.
+      if (role === 'founder' && !inCohort(normaliseEmail(user.email))) return '/login?error=roster'
+      return true
     },
     jwt({ token, user }) {
       const extra = token as typeof token & {
@@ -75,9 +79,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       const role = roleForEmail(email)
       if (!role) return extra
 
-      const roster = studentByEmail(email)
-      const name = user?.name ?? extra.name ?? roster?.name ?? email
-      const photo = user?.image ?? extra.picture ?? roster?.photo ?? ''
+      // A founder's name and photo are Mesa's, from the roster, not whatever
+      // their Google account happens to say.
+      const roster = role === 'founder' ? studentByEmail(email) : undefined
+      const name = roster?.name ?? user?.name ?? extra.name ?? email
+      const photo = roster?.photo ?? user?.image ?? extra.picture ?? ''
 
       extra.email = email
       extra.name = name
@@ -95,7 +101,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.user.email = extra.email ?? ''
       session.user.name = extra.name ?? ''
       session.user.image = extra.picture ?? ''
-      session.user.role = extra.role ?? 'student'
+      session.user.role = extra.role ?? 'founder'
       session.user.firstName = extra.firstName ?? ''
       return session
     },

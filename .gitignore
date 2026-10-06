@@ -14,3 +14,17 @@ next-env.d.ts
 /blob-report
 /playwright/.cache
 /data/the-117-c1
+
+# Cohort source workbooks. These carry per-student staff assessment — segment,
+# confidence, top-student and priority flags, readiness tiers, gaps, mentor
+# notes, a loan flag — against named students. `pnpm data:profiles` reads them
+# and writes only the safe fields to data/profiles.json, which is committed.
+# The sources themselves must not enter git history.
+# Match the source workbooks only. The derived data/profiles.json and
+# data/archetypes.json are safe by construction and are committed.
+/data/*Readiness*.xls*
+/data/*Segmentation*.xls*
+/data/*Curation*.xls*
+/data/*Evidence_Book*.xls*
+/data/Hackathon*Types*.xls*
+/data/Hackathon*Types*.csv

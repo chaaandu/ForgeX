@@ -1,0 +1,2760 @@
+[
+  {
+    "email": "aadishwar_r@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 4,
+      "e": 15,
+      "s": 0
+    },
+    "margin": 11,
+    "technical": 8,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 2,
+      "marketing": 4,
+      "data": 4
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aarav_shrivastava@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 8,
+      "s": 2
+    },
+    "margin": 1,
+    "technical": 6,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 3,
+      "marketing": 1,
+      "data": 1
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "abeer_bhati@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 2,
+      "e": 11,
+      "s": 5
+    },
+    "margin": 6,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "abhishek_gaur@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 9,
+      "e": 10,
+      "s": 0
+    },
+    "margin": 1,
+    "technical": 11,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 0,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "abhishek_hosmani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 2,
+      "s": 5
+    },
+    "margin": 7,
+    "technical": 20,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 5,
+      "communication": 5,
+      "tech": 5,
+      "marketing": 5,
+      "data": 4
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "abhishek_kambalath@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 8,
+      "e": 8,
+      "s": 3
+    },
+    "margin": 0,
+    "technical": 7,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "adithya_rajagopalan@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 7,
+      "s": 0
+    },
+    "margin": 5,
+    "technical": 24,
+    "tags": [
+      "want:business",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 1,
+      "communication": 3,
+      "tech": 3,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aditi_bhateja@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 8,
+      "e": 9,
+      "s": 3
+    },
+    "margin": 1,
+    "technical": 5,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 1,
+      "communication": 1,
+      "tech": 0,
+      "marketing": 1,
+      "data": 1
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aditi_roy@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 5,
+      "s": 0
+    },
+    "margin": 9,
+    "technical": 4,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 1,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aditya_agarwal@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 1,
+      "e": 13,
+      "s": 5
+    },
+    "margin": 8,
+    "technical": 9,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aditya_peter@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 5,
+      "e": 6,
+      "s": 9
+    },
+    "margin": 3,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 4,
+      "tech": 0,
+      "marketing": 2,
+      "data": 1
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "aditya_singhal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 13,
+      "e": 2,
+      "s": 3
+    },
+    "margin": 10,
+    "technical": 6,
+    "tags": [
+      "want:local"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 1,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "adnaan_r@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 5,
+      "s": 4
+    },
+    "margin": 4,
+    "technical": 7,
+    "tags": [
+      "want:design"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ajitesh_senthilkumar@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 2,
+      "s": 6
+    },
+    "margin": 4,
+    "technical": 8,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "akash_ghorpade@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 2,
+      "s": 2
+    },
+    "margin": 12,
+    "technical": 20,
+    "tags": [
+      "want:business",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 2,
+      "marketing": 4,
+      "data": 3
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "akassh_puranik@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 8,
+      "e": 11,
+      "s": 0
+    },
+    "margin": 3,
+    "technical": 7,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "akhilesh_bijjargi@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 8,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 3,
+    "technical": 2,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "akristi_mohta@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 2,
+      "e": 11,
+      "s": 7
+    },
+    "margin": 4,
+    "technical": 13,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "akshat_thakur@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 8,
+      "e": 5,
+      "s": 7
+    },
+    "margin": 1,
+    "technical": 17,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ananta_tantia@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 7,
+      "e": 5,
+      "s": 8
+    },
+    "margin": 1,
+    "technical": 3,
+    "tags": [
+      "want:local"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 1,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ansh_loya@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 5,
+      "s": 3
+    },
+    "margin": 5,
+    "technical": 5,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 5,
+      "communication": 5,
+      "tech": 4,
+      "marketing": 5,
+      "data": 5
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "anshul_dhapte@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 4,
+      "e": 1,
+      "s": 15
+    },
+    "margin": 11,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 5,
+      "communication": 4,
+      "tech": 1,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "anubhav_rastogi@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 6,
+      "e": 5,
+      "s": 7
+    },
+    "margin": 1,
+    "technical": 14,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 2,
+      "communication": 2,
+      "tech": 2,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "anuj_bajaj@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 4,
+      "e": 6,
+      "s": 8
+    },
+    "margin": 2,
+    "technical": 14,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 1,
+      "tech": 3,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "anushka_ghogre@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 2,
+      "s": 5
+    },
+    "margin": 7,
+    "technical": 7,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "archit_pathak@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 4,
+      "e": 6,
+      "s": 11
+    },
+    "margin": 5,
+    "technical": 24,
+    "tags": [
+      "want:novel",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 3,
+      "marketing": 2,
+      "data": 3
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "arpita_mahata@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 4,
+      "e": 11,
+      "s": 5
+    },
+    "margin": 6,
+    "technical": 13,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 2,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ashutosh_saxena@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 7,
+      "e": 4,
+      "s": 8
+    },
+    "margin": 1,
+    "technical": 14,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 3,
+      "marketing": 2,
+      "data": 4
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "atharva_agrawal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 7,
+      "s": 3
+    },
+    "margin": 2,
+    "technical": 16,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 5,
+      "communication": 5,
+      "tech": 5,
+      "marketing": 5,
+      "data": 5
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "bhadar_singh@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 7,
+      "s": 0
+    },
+    "margin": 4,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "bhavit_gupta@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 1,
+      "e": 8,
+      "s": 11
+    },
+    "margin": 3,
+    "technical": 7,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "bhavya_tandon@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 1,
+      "e": 5,
+      "s": 13
+    },
+    "margin": 8,
+    "technical": 8,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "brijesh_attal@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 8,
+      "e": 0,
+      "s": 10
+    },
+    "margin": 2,
+    "technical": 11,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 5,
+      "tech": 2,
+      "marketing": 4,
+      "data": 4
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "darsh_shah@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 7,
+      "s": 3
+    },
+    "margin": 2,
+    "technical": 4,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 1,
+      "communication": 2,
+      "tech": 0,
+      "marketing": 3,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "darshan_chopda@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 3,
+      "e": 8,
+      "s": 8
+    },
+    "margin": 0,
+    "technical": 13,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 2,
+      "tech": 1,
+      "marketing": 1,
+      "data": 0
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "dev_mehra@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 6,
+      "e": 5,
+      "s": 8
+    },
+    "margin": 2,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 1,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "devansh_mehta@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 8,
+      "e": 11,
+      "s": 0
+    },
+    "margin": 3,
+    "technical": 8,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 2,
+      "tech": 2,
+      "marketing": 3,
+      "data": 4
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "devansh_vora@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 7,
+      "e": 7,
+      "s": 5
+    },
+    "margin": 0,
+    "technical": 19,
+    "tags": [
+      "want:business",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 4,
+      "communication": 5,
+      "tech": 5,
+      "marketing": 5,
+      "data": 5
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "dhruvi_lohiya@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 7,
+      "s": 0
+    },
+    "margin": 4,
+    "technical": 7,
+    "tags": [
+      "want:local"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "dhyay_popat@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 7,
+      "e": 12,
+      "s": 0
+    },
+    "margin": 5,
+    "technical": 12,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 3,
+      "marketing": 4,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "divy_hardenia@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 4,
+    "technical": 15,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "divyam_arora@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 9,
+      "e": 9,
+      "s": 0
+    },
+    "margin": 0,
+    "technical": 21,
+    "tags": [
+      "want:design",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "diya_harish@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 8,
+      "s": 0
+    },
+    "margin": 3,
+    "technical": 10,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "haider_millwala@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 0,
+      "s": 8
+    },
+    "margin": 3,
+    "technical": 24,
+    "tags": [
+      "want:business"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "happy_panjwani@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 5,
+      "e": 7,
+      "s": 6
+    },
+    "margin": 1,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 3,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "harsh_dubey@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 3,
+      "s": 8
+    },
+    "margin": 1,
+    "technical": 8,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "harsh_malani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 7,
+      "s": 3
+    },
+    "margin": 2,
+    "technical": 5,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "harsh_nain@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 4,
+    "technical": 5,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 2,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "hritik_gani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 15,
+      "e": 3,
+      "s": 0
+    },
+    "margin": 12,
+    "technical": 7,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "itish_pande@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 3,
+      "s": 7
+    },
+    "margin": 3,
+    "technical": 24,
+    "tags": [
+      "want:novel",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 5,
+      "tech": 4,
+      "marketing": 5,
+      "data": 3
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "jenessa_bhathena@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 7,
+      "e": 5,
+      "s": 8
+    },
+    "margin": 1,
+    "technical": 8,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "kaavya_goenka@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 6,
+      "s": 4
+    },
+    "margin": 4,
+    "technical": 12,
+    "tags": [
+      "want:design"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "kavya_zala@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 0,
+      "s": 8
+    },
+    "margin": 3,
+    "technical": 10,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "lipika_arya@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 7,
+      "s": 3
+    },
+    "margin": 2,
+    "technical": 18,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 4,
+      "marketing": 3,
+      "data": 4
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "madhuresh_binzani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 8,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 3,
+    "technical": 15,
+    "tags": [
+      "want:novel",
+      "can:setup"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "maitree_shah@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 2,
+      "e": 3,
+      "s": 13
+    },
+    "margin": 10,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "mayank_agrawal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 0,
+      "s": 5
+    },
+    "margin": 9,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "meith_jain@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 3,
+      "s": 5
+    },
+    "margin": 7,
+    "technical": 6,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 2,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "naveen_kolla@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 8,
+      "e": 5,
+      "s": 7
+    },
+    "margin": 1,
+    "technical": 5,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 1,
+      "marketing": 2,
+      "data": 3
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "naveen_kumar@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 4,
+      "s": 5
+    },
+    "margin": 5,
+    "technical": 12,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "nikhil_kanjolia@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 7,
+      "e": 6,
+      "s": 7
+    },
+    "margin": 0,
+    "technical": 14,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "nirmalya_sah@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 8,
+      "s": 0
+    },
+    "margin": 3,
+    "technical": 2,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 5,
+      "communication": 5,
+      "tech": 5,
+      "marketing": 5,
+      "data": 5
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "param_deora@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 5,
+      "s": 0
+    },
+    "margin": 9,
+    "technical": 13,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "parin_kumat@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 8,
+      "e": 6,
+      "s": 5
+    },
+    "margin": 2,
+    "technical": 5,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "pragati_singh@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 3,
+      "s": 4
+    },
+    "margin": 7,
+    "technical": 4,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "pratiksha_bengani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 0,
+      "s": 5
+    },
+    "margin": 9,
+    "technical": 5,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "pratiksha_bihani@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 5,
+    "technical": 17,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 3,
+      "marketing": 2,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "preet_jain@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 4,
+      "s": 2
+    },
+    "margin": 8,
+    "technical": 5,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "preethi_s@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 3,
+      "s": 3
+    },
+    "margin": 9,
+    "technical": 7,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rahul_m@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 3,
+      "e": 6,
+      "s": 11
+    },
+    "margin": 5,
+    "technical": 15,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ridhima_gupta@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 5,
+      "e": 11,
+      "s": 3
+    },
+    "margin": 6,
+    "technical": 13,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "risheet_gangar@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 4,
+      "e": 7,
+      "s": 10
+    },
+    "margin": 3,
+    "technical": 6,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 1,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rishika_uppalapati@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 4,
+      "e": 10,
+      "s": 5
+    },
+    "margin": 5,
+    "technical": 16,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ritesh_oswal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 0,
+      "s": 9
+    },
+    "margin": 1,
+    "technical": 5,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 5,
+      "communication": 4,
+      "tech": 3,
+      "marketing": 5,
+      "data": 5
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "riya_khurana@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 7,
+      "s": 0
+    },
+    "margin": 5,
+    "technical": 8,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "riya_kothavade@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 18,
+      "e": 0,
+      "s": 0
+    },
+    "margin": 18,
+    "technical": 9,
+    "tags": [
+      "want:design"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 0,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rohan_vivek@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 12,
+      "e": 3,
+      "s": 3
+    },
+    "margin": 9,
+    "technical": 10,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 2,
+      "marketing": 4,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rohit_singh@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 6,
+      "s": 4
+    },
+    "margin": 3,
+    "technical": 15,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 4,
+      "communication": 4,
+      "tech": 4,
+      "marketing": 4,
+      "data": 3
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rushabh_shah@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 4,
+      "s": 3
+    },
+    "margin": 7,
+    "technical": 19,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 3,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "rydham_jain@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 7,
+      "e": 6,
+      "s": 7
+    },
+    "margin": 0,
+    "technical": 6,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sachidananda_dehury@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 5,
+      "e": 5,
+      "s": 8
+    },
+    "margin": 3,
+    "technical": 10,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sahil_agrawal@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 9,
+      "e": 10,
+      "s": 0
+    },
+    "margin": 1,
+    "technical": 7,
+    "tags": [
+      "want:local"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 2,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sairaj_g@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 3,
+      "e": 14,
+      "s": 2
+    },
+    "margin": 11,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 1
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sakshi_awasthi@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 9,
+      "e": 5,
+      "s": 5
+    },
+    "margin": 4,
+    "technical": 6,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sarth_raghuwanshi@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 6,
+      "e": 2,
+      "s": 11
+    },
+    "margin": 5,
+    "technical": 8,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "satvik_bansal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 6,
+      "s": 3
+    },
+    "margin": 4,
+    "technical": 12,
+    "tags": [
+      "want:local"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 4,
+      "data": 2
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "shashank_pandey@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 5,
+      "e": 10,
+      "s": 3
+    },
+    "margin": 5,
+    "technical": 17,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 4,
+      "communication": 5,
+      "tech": 4,
+      "marketing": 4,
+      "data": 4
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "shivansh_sarraf@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 5,
+      "s": 4
+    },
+    "margin": 5,
+    "technical": 6,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 2,
+      "marketing": 1,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "shweta_singh@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 6,
+      "s": 4
+    },
+    "margin": 4,
+    "technical": 15,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "simran_kalra@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 7,
+      "e": 10,
+      "s": 2
+    },
+    "margin": 0,
+    "technical": 6,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sinchan_rai@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 4,
+      "e": 0,
+      "s": 15
+    },
+    "margin": 11,
+    "technical": 19,
+    "tags": [
+      "want:business"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 5,
+      "marketing": 2,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "sohum_shikhare@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 1,
+      "e": 11,
+      "s": 8
+    },
+    "margin": 3,
+    "technical": 14,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 2,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "somanshu_singhal@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 4,
+      "e": 10,
+      "s": 5
+    },
+    "margin": 5,
+    "technical": 15,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "tanishka_desai@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 1,
+      "e": 11,
+      "s": 8
+    },
+    "margin": 3,
+    "technical": 7,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 0,
+      "marketing": 2,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "tanishq_lomte@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 5,
+      "e": 6,
+      "s": 7
+    },
+    "margin": 1,
+    "technical": 13,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 4,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "tanishque_jain@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 4,
+      "e": 9,
+      "s": 6
+    },
+    "margin": 3,
+    "technical": 13,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 1,
+      "communication": 2,
+      "tech": 1,
+      "marketing": 1,
+      "data": 1
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "tejas_joshi@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 18,
+      "e": 0,
+      "s": 0
+    },
+    "margin": 18,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 3,
+      "communication": 1,
+      "tech": 0,
+      "marketing": 3,
+      "data": 0
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "tushar_ram_reddy@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 13,
+      "e": 2,
+      "s": 3
+    },
+    "margin": 10,
+    "technical": 16,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 2,
+      "marketing": 3,
+      "data": 3
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "udhav_kothari@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 5,
+      "s": 3
+    },
+    "margin": 6,
+    "technical": 20,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 2,
+      "tech": 3,
+      "marketing": 2,
+      "data": 3
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "ujjwal_sitlani@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 3,
+      "e": 8,
+      "s": 9
+    },
+    "margin": 1,
+    "technical": 18,
+    "tags": [
+      "want:business"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "vatsal_shah@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 7,
+      "e": 3,
+      "s": 8
+    },
+    "margin": 1,
+    "technical": 10,
+    "tags": [
+      "want:novel"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "vidhi_agarwal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 10,
+      "e": 3,
+      "s": 7
+    },
+    "margin": 3,
+    "technical": 18,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 3,
+      "communication": 4,
+      "tech": 2,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "vikram_agarwal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 11,
+      "e": 7,
+      "s": 0
+    },
+    "margin": 4,
+    "technical": 9,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 0,
+      "communication": 0,
+      "tech": 0,
+      "marketing": 0,
+      "data": 0
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "vion_dsouza@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 5,
+      "e": 7,
+      "s": 6
+    },
+    "margin": 1,
+    "technical": 9,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 2,
+      "marketing": 3,
+      "data": 1
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Family business",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "yashansh_savla@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 0,
+      "e": 7,
+      "s": 12
+    },
+    "margin": 5,
+    "technical": 16,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 4,
+      "marketing": 5,
+      "data": 3
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "yashwi_agrawal@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 18,
+      "e": 0,
+      "s": 0
+    },
+    "margin": 18,
+    "technical": 8,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 0
+    },
+    "outcome": "Venture",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "yaswanth_krishna@forge27.mesaschool.co",
+    "archetype": "architect",
+    "axes": {
+      "u": 6,
+      "e": 1,
+      "s": 13
+    },
+    "margin": 7,
+    "technical": 19,
+    "tags": [
+      "want:business",
+      "can:setup"
+    ],
+    "level": 3,
+    "skills": {
+      "problem": 4,
+      "communication": 2,
+      "tech": 3,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Career (16 LPA+)",
+    "fallback": "Venture to Role",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "yogita_bhuwania@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 5,
+      "e": 9,
+      "s": 7
+    },
+    "margin": 2,
+    "technical": 14,
+    "tags": [
+      "want:tools"
+    ],
+    "level": 2,
+    "skills": {
+      "problem": 0,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 0
+    },
+    "outcome": "Venture to Role",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "zalak_gogri@forge27.mesaschool.co",
+    "archetype": "alchemist",
+    "axes": {
+      "u": 6,
+      "e": 8,
+      "s": 5
+    },
+    "margin": 2,
+    "technical": 9,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 2,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 3,
+      "data": 2
+    },
+    "outcome": "Family business",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  },
+  {
+    "email": "zuha_fathima@forge27.mesaschool.co",
+    "archetype": "cartographer",
+    "axes": {
+      "u": 14,
+      "e": 3,
+      "s": 2
+    },
+    "margin": 11,
+    "technical": 7,
+    "tags": [
+      "want:business"
+    ],
+    "level": 1,
+    "skills": {
+      "problem": 4,
+      "communication": 3,
+      "tech": 1,
+      "marketing": 2,
+      "data": 0
+    },
+    "outcome": "Explore then decide (Jan gate)",
+    "fallback": "Career (16 LPA+)",
+    "source": "hackathon-1"
+  }
+]

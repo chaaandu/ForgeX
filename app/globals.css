@@ -1,134 +1,15 @@
 @import 'tailwindcss';
 
-@theme {
-  --color-ink: #09090b;
-  --color-surface: #111113;
-  --color-surface-modal: #0f0f11;
-  --color-line: rgba(255, 255, 255, 0.06);
-  --color-line-strong: rgba(255, 255, 255, 0.08);
-
-  --color-primary: #fafafa;
-  --color-secondary: #a1a1aa;
-  --color-muted: #71717a;
-
-  --color-rare: #3b82f6;
-  --color-epic: #a855f7;
-  --color-legendary: #f59e0b;
-  --color-mythic: #ef4444;
-
-  --radius-card: 16px;
-
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-
-  --ease-out-quiet: cubic-bezier(0.16, 1, 0.3, 1);
-}
+/* Tokens arrive with the chosen direction in Phase 4. */
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-
   html {
     -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    background-color: var(--color-ink);
-    color: var(--color-primary);
-    font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.6;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
-
-  :focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  ::selection {
-    background: rgba(250, 250, 250, 0.16);
-  }
-
-  /* The modal owns the scroll while it is open. */
-  body[data-modal-open='true'] {
-    overflow: hidden;
-  }
-}
-
-@layer components {
-  /* 11px Geist Mono, uppercase, wide tracking. Every small label in the app. */
-  .label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    line-height: 1.4;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: -0.015em;
-    line-height: 1.35;
-  }
-
-  /* A card's border picks up its own tag colour on hover, so the grid stays
-     quiet at rest and the rarity reads the moment you reach for a card. */
-  .card-accent:hover,
-  .card-accent:focus-visible {
-    border-color: color-mix(in srgb, var(--accent) 38%, transparent);
-  }
-
-  /* Default scrollbars look cheap against a matte dark surface. */
-  .quiet-scroll {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
-  }
-
-  .quiet-scroll::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  .quiet-scroll::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  .quiet-scroll::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.12);
-    border: 3px solid transparent;
-    background-clip: content-box;
-    border-radius: 999px;
-  }
-
-  .quiet-scroll::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(255, 255, 255, 0.22);
-  }
-
-  .clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  body {
+    margin: 0;
+    min-height: 100dvh;
   }
 }

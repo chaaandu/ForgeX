@@ -1,21 +1,31 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
 
-/** Everything but /login and the auth routes needs a session. */
-export default auth((request) => {
-  const { pathname } = request.nextUrl
-  const open =
+/** Pages anyone may see. Everything else needs a session. */
+function isOpen(pathname: string): boolean {
+  return (
+    pathname === '/' ||
     pathname === '/login' ||
     pathname.startsWith('/api/auth') ||
+    // The design lab, until a direction is chosen. Deleted before launch.
+    pathname.startsWith('/lab') ||
     (pathname.startsWith('/api/mock') && process.env.MOCK_BACKEND === 'true')
-  if (open || request.auth) return NextResponse.next()
+  )
+}
 
-  const login = new URL('/login', request.nextUrl.origin)
-  return NextResponse.redirect(login)
+export default auth((request) => {
+  const { pathname } = request.nextUrl
+  if (isOpen(pathname) || request.auth) return NextResponse.next()
+  return NextResponse.redirect(new URL('/login', request.nextUrl.origin))
 })
 
+/**
+ * Everything except Next's own assets and static files. The exemption is by
+ * file extension rather than folder name: naming folders once sent every
+ * piece of class art to the login screen the day a new folder appeared.
+ */
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|students|.*\\.png$).*)',
+    '/((?!_next/static|_next/image|.*\\.png$|.*\\.webp$|.*\\.avif$|.*\\.jpg$|.*\\.jpeg$|.*\\.svg$|.*\\.ico$|.*\\.woff2?$).*)',
   ],
 }

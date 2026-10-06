@@ -1,0 +1,27 @@
+.lab-nav {
+  position: fixed;
+  z-index: 50;
+  top: 12px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgb(20 20 22 / 0.72);
+  backdrop-filter: blur(10px);
+  font: 500 12px/1 var(--font-geist-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.lab-nav a {
+  color: #d8d8dc;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+}
+.lab-nav a:hover,
+.lab-nav a:focus-visible {
+  background: rgb(255 255 255 / 0.12);
+  outline: none;
+}
