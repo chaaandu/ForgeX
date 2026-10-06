@@ -67,7 +67,7 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
     options: { read: 'Read up before you go', walk: 'Walk out and see', plan: 'Plan all three days' },
   },
   'new-tool': {
-    prompt: 'The last new tool you learned, you',
+    prompt: 'The last time you learned a new tool, what did you do first?',
     options: { read: 'Read how it worked', use: 'Used it till it clicked', tutorial: 'Followed a tutorial' },
   },
   'first-prompt': {
@@ -79,7 +79,7 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
     },
   },
   'in-a-team': {
-    prompt: 'A team of four. Without being asked, you',
+    prompt: 'In a team of four, what do you do without being asked?',
     options: {
       agree: "Get everyone agreeing on what we're building",
       rough: 'Make the first rough version',
@@ -87,7 +87,7 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
     },
   },
   'bad-instructions': {
-    prompt: 'The instructions look wrong. You',
+    prompt: 'The instructions look wrong. What do you do?',
     options: { why: 'Work out why', own: 'Try your own way', follow: 'Follow them, then say so' },
   },
   'it-broke': {
@@ -105,11 +105,9 @@ export const trial: Record<string, { prompt: string; options: Record<string, str
 }
 
 export const landing = {
-  kicker: 'ForgeX 2.0 · Mesa School of Business',
-  lineStart: 'Find a problem worth',
-  lineEm: 'three weeks',
-  lineEnd: 'of your life.',
-  open: (count: number) => `${count} open problems`,
+  kicker: 'ForgeX',
+  lineStart: 'Find the problem',
+  lineEm: "you can't ignore.",
   enter: 'Enter',
 }
 
@@ -125,13 +123,13 @@ export const problem = {
 
 export const card = {
   number: (n: number, of: number) => `#${String(n).padStart(3, '0')} / ${of}`,
-  unnumbered: 'ForgeX 2.0',
+  unnumbered: 'ForgeX',
   original: 'Original',
   noArchetype: 'Archetype to come',
   building: 'Building',
   download: 'Download card',
   share: 'Share',
-  shareText: (name: string) => `${name} on ForgeX 2.0`,
+  shareText: (name: string) => `${name} on ForgeX`,
 }
 
 /** Why a problem was matched. Each one names a factor that actually scored. */
@@ -149,14 +147,14 @@ export const chips = {
 }
 
 export const meta = {
-  title: 'ForgeX 2.0',
-  description: 'Find a problem worth three weeks of your life.',
+  title: 'ForgeX',
+  description: "Find the problem you can't ignore.",
 }
 
 export const wall = {
   face: (first: string, archetype: string | null) => (archetype ? `${first}, ${archetype}` : first),
   unplaced: 'Archetype to come',
-  label: 'The 117 founders of ForgeX 2.0',
+  label: 'The 117 founders of ForgeX',
 }
 
 export const levels = {
@@ -181,7 +179,6 @@ export const world = {
   },
   industries: {
     ask: 'Which industries pull you in?',
-    hint: 'Pick up to three.',
     other: 'Other',
     otherPlaceholder: 'Which one?',
   },
@@ -209,7 +206,6 @@ export const world = {
   },
   learn: {
     ask: 'What do you want to learn by building?',
-    hint: 'Pick up to three.',
     other: 'Other',
     otherPlaceholder: 'What?',
   },
@@ -227,6 +223,8 @@ export const world = {
       'I write code comfortably.',
     ],
   },
+  of: (at: number, of: number) => `Question ${at} of ${of}`,
+  picked: (n: number, max: number) => `${n} of ${max} picked`,
   next: 'Next',
   back: 'Back',
   done: 'Show my matches',
@@ -240,7 +238,7 @@ export const login = {
   google: 'Continue with Google',
   refused: {
     domain: "That account isn't on the ForgeX list. Use your forge27 Mesa account.",
-    roster: "That account isn't in the ForgeX 2.0 cohort. If that's wrong, tell the team.",
+    roster: "That account isn't in the ForgeX cohort. If that's wrong, tell the team.",
     other: "Sign-in didn't finish. Try again.",
   },
   another: 'Use another account',
@@ -250,14 +248,14 @@ export const login = {
 
 export const arrive = {
   hi: (first: string) => `Hi, ${first}.`,
-  lead: 'About ten minutes. Six steps. At the end, a problem worth building.',
+  lead: "Six steps. By the last one, you'll have a problem worth building.",
   path: [
     { name: 'Arrive', line: "You're here." },
     { name: 'Archetype', line: 'What kind of builder you are.' },
     { name: 'Profile', line: 'You, in your own words.' },
-    { name: 'Your world', line: 'Who you can reach and what you want to learn.' },
+    { name: 'Your world', line: 'Where you already have an edge.' },
     { name: 'Matches', line: 'Four problems picked for you.' },
-    { name: 'Your why', line: 'Why you would build it. We answer every one.' },
+    { name: 'Your why', line: 'Make your case. We reply to every one.' },
   ],
   go: "Let's go",
   numbering: 'Numbering your card',
@@ -266,10 +264,10 @@ export const arrive = {
 export const archetypeFlow = {
   intro: {
     title: 'What kind of builder are you?',
-    lead: 'Seven quick questions. Go with your first instinct. There are no right answers.',
+    lead: 'Seven questions. Answer on instinct.',
     start: 'Start',
     retakeTitle: 'One more go',
-    retakeLead: 'Your newest answer replaces your archetype. You get this one retake.',
+    retakeLead: 'Your new result replaces the old one. This is your only retake.',
   },
   question: (at: number, of: number) => `${at} of ${of}`,
   back: 'Back',
@@ -295,11 +293,11 @@ export const archetypeFlow = {
 
 export const profile = {
   heading: "This is you so far. Change anything that doesn't feel like you.",
-  fromMesa: 'Your name and photo come from Mesa. Ask the team to change them.',
   bio: {
     label: 'One line about you',
     placeholder: 'One line a stranger should know about you.',
     required: 'One line is all we need.',
+    add: 'Add one line about you',
   },
   facts: {
     city: { label: 'Lives in', placeholder: 'Your city' },
@@ -326,15 +324,14 @@ export const profile = {
     invalid: "That doesn't look like a link we can use.",
   },
   edit: 'Edit',
+  editProfile: 'Edit profile',
+  finishEditing: 'Done editing',
+  empty: 'Not added yet',
   remove: (item: string) => `Remove ${item}`,
   saving: 'Saving',
   saved: 'Saved',
   failed: "That didn't save. Try again.",
   done: 'Looks like me',
-  wall: {
-    label: 'Show me on the founder wall',
-    hint: 'The public wall on the ForgeX home page. Your first name, photo and archetype.',
-  },
 }
 
 export const matches = {

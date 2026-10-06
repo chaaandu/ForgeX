@@ -2,16 +2,15 @@ import Image from 'next/image'
 import { archetypes, card as copy, families } from '@/content/copy'
 import { ARCHETYPES, FAMILIES, type ArchetypeId } from '@/lib/archetype'
 import type { Rarity } from '@/lib/taxonomy'
-import { RARITY_LABEL } from '@/lib/problem'
 import { Tilt } from './Tilt'
 import './card.css'
 
 /**
  * The founder card. It is also the progress bar: every level adds a layer, and
  * the slots not yet filled are drawn as empty, so a founder can always see what
- * is left to earn. Photo and number on arrival, archetype and relic after the
+ * is left to earn. Photo and number on arrival, archetype and portrait after the
  * quiz, the bio after the profile, the edge marks after their world, the
- * problem after they pick, the rarity finish when they send their why, and the
+ * problem after they pick, the finish when they send their why, and the
  * team's stamp when we answer.
  *
  * Everything inside is sized in container units, so one component serves the
@@ -63,13 +62,12 @@ export function FounderCard({
       <div className="fc-face">
         <div className="fc-top">
           <span>{data.number ? copy.number(data.number, data.of) : copy.unnumbered}</span>
-          {finish ? <span className="fc-finish">{finish === 'original' ? copy.original : RARITY_LABEL[finish]}</span> : null}
         </div>
         <div className="fc-photo">
           <Image src={data.photo} alt={data.name} fill sizes={size === 'sm' ? '140px' : '360px'} priority={priority} />
         </div>
-        <div className="fc-relic" data-empty={!kind || undefined} aria-hidden="true">
-          {kind ? <Image src={kind.relic} alt="" width={96} height={96} /> : <span>?</span>}
+        <div className="fc-badge" data-empty={!kind || undefined} aria-hidden="true">
+          {family ? <Image src={family.head} alt="" width={96} height={96} /> : <span>?</span>}
         </div>
         <div className="fc-meta">
           <p className="fc-name">{data.name}</p>

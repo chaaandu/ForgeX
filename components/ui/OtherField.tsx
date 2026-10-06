@@ -13,6 +13,7 @@ export function OtherField({
   value,
   onChange,
   placeholder,
+  full = false,
 }: {
   label: string
   on: boolean
@@ -20,11 +21,21 @@ export function OtherField({
   value: string
   onChange: (value: string) => void
   placeholder: string
+  /** The list is at its limit, so this can't be switched on. */
+  full?: boolean
 }) {
   const id = useId()
   return (
     <div className="contents">
-      <button type="button" className="chip press" aria-pressed={on} aria-expanded={on} aria-controls={on ? id : undefined} onClick={onToggle}>
+      <button
+        type="button"
+        className="chip press"
+        aria-pressed={on}
+        aria-disabled={!on && full}
+        aria-expanded={on}
+        aria-controls={on ? id : undefined}
+        onClick={onToggle}
+      >
         {label}
       </button>
       {on ? (

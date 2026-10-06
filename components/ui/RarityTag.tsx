@@ -17,7 +17,7 @@ export function RarityTag({ rarity }: { rarity: Rarity }) {
     >
       <span
         aria-hidden="true"
-        className="size-1.5 rotate-45"
+        className="size-1.5 rounded-full"
         style={{ background: COLOR[rarity], boxShadow: `0 0 10px ${COLOR[rarity]}` }}
       />
       {RARITY_LABEL[rarity]}

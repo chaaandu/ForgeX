@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState, useTransition } from 'react'
-import { finishProfile, saveProfile, setWall } from '@/app/actions/founder'
+import { finishProfile, saveProfile } from '@/app/actions/founder'
 import { ChipList } from '@/components/ui/ChipList'
 import { InlineField, type SaveResult } from '@/components/ui/InlineField'
 import { profile as copy } from '@/content/copy'
@@ -11,29 +11,28 @@ import { linkLabel, LINK_FIELDS, type LinkField } from '@/lib/links'
 import type { Profile as ProfileData, ProfilePatch } from '@/lib/profile'
 
 /**
- * Level 3, and the founder's page after it. Everything we know is already
- * here; every field edits in place and saves on its own, so the page reads as
- * someone's page rather than a settings screen. Only the bio is required.
+ * Level 3, and the founder's page after it. By default it shows the profile
+ * the way anyone on the team will see it; Edit turns the same page into fields
+ * that save one at a time. Only the bio is required.
  */
 export function Profile({
   name,
   photo,
   initial,
-  wall: initialWall,
   next,
 }: {
   name: string
   photo: string
   initial: ProfileData
-  wall: boolean
   next: string | null
 }) {
   const router = useRouter()
   const [data, setData] = useState(initial)
-  const [wall, setWallState] = useState(initialWall)
+  const [editing, setEditing] = useState(false)
   const [bioError, setBioError] = useState<string | null>(null)
   const [pending, start] = useTransition()
   const bioButton = useRef<HTMLButtonElement>(null)
+  const onboarding = next !== null
 
   async function save(patch: ProfilePatch): Promise<SaveResult> {
     const result = await saveProfile(patch)
@@ -53,135 +52,163 @@ export function Profile({
     })
   }
 
-  return (
-    <div className="grid gap-12">
-      {next ? <h1 className="display rise m-0 max-w-[18ch] text-[clamp(36px,5vw,60px)] leading-[1.02]">{copy.heading}</h1> : null}
+  function finish() {
+    start(async () => {
+      const result = await finishProfile()
+      if (result.ok && next) router.push(next)
+      else {
+        setEditing(true)
+        setBioError(copy.bio.required)
+        window.setTimeout(() => bioButton.current?.focus(), 50)
+      }
+    })
+  }
 
-      <section className={`grid gap-6 ${next ? 'md:grid-cols-[120px_1fr]' : ''} md:items-start`}>
-        {next ? (
-          <div className="relative size-24 overflow-hidden rounded-2xl shadow-[0_0_0_1px_var(--color-line-2)] md:size-[120px]">
+  const actions = (
+    <div className="flex flex-wrap items-center gap-3 border-t border-line pt-8">
+      {onboarding ? (
+        <button type="button" className="btn btn-primary press min-h-[56px] w-full text-[16px] sm:w-auto sm:min-w-[240px]" disabled={pending} onClick={finish}>
+          {copy.done}
+        </button>
+      ) : null}
+      <button
+        type="button"
+        className={`btn press ${onboarding ? 'btn-secondary w-full sm:w-auto' : 'btn-secondary'}`}
+        onClick={() => setEditing((value) => !value)}
+        aria-pressed={editing}
+      >
+        {editing ? copy.finishEditing : onboarding ? copy.edit : copy.editProfile}
+      </button>
+    </div>
+  )
+
+  return (
+    <div className="grid gap-10">
+      {onboarding ? <h1 className="display rise m-0 max-w-[18ch] text-[clamp(34px,5vw,60px)] leading-[1.02]">{copy.heading}</h1> : null}
+
+      <section className={`grid gap-6 ${onboarding ? 'grid-cols-[72px_1fr] items-center md:grid-cols-[120px_1fr]' : ''}`}>
+        {onboarding ? (
+          <div className="relative size-[72px] overflow-hidden rounded-2xl shadow-[0_0_0_1px_var(--color-line-2)] md:size-[120px]">
             <Image src={photo} alt={name} fill sizes="120px" className="object-cover" />
           </div>
         ) : null}
-        <div className="grid gap-3">
-          {next ? <p className="display m-0 text-[clamp(34px,4vw,48px)] leading-none">{name}</p> : null}
-          <p className="m-0 text-[13px] text-ink-3">{copy.fromMesa}</p>
-          <InlineField
-            label={copy.bio.label}
-            value={data.bio}
-            placeholder={copy.bio.placeholder}
-            multiline
-            maxLength={120}
-            className="display mt-2 text-[clamp(22px,2.6vw,30px)] leading-snug italic"
-            inputRef={bioButton}
-            error={bioError}
-            onSave={async (bio) => {
-              setBioError(null)
-              return save({ bio })
-            }}
-          />
+        <div className="grid min-w-0 gap-2">
+          {onboarding ? <p className="display m-0 text-[clamp(30px,4vw,48px)] leading-none">{name}</p> : null}
+          {editing ? null : data.bio ? (
+            <p className="display m-0 text-[clamp(20px,2.4vw,28px)] leading-snug text-ink-1 italic">{data.bio}</p>
+          ) : (
+            <button type="button" className="press m-0 w-fit border-0 bg-transparent p-0 text-left text-[16px] text-pink-ink underline decoration-1 underline-offset-4" onClick={() => setEditing(true)}>
+              {copy.bio.add}
+            </button>
+          )}
         </div>
       </section>
 
+      {editing ? (
+        <InlineField
+          label={copy.bio.label}
+          value={data.bio}
+          placeholder={copy.bio.placeholder}
+          multiline
+          maxLength={120}
+          className="display -mt-4 text-[clamp(20px,2.4vw,28px)] leading-snug italic"
+          inputRef={bioButton}
+          error={bioError}
+          onSave={async (bio) => {
+            setBioError(null)
+            return save({ bio })
+          }}
+        />
+      ) : null}
+
       <dl className="m-0 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-3">
-        <div className="grid gap-2">
+        <div className="grid content-start gap-2">
           <dt className="meta">{copy.facts.city.label}</dt>
           <dd className="m-0 text-[18px]">
-            <InlineField label={copy.facts.city.label} value={data.city} placeholder={copy.facts.city.placeholder} maxLength={60} onSave={(city) => save({ city })} />
+            {editing ? (
+              <InlineField label={copy.facts.city.label} value={data.city} placeholder={copy.facts.city.placeholder} maxLength={60} onSave={(city) => save({ city })} />
+            ) : (
+              <Value text={data.city} />
+            )}
           </dd>
         </div>
-        <div className="grid gap-2">
+        <div className="grid content-start gap-2">
           <dt className="meta">{copy.facts.degree.label}</dt>
           <dd className="m-0 text-[18px]">
-            <InlineField label={copy.facts.degree.label} value={data.degree} placeholder={copy.facts.degree.placeholder} maxLength={80} onSave={(degree) => save({ degree })} />
+            {editing ? (
+              <InlineField label={copy.facts.degree.label} value={data.degree} placeholder={copy.facts.degree.placeholder} maxLength={80} onSave={(degree) => save({ degree })} />
+            ) : (
+              <Value text={data.degree} />
+            )}
           </dd>
         </div>
-        <div className="grid gap-2">
+        <div className="grid content-start gap-2">
           <dt className="meta">{copy.facts.languages.label}</dt>
-          <dd className="m-0">
-            <ChipList label={copy.facts.languages.label} items={data.languages} placeholder={copy.facts.languages.placeholder} onChange={(items) => saveList('languages', items)} />
+          <dd className="m-0 text-[18px]">
+            {editing ? (
+              <ChipList label={copy.facts.languages.label} items={data.languages} placeholder={copy.facts.languages.placeholder} onChange={(items) => saveList('languages', items)} />
+            ) : (
+              <Value text={data.languages.join(', ')} />
+            )}
           </dd>
         </div>
       </dl>
 
       <section className="grid gap-10 border-t border-line pt-8 md:grid-cols-2">
-        <div className="grid content-start gap-3">
-          <h2 className="meta m-0">{copy.goodAt.label}</h2>
-          <ChipList label={copy.goodAt.label} items={data.goodAt} suggestions={copy.goodAt.suggestions} placeholder={copy.goodAt.placeholder} onChange={(items) => saveList('goodAt', items)} />
-        </div>
-        <div className="grid content-start gap-3">
-          <h2 className="meta m-0">{copy.wantToLearn.label}</h2>
-          <ChipList label={copy.wantToLearn.label} items={data.wantToLearn} suggestions={copy.wantToLearn.suggestions} placeholder={copy.wantToLearn.placeholder} onChange={(items) => saveList('wantToLearn', items)} />
-        </div>
+        {(['goodAt', 'wantToLearn'] as const).map((key) => (
+          <div key={key} className="grid content-start gap-3">
+            <h2 className="meta m-0">{copy[key].label}</h2>
+            {editing ? (
+              <ChipList label={copy[key].label} items={data[key]} suggestions={copy[key].suggestions} placeholder={copy[key].placeholder} onChange={(items) => saveList(key, items)} />
+            ) : data[key].length ? (
+              <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+                {data[key].map((item) => (
+                  <li key={item} className="tag text-[14px]">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <Value text="" />
+            )}
+          </div>
+        ))}
       </section>
 
       <section className="grid gap-4 border-t border-line pt-8">
         <h2 className="meta m-0">{copy.links.label}</h2>
-        <dl className="m-0 grid gap-4 sm:grid-cols-3">
+        <dl className="m-0 grid gap-5 sm:grid-cols-3">
           {LINK_FIELDS.map((field) => (
-            <div key={field} className="grid gap-1.5">
+            <div key={field} className="grid content-start gap-1.5">
               <dt className="text-[13px] text-ink-3">{copy.links[field]}</dt>
-              <dd className="m-0 text-[16px]">
-                <InlineField
-                  label={copy.links[field]}
-                  value={data[field]}
-                  placeholder={copy.links.placeholder[field]}
-                  maxLength={200}
-                  display={(url) => linkLabel(field, url)}
-                  onSave={(value) => save({ [field]: value })}
-                />
+              <dd className="m-0 min-w-0 text-[16px]">
+                {editing ? (
+                  <InlineField
+                    label={copy.links[field]}
+                    value={data[field]}
+                    placeholder={copy.links.placeholder[field]}
+                    maxLength={200}
+                    display={(url) => linkLabel(field, url)}
+                    onSave={(value) => save({ [field]: value })}
+                  />
+                ) : data[field] ? (
+                  <a href={data[field]} target="_blank" rel="noreferrer" className="break-words text-ink-1 underline decoration-line-2 underline-offset-4 hover:decoration-pink">
+                    {linkLabel(field, data[field])}
+                  </a>
+                ) : (
+                  <Value text="" />
+                )}
               </dd>
             </div>
           ))}
         </dl>
       </section>
 
-      <label className="flex cursor-pointer items-start gap-4 border-t border-line pt-8">
-        <input
-          type="checkbox"
-          className="peer sr-only"
-          checked={wall}
-          onChange={(event) => {
-            const on = event.target.checked
-            setWallState(on)
-            void setWall(on).then((result) => {
-              if (!result.ok) setWallState(!on)
-            })
-          }}
-        />
-        <span
-          aria-hidden="true"
-          className="mt-0.5 flex h-6 w-10 shrink-0 items-center rounded-full bg-s3 p-0.5 transition-colors duration-150 peer-checked:bg-pink peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink [&>span]:transition-transform [&>span]:duration-150 peer-checked:[&>span]:translate-x-4"
-        >
-          <span className="size-5 rounded-full bg-ink-1" />
-        </span>
-        <span className="grid gap-1">
-          <span className="text-[16px]">{copy.wall.label}</span>
-          <span className="text-[14px] text-ink-3">{copy.wall.hint}</span>
-        </span>
-      </label>
-
-      {next ? (
-        <div>
-          <button
-            type="button"
-            className="btn btn-primary press min-h-[52px] px-9 text-[16px]"
-            disabled={pending}
-            onClick={() =>
-              start(async () => {
-                const result = await finishProfile()
-                if (result.ok) router.push(next)
-                else {
-                  setBioError(copy.bio.required)
-                  bioButton.current?.focus()
-                }
-              })
-            }
-          >
-            {copy.done}
-          </button>
-        </div>
-      ) : null}
+      {actions}
     </div>
   )
+}
+
+function Value({ text }: { text: string }) {
+  return text ? <span>{text}</span> : <span className="text-ink-3">{copy.empty}</span>
 }

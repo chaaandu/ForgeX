@@ -4,6 +4,7 @@ import { signIn } from '@/auth'
 import { Brand } from '@/components/shell/Brand'
 import { login as copy } from '@/content/copy'
 import { isMock } from '@/lib/store/mode'
+import { safeNext } from '@/lib/next-path'
 import { getViewer } from '@/lib/session'
 
 export const metadata: Metadata = { title: 'Sign in' }
@@ -26,9 +27,10 @@ function Google() {
   )
 }
 
-export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
-  if (await getViewer()) redirect('/')
-  const { error } = await searchParams
+export default async function Login({ searchParams }: { searchParams: Promise<{ error?: string; next?: string }> }) {
+  const { error, next: rawNext } = await searchParams
+  const next = safeNext(rawNext)
+  if (await getViewer()) redirect(next)
   const refused = error === 'domain' ? copy.refused.domain : error === 'roster' ? copy.refused.roster : error ? copy.refused.other : null
 
   return (
@@ -52,7 +54,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
           <form
             action={async () => {
               'use server'
-              await signIn('google', { redirectTo: '/' })
+              await signIn('google', { redirectTo: next })
             }}
           >
             <button type="submit" className="btn btn-primary press w-full gap-3">
@@ -71,7 +73,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
                   key={persona.email}
                   action={async () => {
                     'use server'
-                    await signIn('mock', { email: persona.email, redirectTo: '/' })
+                    await signIn('mock', { email: persona.email, redirectTo: next })
                   }}
                 >
                   <button type="submit" className="btn btn-secondary press w-full justify-start" data-email={persona.email}>

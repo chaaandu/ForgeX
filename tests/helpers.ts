@@ -43,7 +43,8 @@ export async function throughArchetype(page: Page, quiz: boolean) {
 }
 
 export async function throughProfile(page: Page) {
-  await page.getByRole('button', { name: /One line about you/ }).click()
+  await page.getByRole('button', { name: 'Add one line about you' }).click()
+  await page.getByRole('button', { name: /^One line about you/ }).click()
   await page.keyboard.type('I run the counter at my family shop on weekends.')
   await page.keyboard.press('Enter')
   await expect(page.getByText('Saved')).toBeVisible()

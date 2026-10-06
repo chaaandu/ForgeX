@@ -54,10 +54,9 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 
 ### Landing `/` (public)
 
-- **Hero:** the founder wall. All 117 faces form a living mosaic. Tapping or clicking a face flips it over, like a card, to show that founder's first name, archetype and relic; hovering lifts it. Founders can hide themselves from the wall on their profile.
+- **Hero:** the founder wall. All 117 faces form a living mosaic. Tapping or clicking a face flips it over, like a card, to show that founder's first name, archetype and family portrait; hovering lifts it. Every founder is on the wall; the team can take someone off by setting `Wall` to `no` in the Sheet.
 - **No problem statements on the landing page.** Problems are earned by finishing the levels, not browsed from the door.
-- **One line:** *Find a problem worth three weeks of your life.*
-- **A live counter:** `214 open problems`, counting approved problems in the bank.
+- **One line:** *Find the problem you can't ignore.*
 - **One button:** **Enter**.
 - **Signed in?** **Enter** goes straight to the founder's current level, or to `/team` for the team.
 
@@ -70,7 +69,7 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 
 - A large photo and *Hi, Ananya.*
 - The card assembles in front of them: the photo drops in, then the number stamps on. This is the first reward, before we have asked for anything.
-- **One line:** *About ten minutes. Six steps. At the end, a problem worth building.*
+- **One line:** *Six steps. By the last one, you'll have a problem worth building.*
 - **Primary button:** **Let's go**.
 
 ### Level 2 · Archetype `/archetype`
@@ -98,21 +97,21 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 
 #### Three families, six archetypes
 
-Hackathon 1 scored each founder on three instincts: **understand**, **experiment** and **structure**. The strongest names the **family**, which is the Hackathon 1 class with its portrait, unchanged. The second strongest splits each family in two, giving six **archetypes**. Each archetype has its own 3D relic, so a Scout and a Surveyor share a portrait but not an emblem.
+Hackathon 1 scored each founder on three instincts: **understand**, **experiment** and **structure**. The strongest names the **family**, which is the Hackathon 1 class with its portrait, unchanged. The second strongest splits each family in two, giving six **archetypes**. A Scout and a Surveyor share the Cartographer portrait; the archetype name is what tells them apart.
 
 - The 110 placed founders map exactly from their recorded scores. Nobody has to retake anything.
 - The quiz is the same recovered rubric, so a new result means what an old one meant.
 - Ties break in the Hackathon 1 order: experiment, then understand, then structure.
 - Shown as family first, then archetype: *Cartographer · Scout*.
 
-| Family (portrait) | Archetype | Leads → then | Relic | H1 count |
-| --- | --- | --- | --- | --- |
-| Cartographer | **Surveyor** | understand → structure | a measured globe | 20 |
-| Cartographer | **Scout** | understand → experiment | a compass | 39 |
-| Alchemist | **Inventor** | experiment → understand | a cut crystal with sparks | 15 |
-| Alchemist | **Tinkerer** | experiment → structure | two gears in mesh | 13 |
-| Architect | **Strategist** | structure → understand | a stepped ziggurat | 11 |
-| Architect | **Builder** | structure → experiment | blocks stacked into a corner | 12 |
+| Family (portrait) | Archetype | Leads → then | H1 count |
+| --- | --- | --- | --- |
+| Cartographer | **Surveyor** | understand → structure | 20 |
+| Cartographer | **Scout** | understand → experiment | 39 |
+| Alchemist | **Inventor** | experiment → understand | 15 |
+| Alchemist | **Tinkerer** | experiment → structure | 13 |
+| Architect | **Strategist** | structure → understand | 11 |
+| Architect | **Builder** | structure → experiment | 12 |
 
 The identity line, strengths, blind spot and loves for each archetype live in `content/copy.ts` under `archetypes`.
 
@@ -136,7 +135,7 @@ It looks like a personal page, not a settings screen. The card sits beside it, a
 
 | Field | Prefilled from | Editable |
 | --- | --- | --- |
-| Name, photo | Roster | No. A small line explains: *Your name and photo come from Mesa. Ask the team to change them.* |
+| Name, photo | Roster | No |
 | One-line bio | — | Yes, 120 characters |
 | City | — | Yes |
 | Languages | — | Yes, chips plus typing |
@@ -147,7 +146,7 @@ It looks like a personal page, not a settings screen. The card sits beside it, a
 | LinkedIn | — | Yes, normalised on the server |
 | Portfolio or personal site | — | Yes, any https URL |
 
-The only button is **Looks like me**. Nothing on this page is required except the bio. Any link that won't normalise is shown inline, with a fix.
+It opens as the profile the team will see. **Edit** turns the same page into fields that save one at a time; **Looks like me** moves on. Nothing on this page is required except the bio. Any link that won't normalise is shown inline, with a fix.
 
 ### Level 4 · Your world `/world`
 
@@ -185,8 +184,8 @@ Six questions, one per screen, in about two minutes. Every multiple-choice quest
   - title
   - problem
   - challenge
-  - rarity tag
   - two or three chips explaining why it fits them
+- **No rarity and no signal** on anything a founder sees: a label that ranks problems changes which one they pick.
 - **Every chip names a real factor** that scored in the match:
   - *You can reach this user*
   - *Health and fitness, your pick*
@@ -197,7 +196,6 @@ Six questions, one per screen, in about two minutes. Every multiple-choice quest
 - **Opening a card** shows:
   - the full problem and the challenge
   - what you'll learn
-  - the signal line and its strength meter, for example *Seen across 23 posts in 2025 and 2026*
   - one primary button, **I'll build this**
 - **Below the four**, always: **None of these? Write your own.**
 - **Never empty.** If almost nothing scores, the four gentlest open problems fill in, and the heading says so honestly: *Good places to start.*

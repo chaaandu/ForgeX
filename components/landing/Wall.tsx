@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { archetypes, families, wall as copy } from '@/content/copy'
-import { ARCHETYPES, type ArchetypeId } from '@/lib/archetype'
+import { ARCHETYPES, FAMILIES, type ArchetypeId } from '@/lib/archetype'
 import { Flip } from './Flip'
 import { Glint } from './Glint'
 import '@/components/card/card.css'
@@ -45,7 +45,7 @@ export function Wall({ faces }: { faces: Face[] }) {
                     />
                   </span>
                   <span className="wf-back" aria-hidden="true">
-                    {kind ? <Image src={kind.relic} alt="" width={48} height={48} className="wf-relic" loading="lazy" /> : null}
+                    {kind ? <Image src={FAMILIES[kind.family].head} alt="" width={64} height={64} className="wf-head" loading="lazy" /> : null}
                     {/* Filled in when flipped: 117 hidden labels would otherwise be
                         most of the page's text, all of it tiny. The button's
                         label already says who this is. */}

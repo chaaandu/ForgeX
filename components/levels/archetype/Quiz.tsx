@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { saveTrial } from '@/app/actions/founder'
+import { setLevelProgress } from '@/components/shell/progress'
 import { archetypeFlow as copy, trial as trialCopy } from '@/content/copy'
 import { TRIAL, type ArchetypeId } from '@/lib/archetype'
 
@@ -19,6 +20,10 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
   const touch = useRef<number | null>(null)
 
   const question = step >= 0 ? TRIAL[step] : undefined
+
+  useEffect(() => {
+    setLevelProgress(Math.max(0, step) / TRIAL.length)
+  }, [step])
 
   const send = useCallback(
     async (final: Record<string, string>) => {
@@ -94,23 +99,9 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
         touch.current = null
       }}
     >
-      <div className="grid gap-3">
-        <div className="flex items-center justify-between">
-          <p className="meta m-0" aria-live="polite">
-            {copy.question(step + 1, TRIAL.length)}
-          </p>
-          <p className="meta m-0 hidden md:block">{copy.keys}</p>
-        </div>
-        <div className="flex gap-1" aria-hidden="true">
-          {TRIAL.map((item, index) => (
-            <span
-              key={item.id}
-              className="h-[3px] flex-1 rounded-full transition-colors duration-200"
-              style={{ background: index < step ? 'var(--color-ink-1)' : index === step ? 'var(--color-pink)' : 'var(--color-s3)' }}
-            />
-          ))}
-        </div>
-      </div>
+      <p className="sr-only" aria-live="polite">
+        {copy.question(step + 1, TRIAL.length)}
+      </p>
 
       <div key={question.id} className="quiz-card grid gap-6">
         <h2 className="ask m-0" id={`q-${question.id}`}>
@@ -145,7 +136,7 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
         >
           {copy.back}
         </button>
-        {saving ? <p className="meta m-0">{copy.placing}</p> : null}
+        {saving ? <p className="meta m-0">{copy.placing}</p> : <p className="meta m-0 hidden md:block">{copy.keys}</p>}
         {error ? (
           <div className="flex items-center gap-3" role="alert">
             <p className="m-0 text-[14px] text-ink-2">{copy.error}</p>

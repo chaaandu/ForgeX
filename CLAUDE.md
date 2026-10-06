@@ -11,7 +11,7 @@
 - Auth.js v5 (`next-auth@beta`), Google provider, JWT sessions
 - Google Sheets as the only store, through a service account (`lib/sheet/google.ts`, no SDK)
 - Zod at every boundary
-- `motion` for UI and React Three Fiber for the archetype relics. The founder wall is plain DOM on purpose
+- CSS for all motion. No animation library and no WebGL: the wall is plain DOM with one delegated listener
 - `next/og` and `sharp` for the founder card PNG
 - Vitest for units, Playwright end to end in mock mode
 - pnpm, Vercel
@@ -28,7 +28,7 @@ pnpm test               # playwright, mock mode, builds first
 pnpm sheet:init         # tabs, headers, founders. Only ever adds
 pnpm sheet:problems     # adds the bank as drafts
 pnpm research           # cluster → score → drop → balance → write → validate
-pnpm art:relics <url>   # re-renders public/relics/*.webp from /lab/relics
+pnpm bank:list         # docs/PROBLEMS.md, the whole bank, readable
 ```
 
 ## Where things live
@@ -65,7 +65,7 @@ pnpm art:relics <url>   # re-renders public/relics/*.webp from /lab/relics
 - **Problem IDs are frozen** once founders can see them. Only `approved` problems reach founders. Any status the app doesn't recognise reads as `draft`.
 - **The team's data never reaches a founder:** track, the H1 outcome and level, prior work, team notes, other founders' picks, and `Problems internal`. Data that crosses to the browser is built field by field (`publicProblem`, `cardFor`). The leak test greps the built client chunks, and seed JSON is imported only from `server-only` modules.
 - **Matching is deterministic and explains itself.** Every chip on a card names a factor that actually scored. Access to users carries the most weight. A founder never gets an empty screen: the gentle fallback fills in and says so.
-- **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait. The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
+- **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait (`public/art/`, with head crops in `public/art/heads/` for badges). The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
 - **Picks close** at `PICKS_CLOSE_AT`, checked in `submitPick` and `withdrawPick`.
 - **Mock mode** needs `MOCK_BACKEND=true` and a deploy that is not Vercel production (`lib/store/mode.ts`).
 - **Copy:** second person, short. No decorative quote or comma glyphs anywhere. The fixed lines in `docs/PRODUCT.md` are the owner's, so use them verbatim.
@@ -78,6 +78,10 @@ The direction is Matte, with Riso's pink:
 - rarity colours are accents only, never backgrounds for text.
 
 - **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component.
+- **One progress bar.** Levels with questions report to it through `setLevelProgress` (`components/shell/progress.ts`), so the current segment fills; never add a second bar. The onboarding shows no logo and no sign out.
+- **Nothing a founder sees ranks a problem.** No rarity and no signal on cards or the sheet; rarity still pitches matching and colours the card's finish, and the team sees everything in the bank.
+- **Nothing rotates** except the landing wall's flip. The card's light follows the pointer; the card itself stays still.
+- **Sign-in returns you to where you were.** The middleware adds `?next=`, `lib/next-path.ts` keeps it on this site, and `/enter` sends everyone else to their furthest level.
 - **The reveal** times everything off one `--impact`. Hang anything new off it.
 - **Motion:** 150–250ms on task screens; cinematic only for the reveal, the card and the landing. Everything respects `prefers-reduced-motion`.
 - **Self-review loop for any UI change:**

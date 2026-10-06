@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { withdrawPick } from '@/app/actions/founder'
-import { RarityTag } from '@/components/ui/RarityTag'
 import { page as copy } from '@/content/copy'
 import type { PickStatus as Status } from '@/lib/data/picks'
 import type { Problem } from '@/lib/problem'
@@ -17,7 +16,6 @@ import type { Problem } from '@/lib/problem'
 export function PickStatus({
   title,
   challenge,
-  problem,
   status,
   note,
   suggested,
@@ -25,7 +23,6 @@ export function PickStatus({
 }: {
   title: string
   challenge: string
-  problem: Problem | null
   status: Status
   note: string
   suggested: Problem[]
@@ -35,10 +32,7 @@ export function PickStatus({
   const [pending, start] = useTransition()
   return (
     <section className="panel grid gap-5 p-6 md:p-8" aria-labelledby="pick-title">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <span className="meta">{copy.yourPick}</span>
-        {problem ? <RarityTag rarity={problem.rarity} /> : null}
-      </div>
+      <span className="meta">{copy.yourPick}</span>
       <h2 id="pick-title" className="display m-0 text-[clamp(28px,3.4vw,40px)] leading-[1.05]">
         {title}
       </h2>
@@ -67,7 +61,7 @@ export function PickStatus({
           </div>
         ) : (
           <div className="grid gap-4">
-            <p className="m-0 inline-flex w-fit -rotate-2 items-center rounded-lg px-3 py-1.5 text-[15px] font-bold tracking-wide text-pink uppercase shadow-[inset_0_0_0_2px_var(--color-pink)]">
+            <p className="m-0 inline-flex w-fit items-center rounded-lg px-3 py-1.5 text-[15px] font-bold tracking-wide text-pink uppercase shadow-[inset_0_0_0_2px_var(--color-pink)]">
               {copy.status[status]}
             </p>
             {note ? <p className="m-0 text-[17px] leading-relaxed whitespace-pre-line">{note}</p> : null}

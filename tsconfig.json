@@ -32,15 +32,16 @@
     }
   },
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next-prod/types/**/*.ts",
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-    ".next-test/types/**/*.ts"
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "data/the-117-c1"
+    "data/the-117-c1",
+    ".next-prod",
+    ".next-test",
+    ".next-live"
   ]
 }

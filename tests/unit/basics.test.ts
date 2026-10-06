@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { linkLabel, normaliseLink } from '@/lib/links'
+import { safeNext } from '@/lib/next-path'
 import { roleForEmail } from '@/lib/roles'
 import { decode, encode } from '@/lib/sheet/tabs'
 import { assignSlugs, slugify } from '@/lib/slug'
@@ -63,5 +64,16 @@ describe('sheet codec', () => {
   })
   it('writes in the sheet’s own column order', () => {
     expect(encode(['Kind', 'Email'], { Email: 'a@x', Kind: 'pick' })).toEqual(['pick', 'a@x'])
+  })
+})
+
+describe('where sign-in returns to', () => {
+  it('keeps a path on this site and refuses anything else', () => {
+    expect(safeNext('/world')).toBe('/world')
+    expect(safeNext('/why?p=P012')).toBe('/why?p=P012')
+    expect(safeNext('//evil.com')).toBe('/enter')
+    expect(safeNext('https://evil.com')).toBe('/enter')
+    expect(safeNext('/login?next=/x')).toBe('/enter')
+    expect(safeNext(undefined)).toBe('/enter')
   })
 })

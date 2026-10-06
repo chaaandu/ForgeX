@@ -3,12 +3,11 @@
 import { useRef, type ReactNode } from 'react'
 
 /**
- * Leans its child toward the pointer and tells the foil where the light is,
- * through --rx, --ry (degrees) and --mx, --my (0 to 1). Never moves under
- * reduced motion; touch gets no tilt, because a card that swims under your
- * thumb is worse than one that stays put.
+ * Tells the card's foil and glare where the light is, through --mx and --my
+ * (0 to 1). The card itself never moves: the light does. Touch and reduced
+ * motion leave it at rest.
  */
-export function Tilt({ children, max = 12 }: { children: ReactNode; max?: number }) {
+export function Tilt({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null)
 
   function move(event: React.PointerEvent<HTMLDivElement>) {
@@ -16,27 +15,13 @@ export function Tilt({ children, max = 12 }: { children: ReactNode; max?: number
     if (!node || event.pointerType === 'touch') return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const box = node.getBoundingClientRect()
-    const x = (event.clientX - box.left) / box.width
-    const y = (event.clientY - box.top) / box.height
-    node.style.setProperty('--mx', x.toFixed(3))
-    node.style.setProperty('--my', y.toFixed(3))
-    node.style.setProperty('--rx', `${((0.5 - y) * max).toFixed(2)}deg`)
-    node.style.setProperty('--ry', `${((x - 0.5) * max).toFixed(2)}deg`)
-    node.dataset.live = ''
+    node.style.setProperty('--mx', ((event.clientX - box.left) / box.width).toFixed(3))
+    node.style.setProperty('--my', ((event.clientY - box.top) / box.height).toFixed(3))
   }
 
   function leave() {
-    const node = ref.current
-    if (!node) return
-    for (const [name, value] of [
-      ['--rx', '0deg'],
-      ['--ry', '0deg'],
-      ['--mx', '0.5'],
-      ['--my', '0.3'],
-    ] as const) {
-      node.style.setProperty(name, value)
-    }
-    delete node.dataset.live
+    ref.current?.style.setProperty('--mx', '0.5')
+    ref.current?.style.setProperty('--my', '0.3')
   }
 
   return (

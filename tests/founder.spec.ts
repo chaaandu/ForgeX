@@ -9,7 +9,7 @@ test('a founder placed in Hackathon 1 keeps their archetype and walks to a sent 
   await signIn(page, AARAV)
   await page.goto('/')
   await page.getByRole('link', { name: 'Enter' }).click()
-  await page.waitForURL('**/arrive')
+  await page.waitForURL('**/arrive', { waitUntil: 'commit' })
   await expect(page.getByRole('heading', { name: 'Hi, Aarav.' })).toBeVisible()
 
   await page.getByRole('link', { name: "Let's go" }).click()
@@ -80,7 +80,7 @@ test('a founder can write their own problem and send a why for it', async ({ pag
 
 test('the landing works on a phone @phone', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { name: /Find a problem worth/ })).toBeVisible()
+  await expect(page.getByRole('heading', { name: /Find the problem/ })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Enter' })).toBeInViewport()
   const face = page.getByRole('list', { name: /founders of ForgeX/ }).getByRole('button').first()
   await face.tap()

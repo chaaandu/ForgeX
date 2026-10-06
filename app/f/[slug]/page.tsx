@@ -92,7 +92,6 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
           <PickStatus
             title={latest.title}
             challenge={latest.problem?.challenge ?? latest.pick.custom?.challenge ?? ''}
-            problem={latest.problem}
             status={latest.status}
             note={latestResponse?.note ?? ''}
             suggested={suggested}
@@ -154,7 +153,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             {copy.about}
           </h2>
           {own ? (
-            <Profile name={founder.name} photo={founder.photo} initial={founder.profile} wall={founder.wall} next={null} />
+            <Profile name={founder.name} photo={founder.photo} initial={founder.profile} next={null} />
           ) : (
             <ProfileFacts profile={founder.profile} />
           )}

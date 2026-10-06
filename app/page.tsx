@@ -2,18 +2,17 @@ import { Brand } from '@/components/shell/Brand'
 import { Wall } from '@/components/landing/Wall'
 import { landing as copy } from '@/content/copy'
 import { allFounders } from '@/lib/data/founders'
-import { openProblems } from '@/lib/data/problems'
 
-/** Regenerated every five minutes: a new face on the wall, or a newly approved problem. */
+/** Regenerated every five minutes, so a newly placed archetype shows up on the wall. */
 export const revalidate = 300
 
 /**
- * The door. The whole cohort's faces, one line, how many problems are open,
- * and one way in. No problem statements here: those are earned by walking
- * the levels, not browsed from the doorway.
+ * The door. The whole cohort's faces, one line, and one way in. No problem
+ * statements here: those are earned by walking the levels, not browsed from
+ * the doorway.
  */
 export default async function Landing() {
-  const [founders, problems] = await Promise.all([allFounders(), openProblems()])
+  const founders = await allFounders()
   const faces = founders
     .filter((founder) => founder.wall)
     .map((founder) => ({
@@ -32,19 +31,13 @@ export default async function Landing() {
       <main className="pointer-events-none absolute inset-x-0 bottom-0 z-20 mx-auto grid max-w-[1400px] gap-6 px-5 pb-10 md:gap-8 md:px-12 md:pb-16">
         <p className="meta m-0">{copy.kicker}</p>
         <h1 className="display m-0 max-w-[14ch] text-[clamp(44px,min(8vw,11.5svh),128px)] leading-[0.95]">
-          {copy.lineStart} <em>{copy.lineEm}</em> {copy.lineEnd}
+          {copy.lineStart} <em>{copy.lineEm}</em>
         </h1>
         <div className="pointer-events-auto flex flex-wrap items-center gap-x-6 gap-y-4">
           {/* A plain link: /enter is a redirect, and a full navigation follows it cleanly. */}
           <a href="/enter" className="btn btn-primary press min-h-[52px] px-8 text-[16px]">
             {copy.enter}
           </a>
-          {problems.length ? (
-            <p className="m-0 inline-flex items-center gap-2.5 font-mono text-[13px] text-ink-2">
-              <span aria-hidden="true" className="live-dot" />
-              {copy.open(problems.length)}
-            </p>
-          ) : null}
         </div>
       </main>
     </div>

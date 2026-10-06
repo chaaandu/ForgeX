@@ -30,7 +30,7 @@ export function studentByName(name: string): Student | undefined {
 }
 
 /**
- * The ForgeX 2.0 cohort: roster rows on the founder domain that have a photo.
+ * The ForgeX cohort: roster rows on the founder domain that have a photo.
  * Two founder-domain rows without one are outside the cohort by the owner's
  * decision (2026-10-06) and cannot sign in.
  */

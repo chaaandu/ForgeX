@@ -6,7 +6,6 @@ import { archetypes, card as copy, families } from '@/content/copy'
 import { ARCHETYPES, FAMILIES } from '@/lib/archetype'
 import { founderContext } from '@/lib/context'
 import { founderBySlug } from '@/lib/data/founders'
-import { RARITY_LABEL } from '@/lib/problem'
 import { getViewer } from '@/lib/session'
 
 /**
@@ -60,9 +59,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   const family = kind ? FAMILIES[kind.family] : null
   const finish = data.finish ?? 'none'
   const [hi, lo] = FRAME[finish] ?? FRAME.none!
-  const [photo, relic] = await Promise.all([
+  const [photo, head] = await Promise.all([
     asDataUrl(data.photo, 1000),
-    kind ? asDataUrl(kind.relic, 240) : Promise.resolve(null),
+    family ? asDataUrl(family.head, 256) : Promise.resolve(null),
   ])
   const line = data.problemTitle
     ? `${copy.building}: ${data.problemTitle}`
@@ -95,12 +94,17 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           <div style={{ display: 'flex', position: 'relative', width: '100%', height: 1010 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={photo} width={1008} height={1010} style={{ objectFit: 'cover', objectPosition: '50% 20%' }} alt="" />
+            {/* The photo melts into the card: Satori needs the overlay's size spelled out. */}
             <div
               style={{
                 position: 'absolute',
-                inset: 0,
+                top: 0,
+                left: 0,
+                width: 1008,
+                height: 1010,
                 display: 'flex',
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0) 22%, rgba(0,0,0,0) 65%, #121214)',
+                backgroundImage:
+                  'linear-gradient(180deg, rgba(18,18,20,0.5) 0%, rgba(18,18,20,0) 22%, rgba(18,18,20,0) 58%, rgba(18,18,20,0.85) 85%, #121214 100%)',
               }}
             />
             <div
@@ -117,28 +121,26 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
                 color: 'rgba(255,255,255,0.88)',
               }}
             >
-              <span>{data.number ? copy.number(data.number, data.of) : copy.unnumbered}</span>
-              <span style={{ color: hi }}>{finish === 'none' ? '' : finish === 'original' ? copy.original.toUpperCase() : RARITY_LABEL[finish].toUpperCase()}</span>
+              <span>{data.number ? copy.number(data.number, data.of) : ''}</span>
             </div>
           </div>
-          {relic && family ? (
+          {head && family ? (
             <div
               style={{
                 position: 'absolute',
                 right: 48,
-                top: 900,
-                width: 180,
-                height: 180,
-                borderRadius: 90,
+                top: 880,
+                width: 190,
+                height: 190,
+                borderRadius: 95,
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                overflow: 'hidden',
                 background: '#121214',
-                border: `5px solid ${family.tint}`,
+                border: `6px solid ${family.tint}`,
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={relic} width={150} height={150} alt="" />
+              <img src={head} width={178} height={178} style={{ borderRadius: 89 }} alt="" />
             </div>
           ) : null}
           <div style={{ display: 'flex', flexDirection: 'column', padding: '28px 56px 0', gap: 14 }}>
@@ -166,7 +168,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
               color: '#8f8c85',
             }}
           >
-            <span>FORGEX 2.0</span>
+            <span>FORGEX</span>
             <span>MESA SCHOOL OF BUSINESS</span>
           </div>
         </div>

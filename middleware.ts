@@ -24,7 +24,10 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   const signedIn = SESSION_COOKIES.some((name) => request.cookies.has(name))
   if (isOpen(pathname) || signedIn) return NextResponse.next()
-  return NextResponse.redirect(new URL('/login', request.nextUrl.origin))
+  // Remember where they were going, so signing in takes them back there.
+  const login = new URL('/login', request.nextUrl.origin)
+  if (pathname !== '/enter') login.searchParams.set('next', pathname + request.nextUrl.search)
+  return NextResponse.redirect(login)
 }
 
 /**

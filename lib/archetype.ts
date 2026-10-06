@@ -36,6 +36,8 @@ export type Family = {
   axis: Axis
   /** Full-body portrait. The three that exist; every archetype in a family shares it. */
   art: string
+  /** The same portrait cropped to head and shoulders, for badges. */
+  head: string
   /** The family's ground and its light. */
   ground: string
   tint: string
@@ -46,6 +48,7 @@ export const FAMILIES: Record<FamilyId, Family> = {
     id: 'cartographer',
     axis: 'u',
     art: '/art/cartographer.webp',
+    head: '/art/heads/cartographer.webp',
     ground: '#052624',
     tint: '#19B3B0',
   },
@@ -53,6 +56,7 @@ export const FAMILIES: Record<FamilyId, Family> = {
     id: 'alchemist',
     axis: 'e',
     art: '/art/alchemist.webp',
+    head: '/art/heads/alchemist.webp',
     ground: '#2E1A08',
     tint: '#F0A526',
   },
@@ -60,6 +64,7 @@ export const FAMILIES: Record<FamilyId, Family> = {
     id: 'architect',
     axis: 's',
     art: '/art/architect.webp',
+    head: '/art/heads/architect.webp',
     ground: '#071A3D',
     tint: '#3B82F6',
   },
@@ -71,17 +76,15 @@ export type Archetype = {
   /** The instinct that leads, then the one that follows. */
   lead: Axis
   then: Axis
-  /** The relic that stands for this archetype: `public/relics/<id>.webp`. */
-  relic: string
 }
 
 export const ARCHETYPES: Record<ArchetypeId, Archetype> = {
-  surveyor: { id: 'surveyor', family: 'cartographer', lead: 'u', then: 's', relic: '/relics/surveyor.webp' },
-  scout: { id: 'scout', family: 'cartographer', lead: 'u', then: 'e', relic: '/relics/scout.webp' },
-  inventor: { id: 'inventor', family: 'alchemist', lead: 'e', then: 'u', relic: '/relics/inventor.webp' },
-  tinkerer: { id: 'tinkerer', family: 'alchemist', lead: 'e', then: 's', relic: '/relics/tinkerer.webp' },
-  strategist: { id: 'strategist', family: 'architect', lead: 's', then: 'u', relic: '/relics/strategist.webp' },
-  builder: { id: 'builder', family: 'architect', lead: 's', then: 'e', relic: '/relics/builder.webp' },
+  surveyor: { id: 'surveyor', family: 'cartographer', lead: 'u', then: 's' },
+  scout: { id: 'scout', family: 'cartographer', lead: 'u', then: 'e' },
+  inventor: { id: 'inventor', family: 'alchemist', lead: 'e', then: 'u' },
+  tinkerer: { id: 'tinkerer', family: 'alchemist', lead: 'e', then: 's' },
+  strategist: { id: 'strategist', family: 'architect', lead: 's', then: 'u' },
+  builder: { id: 'builder', family: 'architect', lead: 's', then: 'e' },
 }
 
 /** Ties break this way, recovered from the six tied founders in the source. */

@@ -200,12 +200,3 @@ export async function withdrawPick(): Promise<Result> {
   })
 }
 
-/** On the wall or off it. */
-export async function setWall(on: unknown): Promise<Result> {
-  return guarded<object>(async (founder) => {
-    if (typeof on !== 'boolean') return { ok: false, error: 'invalid' }
-    await patchFounder(founder, { Wall: on ? 'yes' : 'no' })
-    await logEvent(founder.email, 'wall', { on })
-    return { ok: true }
-  })
-}

@@ -19,7 +19,7 @@ test('an account outside Mesa is refused, calmly', async ({ page }) => {
 
 test('a founder-domain account off the roster is refused with its own message', async ({ page }) => {
   await page.goto('/login?error=roster')
-  await expect(page.getByText(/isn't in the ForgeX 2.0 cohort/)).toBeVisible()
+  await expect(page.getByText(/isn't in the ForgeX cohort/)).toBeVisible()
 })
 
 test("a founder cannot see another founder's page, card or the console", async ({ page }) => {
@@ -30,16 +30,16 @@ test("a founder cannot see another founder's page, card or the console", async (
   expect((await page.request.get('/api/team/export.csv')).status()).toBe(404)
 })
 
-test('signed out, everything but the door asks you to sign in', async ({ page }) => {
+test('signed out, everything but the door asks you to sign in, remembering where you were going', async ({ page }) => {
   for (const path of ['/arrive', '/matches', '/f/aarav-shrivastava', '/team']) {
     await page.goto(path)
-    await expect(page).toHaveURL(/\/login$/)
+    await expect(page).toHaveURL(new RegExp(`/login\\?next=${encodeURIComponent(path).replace(/%2F/g, '(%2F|/)')}$`))
   }
   expect((await page.goto('/'))?.status()).toBe(200)
 })
 
 test('static images are never sent to the login screen', async ({ page }) => {
-  for (const path of ['/art/alchemist.webp', '/relics/scout.webp', '/brand/mesa-logo.png', '/students/aarav.webp']) {
+  for (const path of ['/art/alchemist.webp', '/art/heads/cartographer.webp', '/brand/mesa-logo.png', '/students/aarav.webp']) {
     const response = await page.request.get(path, { maxRedirects: 0 })
     expect(response.status(), path).toBe(200)
   }
@@ -50,4 +50,20 @@ test('a founder can download their own card', async ({ page }) => {
   const response = await page.request.get('/api/card/aarav-shrivastava')
   expect(response.status()).toBe(200)
   expect(response.headers()['content-type']).toBe('image/png')
+})
+
+test('signing back in returns a founder to where they left off', async ({ page }) => {
+  await signIn(page, AARAV)
+  await page.goto('/arrive')
+  await expect(page.getByText(/^#\d{3} \/ 117$/).first()).toBeVisible()
+  await page.goto('/archetype')
+  await page.getByRole('button', { name: "That's me" }).click()
+  await page.waitForURL('**/profile')
+  await page.context().clearCookies()
+
+  await page.goto('/')
+  await page.getByRole('link', { name: 'Enter' }).click()
+  await page.waitForURL('**/login')
+  await page.locator(`button[data-email="${AARAV}"]`).click()
+  await page.waitForURL('**/profile')
 })

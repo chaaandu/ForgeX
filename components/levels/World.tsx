@@ -1,8 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { saveWorld } from '@/app/actions/founder'
+import { setLevelProgress } from '@/components/shell/progress'
 import { ComfortSlider } from '@/components/ui/ComfortSlider'
 import { OtherField } from '@/components/ui/OtherField'
 import { world as copy } from '@/content/copy'
@@ -54,6 +55,16 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
   const set = (patch: Partial<Draft>) => setDraft((current) => ({ ...current, ...patch }))
   const name = STEPS[step]!
 
+  useEffect(() => {
+    setLevelProgress(step / STEPS.length)
+  }, [step])
+
+  // The founder's own industries come first wherever a list of worlds appears.
+  const ordered = [
+    ...INDUSTRIES.filter((industry) => draft.industries.includes(industry.id)),
+    ...INDUSTRIES.filter((industry) => !draft.industries.includes(industry.id)),
+  ]
+
   const ready: Record<(typeof STEPS)[number], boolean> = {
     industries:
       draft.industries.length > 0 && (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
@@ -103,27 +114,14 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
 
   return (
     <div className="grid max-w-[760px] gap-8">
-      <div className="grid gap-3">
-        <div className="flex items-center justify-between">
-          <p className="meta m-0" aria-live="polite">
-            {step + 1} / {STEPS.length}
-          </p>
-        </div>
-        <div className="flex gap-1" aria-hidden="true">
-          {STEPS.map((item, index) => (
-            <span
-              key={item}
-              className="h-[3px] flex-1 rounded-full transition-colors duration-200"
-              style={{ background: index < step ? 'var(--color-ink-1)' : index === step ? 'var(--color-pink)' : 'var(--color-s3)' }}
-            />
-          ))}
-        </div>
-      </div>
+      <p className="sr-only" aria-live="polite">
+        {copy.of(step + 1, STEPS.length)}
+      </p>
 
       <div key={name} className="quiz-card grid gap-6">
         {name === 'industries' ? (
           <>
-            <Ask text={copy.industries.ask} hint={copy.industries.hint} />
+            <Ask text={copy.industries.ask} count={[draft.industries.length, 3]} />
             <div className="flex flex-wrap gap-2">
               {INDUSTRIES.map((industry) => (
                 <button
@@ -131,6 +129,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                   type="button"
                   className="chip press"
                   aria-pressed={draft.industries.includes(industry.id)}
+                  aria-disabled={!draft.industries.includes(industry.id) && draft.industries.length >= 3}
                   onClick={() => set({ industries: toggle(draft.industries, industry.id, 3) })}
                 >
                   {industry.label}
@@ -139,6 +138,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
               <OtherField
                 label={copy.industries.other}
                 on={draft.industries.includes('other')}
+                full={draft.industries.length >= 3}
                 onToggle={() => set({ industries: toggle(draft.industries, 'other', 3) })}
                 value={draft.industryOther}
                 onChange={(industryOther) => set({ industryOther })}
@@ -198,7 +198,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                         ) : null}
                         <p className="m-0 text-[15px] text-ink-2">{copy.access.worlds(copy.access.whoLabel[option.id])}</p>
                         <div className="flex flex-wrap gap-2">
-                          {INDUSTRIES.map((industry) => (
+                          {ordered.map((industry) => (
                             <button
                               key={industry.id}
                               type="button"
@@ -237,7 +237,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
 
         {name === 'learn' ? (
           <>
-            <Ask text={copy.learn.ask} hint={copy.learn.hint} />
+            <Ask text={copy.learn.ask} count={[draft.learn.length, 3]} />
             <div className="flex flex-wrap gap-2">
               {LEARN.map((learn) => (
                 <button
@@ -245,6 +245,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                   type="button"
                   className="chip press"
                   aria-pressed={draft.learn.includes(learn.id)}
+                  aria-disabled={!draft.learn.includes(learn.id) && draft.learn.length >= 3}
                   onClick={() => set({ learn: toggle(draft.learn, learn.id, 3) })}
                 >
                   {learn.label}
@@ -253,6 +254,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
               <OtherField
                 label={copy.learn.other}
                 on={draft.learn.includes('other')}
+                full={draft.learn.length >= 3}
                 onToggle={() => set({ learn: toggle(draft.learn, 'other', 3) })}
                 value={draft.learnOther}
                 onChange={(learnOther) => set({ learnOther })}
@@ -323,10 +325,20 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
   )
 }
 
-function Ask({ text, hint }: { text: string; hint?: string }) {
+function Ask({ text, hint, count }: { text: string; hint?: string; count?: [number, number] }) {
   return (
     <div className="grid gap-2">
-      <h1 className="ask m-0">{text}</h1>
+      <div className="flex items-start justify-between gap-4">
+        <h1 className="ask m-0">{text}</h1>
+        {count ? (
+          <span
+            className={`mt-2 shrink-0 rounded-full px-2.5 py-1 font-mono text-[12px] ${count[0] >= count[1] ? 'bg-pink text-on-pink' : 'text-ink-2 shadow-[inset_0_0_0_1px_var(--color-line-2)]'}`}
+            aria-label={copy.picked(count[0], count[1])}
+          >
+            {count[0]} / {count[1]}
+          </span>
+        ) : null}
+      </div>
       {hint ? <p className="m-0 text-[15px] text-ink-2">{hint}</p> : null}
     </div>
   )

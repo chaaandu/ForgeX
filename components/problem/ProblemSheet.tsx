@@ -6,8 +6,6 @@ import type { ReactNode } from 'react'
 import { problem as copy } from '@/content/copy'
 import type { Problem } from '@/lib/problem'
 import { labelOf } from '@/lib/taxonomy'
-import { RarityTag, rarityColor } from '@/components/ui/RarityTag'
-import { Signal } from '@/components/ui/Signal'
 
 /**
  * The full problem, with one thing to do. A bottom sheet on a phone, a dialog
@@ -35,13 +33,7 @@ export function ProblemSheet({
         >
           {problem ? (
             <div className="grid gap-5">
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-10 top-0 h-px"
-                style={{ background: `linear-gradient(90deg, transparent, ${rarityColor(problem.rarity)}, transparent)` }}
-              />
-              <div className="flex items-center justify-between gap-4">
-                <RarityTag rarity={problem.rarity} />
+              <div className="flex items-center justify-end gap-4">
                 <Dialog.Close className="btn btn-quiet press -mr-3 min-h-10 px-3" aria-label={copy.close}>
                   <X size={16} strokeWidth={1.5} />
                 </Dialog.Close>
@@ -52,18 +44,15 @@ export function ProblemSheet({
                 <span className="meta text-[11px]">{copy.challenge}</span>
                 {problem.challenge}
               </p>
-              <dl className="m-0 grid gap-4 border-t border-line pt-5 sm:grid-cols-2">
-                <div>
-                  <dt className="meta mb-2 text-[11px]">{copy.learn}</dt>
-                  <dd className="m-0 text-[15px] text-ink-2">{problem.learn.map(labelOf.learn).join(', ')}</dd>
-                </div>
-                <div>
-                  <dt className="meta mb-2 text-[11px]">{copy.signal}</dt>
-                  <dd className="m-0 flex items-center gap-3 text-[15px] text-ink-2">
-                    <Signal strength={problem.signal.strength} label={copy.signalOf(problem.signal.strength)} />
-                    {problem.signal.line}
-                  </dd>
-                </div>
+              <dl className="m-0 grid gap-2 border-t border-line pt-5">
+                <dt className="meta text-[11px]">{copy.learn}</dt>
+                <dd className="m-0 flex flex-wrap gap-1.5">
+                  {problem.learn.map((id) => (
+                    <span key={id} className="tag">
+                      {labelOf.learn(id)}
+                    </span>
+                  ))}
+                </dd>
               </dl>
               {action ? <div className="pt-1">{action}</div> : null}
             </div>

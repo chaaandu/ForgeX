@@ -127,7 +127,9 @@ Every animation must explain something: a transition, a reveal or a change of st
 
 ## The founder wall
 
-**Shipped:** the DOM mosaic only. Server-rendered buttons with one delegated listener for the flip, one drift on the whole grid, and card backs filled when flipped. On a throttled phone it scores 99 on Lighthouse. React Three Fiber earns its place in the archetype relics instead, where it loads after the reveal, once the browser is idle.
+**Shipped:** the DOM mosaic only. Server-rendered buttons with one delegated listener for the flip, one drift on the whole grid, and card backs filled when flipped. On a throttled phone it scores 99 on Lighthouse. The 3D relics were dropped at the owner's request (2026-10-06) for the family portraits, which also took three.js out of the app.
+
+**No rotation** anywhere except the wall's flip: cards don't tilt, stamps sit straight, and the card enters by rising, not turning.
 
 **Base layer:** a DOM/CSS mosaic. A CSS grid holds the 117 faces as 96px AVIF/WebP images, served from `next/image` with explicit sizes.
 - The images are lazy, except the first row, which forms the LCP.
