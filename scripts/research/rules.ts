@@ -227,12 +227,14 @@ export function signalLine(evidence: Signal[]): string {
 }
 
 /**
- * The count on a log scale (3 signals is 1, each doubling adds one), nudged up
- * half a point for each source type beyond two, clamped to 1..5.
+ * Calibrated to the evidence a bank problem actually has: the minimum of three
+ * corroborating posts reads as 2, each further post adds three quarters of a
+ * point, and each source type beyond two adds half. Clamped to 1..5. A log
+ * scale put most of the bank at 1, which read to founders as nobody caring.
  */
 export function signalStrength(evidence: Signal[]): number {
   const n = Math.max(evidence.length, 1)
-  const base = 1 + Math.log2(n / MIN_SIGNALS)
+  const base = 2 + 0.75 * (n - MIN_SIGNALS)
   const diversity = 0.5 * Math.max(0, sourceTypes(evidence) - MIN_SOURCE_TYPES)
   return Math.min(5, Math.max(1, Math.round(base + diversity)))
 }

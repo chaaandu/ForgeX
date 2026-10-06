@@ -1,4 +1,5 @@
 import { WallFace, type Face } from '@/components/card/WallFace'
+import { Glint } from './Glint'
 import { wall as copy } from '@/content/copy'
 import '@/components/card/card.css'
 
@@ -10,12 +11,18 @@ import '@/components/card/card.css'
  */
 export function Wall({ faces }: { faces: Face[] }) {
   return (
-    <ul className="wall m-0 grid list-none content-start gap-1.5 px-3 pt-16 md:gap-2 md:px-6 md:pt-20" aria-label={copy.label}>
-      {faces.map((face, index) => (
-        <li key={face.photo} className="wall-cell" style={{ ['--i' as string]: index }}>
-          <WallFace face={face} priority={index < 10} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <Glint />
+      <ul
+        className="wall m-0 grid list-none content-start gap-1.5 px-3 pt-16 md:gap-2 md:px-6 md:pt-20"
+        aria-label={copy.label}
+      >
+        {faces.map((face, index) => (
+          <li key={face.photo} className="wall-cell" style={{ ['--i' as string]: index }}>
+            <WallFace face={face} priority={index < 10} />
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }

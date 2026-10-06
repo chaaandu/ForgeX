@@ -55,14 +55,16 @@ export function Profile({
 
   return (
     <div className="grid gap-12">
-      <h1 className="display rise m-0 max-w-[18ch] text-[clamp(36px,5vw,60px)] leading-[1.02]">{copy.heading}</h1>
+      {next ? <h1 className="display rise m-0 max-w-[18ch] text-[clamp(36px,5vw,60px)] leading-[1.02]">{copy.heading}</h1> : null}
 
-      <section className="grid gap-6 md:grid-cols-[120px_1fr] md:items-start">
-        <div className="relative size-24 overflow-hidden rounded-2xl shadow-[0_0_0_1px_var(--color-line-2)] md:size-[120px]">
-          <Image src={photo} alt={name} fill sizes="120px" className="object-cover" />
-        </div>
+      <section className={`grid gap-6 ${next ? 'md:grid-cols-[120px_1fr]' : ''} md:items-start`}>
+        {next ? (
+          <div className="relative size-24 overflow-hidden rounded-2xl shadow-[0_0_0_1px_var(--color-line-2)] md:size-[120px]">
+            <Image src={photo} alt={name} fill sizes="120px" className="object-cover" />
+          </div>
+        ) : null}
         <div className="grid gap-3">
-          <p className="display m-0 text-[clamp(34px,4vw,48px)] leading-none">{name}</p>
+          {next ? <p className="display m-0 text-[clamp(34px,4vw,48px)] leading-none">{name}</p> : null}
           <p className="m-0 text-[13px] text-ink-3">{copy.fromMesa}</p>
           <InlineField
             label={copy.bio.label}

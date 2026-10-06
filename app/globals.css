@@ -254,7 +254,8 @@
   .chip:hover {
     background: rgb(255 255 255 / 0.08);
   }
-  .chip[aria-pressed='true'] {
+  .chip[aria-pressed='true'],
+  .chip[aria-checked='true'] {
     color: var(--color-on-pink);
     background: var(--color-pink);
     box-shadow: none;
@@ -415,8 +416,20 @@
 
 /* A slow, staggered breath, so the wall is alive without anything moving far. */
 .wall-cell {
-  animation: drift 9s ease-in-out infinite alternate;
-  animation-delay: calc(var(--i) * -470ms);
+  animation:
+    wall-in 700ms var(--ease-out) calc(var(--i) * 9ms) both,
+    drift 9s ease-in-out calc(var(--i) * -470ms) infinite alternate;
+}
+@keyframes wall-in {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+}
+/* One face at a time comes into colour, so the wall reads as people. */
+.wall-cell[data-glint] .wf-front img {
+  filter: none;
+  transition-duration: 900ms;
 }
 @keyframes drift {
   from {
@@ -726,4 +739,69 @@
 }
 .inline-edit::placeholder {
   color: var(--color-ink-3);
+}
+
+/* One question at a time: the next card slides in from the right. */
+.quiz-card {
+  animation: card-in 250ms var(--ease-out) both;
+}
+@keyframes card-in {
+  from {
+    opacity: 0;
+    translate: 24px 0;
+  }
+}
+
+/* Level 6 sent: the card turns over and comes back wearing its finish. */
+.sent-card .fc-wrap {
+  width: min(72vw, 380px);
+  animation: card-turn 900ms var(--ease-impact) both;
+}
+.sent-card .fc-foil {
+  animation: foil-sweep 1600ms var(--ease-out) 500ms both;
+}
+@keyframes card-turn {
+  from {
+    transform: rotateY(-180deg) scale(0.9);
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  to {
+    transform: rotateY(0) scale(1);
+  }
+}
+@keyframes foil-sweep {
+  from {
+    --mx: 0;
+    filter: brightness(2.2);
+  }
+  to {
+    --mx: 1;
+    filter: brightness(1);
+  }
+}
+
+/* The landing: faces up top, fading to ground where the words sit. */
+.landing-fade {
+  background: linear-gradient(
+    to bottom,
+    rgb(12 12 14 / 0.4) 0%,
+    rgb(12 12 14 / 0) 14%,
+    rgb(12 12 14 / 0.2) 30%,
+    rgb(12 12 14 / 0.8) 50%,
+    var(--color-ground) 66%
+  );
+}
+@media (min-width: 720px) {
+  .landing-fade {
+    background: linear-gradient(
+      to bottom,
+      rgb(12 12 14 / 0.4) 0%,
+      rgb(12 12 14 / 0) 16%,
+      rgb(12 12 14 / 0.65) 46%,
+      var(--color-ground) 70%
+    );
+  }
 }

@@ -7,8 +7,8 @@ function isOpen(pathname: string): boolean {
     pathname === '/' ||
     pathname === '/login' ||
     pathname.startsWith('/api/auth') ||
-    // The design lab, until a direction is chosen. Deleted before launch.
-    pathname.startsWith('/lab') ||
+    // The design lab and the relic renderer. Never reachable in production.
+    (pathname.startsWith('/lab') && process.env.NODE_ENV !== 'production') ||
     (pathname.startsWith('/api/mock') && process.env.MOCK_BACKEND === 'true')
   )
 }

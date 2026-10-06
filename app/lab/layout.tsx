@@ -10,6 +10,7 @@ import {
   Manrope,
 } from 'next/font/google'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import './lab.css'
 
 /* Every face any direction might use. Only the lab loads all of them. */
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 }
 
 export default function LabLayout({ children }: { children: React.ReactNode }) {
+  if (process.env.NODE_ENV === 'production') notFound()
   const fonts = [
     instrument.variable,
     bricolage.variable,
