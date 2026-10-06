@@ -73,7 +73,7 @@ pnpm sheet:migrate     # once, on a Sheet from before tracks: Rarity → Difficu
 - **Matching is deterministic and explains itself.** Every chip names a factor that actually scored; chips are computed but match cards no longer show them. Access to users carries the most weight; comfort and intent pitch difficulty (`difficultyTarget`). A founder never gets an empty screen: the gentle fallback fills in and says so.
 - **Who did what is recorded.** Responses.Author and Problems Edited by hold the team member's email; Events logs every action.
 - **A founder page opens to the cohort** only once that founder is building (Go or Go with a tweak), and then without the thread, the team's note or the download. Otherwise it is the founder and the team, and a 404 for anyone else.
-- **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait (`public/art/`, with head crops in `public/art/heads/` for badges). The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
+- **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait (`public/art/`). The card shows the full figure, never a crop; `public/art/heads/` is only for the wall's flip side. The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
 - **Picks close** at `PICKS_CLOSE_AT`, checked in `submitPick` and `withdrawPick`.
 - **Mock mode** needs `MOCK_BACKEND=true` and a deploy that is not Vercel production (`lib/store/mode.ts`).
 - **Copy:** second person, short. No decorative quote or comma glyphs anywhere. The fixed lines in `docs/PRODUCT.md` are the owner's, so use them verbatim.
@@ -103,7 +103,7 @@ The direction is Matte, with Riso's pink:
 - difficulty colours are accents only, in the console, never backgrounds for text.
 
 - **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component. One finish, `picked` (pink, with foil), for any pick. The bottom line is always the archetype's identity line, never the bio or the problem.
-- **One progress bar.** Levels with questions report to it through `setLevelProgress` (`components/shell/progress.ts`), so the current segment fills; never add a second bar. The onboarding shows no logo and no sign out.
+- **One progress bar.** Levels with questions report to it through `setLevelProgress` (`components/shell/progress.ts`), so the current segment fills; never add a second bar. The onboarding shows no logo. Founders never get a sign-out at all; the team signs out from the account menu (`components/shell/Account.tsx`).
 - **Nothing a founder sees ranks a problem.** Difficulty (easy, medium, hard) and signal never reach a founder's browser; difficulty still pitches matching, and the team sees it in the bank and the queue. Rarity survives only as the research pipeline's input, mapped by `DIFFICULTY_OF_RARITY`.
 - **Nothing rotates** except the landing wall's flip. The card's light follows the pointer; the card itself stays still.
 - **Sign-in returns you to where you were.** The middleware adds `?next=`, `lib/next-path.ts` keeps it on this site, and `/enter` sends everyone else to their furthest level.

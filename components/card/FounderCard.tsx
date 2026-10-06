@@ -8,8 +8,9 @@ import './card.css'
  * The founder card. It is also the progress bar: every level adds a layer, and
  * the slots not yet filled are drawn as empty, so a founder can always see what
  * is left to earn. Photo and number on arrival, archetype and portrait after the
- * quiz, the edge marks after their world, the finish when they send their
- * why, and the team's stamp when we answer. The bottom line is always the
+ * quiz, the edge marks after their world, and the finish when they send their
+ * why. The team's answer lives on their page, not stamped across their face.
+ * The archetype stands in the corner whole, never cropped. The bottom line is always the
  * archetype's own line: never their bio, never their problem.
  *
  * Everything inside is sized in container units, so one component serves the
@@ -18,7 +19,6 @@ import './card.css'
 
 /** One finish for any pick: a finish per difficulty would tell a founder how hard theirs is. */
 export type CardFinish = 'picked'
-export type CardStamp = 'go' | 'tweak' | 'talk'
 
 export type FounderCardData = {
   name: string
@@ -30,10 +30,8 @@ export type FounderCardData = {
   marks?: string[]
   problemTitle?: string
   finish?: CardFinish | null
-  stamp?: CardStamp | null
 }
 
-const STAMP_TEXT: Record<CardStamp, string> = { go: 'Go', tweak: 'Go, tweak', talk: "Let's talk" }
 
 export function FounderCard({
   data,
@@ -71,9 +69,13 @@ export function FounderCard({
             sizes={size === 'sm' ? '140px' : '360px'}
             priority={priority}
           />
-        </div>
-        <div className="fc-badge" data-empty={!kind || undefined} aria-hidden="true">
-          {family ? <Image src={family.head} alt="" width={96} height={96} /> : <span>?</span>}
+          <div className="fc-figure" data-empty={!kind || undefined} aria-hidden="true">
+            {family ? (
+              <Image src={family.art} alt="" width={160} height={160} sizes="130px" />
+            ) : (
+              <span>?</span>
+            )}
+          </div>
         </div>
         <div className="fc-meta">
           <p className="fc-name">{data.name}</p>
@@ -88,11 +90,6 @@ export function FounderCard({
         </div>
         {data.marks?.length ? <p className="fc-marks">{data.marks.join(' · ')}</p> : null}
       </div>
-      {data.stamp ? (
-        <div className="fc-stamp" data-stamp={data.stamp} aria-label={STAMP_TEXT[data.stamp]}>
-          {STAMP_TEXT[data.stamp]}
-        </div>
-      ) : null}
       <div className="fc-glare" aria-hidden="true" />
     </div>
   )

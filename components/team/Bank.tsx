@@ -39,13 +39,16 @@ export type BankItem = {
 
 /**
  * Nothing reaches a founder until it is approved here. One problem at a time
- * with its evidence and scores beside it; Y, R and E on the keyboard.
+ * with its evidence and scores beside it. The actions follow the problem's
+ * state: a draft is approved or archived, a live one edited or taken down, an
+ * archived one restored. Never a button for the state it is already in.
  */
 export function Bank({ items }: { items: BankItem[] }) {
   const router = useRouter()
   const [filter, setFilter] = useState<Status | 'all'>(() =>
     items.some((item) => item.status === 'draft') ? 'draft' : 'all',
   )
+  const [level, setLevel] = useState<Difficulty | 'all'>('all')
   const [index, setIndex] = useState(0)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState({
@@ -56,9 +59,13 @@ export function Bank({ items }: { items: BankItem[] }) {
   })
   const [pending, start] = useTransition()
 
-  const list = useMemo(
+  const inStatus = useMemo(
     () => items.filter((item) => filter === 'all' || item.status === filter),
     [filter, items],
+  )
+  const list = useMemo(
+    () => inStatus.filter((item) => level === 'all' || item.difficulty === level),
+    [inStatus, level],
   )
   const item = list[Math.min(index, Math.max(0, list.length - 1))]
   const drafts = items.filter((entry) => entry.status === 'draft')
@@ -76,35 +83,16 @@ export function Bank({ items }: { items: BankItem[] }) {
     [item, router],
   )
 
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      const target = event.target as HTMLElement
-      if (
-        target.tagName === 'TEXTAREA' ||
-        target.tagName === 'INPUT' ||
-        target.tagName === 'SELECT' ||
-        event.metaKey ||
-        event.ctrlKey
-      )
-        return
-      const key = event.key.toLowerCase()
-      if (key === 'j') setIndex((value) => Math.min(list.length - 1, value + 1))
-      else if (key === 'k') setIndex((value) => Math.max(0, value - 1))
-      else if (key === 'y') mark('approved')
-      else if (key === 'r') mark('rejected')
-      else if (key === 'e' && item) {
-        setDraft({
-          title: item.title,
-          problem: item.problem,
-          challenge: item.challenge,
-          difficulty: item.difficulty,
-        })
-        setEditing(true)
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [item, list.length, mark])
+  function openEditor() {
+    if (!item) return
+    setDraft({
+      title: item.title,
+      problem: item.problem,
+      challenge: item.challenge,
+      difficulty: item.difficulty,
+    })
+    setEditing(true)
+  }
 
   return (
     <div className="grid gap-6">
@@ -147,9 +135,31 @@ export function Bank({ items }: { items: BankItem[] }) {
             </span>
           </button>
         ))}
-        <p className="text-ink-3 m-0 ml-auto hidden self-center text-[12px] md:block">
-          {copy.help}
-        </p>
+      </div>
+      <div
+        className="quiet-scroll -mx-5 -mt-3 flex gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0"
+        role="group"
+        aria-label={copy.fields.difficulty}
+      >
+        {(['all', ...DIFFICULTIES] as const).map((key) => (
+          <button
+            key={key}
+            type="button"
+            className="chip press min-h-8 shrink-0 text-[12px]"
+            aria-pressed={level === key}
+            onClick={() => {
+              setLevel(key)
+              setIndex(0)
+            }}
+          >
+            {key === 'all' ? copy.levels.all : DIFFICULTY_LABEL[key]}{' '}
+            <span className="font-mono text-[11px]">
+              {key === 'all'
+                ? inStatus.length
+                : inStatus.filter((entry) => entry.difficulty === key).length}
+            </span>
+          </button>
+        ))}
       </div>
 
       {!item ? (
@@ -271,49 +281,69 @@ export function Bank({ items }: { items: BankItem[] }) {
                   <Signal strength={item.strength} label={copy.strength(item.strength)} />
                   {item.signal}
                 </p>
-                <div className="border-line flex flex-wrap gap-2 border-t pt-4">
-                  <button
-                    type="button"
-                    className="btn btn-primary press"
-                    disabled={pending}
-                    onClick={() => mark('approved')}
-                  >
-                    {copy.approve}{' '}
-                    <span className="font-mono text-[11px]">{copy.keys.approve}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary press"
-                    disabled={pending}
-                    onClick={() => mark('rejected')}
-                  >
-                    {copy.reject} <span className="font-mono text-[11px]">{copy.keys.reject}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-quiet press"
-                    onClick={() => {
-                      setDraft({
-                        title: item.title,
-                        problem: item.problem,
-                        challenge: item.challenge,
-                        difficulty: item.difficulty,
-                      })
-                      setEditing(true)
-                    }}
-                  >
-                    {copy.edit} <span className="font-mono text-[11px]">{copy.keys.edit}</span>
-                  </button>
-                  {item.status !== 'draft' ? (
-                    <button
-                      type="button"
-                      className="btn btn-quiet press"
-                      disabled={pending}
-                      onClick={() => mark('draft')}
-                    >
-                      {copy.draft}
-                    </button>
-                  ) : null}
+                <div className="border-line flex flex-wrap items-center gap-2 border-t pt-4">
+                  {item.status === 'draft' ? (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-primary press"
+                        disabled={pending}
+                        onClick={() => mark('approved')}
+                      >
+                        {copy.approve}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-secondary press"
+                        onClick={openEditor}
+                      >
+                        {copy.edit}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-quiet press"
+                        disabled={pending}
+                        onClick={() => mark('rejected')}
+                      >
+                        {copy.reject}
+                      </button>
+                    </>
+                  ) : item.status === 'approved' ? (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-secondary press"
+                        onClick={openEditor}
+                      >
+                        {copy.edit}
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-quiet press"
+                        disabled={pending}
+                        onClick={() => mark('draft')}
+                      >
+                        {copy.draft}
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        className="btn btn-secondary press"
+                        disabled={pending}
+                        onClick={() => mark('draft')}
+                      >
+                        {copy.restore}
+                      </button>
+                      <button type="button" className="btn btn-quiet press" onClick={openEditor}>
+                        {copy.edit}
+                      </button>
+                    </>
+                  )}
+                  <p className="text-ink-3 m-0 basis-full pt-1 text-[13px] md:ml-auto md:basis-auto md:pt-0">
+                    {copy.means[item.status]}
+                  </p>
                 </div>
               </div>
             )}

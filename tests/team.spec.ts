@@ -99,6 +99,8 @@ test('a founder told go shows on the landing, and the cohort sees their page but
   await signIn(page, DIYA)
   await page.goto('/f/aarav-shrivastava')
   await expect(page.getByRole('heading', { name: 'Aarav Shrivastava' })).toBeVisible()
+  // Founders get no way to sign out, and no account menu.
+  await expect(page.getByRole('button', { name: /Sign out|^Account:/ })).toHaveCount(0)
   await expect(page.getByText(WHY.whyProblem)).toHaveCount(0)
   await expect(page.getByText('Team only')).toHaveCount(0)
 })
@@ -112,13 +114,23 @@ test('a tweak without a note is held back', async ({ page }) => {
   await expect(page.getByRole('status')).toHaveText('A tweak needs a note.')
 })
 
-test('the bank approves and the founders table exports', async ({ page }) => {
+test('the bank offers only the moves that fit each state, and the founders table exports', async ({ page }) => {
   await signIn(page, TEAM)
   await page.goto('/team/bank')
-  await page.getByRole('button', { name: /^Approved/ }).click()
-  await page.keyboard.press('r')
-  await page.getByRole('button', { name: /^Rejected/ }).click()
-  await expect(page.getByText('Rejected', { exact: true }).first()).toBeVisible()
+  await page.getByRole('button', { name: /^Live/ }).click()
+  await page.getByRole('button', { name: /^Hard/ }).click()
+  await expect(page.getByRole('heading', { level: 2 })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Approve', exact: true })).toHaveCount(0)
+  await page.getByRole('button', { name: 'Take down' }).click()
+  await page.getByRole('button', { name: /^Drafts 1/ }).click()
+  await page.getByRole('button', { name: 'Archive', exact: true }).click()
+  await page.getByRole('button', { name: /^Archived 1/ }).click()
+  await expect(page.getByRole('button', { name: 'Restore to drafts' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Archive', exact: true })).toHaveCount(0)
+  await expect(page.getByText(/J and K move/)).toHaveCount(0)
+
+  await page.getByRole('button', { name: /^Account:/ }).click()
+  await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible()
   await page.goto('/team')
   await expect(page.getByRole('table')).toBeVisible()
   const csv = await page.request.get('/api/team/export.csv')

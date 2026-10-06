@@ -138,7 +138,7 @@ export const landing = {
   enter: 'Enter',
   building: {
     title: "What they're building",
-    lead: 'Every founder here has a problem the team said go to.',
+    lead: 'They found a problem, made their case, and got the go.',
     open: (name: string) => `Open ${name}'s page`,
   },
 }
@@ -202,6 +202,7 @@ export const meta = {
     founders: 'Founders',
     queue: 'Queue',
     bank: 'Bank',
+    setup: 'Setup check',
   },
 }
 
@@ -235,7 +236,6 @@ export const levels = {
   },
   of: (at: number, of: number, name: string) => `Step ${at} of ${of}: ${name}`,
   card: 'Your founder card',
-  signOut: 'Sign out',
 }
 
 /** Level 4. Six questions, about two minutes, every one with a way out. */
@@ -580,8 +580,14 @@ export const page = {
   },
 }
 
+/** The team's account menu. Founders have none. */
+export const account = {
+  open: (who: string) => `Account: ${who}`,
+  signOut: 'Sign out',
+}
+
 export const consoleCopy = {
-  nav: { label: 'Console', founders: 'Founders', queue: 'Queue', bank: 'Bank' },
+  nav: { label: 'Console', founders: 'Founders', queue: 'Queue', bank: 'Bank', setup: 'Setup' },
   founders: {
     title: 'Founders',
     search: 'Search founders',
@@ -645,10 +651,17 @@ export const consoleCopy = {
   },
   bank: {
     title: 'Bank',
-    filters: { draft: 'Drafts', approved: 'Approved', rejected: 'Rejected', all: 'All' },
+    filters: { draft: 'Drafts', approved: 'Live', rejected: 'Archived', all: 'All' },
+    levels: { all: 'Any difficulty' },
     approve: 'Approve',
-    reject: 'Reject',
-    draft: 'Back to draft',
+    reject: 'Archive',
+    draft: 'Take down',
+    restore: 'Restore to drafts',
+    means: {
+      draft: "Founders don't see drafts.",
+      approved: 'Live. Founders can be matched to this.',
+      rejected: 'Archived. Founders never see it.',
+    },
     edit: 'Edit',
     save: 'Save',
     cancel: 'Cancel',
@@ -657,10 +670,8 @@ export const consoleCopy = {
     scores: 'Scores',
     whyNow: 'Why now',
     players: "Who's there already",
-    help: 'J and K move, Y approves, R rejects, E edits.',
     empty: 'No problems with this status.',
-    status: { draft: 'Draft', approved: 'Approved', rejected: 'Rejected' },
-    keys: { approve: 'Y', reject: 'R', edit: 'E' },
+    status: { draft: 'Draft', approved: 'Live', rejected: 'Archived' },
     fields: {
       title: 'Title',
       problem: 'Problem',
@@ -670,7 +681,33 @@ export const consoleCopy = {
     strength: (n: number) => `Signal strength ${n} of 5`,
     editedBy: (who: string, date: string) => `${who} · ${date}`,
   },
-  viewSite: 'View site',
+  wall: 'The wall',
+  setup: {
+    title: 'Setup check',
+    allGood: 'Everything is wired up.',
+    failing: (n: number) => (n === 1 ? '1 thing needs fixing.' : `${n} things need fixing.`),
+    pass: 'Working',
+    fail: 'Needs fixing',
+    signIn: 'Google sign-in',
+    signInOk: 'Working. You signed in to see this page.',
+    set: 'Set',
+    missing: 'Not set',
+    mock: 'Mock mode',
+    mockOn: 'On. Nothing is read from or written to the Sheet. Remove MOCK_BACKEND.',
+    mockOff: 'Off. The Sheet is the store.',
+    sheet: 'Google Sheet',
+    sheetMissing: 'SHEET_ID, GOOGLE_SA_EMAIL or GOOGLE_SA_KEY is not set.',
+    sheetOk: 'Reached with the service account.',
+    sheetSkipped: 'Not checked while mock mode is on.',
+    rows: (n: number) => `${n} rows`,
+    bank: 'Problems live',
+    live: (n: number) => `${n} approved. Founders can be matched.`,
+    noneLive: 'None approved. Founders will see no matches until you approve the bank.',
+    closed: (date: string) => `${date}. That has passed, so picks are locked.`,
+    email: 'Reply emails',
+    emailOn: 'On, through Resend.',
+    emailOff: 'Off. Replies show on founder pages only. That is fine.',
+  },
 }
 
 /** Reply emails. One subject per reply, chosen in docs/COPY_CHOICES.md. */

@@ -6,7 +6,7 @@ Good enough to be featured on Awwwards, and still an honest tool that a nervous 
 
 ## The idea
 
-**A card being made.** The portal is a press for one collectible card. Every level adds a layer to it: the photo, the number, the archetype, the edge marks, the finish and the stamp. The landing is the whole cohort's cards laid out as a wall. The reveal is the moment a card is struck. The team's response is a stamp pressed into it. Every choice below — material, motion, type — comes from that one physical metaphor. Nothing is decoration.
+**A card being made.** The portal is a press for one collectible card. Every level adds a layer to it: the photo, the number, the archetype, the edge marks and the finish. The landing is the whole cohort's cards laid out as a wall. The reveal is the moment a card is struck. The team's response lives on the founder's page, not on the card. Every choice below — material, motion, type — comes from that one physical metaphor. Nothing is decoration.
 
 ## Chosen direction: Matte, with Riso's pink
 
@@ -95,7 +95,7 @@ Everything lives in `app/globals.css` under `@theme`. Components never use raw h
 | --- | --- |
 | `FounderCard` | Front and back, in four sizes: wall, corner, hero and export. There is one layout source for both the DOM version and the `next/og` PNG. |
 | `ProblemCard` + `ProblemSheet` | The card, and the full problem in a sheet (bottom sheet on mobile, dialog on desktop). |
-| `DifficultyTag`, `Foil`, `Stamp` | The difficulty label (console only), the picked finish's foil, and the pressed response stamp. |
+| `DifficultyTag`, `Foil` | The difficulty label (console only) and the picked finish's foil. The archetype stands on the card as the full figure (`.fc-figure`), feet in the photo's fade. |
 | `Choice` (tap card), `Chip`, `ChipInput`, `Slider`, `OtherField` | The question controls. |
 | `InlineField` | The profile's click-to-edit field, with its view, edit, saving and error states. |
 | `Progress` | The founder card in the corner; see PRODUCT. |

@@ -8,8 +8,10 @@ import { ProfileFacts } from '@/components/founder/ProfileFacts'
 import { Thread } from '@/components/founder/Thread'
 import { Profile } from '@/components/levels/Profile'
 import { Brand } from '@/components/shell/Brand'
-import { SignOut } from '@/components/shell/SignOut'
-import { archetypes, families, levels, meta, page as copy } from '@/content/copy'
+import { ArrowLeft, LayoutGrid } from 'lucide-react'
+import { Account } from '@/components/shell/Account'
+import { HeaderLink } from '@/components/shell/HeaderLink'
+import { archetypes, consoleCopy, families, levels, meta, page as copy } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
 import { isBuilding } from '@/lib/building'
 import { founderContext } from '@/lib/context'
@@ -66,11 +68,18 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
         <Brand href={team ? '/team' : '/'} />
         <div className="flex items-center gap-2">
           {team ? (
-            <Link href="/team" className="btn btn-quiet press text-[13px]">
-              {copy.console}
-            </Link>
+            <HeaderLink
+              href="/team"
+              label={copy.console}
+              icon={<ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />}
+            />
           ) : null}
-          <SignOut />
+          <HeaderLink
+            href="/"
+            label={consoleCopy.wall}
+            icon={<LayoutGrid size={16} strokeWidth={1.5} aria-hidden="true" />}
+          />
+          {team ? <Account name={viewer.name} email={viewer.email} photo={viewer.photo} /> : null}
         </div>
       </header>
 

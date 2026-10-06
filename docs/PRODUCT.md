@@ -35,10 +35,10 @@ Every level adds a layer to the founder's collectible card, so the thing they ar
 | Level done | What the card gains |
 | --- | --- |
 | 1 Arrive | Photo, name, number `#023 / 117` |
-| 2 Archetype | Family portrait badge, *Family · Archetype*, and the archetype's identity line along the bottom |
+| 2 Archetype | The family's character, full length, standing in the photo's corner; *Family · Archetype*; and the archetype's identity line along the bottom |
 | 4 Your world | Industry and side marks along the edge |
 | 6 Your why | The picked finish: pink, with foil. The same for every problem, so the card never says how hard a pick is |
-| 7 Response | A pressed stamp: Go, Go with a tweak, Let's talk |
+| 7 Response | Nothing on the card. The answer lives on the founder's page; a card with a Go shows on the landing |
 
 The bottom line of the card is always the archetype's identity line, never the bio and never the problem. The bio and the problem live on the founder page.
 
@@ -60,7 +60,7 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 - **One button:** **Enter**.
 - **Below the fold, What they're building:** the cards of founders on the wall whose current pick got **Go** or **Go, with a tweak**, newest first, each with its problem title only and a link to their page. It refreshes whenever the team responds. Nothing appears until the first Go.
 - **No problem bank on the landing page.** Problems are earned by finishing the levels, not browsed from the door. Titles of problems already being built are the only exception.
-- **Signed in?** The landing stays open: the logo, and **View site** in the console, lead back to it. **Enter** goes straight to the founder's furthest level, or to `/team` for the team.
+- **Signed in?** The landing stays open: the logo, and **The wall** on every page header, lead back to it. **Enter** goes straight to the founder's furthest level, or to `/team` for the team.
 
 ### Sign in `/login`
 
@@ -241,12 +241,14 @@ The prompts:
 - **While waiting:** **You'll see our response here.** Nothing else.
 - **When the team responds,** the response appears in the thread on the founder's page, and an email goes out.
 
-| Response | Founder sees | Card stamp |
-| --- | --- | --- |
-| **Go** | The team's note, if any | GO |
-| **Go, with a tweak** | The note, which is required | GO + TWEAK |
-| **Let's talk** | The note and a **Book 15 minutes** button | TALK |
-| **Try another** | The note and the suggested problems; **Back to matches** keeps every answer | none |
+| Response | Founder sees |
+| --- | --- |
+| **Go** | The team's note, if any |
+| **Go, with a tweak** | The note, which is required |
+| **Let's talk** | The note and a **Book 15 minutes** button |
+| **Try another** | The note and the suggested problems; **Back to matches** keeps every answer |
+
+No stamp goes on the card: the landing already says who has a go, and the card stays about the person.
 
 After **Try another**:
 - The founder is back at Level 5.
@@ -291,10 +293,14 @@ After **Try another**:
 The founder's profile, archetype and Level 4 answers sit beside each why, with the problem's difficulty, because a fit can only be judged against the person.
 
 **Bank** (`/team/bank`): every problem with its difficulty (Easy, Medium or Hard), evidence and scores, and who last edited it and when.
-- `Y` approve, `E` edit, `R` reject. Each records the team member in **Edited by** and **Edited at**, and in Events.
-- Founders see approved problems only.
+- Filters by state (Drafts, Live, Archived) and by difficulty (Easy, Medium, Hard).
+- The actions follow the state, never offering the state it is already in: a draft is **Approve**, **Edit** or **Archive**; a live problem is **Edit** or **Take down** (back to drafts); an archived one is **Restore to drafts** or **Edit**. A line beside them says what the state means for founders. No keyboard shortcuts: a stray key should never archive a problem.
+- Each change records the team member in **Edited by** and **Edited at**, and in Events. In the Sheet the states are still `draft`, `approved` and `rejected`.
+- Founders see live (approved) problems only.
 
-**Header:** **View site** opens the landing.
+**Setup** (`/team/setup`): checks this deploy is wired up — sign-in, each environment variable, mock mode off, the Sheet reachable with every header, how many problems are live, picks not yet closed, and whether reply emails are on. It shows whether each secret is set, never its value.
+
+**Header:** **The wall** opens the landing. The team's photo (or initials) opens their account: name, email and **Sign out**. Founders have no account menu and no way to sign out.
 
 **Team-only data:** track, Hackathon 1 outcome and problem difficulty appear for the team, and are never sent to the founder.
 

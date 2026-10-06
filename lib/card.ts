@@ -21,10 +21,6 @@ export function cardFor(
         world.side === 'unsure' ? null : labelOf.side(world.side),
       ].filter((mark): mark is string => Boolean(mark))
     : undefined
-  const stamp =
-    current && ['go', 'tweak', 'talk'].includes(current.status)
-      ? (current.status as 'go' | 'tweak' | 'talk')
-      : null
   return {
     name: founder.name,
     photo: founder.photo,
@@ -36,6 +32,5 @@ export function cardFor(
     marks,
     problemTitle: current?.title,
     finish: current ? 'picked' : null,
-    stamp,
   }
 }

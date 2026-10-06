@@ -77,9 +77,9 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
   const family = kind ? FAMILIES[kind.family] : null
   const finish = data.finish ?? 'none'
   const [hi, lo] = FRAME[finish] ?? FRAME.none!
-  const [photo, head] = await Promise.all([
+  const [photo, figure] = await Promise.all([
     asDataUrl(data.photo, 1000),
-    family ? asDataUrl(family.head, 256) : Promise.resolve(null),
+    family ? asDataUrl(family.art, 420) : Promise.resolve(null),
   ])
   const line = kind ? archetypes[kind.id].identity : ''
 
@@ -145,23 +145,11 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
             <span>{data.number ? copy.number(data.number, data.of) : ''}</span>
           </div>
         </div>
-        {head && family ? (
-          <div
-            style={{
-              position: 'absolute',
-              right: 48,
-              top: 880,
-              width: 190,
-              height: 190,
-              borderRadius: 95,
-              display: 'flex',
-              overflow: 'hidden',
-              background: '#121214',
-              border: `6px solid ${family.tint}`,
-            }}
-          >
+        {/* The archetype whole, feet in the fade, the same as the card on screen. */}
+        {figure ? (
+          <div style={{ position: 'absolute', right: 10, top: 710, width: 320, height: 320, display: 'flex' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={head} width={178} height={178} style={{ borderRadius: 89 }} alt="" />
+            <img src={figure} width={320} height={320} alt="" />
           </div>
         ) : null}
         <div style={{ display: 'flex', flexDirection: 'column', padding: '28px 56px 0', gap: 14 }}>

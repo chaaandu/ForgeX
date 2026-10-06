@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { consoleCopy, meta } from '@/content/copy'
 import { Brand } from '@/components/shell/Brand'
-import { SignOut } from '@/components/shell/SignOut'
+import { LayoutGrid } from 'lucide-react'
+import { Account } from '@/components/shell/Account'
+import { HeaderLink } from '@/components/shell/HeaderLink'
 import { TeamNav } from '@/components/team/TeamNav'
 import { allPicks, allResponses, statusOf } from '@/lib/data/picks'
 import { bank } from '@/lib/data/problems'
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default async function TeamLayout({ children }: { children: React.ReactNode }) {
-  await requireTeam()
+  const viewer = await requireTeam()
   const [picks, responses, problems] = await Promise.all([allPicks(), allResponses(), bank()])
   const waiting = picks.filter(
     (pick) => !pick.withdrawnAt && statusOf(pick, responses) === 'waiting',
@@ -29,10 +30,12 @@ export default async function TeamLayout({ children }: { children: React.ReactNo
             <TeamNav waiting={waiting} drafts={drafts} />
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/" className="btn btn-quiet press text-[13px]">
-              {consoleCopy.viewSite}
-            </Link>
-            <SignOut />
+            <HeaderLink
+              href="/"
+              label={consoleCopy.wall}
+              icon={<LayoutGrid size={16} strokeWidth={1.5} aria-hidden="true" />}
+            />
+            <Account name={viewer.name} email={viewer.email} photo={viewer.photo} />
           </div>
         </div>
       </header>
