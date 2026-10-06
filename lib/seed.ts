@@ -65,7 +65,9 @@ export function founderSeedRows(): Partial<Record<Header<'founders'>, string>>[]
 }
 
 /** Problems as rows. Live they start as drafts until approved; mock opens them all. */
-export function problemSeedRows(status: 'draft' | 'approved'): Partial<Record<Header<'problems'>, string>>[] {
+export function problemSeedRows(
+  status: 'draft' | 'approved',
+): Partial<Record<Header<'problems'>, string>>[] {
   return readData('problems.json').map((raw) => {
     const problem = problemSchema.parse(raw)
     return {
@@ -74,7 +76,7 @@ export function problemSeedRows(status: 'draft' | 'approved'): Partial<Record<He
       Title: problem.title,
       Problem: problem.problem,
       Challenge: problem.challenge,
-      Rarity: problem.rarity,
+      Difficulty: problem.difficulty,
       Industries: problem.industries.join(', '),
       Side: problem.side,
       Learn: problem.learn.join(', '),
@@ -103,7 +105,10 @@ export function internalSeedRows(): Partial<Record<Header<'internal'>, string>>[
 
 function toGrid<K extends TabKey>(key: K, rows: Partial<Record<Header<K>, string>>[]): string[][] {
   const head = [...TABS[key].headers] as string[]
-  return [head, ...rows.map((cells) => head.map((name) => (cells as Record<string, string>)[name] ?? ''))]
+  return [
+    head,
+    ...rows.map((cells) => head.map((name) => (cells as Record<string, string>)[name] ?? '')),
+  ]
 }
 
 /** Every tab, seeded, for mock mode. */

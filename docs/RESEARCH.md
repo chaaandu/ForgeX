@@ -9,10 +9,10 @@ The goal is a new bank of 200 to 300 open problem statements, each grounded in r
 | Title | ✓ | ✓ | Under ten words. Concrete, a little provocative. |
 | Problem | ✓ | ✓ | Two or three sentences on what's broken. Names no target user and no solution. |
 | Challenge | ✓ | ✓ | One line that sets the task without prescribing the product. |
-| Rarity | ✓ | ✓ | Rare, Epic, Legendary or Mythic, by scope and ambition. No tier reads as easy. |
+| Difficulty | | ✓ | Easy, Medium or Hard: how hard it is to build in 3 weeks. Mapped from the pipeline's rarity (see below). Founders never see it, but their track decides which difficulties they are offered. |
 | Industries, side | used for matching | ✓ | Tags from `lib/taxonomy.ts`. |
 | What you'll learn | ✓ | ✓ | Learn tags from the taxonomy, for example voice AI or agents. |
-| Signal | ✓ | ✓ | A 1–5 strength meter, plus a line such as *Seen across 23 posts in 2025 and 2026*. No links. |
+| Signal | | ✓ | A 1–5 strength meter, plus a line such as *Seen across 23 posts in 2025 and 2026*. No links. Used in matching; stripped before a problem reaches a founder. |
 | Evidence links, signal counts | | ✓ | |
 | Why now, existing players and their gaps | | ✓ | |
 | All seven scores, with notes | | ✓ | |
@@ -47,7 +47,7 @@ Every source is reached without credentials. The owner has none to provide, so e
 | 3 Score | `score.ts` | `data/research/scored.json` | Seven 1–5 scores, each with a one-line reason (see the rubric below). |
 | 4 Drop | `drop.ts` | `data/research/dropped.json`, each with its reason | Applies the hard filters below. |
 | 5 Balance | `balance.ts` | `data/research/shortlist.json` | Selects 200–300 against the quotas below. |
-| 6 Write | `write.ts` | `data/problems.json`, `data/problems.internal.json` | Applies the writing rules. Assigns IDs `P001…` in balanced order. |
+| 6 Write | `write.ts` | `data/problems.json`, `data/problems.internal.json` | Applies the writing rules. Assigns IDs `P001…` in balanced order. Turns each rarity into a difficulty. |
 | 7 Validate | `validate.ts` | `data/research/REPORT.md` | Checks both files with Zod and writes the report. Fails the run on any violation. |
 
 `pnpm research` runs steps 2 to 7, and each step can also be run on its own.
@@ -87,11 +87,12 @@ A problem is dropped if any of these is true:
 ## Balance quotas
 
 - **Industries:** at least 10 represented, and none above 15% of the bank.
-- **Sides:** businesses, consumers and creators each above 15%. Every problem has a primary side, and all four sides of the brief are covered through the side tags and "not sure" matching.
+- **Sides:** businesses, consumers and creators each above 15%. `creator` means anyone who earns on their own (drivers, sellers, farmers, freelancers, creators), which is how Level 4 asks it. Every problem has a primary side, and all four sides of the brief are covered through the side tags and "not sure" matching.
 - **Geography:** at least 40% relevant to India.
 - **Rarity:** about 25% Rare, 45% Epic, 24% Legendary, 6% Mythic, each within ±3 points.
   - Rarity comes from ambition (pain × openness × novelty), adjusted for the inverse of buildability.
   - Rarity is never a measure of quality.
+  - Rarity is the pipeline's word only. `write.ts` maps it to the product's difficulty through `DIFFICULTY_OF_RARITY` in `lib/taxonomy.ts`: Rare → Easy, Epic → Medium, Legendary and Mythic → Hard. The bank today is 63 Easy, 112 Medium and 75 Hard.
 - **Learn tags:** every learn tag in the taxonomy appears at least 12 times. Without that, a founder's learning goal could find no match.
 
 The balancer is greedy and works by total score within each quota. Anything left over goes to `shortlist.json` as reserve.
@@ -111,7 +112,7 @@ The balancer is greedy and works by total score within each quota. Anything left
 ## Review before founders see anything
 
 - **Phase 2:** a temporary team-only page at `/lab/bank` shows the shortlist with its evidence and scores.
-- **Phase 9:** that review moves to `/team/bank`. There, `Y`, `E` and `R` approve, edit or reject, and each writes `Problems.Status` and a `bank` event.
+- **Phase 9:** that review moves to `/team/bank`. There, `Y`, `E` and `R` approve, edit or reject, and each writes `Problems.Status`, `Edited by` and `Edited at`, and a `bank` event. An edit can also change the difficulty.
 - Founders only ever see approved rows.
 
 ## REPORT.md

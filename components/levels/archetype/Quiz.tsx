@@ -13,7 +13,13 @@ import { Lines } from '@/components/ui/Lines'
  * right goes back one. Nothing is sent until the seventh answer, and the
  * server works out the archetype itself.
  */
-export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archetype: ArchetypeId) => void }) {
+export function Quiz({
+  retake,
+  onPlaced,
+}: {
+  retake: boolean
+  onPlaced: (archetype: ArchetypeId) => void
+}) {
   const [step, setStep] = useState(-1)
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
@@ -68,15 +74,21 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
 
   if (step < 0) {
     return (
-      <div className="rise grid max-w-[640px] gap-8">
-        <div className="grid gap-4">
+      <div className="grid max-w-[640px] gap-8">
+        <div className="rise grid gap-4">
           <h1 className="display m-0 text-[clamp(44px,7vw,88px)] leading-[0.95]">
             {retake ? copy.intro.retakeTitle : copy.intro.title}
           </h1>
-          <p className="m-0 max-w-[40ch] text-lead text-ink-2">{retake ? copy.intro.retakeLead : copy.intro.lead}</p>
+          <p className="text-lead text-ink-2 m-0 max-w-[40ch]">
+            {retake ? copy.intro.retakeLead : copy.intro.lead}
+          </p>
         </div>
-        <div>
-          <button type="button" className="btn btn-primary press min-h-[52px] px-9 text-[16px]" onClick={() => setStep(0)}>
+        <div className="dock">
+          <button
+            type="button"
+            className="btn btn-primary press min-h-[52px] px-9 text-[16px]"
+            onClick={() => setStep(0)}
+          >
             {copy.intro.start}
           </button>
         </div>
@@ -119,7 +131,7 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
               onClick={() => choose(option.key)}
               disabled={saving}
             >
-              <span className="grid size-7 shrink-0 place-items-center rounded-full font-mono text-[12px] text-ink-3 shadow-[inset_0_0_0_1px_var(--color-line-2)]">
+              <span className="text-ink-3 grid size-7 shrink-0 place-items-center rounded-full font-mono text-[12px] shadow-[inset_0_0_0_1px_var(--color-line-2)]">
                 {index + 1}
               </span>
               {text?.options[option.key]}
@@ -128,7 +140,7 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
         </div>
       </div>
 
-      <div className="flex min-h-12 items-center justify-between gap-4">
+      <div className="dock min-h-12 justify-between">
         <button
           type="button"
           className="btn btn-quiet press -ml-3"
@@ -137,11 +149,19 @@ export function Quiz({ retake, onPlaced }: { retake: boolean; onPlaced: (archety
         >
           {copy.back}
         </button>
-        {saving ? <p className="meta m-0">{copy.placing}</p> : <p className="meta m-0 hidden md:block">{copy.keys}</p>}
+        {saving ? (
+          <p className="meta m-0">{copy.placing}</p>
+        ) : (
+          <p className="meta m-0 hidden md:block">{copy.keys}</p>
+        )}
         {error ? (
           <div className="flex items-center gap-3" role="alert">
-            <p className="m-0 text-[14px] text-ink-2">{copy.error}</p>
-            <button type="button" className="btn btn-secondary press" onClick={() => void send(answers)}>
+            <p className="text-ink-2 m-0 text-[14px]">{copy.error}</p>
+            <button
+              type="button"
+              className="btn btn-secondary press"
+              onClick={() => void send(answers)}
+            >
               {copy.retry}
             </button>
           </div>

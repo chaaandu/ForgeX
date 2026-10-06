@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { archetypes, families, wall as copy } from '@/content/copy'
 import { ARCHETYPES, FAMILIES, type ArchetypeId } from '@/lib/archetype'
 import { Flip } from './Flip'
-import { Glint } from './Glint'
 import '@/components/card/card.css'
 
 export type Face = { first: string; photo: string; archetype: ArchetypeId | null }
@@ -17,8 +16,10 @@ export function Wall({ faces }: { faces: Face[] }) {
   return (
     <>
       <Flip />
-      <Glint />
-      <ul className="wall m-0 grid list-none content-start gap-1.5 px-3 pt-16 md:gap-2 md:px-6 md:pt-20" aria-label={copy.label}>
+      <ul
+        className="wall m-0 grid list-none content-start gap-1.5 px-3 pt-16 md:gap-2 md:px-6 md:pt-20"
+        aria-label={copy.label}
+      >
         {faces.map((face, index) => {
           const kind = face.archetype ? ARCHETYPES[face.archetype] : null
           return (
@@ -28,7 +29,11 @@ export function Wall({ faces }: { faces: Face[] }) {
                 className="wf"
                 data-face=""
                 data-first={face.first}
-                data-kind={kind ? `${families[kind.family].name}\n${archetypes[kind.id].name}` : copy.unplaced}
+                data-kind={
+                  kind
+                    ? `${families[kind.family].name}\n${archetypes[kind.id].name}`
+                    : copy.unplaced
+                }
                 aria-pressed="false"
                 aria-label={copy.face(face.first, kind ? archetypes[kind.id].name : null)}
               >
@@ -45,7 +50,16 @@ export function Wall({ faces }: { faces: Face[] }) {
                     />
                   </span>
                   <span className="wf-back" aria-hidden="true">
-                    {kind ? <Image src={FAMILIES[kind.family].head} alt="" width={64} height={64} className="wf-head" loading="lazy" /> : null}
+                    {kind ? (
+                      <Image
+                        src={FAMILIES[kind.family].head}
+                        alt=""
+                        width={64}
+                        height={64}
+                        className="wf-head"
+                        loading="lazy"
+                      />
+                    ) : null}
                     {/* Filled in when flipped: 117 hidden labels would otherwise be
                         most of the page's text, all of it tiny. The button's
                         label already says who this is. */}

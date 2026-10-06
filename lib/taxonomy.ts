@@ -26,10 +26,15 @@ export type IndustryId = (typeof INDUSTRIES)[number]['id']
 export const INDUSTRY_IDS = INDUSTRIES.map((industry) => industry.id) as IndustryId[]
 
 /** Who a problem is lived by. A founder may also answer `unsure`, which matches all three. */
+/**
+ * Who pays, or who is hurting. `creator` is the bank's word for anyone who
+ * earns on their own: drivers, sellers, farmers, freelancers and creators, so
+ * the label says that rather than the narrower word.
+ */
 export const SIDES = [
   { id: 'business', label: 'Businesses' },
-  { id: 'consumer', label: 'Consumers' },
-  { id: 'creator', label: 'Creators' },
+  { id: 'consumer', label: 'People' },
+  { id: 'creator', label: 'Self-employed' },
 ] as const
 
 export type SideId = (typeof SIDES)[number]['id']
@@ -76,8 +81,22 @@ export const INTENT_IDS = INTENTS.map((intent) => intent.id) as IntentId[]
 export const COMFORT = [1, 2, 3, 4, 5] as const
 export type Comfort = (typeof COMFORT)[number]
 
+/**
+ * How hard a problem is to build in 3 weeks. The team's word, never shown to a
+ * founder: a label that ranks problems changes which one somebody picks.
+ */
+export const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
+export type Difficulty = (typeof DIFFICULTIES)[number]
+
+/** The research pipeline scores ambition as rarity; this is how that becomes difficulty. */
 export const RARITIES = ['rare', 'epic', 'legendary', 'mythic'] as const
 export type Rarity = (typeof RARITIES)[number]
+export const DIFFICULTY_OF_RARITY: Record<Rarity, Difficulty> = {
+  rare: 'easy',
+  epic: 'medium',
+  legendary: 'hard',
+  mythic: 'hard',
+}
 
 export const GEOS = ['IN', 'global'] as const
 export type Geo = (typeof GEOS)[number]

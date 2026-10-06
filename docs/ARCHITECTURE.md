@@ -38,7 +38,7 @@ One row per founder. The rows are seeded once by `pnpm sheet:init`, and their or
 | Slug | Frozen at seed time |
 | Name, First name, Photo | From the roster |
 | Number | Set once on first arrival (see below) |
-| Track | Team only |
+| Track | Team only. `autonomous`, `structured` or `guided` (`lib/tracks.ts`); anything else reads as `structured`. It decides which problems a founder is offered |
 | Wall | `yes` or `no` |
 | Level | The furthest level reached, 1–7 |
 | Archetype, Archetype source, Axes, Retakes used | Source is `h1`, `quiz` or `retake`. Axes is JSON `{u,e,s}` |
@@ -58,10 +58,11 @@ The published bank, seeded from `data/problems.json`.
 | --- | --- |
 | ID | `P001`… Frozen once founders can see it |
 | Status | `draft`, `approved` or `rejected`. A value the app doesn't recognise is read as `draft` |
-| Title, Problem, Challenge, Rarity | |
+| Title, Problem, Challenge | |
+| Difficulty | `easy`, `medium` or `hard`. Team only: never sent to a founder's browser. Was `Rarity`; `pnpm sheet:migrate` renames it on an older Sheet |
 | Industries, Side, Learn | Tags from `lib/taxonomy.ts` |
 | Signal count, Signal line, Signal strength | |
-| Edited by, Edited at | |
+| Edited by, Edited at | The team member's email and the time, written on approve, reject and edit, and shown in the bank |
 
 ### Problems internal
 
@@ -84,11 +85,11 @@ Append-only. One row for every submission.
 
 ### Responses
 
-Append-only. Pick ID, Author email, Type (`go`, `tweak`, `talk` or `another`), Note, Suggested IDs, Booking link, Sent at, Emailed at.
+Append-only. Pick ID, Author (the team member's email), Type (`go`, `tweak`, `talk` or `another`), Note, Suggested IDs, Booking link, Sent at, Emailed at.
 
 ### Events
 
-Append-only audit log: At, Email, Kind, Data (JSON).
+Append-only audit log: At, Email, Kind, Data (JSON). The Email is whoever acted, so every response and every bank change records who made it.
 
 Kinds:
 - `arrived`
@@ -138,11 +139,11 @@ A service account gets about 60 read requests and 60 write requests per minute.
 
 | Route | Who | Kind |
 | --- | --- | --- |
-| `/` | Public | Landing and founder wall. Static, revalidated every five minutes |
-| `/enter` | Anyone | Where the landing's Enter goes: a relative redirect to sign-in, the founder's level, or the console |
+| `/` | Public | Landing, founder wall, and below it the founders who are building. Static, revalidated every five minutes and whenever the team responds. Signed-in users can come back to it at any time |
+| `/enter` | Anyone | Where the landing's Enter goes: a relative redirect to sign-in, the founder's furthest level, or the console |
 | `/login` | Public | Google sign-in, and the refused state |
-| `/arrive`, `/archetype`, `/profile`, `/world`, `/matches`, `/matches/new`, `/why` | Founder | The levels. A server-side guard redirects to the furthest level reached |
-| `/f/[slug]` | Founder (own page), Team | Profile and response thread. 404 for anyone else |
+| `/arrive`, `/archetype`, `/profile`, `/world`, `/matches`, `/matches/new`, `/why` | Founder | The levels. A server-side guard redirects to the furthest level reached. An autonomous founder's `/matches` redirects to `/matches/new` |
+| `/f/[slug]` | Founder (own page), Team; any signed-in user once the founder is building | The founder and the team see everything. Once the founder's current pick has Go or Go with a tweak, other signed-in users see the card, archetype, bio, problem title and challenge, and profile facts; never the thread, team note, team panel or card download. 404 otherwise |
 | `/team`, `/team/queue`, `/team/bank` | Team | The console |
 | `/api/card/[slug]` | Founder (own card), Team | PNG of the founder card |
 | `/api/team/export.csv` | Team | CSV export |
@@ -170,9 +171,9 @@ Identity always comes from the session. It is never accepted as input.
 | `submitPick(input)` | Founder |
 | `withdrawPick(pickId)` | Founder. Only while the pick has no response |
 | `setWall(on)` | Founder |
-| `respond(pickId, type, note, suggested)` | Team. Sends the email |
-| `setProblemStatus(id, status)` | Team |
-| `editProblem(id, patch)` | Team |
+| `respond(pickId, type, note, suggested)` | Team. Records the author, sends the email, revalidates `/` |
+| `setProblemStatus(id, status)` | Team. Writes Edited by and Edited at |
+| `editProblem(id, patch)` | Team. Title, problem, challenge and difficulty. Writes Edited by and Edited at |
 
 ## Security and privacy
 
@@ -182,14 +183,26 @@ Identity always comes from the session. It is never accepted as input.
 - **`server-only`** guards everything that touches the roster, the cohort sheet, H1 data, the Sheet client or secrets.
   - Data that crosses to the browser is built as a named public type, field by field, never by deleting private fields.
   - Seed JSON is only ever imported from `server-only` modules. This fixes a leak in the current build, where `lib/profile.ts` shipped all 119 seed profiles to the client.
-- **Never sent to a founder:** track, H1 outcome, internal level, team notes, other founders' picks, `problems.internal`. A test greps the built client chunks for roster emails and these field names, and fails if it finds any.
+- **Never sent to a founder:** track, H1 outcome, internal level, team notes, other founders' picks, `problems.internal`, and a problem's difficulty and signal. `forFounder` in `lib/problem.ts` builds the `FounderProblem` that crosses to the browser by naming fields. A test greps the built client chunks for roster emails and these field names, and fails if it finds any.
 - **Mock mode** requires `MOCK_BACKEND=true` and a deploy that is not Vercel production (`VERCEL_ENV !== 'production'`), so the Playwright suite can still run against a production build locally. `.env.example` defaults it to `false`.
 - **Public wall:** shows first name, photo and archetype only. Founders can switch themselves off it.
+- **What they're building** (`lib/building.ts`): founders on the wall whose current pick got Go or Go with a tweak. Only the card and the problem title travel, never the why or the team's note.
+- **The team in the thread:** the team sees *Name, for the team* on each response; founders see *The ForgeX team*.
 - **Secrets** (`GOOGLE_SA_EMAIL`, `GOOGLE_SA_KEY`, `RESEND_API_KEY`, `AUTH_SECRET`) are read only in `server-only` modules.
 
 ## Matching (`lib/match.ts`)
 
-Matching is pure, deterministic, and has no network calls. It runs on the server, and the browser only ever receives the four problems chosen.
+Matching is pure, deterministic, and has no network calls. It runs on the server, and the browser only ever receives the problems chosen, through `forFounder`.
+
+**Tracks** (`lib/tracks.ts`) decide the pool before anything is scored, through `allowed`:
+
+| Track | Offered |
+| --- | --- |
+| `autonomous` | No bank. They write their own problem, and step 5 is called *Your problem* |
+| `structured` | Hard and medium |
+| `guided` | Medium and easy |
+
+The team's **Try another** suggestions skip the track filter, because a person chose them.
 
 **Score.** Each factor is normalised to 0–1, weighted, and summed:
 
@@ -198,23 +211,25 @@ Matching is pure, deterministic, and has no network calls. It runs on the server
 | Access (a world they can reach is the problem's first industry; 0.3 if only a secondary one) | 30 |
 | Industry (the problem's first industry; 0.3 for a secondary one) | 20 |
 | Learn (overlap with what the problem teaches) | 15 |
-| Comfort fit (problem rarity against the target for their comfort and intent) | 15 |
+| Comfort fit (problem difficulty against the target for their comfort and intent) | 15 |
 | Side | 10 |
 | Intent (company → market openness, career → learning value) | 5 |
 | Archetype affinity | 5 |
 
+**Comfort fit.** Difficulty ranks easy 0, medium 1, hard 2. The target is `[0, 0, 0.5, 1, 1.4, 1.8][comfort]`, plus 0.3 for *company*, 0.15 for *both* and −0.15 for *exploring*, clamped to 0–2 (`difficultyTarget`). Fit is `1 − |rank − target| / 1.5`, floored at 0.
+
 **Chips:**
 - Each factor scoring above its threshold produces one chip, written in the founder's own words.
 - Only real factors produce chips.
-- Each card shows the top two or three.
+- The top two or three are kept on each match, for tests and the team. Match cards no longer show them; a team-suggested card shows the note *The team suggested this* instead.
 
 **Choosing the four:**
 1. Take the best-scoring problem first.
-2. Each next pick pays 12 for every card already showing its first industry and 6 for every card already at its rarity, and earns 14 if its first industry is one the founder chose or can reach but is not yet on screen.
+2. Each next pick pays 12 for every card already showing its first industry and 6 for every card already at its difficulty, and earns 14 if its first industry is one the founder chose or can reach but is not yet on screen.
 3. Exclude problems the founder has already tried.
-4. If fewer than four score at all, fill from the gentlest open problems and mark them `gentle`.
+4. If fewer than four score at all, fill from the gentlest open problems in the track's pool (easiest first) and mark them `gentle`.
 
-`lib/taxonomy.ts` is the single source of the industries, sides and learn tags. The questions, the research pipeline and the matcher all import it, so a renamed tag can't break the join silently. A test checks that every problem's tags exist in the taxonomy.
+`lib/taxonomy.ts` is the single source of the industries, sides, learn tags and difficulties. The questions, the research pipeline and the matcher all import it, so a renamed tag can't break the join silently. A test checks that every problem's tags exist in the taxonomy. Every Level 4 option must map one to one onto a bank value, or it matches nothing: the bank's `creator` side means anyone who earns on their own, so the question says that, and its short label is *Self-employed*.
 
 ## Seed data and what carries over
 
@@ -260,9 +275,9 @@ app/                 routes (see above)
 components/          shared UI, from the design system
 components/levels/   one folder per level
 content/copy.ts      every user-visible string
-lib/                 roles, session, taxonomy, archetype, match, slug, links, nudges
+lib/                 roles, session, taxonomy, tracks, archetype, match, building, slug, links, nudges
 lib/sheet/           client, codecs, tabs, mock
-scripts/             seed and import scripts; sheet:init
+scripts/             seed and import scripts; sheet:init, sheet:migrate
 scripts/research/    the problem-bank pipeline
 data/                seeds, problems.json, problems.internal.json, research/
 docs/                these four documents

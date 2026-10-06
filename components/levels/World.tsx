@@ -35,7 +35,16 @@ function toggle<T>(list: T[], item: T, max: number): T[] {
   return list.length >= max ? list : [...list, item]
 }
 
-export function World({ initial, familyBusiness }: { initial: WorldAnswers | null; familyBusiness: boolean }) {
+export function World({
+  initial,
+  familyBusiness,
+  ownOnly = false,
+}: {
+  initial: WorldAnswers | null
+  familyBusiness: boolean
+  /** An autonomous founder: no matches follow, so the last button says what does. */
+  ownOnly?: boolean
+}) {
   const router = useRouter()
   const [step, setStep] = useState(0)
   const [error, setError] = useState(false)
@@ -67,7 +76,8 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
 
   const ready: Record<(typeof STEPS)[number], boolean> = {
     industries:
-      draft.industries.length > 0 && (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
+      draft.industries.length > 0 &&
+      (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
     side: draft.side !== null,
     access:
       draft.nobody ||
@@ -78,7 +88,9 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
             entry.worlds.length > 0 &&
             (!entry.worlds.includes('elsewhere') || (entry.elsewhere ?? '').trim().length > 1),
         )),
-    learn: draft.learn.length > 0 && (!draft.learn.includes('other') || draft.learnOther.trim().length > 1),
+    learn:
+      draft.learn.length > 0 &&
+      (!draft.learn.includes('other') || draft.learnOther.trim().length > 1),
     intent: draft.intent !== null,
     comfort: true,
   }
@@ -106,9 +118,20 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
   function setAccess(kind: AccessId | 'other', patch: Partial<Access> | null) {
     setDraft((current) => {
       const existing = current.access.find((entry) => entry.kind === kind)
-      if (patch === null) return { ...current, access: current.access.filter((entry) => entry.kind !== kind) }
-      if (!existing) return { ...current, nobody: false, access: [...current.access, { kind, worlds: [], ...patch }] }
-      return { ...current, access: current.access.map((entry) => (entry.kind === kind ? { ...entry, ...patch } : entry)) }
+      if (patch === null)
+        return { ...current, access: current.access.filter((entry) => entry.kind !== kind) }
+      if (!existing)
+        return {
+          ...current,
+          nobody: false,
+          access: [...current.access, { kind, worlds: [], ...patch }],
+        }
+      return {
+        ...current,
+        access: current.access.map((entry) =>
+          entry.kind === kind ? { ...entry, ...patch } : entry,
+        ),
+      }
     })
   }
 
@@ -129,7 +152,9 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                   type="button"
                   className="chip press"
                   aria-pressed={draft.industries.includes(industry.id)}
-                  aria-disabled={!draft.industries.includes(industry.id) && draft.industries.length >= 3}
+                  aria-disabled={
+                    !draft.industries.includes(industry.id) && draft.industries.length >= 3
+                  }
                   onClick={() => set({ industries: toggle(draft.industries, industry.id, 3) })}
                 >
                   {industry.label}
@@ -151,19 +176,28 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
         {name === 'side' ? (
           <>
             <Ask text={copy.side.ask} />
-            <div className="grid gap-2.5 sm:grid-cols-2" role="radiogroup" aria-label={copy.side.ask}>
-              {(Object.keys(copy.side.options) as (keyof typeof copy.side.options)[]).map((side) => (
-                <button
-                  key={side}
-                  type="button"
-                  role="radio"
-                  aria-checked={draft.side === side}
-                  className="choice press min-h-[68px] text-[17px]"
-                  onClick={() => set({ side })}
-                >
-                  {copy.side.options[side]}
-                </button>
-              ))}
+            <div
+              className="grid gap-2.5 sm:grid-cols-2"
+              role="radiogroup"
+              aria-label={copy.side.ask}
+            >
+              {(Object.keys(copy.side.options) as (keyof typeof copy.side.options)[]).map(
+                (side) => (
+                  <button
+                    key={side}
+                    type="button"
+                    role="radio"
+                    aria-checked={draft.side === side}
+                    className="choice press min-h-[76px] text-[17px]"
+                    onClick={() => set({ side })}
+                  >
+                    <span className="grid gap-0.5 text-left">
+                      <span>{copy.side.options[side].label}</span>
+                      <span className="text-ink-3 text-[14px]">{copy.side.options[side].sub}</span>
+                    </span>
+                  </button>
+                ),
+              )}
             </div>
           </>
         ) : null}
@@ -196,7 +230,9 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                             onChange={(event) => setAccess('other', { other: event.target.value })}
                           />
                         ) : null}
-                        <p className="m-0 text-[15px] text-ink-2">{copy.access.worlds(copy.access.whoLabel[option.id])}</p>
+                        <p className="text-ink-2 m-0 text-[15px]">
+                          {copy.access.worlds(copy.access.whoLabel[option.id])}
+                        </p>
                         <div className="flex flex-wrap gap-2">
                           {ordered.map((industry) => (
                             <button
@@ -204,7 +240,11 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                               type="button"
                               className="chip press min-h-9 text-[13px]"
                               aria-pressed={entry.worlds.includes(industry.id)}
-                              onClick={() => setAccess(option.id, { worlds: toggle(entry.worlds, industry.id, 3) })}
+                              onClick={() =>
+                                setAccess(option.id, {
+                                  worlds: toggle(entry.worlds, industry.id, 3),
+                                })
+                              }
                             >
                               {industry.short}
                             </button>
@@ -212,7 +252,9 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                           <OtherField
                             label={copy.access.elsewhere}
                             on={entry.worlds.includes('elsewhere')}
-                            onToggle={() => setAccess(option.id, { worlds: toggle(entry.worlds, 'elsewhere', 3) })}
+                            onToggle={() =>
+                              setAccess(option.id, { worlds: toggle(entry.worlds, 'elsewhere', 3) })
+                            }
                             value={entry.elsewhere ?? ''}
                             onChange={(elsewhere) => setAccess(option.id, { elsewhere })}
                             placeholder={copy.access.elsewherePlaceholder}
@@ -227,7 +269,9 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
                 type="button"
                 className="choice press"
                 aria-pressed={draft.nobody}
-                onClick={() => set({ nobody: !draft.nobody, access: draft.nobody ? draft.access : [] })}
+                onClick={() =>
+                  set({ nobody: !draft.nobody, access: draft.nobody ? draft.access : [] })
+                }
               >
                 {copy.access.none}
               </button>
@@ -267,7 +311,11 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
         {name === 'intent' ? (
           <>
             <Ask text={copy.intent.ask} />
-            <div className="grid gap-2.5 sm:grid-cols-2" role="radiogroup" aria-label={copy.intent.ask}>
+            <div
+              className="grid gap-2.5 sm:grid-cols-2"
+              role="radiogroup"
+              aria-label={copy.intent.ask}
+            >
               {INTENTS.map((intent) => (
                 <button
                   key={intent.id}
@@ -292,7 +340,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
         ) : null}
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
+      <div className="dock md:border-line justify-between md:border-t md:pt-6">
         <button
           type="button"
           className="btn btn-quiet press -ml-3"
@@ -302,7 +350,7 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
           {copy.back}
         </button>
         {error ? (
-          <p role="alert" className="m-0 text-[14px] text-pink-ink">
+          <p role="alert" className="text-pink-ink m-0 text-[14px]">
             {copy.error}
           </p>
         ) : null}
@@ -316,8 +364,13 @@ export function World({ initial, familyBusiness }: { initial: WorldAnswers | nul
             {copy.next}
           </button>
         ) : (
-          <button type="button" className="btn btn-primary press min-w-[180px]" disabled={pending} onClick={finish}>
-            {pending ? copy.saving : copy.done}
+          <button
+            type="button"
+            className="btn btn-primary press min-w-[180px]"
+            disabled={pending}
+            onClick={finish}
+          >
+            {pending ? copy.saving : ownOnly ? copy.doneOwn : copy.done}
           </button>
         )}
       </div>
@@ -339,7 +392,7 @@ function Ask({ text, hint, count }: { text: string; hint?: string; count?: [numb
           </span>
         ) : null}
       </div>
-      {hint ? <p className="m-0 text-[15px] text-ink-2">{hint}</p> : null}
+      {hint ? <p className="text-ink-2 m-0 text-[15px]">{hint}</p> : null}
     </div>
   )
 }

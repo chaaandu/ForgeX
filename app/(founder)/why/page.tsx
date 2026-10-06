@@ -4,7 +4,8 @@ import { redirect } from 'next/navigation'
 import { Why } from '@/components/levels/Why'
 import { LevelShell } from '@/components/shell/LevelShell'
 import { founderContext } from '@/lib/context'
-import { problemById, publicProblem } from '@/lib/data/problems'
+import { problemById } from '@/lib/data/problems'
+import { forFounder } from '@/lib/problem'
 import { currentPath, mayEnter } from '@/lib/journey'
 import { closeLabel } from '@/lib/dates'
 import { requireFounder } from '@/lib/session'
@@ -20,7 +21,13 @@ export default async function WhyPage({ searchParams }: { searchParams: Promise<
   if (!found || found.status !== 'approved') redirect('/matches')
   return (
     <LevelShell level="why" card={{ ...context.card, problemTitle: found.title }}>
-      <Why problem={publicProblem(found)} custom={null} card={context.card} slug={founder.slug} closesAt={closeLabel(process.env.PICKS_CLOSE_AT ?? '')} />
+      <Why
+        problem={forFounder(found)}
+        custom={null}
+        card={context.card}
+        slug={founder.slug}
+        closesAt={closeLabel(process.env.PICKS_CLOSE_AT ?? '')}
+      />
     </LevelShell>
   )
 }

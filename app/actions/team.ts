@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { email } from '@/content/copy'
 import { logEvent } from '@/lib/data/events'
@@ -10,7 +11,7 @@ import { responseEmail, sendEmail } from '@/lib/email/send'
 import { problemIdSchema } from '@/lib/problem'
 import { getViewer } from '@/lib/session'
 import { rows, updateRow } from '@/lib/store'
-import { RARITIES } from '@/lib/taxonomy'
+import { DIFFICULTIES } from '@/lib/taxonomy'
 
 /**
  * What the team can do. Every action checks the role from the session, never
@@ -40,14 +41,25 @@ export async function respond(raw: unknown): Promise<TeamResult> {
   const parsed = respondSchema.safeParse(raw)
   if (!parsed.success) return { ok: false, error: 'invalid' }
   try {
-    const [picks, responses, founders] = await Promise.all([allPicks(), allResponses(), allFounders()])
+    const [picks, responses, founders] = await Promise.all([
+      allPicks(),
+      allResponses(),
+      allFounders(),
+    ])
     const pick = picks.find((item) => item.id === parsed.data.pickId)
     if (!pick || pick.withdrawnAt) return { ok: false, error: 'invalid' }
     const founder = founders.find((item) => item.email === pick.email)
     if (!founder) return { ok: false, error: 'invalid' }
     const responseId = await addResponse({ ...parsed.data, author })
     await patchFounder(founder, { Status: parsed.data.type })
-    await logEvent(author, 'response', { pickId: pick.id, founder: founder.email, type: parsed.data.type, previous: statusOf(pick, responses) })
+    // A go puts them on the landing, and any other answer takes them off it.
+    revalidatePath('/')
+    await logEvent(author, 'response', {
+      pickId: pick.id,
+      founder: founder.email,
+      type: parsed.data.type,
+      previous: statusOf(pick, responses),
+    })
 
     const problem = pick.problemId ? await problemById(pick.problemId) : null
     const title = problem?.title ?? pick.custom?.title ?? email.fallbackTitle
@@ -61,7 +73,9 @@ export async function respond(raw: unknown): Promise<TeamResult> {
     })
     const sent = await sendEmail({ to: founder.email, ...message })
     if (sent) {
-      const found = (await rows('responses')).find((entry) => entry.cells['Response ID'] === responseId)
+      const found = (await rows('responses')).find(
+        (entry) => entry.cells['Response ID'] === responseId,
+      )
       if (found) await updateRow('responses', found.row, { 'Emailed at': new Date().toISOString() })
     }
     return { ok: true }
@@ -71,7 +85,10 @@ export async function respond(raw: unknown): Promise<TeamResult> {
   }
 }
 
-const statusSchema = z.object({ id: problemIdSchema, status: z.enum(['draft', 'approved', 'rejected']) })
+const statusSchema = z.object({
+  id: problemIdSchema,
+  status: z.enum(['draft', 'approved', 'rejected']),
+})
 
 /** Approves, rejects or returns a problem to draft. Founders only ever see approved ones. */
 export async function setProblemStatus(raw: unknown): Promise<TeamResult> {
@@ -92,7 +109,9 @@ export async function approveAll(raw: unknown): Promise<TeamResult> {
   if (!editor) return { ok: false, error: 'forbidden' }
   const ids = z.array(problemIdSchema).max(400).safeParse(raw)
   if (!ids.success) return { ok: false, error: 'invalid' }
-  const items = (await bank()).filter((item) => ids.data.includes(item.id) && item.status === 'draft')
+  const items = (await bank()).filter(
+    (item) => ids.data.includes(item.id) && item.status === 'draft',
+  )
   for (const item of items) await setProblem(item, { Status: 'approved' }, editor)
   await logEvent(editor, 'bank', { approved: items.map((item) => item.id) })
   return { ok: true }
@@ -103,7 +122,7 @@ const editSchema = z.object({
   title: z.string().trim().min(3).max(90),
   problem: z.string().trim().min(40).max(700),
   challenge: z.string().trim().min(10).max(200),
-  rarity: z.enum(RARITIES),
+  difficulty: z.enum(DIFFICULTIES),
 })
 
 export async function editProblem(raw: unknown): Promise<TeamResult> {
@@ -115,7 +134,12 @@ export async function editProblem(raw: unknown): Promise<TeamResult> {
   if (!item) return { ok: false, error: 'invalid' }
   await setProblem(
     item,
-    { Title: parsed.data.title, Problem: parsed.data.problem, Challenge: parsed.data.challenge, Rarity: parsed.data.rarity },
+    {
+      Title: parsed.data.title,
+      Problem: parsed.data.problem,
+      Challenge: parsed.data.challenge,
+      Difficulty: parsed.data.difficulty,
+    },
     editor,
   )
   await logEvent(editor, 'bank', { id: item.id, edited: true })

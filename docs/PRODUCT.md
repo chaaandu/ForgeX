@@ -34,13 +34,13 @@ Every level adds a layer to the founder's collectible card, so the thing they ar
 
 | Level done | What the card gains |
 | --- | --- |
-| 1 Arrive | Photo, first name, number `#023 / 117` |
-| 2 Archetype | Archetype name, sigil and colour |
-| 3 Profile | One-line bio on the back |
+| 1 Arrive | Photo, name, number `#023 / 117` |
+| 2 Archetype | Family portrait badge, *Family · Archetype*, and the archetype's identity line along the bottom |
 | 4 Your world | Industry and side marks along the edge |
-| 5 Matches | The problem title |
-| 6 Your why | The problem's rarity finish (foil on Legendary and Mythic) |
+| 6 Your why | The picked finish: pink, with foil. The same for every problem, so the card never says how hard a pick is |
 | 7 Response | A pressed stamp: Go, Go with a tweak, Let's talk |
+
+The bottom line of the card is always the archetype's identity line, never the bio and never the problem. The bio and the problem live on the founder page.
 
 The rest of the gamification follows the same rule: progress, reveals and the card. There are no points, no badges and no confetti.
 
@@ -55,10 +55,12 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 ### Landing `/` (public)
 
 - **Hero:** the founder wall. All 117 faces form a living mosaic. Tapping or clicking a face flips it over, like a card, to show that founder's first name, archetype and family portrait; hovering lifts it. Every founder is on the wall; the team can take someone off by setting `Wall` to `no` in the Sheet.
-- **No problem statements on the landing page.** Problems are earned by finishing the levels, not browsed from the door.
-- **One line:** *Find the problem you can't ignore.*
+- **Headline:** *Don't start with an idea.* / *Start with a problem.*
+- **Sub:** *Find one. Prove it's real. Then build.*
 - **One button:** **Enter**.
-- **Signed in?** **Enter** goes straight to the founder's current level, or to `/team` for the team.
+- **Below the fold, What they're building:** the cards of founders on the wall whose current pick got **Go** or **Go, with a tweak**, newest first, each with its problem title only and a link to their page. It refreshes whenever the team responds. Nothing appears until the first Go.
+- **No problem bank on the landing page.** Problems are earned by finishing the levels, not browsed from the door. Titles of problems already being built are the only exception.
+- **Signed in?** The landing stays open: the logo, and **View site** in the console, lead back to it. **Enter** goes straight to the founder's furthest level, or to `/team` for the team.
 
 ### Sign in `/login`
 
@@ -154,8 +156,9 @@ Six questions, one per screen, in about two minutes. Every multiple-choice quest
 
 1. **Which industries pull you in?** Pick up to three.
    - Retail and local shops · Food and quick commerce · Money and finance · Health and fitness · Education and careers · Work and teams · Creators and media · Travel and mobility · Farming and food supply · Homes and real estate · Manufacturing and logistics · Fashion and beauty · Other
-2. **Who do you want to build for?**
-   - Businesses · Consumers · Creators · Not sure yet
+2. **Who do you want to build for?** Each option has a sublabel.
+   - Businesses (*Shops, clinics, factories, offices.*) · People, for themselves (*Patients, parents, renters, job seekers.*) · People who earn on their own (*Drivers, sellers, farmers, freelancers, creators.*) · Not sure yet
+   - Each option maps one to one onto a side in the bank, or it would match nothing. The bank's `creator` side means anyone self-employed, so the option says that rather than *Creators*. Short labels, on the card and in the console: Businesses, People, Self-employed.
 3. **Who can you reach this week?** Multi-select.
    - Family business · Relatives' work · A past internship or job · Friends' parents · A community you're in · Other
    - For each choice, a follow-up chip row asks **What world are they in?** using the same industry list, plus **Somewhere else**.
@@ -179,20 +182,19 @@ Six questions, one per screen, in about two minutes. Every multiple-choice quest
 
 ### Level 5 · Matches `/matches`
 
-- **Four matches.** They're spread across industry and rarity, so a founder never gets four of the same.
-- **Each card shows:**
-  - title
-  - problem
-  - challenge
-  - two or three chips explaining why it fits them
-- **No rarity and no signal** on anything a founder sees: a label that ranks problems changes which one they pick.
-- **Every chip names a real factor** that scored in the match:
-  - *You can reach this user*
-  - *Health and fitness, your pick*
-  - *Teaches voice AI*
-  - *Built for businesses*
-  - *A stretch you can finish*
-  - *Suits a Scout*
+- **The founder's track decides the pool.** Track is a team decision in the Sheet, and the founder never sees it.
+
+  | Track | Matches |
+  | --- | --- |
+  | Autonomous | None. `/matches` goes straight to **Write your own**, and step 5 is called **Your problem** |
+  | Structured | Hard and medium problems |
+  | Guided | Medium and easy problems |
+
+  A track the app doesn't recognise reads as structured.
+- **Four matches,** plus **Write your own.** They're spread across industry and difficulty, so a founder never gets four of the same. On desktop they sit in a two-column masonry grid.
+- **Each card shows:** title, problem and challenge. No chips. A card the team suggested says *The team suggested this*.
+- **No difficulty and no signal** on anything a founder sees: a label that ranks problems changes which one they pick. Difficulty is stripped on the server before a problem reaches the browser.
+- **Matching still explains itself** to the team and the tests: every match carries the factors that scored for it, in the founder's own terms.
 - **Opening a card** shows:
   - the full problem and the challenge
   - what you'll learn
@@ -230,7 +232,7 @@ The prompts:
 | 3 | No money words (pay, price, fee, subscription, save, commission, ads) | *Who hands over money, and for what?* |
 | Any | Under about 25 words | *A little more. Two or three sentences is plenty.* |
 
-**Submit** is **Send it**. The card flips, and the problem's rarity finish sweeps across it. A problem the founder wrote gets the **Original** finish. It's pearl, and doesn't rank above or below anything.
+**Submit** is **Send it**. The card flips, and the picked finish sweeps across it: pink, with foil, the same for a bank problem and one the founder wrote.
 
 **Pending picks:** while a pick is waiting, the founder can withdraw it and go back to matches. Once the team has responded, the pick is locked until a **Try another**.
 
@@ -248,20 +250,23 @@ The prompts:
 
 After **Try another**:
 - The founder is back at Level 5.
-- The team's suggestions come first, then fresh matches.
+- The team's suggestions come first, then fresh matches. Suggestions skip the track filter, because a person chose them.
 - Problems they've already tried are excluded.
 
 ### Founder page `/f/[slug]`
 
 - **Slug:** built from the full name, with a numeric suffix if two names clash (`/f/ananya-rao`, `/f/ananya-rao-2`). Slugs are frozen once seeded.
-- **Who can see it:** the founder and the team only. Anyone else gets a 404.
-- **What it shows:**
+- **Who can see it:**
+  - **The founder and the team** see everything.
+  - **Any other signed-in user** can see it once the founder is building (their current pick got **Go** or **Go, with a tweak**): the card, archetype, bio, the problem title and challenge, and profile facts. Never the thread, the team's note, the team panel or the card download.
+  - Anyone else gets a 404.
+- **What it shows the founder and the team:**
   - the founder card, with download and share
-  - the archetype
+  - *Family · Archetype* under the name (the identity line is already on the card, so it isn't repeated)
   - the profile, edited inline when it's their own
   - their links
   - their pick and its status
-  - the full thread of their why and our responses
+  - the full thread of their why and our responses. The team sees each response signed *Name, for the team*; the founder sees *The ForgeX team*
 - **After onboarding,** this page is the founder's home.
 
 ### Team console `/team`
@@ -283,13 +288,15 @@ After **Try another**:
 | `N` | Focus the note |
 | `⌘↵` | Send |
 
-The founder's profile, archetype and Level 4 answers sit beside each why, because a fit can only be judged against the person.
+The founder's profile, archetype and Level 4 answers sit beside each why, with the problem's difficulty, because a fit can only be judged against the person.
 
-**Bank** (`/team/bank`): every problem with its evidence and scores.
-- `Y` approve, `E` edit, `R` reject.
+**Bank** (`/team/bank`): every problem with its difficulty (Easy, Medium or Hard), evidence and scores, and who last edited it and when.
+- `Y` approve, `E` edit, `R` reject. Each records the team member in **Edited by** and **Edited at**, and in Events.
 - Founders see approved problems only.
 
-**Team-only data:** track and Hackathon 1 outcome appear on founder pages for the team, and are never sent to the founder.
+**Header:** **View site** opens the landing.
+
+**Team-only data:** track, Hackathon 1 outcome and problem difficulty appear for the team, and are never sent to the founder.
 
 ## States every screen must design
 

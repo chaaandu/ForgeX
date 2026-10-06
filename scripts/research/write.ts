@@ -1,3 +1,4 @@
+import { DIFFICULTY_OF_RARITY } from '../../lib/taxonomy'
 /**
  * Step 6. Writes the bank: data/problems.json (what founders see) and
  * data/problems.internal.json (what only the team sees).
@@ -87,7 +88,7 @@ function main(): void {
       title: record.title.trim(),
       problem: record.problem.trim(),
       challenge: record.challenge.trim(),
-      rarity: record.rarity,
+      difficulty: DIFFICULTY_OF_RARITY[record.rarity],
       industries: record.industries,
       side: record.side,
       learn: record.learn,

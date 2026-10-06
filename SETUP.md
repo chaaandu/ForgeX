@@ -25,7 +25,7 @@ pnpm dev                     # http://localhost:3000
 
 Set `MOCK_BACKEND=true` in `.env.local` to run without Google or the Sheet. Mock mode:
 - uses an in-memory copy of the Sheet;
-- shows mock sign-in buttons on `/login`;
+- shows mock sign-in buttons on `/login`, one per track plus a teammate: Aarav (guided, placed in Hackathon 1), Diya (structured, takes the quiz), Aadishwar (autonomous, placed in Hackathon 1) and the team;
 - `POST /api/mock/reset` puts that memory back to the seed.
 
 Mock mode never runs on a Vercel production deploy, whatever the flag says.
@@ -73,19 +73,20 @@ Who can get in depends only on the email domain:
 pnpm sheet:init        # tabs, headers, any founder not yet listed. Safe to re-run.
 pnpm sheet:problems    # adds the research bank as drafts. Safe to re-run.
 pnpm sheet:sync        # after a bank rewrite: rewords problems nobody on the team has edited
+pnpm sheet:migrate     # once, on a Sheet made before tracks: renames Rarity to Difficulty, fixes Track cells. Safe to re-run.
 ```
 
-Neither script overwrites a cell you've edited or removes anything.
+None of the first three overwrites a cell you've edited or removes anything. `sheet:migrate` rewrites only the Difficulty column and any Track cell that differs from `data/students.json`, and prints each Track it changes.
 
 **What each tab holds:**
 
 | Tab | What it holds |
 | --- | --- |
-| Founders | One row per founder: profile, archetype, answers, level, status. `Track` and the `H1` columns are team only |
-| Problems | The bank. Only rows with `Status` set to `approved` reach founders. Anything else reads as a draft |
+| Founders | One row per founder: profile, archetype, answers, level, status. `Track` and the `H1` columns are team only. `Track` is `autonomous` (no matches, writes their own), `structured` (hard and medium problems) or `guided` (medium and easy); anything else counts as structured |
+| Problems | The bank. Only rows with `Status` set to `approved` reach founders. Anything else reads as a draft. `Difficulty` is `easy`, `medium` or `hard`, and founders never see it. `Edited by` and `Edited at` record the last team change |
 | Problems internal | Evidence, scores, why now and existing players, for the team |
 | Picks | Every why, append-only |
-| Responses | Every answer from the team, append-only |
+| Responses | Every answer from the team, append-only. `Author` is the teammate's email |
 | Events | The audit log |
 
 **Editing by hand:**
@@ -106,6 +107,8 @@ Neither script overwrites a cell you've edited or removes anything.
 2. Add every variable from section 2 to **Production** and **Preview**, with `MOCK_BACKEND=false`.
 3. Deploy, then add your domain under Settings, Domains, and point DNS as Vercel tells you.
 4. Add the domain's redirect URI to the OAuth client (section 3).
+
+**Before go-live:** run `pnpm sheet:migrate` once on any Sheet created before the switch from rarity to difficulty. Until then the app fails on the Problems tab, naming the missing `Difficulty` column.
 
 ## 7. Email, when you want it
 
@@ -128,6 +131,7 @@ Neither script overwrites a cell you've edited or removes anything.
 | Answer whys | `/team/queue`, oldest first. `G` Go, `W` Go with a tweak, `L` Let's talk, `A` Try another, `N` note, `⌘↵` send |
 | See everyone | `/team`, with CSV export |
 | A founder's page | `/f/<slug>`, which shows the team-only panel to you |
+| Change a founder's track | Edit their `Track` cell in Founders; their matches follow within 15 seconds. To make it stick through `pnpm sheet:migrate` and `pnpm data:students`, also add them to `TRACK_FIXES` in `scripts/import-students.ts` and rerun `pnpm data:students` |
 | Close picks | Change `PICKS_CLOSE_AT` and redeploy |
 | Undo a response | Delete its row in Responses, then set the founder's `Status` cell to match their latest remaining response, or `waiting` |
 

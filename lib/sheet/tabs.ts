@@ -51,7 +51,7 @@ export const TABS = {
       'Title',
       'Problem',
       'Challenge',
-      'Rarity',
+      'Difficulty',
       'Industries',
       'Side',
       'Learn',
@@ -88,7 +88,16 @@ export const TABS = {
   },
   responses: {
     name: 'Responses',
-    headers: ['Response ID', 'Pick ID', 'Author', 'Type', 'Note', 'Suggested IDs', 'Sent at', 'Emailed at'],
+    headers: [
+      'Response ID',
+      'Pick ID',
+      'Author',
+      'Type',
+      'Note',
+      'Suggested IDs',
+      'Sent at',
+      'Emailed at',
+    ],
   },
   events: {
     name: 'Events',
@@ -125,6 +134,9 @@ export function decode<K extends TabKey>(key: K, grid: string[][]): Row<K>[] {
 }
 
 /** A row's values in the order the Sheet's own header row has them. */
-export function encode<K extends TabKey>(head: string[], cells: Partial<Record<Header<K>, string>>): string[] {
+export function encode<K extends TabKey>(
+  head: string[],
+  cells: Partial<Record<Header<K>, string>>,
+): string[] {
   return head.map((name) => (cells as Record<string, string | undefined>)[name.trim()] ?? '')
 }

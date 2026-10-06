@@ -18,9 +18,11 @@ function leaves(value: unknown, path: string, out: Leaf[] = []): Leaf[] {
     const fn = value as (...args: unknown[]) => unknown
     const result = fn(...Array.from({ length: Math.max(fn.length, 1) }, () => 'Ananya'))
     leaves(result, `${path}()`, out)
-  } else if (Array.isArray(value)) value.forEach((item, index) => leaves(item, `${path}[${index}]`, out))
+  } else if (Array.isArray(value))
+    value.forEach((item, index) => leaves(item, `${path}[${index}]`, out))
   else if (value && typeof value === 'object') {
-    for (const [key, item] of Object.entries(value)) leaves(item, path ? `${path}.${key}` : key, out)
+    for (const [key, item] of Object.entries(value))
+      leaves(item, path ? `${path}.${key}` : key, out)
   }
   return out
 }
@@ -48,6 +50,8 @@ const BUTTONS = [
   'world.next',
   'world.back',
   'world.done',
+  'world.doneOwn',
+  'consoleCopy.viewSite',
   'matches.changeAnswers',
   'problem.build',
   'why.send',
@@ -102,7 +106,9 @@ describe('copy', () => {
   })
 
   it('never says something went wrong without saying what to do', () => {
-    expect(all.filter((leaf) => bareSomethingWentWrong(leaf.text)).map((leaf) => leaf.path)).toEqual([])
+    expect(
+      all.filter((leaf) => bareSomethingWentWrong(leaf.text)).map((leaf) => leaf.path),
+    ).toEqual([])
   })
 
   it('has no decorative quote marks', () => {
@@ -110,7 +116,11 @@ describe('copy', () => {
   })
 
   it('keeps exclamation marks to the reveal and the card', () => {
-    expect(all.filter((leaf) => leaf.text.includes('!') && !EXCLAIM_OK.test(leaf.path)).map((leaf) => leaf.path)).toEqual([])
+    expect(
+      all
+        .filter((leaf) => leaf.text.includes('!') && !EXCLAIM_OK.test(leaf.path))
+        .map((leaf) => leaf.path),
+    ).toEqual([])
   })
 
   it('keeps every button under 24 characters, and never Submit or OK', () => {
@@ -135,7 +145,9 @@ describe('copy', () => {
     const long = all.flatMap((leaf) =>
       leaf.text
         .split(/(?<=[.?])\s+/)
-        .filter((sentence) => sentence.split(/\s+/).length >= 20 && !OWNER_HEADINGS.includes(leaf.path))
+        .filter(
+          (sentence) => sentence.split(/\s+/).length >= 20 && !OWNER_HEADINGS.includes(leaf.path),
+        )
         .map((sentence) => `${leaf.path}: ${sentence}`),
     )
     expect(long).toEqual([])
@@ -150,9 +162,10 @@ function sources(dir: string): string[] {
   })
 }
 
-const files = [...sources(join(process.cwd(), 'app')), ...sources(join(process.cwd(), 'components'))].filter(
-  (path) => !path.includes(`${join('app', 'api', 'card')}`),
-)
+const files = [
+  ...sources(join(process.cwd(), 'app')),
+  ...sources(join(process.cwd(), 'components')),
+].filter((path) => !path.includes(`${join('app', 'api', 'card')}`))
 
 describe('copy in components', () => {
   it('gives every image alt text', () => {
@@ -169,7 +182,9 @@ describe('copy in components', () => {
     const inline = files.flatMap((path) => {
       const text = readFileSync(path, 'utf8')
       const jsxText = [...text.matchAll(/>\s*([A-Za-z][^<>{}]*?)\s*<\//g)].map((match) => match[1])
-      const labels = [...text.matchAll(/\b(aria-label|alt|title|placeholder)="([^"]*[A-Za-z][^"]*)"/g)].map((match) => match[2])
+      const labels = [
+        ...text.matchAll(/\b(aria-label|alt|title|placeholder)="([^"]*[A-Za-z][^"]*)"/g),
+      ].map((match) => match[2])
       return [...jsxText, ...labels].map((found) => `${path.replace(process.cwd(), '')}: ${found}`)
     })
     expect(inline).toEqual([])

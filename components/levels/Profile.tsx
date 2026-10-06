@@ -39,7 +39,11 @@ export function Profile({
     const result = await saveProfile(patch)
     if (!result.ok) {
       const field = Object.keys(result.fields ?? {})[0]
-      return { ok: false, message: field && LINK_FIELDS.includes(field as LinkField) ? copy.links.invalid : copy.failed }
+      return {
+        ok: false,
+        message:
+          field && LINK_FIELDS.includes(field as LinkField) ? copy.links.invalid : copy.failed,
+      }
     }
     setData((current) => ({ ...current, ...patch, ...result.links }))
     return { ok: true }
@@ -66,15 +70,26 @@ export function Profile({
   }
 
   const actions = (
-    <div className="flex flex-wrap items-center gap-3 border-t border-line pt-8">
+    <div
+      className={
+        onboarding
+          ? 'dock md:border-line md:border-t md:pt-8'
+          : 'border-line flex flex-wrap items-center gap-3 border-t pt-8'
+      }
+    >
       {onboarding ? (
-        <button type="button" className="btn btn-primary press min-h-[56px] w-full text-[16px] sm:w-auto sm:min-w-[240px]" disabled={pending} onClick={finish}>
+        <button
+          type="button"
+          className="btn btn-primary press min-h-[52px] text-[16px] md:min-w-[240px]"
+          disabled={pending}
+          onClick={finish}
+        >
           {copy.done}
         </button>
       ) : null}
       <button
         type="button"
-        className={`btn press ${onboarding ? 'btn-secondary w-full sm:w-auto' : 'btn-secondary'}`}
+        className="btn btn-secondary press"
         onClick={() => setEditing((value) => !value)}
         aria-pressed={editing}
       >
@@ -85,20 +100,34 @@ export function Profile({
 
   return (
     <div className="grid gap-10">
-      {onboarding ? <h1 className="display rise m-0 max-w-[22ch] text-[clamp(34px,5vw,60px)] leading-[1.02]"><Lines text={copy.heading} /></h1> : null}
+      {onboarding ? (
+        <h1 className="display rise m-0 max-w-[22ch] text-[clamp(34px,5vw,60px)] leading-[1.02]">
+          <Lines text={copy.heading} />
+        </h1>
+      ) : null}
 
-      <section className={`grid gap-6 ${onboarding ? 'grid-cols-[72px_1fr] items-center md:grid-cols-[120px_1fr]' : ''}`}>
+      <section
+        className={`grid gap-6 ${onboarding ? 'grid-cols-[72px_1fr] items-center md:grid-cols-[120px_1fr]' : ''}`}
+      >
         {onboarding ? (
           <div className="relative size-[72px] overflow-hidden rounded-2xl shadow-[0_0_0_1px_var(--color-line-2)] md:size-[120px]">
             <Image src={photo} alt={name} fill sizes="120px" className="object-cover" />
           </div>
         ) : null}
         <div className="grid min-w-0 gap-2">
-          {onboarding ? <p className="display m-0 text-[clamp(30px,4vw,48px)] leading-none">{name}</p> : null}
+          {onboarding ? (
+            <p className="display m-0 text-[clamp(30px,4vw,48px)] leading-none">{name}</p>
+          ) : null}
           {editing ? null : data.bio ? (
-            <p className="display m-0 text-[clamp(20px,2.4vw,28px)] leading-snug text-ink-1 italic">{data.bio}</p>
+            <p className="display text-ink-1 m-0 text-[clamp(20px,2.4vw,28px)] leading-snug italic">
+              {data.bio}
+            </p>
           ) : (
-            <button type="button" className="press m-0 w-fit border-0 bg-transparent p-0 text-left text-[16px] text-pink-ink underline decoration-1 underline-offset-4" onClick={() => setEditing(true)}>
+            <button
+              type="button"
+              className="press text-pink-ink m-0 w-fit border-0 bg-transparent p-0 text-left text-[16px] underline decoration-1 underline-offset-4"
+              onClick={() => setEditing(true)}
+            >
               {copy.bio.add}
             </button>
           )}
@@ -122,12 +151,18 @@ export function Profile({
         />
       ) : null}
 
-      <dl className="m-0 grid gap-x-10 gap-y-6 border-t border-line pt-8 sm:grid-cols-3">
+      <dl className="border-line m-0 grid gap-x-10 gap-y-6 border-t pt-8 sm:grid-cols-3">
         <div className="grid content-start gap-2">
           <dt className="meta">{copy.facts.city.label}</dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
-              <InlineField label={copy.facts.city.label} value={data.city} placeholder={copy.facts.city.placeholder} maxLength={60} onSave={(city) => save({ city })} />
+              <InlineField
+                label={copy.facts.city.label}
+                value={data.city}
+                placeholder={copy.facts.city.placeholder}
+                maxLength={60}
+                onSave={(city) => save({ city })}
+              />
             ) : (
               <Value text={data.city} />
             )}
@@ -137,7 +172,13 @@ export function Profile({
           <dt className="meta">{copy.facts.degree.label}</dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
-              <InlineField label={copy.facts.degree.label} value={data.degree} placeholder={copy.facts.degree.placeholder} maxLength={80} onSave={(degree) => save({ degree })} />
+              <InlineField
+                label={copy.facts.degree.label}
+                value={data.degree}
+                placeholder={copy.facts.degree.placeholder}
+                maxLength={80}
+                onSave={(degree) => save({ degree })}
+              />
             ) : (
               <Value text={data.degree} />
             )}
@@ -147,7 +188,12 @@ export function Profile({
           <dt className="meta">{copy.facts.languages.label}</dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
-              <ChipList label={copy.facts.languages.label} items={data.languages} placeholder={copy.facts.languages.placeholder} onChange={(items) => saveList('languages', items)} />
+              <ChipList
+                label={copy.facts.languages.label}
+                items={data.languages}
+                placeholder={copy.facts.languages.placeholder}
+                onChange={(items) => saveList('languages', items)}
+              />
             ) : (
               <Value text={data.languages.join(', ')} />
             )}
@@ -155,12 +201,18 @@ export function Profile({
         </div>
       </dl>
 
-      <section className="grid gap-10 border-t border-line pt-8 md:grid-cols-2">
+      <section className="border-line grid gap-10 border-t pt-8 md:grid-cols-2">
         {(['goodAt', 'wantToLearn'] as const).map((key) => (
           <div key={key} className="grid content-start gap-3">
             <h2 className="meta m-0">{copy[key].label}</h2>
             {editing ? (
-              <ChipList label={copy[key].label} items={data[key]} suggestions={copy[key].suggestions} placeholder={copy[key].placeholder} onChange={(items) => saveList(key, items)} />
+              <ChipList
+                label={copy[key].label}
+                items={data[key]}
+                suggestions={copy[key].suggestions}
+                placeholder={copy[key].placeholder}
+                onChange={(items) => saveList(key, items)}
+              />
             ) : data[key].length ? (
               <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
                 {data[key].map((item) => (
@@ -176,12 +228,12 @@ export function Profile({
         ))}
       </section>
 
-      <section className="grid gap-4 border-t border-line pt-8">
+      <section className="border-line grid gap-4 border-t pt-8">
         <h2 className="meta m-0">{copy.links.label}</h2>
         <dl className="m-0 grid gap-5 sm:grid-cols-3">
           {LINK_FIELDS.map((field) => (
             <div key={field} className="grid content-start gap-1.5">
-              <dt className="text-[13px] text-ink-3">{copy.links[field]}</dt>
+              <dt className="text-ink-3 text-[13px]">{copy.links[field]}</dt>
               <dd className="m-0 min-w-0 text-[16px]">
                 {editing ? (
                   <InlineField
@@ -193,7 +245,12 @@ export function Profile({
                     onSave={(value) => save({ [field]: value })}
                   />
                 ) : data[field] ? (
-                  <a href={data[field]} target="_blank" rel="noreferrer" className="break-words text-ink-1 underline decoration-line-2 underline-offset-4 hover:decoration-pink">
+                  <a
+                    href={data[field]}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-ink-1 decoration-line-2 hover:decoration-pink break-words underline underline-offset-4"
+                  >
                     {linkLabel(field, data[field])}
                   </a>
                 ) : (

@@ -15,19 +15,22 @@ export function LevelShell({
   card,
   children,
   wide = false,
+  label,
 }: {
   level: LevelName
   card: FounderCardData
   children: ReactNode
   wide?: boolean
+  /** Renames this step in the bar, for a track whose step 5 is different. */
+  label?: string
 }) {
   return (
     <div className="min-h-dvh">
       <header className="mx-auto max-w-[1240px] px-5 pt-6 md:px-10 md:pt-9">
-        <LevelBar level={level} />
+        <LevelBar level={level} label={label} />
       </header>
       <div
-        className={`mx-auto grid max-w-[1240px] gap-10 px-5 pt-8 pb-24 md:px-10 md:pt-14 ${
+        className={`mx-auto grid max-w-[1240px] gap-10 px-5 pt-8 pb-36 md:px-10 md:pt-14 md:pb-24 ${
           wide ? '' : 'md:grid-cols-[minmax(0,1fr)_280px] lg:gap-16'
         }`}
       >

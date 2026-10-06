@@ -14,11 +14,17 @@ export function cardFor(
   const world = founder.world
   const marks = world
     ? [
-        ...world.industries.filter((id) => id !== 'other').slice(0, 2).map(labelOf.industryShort),
+        ...world.industries
+          .filter((id) => id !== 'other')
+          .slice(0, 2)
+          .map(labelOf.industryShort),
         world.side === 'unsure' ? null : labelOf.side(world.side),
       ].filter((mark): mark is string => Boolean(mark))
     : undefined
-  const stamp = current && ['go', 'tweak', 'talk'].includes(current.status) ? (current.status as 'go' | 'tweak' | 'talk') : null
+  const stamp =
+    current && ['go', 'tweak', 'talk'].includes(current.status)
+      ? (current.status as 'go' | 'tweak' | 'talk')
+      : null
   return {
     name: founder.name,
     photo: founder.photo,
@@ -29,7 +35,7 @@ export function cardFor(
     bio: founder.profile.bio || undefined,
     marks,
     problemTitle: current?.title,
-    finish: current ? (current.problem ? current.problem.rarity : 'original') : null,
+    finish: current ? 'picked' : null,
     stamp,
   }
 }

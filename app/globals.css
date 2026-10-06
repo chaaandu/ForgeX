@@ -24,11 +24,8 @@
   --color-pink-ink: #ff6fc2;
   --color-on-pink: #1a0510;
 
-  --color-rare: #6aa0ff;
-  --color-epic: #b08cff;
   --color-legendary: #f2ab3c;
   --color-mythic: #ff6a61;
-  --color-original: #e9e4da;
 
   --color-ok: #6be39a;
 
@@ -201,10 +198,10 @@
     min-height: 40px;
     padding: 0 12px;
     background: transparent;
-    color: var(--color-ink-2);
+    color: var(--color-pink-ink);
   }
   .btn-quiet:hover:not(:disabled) {
-    color: var(--color-ink-1);
+    color: color-mix(in oklab, var(--color-pink-ink) 70%, white);
   }
 
   /* --------------------------------------------------------------- panel */
@@ -321,7 +318,12 @@
 
   .skeleton {
     border-radius: 10px;
-    background: linear-gradient(90deg, var(--color-s2) 0%, var(--color-s3) 40%, var(--color-s2) 80%);
+    background: linear-gradient(
+      90deg,
+      var(--color-s2) 0%,
+      var(--color-s3) 40%,
+      var(--color-s2) 80%
+    );
     background-size: 300% 100%;
     animation: shimmer 1.6s linear infinite;
   }
@@ -446,10 +448,6 @@
   }
 }
 /* One face at a time comes into colour, so the wall reads as people. */
-.wall-cell[data-glint] .wf-front img {
-  filter: none;
-  transition-duration: 900ms;
-}
 @keyframes drift {
   from {
     translate: 0 -6px;
@@ -529,8 +527,17 @@
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(70% 55% at 28% 72%, color-mix(in oklab, var(--tint) 20%, transparent), transparent 70%),
-    linear-gradient(180deg, var(--color-ground), color-mix(in oklab, var(--ground) 65%, var(--color-ground)) 45%, var(--color-ground));
+    radial-gradient(
+      70% 55% at 28% 72%,
+      color-mix(in oklab, var(--tint) 20%, transparent),
+      transparent 70%
+    ),
+    linear-gradient(
+      180deg,
+      var(--color-ground),
+      color-mix(in oklab, var(--ground) 65%, var(--color-ground)) 45%,
+      var(--color-ground)
+    );
   opacity: 0;
   animation: rv-in 1200ms var(--ease-out) calc(var(--impact) - 200ms) forwards;
 }
@@ -582,7 +589,11 @@
   top: -20%;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(transparent, color-mix(in oklab, var(--tint) 80%, white), transparent);
+  background: linear-gradient(
+    transparent,
+    color-mix(in oklab, var(--tint) 80%, white),
+    transparent
+  );
   transform-origin: top;
   scale: 1 0;
   animation: rv-slot var(--impact) var(--ease-out) forwards;
@@ -607,7 +618,11 @@
   aspect-ratio: 1;
   translate: -50% 50%;
   border-radius: 50%;
-  background: radial-gradient(circle, color-mix(in oklab, var(--tint) 45%, transparent), transparent 60%);
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--tint) 45%, transparent),
+    transparent 60%
+  );
   opacity: 0;
   scale: 0.2;
   animation: rv-flash 1100ms var(--ease-out) var(--impact) forwards;
@@ -768,6 +783,40 @@
   }
 }
 
+/* The step's own buttons. On a phone they sit fixed at the bottom of the
+   screen whether or not the page scrolls, so the next move is always under a
+   thumb. Never inside a .rise: its translate would trap the fixed bar. */
+.dock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+@media (max-width: 767px) {
+  .dock {
+    position: fixed;
+    z-index: 30;
+    inset: auto 0 0;
+    gap: 8px 12px;
+    margin: 0;
+    border-top: 1px solid var(--color-line);
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    background: color-mix(in oklab, var(--color-ground) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+  .dock .btn-primary {
+    flex: 1;
+    min-width: 0;
+  }
+  .dock .btn-quiet {
+    margin-left: -8px;
+  }
+  .dock [role='alert'] {
+    flex-basis: 100%;
+    order: -1;
+  }
+}
+
 .rv-after {
   margin-top: 48px;
   padding-top: 40px;
@@ -781,7 +830,6 @@
     opacity: 1;
   }
 }
-
 
 /* Inline editing: the read state is the design, the edit state an underline. */
 .inline-read {

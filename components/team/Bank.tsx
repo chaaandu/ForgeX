@@ -3,11 +3,13 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
 import { approveAll, editProblem, setProblemStatus } from '@/app/actions/team'
-import { RarityTag } from '@/components/ui/RarityTag'
+import { DifficultyTag } from '@/components/ui/DifficultyTag'
 import { Signal } from '@/components/ui/Signal'
 import { consoleCopy } from '@/content/copy'
-import { RARITY_LABEL } from '@/lib/problem'
-import { RARITIES, type Rarity } from '@/lib/taxonomy'
+import { DIFFICULTY_LABEL } from '@/lib/problem'
+import { shortDate } from '@/lib/dates'
+import { nameOf } from '@/lib/team-name'
+import { DIFFICULTIES, type Difficulty } from '@/lib/taxonomy'
 
 const copy = consoleCopy.bank
 type Status = 'draft' | 'approved' | 'rejected'
@@ -18,10 +20,13 @@ export type BankItem = {
   title: string
   problem: string
   challenge: string
-  rarity: Rarity
+  difficulty: Difficulty
   tags: string[]
   signal: string
   strength: number
+  /** Who last approved, rejected or reworded it, and when. Empty until someone does. */
+  editedBy: string
+  editedAt: string
   internal: {
     evidence: { source: string; url: string; date: string; paraphrase: string }[]
     sources: Record<string, number>
@@ -38,13 +43,23 @@ export type BankItem = {
  */
 export function Bank({ items }: { items: BankItem[] }) {
   const router = useRouter()
-  const [filter, setFilter] = useState<Status | 'all'>(() => (items.some((item) => item.status === 'draft') ? 'draft' : 'all'))
+  const [filter, setFilter] = useState<Status | 'all'>(() =>
+    items.some((item) => item.status === 'draft') ? 'draft' : 'all',
+  )
   const [index, setIndex] = useState(0)
   const [editing, setEditing] = useState(false)
-  const [draft, setDraft] = useState({ title: '', problem: '', challenge: '', rarity: 'epic' as Rarity })
+  const [draft, setDraft] = useState({
+    title: '',
+    problem: '',
+    challenge: '',
+    difficulty: 'medium' as Difficulty,
+  })
   const [pending, start] = useTransition()
 
-  const list = useMemo(() => items.filter((item) => filter === 'all' || item.status === filter), [filter, items])
+  const list = useMemo(
+    () => items.filter((item) => filter === 'all' || item.status === filter),
+    [filter, items],
+  )
   const item = list[Math.min(index, Math.max(0, list.length - 1))]
   const drafts = items.filter((entry) => entry.status === 'draft')
 
@@ -64,14 +79,26 @@ export function Bank({ items }: { items: BankItem[] }) {
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       const target = event.target as HTMLElement
-      if (target.tagName === 'TEXTAREA' || target.tagName === 'INPUT' || target.tagName === 'SELECT' || event.metaKey || event.ctrlKey) return
+      if (
+        target.tagName === 'TEXTAREA' ||
+        target.tagName === 'INPUT' ||
+        target.tagName === 'SELECT' ||
+        event.metaKey ||
+        event.ctrlKey
+      )
+        return
       const key = event.key.toLowerCase()
       if (key === 'j') setIndex((value) => Math.min(list.length - 1, value + 1))
       else if (key === 'k') setIndex((value) => Math.max(0, value - 1))
       else if (key === 'y') mark('approved')
       else if (key === 'r') mark('rejected')
       else if (key === 'e' && item) {
-        setDraft({ title: item.title, problem: item.problem, challenge: item.challenge, rarity: item.rarity })
+        setDraft({
+          title: item.title,
+          problem: item.problem,
+          challenge: item.challenge,
+          difficulty: item.difficulty,
+        })
         setEditing(true)
       }
     }
@@ -83,7 +110,7 @@ export function Bank({ items }: { items: BankItem[] }) {
     <div className="grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <h1 className="display m-0 text-[40px] leading-none">
-          {copy.title} <span className="font-mono text-[14px] text-ink-3">{items.length}</span>
+          {copy.title} <span className="text-ink-3 font-mono text-[14px]">{items.length}</span>
         </h1>
         {drafts.length ? (
           <button
@@ -115,14 +142,18 @@ export function Bank({ items }: { items: BankItem[] }) {
             }}
           >
             {copy.filters[key]}{' '}
-            <span className="font-mono text-[11px]">{key === 'all' ? items.length : items.filter((entry) => entry.status === key).length}</span>
+            <span className="font-mono text-[11px]">
+              {key === 'all' ? items.length : items.filter((entry) => entry.status === key).length}
+            </span>
           </button>
         ))}
-        <p className="m-0 ml-auto hidden self-center text-[12px] text-ink-3 md:block">{copy.help}</p>
+        <p className="text-ink-3 m-0 ml-auto hidden self-center text-[12px] md:block">
+          {copy.help}
+        </p>
       </div>
 
       {!item ? (
-        <p className="py-16 text-center text-ink-3">{copy.empty}</p>
+        <p className="text-ink-3 py-16 text-center">{copy.empty}</p>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
           <ol className="m-0 grid max-h-[72vh] list-none content-start gap-1 overflow-y-auto p-0">
@@ -135,10 +166,10 @@ export function Bank({ items }: { items: BankItem[] }) {
                   className={`press grid w-full gap-1 rounded-xl border-0 p-2.5 text-left ${entry.id === item.id ? 'bg-white/10' : 'bg-transparent hover:bg-white/5'}`}
                 >
                   <span className="flex items-center justify-between gap-2">
-                    <span className="font-mono text-[11px] text-ink-3">{entry.id}</span>
-                    <RarityTag rarity={entry.rarity} />
+                    <span className="text-ink-3 font-mono text-[11px]">{entry.id}</span>
+                    <DifficultyTag difficulty={entry.difficulty} />
                   </span>
-                  <span className="text-[14px] leading-snug text-ink-1">{entry.title}</span>
+                  <span className="text-ink-1 text-[14px] leading-snug">{entry.title}</span>
                 </button>
               </li>
             ))}
@@ -147,13 +178,35 @@ export function Bank({ items }: { items: BankItem[] }) {
           <article className="grid content-start gap-6">
             {editing ? (
               <div className="panel grid gap-4 p-6">
-                <input className="field display h-14 text-[22px]" value={draft.title} onChange={(event) => setDraft({ ...draft, title: event.target.value })} aria-label={copy.fields.title} />
-                <textarea className="field" value={draft.problem} onChange={(event) => setDraft({ ...draft, problem: event.target.value })} aria-label={copy.fields.problem} />
-                <input className="field" value={draft.challenge} onChange={(event) => setDraft({ ...draft, challenge: event.target.value })} aria-label={copy.fields.challenge} />
-                <select className="field" value={draft.rarity} onChange={(event) => setDraft({ ...draft, rarity: event.target.value as Rarity })} aria-label={copy.fields.rarity}>
-                  {RARITIES.map((rarity) => (
-                    <option key={rarity} value={rarity}>
-                      {RARITY_LABEL[rarity]}
+                <input
+                  className="field display h-14 text-[22px]"
+                  value={draft.title}
+                  onChange={(event) => setDraft({ ...draft, title: event.target.value })}
+                  aria-label={copy.fields.title}
+                />
+                <textarea
+                  className="field"
+                  value={draft.problem}
+                  onChange={(event) => setDraft({ ...draft, problem: event.target.value })}
+                  aria-label={copy.fields.problem}
+                />
+                <input
+                  className="field"
+                  value={draft.challenge}
+                  onChange={(event) => setDraft({ ...draft, challenge: event.target.value })}
+                  aria-label={copy.fields.challenge}
+                />
+                <select
+                  className="field"
+                  value={draft.difficulty}
+                  onChange={(event) =>
+                    setDraft({ ...draft, difficulty: event.target.value as Difficulty })
+                  }
+                  aria-label={copy.fields.difficulty}
+                >
+                  {DIFFICULTIES.map((difficulty) => (
+                    <option key={difficulty} value={difficulty}>
+                      {DIFFICULTY_LABEL[difficulty]}
                     </option>
                   ))}
                 </select>
@@ -174,7 +227,11 @@ export function Bank({ items }: { items: BankItem[] }) {
                   >
                     {copy.save}
                   </button>
-                  <button type="button" className="btn btn-quiet press" onClick={() => setEditing(false)}>
+                  <button
+                    type="button"
+                    className="btn btn-quiet press"
+                    onClick={() => setEditing(false)}
+                  >
                     {copy.cancel}
                   </button>
                 </div>
@@ -182,12 +239,27 @@ export function Bank({ items }: { items: BankItem[] }) {
             ) : (
               <div className="panel grid gap-4 p-6 md:p-8">
                 <div className="flex flex-wrap items-center justify-between gap-3">
-                  <RarityTag rarity={item.rarity} />
-                  <span className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-pink-ink' : ''}`}>{copy.status[item.status]}</span>
+                  <DifficultyTag difficulty={item.difficulty} />
+                  <span className="flex flex-wrap items-baseline gap-3">
+                    {item.editedBy ? (
+                      <span className="text-ink-3 font-mono text-[12px]">
+                        {copy.editedBy(nameOf(item.editedBy), shortDate(item.editedAt))}
+                      </span>
+                    ) : null}
+                    <span
+                      className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-pink-ink' : ''}`}
+                    >
+                      {copy.status[item.status]}
+                    </span>
+                  </span>
                 </div>
-                <h2 className="display m-0 text-[clamp(28px,3vw,40px)] leading-[1.05]">{item.title}</h2>
-                <p className="m-0 text-[16px] leading-relaxed text-ink-2">{item.problem}</p>
-                <p className="m-0 rounded-xl bg-black/25 px-4 py-3 text-[16px] shadow-[inset_0_0_0_1px_var(--color-line)]">{item.challenge}</p>
+                <h2 className="display m-0 text-[clamp(28px,3vw,40px)] leading-[1.05]">
+                  {item.title}
+                </h2>
+                <p className="text-ink-2 m-0 text-[16px] leading-relaxed">{item.problem}</p>
+                <p className="m-0 rounded-xl bg-black/25 px-4 py-3 text-[16px] shadow-[inset_0_0_0_1px_var(--color-line)]">
+                  {item.challenge}
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((tag) => (
                     <span key={tag} className="tag">
@@ -195,29 +267,50 @@ export function Bank({ items }: { items: BankItem[] }) {
                     </span>
                   ))}
                 </div>
-                <p className="m-0 flex items-center gap-3 text-[14px] text-ink-2">
+                <p className="text-ink-2 m-0 flex items-center gap-3 text-[14px]">
                   <Signal strength={item.strength} label={copy.strength(item.strength)} />
                   {item.signal}
                 </p>
-                <div className="flex flex-wrap gap-2 border-t border-line pt-4">
-                  <button type="button" className="btn btn-primary press" disabled={pending} onClick={() => mark('approved')}>
-                    {copy.approve} <span className="font-mono text-[11px]">{copy.keys.approve}</span>
+                <div className="border-line flex flex-wrap gap-2 border-t pt-4">
+                  <button
+                    type="button"
+                    className="btn btn-primary press"
+                    disabled={pending}
+                    onClick={() => mark('approved')}
+                  >
+                    {copy.approve}{' '}
+                    <span className="font-mono text-[11px]">{copy.keys.approve}</span>
                   </button>
-                  <button type="button" className="btn btn-secondary press" disabled={pending} onClick={() => mark('rejected')}>
+                  <button
+                    type="button"
+                    className="btn btn-secondary press"
+                    disabled={pending}
+                    onClick={() => mark('rejected')}
+                  >
                     {copy.reject} <span className="font-mono text-[11px]">{copy.keys.reject}</span>
                   </button>
                   <button
                     type="button"
                     className="btn btn-quiet press"
                     onClick={() => {
-                      setDraft({ title: item.title, problem: item.problem, challenge: item.challenge, rarity: item.rarity })
+                      setDraft({
+                        title: item.title,
+                        problem: item.problem,
+                        challenge: item.challenge,
+                        difficulty: item.difficulty,
+                      })
                       setEditing(true)
                     }}
                   >
                     {copy.edit} <span className="font-mono text-[11px]">{copy.keys.edit}</span>
                   </button>
                   {item.status !== 'draft' ? (
-                    <button type="button" className="btn btn-quiet press" disabled={pending} onClick={() => mark('draft')}>
+                    <button
+                      type="button"
+                      className="btn btn-quiet press"
+                      disabled={pending}
+                      onClick={() => mark('draft')}
+                    >
                       {copy.draft}
                     </button>
                   ) : null}
@@ -233,19 +326,22 @@ export function Bank({ items }: { items: BankItem[] }) {
                   </h3>
                   <dl className="m-0 grid gap-2">
                     {Object.entries(item.internal.scores).map(([name, score]) => (
-                      <div key={name} className="grid grid-cols-[110px_28px_1fr] items-baseline gap-2 text-[13px]">
+                      <div
+                        key={name}
+                        className="grid grid-cols-[110px_28px_1fr] items-baseline gap-2 text-[13px]"
+                      >
                         <dt className="text-ink-3 capitalize">{name}</dt>
-                        <dd className="m-0 font-mono text-ink-1">{score.value}</dd>
-                        <dd className="m-0 text-ink-2">{score.note}</dd>
+                        <dd className="text-ink-1 m-0 font-mono">{score.value}</dd>
+                        <dd className="text-ink-2 m-0">{score.note}</dd>
                       </div>
                     ))}
                   </dl>
                   <h3 className="meta m-0 mt-3">{copy.whyNow}</h3>
-                  <p className="m-0 text-[14px] text-ink-2">{item.internal.whyNow}</p>
+                  <p className="text-ink-2 m-0 text-[14px]">{item.internal.whyNow}</p>
                   {item.internal.players.length ? (
                     <>
                       <h3 className="meta m-0 mt-3">{copy.players}</h3>
-                      <ul className="m-0 grid list-none gap-1.5 p-0 text-[14px] text-ink-2">
+                      <ul className="text-ink-2 m-0 grid list-none gap-1.5 p-0 text-[14px]">
                         {item.internal.players.map((player) => (
                           <li key={player.name}>
                             <span className="text-ink-1">{player.name}</span>: {player.gap}
@@ -262,7 +358,12 @@ export function Bank({ items }: { items: BankItem[] }) {
                   <ul className="m-0 grid max-h-[460px] list-none gap-3 overflow-y-auto p-0">
                     {item.internal.evidence.map((entry) => (
                       <li key={entry.url} className="grid gap-0.5 text-[13px]">
-                        <a href={entry.url} target="_blank" rel="noreferrer" className="text-ink-1 underline decoration-line-2 underline-offset-4 hover:decoration-pink">
+                        <a
+                          href={entry.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-ink-1 decoration-line-2 hover:decoration-pink underline underline-offset-4"
+                        >
                           {entry.paraphrase}
                         </a>
                         <span className="text-ink-3">

@@ -2,6 +2,7 @@ import { expect, type Page } from '@playwright/test'
 
 export const AARAV = 'aarav_shrivastava@forge27.mesaschool.co' // placed in Hackathon 1
 export const DIYA = 'diya_agrawal@forge27.mesaschool.co' // sits the quiz
+export const AADISHWAR = 'aadishwar_r@forge27.mesaschool.co' // autonomous, placed in Hackathon 1: no bank
 export const TEAM = 'team@mesaschool.co'
 
 export async function reset(page: Page) {
@@ -52,20 +53,22 @@ export async function throughProfile(page: Page) {
   await page.waitForURL('**/world')
 }
 
-export async function throughWorld(page: Page) {
+export async function throughWorld(page: Page, lands = '**/matches') {
   await page.getByRole('button', { name: 'Retail and local shops' }).click()
   await page.getByRole('button', { name: 'Next' }).click()
   await page.getByRole('radio', { name: 'Businesses' }).click()
   await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: 'Family business', exact: true }).click()
+  // Prefilled for anyone whose prior work mentions a family business.
+  const family = page.getByRole('button', { name: 'Family business', exact: true })
+  if ((await family.getAttribute('aria-pressed')) !== 'true') await family.click()
   await page.getByRole('button', { name: 'Retail', exact: true }).click()
   await page.getByRole('button', { name: 'Next' }).click()
   await page.getByRole('button', { name: 'Data and dashboards' }).click()
   await page.getByRole('button', { name: 'Next' }).click()
   await page.getByRole('radio', { name: 'Both' }).click()
   await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: 'Show my matches' }).click()
-  await page.waitForURL('**/matches')
+  await page.getByRole('button', { name: /^(Show my matches|Next: your problem)$/ }).click()
+  await page.waitForURL(lands)
 }
 
 export const WHY = {

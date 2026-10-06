@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { archetypes, card as copy, families } from '@/content/copy'
 import { ARCHETYPES, FAMILIES, type ArchetypeId } from '@/lib/archetype'
-import type { Rarity } from '@/lib/taxonomy'
 import { Tilt } from './Tilt'
 import './card.css'
 
@@ -9,15 +8,16 @@ import './card.css'
  * The founder card. It is also the progress bar: every level adds a layer, and
  * the slots not yet filled are drawn as empty, so a founder can always see what
  * is left to earn. Photo and number on arrival, archetype and portrait after the
- * quiz, the bio after the profile, the edge marks after their world, the
- * problem after they pick, the finish when they send their why, and the
- * team's stamp when we answer.
+ * quiz, the edge marks after their world, the finish when they send their
+ * why, and the team's stamp when we answer. The bottom line is always the
+ * archetype's own line: never their bio, never their problem.
  *
  * Everything inside is sized in container units, so one component serves the
  * corner companion, the reveal and the profile without three layouts.
  */
 
-export type CardFinish = Rarity | 'original'
+/** One finish for any pick: a finish per difficulty would tell a founder how hard theirs is. */
+export type CardFinish = 'picked'
 export type CardStamp = 'go' | 'tweak' | 'talk'
 
 export type FounderCardData = {
@@ -64,7 +64,13 @@ export function FounderCard({
           <span>{data.number ? copy.number(data.number, data.of) : copy.unnumbered}</span>
         </div>
         <div className="fc-photo">
-          <Image src={data.photo} alt={data.name} fill sizes={size === 'sm' ? '140px' : '360px'} priority={priority} />
+          <Image
+            src={data.photo}
+            alt={data.name}
+            fill
+            sizes={size === 'sm' ? '140px' : '360px'}
+            priority={priority}
+          />
         </div>
         <div className="fc-badge" data-empty={!kind || undefined} aria-hidden="true">
           {family ? <Image src={family.head} alt="" width={96} height={96} /> : <span>?</span>}
@@ -78,15 +84,7 @@ export function FounderCard({
           ) : (
             <p className="fc-kind fc-empty">{copy.noArchetype}</p>
           )}
-          {data.problemTitle ? (
-            <p className="fc-line fc-building">
-              <span>{copy.building}</span> {data.problemTitle}
-            </p>
-          ) : data.bio ? (
-            <p className="fc-line">{data.bio}</p>
-          ) : kind ? (
-            <p className="fc-line">{archetypes[kind.id].identity}</p>
-          ) : null}
+          {kind ? <p className="fc-line">{archetypes[kind.id].identity}</p> : null}
         </div>
         {data.marks?.length ? <p className="fc-marks">{data.marks.join(' · ')}</p> : null}
       </div>

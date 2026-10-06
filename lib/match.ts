@@ -1,7 +1,7 @@
 import { archetypes as archetypeCopy, chips as chipCopy } from '@/content/copy'
 import type { ArchetypeId } from './archetype'
 import type { Problem } from './problem'
-import { LEARN, labelOf, type LearnId } from './taxonomy'
+import { LEARN, labelOf, type Difficulty, type LearnId } from './taxonomy'
 import type { World } from './world'
 
 /**
@@ -38,13 +38,13 @@ const AFFINITY: Record<ArchetypeId, LearnId[]> = {
   builder: ['payments', 'web'],
 }
 
-const RANK: Record<Problem['rarity'], number> = { rare: 0, epic: 1, legendary: 2, mythic: 3 }
+const RANK: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 }
 
-/** Where on the rarity ladder a founder's comfort and intent point. */
-export function rarityTarget(world: Pick<World, 'comfort' | 'intent'>): number {
-  const base = [0, 0, 0.7, 1.2, 1.8, 2.4][world.comfort] ?? 1
-  const lift = { company: 0.4, both: 0.2, career: 0, exploring: -0.2 }[world.intent]
-  return Math.min(3, Math.max(0, base + lift))
+/** Where on the difficulty ladder a founder's comfort and intent point, 0 to 2. */
+export function difficultyTarget(world: Pick<World, 'comfort' | 'intent'>): number {
+  const base = [0, 0, 0.5, 1, 1.4, 1.8][world.comfort] ?? 1
+  const lift = { company: 0.3, both: 0.15, career: 0, exploring: -0.15 }[world.intent]
+  return Math.min(2, Math.max(0, base + lift))
 }
 
 export type MatchInput = {
@@ -54,6 +54,8 @@ export type MatchInput = {
   exclude?: string[]
   /** Problems the team suggested after a Try another. Shown first. */
   suggested?: string[]
+  /** The difficulties this founder's track allows. Everything else is never offered. */
+  allowed?: Difficulty[]
 }
 
 export type Match = {
@@ -64,7 +66,11 @@ export type Match = {
   suggested: boolean
 }
 
-type Scored = { problem: Problem; score: number; parts: { factor: Factor; value: number; chip: string | null }[] }
+type Scored = {
+  problem: Problem
+  score: number
+  parts: { factor: Factor; value: number; chip: string | null }[]
+}
 
 function scoreOne(problem: Problem, input: MatchInput): Scored {
   const { world, archetype } = input
@@ -75,11 +81,21 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   // farming problem that touches retail cannot pass itself off as a retail one.
   const [primary, ...secondary] = problem.industries
   const reachable = new Set<string>(world.access.flatMap((entry) => entry.worlds))
-  const reach = primary && reachable.has(primary) ? 1 : secondary.some((industry) => reachable.has(industry)) ? SECONDARY : 0
+  const reach =
+    primary && reachable.has(primary)
+      ? 1
+      : secondary.some((industry) => reachable.has(industry))
+        ? SECONDARY
+        : 0
   parts.push({ factor: 'access', value: reach, chip: reach === 1 ? chipCopy.access : null })
 
   const liked = new Set<string>(world.industries)
-  const like = primary && liked.has(primary) ? 1 : secondary.some((industry) => liked.has(industry)) ? SECONDARY : 0
+  const like =
+    primary && liked.has(primary)
+      ? 1
+      : secondary.some((industry) => liked.has(industry))
+        ? SECONDARY
+        : 0
   parts.push({
     factor: 'industry',
     value: like,
@@ -92,9 +108,9 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   const firstLearn = LEARN.find((item) => item.id === overlap[0])
   parts.push({ factor: 'learn', value: learnValue, chip: firstLearn ? firstLearn.chip : null })
 
-  const target = rarityTarget(world)
-  const rank = RANK[problem.rarity]
-  const fit = Math.max(0, 1 - Math.abs(rank - target) / 2)
+  const target = difficultyTarget(world)
+  const rank = RANK[problem.difficulty]
+  const fit = Math.max(0, 1 - Math.abs(rank - target) / 1.5)
   parts.push({
     factor: 'comfort',
     value: fit,
@@ -102,7 +118,11 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   })
 
   const sideValue = world.side === 'unsure' ? 0.5 : world.side === problem.side ? 1 : 0
-  parts.push({ factor: 'side', value: sideValue, chip: sideValue === 1 ? chipCopy.side[problem.side] : null })
+  parts.push({
+    factor: 'side',
+    value: sideValue,
+    chip: sideValue === 1 ? chipCopy.side[problem.side] : null,
+  })
 
   const intentValue =
     world.intent === 'company' || world.intent === 'both'
@@ -115,7 +135,11 @@ function scoreOne(problem: Problem, input: MatchInput): Scored {
   parts.push({
     factor: 'intent',
     value: intentValue,
-    chip: intentValue ? (world.intent === 'company' || world.intent === 'both' ? chipCopy.demand : chipCopy.portfolio) : null,
+    chip: intentValue
+      ? world.intent === 'company' || world.intent === 'both'
+        ? chipCopy.demand
+        : chipCopy.portfolio
+      : null,
   })
 
   const loves = archetype ? AFFINITY[archetype] : []
@@ -143,32 +167,43 @@ function chipsOf(scored: Scored): string[] {
 const SECONDARY = 0.3
 
 /**
- * Spreading the four: each repeat of an industry or a rarity already on
+ * Spreading the four: each repeat of an industry or a difficulty already on
  * screen costs more, and an industry the founder chose or can reach that is
  * not on screen yet earns a little, so every answer they gave gets a look in.
  */
-export const SPREAD = { industry: 12, rarity: 6, coverage: 14 } as const
+export const SPREAD = { industry: 12, difficulty: 6, coverage: 14 } as const
 
 /** Below this, a problem has not really matched anything the founder said. */
 export const MATCH_FLOOR = 25
 
 /**
  * The four. Greedy by score, with a growing penalty for repeating an
- * industry or a rarity already chosen, so a founder never gets four of the
+ * industry or a difficulty already chosen, so a founder never gets four of the
  * same thing.
  * If fewer than four clear the floor, the gentlest open problems fill in and
  * say so, because nobody who just answered six questions gets an empty screen.
  */
 export function topMatches(problems: Problem[], input: MatchInput, count = 4): Match[] {
   const exclude = new Set(input.exclude ?? [])
-  const pool = problems.filter((problem) => !exclude.has(problem.id))
+  const allowed = input.allowed ? new Set(input.allowed) : null
+  const pool = problems.filter(
+    (problem) => !exclude.has(problem.id) && (!allowed || allowed.has(problem.difficulty)),
+  )
   const scored = pool.map((problem) => scoreOne(problem, input))
   const out: Match[] = []
 
+  // The team's suggestions skip the track filter: a person chose them on purpose.
   for (const id of input.suggested ?? []) {
-    const found = scored.find((item) => item.problem.id === id)
+    const problem = problems.find((item) => item.id === id && !exclude.has(item.id))
+    const found = problem ? scoreOne(problem, input) : null
     if (found && out.length < count) {
-      out.push({ problem: found.problem, score: found.score, chips: [chipCopy.suggested, ...chipsOf(found)].slice(0, 3), gentle: false, suggested: true })
+      out.push({
+        problem: found.problem,
+        score: found.score,
+        chips: [chipCopy.suggested, ...chipsOf(found)].slice(0, 3),
+        gentle: false,
+        suggested: true,
+      })
     }
   }
 
@@ -185,21 +220,31 @@ export function topMatches(problems: Problem[], input: MatchInput, count = 4): M
   while (out.length < count) {
     const used = taken()
     const industries = out.map((match) => match.problem.industries[0])
-    const rarities = out.map((match) => match.problem.rarity)
+    const levels = out.map((match) => match.problem.difficulty)
     let best: { item: Scored; adjusted: number } | null = null
     for (const item of remaining) {
       if (used.has(item.problem.id)) continue
       // Each repeat costs more than the last, so a strong industry can take
       // two cards but rarely four, and the founder's other picks get a look in.
-      const sameIndustry = industries.filter((industry) => industry === item.problem.industries[0]).length
-      const sameRarity = rarities.filter((rarity) => rarity === item.problem.rarity).length
+      const sameIndustry = industries.filter(
+        (industry) => industry === item.problem.industries[0],
+      ).length
+      const sameLevel = levels.filter((level) => level === item.problem.difficulty).length
       const primary = item.problem.industries[0] ?? ''
-      const fresh = out.length > 0 && wanted.has(primary) && sameIndustry === 0 ? SPREAD.coverage : 0
-      const adjusted = item.score - SPREAD.industry * sameIndustry - SPREAD.rarity * sameRarity + fresh
+      const fresh =
+        out.length > 0 && wanted.has(primary) && sameIndustry === 0 ? SPREAD.coverage : 0
+      const adjusted =
+        item.score - SPREAD.industry * sameIndustry - SPREAD.difficulty * sameLevel + fresh
       if (!best || adjusted > best.adjusted) best = { item, adjusted }
     }
     if (!best) break
-    out.push({ problem: best.item.problem, score: best.item.score, chips: chipsOf(best.item), gentle: false, suggested: false })
+    out.push({
+      problem: best.item.problem,
+      score: best.item.score,
+      chips: chipsOf(best.item),
+      gentle: false,
+      suggested: false,
+    })
   }
 
   if (out.length < count) {
@@ -208,7 +253,7 @@ export function topMatches(problems: Problem[], input: MatchInput, count = 4): M
       .filter((problem) => !used.has(problem.id))
       .sort(
         (a, b) =>
-          RANK[a.rarity] - RANK[b.rarity] ||
+          RANK[a.difficulty] - RANK[b.difficulty] ||
           a.learn.length - b.learn.length ||
           b.signal.strength - a.signal.strength ||
           a.id.localeCompare(b.id),
@@ -220,4 +265,3 @@ export function topMatches(problems: Problem[], input: MatchInput, count = 4): M
 
   return out
 }
-

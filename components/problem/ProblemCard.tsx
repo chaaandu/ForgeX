@@ -1,5 +1,5 @@
 import { problem as copy } from '@/content/copy'
-import type { Problem } from '@/lib/problem'
+import type { FounderProblem } from '@/lib/problem'
 
 /**
  * A matched problem: the title, what is broken, the challenge and the reasons
@@ -9,41 +9,34 @@ import type { Problem } from '@/lib/problem'
  */
 export function ProblemCard({
   problem,
-  chips,
   note,
   as: Tag = 'article',
   onOpen,
 }: {
-  problem: Problem
-  chips: string[]
+  problem: FounderProblem
   note?: string
   as?: 'article' | 'div'
   onOpen?: () => void
 }) {
   const inner = (
     <>
-      {note ? <span className="meta">{note}</span> : null}
+      {note ? <span className="meta text-pink-ink">{note}</span> : null}
       <h3 className="display m-0 text-[26px] leading-[1.05]">{problem.title}</h3>
-      <p className="m-0 text-[15px] leading-relaxed text-ink-2">{problem.problem}</p>
+      <p className="text-ink-2 m-0 text-[15px] leading-relaxed">{problem.problem}</p>
       <p className="m-0 grid gap-1.5 rounded-xl bg-black/25 px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_var(--color-line)]">
         <span className="meta text-[11px]">{copy.challenge}</span>
         {problem.challenge}
       </p>
-      {chips.length ? (
-        <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0" aria-label={copy.whyFits}>
-          {chips.map((chip) => (
-            <li key={chip} className="tag">
-              {chip}
-            </li>
-          ))}
-        </ul>
-      ) : null}
     </>
   )
   const base = 'panel relative grid content-start gap-4 self-start p-6 text-left'
   if (onOpen) {
     return (
-      <button type="button" onClick={onOpen} className={`${base} press w-full cursor-pointer border-0 text-ink-1 hover:-translate-y-0.5`}>
+      <button
+        type="button"
+        onClick={onOpen}
+        className={`${base} press text-ink-1 w-full cursor-pointer border-0 hover:-translate-y-0.5`}
+      >
         {inner}
       </button>
     )

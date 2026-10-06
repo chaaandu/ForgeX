@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { GEOS, INDUSTRY_IDS, LEARN_IDS, RARITIES, SIDE_IDS } from './taxonomy'
+import { DIFFICULTIES, GEOS, INDUSTRY_IDS, LEARN_IDS, SIDE_IDS } from './taxonomy'
 
 /**
  * A problem as founders see it. Nothing here names a target user or a
@@ -16,7 +16,8 @@ export const problemSchema = z.object({
     .refine((title) => title.trim().split(/\s+/).length < 10, 'Title must be under ten words'),
   problem: z.string().min(80).max(600),
   challenge: z.string().min(10).max(160),
-  rarity: z.enum(RARITIES),
+  /** For the team only. Stripped before anything reaches a founder's browser. */
+  difficulty: z.enum(DIFFICULTIES),
   industries: z.array(z.enum(INDUSTRY_IDS)).min(1).max(3),
   side: z.enum(SIDE_IDS),
   learn: z.array(z.enum(LEARN_IDS)).min(1).max(3),
@@ -64,9 +65,31 @@ export const problemInternalSchema = z.object({
 
 export type ProblemInternal = z.infer<typeof problemInternalSchema>
 
-export const RARITY_LABEL: Record<Problem['rarity'], string> = {
-  rare: 'Rare',
-  epic: 'Epic',
-  legendary: 'Legendary',
-  mythic: 'Mythic',
+export const DIFFICULTY_LABEL: Record<Problem['difficulty'], string> = {
+  easy: 'Easy',
+  medium: 'Medium',
+  hard: 'Hard',
+}
+
+/**
+ * What a founder's browser receives: the problem without its difficulty or its
+ * signal. Built by naming fields, so anything added to a problem later stays
+ * on the server until someone decides otherwise.
+ */
+export type FounderProblem = Pick<
+  Problem,
+  'id' | 'title' | 'problem' | 'challenge' | 'industries' | 'side' | 'learn' | 'geo'
+>
+
+export function forFounder(problem: Problem): FounderProblem {
+  return {
+    id: problem.id,
+    title: problem.title,
+    problem: problem.problem,
+    challenge: problem.challenge,
+    industries: problem.industries,
+    side: problem.side,
+    learn: problem.learn,
+    geo: problem.geo,
+  }
 }

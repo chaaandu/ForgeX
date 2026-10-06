@@ -31,6 +31,7 @@ pnpm research           # cluster → score → drop → balance → write → v
 pnpm bank:list         # docs/PROBLEMS.md, the whole bank, readable
 pnpm bank:lint         # every problem statement against docs/VOICE.md; fails on any flag
 pnpm sheet:sync        # push reworded problems to the Sheet, only on rows nobody has edited
+pnpm sheet:migrate     # once, on a Sheet from before tracks: Rarity → Difficulty, Track cells from the roster
 ```
 
 ## Where things live
@@ -55,6 +56,8 @@ pnpm sheet:sync        # push reworded problems to the Sheet, only on rows nobod
 | Matching | `lib/match.ts` |
 | Writing nudges | `lib/nudges.ts` |
 | Who may enter which level | `lib/journey.ts` |
+| Tracks and what each is offered | `lib/tracks.ts` |
+| What they're building (landing, open founder pages) | `lib/building.ts` |
 | Link normalising | `lib/links.ts` |
 | Research pipeline | `scripts/research/`, `data/research/` |
 
@@ -65,8 +68,11 @@ pnpm sheet:sync        # push reworded problems to the Sheet, only on rows nobod
 - **Columns are read by header name** (`lib/sheet/tabs.ts`). A missing header throws, naming the column, rather than reading as empty.
 - **Concurrency without locks.** Picks, Responses and Events are append-only. The only in-place writes are a founder's own row and a problem row. A founder's number is the rank of their first `arrived` event, which is why two people arriving in the same second can't collide.
 - **Problem IDs are frozen** once founders can see them. Only `approved` problems reach founders. Any status the app doesn't recognise reads as `draft`.
-- **The team's data never reaches a founder:** track, the H1 outcome and level, prior work, team notes, other founders' picks, and `Problems internal`. Data that crosses to the browser is built field by field (`publicProblem`, `cardFor`). The leak test greps the built client chunks, and seed JSON is imported only from `server-only` modules.
-- **Matching is deterministic and explains itself.** Every chip on a card names a factor that actually scored. Access to users carries the most weight. A founder never gets an empty screen: the gentle fallback fills in and says so.
+- **The team's data never reaches a founder:** track, the H1 outcome and level, prior work, team notes, other founders' picks, a problem's difficulty and signal, and `Problems internal`. Data that crosses to the browser is built field by field (`forFounder`, `cardFor`). The leak test greps the built client chunks, and seed JSON is imported only from `server-only` modules.
+- **Tracks decide the pool** (`lib/tracks.ts`, Founders.Track, team only): autonomous sees no bank and `/matches` sends them to write their own; structured gets hard and medium; guided gets medium and easy. An unknown track reads as structured. The team's Try another suggestions skip the filter.
+- **Matching is deterministic and explains itself.** Every chip names a factor that actually scored; chips are computed but match cards no longer show them. Access to users carries the most weight; comfort and intent pitch difficulty (`difficultyTarget`). A founder never gets an empty screen: the gentle fallback fills in and says so.
+- **Who did what is recorded.** Responses.Author and Problems Edited by hold the team member's email; Events logs every action.
+- **A founder page opens to the cohort** only once that founder is building (Go or Go with a tweak), and then without the thread, the team's note or the download. Otherwise it is the founder and the team, and a 404 for anyone else.
 - **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait (`public/art/`, with head crops in `public/art/heads/` for badges). The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
 - **Picks close** at `PICKS_CLOSE_AT`, checked in `submitPick` and `withdrawPick`.
 - **Mock mode** needs `MOCK_BACKEND=true` and a deploy that is not Vercel production (`lib/store/mode.ts`).
@@ -94,14 +100,15 @@ Copy is as important as the design. Every string is written to `docs/VOICE.md`.
 The direction is Matte, with Riso's pink:
 - graphite ground, one grain, Instrument Serif for display, Geist and Geist Mono;
 - white carries the words, pink (`--color-pink`) the moments: the primary action, one italic phrase, the live state;
-- rarity colours are accents only, never backgrounds for text.
+- difficulty colours are accents only, in the console, never backgrounds for text.
 
-- **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component.
+- **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component. One finish, `picked` (pink, with foil), for any pick. The bottom line is always the archetype's identity line, never the bio or the problem.
 - **One progress bar.** Levels with questions report to it through `setLevelProgress` (`components/shell/progress.ts`), so the current segment fills; never add a second bar. The onboarding shows no logo and no sign out.
-- **Nothing a founder sees ranks a problem.** No rarity and no signal on cards or the sheet; rarity still pitches matching and colours the card's finish, and the team sees everything in the bank.
+- **Nothing a founder sees ranks a problem.** Difficulty (easy, medium, hard) and signal never reach a founder's browser; difficulty still pitches matching, and the team sees it in the bank and the queue. Rarity survives only as the research pipeline's input, mapped by `DIFFICULTY_OF_RARITY`.
 - **Nothing rotates** except the landing wall's flip. The card's light follows the pointer; the card itself stays still.
 - **Sign-in returns you to where you were.** The middleware adds `?next=`, `lib/next-path.ts` keeps it on this site, and `/enter` sends everyone else to their furthest level.
 - **The reveal** times everything off one `--impact`. Hang anything new off it.
+- **Onboarding buttons sit in a `.dock`:** fixed to the bottom on phones, inline on desktop.
 - **Motion:** 150–250ms on task screens; cinematic only for the reveal, the card and the landing. Everything respects `prefers-reduced-motion`.
 - **Self-review loop for any UI change:**
   1. Screenshot at 390, 1080 and 1440 (`node scripts/shoot.mjs <base> <path> <name> --full`).

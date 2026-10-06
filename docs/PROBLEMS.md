@@ -1,6 +1,6 @@
 # The problem bank
 
-250 problems, grouped by the industry each is mainly about. Founders see the title, the problem and the challenge, and never the rarity, the evidence or the scores. Approve, edit or reject each one in `/team/bank` or in the Problems tab of the Sheet. Generated from `data/problems.json` by `pnpm bank:list`.
+250 problems, grouped by the industry each is mainly about. Founders see the title, the problem and the challenge, and never the difficulty, the evidence or the scores. Approve, edit or reject each one in `/team/bank` or in the Problems tab of the Sheet. Generated from `data/problems.json` by `pnpm bank:list`.
 
 | Industry | Problems |
 | --- | --- |
@@ -25,7 +25,7 @@ Small traders received thousands of tax notices based purely on their UPI receip
 
 **Challenge:** Turn a small shop's payment history into books that can answer a tax notice in a day.
 
-Mythic · for businesses · India · teaches Data and dashboards, Automation and integrations, AI agents · also Money
+Hard · for businesses · India · teaches Data and dashboards, Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -47,7 +47,7 @@ Small online sellers in India see about a quarter of cash-on-delivery orders com
 
 **Challenge:** Show a small online seller which orders will turn into cash, and when, before they spend on stock or ads.
 
-Epic · for creators · India · teaches Payments, Data and dashboards · also Money
+Medium · for self-employed · India · teaches Payments, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -67,7 +67,7 @@ Billing at Indian shop counters freezes during busy hours, settings reset after 
 
 **Challenge:** Let a shopkeeper record a sale or a credit entry in under 5 seconds, even with no network.
 
-Rare · for businesses · India · teaches Mobile apps, Voice AI · also Money
+Easy · for businesses · India · teaches Mobile apps, Voice AI · also Money
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -90,7 +90,7 @@ A retailer federation says 2 lakh kiranas closed in a year, and 60% of Mumbai gr
 
 **Challenge:** Help a kirana keep its loyal households ordering from it rather than from the nearest dark store.
 
-Epic · for businesses · India · teaches Full-stack web, AI agents · also Food
+Medium · for businesses · India · teaches Full-stack web, AI agents · also Food
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -111,7 +111,7 @@ Small online sellers lose around ₹600 on every fake or refused cash-on-deliver
 
 **Challenge:** Stop fake cash-on-delivery orders before they ship, without turning away real first-time buyers.
 
-Rare · for creators · India · teaches Voice AI, Automation and integrations, Payments · also Fashion
+Easy · for self-employed · India · teaches Voice AI, Automation and integrations, Payments · also Fashion
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -131,7 +131,7 @@ Small firms depend on vendors and implementation partners to reach their own rec
 
 **Challenge:** Get a small business's records out of any old setup into a file it owns, in an afternoon.
 
-Legendary · for businesses · global · teaches Data and dashboards, Automation and integrations · also Work
+Hard · for businesses · global · teaches Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -151,7 +151,7 @@ Metro consumer-goods distributors are losing 10–25% of snack and beverage volu
 
 **Challenge:** Help a distributor win back revenue per route, or cut the cost of serving each shop, by a fifth.
 
-Legendary · for businesses · India · teaches Data and dashboards, Mobile apps · also Manufacturing
+Hard · for businesses · India · teaches Data and dashboards, Mobile apps · also Manufacturing
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -171,7 +171,7 @@ Kirana owners reorder hundreds of items by gut feel, running out of fast sellers
 
 **Challenge:** Make the weekly reorder take 10 minutes and leave fewer empty shelves and fewer dusty ones.
 
-Rare · for businesses · India · teaches Data and dashboards, AI agents
+Easy · for businesses · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -191,7 +191,7 @@ Small retailers pay flat processing fees plus a monthly charge for nearly every 
 
 **Challenge:** Show a small retailer exactly what payments and software cost per sale, and how to cut it.
 
-Rare · for businesses · global · teaches Payments, Data and dashboards · also Money
+Easy · for businesses · global · teaches Payments, Data and dashboards · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -213,7 +213,7 @@ Small online sellers depend on a handful of marketplaces and payment providers t
 
 **Challenge:** Keep a small seller trading and paid on the day one marketplace or payment provider freezes them.
 
-Legendary · for creators · global · teaches Payments, Automation and integrations · also Money, Creators
+Hard · for self-employed · global · teaches Payments, Automation and integrations · also Money, Creators
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -234,7 +234,7 @@ Shop owners cannot see what their suppliers have in stock, so they either over-o
 
 **Challenge:** Let a shopkeeper know what will arrive, and at what price, before the money leaves their hand.
 
-Epic · for businesses · India · teaches Voice AI, Full-stack web · also Manufacturing
+Medium · for businesses · India · teaches Voice AI, Full-stack web · also Manufacturing
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -255,7 +255,7 @@ In April 2025 a retailer with several stores found that stock discrepancies vari
 
 **Challenge:** Make a full stock count take an hour and come out right, so a shop knows exactly what went missing.
 
-Epic · for businesses · global · teaches Vision, Data and dashboards
+Medium · for businesses · global · teaches Vision, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -275,7 +275,7 @@ Micro sellers face thousands of euros a year in packaging registration fees befo
 
 **Challenge:** Cut a small seller's packaging cost and paperwork per order by a third, at home and abroad.
 
-Legendary · for creators · global · teaches Full-stack web, Automation and integrations · also Fashion
+Hard · for self-employed · global · teaches Full-stack web, Automation and integrations · also Fashion
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -296,7 +296,7 @@ About 85% of shops onboarded to ONDC never transact meaningfully, and retail ord
 
 **Challenge:** Get a small shop its first 10 repeat online orders without paying for discounts.
 
-Epic · for businesses · India · teaches AI agents, Automation and integrations
+Medium · for businesses · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -316,7 +316,7 @@ Small shops keep switching point-of-sale vendors as subsidised terminals break, 
 
 **Challenge:** Move a shop from one billing system to another in an hour, with catalogue, prices and history intact.
 
-Epic · for businesses · global · teaches Automation and integrations, Full-stack web · also Work
+Medium · for businesses · global · teaches Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -339,7 +339,7 @@ Delivery aggregators keep running ad campaigns a restaurant refused, and one str
 
 **Challenge:** Catch every wrong deduction on a restaurant's delivery payout the week it lands, with the proof to claim it back.
 
-Legendary · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Money
+Hard · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (6) and scores (31)</summary>
 
@@ -362,7 +362,7 @@ Refunds for cancelled or undelivered food orders take weeks, and chatbots block 
 
 **Challenge:** Get people their refund from a delivery service without them writing a single complaint themselves.
 
-Epic · for consumers · India · teaches AI agents, Voice AI, Automation and integrations · also Money
+Medium · for people · India · teaches AI agents, Voice AI, Automation and integrations · also Money
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -384,7 +384,7 @@ Small food units and farms keep hygiene, pest-control and field records on paper
 
 **Challenge:** Make a small food unit inspection-ready every day with 5 minutes of record keeping.
 
-Legendary · for businesses · global · teaches Mobile apps, Vision, Automation and integrations · also Farming
+Hard · for businesses · global · teaches Mobile apps, Vision, Automation and integrations · also Farming
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -404,7 +404,7 @@ Micro food bloggers in India are often paid only in free meals, with no standard
 
 **Challenge:** Let a small food creator prove what their last reel sold, and get paid for it.
 
-Legendary · for creators · India · teaches Data and dashboards, Payments, Full-stack web · also Creators
+Hard · for self-employed · India · teaches Data and dashboards, Payments, Full-stack web · also Creators
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -424,7 +424,7 @@ Home chefs struggle with reliable delivery, spill-proof packaging and steady qua
 
 **Challenge:** Help a home food seller say yes to the right number of orders and deliver every one intact.
 
-Legendary · for creators · India · teaches Automation and integrations, Mobile apps, AI agents · also Travel
+Hard · for self-employed · India · teaches Automation and integrations, Mobile apps, AI agents · also Travel
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -444,7 +444,7 @@ Restaurants run on same-day cash for suppliers and wages, yet card settlements a
 
 **Challenge:** Tell a restaurant owner every morning which payments are due, which are late, and who to chase.
 
-Epic · for businesses · global · teaches Payments, Data and dashboards, Automation and integrations · also Money
+Medium · for businesses · global · teaches Payments, Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -464,7 +464,7 @@ Owner-run restaurants were hit by rising ingredient, labour and rent costs in 20
 
 **Challenge:** Show a restaurant owner, dish by dish, where the money goes and which change would save the most this month.
 
-Rare · for businesses · global · teaches Data and dashboards, AI agents, Full-stack web · also Money
+Easy · for businesses · global · teaches Data and dashboards, AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -484,7 +484,7 @@ Small restaurants pay suppliers more because their orders are unpredictable, and
 
 **Challenge:** Get a small kitchen or a big household wholesale prices without prepaying for a truckload.
 
-Epic · for businesses · global · teaches Payments, Full-stack web, Automation and integrations · also Retail
+Medium · for businesses · global · teaches Payments, Full-stack web, Automation and integrations · also Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -504,7 +504,7 @@ Delivery aggregators mask customer details, so a restaurant cannot build a direc
 
 **Challenge:** Help a small restaurant turn one-time delivery customers into regulars who order direct.
 
-Rare · for businesses · India · teaches Full-stack web, Payments, Mobile apps · also Creators
+Easy · for businesses · India · teaches Full-stack web, Payments, Mobile apps · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -524,7 +524,7 @@ One delivery receipt in September 2026 stacked 6 separate fees on top of the foo
 
 **Challenge:** Show a hungry customer the true total for the same order across every way of buying it, before they pay.
 
-Epic · for consumers · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
+Medium · for people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -546,7 +546,7 @@ A September 2026 inspection drive in Hyderabad found infestations, expired stock
 
 **Challenge:** Let a diner see how clean a kitchen is before ordering, in a way the kitchen cannot fake.
 
-Legendary · for consumers · India · teaches Vision, Data and dashboards, Full-stack web · also Health
+Hard · for people · India · teaches Vision, Data and dashboards, Full-stack web · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -566,7 +566,7 @@ Families distrust packaged spice powders for adulteration and staleness, yet gri
 
 **Challenge:** Help a family check its spices, water and milk at home in under 5 minutes.
 
-Epic · for consumers · India · teaches Vision, Mobile apps, Data and dashboards · also Health
+Medium · for people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -586,7 +586,7 @@ In a June 2026 survey, 48% of Indian online grocery shoppers could not see best-
 
 **Challenge:** Catch every expired or undated pack before it reaches a customer's door.
 
-Epic · for consumers · India · teaches Vision, Mobile apps, Automation and integrations · also Health
+Medium · for people · India · teaches Vision, Mobile apps, Automation and integrations · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -606,7 +606,7 @@ Health-conscious shoppers cannot easily tell how much sugar a packaged snack hol
 
 **Challenge:** Let a parent know in one glance whether a packaged food is right for their child.
 
-Rare · for consumers · India · teaches Vision, Mobile apps, Data and dashboards · also Health
+Easy · for people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -626,7 +626,7 @@ Home bakers and small-batch cooks find a full online store overkill, so they tak
 
 **Challenge:** Let a home cook take an order, price every dish at a profit and handle swaps, all from a phone.
 
-Rare · for creators · global · teaches Mobile apps, Payments, Data and dashboards · also Creators
+Easy · for self-employed · global · teaches Mobile apps, Payments, Data and dashboards · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -646,7 +646,7 @@ Home tiffin cooks running subscriptions on notebooks and WhatsApp lose track of 
 
 **Challenge:** Give a home food business a cheap, safe step between the home kitchen and a rented one.
 
-Mythic · for creators · global · teaches Full-stack web, Payments, Automation and integrations · also Homes
+Hard · for self-employed · global · teaches Full-stack web, Payments, Automation and integrations · also Homes
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -666,7 +666,7 @@ Milk and food subscribers find benefits withdrawn after signing up, offers only 
 
 **Challenge:** Show a subscriber what was promised against what arrived, and get the difference back in one message.
 
-Epic · for consumers · India · teaches Automation and integrations, Payments, Mobile apps · also Money
+Medium · for people · India · teaches Automation and integrations, Payments, Mobile apps · also Money
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -687,7 +687,7 @@ Frozen food and ice cream ordered online often arrive melted and refrozen, and p
 
 **Challenge:** Make a broken cold chain visible to the buyer and costly to whoever broke it.
 
-Legendary · for consumers · India · teaches Vision, Data and dashboards, Mobile apps · also Manufacturing
+Hard · for people · India · teaches Vision, Data and dashboards, Mobile apps · also Manufacturing
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -707,7 +707,7 @@ Hosts planning a last-minute get-together cannot put good food together quickly,
 
 **Challenge:** Make tonight's food plan in 2 minutes, using what is already in the kitchen.
 
-Rare · for consumers · India · teaches Vision, Voice AI, AI agents · also Health
+Easy · for people · India · teaches Vision, Voice AI, AI agents · also Health
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -727,7 +727,7 @@ Neighbourhood kiranas and distributors say deep discounting by quick commerce is
 
 **Challenge:** Let a neighbourhood food shop take next-day orders from its own street without paying to be listed.
 
-Rare · for businesses · India · teaches Mobile apps, Payments, Full-stack web · also Retail
+Easy · for businesses · India · teaches Mobile apps, Payments, Full-stack web · also Retail
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -747,7 +747,7 @@ Restaurants sign up for billing and ordering systems, then support goes quiet, p
 
 **Challenge:** Get a small restaurant from one billing system to a better one in a weekend, with every record intact.
 
-Epic · for businesses · global · teaches Full-stack web, Data and dashboards, Automation and integrations · also Work
+Medium · for businesses · global · teaches Full-stack web, Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -770,7 +770,7 @@ Merchants on Razorpay and Cashfree report fees deducted above the rate they sign
 
 **Challenge:** Check every fee a merchant's gateway charged last month against the agreed rate, and recover the overcharge.
 
-Legendary · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Hard · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -791,7 +791,7 @@ Callers posing as officials tell people they are under digital arrest and pressu
 
 **Challenge:** Stop a digital arrest scam before the money moves, without locking the target out of their own account.
 
-Mythic · for consumers · global · teaches Voice AI, AI agents
+Hard · for people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -811,7 +811,7 @@ Online merchants have accounts blocked, settlements held or collections closed b
 
 **Challenge:** Keep a small online business taking payments the day its gateway freezes it.
 
-Epic · for businesses · India · teaches Payments, Data and dashboards · also Retail
+Medium · for businesses · India · teaches Payments, Data and dashboards · also Retail
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -834,7 +834,7 @@ Small businesses spend weeks integrating a payment gateway, then get rejected fo
 
 **Challenge:** Get a small business approved to take payments online at the first attempt.
 
-Legendary · for businesses · India · teaches AI agents, Payments · also Retail
+Hard · for businesses · India · teaches AI agents, Payments · also Retail
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -857,7 +857,7 @@ Over half of Indian health insurance claimants face rejection or partial approva
 
 **Challenge:** Help a family get a health claim paid in full on the first submission.
 
-Legendary · for consumers · India · teaches AI agents, Vision · also Health
+Hard · for people · India · teaches AI agents, Vision · also Health
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -878,7 +878,7 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 5 · novelt
 
 **Challenge:** Get a scam victim's complaint filed everywhere it matters within the first hour.
 
-Legendary · for consumers · India · teaches AI agents, Mobile apps
+Hard · for people · India · teaches AI agents, Mobile apps
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -899,7 +899,7 @@ Small suppliers wait 60–90 days or more for big buyers to pay, while paying th
 
 **Challenge:** Shorten the gap between delivery and payment for a small supplier by a month.
 
-Epic · for businesses · India · teaches Data and dashboards, Payments · also Manufacturing
+Medium · for businesses · India · teaches Data and dashboards, Payments · also Manufacturing
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -921,7 +921,7 @@ Freelancers and small sellers earning from abroad see payouts held for days, acc
 
 **Challenge:** Get an Indian freelancer's foreign earnings into their bank on a predictable day, at a known cost.
 
-Legendary · for creators · India · teaches Payments, Automation and integrations · also Creators
+Hard · for self-employed · India · teaches Payments, Automation and integrations · also Creators
 
 <details><summary>Evidence (8) and scores (25)</summary>
 
@@ -946,7 +946,7 @@ Indian cardholders unknowingly pay thousands of crores in surprise annual fees, 
 
 **Challenge:** Find every fee a household paid this year that it could have avoided, and get it reversed.
 
-Epic · for consumers · India · teaches Data and dashboards, Vision
+Medium · for people · India · teaches Data and dashboards, Vision
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -967,7 +967,7 @@ Small taxpayers receive GST demand notices without knowing whether to pay or rep
 
 **Challenge:** Tell a small business what a notice means, what to file and by when, in its own language, within the hour.
 
-Epic · for businesses · India · teaches AI agents, Voice AI
+Medium · for businesses · India · teaches AI agents, Voice AI
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -987,7 +987,7 @@ Accountants pull ledgers out of TallyPrime piece by piece to analyse them, which
 
 **Challenge:** Get every ledger out of Tally in one clean pull, ready to analyse in minutes rather than a day.
 
-Epic · for businesses · India · teaches Automation and integrations, Data and dashboards · also Work
+Medium · for businesses · India · teaches Automation and integrations, Data and dashboards · also Work
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -1008,7 +1008,7 @@ Bookkeeping is repetitive and easy to check against the bank, yet small firms st
 
 **Challenge:** Match a small firm's month of bank lines to its ledger, leaving a person only the ones that need judgement.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations
+Easy · for businesses · global · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1028,7 +1028,7 @@ Standard small-business accounting software has no basic cash forecast, so owner
 
 **Challenge:** Show a small owner, each morning, how much cash they will have in 30 days.
 
-Rare · for businesses · India · teaches Data and dashboards, Full-stack web
+Easy · for businesses · India · teaches Data and dashboards, Full-stack web
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1048,7 +1048,7 @@ Micro businesses spend 10 or more hours a week making, chasing and matching invo
 
 **Challenge:** Get a small owner paid on time without a single evening spent chasing.
 
-Rare · for businesses · global · teaches Voice AI, Automation and integrations · also Work
+Easy · for businesses · global · teaches Voice AI, Automation and integrations · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1068,7 +1068,7 @@ Small online merchants lose chargeback disputes they could have won, because wri
 
 **Challenge:** Turn a merchant's order and delivery records into a chargeback reply that wins, in minutes rather than an evening.
 
-Rare · for businesses · global · teaches AI agents, Payments · also Retail
+Easy · for businesses · global · teaches AI agents, Payments · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1089,7 +1089,7 @@ Payments get debited while the merchant, gateway or booking site shows them as f
 
 **Challenge:** Get a stuck refund back to the payer without them chasing both companies.
 
-Epic · for consumers · India · teaches AI agents, Automation and integrations
+Medium · for people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -1113,7 +1113,7 @@ After a death, families spend months reaching scattered accounts, documents and 
 
 **Challenge:** Make sure the people who need your accounts can reach them, and nobody else can.
 
-Legendary · for consumers · global · teaches Full-stack web, AI agents
+Hard · for people · global · teaches Full-stack web, AI agents
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -1135,7 +1135,7 @@ Small businesses lose input tax credit whenever a supplier files late or invoice
 
 **Challenge:** Catch every GST mismatch in the month it happens, not when the notice lands.
 
-Rare · for businesses · India · teaches Data and dashboards, Automation and integrations
+Easy · for businesses · India · teaches Data and dashboards, Automation and integrations
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1155,7 +1155,7 @@ Freelancers face at least one unpaid invoice a month, burn hours drafting awkwar
 
 **Challenge:** Make sure a freelancer is paid before the final files leave their hands.
 
-Rare · for creators · global · teaches AI agents, Automation and integrations · also Creators
+Easy · for self-employed · global · teaches AI agents, Automation and integrations · also Creators
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -1178,7 +1178,7 @@ Small firms find basic features locked behind premium add-ons, hidden costs afte
 
 **Challenge:** Cut a small company's subscription bill by a fifth without losing a feature it uses.
 
-Rare · for businesses · global · teaches Data and dashboards, AI agents · also Work
+Easy · for businesses · global · teaches Data and dashboards, AI agents · also Work
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1199,7 +1199,7 @@ E-invoicing mandates reached smaller businesses in India and across Europe in 20
 
 **Challenge:** Get a small firm compliant with a new invoicing mandate in an afternoon, not a quarter.
 
-Epic · for businesses · global · teaches Automation and integrations, Full-stack web
+Medium · for businesses · global · teaches Automation and integrations, Full-stack web
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -1219,7 +1219,7 @@ Independent coaches and side-gig earners cross the GST threshold without knowing
 
 **Challenge:** Give a freelancer a running view of their tax position that is ready to hand to an accountant.
 
-Epic · for creators · global · teaches AI agents, Data and dashboards · also Creators
+Medium · for self-employed · global · teaches AI agents, Data and dashboards · also Creators
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -1239,7 +1239,7 @@ Small Indian shops find their billing crashes often, barcode printing fails and 
 
 **Challenge:** Make billing and monthly salaries for a 10-person shop take minutes and never fail at the counter.
 
-Rare · for businesses · India · teaches Mobile apps, Full-stack web · also Retail
+Easy · for businesses · India · teaches Mobile apps, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1260,7 +1260,7 @@ Spending is scattered across UPI, cards, wallets and subscriptions, and cryptic 
 
 **Challenge:** Tell someone where their money went last month without asking them to type anything.
 
-Rare · for consumers · India · teaches Mobile apps, Data and dashboards
+Easy · for people · India · teaches Mobile apps, Data and dashboards
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -1283,7 +1283,7 @@ An audit of 47 Indian specialist practices found about 1 in 5 booked appointment
 
 **Challenge:** Cut a clinic's no-shows in half without adding a single call to the front desk.
 
-Epic · for businesses · India · teaches Voice AI, Automation and integrations, AI agents
+Medium · for businesses · India · teaches Voice AI, Automation and integrations, AI agents
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1303,7 +1303,7 @@ Hospitals rarely hand over digital copies, so patients carry folders of paper re
 
 **Challenge:** Turn a folder of paper reports into a one-page history any new doctor can read in a minute.
 
-Legendary · for consumers · India · teaches Vision, AI agents, Mobile apps
+Hard · for people · India · teaches Vision, AI agents, Mobile apps
 
 <details><summary>Evidence (4) and scores (28)</summary>
 
@@ -1324,7 +1324,7 @@ Sole earners living in another city find arranging care for an ageing parent fra
 
 **Challenge:** Let a working child keep a parent's doctors, medicines and helpers on track in 10 minutes a day.
 
-Legendary · for consumers · global · teaches Voice AI, Automation and integrations, Mobile apps · also Homes
+Hard · for people · global · teaches Voice AI, Automation and integrations, Mobile apps · also Homes
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1344,7 +1344,7 @@ Children living far from an ageing parent struggle to notice a slow decline in m
 
 **Challenge:** Help a family notice a parent's memory slipping early, and keep that parent safe online meanwhile.
 
-Mythic · for consumers · global · teaches Voice AI, AI agents, Mobile apps
+Hard · for people · global · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1364,7 +1364,7 @@ Online nutrition coaches advise from their clients' food logs, but typing every 
 
 **Challenge:** Let a client log a whole day of meals in under a minute, and the coach see it the same day.
 
-Epic · for creators · global · teaches Vision, Mobile apps, Data and dashboards · also Food
+Medium · for self-employed · global · teaches Vision, Mobile apps, Data and dashboards · also Food
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -1386,7 +1386,7 @@ Patients book a specialist online, travel to the appointment and find the doctor
 
 **Challenge:** Make sure a patient who books a doctor finds that doctor, at that place, at that price.
 
-Legendary · for consumers · India · teaches Voice AI, AI agents, Data and dashboards
+Hard · for people · India · teaches Voice AI, AI agents, Data and dashboards
 
 <details><summary>Evidence (6) and scores (27)</summary>
 
@@ -1409,7 +1409,7 @@ Patients get long itemised hospital bills with no upfront price for a routine pr
 
 **Challenge:** Tell a patient before admission what a routine procedure should cost, and flag what does not belong on the bill.
 
-Legendary · for consumers · global · teaches Vision, Data and dashboards, AI agents · also Money
+Hard · for people · global · teaches Vision, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1430,7 +1430,7 @@ Medicines arrive with expiry dates washed off, vaccines arrive at room temperatu
 
 **Challenge:** Let a patient know, before accepting a delivery, that a medicine is the right drug, in date and genuine.
 
-Legendary · for consumers · India · teaches Vision, Mobile apps
+Hard · for people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1451,7 +1451,7 @@ Over 40% of surveyed Indian policyholders say health claims were rejected or onl
 
 **Challenge:** Help a family fight a rejected health claim with the right clause and the right letter, in one evening.
 
-Legendary · for consumers · India · teaches AI agents, Vision, Full-stack web · also Money
+Hard · for people · India · teaches AI agents, Vision, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1472,7 +1472,7 @@ Patients and coaching clients tend to stop their home exercises once paid sessio
 
 **Challenge:** Show a coach which clients actually did this week's exercises, and how well, without a single extra call.
 
-Legendary · for creators · global · teaches Vision, Mobile apps, Voice AI
+Hard · for self-employed · global · teaches Vision, Mobile apps, Voice AI
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -1495,7 +1495,7 @@ Indian doctors pay booking marketplaces tens of thousands to lakhs a year for vi
 
 **Challenge:** Show a small clinic exactly which rupee of its marketing brought which patient.
 
-Epic · for businesses · India · teaches Data and dashboards, Full-stack web, Automation and integrations · also Money
+Medium · for businesses · India · teaches Data and dashboards, Full-stack web, Automation and integrations · also Money
 
 <details><summary>Evidence (7) and scores (26)</summary>
 
@@ -1519,7 +1519,7 @@ An autism services worker writes very long insurance justification reports every
 
 **Challenge:** Turn a therapist's session notes into a progress report ready to send before the next session starts.
 
-Epic · for businesses · global · teaches AI agents, Voice AI · also Work
+Medium · for businesses · global · teaches AI agents, Voice AI · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1539,7 +1539,7 @@ Online coaches cannot show all their packages on one page, so each needs its own
 
 **Challenge:** Let a solo coach sell any package, take payment and fill the calendar from one link they share.
 
-Rare · for creators · India · teaches Payments, Full-stack web, Automation and integrations · also Money
+Easy · for self-employed · India · teaches Payments, Full-stack web, Automation and integrations · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1560,7 +1560,7 @@ The same prescription can cost 30 to 50 percent more at one pharmacy than anothe
 
 **Challenge:** Tell a patient where their prescription is in stock today, nearby, and at the lowest price.
 
-Epic · for consumers · India · teaches Data and dashboards, Full-stack web, Mobile apps · also Retail
+Medium · for people · India · teaches Data and dashboards, Full-stack web, Mobile apps · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1581,7 +1581,7 @@ Diet and fitness programmes are sold through limited-time offers and sales promi
 
 **Challenge:** Make cancelling a fitness or diet subscription take one minute and leave a record the seller cannot dispute.
 
-Epic · for consumers · India · teaches Payments, Automation and integrations, AI agents · also Money
+Medium · for people · India · teaches Payments, Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -1603,7 +1603,7 @@ Small gyms pay monthly software fees plus card charges, then wait on erratic pay
 
 **Challenge:** Show a small gym owner every rupee a member paid, when it lands, and who is owed what, in one view.
 
-Epic · for businesses · global · teaches Payments, Data and dashboards, Automation and integrations · also Money
+Medium · for businesses · global · teaches Payments, Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -1625,7 +1625,7 @@ Small studios and solo therapists wait months for fixes, get pushed through AI b
 
 **Challenge:** Let a small practice move every client, package and booking to a new provider in one afternoon.
 
-Legendary · for businesses · global · teaches Automation and integrations, AI agents, Data and dashboards · also Work
+Hard · for businesses · global · teaches Automation and integrations, AI agents, Data and dashboards · also Work
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1646,7 +1646,7 @@ Corporate fitness aggregators grew fast in 2025, and studios and clinics now run
 
 **Challenge:** Turn a month of bookings, aggregator visits and invoices into one reconciled ledger without a spreadsheet.
 
-Epic · for businesses · global · teaches Data and dashboards, Automation and integrations, Payments · also Money
+Medium · for businesses · global · teaches Data and dashboards, Automation and integrations, Payments · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -1668,7 +1668,7 @@ Patients in smaller cities wait weeks for specialists, so they pay for online co
 
 **Challenge:** Make sure a patient who pays for a specialist gets that specialist, that time, or their money back.
 
-Epic · for consumers · India · teaches AI agents, Automation and integrations, Payments
+Medium · for people · India · teaches AI agents, Automation and integrations, Payments
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -1690,7 +1690,7 @@ Rural patients travel tens of kilometres and lose a day for a basic test, and wo
 
 **Challenge:** Get a basic blood test done and the report into the patient's hand within a day, wherever they live.
 
-Epic · for consumers · India · teaches Full-stack web, Mobile apps, Data and dashboards
+Medium · for people · India · teaches Full-stack web, Mobile apps, Data and dashboards
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -1713,7 +1713,7 @@ Since 2025, take-home coding work has been easy to hand to AI, so one programmin
 
 **Challenge:** Let a teacher check, in 5 minutes per student, that whoever submitted the work actually understands it.
 
-Epic · for businesses · global · teaches Voice AI, AI agents
+Medium · for businesses · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -1733,7 +1733,7 @@ Edtech sales staff promise deferrals, content and mentoring on calls, then the c
 
 **Challenge:** Make every promise on an edtech sales call show up in writing before the buyer pays.
 
-Legendary · for consumers · India · teaches Voice AI, AI agents
+Hard · for people · India · teaches Voice AI, AI agents
 
 <details><summary>Evidence (7) and scores (26)</summary>
 
@@ -1757,7 +1757,7 @@ Most Indian job seekers have met fraudulent job offers, and half cannot tell a g
 
 **Challenge:** Tell a first-time job seeker within seconds whether an offer, recruiter or posting is real.
 
-Epic · for consumers · India · teaches AI agents, Data and dashboards, Mobile apps · also Work
+Medium · for people · India · teaches AI agents, Data and dashboards, Mobile apps · also Work
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -1778,7 +1778,7 @@ Most engineering and MBA graduates of 2026 are still unplaced, and those from ca
 
 **Challenge:** Let a graduate from a small college prove one real skill to an employer in a single afternoon.
 
-Legendary · for consumers · India · teaches AI agents, Full-stack web · also Work
+Hard · for people · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1798,7 +1798,7 @@ Learners pay for courses, books, certificates and exam help, and then the books 
 
 **Challenge:** Get a stranded learner their money back, or a written answer, within 2 weeks of the first complaint.
 
-Epic · for consumers · India · teaches AI agents, Automation and integrations · also Homes
+Medium · for people · India · teaches AI agents, Automation and integrations · also Homes
 
 <details><summary>Evidence (7) and scores (25)</summary>
 
@@ -1822,7 +1822,7 @@ Most young children learn reading and arithmetic without patient one-on-one help
 
 **Challenge:** Give a young child a patient voice tutor whose every answer a parent can limit and review.
 
-Epic · for consumers · global · teaches Voice AI, AI agents
+Medium · for people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1842,7 +1842,7 @@ One candidate got interviews from just 7 of 100 applications, and new graduates 
 
 **Challenge:** Turn a graduate's next 50 applications into 20 targeted ones that each get a reply.
 
-Rare · for consumers · global · teaches AI agents, Automation and integrations, Full-stack web · also Work
+Easy · for people · global · teaches AI agents, Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -1864,7 +1864,7 @@ Learners pay lakhs for tech and data courses sold with placement guarantees, the
 
 **Challenge:** Show a learner, before they pay, what the last batch of a course actually went on to do.
 
-Legendary · for consumers · India · teaches Data and dashboards, Full-stack web · also Work
+Hard · for people · India · teaches Data and dashboards, Full-stack web · also Work
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -1887,7 +1887,7 @@ School leavers in India get college advice from counsellors who earn referral co
 
 **Challenge:** Give a school leaver advice on what to study next that no college has paid to influence.
 
-Epic · for consumers · India · teaches AI agents, Voice AI · also Work
+Medium · for people · India · teaches AI agents, Voice AI · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1907,7 +1907,7 @@ Exam-prep courses demand non-refundable yearly fees upfront, with no way to pay 
 
 **Challenge:** Let an exam aspirant pay only for the topics and weeks they actually use.
 
-Epic · for consumers · India · teaches Payments, Full-stack web · also Money
+Medium · for people · India · teaches Payments, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1928,7 +1928,7 @@ Parents pay for tuition and get no proof their child is learning, while tutors w
 
 **Challenge:** Let a tutor show every parent what their child learnt this week, in the time it takes to pack up.
 
-Epic · for creators · global · teaches Voice AI, AI agents, Mobile apps · also Creators
+Medium · for self-employed · global · teaches Voice AI, AI agents, Mobile apps · also Creators
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -1950,7 +1950,7 @@ Coaching students say only a few learners ever get live doubt sessions despite r
 
 **Challenge:** Get a stuck student from a photo of the problem to understanding it, without handing them the answer.
 
-Rare · for consumers · India · teaches Vision, AI agents
+Easy · for people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1970,7 +1970,7 @@ Bright students outside big cities miss top online courses because most are avai
 
 **Challenge:** Turn one strong English course into one a student who thinks in an Indian language learns from just as well.
 
-Epic · for consumers · global · teaches Voice AI, AI agents
+Medium · for people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1990,7 +1990,7 @@ Course creators build years of income on teaching marketplaces and hosts that ca
 
 **Challenge:** Let a course creator move their students, content and payments to a home they own in one weekend.
 
-Epic · for creators · global · teaches Full-stack web, Payments · also Creators
+Medium · for self-employed · global · teaches Full-stack web, Payments · also Creators
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2011,7 +2011,7 @@ Indian job seekers pay for premium job-portal plans that promise recruiter visib
 
 **Challenge:** Show a job seeker, before they pay, how many real recruiter calls a profile like theirs gets.
 
-Epic · for consumers · India · teaches Data and dashboards, Full-stack web · also Work
+Medium · for people · India · teaches Data and dashboards, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2031,7 +2031,7 @@ Job seekers in India pay for resume writing, job-lead add-ons and personal job e
 
 **Challenge:** Give a fresher the resume and job-lead help they were sold, at a fraction of the price, and prove it worked.
 
-Rare · for consumers · India · teaches AI agents, Full-stack web · also Work
+Easy · for people · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2051,7 +2051,7 @@ Small Indian employers pay for job posts and get a trickle of mismatched, duplic
 
 **Challenge:** Get a small business 3 qualified candidates for a role within a week, without another paid post.
 
-Epic · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Work
+Medium · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2072,7 +2072,7 @@ Learners take in hours of podcasts, books, articles and recorded lectures and fo
 
 **Challenge:** Make what someone heard or read this week come back to them at the moment it is useful.
 
-Rare · for consumers · global · teaches Voice AI, AI agents, Mobile apps
+Easy · for people · global · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -2095,7 +2095,7 @@ Independent tutors enter payments by hand, cannot customise the invoices they se
 
 **Challenge:** Show an independent tutor what each student and each month earned them, after every fee.
 
-Rare · for creators · global · teaches Payments, Data and dashboards, Automation and integrations · also Creators
+Easy · for self-employed · global · teaches Payments, Data and dashboards, Automation and integrations · also Creators
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2116,7 +2116,7 @@ Recruiters buy hiring plans after aggressive sales calls promising guarantees, t
 
 **Challenge:** Let a small employer see what each hiring channel delivered per rupee before renewing anything.
 
-Epic · for businesses · India · teaches Data and dashboards, Automation and integrations · also Work
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (6) and scores (22)</summary>
 
@@ -2141,7 +2141,7 @@ An open job post can pull in hundreds of irrelevant, machine-generated applicati
 
 **Challenge:** Let a small employer open a role to anyone and still find the genuine applicants by the end of the first day.
 
-Epic · for businesses · global · teaches AI agents, Voice AI, Data and dashboards
+Medium · for businesses · global · teaches AI agents, Voice AI, Data and dashboards
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -2161,7 +2161,7 @@ Teams lose the reasoning behind past decisions, so new hires spend weeks digging
 
 **Challenge:** Let anyone ask why a past decision was made and get the reason, the people and the date in seconds.
 
-Epic · for businesses · global · teaches AI agents, Voice AI, Data and dashboards
+Medium · for businesses · global · teaches AI agents, Voice AI, Data and dashboards
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -2182,7 +2182,7 @@ Freelancers and small agencies leak margin through unbilled client tweaks, retai
 
 **Challenge:** Show a freelancer, every week, exactly which unbilled work is eating their margin and what to charge for it.
 
-Epic · for creators · global · teaches Data and dashboards, Automation and integrations · also Creators
+Medium · for self-employed · global · teaches Data and dashboards, Automation and integrations · also Creators
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2204,7 +2204,7 @@ Experienced people apply steadily, some for over a year, and hear nothing back. 
 
 **Challenge:** Tell a job seeker, with evidence, why their applications stall and the one change to make next.
 
-Epic · for consumers · global · teaches AI agents, Data and dashboards, Full-stack web · also Education
+Medium · for people · global · teaches AI agents, Data and dashboards, Full-stack web · also Education
 
 <details><summary>Evidence (6) and scores (25)</summary>
 
@@ -2227,7 +2227,7 @@ Mid-size firms buy HR and payroll packages on the strength of a demo, then find 
 
 **Challenge:** Get a mid-size firm live on new HR and payroll in 2 weeks, with every approval flow tested first.
 
-Legendary · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web
+Hard · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2248,7 +2248,7 @@ HR setups are so complex that staff wait while someone works through every featu
 
 **Challenge:** Let any manager change an HR workflow or pull a report by describing it in one sentence, without the admin.
 
-Rare · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
+Easy · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2269,7 +2269,7 @@ Payment notifications that never arrive, scheduled jobs that report success whil
 
 **Challenge:** Tell a small team within the hour when data that should have moved between their services did not.
 
-Epic · for businesses · global · teaches Automation and integrations, Data and dashboards, AI agents
+Medium · for businesses · global · teaches Automation and integrations, Data and dashboards, AI agents
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2291,7 +2291,7 @@ Small teams get support requests across chat servers, code trackers and email wi
 
 **Challenge:** Answer a small team's routine support questions in minutes, and get the urgent ones to a person first.
 
-Rare · for businesses · global · teaches Voice AI, AI agents, Automation and integrations
+Easy · for businesses · global · teaches Voice AI, AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2311,7 +2311,7 @@ Team know-how sits in a few heads and in old email, chat threads and tickets, an
 
 **Challenge:** Keep a team's know-how written down as a side effect of the work it already does, with nobody editing a wiki.
 
-Rare · for businesses · global · teaches AI agents, Data and dashboards, Automation and integrations
+Easy · for businesses · global · teaches AI agents, Data and dashboards, Automation and integrations
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2333,7 +2333,7 @@ Small teams split work across chat, task and document tools, so decisions made i
 
 **Challenge:** Turn every promise made in a chat or a call into a task with an owner and a date, the same day.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2355,7 +2355,7 @@ Much of a working day now goes on writing messages and prompts, and for people w
 
 **Challenge:** Let someone clear their inbox and draft every reply by voice before they reach the office.
 
-Rare · for consumers · global · teaches Voice AI, Mobile apps, AI agents
+Easy · for people · global · teaches Voice AI, Mobile apps, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2375,7 +2375,7 @@ Since coding agents made building cheap in 2025, the hard part is deciding what 
 
 **Challenge:** Turn a pile of customer requests and public complaints into a ranked list of what to build, with the evidence attached.
 
-Rare · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
+Easy · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2396,7 +2396,7 @@ Local service businesses hear almost nothing back from customers, because long s
 
 **Challenge:** Get a local business honest feedback from a third of its customers, for under 30 seconds of their time.
 
-Rare · for businesses · global · teaches Voice AI, Mobile apps, Automation and integrations · also Retail
+Easy · for businesses · global · teaches Voice AI, Mobile apps, Automation and integrations · also Retail
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2416,7 +2416,7 @@ Workflow automation breaks often or takes more setup than the task itself, so pe
 
 **Challenge:** Let an office worker hand over one daily chore by showing it once, and have it still work next month.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2437,7 +2437,7 @@ Firms that buy AI still do the legal and professional work themselves, because w
 
 **Challenge:** Hand a firm one finished piece of back-office work, like a cleaned dataset or a decision memo, not another assistant.
 
-Epic · for businesses · global · teaches AI agents, Data and dashboards, Vision
+Medium · for businesses · global · teaches AI agents, Data and dashboards, Vision
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2457,7 +2457,7 @@ Help with errands, admin and planning has only ever been affordable for the weal
 
 **Challenge:** Give an ordinary person the errands, admin and introductions help that used to need a personal assistant.
 
-Epic · for consumers · global · teaches AI agents, Voice AI, Payments
+Medium · for people · global · teaches AI agents, Voice AI, Payments
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2477,7 +2477,7 @@ Established freelancers with perfect feedback watch client invitations collapse 
 
 **Challenge:** Give a freelancer a steady flow of clients that no single marketplace's ranking change can switch off.
 
-Legendary · for creators · global · teaches Data and dashboards, Full-stack web, Automation and integrations · also Creators
+Hard · for self-employed · global · teaches Data and dashboards, Full-stack web, Automation and integrations · also Creators
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -2500,7 +2500,7 @@ Freelancers and tiny consultancies can lose access overnight to the account that
 
 **Challenge:** Make sure a freelancer locked out of any one account still has their clients, invoices and history the same day.
 
-Legendary · for creators · global · teaches Automation and integrations, Data and dashboards · also Creators
+Hard · for self-employed · global · teaches Automation and integrations, Data and dashboards · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2520,7 +2520,7 @@ Indian freelancers who cross the GST threshold must issue compliant invoices but
 
 **Challenge:** Make a freelancer's GST invoices, TDS records and who-has-paid list correct by default, without an accountant.
 
-Epic · for creators · India · teaches Payments, Data and dashboards, Vision · also Money
+Medium · for self-employed · India · teaches Payments, Data and dashboards, Vision · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2540,7 +2540,7 @@ Money already earned arrives late or not at all: a freelancer sits through a 5-d
 
 **Challenge:** Help someone owed money for finished work turn their records into a claim the payer cannot ignore.
 
-Legendary · for creators · global · teaches AI agents, Data and dashboards · also Money
+Hard · for self-employed · global · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2560,7 +2560,7 @@ Small Indian employers pay a monthly fee to job portals and still get candidates
 
 **Challenge:** Get a neighbourhood employer 3 genuine, nearby candidates for an entry-level role within a week.
 
-Epic · for businesses · India · teaches Mobile apps, Vision, Data and dashboards · also Retail
+Medium · for businesses · India · teaches Mobile apps, Vision, Data and dashboards · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2581,7 +2581,7 @@ Job seekers pay for profile boosting and still see zero recruiter views for mont
 
 **Challenge:** Turn what a job seeker is willing to pay into a guaranteed conversation with a real hiring manager.
 
-Legendary · for consumers · India · teaches Payments, Full-stack web · also Education
+Hard · for people · India · teaches Payments, Full-stack web · also Education
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2601,7 +2601,7 @@ Small firms pay for all-in-one HR suites that feel expensive for their size and 
 
 **Challenge:** Catch every payroll and tax mistake before salaries go out, not after employees complain.
 
-Epic · for businesses · India · teaches Data and dashboards, AI agents, Automation and integrations · also Money
+Medium · for businesses · India · teaches Data and dashboards, AI agents, Automation and integrations · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2622,7 +2622,7 @@ HR software is built for salaried desk staff, so shift workers cannot fix a forg
 
 **Challenge:** Make the weekly roster and the hours that reach payroll match without anybody retyping them.
 
-Rare · for businesses · global · teaches Mobile apps, Automation and integrations, Data and dashboards · also Retail
+Easy · for businesses · global · teaches Mobile apps, Automation and integrations, Data and dashboards · also Retail
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -2646,7 +2646,7 @@ Software makers ship breaking changes with little warning, and customers either 
 
 **Challenge:** Make sure every customer learns about a change that affects them, in their own terms, before it ships.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2666,7 +2666,7 @@ Employees spend hours in status meetings that a short written update could repla
 
 **Challenge:** Give managers an accurate status of every task without one meeting or one manual board update.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2686,7 +2686,7 @@ Founders of small teams spend half an hour every morning checking a dozen servic
 
 **Challenge:** Give a small-team founder one morning briefing that replaces checking a dozen services.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Data and dashboards
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2706,7 +2706,7 @@ Small firms running websites and online stores cannot afford accessibility audit
 
 **Challenge:** Tell a small online store, in one afternoon, what stops a blind shopper, an attacker or a buying agent on its site.
 
-Epic · for businesses · global · teaches Vision, AI agents, Full-stack web · also Retail
+Medium · for businesses · global · teaches Vision, AI agents, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2727,7 +2727,7 @@ Small employers find free job posts get no visibility, sponsored posts and pay-p
 
 **Challenge:** Cut a small employer's cost per genuine applicant in half without raising their job ad spend.
 
-Rare · for businesses · global · teaches Data and dashboards, Automation and integrations, Full-stack web
+Easy · for businesses · global · teaches Data and dashboards, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2748,7 +2748,7 @@ Job seekers on WorkIndia have found fake tech postings demanding a laptop deposi
 
 **Challenge:** Let a job seeker check, in under a minute, whether a job offer or test is real before they pay or download anything.
 
-Epic · for consumers · India · teaches AI agents, Full-stack web, Data and dashboards
+Medium · for people · India · teaches AI agents, Full-stack web, Data and dashboards
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2768,7 +2768,7 @@ Job seekers on Naukri report that almost every recommended job is unrelated to t
 
 **Challenge:** Cut the jobs a seeker has to read by 90%, while missing none that truly fit.
 
-Rare · for consumers · India · teaches AI agents, Data and dashboards, Mobile apps · also Education
+Easy · for people · India · teaches AI agents, Data and dashboards, Mobile apps · also Education
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2788,7 +2788,7 @@ People who lean on AI assistants lose old conversations once dozens pile up in a
 
 **Challenge:** Make what a person or team has already told any AI assistant findable and reusable everywhere they work.
 
-Rare · for consumers · global · teaches AI agents, Full-stack web, Data and dashboards
+Easy · for people · global · teaches AI agents, Full-stack web, Data and dashboards
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2809,7 +2809,7 @@ Solo builders spend a year on a working product beside a day job, then stall at 
 
 **Challenge:** Get a solo builder's working product its first 10 paying customers in 3 weeks.
 
-Rare · for businesses · global · teaches AI agents, Full-stack web, Automation and integrations · also Creators
+Easy · for businesses · global · teaches AI agents, Full-stack web, Automation and integrations · also Creators
 
 <details><summary>Evidence (8) and scores (23)</summary>
 
@@ -2834,7 +2834,7 @@ Coding agents multiplied how much code a small team ships in 2025, but startups 
 
 **Challenge:** Catch the bug a small team's AI-written code introduced before a customer does, without hiring a tester.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
+Easy · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2857,7 +2857,7 @@ Hindi-speaking creators see far more watch hours in their analytics than YouTube
 
 **Challenge:** Give a Hindi-speaking creator a weekly note, in Hindi, on what to change next and why.
 
-Epic · for creators · India · teaches Data and dashboards, Voice AI, AI agents · also Education
+Medium · for self-employed · India · teaches Data and dashboards, Voice AI, AI agents · also Education
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -2877,7 +2877,7 @@ Cheap AI-generated posts flooded small online communities in 2025, and they cann
 
 **Challenge:** Keep a small community free of bots, spam and unsafe uploads for less than the cost of one moderator.
 
-Rare · for businesses · global · teaches Vision, AI agents · also Work
+Easy · for businesses · global · teaches Vision, AI agents · also Work
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -2899,7 +2899,7 @@ Deepfake videos of well-known public figures push fake investment links, and sca
 
 **Challenge:** Help a young investor check a finance video's claims, and who is making them, before they act on it.
 
-Mythic · for consumers · India · teaches Vision, Voice AI, AI agents · also Money
+Hard · for people · India · teaches Vision, Voice AI, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -2919,7 +2919,7 @@ Indian creators lose channels and seller accounts overnight for policy breaches 
 
 **Challenge:** Turn a vague suspension notice into a clear, evidence-backed appeal filed in one afternoon.
 
-Mythic · for creators · India · teaches AI agents, Full-stack web · also Work
+Hard · for self-employed · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -2939,7 +2939,7 @@ Automatic labels for synthetic media rolled out across the major video services 
 
 **Challenge:** Let a creator prove a piece of work is theirs and human-made, in a way any viewer can check in seconds.
 
-Mythic · for creators · global · teaches Vision, Data and dashboards
+Hard · for self-employed · global · teaches Vision, Data and dashboards
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -2959,7 +2959,7 @@ pain 4 · frequency 3 · willingness 2 · buildability 3 · learning 5 · novelt
 
 **Challenge:** Help a small-town creator land their second paid campaign this quarter, not next year.
 
-Legendary · for creators · India · teaches AI agents, Data and dashboards · also Money
+Hard · for self-employed · India · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -2980,7 +2980,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 **Challenge:** Show a brand what each creator campaign returned, in a report nobody has to build by hand.
 
-Epic · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -3002,7 +3002,7 @@ Indian creators routinely wait over 2 months for brands to pay, and small agenci
 
 **Challenge:** Get a creator paid on time for brand work without a single awkward reminder.
 
-Epic · for creators · India · teaches Payments, Automation and integrations · also Money
+Medium · for self-employed · India · teaches Payments, Automation and integrations · also Money
 
 <details><summary>Evidence (7) and scores (25)</summary>
 
@@ -3026,7 +3026,7 @@ Independent blogs and niche forums have become hard to find through mainstream s
 
 **Challenge:** Get a small independent writer found by the readers already searching for exactly what they write.
 
-Epic · for creators · global · teaches Full-stack web, Data and dashboards
+Medium · for self-employed · global · teaches Full-stack web, Data and dashboards
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -3046,7 +3046,7 @@ Creator and payment services moved most of their support to bots in 2025, so whe
 
 **Challenge:** Get a small seller's stuck money or broken account in front of a human who can fix it, within a day.
 
-Legendary · for creators · India · teaches AI agents, Voice AI · also Money
+Hard · for self-employed · India · teaches AI agents, Voice AI · also Money
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -3067,7 +3067,7 @@ Creators who cross the monetisation thresholds can wait months in review: one ha
 
 **Challenge:** Tell a creator where their monetisation stands and what to fix next, in plain words, in under a minute.
 
-Legendary · for creators · global · teaches Data and dashboards, AI agents · also Money
+Hard · for self-employed · global · teaches Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3087,7 +3087,7 @@ Expected payout dates slip by a full month, paid subscriber revenue fails to arr
 
 **Challenge:** Show every creator when each rupee they have earned will land, and raise the alarm the day it slips.
 
-Epic · for creators · India · teaches Data and dashboards, Automation and integrations, Payments · also Money
+Medium · for self-employed · India · teaches Data and dashboards, Automation and integrations, Payments · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -3108,7 +3108,7 @@ When a creator account is hijacked, moved between owners or caught in a login lo
 
 **Challenge:** Get a locked-out creator back in control within days, and make the next takeover far harder to pull off.
 
-Legendary · for creators · global · teaches Automation and integrations, Full-stack web · also Work
+Hard · for self-employed · global · teaches Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3128,7 +3128,7 @@ Creators who paid for a stock music licence, or used only the official licensed 
 
 **Challenge:** Make a creator's proof of rights impossible to ignore, attached and ready the moment a claim lands.
 
-Legendary · for creators · global · teaches Automation and integrations, AI agents · also Money
+Hard · for self-employed · global · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -3149,7 +3149,7 @@ Impostors file false copyright strikes against small channels, and fighting back
 
 **Challenge:** Help a creator beat a false strike within a day without giving the attacker their personal details.
 
-Mythic · for creators · global · teaches AI agents, Full-stack web
+Hard · for self-employed · global · teaches AI agents, Full-stack web
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3169,7 +3169,7 @@ Freelance video editors working from phones find that free editors lack the blen
 
 **Challenge:** Help a freelance editor deliver client-grade video from a phone, with the export always in their own hands.
 
-Epic · for creators · global · teaches Vision, AI agents · also Work
+Medium · for self-employed · global · teaches Vision, AI agents · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3189,7 +3189,7 @@ Creators and small publishers working in less common languages get auto-captions
 
 **Challenge:** Get a small publisher's video or page into another language, checked and accurate, in under an hour.
 
-Rare · for creators · global · teaches Voice AI, AI agents · also Work
+Easy · for self-employed · global · teaches Voice AI, AI agents · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3209,7 +3209,7 @@ Over half of Indian creators surveyed in May 2025 had lost brand deals because b
 
 **Challenge:** Make sure a brand that wants a creator reaches the creator, not someone pretending to manage them.
 
-Legendary · for creators · India · teaches Full-stack web, Automation and integrations
+Hard · for self-employed · India · teaches Full-stack web, Automation and integrations
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3229,7 +3229,7 @@ Independent course creators keep their videos, students and mailing list with on
 
 **Challenge:** Let an educator move their courses, students and emails anywhere in a day, and know the moment something breaks.
 
-Legendary · for creators · global · teaches Automation and integrations, Full-stack web · also Education
+Hard · for self-employed · global · teaches Automation and integrations, Full-stack web · also Education
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3249,7 +3249,7 @@ In September 2026 an Indian course creator lost uploaded videos for good when th
 
 **Challenge:** Keep a complete, usable copy of everything a creator has made and every fan they have, without them thinking about it.
 
-Legendary · for creators · global · teaches Automation and integrations, Data and dashboards
+Hard · for self-employed · global · teaches Automation and integrations, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3269,7 +3269,7 @@ Independent makers and small brands with tiny budgets find paid ads expensive an
 
 **Challenge:** Make ₹5,000 of ads teach a small seller something they can act on next week.
 
-Rare · for creators · global · teaches Data and dashboards, AI agents, Automation and integrations · also Retail
+Easy · for self-employed · global · teaches Data and dashboards, AI agents, Automation and integrations · also Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3289,7 +3289,7 @@ About 2 in 3 influencer ads that ASCI checked in India in 2025 failed disclosure
 
 **Challenge:** Let a follower check in seconds whether a creator's post was paid for and who paid.
 
-Legendary · for consumers · India · teaches Vision, Mobile apps · also Money
+Hard · for people · India · teaches Vision, Mobile apps · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3309,7 +3309,7 @@ Building software became nearly free by 2025, but solo founders launch to a hand
 
 **Challenge:** Get a solo founder's new product in front of 100 people who want it, within 2 weeks.
 
-Rare · for businesses · global · teaches AI agents, Automation and integrations · also Work
+Easy · for businesses · global · teaches AI agents, Automation and integrations · also Work
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3331,7 +3331,7 @@ Short videos that used to reach tens of thousands now sit at zero, second posts 
 
 **Challenge:** Show a creator which of their own choices moved reach this week, using only their own numbers.
 
-Rare · for creators · global · teaches Data and dashboards, Mobile apps
+Easy · for self-employed · global · teaches Data and dashboards, Mobile apps
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -3351,7 +3351,7 @@ Short-video editors on phones lose drafts when redo fails, drop edits when sever
 
 **Challenge:** Make sure no creator ever loses a finished edit, whatever happens to the editor on their phone.
 
-Epic · for creators · India · teaches Mobile apps, Vision
+Medium · for self-employed · India · teaches Mobile apps, Vision
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -3371,7 +3371,7 @@ Independent makers who share their own work in online communities get flagged as
 
 **Challenge:** Help an independent maker earn a community's trust fast enough to share their work there within a month.
 
-Epic · for creators · global · teaches AI agents, Full-stack web · also Work
+Medium · for self-employed · global · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -3391,7 +3391,7 @@ Small businesses pay Buffer and Later to schedule social posts, then watch tags 
 
 **Challenge:** Give a small business a month of posts that go out on time, every time, with proof that they did.
 
-Rare · for businesses · global · teaches Automation and integrations, Mobile apps · also Work, Retail
+Easy · for businesses · global · teaches Automation and integrations, Mobile apps · also Work, Retail
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -3414,7 +3414,7 @@ A Mumbai skincare founder paid a creator with lakhs of followers for 4 Reels; th
 
 **Challenge:** Tell a small brand, before it pays, whether a creator's audience is real and likely to buy.
 
-Epic · for businesses · India · teaches Data and dashboards, Vision · also Retail
+Medium · for businesses · India · teaches Data and dashboards, Vision · also Retail
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3435,7 +3435,7 @@ People hunt for focus music through ads and endless playlists, struggle to stay 
 
 **Challenge:** Give someone a daily mix of reading, news and listening that fits their taste and leaves them calmer, not more anxious.
 
-Rare · for consumers · global · teaches Voice AI, Mobile apps
+Easy · for people · global · teaches Voice AI, Mobile apps
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -3459,7 +3459,7 @@ Drivers cannot see whether a trip is long or short before accepting, fares no lo
 
 **Challenge:** Show a driver, before accepting, whether a trip will make or lose money after fuel and fees.
 
-Legendary · for creators · India · teaches Data and dashboards, Mobile apps, Voice AI · also Work, Money
+Hard · for self-employed · India · teaches Data and dashboards, Mobile apps, Voice AI · also Work, Money
 
 <details><summary>Evidence (5) and scores (28)</summary>
 
@@ -3481,7 +3481,7 @@ Women heading home late avoid autos and cabs, solo travellers fear being strande
 
 **Challenge:** Let a woman travelling late know the moment her ride goes off route, and bring help within seconds.
 
-Epic · for consumers · India · teaches Mobile apps, Voice AI, AI agents · also Health
+Medium · for people · India · teaches Mobile apps, Voice AI, AI agents · also Health
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -3504,7 +3504,7 @@ People who rent out their car through sharing marketplaces wait months or a year
 
 **Challenge:** Help a car host or driver build a claim the marketplace cannot ignore, and track it to payment.
 
-Mythic · for creators · India · teaches AI agents, Vision, Automation and integrations · also Money
+Hard · for self-employed · India · teaches AI agents, Vision, Automation and integrations · also Money
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -3526,7 +3526,7 @@ Intercity buses are cancelled the day before travel, or never reach the boarding
 
 **Challenge:** Get a stranded passenger onto the next bus before they've left the stop.
 
-Legendary · for consumers · India · teaches AI agents, Automation and integrations
+Hard · for people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -3546,7 +3546,7 @@ Travellers arrive with a paid voucher and a confirmation to find the hotel has n
 
 **Challenge:** Make sure the hotel knows about a paid booking, with the right guests, before the traveller arrives.
 
-Epic · for consumers · India · teaches Voice AI, AI agents, Automation and integrations
+Medium · for people · India · teaches Voice AI, AI agents, Automation and integrations
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -3567,7 +3567,7 @@ In a 2025 survey, 59% of ride-hailing riders faced charges added only at the end
 
 **Challenge:** Tell a rider before booking what this trip should cost, and flag the overcharge before they pay.
 
-Epic · for consumers · India · teaches Data and dashboards, Full-stack web, AI agents · also Money
+Medium · for people · India · teaches Data and dashboards, Full-stack web, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3589,7 +3589,7 @@ In a 2026 survey, 82% of ride-hailing riders had faced driver cancellations, oft
 
 **Challenge:** Get a rider to the airport on time even when 3 drivers cancel in a row.
 
-Epic · for consumers · India · teaches Data and dashboards, Automation and integrations, Mobile apps
+Medium · for people · India · teaches Data and dashboards, Automation and integrations, Mobile apps
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3611,7 +3611,7 @@ Airlines release refunds for cancelled flights to online travel agents, who sit 
 
 **Challenge:** Get every refund a traveller is owed into their account without them writing a single email.
 
-Epic · for consumers · India · teaches Automation and integrations, AI agents, Data and dashboards · also Money
+Medium · for people · India · teaches Automation and integrations, AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3633,7 +3633,7 @@ Intercity buses change pickup points by phone, run hours late or leave while boo
 
 **Challenge:** Make sure every passenger knows where and when their bus really is, before they leave home.
 
-Epic · for consumers · India · teaches Mobile apps, Automation and integrations, Voice AI
+Medium · for people · India · teaches Mobile apps, Automation and integrations, Voice AI
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3654,7 +3654,7 @@ Online travel agents keep their convenience fee even when the airline cancels, d
 
 **Challenge:** Show a traveller exactly what the airline refunded, and make sure every rupee of it reaches them.
 
-Epic · for consumers · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
+Medium · for people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -3677,7 +3677,7 @@ Flexible fares, free-cancellation add-ons, travel insurance and baggage allowanc
 
 **Challenge:** Tell a traveller, before they pay, exactly what each add-on will and will not cover.
 
-Epic · for consumers · India · teaches AI agents, Full-stack web · also Money
+Medium · for people · India · teaches AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -3699,7 +3699,7 @@ Self-drive renters are blacklisted without reason or appeal, verification stalls
 
 **Challenge:** Let a renter and a car owner verify each other and settle deposits without a third party.
 
-Epic · for consumers · India · teaches Vision, Mobile apps, Full-stack web · also Money
+Medium · for people · India · teaches Vision, Mobile apps, Full-stack web · also Money
 
 <details><summary>Evidence (8) and scores (23)</summary>
 
@@ -3724,7 +3724,7 @@ Drivers demand more than the fare shown, in one case nearly 50% more, then cance
 
 **Challenge:** Make sure the person who cancels a ride is the one who pays for it.
 
-Epic · for consumers · India · teaches Automation and integrations, AI agents · also Money
+Medium · for people · India · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -3747,7 +3747,7 @@ Counterfeit weedicide and faulty seed reach small farmers through local dealers,
 
 **Challenge:** Let a farmer check, at the dealer's counter, that a bag of seed or spray is genuine and fairly priced.
 
-Legendary · for businesses · India · teaches Vision, Mobile apps, Data and dashboards · also Retail
+Hard · for businesses · India · teaches Vision, Mobile apps, Data and dashboards · also Retail
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -3768,7 +3768,7 @@ Farmer producer organisations default on dues and fail at marketing, with no bud
 
 **Challenge:** Let a farmer collective run its selling side without hiring a full-time trading team.
 
-Mythic · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web · also Retail
+Hard · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web · also Retail
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -3788,7 +3788,7 @@ Nearly 4 lakh farmers who supply Aavin in Tamil Nadu went 4 months without their
 
 **Challenge:** Make sure every dairy farmer knows, each evening, what they are owed and when it will arrive.
 
-Legendary · for creators · India · teaches Payments, Data and dashboards, Mobile apps · also Money
+Hard · for self-employed · India · teaches Payments, Data and dashboards, Mobile apps · also Money
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -3812,7 +3812,7 @@ Small growers of onion, tomato, gourd, coconut and grains sell into the one mark
 
 **Challenge:** Tell a small grower, before harvest day, where and when their crop will fetch the most.
 
-Epic · for creators · India · teaches Data and dashboards, Voice AI, AI agents · also Food
+Medium · for self-employed · India · teaches Data and dashboards, Voice AI, AI agents · also Food
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -3836,7 +3836,7 @@ Onion and potato growers get barely 43% of the retail price, and mandi rates hav
 
 **Challenge:** Connect small growers to the kitchens near them, with orders sized for both and paid within the week.
 
-Epic · for creators · India · teaches Full-stack web, Payments, Automation and integrations · also Food, Retail
+Medium · for self-employed · India · teaches Full-stack web, Payments, Automation and integrations · also Food, Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3856,7 +3856,7 @@ Farmers struggle to get timely crop and cattle advice in their own language, so 
 
 **Challenge:** Give a farmer a trustworthy answer about a sick plant or animal, in their language, within the hour.
 
-Rare · for businesses · India · teaches Voice AI, Vision, AI agents · also Health
+Easy · for businesses · India · teaches Voice AI, Vision, AI agents · also Health
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -3877,7 +3877,7 @@ Up to 15 percent of fruit and 12 percent of vegetables are lost between harvest 
 
 **Challenge:** Make it cheaper for a grower to hold, grade or ship a perishable crop than to dump it.
 
-Legendary · for businesses · India · teaches Vision, Data and dashboards, Automation and integrations · also Manufacturing
+Hard · for businesses · India · teaches Vision, Data and dashboards, Automation and integrations · also Manufacturing
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -3898,7 +3898,7 @@ Farm accounting packages want entities and a chart of accounts configured before
 
 **Challenge:** Turn a farm's receipts and purchases into usable books on the first day, with no setup.
 
-Rare · for businesses · global · teaches Vision, Automation and integrations, Data and dashboards · also Money
+Easy · for businesses · global · teaches Vision, Automation and integrations, Data and dashboards · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -3920,7 +3920,7 @@ Farmers in private carbon programmes do not know what they will earn or when, se
 
 **Challenge:** Show every enrolled farmer what their fields have earned, why, and when the money arrives.
 
-Legendary · for businesses · India · teaches Data and dashboards, Voice AI, Full-stack web · also Money
+Hard · for businesses · India · teaches Data and dashboards, Voice AI, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3941,7 +3941,7 @@ When a family in Mumbai died after eating a contaminated watermelon, nobody coul
 
 **Challenge:** Let a fruit seller or small food maker prove where and when their food was grown or made, for paise a label.
 
-Legendary · for consumers · India · teaches Mobile apps, Vision, Data and dashboards · also Food, Health
+Hard · for people · India · teaches Mobile apps, Vision, Data and dashboards · also Food, Health
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -3961,7 +3961,7 @@ Farmers in Telangana queue for urea with no reliable word on which dealer has st
 
 **Challenge:** Show a farmer which dealer has urea today, at the fair price, before they leave home.
 
-Legendary · for businesses · India · teaches Mobile apps, Data and dashboards, Voice AI · also Retail
+Hard · for businesses · India · teaches Mobile apps, Data and dashboards, Voice AI · also Retail
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -3984,7 +3984,7 @@ Homeowners pay a large advance, or the whole amount upfront, then wait while int
 
 **Challenge:** Keep every rupee of an interiors payment back until that stage is finished and photographed.
 
-Legendary · for consumers · India · teaches Payments, Mobile apps · also Money
+Hard · for people · India · teaches Payments, Mobile apps · also Money
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -4006,7 +4006,7 @@ Free listings on 99acres and MagicBricks are throttled to near-zero views while 
 
 **Challenge:** Let an owner list a property without their real phone number ever reaching a sales team.
 
-Epic · for consumers · India · teaches Voice AI, AI agents, Mobile apps
+Medium · for people · India · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -4028,7 +4028,7 @@ Renters learn about mould, pests and other hazards only after signing the lease,
 
 **Challenge:** Make a dated record of a home's condition in 15 minutes that landlord and tenant both sign.
 
-Epic · for consumers · India · teaches Vision, Mobile apps
+Medium · for people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4048,7 +4048,7 @@ Landlords on paid listing plans see hundreds of hits and not a single genuine te
 
 **Challenge:** Sort a landlord's rental enquiries into real tenants and noise before anyone picks up the phone.
 
-Epic · for businesses · India · teaches Voice AI, AI agents
+Medium · for businesses · India · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4068,7 +4068,7 @@ Landlords pay for property management or tenant-finding, then get no showings, n
 
 **Challenge:** Give a distant landlord proof, every month, that someone visited and checked their flat.
 
-Epic · for businesses · India · teaches Mobile apps, Vision
+Medium · for businesses · India · teaches Mobile apps, Vision
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4090,7 +4090,7 @@ Scammers clone real rental listings, impersonate the owner and collect deposits 
 
 **Challenge:** Let a renter confirm, before sending any money, that the person asking for it really controls the home.
 
-Legendary · for consumers · global · teaches Vision, AI agents · also Money
+Hard · for people · global · teaches Vision, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4110,7 +4110,7 @@ Painting and interior jobs start with a low quote that balloons with extras once
 
 **Challenge:** Turn any interiors or painting quote into a fair-price check a homeowner can take back to the contractor the same day.
 
-Epic · for consumers · India · teaches AI agents, Vision, Data and dashboards
+Medium · for people · India · teaches AI agents, Vision, Data and dashboards
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4132,7 +4132,7 @@ Appliance technicians charge an inspection fee, then push part replacements nobo
 
 **Challenge:** Give a household a second opinion on a repair quote before they say yes to the technician.
 
-Epic · for consumers · India · teaches Voice AI, AI agents
+Medium · for people · India · teaches Voice AI, AI agents
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -4153,7 +4153,7 @@ Renters pay for owner-only plans and still get handed broker numbers, as one pay
 
 **Challenge:** Flag a broker posing as an owner, or a borrowed photo, before a renter makes the call.
 
-Rare · for consumers · India · teaches Vision, AI agents
+Easy · for people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4173,7 +4173,7 @@ Renters pay a token advance to hold a flat, then the owner backs out or rents it
 
 **Challenge:** Make a rental token refundable by default, released only when both sides confirm the deal.
 
-Epic · for consumers · India · teaches Payments, Full-stack web · also Money
+Medium · for people · India · teaches Payments, Full-stack web · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4193,7 +4193,7 @@ Bengaluru brokers quote legal deposit limits that do not exist and still demand 
 
 **Challenge:** Give a tenant a deposit statement they can contest line by line before they hand back the keys.
 
-Epic · for consumers · India · teaches AI agents, Data and dashboards · also Money
+Medium · for people · India · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4213,7 +4213,7 @@ When a technician damages an air conditioner compressor or a repair visit floods
 
 **Challenge:** Help a household build a valued, photographed inventory of its home in under an hour.
 
-Epic · for consumers · India · teaches Vision, AI agents
+Medium · for people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4233,7 +4233,7 @@ Homeowners cannot get electricians to come for small jobs like a fan or switchbo
 
 **Challenge:** Get a household's small repair diagnosed by video and either fixed by them or by someone nearby today.
 
-Rare · for consumers · India · teaches Voice AI, Vision
+Easy · for people · India · teaches Voice AI, Vision
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4254,7 +4254,7 @@ Deep cleaning varies wildly, with missed areas and no checklist or way to verify
 
 **Challenge:** Let a household sign off a cleaning or carpentry job from before-and-after photos before the final payment.
 
-Epic · for consumers · India · teaches Vision, Mobile apps
+Medium · for people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4275,7 +4275,7 @@ Renters pay for premium search plans promising dozens of matching homes and a se
 
 **Challenge:** Get a renter 5 real viewings that match their brief within a week.
 
-Epic · for consumers · India · teaches AI agents, Automation and integrations
+Medium · for people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -4298,7 +4298,7 @@ Property ads promise a short walk to the metro when the real peak-hour commute i
 
 **Challenge:** Tell a home seeker the real commute, power cuts and air quality for any address in under a minute.
 
-Rare · for consumers · India · teaches Data and dashboards, AI agents
+Easy · for people · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4319,7 +4319,7 @@ Co-living and PG residents face undisclosed upfront fees, unreliable internet, u
 
 **Challenge:** Let a tenant compare co-living operators on what residents actually paid and got, before they sign.
 
-Epic · for consumers · India · teaches Data and dashboards, Full-stack web
+Medium · for people · India · teaches Data and dashboards, Full-stack web
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4340,7 +4340,7 @@ Apartment societies struggle to find and schedule water tank cleaning, wait mont
 
 **Challenge:** Let a housing society book, track and verify every seasonal upkeep job from one shared calendar.
 
-Rare · for businesses · India · teaches Automation and integrations, Mobile apps
+Easy · for businesses · India · teaches Automation and integrations, Mobile apps
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4361,7 +4361,7 @@ Local repair shops give no warranty on work or parts, and where one is promised 
 
 **Challenge:** Make a repair or pest control warranty something a household can claim in one message.
 
-Epic · for consumers · India · teaches Mobile apps, Automation and integrations
+Medium · for people · India · teaches Mobile apps, Automation and integrations
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4382,7 +4382,7 @@ Families relying on a full-time domestic worker face chaos when she quits sudden
 
 **Challenge:** Find a family verified help for tonight or this week, without a month-long contract.
 
-Epic · for consumers · India · teaches Mobile apps, Payments · also Work
+Medium · for people · India · teaches Mobile apps, Payments · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -4402,7 +4402,7 @@ Indians living abroad fear encroachment on property left empty back home and get
 
 **Challenge:** Give a property owner abroad a monthly statement and photo update they trust, in their own currency.
 
-Rare · for businesses · global · teaches Data and dashboards, Automation and integrations · also Money
+Easy · for businesses · global · teaches Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -4425,7 +4425,7 @@ Small renovation and trade contractors cannot see which customers were contacted
 
 **Challenge:** Give a 2-person contractor a job book that keeps every customer, photo and follow-up straight from a phone.
 
-Rare · for creators · global · teaches Mobile apps, Vision, Automation and integrations · also Work
+Easy · for self-employed · global · teaches Mobile apps, Vision, Automation and integrations · also Work
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -4447,7 +4447,7 @@ Small home-service contractors say Jobber and Housecall Pro lag when several job
 
 **Challenge:** Let a solo tradesperson run their own bookings and schedule without depending on an aggregator's system.
 
-Rare · for creators · global · teaches Mobile apps, Full-stack web · also Work
+Easy · for self-employed · global · teaches Mobile apps, Full-stack web · also Work
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -4471,7 +4471,7 @@ Small factories halt production for days after a breakdown because nothing conne
 
 **Challenge:** Get a stalled machine diagnosed within the hour by the people already on the floor.
 
-Mythic · for businesses · global · teaches Vision, Voice AI, Mobile apps · also Work
+Hard · for businesses · global · teaches Vision, Voice AI, Mobile apps · also Work
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -4491,7 +4491,7 @@ About ₹8.1 lakh crore owed to small suppliers sits in overdue buyer payments, 
 
 **Challenge:** Turn a supplier's overdue invoices into a ready-to-file claim in one evening, without burning the relationship.
 
-Legendary · for businesses · India · teaches AI agents, Full-stack web · also Money
+Hard · for businesses · India · teaches AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (5) and scores (28)</summary>
 
@@ -4513,7 +4513,7 @@ Couriers re-weigh parcels after pickup and bill small online sellers for weight 
 
 **Challenge:** Give a small seller proof of weight and size that settles the dispute before it starts.
 
-Legendary · for businesses · India · teaches Vision, Data and dashboards · also Retail
+Hard · for businesses · India · teaches Vision, Data and dashboards · also Retail
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -4533,7 +4533,7 @@ Small family truck operators move most of India's freight, and their earnings pe
 
 **Challenge:** Catch every wrong toll, autopay and fee on a truck owner's account, and get it refunded.
 
-Legendary · for creators · India · teaches Payments, Data and dashboards · also Travel
+Hard · for self-employed · India · teaches Payments, Data and dashboards · also Travel
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -4554,7 +4554,7 @@ Hundreds of carriers and brokers can register at a single mailbox address, and c
 
 **Challenge:** Tell a shipper within a minute whether the carrier on the phone is who they claim to be.
 
-Legendary · for businesses · global · teaches AI agents, Data and dashboards
+Hard · for businesses · global · teaches AI agents, Data and dashboards
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4574,7 +4574,7 @@ Low-value shipments make up a large share of India's shipping bills, yet small e
 
 **Challenge:** Close every small export's paperwork and bank entries within a week of payment, without a full-time clerk.
 
-Mythic · for businesses · India · teaches Automation and integrations, AI agents · also Money
+Hard · for businesses · India · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4594,7 +4594,7 @@ Small online sellers prepay shipping into a courier aggregator's wallet and wait
 
 **Challenge:** Show a small seller every rupee the courier holds or took, and get the wrong ones back within a week.
 
-Epic · for businesses · India · teaches Payments, Automation and integrations · also Money
+Medium · for businesses · India · teaches Payments, Automation and integrations · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4614,7 +4614,7 @@ Online sellers lose or see damaged a few percent of parcels in transit, and frag
 
 **Challenge:** Get a seller paid for a broken or lost parcel in days, not weeks.
 
-Epic · for businesses · India · teaches Vision, Automation and integrations · also Retail
+Medium · for businesses · India · teaches Vision, Automation and integrations · also Retail
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4636,7 +4636,7 @@ Small sellers get repeated pickup-scheduled messages while no courier arrives, s
 
 **Challenge:** Make sure a booked pickup happens the same day, or a different courier comes.
 
-Epic · for businesses · India · teaches Automation and integrations, AI agents · also Retail
+Medium · for businesses · India · teaches Automation and integrations, AI agents · also Retail
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -4657,7 +4657,7 @@ Indian fleet owners face rising operating costs, yet vehicle downtime, one of th
 
 **Challenge:** Show a fleet owner what each idle day costs in rupees, without anyone typing in more data.
 
-Epic · for businesses · global · teaches Data and dashboards, Automation and integrations · also Travel
+Medium · for businesses · global · teaches Data and dashboards, Automation and integrations · also Travel
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4677,7 +4677,7 @@ A chemical plant could afford only a few full MaintainX seats, so everyone else 
 
 **Challenge:** Let anyone on the shop floor log a fault in 10 seconds, without a paid seat.
 
-Epic · for businesses · global · teaches Mobile apps, Voice AI · also Work
+Medium · for businesses · global · teaches Mobile apps, Voice AI · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4697,7 +4697,7 @@ Small family businesses depend on custom code written decades ago that nobody le
 
 **Challenge:** Get a small firm off its old custom code, books intact, without stopping the business for a day.
 
-Mythic · for businesses · global · teaches AI agents, Full-stack web · also Work
+Hard · for businesses · global · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -4718,7 +4718,7 @@ Small engineering, plastics and component makers quote fixed prices weeks before
 
 **Challenge:** Help a small manufacturer quote and buy so that a price spike cannot wipe out an order.
 
-Legendary · for businesses · India · teaches Data and dashboards, AI agents
+Hard · for businesses · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4740,7 +4740,7 @@ In a June 2026 LocalCircles survey, about 2 in 3 MSMEs said they struggle to man
 
 **Challenge:** Take supplier follow-ups and invoice fixes off a small owner's phone, so no input credit is lost to a bad bill.
 
-Epic · for businesses · India · teaches AI agents, Automation and integrations · also Money
+Medium · for businesses · India · teaches AI agents, Automation and integrations · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4760,7 +4760,7 @@ Owner-operators pay rising subscriptions for load boards that show stale posts, 
 
 **Challenge:** Help a one-truck carrier find real, bookable loads without paying for noise.
 
-Epic · for creators · global · teaches Data and dashboards, Full-stack web · also Travel
+Medium · for self-employed · global · teaches Data and dashboards, Full-stack web · also Travel
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4782,7 +4782,7 @@ Owner-operators haul loads that were secretly re-brokered, then go unpaid when t
 
 **Challenge:** Make sure a small carrier knows who is really paying before the truck is loaded.
 
-Legendary · for creators · global · teaches AI agents, Payments · also Money
+Hard · for self-employed · global · teaches AI agents, Payments · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4802,7 +4802,7 @@ Online sellers spend up to an hour a day comparing courier prices across zones a
 
 **Challenge:** Cut what a small seller pays per parcel without adding an hour of rate-checking to their day.
 
-Rare · for businesses · India · teaches Data and dashboards, Full-stack web · also Retail
+Easy · for businesses · India · teaches Data and dashboards, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4823,7 +4823,7 @@ Last-mile agents log failed delivery attempts without calling or visiting, so pa
 
 **Challenge:** Make a false delivery attempt cost the courier, not the buyer waiting at home.
 
-Epic · for consumers · India · teaches Voice AI, Automation and integrations · also Retail
+Medium · for people · India · teaches Voice AI, Automation and integrations · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -4845,7 +4845,7 @@ Parcels come back to small sellers marked return to origin after attempts that n
 
 **Challenge:** Cut a small seller's return-to-origin losses by half within a month.
 
-Rare · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Easy · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4866,7 +4866,7 @@ Parcels reach the destination city and then sit, or loop between hubs, for days 
 
 **Challenge:** Find a stuck parcel and get it moving within 48 hours of it going quiet.
 
-Epic · for consumers · India · teaches AI agents, Data and dashboards · also Retail
+Medium · for people · India · teaches AI agents, Data and dashboards · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -4888,7 +4888,7 @@ Generic ERPs cannot handle the routings, work orders and mixed production of a s
 
 **Challenge:** Let a small job shop see every order's stage and material, set up in a week rather than a year.
 
-Epic · for businesses · global · teaches Full-stack web, Data and dashboards
+Medium · for businesses · global · teaches Full-stack web, Data and dashboards
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4909,7 +4909,7 @@ Small goods businesses outgrow entry-level accounting and inventory software, hi
 
 **Challenge:** Keep stock counts right across sales channels and books, without moving to an ERP.
 
-Rare · for businesses · global · teaches Automation and integrations, Data and dashboards · also Retail
+Easy · for businesses · global · teaches Automation and integrations, Data and dashboards · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4930,7 +4930,7 @@ Small carriers cover fuel and payroll with factoring and quick pay, yet Trucksto
 
 **Challenge:** Get a small carrier paid within a day of delivery for less than a factoring fee.
 
-Epic · for creators · global · teaches Payments, Automation and integrations · also Money
+Medium · for self-employed · global · teaches Payments, Automation and integrations · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4950,7 +4950,7 @@ Small manufacturers book local transporters who never turn up, leaving finished 
 
 **Challenge:** Give a small factory and its buyer a live view of every regional truck booking, from pickup to delivery.
 
-Legendary · for businesses · India · teaches Mobile apps, Automation and integrations
+Hard · for businesses · India · teaches Mobile apps, Automation and integrations
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -4972,7 +4972,7 @@ Indian clothing brands borrowed US and UK size charts, so a 32 at one label is a
 
 **Challenge:** Cut a fashion brand's size returns by a third within one season.
 
-Epic · for businesses · India · teaches Data and dashboards, AI agents · also Retail
+Medium · for businesses · India · teaches Data and dashboards, AI agents · also Retail
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4992,7 +4992,7 @@ Counterfeit cosmetics reach buyers through big marketplaces, and buyers often su
 
 **Challenge:** Let a buyer tell whether a beauty product is genuine within a minute of unboxing it.
 
-Mythic · for consumers · India · teaches Vision, Mobile apps · also Health
+Hard · for people · India · teaches Vision, Mobile apps · also Health
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -5012,7 +5012,7 @@ Small Meesho fashion sellers find 5–12% of returns come back as wrong or tampe
 
 **Challenge:** Give a small seller proof of what went into every parcel that a marketplace will actually accept.
 
-Epic · for creators · India · teaches Vision, Mobile apps · also Retail
+Medium · for self-employed · India · teaches Vision, Mobile apps · also Retail
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -5034,7 +5034,7 @@ Indian salons lose 4–5 appointments a day to no-shows, over ₹70,000 a month.
 
 **Challenge:** Cut a salon's no-shows and waiting time in half without adding a receptionist.
 
-Rare · for businesses · India · teaches Voice AI, Automation and integrations
+Easy · for businesses · India · teaches Voice AI, Automation and integrations
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -5055,7 +5055,7 @@ Freelance makeup artists, mehendi artists and saree drapers take bookings throug
 
 **Challenge:** Make booking a freelance beauty professional as binding as booking a salon, with a deposit, a trial and a findable profile.
 
-Legendary · for creators · India · teaches Payments, Mobile apps, Automation and integrations · also Creators
+Hard · for self-employed · India · teaches Payments, Mobile apps, Automation and integrations · also Creators
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -5078,7 +5078,7 @@ Indian buyers often order several wrong foundation shades online, because undert
 
 **Challenge:** Help someone find a shade and a routine that work on their skin before they spend a rupee.
 
-Epic · for consumers · India · teaches Vision, Mobile apps · also Retail
+Medium · for people · India · teaches Vision, Mobile apps · also Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -5098,7 +5098,7 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 5 · novelt
 
 **Challenge:** Show a beauty buyer where a specific unit came from before it touches their skin.
 
-Mythic · for consumers · India · teaches Data and dashboards, Full-stack web · also Retail, Health
+Hard · for people · India · teaches Data and dashboards, Full-stack web · also Retail, Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -5118,7 +5118,7 @@ Beauty and grocery buyers cannot see a manufacturing or best-before date before 
 
 **Challenge:** Make a beauty order's shelf life and seal visible before payment, and provable after delivery.
 
-Epic · for consumers · India · teaches Vision, Mobile apps · also Retail
+Medium · for people · India · teaches Vision, Mobile apps · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -5140,7 +5140,7 @@ A March 2025 report found Indian handloom weavers earn a quarter of what shopkee
 
 **Challenge:** Let a weaver list a piece for sale online from a phone, in their own language, in 5 minutes.
 
-Epic · for creators · India · teaches Voice AI, Mobile apps, Full-stack web · also Creators, Retail
+Medium · for self-employed · India · teaches Voice AI, Mobile apps, Full-stack web · also Creators, Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -5160,7 +5160,7 @@ Indian salon owners spend over 10 hours a month on GST reconciliation and still 
 
 **Challenge:** Make a salon's month-end close, commissions and GST included, take an hour and end with no staff disputes.
 
-Epic · for businesses · global · teaches Automation and integrations, Data and dashboards · also Work, Money
+Medium · for businesses · global · teaches Automation and integrations, Data and dashboards · also Work, Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -5182,7 +5182,7 @@ Small clothing stores on Shopify pay per-order fees for size-chart add-ons, so f
 
 **Challenge:** Give a small clothing store fit guidance it owns, that never silently breaks and costs nothing per order.
 
-Epic · for businesses · global · teaches Full-stack web, Vision · also Retail
+Medium · for businesses · global · teaches Full-stack web, Vision · also Retail
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -5204,7 +5204,7 @@ Garment makers produce on guesswork and lose heavily every year to unsold stock 
 
 **Challenge:** Help a small apparel maker cut next season's unsold stock by a fifth.
 
-Epic · for businesses · global · teaches Data and dashboards, AI agents · also Manufacturing
+Medium · for businesses · global · teaches Data and dashboards, AI agents · also Manufacturing
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -5224,7 +5224,7 @@ Clothes bought online often arrive in an off colour, thinner fabric or a worse f
 
 **Challenge:** Let a shopper judge fabric, colour and build quality before paying, from evidence rather than the seller's photos.
 
-Epic · for consumers · India · teaches Vision, Data and dashboards · also Retail
+Medium · for people · India · teaches Vision, Data and dashboards · also Retail
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -5246,7 +5246,7 @@ Mass-market garments lose their shape within a handful of washes, and cotton-spa
 
 **Challenge:** Tell a shopper how a garment will survive washing, and how to wash it, before it is ruined.
 
-Legendary · for consumers · global · teaches Vision, Mobile apps
+Hard · for people · global · teaches Vision, Mobile apps
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -5266,7 +5266,7 @@ Online fashion returns stall at the doorstep: pickups are rescheduled for weeks 
 
 **Challenge:** Get a stuck return picked up and refunded within a week, without the buyer spending an hour on support.
 
-Epic · for consumers · India · teaches AI agents, Automation and integrations · also Retail
+Medium · for people · India · teaches AI agents, Automation and integrations · also Retail
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -5289,7 +5289,7 @@ Booking software sold to small salons and solo stylists charges marketplace comm
 
 **Challenge:** Let a solo stylist take bookings and deposits from their own clients without paying a cut on every visit.
 
-Rare · for creators · global · teaches Full-stack web, Payments · also Work
+Easy · for self-employed · global · teaches Full-stack web, Payments · also Work
 
 <details><summary>Evidence (5) and scores (22)</summary>
 

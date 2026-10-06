@@ -8,7 +8,7 @@ import { Lines } from '@/components/ui/Lines'
 import { why as copy } from '@/content/copy'
 import type { CustomProblem } from '@/lib/data/picks'
 import { nudgeFor, wordCount, type WhyField } from '@/lib/nudges'
-import type { Problem } from '@/lib/problem'
+import type { FounderProblem } from '@/lib/problem'
 
 type Fields = Record<WhyField | 'contact', string>
 const FIELDS: WhyField[] = ['whyProblem', 'whyUser', 'whyPay']
@@ -27,7 +27,7 @@ export function Why({
   closesAt,
   onBack,
 }: {
-  problem: Problem | null
+  problem: FounderProblem | null
   custom: CustomProblem | null
   card: FounderCardData
   slug: string
@@ -75,18 +75,16 @@ export function Why({
       >
         <div className="mx-auto grid w-full max-w-[1040px] items-center gap-12 md:grid-cols-[minmax(0,380px)_1fr]">
           <div className="sent-card justify-self-center">
-            <FounderCard
-              data={{ ...card, problemTitle: title, finish: problem ? problem.rarity : 'original' }}
-              size="lg"
-              tilt
-            />
+            <FounderCard data={{ ...card, problemTitle: title, finish: 'picked' }} size="lg" tilt />
           </div>
-          <div className="rise grid gap-5 [animation-delay:900ms]">
-            <h1 className="display m-0 text-[clamp(56px,8vw,104px)] leading-none">
+          <div className="grid gap-5">
+            <h1 className="display rise m-0 text-[clamp(56px,8vw,104px)] leading-none [animation-delay:900ms]">
               {copy.sent.title}
             </h1>
-            <p className="text-lead text-ink-2 m-0 max-w-[40ch]">{copy.sent.lead}</p>
-            <div>
+            <p className="text-lead text-ink-2 rise m-0 max-w-[40ch] [animation-delay:960ms]">
+              {copy.sent.lead}
+            </p>
+            <div className="dock">
               <Link
                 href={`/f/${slug}`}
                 className="btn btn-primary press min-h-[52px] px-9 text-[16px]"
@@ -182,7 +180,7 @@ export function Why({
         />
       </div>
 
-      <div className="border-line flex flex-wrap items-center gap-4 border-t pt-6">
+      <div className="dock md:border-line md:border-t md:pt-6">
         <button
           type="button"
           className="btn btn-primary press min-h-[52px] min-w-[180px] text-[16px]"

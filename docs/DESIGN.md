@@ -6,11 +6,11 @@ Good enough to be featured on Awwwards, and still an honest tool that a nervous 
 
 ## The idea
 
-**A card being made.** The portal is a press for one collectible card. Every level adds a layer to it: the photo, the number, the archetype, the problem, the rarity finish and the stamp. The landing is the whole cohort's cards laid out as a wall. The reveal is the moment a card is struck. The team's response is a stamp pressed into it. Every choice below — material, motion, type — comes from that one physical metaphor. Nothing is decoration.
+**A card being made.** The portal is a press for one collectible card. Every level adds a layer to it: the photo, the number, the archetype, the edge marks, the finish and the stamp. The landing is the whole cohort's cards laid out as a wall. The reveal is the moment a card is struck. The team's response is a stamp pressed into it. Every choice below — material, motion, type — comes from that one physical metaphor. Nothing is decoration.
 
 ## Chosen direction: Matte, with Riso's pink
 
-The owner chose on 2026-10-06: **A's matte world and type, with B's pink as the one accent.** Graphite ground, one soft light, Instrument Serif for display with Geist and Geist Mono, monochrome faces that come alive on touch. White carries the words; pink carries the moments (the primary action, the overprinted phrase in the hero, the live state). The three lab directions below are kept for the record.
+The owner chose on 2026-10-06: **A's matte world and type, with B's pink as the one accent.** Graphite ground, one soft light, Instrument Serif for display with Geist and Geist Mono, monochrome faces that come alive on touch. White carries the words; pink carries the moments (the primary action, the overprinted phrase in the hero, the live state, the picked finish on the card). Quiet, tertiary buttons are pink text too. The three lab directions below are kept for the record; their per-rarity finishes were retired with rarity.
 
 ## Three directions for `/lab`
 
@@ -74,18 +74,16 @@ Everything lives in `app/globals.css` under `@theme`. Components never use raw h
   - `--ground`, `--surface-1..3`, `--line`, `--ink-1..3` (text, from strongest to weakest)
   - `--accent`, for primary actions only, at most about 5% of any screen
   - `--focus`
-- **Rarity:**
+- **The card's finish:** one, `picked`, for any pick: `--color-pink` on the frame, with foil. A finish per difficulty would tell a founder how hard their problem is, so there isn't one.
+- **Difficulty** (team only, `DifficultyTag`):
 
-  | Rarity | Base | Fill (`--{rarity}`) |
-  | --- | --- | --- |
-  | Rare | blue | yes |
-  | Epic | violet | yes |
-  | Legendary | amber | yes |
-  | Mythic | red | yes |
-  | Original | pearl | yes |
+  | Difficulty | Colour |
+  | --- | --- |
+  | Easy | `--color-ok`, green |
+  | Medium | `--color-legendary`, amber |
+  | Hard | `--color-mythic`, red |
 
-  - Each rarity also has `--{rarity}-ink`, the shade that passes AA as text on the ground.
-  - Rarity colour is only ever an accent: borders, tags, foil, stamps. It is never the background behind long text.
+  - These colours are only ever an accent: a dot and a label. Never the background behind text.
 - **Type scale:** fluid with `clamp()`, in six steps from `--text-xs` to `--text-display`. Body text is 16px minimum on mobile. Line length is capped at 65ch.
 - **Space:** a 4px base with the steps 4, 8, 12, 16, 24, 32, 48, 64 and 96. The grid is 4 columns on mobile, 8 on tablet and 12 on desktop, with fixed gutters.
 - **Radii:** a small number of named radii: control, card and sheet.
@@ -97,11 +95,12 @@ Everything lives in `app/globals.css` under `@theme`. Components never use raw h
 | --- | --- |
 | `FounderCard` | Front and back, in four sizes: wall, corner, hero and export. There is one layout source for both the DOM version and the `next/og` PNG. |
 | `ProblemCard` + `ProblemSheet` | The card, and the full problem in a sheet (bottom sheet on mobile, dialog on desktop). |
-| `RarityTag`, `Foil`, `Stamp` | Rarity label, foil finish, and the pressed response stamp. |
+| `DifficultyTag`, `Foil`, `Stamp` | The difficulty label (console only), the picked finish's foil, and the pressed response stamp. |
 | `Choice` (tap card), `Chip`, `ChipInput`, `Slider`, `OtherField` | The question controls. |
 | `InlineField` | The profile's click-to-edit field, with its view, edit, saving and error states. |
 | `Progress` | The founder card in the corner; see PRODUCT. |
-| `Button` (primary, secondary, quiet), `Sheet`, `Toast`, `Skeleton` | General controls. |
+| `Button` (primary, secondary, quiet), `Sheet`, `Toast`, `Skeleton` | General controls. Quiet is pink text on no fill. |
+| `.dock` | A step's own buttons. Fixed to the bottom of the screen on phones (under 768px), inline on desktop. Never inside a `.rise`, whose translate would trap it. |
 | `Nudge` | The live writing guidance in Level 6. |
 
 **Radix** supplies the dialog, popover, slider and toggle group. Everything else is hand-built.
@@ -116,7 +115,7 @@ Every animation must explain something: a transition, a reveal or a change of st
 | --- | --- | --- | --- |
 | Task feedback | 150–200ms | `--ease-out` | Hover, press, select, inline edit, nudge |
 | Level change | 250ms | `--ease-out` | View Transitions API: the card in the corner is shared, so it stays put while the step slides |
-| Cinematic | 600–1400ms | custom curves | Archetype reveal, card strike, rarity finish, landing intro |
+| Cinematic | 600–1400ms | custom curves | Archetype reveal, card strike, the picked finish, landing intro |
 
 - **Press:** controls travel 2px down on `:active` and come back up on release. That is what makes the portal feel like a game rather than a form.
 - **The reveal** is one event, not a sequence of fades. A single `IMPACT` moment — the card landing — and every other element is timed off it.
@@ -127,7 +126,7 @@ Every animation must explain something: a transition, a reveal or a change of st
 
 ## The founder wall
 
-**Shipped:** the DOM mosaic only. Server-rendered buttons with one delegated listener for the flip, one drift on the whole grid, and card backs filled when flipped. On a throttled phone it scores 99 on Lighthouse. The 3D relics were dropped at the owner's request (2026-10-06) for the family portraits, which also took three.js out of the app.
+**Shipped:** the DOM mosaic only. Server-rendered buttons with one delegated listener for the flip, one drift on the whole grid, and card backs filled when flipped. Nothing lights up on its own: the glint that warmed one face into colour every couple of seconds is gone, so a face changes only when someone touches it. On a throttled phone it scores 99 on Lighthouse. The 3D relics were dropped at the owner's request (2026-10-06) for the family portraits, which also took three.js out of the app.
 
 **No rotation** anywhere except the wall's flip: cards don't tilt, stamps sit straight, and the card enters by rising, not turning.
 
@@ -146,9 +145,9 @@ Every animation must explain something: a transition, a reveal or a change of st
 
 - **Skeletons** are drawn in the final layout, with fixed aspect ratios on every image. CLS is 0.
 - **Focus rings** are designed with as much care as hover: a 2px `--focus` ring, offset, that follows the radius of what it surrounds.
-- **Mobile first:** every screen is designed at 360px and checked at 390, 1080 and 1440. Tap targets are at least 44px. Primary actions sit in thumb reach on mobile.
+- **Mobile first:** every screen is designed at 360px and checked at 390, 1080 and 1440. Tap targets are at least 44px. Primary actions sit in thumb reach on mobile: on the onboarding they live in the `.dock`.
 - **No quotation glyphs,** no decorative commas, and no ornamental punctuation.
-- **Contrast:** WCAG 2.2 AA everywhere, checked with axe and by hand on the rarity inks.
+- **Contrast:** WCAG 2.2 AA everywhere, checked with axe and by hand on the pink and difficulty inks.
 
 ## Self-review before showing any screen
 

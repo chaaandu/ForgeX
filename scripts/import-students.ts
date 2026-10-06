@@ -45,6 +45,11 @@ const NAME_FIXES: Record<string, string> = {
   'ujjwal_sitlani@forge27.mesaschool.co': 'Ujjwal Sitlani',
 }
 
+/** Track corrections from the owner's lists (6 Oct), where the workbook is out of date. */
+const TRACK_FIXES: Record<string, string> = {
+  'tanishq_lomte@forge27.mesaschool.co': 'autonomous',
+}
+
 type Founder = { slug: string; name: string; photo: string }
 
 const letters = (value: string) => value.toLowerCase().replace(/[^a-z]/g, '')
@@ -78,7 +83,11 @@ function readRoster() {
       const raw = cell(`${column.email}${row}`).toLowerCase()
       const email = EMAIL_FIXES[raw] ?? raw
       if (!name || !email.includes('@')) continue
-      out.push({ name: NAME_FIXES[email] ?? name, email, track: column.track })
+      out.push({
+        name: NAME_FIXES[email] ?? name,
+        email,
+        track: TRACK_FIXES[email] ?? column.track,
+      })
     }
   }
   return out

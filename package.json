@@ -26,7 +26,8 @@
     "research:validate": "tsx scripts/research/validate.ts",
     "bank:list": "tsx scripts/research/list.ts",
     "bank:lint": "tsx scripts/research/lint-bank.ts",
-    "sheet:sync": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --sync"
+    "sheet:sync": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --sync",
+    "sheet:migrate": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-migrate.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.23",

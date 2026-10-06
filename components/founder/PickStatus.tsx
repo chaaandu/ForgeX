@@ -6,7 +6,7 @@ import { useTransition } from 'react'
 import { withdrawPick } from '@/app/actions/founder'
 import { page as copy } from '@/content/copy'
 import type { PickStatus as Status } from '@/lib/data/picks'
-import type { Problem } from '@/lib/problem'
+import type { FounderProblem } from '@/lib/problem'
 
 /**
  * Level 7. While a why is waiting, this says one thing. When we answer, the
@@ -25,7 +25,7 @@ export function PickStatus({
   challenge: string
   status: Status
   note: string
-  suggested: Problem[]
+  suggested: FounderProblem[]
   own: boolean
 }) {
   const router = useRouter()
@@ -36,11 +36,13 @@ export function PickStatus({
       <h2 id="pick-title" className="display m-0 text-[clamp(28px,3.4vw,40px)] leading-[1.05]">
         {title}
       </h2>
-      <p className="m-0 text-[16px] text-ink-2">{challenge}</p>
-      <div className="border-t border-line pt-5">
+      <p className="text-ink-2 m-0 text-[16px]">{challenge}</p>
+      <div className="border-line border-t pt-5">
         {status === 'waiting' ? (
           <div className="grid gap-4">
-            <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">{copy.waiting}</p>
+            <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">
+              {copy.waiting}
+            </p>
             {own ? (
               <div>
                 <button
@@ -61,8 +63,12 @@ export function PickStatus({
           </div>
         ) : (
           <div className="grid gap-4">
-            <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">{copy.headline[status]}</p>
-            {note ? <p className="m-0 text-[17px] leading-relaxed whitespace-pre-line">{note}</p> : null}
+            <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">
+              {copy.headline[status]}
+            </p>
+            {note ? (
+              <p className="m-0 text-[17px] leading-relaxed whitespace-pre-line">{note}</p>
+            ) : null}
             {status === 'another' ? (
               <div className="grid gap-3">
                 {suggested.length ? (

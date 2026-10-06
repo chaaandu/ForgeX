@@ -14,12 +14,38 @@ import { Why } from './Why'
  * It is held in the browser until the why is sent, so a half-written problem
  * never reaches the team.
  */
-export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug: string; closesAt: string }) {
-  const [draft, setDraft] = useState<CustomProblem>({ title: '', problem: '', challenge: '', industry: 'retail', side: 'business' })
+export function Composer({
+  card,
+  slug,
+  closesAt,
+  ownOnly = false,
+}: {
+  card: FounderCardData
+  slug: string
+  closesAt: string
+  ownOnly?: boolean
+}) {
+  const [draft, setDraft] = useState<CustomProblem>({
+    title: '',
+    problem: '',
+    challenge: '',
+    industry: 'retail',
+    side: 'business',
+  })
   const [picked, setPicked] = useState(false)
   const [ready, setReady] = useState(false)
 
-  if (ready) return <Why problem={null} custom={draft} card={card} slug={slug} closesAt={closesAt} onBack={() => setReady(false)} />
+  if (ready)
+    return (
+      <Why
+        problem={null}
+        custom={draft}
+        card={card}
+        slug={slug}
+        closesAt={closesAt}
+        onBack={() => setReady(false)}
+      />
+    )
 
   const valid =
     draft.title.trim().length >= 3 &&
@@ -43,7 +69,9 @@ export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug
             value={draft[name]}
             maxLength={max}
             placeholder={copy.fields[name].placeholder}
-            onChange={(event) => setDraft((current) => ({ ...current, [name]: event.target.value }))}
+            onChange={(event) =>
+              setDraft((current) => ({ ...current, [name]: event.target.value }))
+            }
           />
         ) : (
           <textarea
@@ -53,10 +81,15 @@ export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug
             value={draft[name]}
             maxLength={max}
             placeholder={copy.fields[name].placeholder}
-            onChange={(event) => setDraft((current) => ({ ...current, [name]: event.target.value.replace(/\n/g, ' ') }))}
+            onChange={(event) =>
+              setDraft((current) => ({
+                ...current,
+                [name]: event.target.value.replace(/\n/g, ' '),
+              }))
+            }
           />
         )}
-        <span className="min-h-5 text-[13px] text-pink-ink" aria-live="polite">
+        <span className="text-pink-ink min-h-5 text-[13px]" aria-live="polite">
           {nudge ? whyCopy.nudges[nudge] : ''}
         </span>
       </div>
@@ -66,8 +99,12 @@ export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug
   return (
     <div className="grid max-w-[760px] gap-8">
       <div className="grid gap-3">
-        <h1 className="display rise m-0 text-[clamp(40px,5.4vw,64px)] leading-none">{copy.title}</h1>
-        <p className="rise m-0 text-lead text-ink-2 [animation-delay:80ms]">{copy.lead}</p>
+        <h1 className="display rise m-0 text-[clamp(40px,5.4vw,64px)] leading-none">
+          {ownOnly ? copy.ownTitle : copy.title}
+        </h1>
+        <p className="rise text-lead text-ink-2 m-0 [animation-delay:80ms]">
+          {ownOnly ? copy.ownLead : copy.lead}
+        </p>
       </div>
       {field('title', false, 80)}
       {field('problem', true, 700)}
@@ -125,11 +162,22 @@ export function Composer({ card, slug, closesAt }: { card: FounderCardData; slug
           ))}
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-        <Link href="/matches" className="btn btn-quiet press -ml-3">
-          {copy.back}
-        </Link>
-        <button type="button" className="btn btn-primary press min-w-[180px]" disabled={!valid} onClick={() => setReady(true)}>
+      <div className="dock md:border-line justify-between md:border-t md:pt-6">
+        {ownOnly ? (
+          <Link href="/world" className="btn btn-quiet press -ml-3">
+            {worldCopy.back}
+          </Link>
+        ) : (
+          <Link href="/matches" className="btn btn-quiet press -ml-3">
+            {copy.back}
+          </Link>
+        )}
+        <button
+          type="button"
+          className="btn btn-primary press min-w-[180px]"
+          disabled={!valid}
+          onClick={() => setReady(true)}
+        >
           {copy.next}
         </button>
       </div>

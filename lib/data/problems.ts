@@ -9,7 +9,12 @@ import type { Header, Row } from '@/lib/sheet/tabs'
  */
 export type ProblemStatus = 'draft' | 'approved' | 'rejected'
 
-export type BankProblem = Problem & { status: ProblemStatus; row: number; editedBy: string; editedAt: string }
+export type BankProblem = Problem & {
+  status: ProblemStatus
+  row: number
+  editedBy: string
+  editedAt: string
+}
 
 const split = (cell: string) =>
   cell
@@ -18,13 +23,16 @@ const split = (cell: string) =>
     .filter(Boolean)
 
 function toProblem({ row, cells }: Row<'problems'>): BankProblem | null {
-  const status = (['approved', 'rejected'] as const).find((value) => value === cells.Status.trim().toLowerCase()) ?? 'draft'
+  const status =
+    (['approved', 'rejected'] as const).find(
+      (value) => value === cells.Status.trim().toLowerCase(),
+    ) ?? 'draft'
   const parsed = problemSchema.safeParse({
     id: cells.ID.trim(),
     title: cells.Title.trim(),
     problem: cells.Problem.trim(),
     challenge: cells.Challenge.trim(),
-    rarity: cells.Rarity.trim().toLowerCase(),
+    difficulty: cells.Difficulty.trim().toLowerCase(),
     industries: split(cells.Industries),
     side: cells.Side.trim(),
     learn: split(cells.Learn),
@@ -41,32 +49,35 @@ function toProblem({ row, cells }: Row<'problems'>): BankProblem | null {
 
 /** Every problem the Sheet holds, with rows that fail validation left out. */
 export async function bank(): Promise<BankProblem[]> {
-  return (await rows('problems')).map(toProblem).filter((item): item is BankProblem => item !== null)
+  return (await rows('problems'))
+    .map(toProblem)
+    .filter((item): item is BankProblem => item !== null)
 }
 
-/** What founders may see. */
+/**
+ * Approved problems, for the matcher. Still carries difficulty and signal, so
+ * it stays on the server: anything bound for a browser goes through
+ * `forFounder` first.
+ */
 export async function openProblems(): Promise<Problem[]> {
-  return (await bank()).filter((item) => item.status === 'approved').map(publicProblem)
+  return (await bank())
+    .filter((item) => item.status === 'approved')
+    .map((item) => ({
+      id: item.id,
+      title: item.title,
+      problem: item.problem,
+      challenge: item.challenge,
+      difficulty: item.difficulty,
+      industries: item.industries,
+      side: item.side,
+      learn: item.learn,
+      geo: item.geo,
+      signal: item.signal,
+    }))
 }
 
 export async function problemById(id: string): Promise<BankProblem | null> {
   return (await bank()).find((item) => item.id === id) ?? null
-}
-
-/** Built by naming fields, so nothing new on a bank row leaks by default. */
-export function publicProblem(item: Problem): Problem {
-  return {
-    id: item.id,
-    title: item.title,
-    problem: item.problem,
-    challenge: item.challenge,
-    rarity: item.rarity,
-    industries: item.industries,
-    side: item.side,
-    learn: item.learn,
-    geo: item.geo,
-    signal: { count: item.signal.count, strength: item.signal.strength, line: item.signal.line },
-  }
 }
 
 export async function setProblem(
@@ -74,7 +85,11 @@ export async function setProblem(
   patch: Partial<Record<Header<'problems'>, string>>,
   editor: string,
 ): Promise<void> {
-  await updateRow('problems', item.row, { ...patch, 'Edited by': editor, 'Edited at': new Date().toISOString() })
+  await updateRow('problems', item.row, {
+    ...patch,
+    'Edited by': editor,
+    'Edited at': new Date().toISOString(),
+  })
 }
 
 export async function internalFor(id: string) {
@@ -88,7 +103,12 @@ export async function internalFor(id: string) {
     }
   }
   return {
-    evidence: (parse(found.cells.Evidence) ?? []) as { source: string; url: string; date: string; paraphrase: string }[],
+    evidence: (parse(found.cells.Evidence) ?? []) as {
+      source: string
+      url: string
+      date: string
+      paraphrase: string
+    }[],
     sources: (parse(found.cells.Sources) ?? {}) as Record<string, number>,
     whyNow: found.cells['Why now'],
     players: (parse(found.cells.Players) ?? []) as { name: string; gap: string }[],
