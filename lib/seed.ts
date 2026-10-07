@@ -176,10 +176,104 @@ function demo(founders: Partial<Record<Header<'founders'>, string>>[], problemId
       'Sent at': at,
     })
   })
+  // And four more still waiting on the team, so the queue has something in it.
+  const taken = new Set(chosen.map((row) => row.Email))
+  const waiting = founders
+    .filter((row) => row.Archetype && !taken.has(row.Email) && !PERSONAS.has(row.Email ?? ''))
+    .slice(0, DEMO_WAITING.length)
+  waiting.forEach((row, index) => {
+    const demo = DEMO_WAITING[index]!
+    const at = new Date(Date.now() - (index + 1) * 5 * 3600_000).toISOString()
+    const pickId = `K-wait-${index + 1}`
+    Object.assign(row, {
+      Level: '6',
+      Number: String(chosen.length + index + 1),
+      World: JSON.stringify(demo.world),
+      'Pick ID': pickId,
+      Status: 'waiting',
+      'Last active': at,
+    })
+    events.push({ At: at, Email: row.Email, Kind: 'arrived', Data: '{}' })
+    picks.push({
+      'Pick ID': pickId,
+      Email: row.Email,
+      'Problem ID': demo.problemId ?? '',
+      ...(demo.custom
+        ? {
+            'Custom title': demo.custom.title,
+            'Custom problem': demo.custom.problem,
+            'Custom challenge': demo.custom.challenge,
+            'Custom industry': demo.custom.industry,
+            'Custom side': demo.custom.side,
+          }
+        : {}),
+      'Why problem': demo.why[0],
+      'Why user': demo.why[1],
+      'Why pay': demo.why[2],
+      Contact: demo.contact,
+      'Submitted at': at,
+    })
+  })
   return { picks, responses, events }
 }
 
-/** Every tab, seeded, for mock mode. With `withDemo`, eight founders already have a go. */
+/** Mock only: whys waiting for a reply, one of them a problem the founder wrote. */
+const DEMO_WAITING: {
+  problemId?: string
+  custom?: { title: string; problem: string; challenge: string; industry: string; side: string }
+  world: object
+  why: [string, string, string]
+  contact: string
+}[] = [
+  {
+    problemId: 'P045',
+    world: { v: 1, industries: ['retail', 'food'], side: 'business', access: [{ kind: 'family', worlds: ['retail'] }], learn: ['data', 'payments'], intent: 'company', comfort: 3 },
+    why: [
+      'My father runs a kirana in Nagpur and two shops on our street shut last year. He says the quick-commerce apps took the regulars who used to buy on credit.',
+      'Owners like him, who know every customer by name but cannot match the apps on price or delivery time.',
+      'He already pays for a billing app and a delivery boy. Keeping ten regulars a month is worth far more than a small fee.',
+    ],
+    contact: 'My father and the two owners next to his shop, this weekend.',
+  },
+  {
+    problemId: 'P012',
+    world: { v: 1, industries: ['agri'], side: 'creator', access: [{ kind: 'relatives', worlds: ['agri'] }], learn: ['vision', 'mobile'], intent: 'both', comfort: 2 },
+    why: [
+      'My uncle lost most of a soybean crop to seed that never came up. The packet looked exactly like the real brand.',
+      'Small farmers who buy from the nearest agro shop and have no way to check a packet before they sow it.',
+      'One failed sowing costs a season. A farmer would pay a little per packet, or the honest dealers would pay to prove they are honest.',
+    ],
+    contact: 'My uncle and three farmers in his village, on a call this week.',
+  },
+  {
+    problemId: 'P101',
+    world: { v: 1, industries: ['creators'], side: 'creator', access: [{ kind: 'community', worlds: ['creators'] }], learn: ['agents', 'web'], intent: 'career', comfort: 4 },
+    why: [
+      'I write a food blog and my search traffic halved this year, though the posts did not change.',
+      'Small writers who earn from their blogs and now get found less, even when what they write is better.',
+      'They already pay for hosting and SEO tools that no longer work, so they would pay for something that does.',
+    ],
+    contact: 'Five writers from a bloggers group I am in.',
+  },
+  {
+    custom: {
+      title: 'Hostel food complaints that go nowhere',
+      problem: 'Students in private hostels complain about the mess every week, in WhatsApp groups and to the warden. Nothing is written down, so the same problems come back each month and the owner never sees a pattern.',
+      challenge: 'Help a hostel owner see what students keep complaining about, and fix it.',
+      industry: 'food',
+      side: 'business',
+    },
+    world: { v: 1, industries: ['food', 'homes'], side: 'business', access: [{ kind: 'other', other: 'My hostel', worlds: ['food'] }], learn: ['automation', 'data'], intent: 'exploring', comfort: 3 },
+    why: [
+      'I have lived in two hostels and the same complaints about the mess came up every single week in our group.',
+      'Hostel owners, who lose students at the end of each term and do not know why.',
+      'An owner with 200 beds loses lakhs when 10 students leave. A small monthly fee to keep them is easy to justify.',
+    ],
+    contact: 'The owner of my hostel and 20 students in our WhatsApp group.',
+  },
+]
+
+/** Every tab, seeded, for mock mode. With `withDemo`, eight founders have a go and four are waiting. */
 export function seedGrids(withDemo = false): Record<TabKey, string[][]> {
   const founders = founderSeedRows()
   const problems = problemSeedRows('approved')

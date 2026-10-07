@@ -596,7 +596,7 @@ export const account = {
 }
 
 export const consoleCopy = {
-  nav: { label: 'Console', founders: 'Founders', queue: 'Queue', bank: 'Bank', setup: 'Setup' },
+  nav: { label: 'Console', founders: 'Founders', queue: 'Queue', bank: 'Bank' },
   founders: {
     title: 'Founders',
     search: 'Search founders',
@@ -626,7 +626,7 @@ export const consoleCopy = {
     title: 'Queue',
     empty: 'No one is waiting. Every why has a reply.',
     oldest: 'Oldest first',
-    waitingFor: (time: string) => `Waiting ${time}`,
+    waitingFor: (time: string) => `Sent ${time}`,
     types: { go: 'Go', tweak: 'Go, with a tweak', talk: "Let's talk", another: 'Try another' },
     keys: { go: 'G', tweak: 'W', talk: 'L', another: 'A' },
     note: 'Note to the founder',

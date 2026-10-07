@@ -10,7 +10,6 @@ export function TeamNav({ waiting, drafts }: { waiting: number; drafts: number }
     { href: '/team', label: copy.nav.founders, count: null },
     { href: '/team/queue', label: copy.nav.queue, count: waiting },
     { href: '/team/bank', label: copy.nav.bank, count: drafts },
-    { href: '/team/setup', label: copy.nav.setup, count: null },
   ]
   return (
     <nav aria-label={copy.nav.label} className="flex gap-1">

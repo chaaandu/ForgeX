@@ -24,9 +24,11 @@ export default async function TeamLayout({ children }: { children: React.ReactNo
   return (
     <div className="min-h-dvh">
       <header className="border-line bg-ground/90 sticky top-0 z-30 border-b backdrop-blur">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-4 px-5 py-3 md:px-8">
-          <div className="flex items-center gap-6">
-            <Brand href="/team" />
+        {/* On a phone the tabs take a row of their own under the logo, so nothing
+            pushes the page wider than the screen. */}
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 md:flex-nowrap md:px-8">
+          <Brand href="/team" />
+          <div className="order-last -mx-1 w-full md:order-none md:mx-0 md:mr-auto md:w-auto">
             <TeamNav waiting={waiting} drafts={drafts} />
           </div>
           <div className="flex items-center gap-2">
