@@ -76,6 +76,7 @@ pnpm sheet:init        # tabs, headers, any founder not yet listed. Safe to re-r
 pnpm sheet:problems    # adds the research bank as drafts. Safe to re-run.
 pnpm sheet:sync        # after a bank rewrite: rewords problems nobody on the team has edited
 pnpm sheet:migrate     # once, on a Sheet made before tracks: renames Rarity to Difficulty, fixes Track cells. Safe to re-run.
+pnpm sheet:approve --by you@mesaschool.co [--write]  # approves every draft at once, logged under your name. Without --write it only counts.
 ```
 
 None of the first three overwrites a cell you've edited or removes anything. `sheet:migrate` rewrites only the Difficulty column and any Track cell that differs from `data/students.json`, and prints each Track it changes.

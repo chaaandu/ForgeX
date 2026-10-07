@@ -572,7 +572,7 @@ export const page = {
   teamBy: (who: string) => `${who}, for the team`,
   sentOn: (date: string) => `Sent ${date}`,
   withdrawnOn: (date: string) => `You withdrew this on ${date}`,
-  console: 'Back to console',
+  console: 'Console',
   suggested: 'Try one of these',
   own: 'Your own problem',
   teamOnly: 'Team only',

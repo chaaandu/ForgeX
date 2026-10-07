@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { consoleCopy, meta } from '@/content/copy'
 import { Brand } from '@/components/shell/Brand'
-import { LayoutGrid } from 'lucide-react'
+import { Users } from 'lucide-react'
 import { Account } from '@/components/shell/Account'
 import { HeaderLink } from '@/components/shell/HeaderLink'
 import { TeamNav } from '@/components/team/TeamNav'
@@ -33,7 +33,7 @@ export default async function TeamLayout({ children }: { children: React.ReactNo
             <HeaderLink
               href="/"
               label={consoleCopy.wall}
-              icon={<LayoutGrid size={16} strokeWidth={1.5} aria-hidden="true" />}
+              icon={<Users size={16} strokeWidth={1.5} aria-hidden="true" />}
             />
             <Account name={viewer.name} email={viewer.email} photo={viewer.photo} />
           </div>

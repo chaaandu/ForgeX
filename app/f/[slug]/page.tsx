@@ -8,7 +8,7 @@ import { ProfileFacts } from '@/components/founder/ProfileFacts'
 import { Thread } from '@/components/founder/Thread'
 import { Profile } from '@/components/levels/Profile'
 import { Brand } from '@/components/shell/Brand'
-import { ArrowLeft, LayoutGrid } from 'lucide-react'
+import { LayoutDashboard, Users } from 'lucide-react'
 import { Account } from '@/components/shell/Account'
 import { HeaderLink } from '@/components/shell/HeaderLink'
 import { archetypes, consoleCopy, families, levels, meta, page as copy } from '@/content/copy'
@@ -71,13 +71,13 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             <HeaderLink
               href="/team"
               label={copy.console}
-              icon={<ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />}
+              icon={<LayoutDashboard size={16} strokeWidth={1.5} aria-hidden="true" />}
             />
           ) : null}
           <HeaderLink
             href="/"
             label={consoleCopy.wall}
-            icon={<LayoutGrid size={16} strokeWidth={1.5} aria-hidden="true" />}
+            icon={<Users size={16} strokeWidth={1.5} aria-hidden="true" />}
           />
           {team ? <Account name={viewer.name} email={viewer.email} photo={viewer.photo} /> : null}
         </div>
@@ -112,6 +112,22 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
           </div>
         </section>
 
+        <section className="grid gap-8" aria-labelledby="about">
+          <h2 id="about" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
+            {own ? copy.sections.profile : copy.sections.theirProfile}
+          </h2>
+          {own ? (
+            <Profile
+              name={founder.name}
+              photo={founder.photo}
+              initial={founder.profile}
+              next={null}
+            />
+          ) : (
+            <ProfileFacts profile={founder.profile} />
+          )}
+        </section>
+
         {latest && !full ? (
           <section className="panel grid gap-4 p-6 md:p-8" aria-labelledby="pick-title">
             <span className="meta">{copy.building}</span>
@@ -128,7 +144,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
         ) : null}
 
         {full && latest ? (
-          <section className="grid gap-6" aria-labelledby="problem">
+          <section className="border-line grid gap-6 border-t pt-12" aria-labelledby="problem">
             <h2 id="problem" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
               {own ? copy.sections.problem : copy.sections.theirProblem}
             </h2>
@@ -223,22 +239,6 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             </dl>
           </section>
         ) : null}
-
-        <section className="border-line grid gap-8 border-t pt-12" aria-labelledby="about">
-          <h2 id="about" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
-            {own ? copy.sections.profile : copy.sections.theirProfile}
-          </h2>
-          {own ? (
-            <Profile
-              name={founder.name}
-              photo={founder.photo}
-              initial={founder.profile}
-              next={null}
-            />
-          ) : (
-            <ProfileFacts profile={founder.profile} />
-          )}
-        </section>
       </main>
     </div>
   )
