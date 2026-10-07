@@ -5,6 +5,7 @@
 .fc-wrap {
   --mx: 0.5;
   --my: 0.3;
+  position: relative;
   container-type: inline-size;
   width: 100%;
   perspective: 1200px;
@@ -55,6 +56,93 @@
 .fc[data-finish='picked'] {
   --r: var(--color-violet);
   --r-hi: var(--color-violet-ink);
+}
+
+/* ==========================================================================
+   The live frame, on a picked card: a spark of light that runs round the
+   violet frame, and a soft halo behind the card that breathes. Always on
+   where one card is the subject (their profile, the moment they send); on
+   hover where cards sit in a grid, so a wall of them never strobes.
+   ========================================================================== */
+
+@property --spin {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.fc-halo {
+  position: absolute;
+  inset: 2cqi;
+  z-index: 0;
+  border-radius: 6cqi;
+  pointer-events: none;
+  opacity: 0;
+  box-shadow:
+    0 0 10cqi 1cqi color-mix(in oklab, var(--color-violet) 55%, transparent),
+    0 0 3cqi 0 color-mix(in oklab, var(--color-violet-ink) 45%, transparent);
+  transition: opacity 400ms var(--ease-out);
+}
+
+.fc-wrap > .fc,
+.fc-wrap > .fc-tilt {
+  position: relative;
+  z-index: 1;
+}
+
+.fc-spark {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 3cqi;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--spin),
+    transparent 0deg 250deg,
+    color-mix(in oklab, var(--color-violet-ink) 50%, transparent) 300deg,
+    #fff 332deg,
+    color-mix(in oklab, var(--color-violet-ink) 70%, transparent) 342deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  transition: opacity 400ms var(--ease-out);
+}
+
+.fc-wrap[data-glow='always']:has(.fc[data-finish='picked']) .fc-halo,
+.fc-wrap[data-glow='hover']:has(.fc[data-finish='picked']):is(:hover, :focus-within) .fc-halo,
+a:is(:hover, :focus-visible) .fc-wrap[data-glow='hover']:has(.fc[data-finish='picked']) .fc-halo {
+  opacity: 1;
+  animation: fc-breathe 3.2s ease-in-out infinite alternate;
+}
+
+.fc-wrap[data-glow='always'] .fc[data-finish='picked'] .fc-spark,
+.fc-wrap[data-glow='hover']:is(:hover, :focus-within) .fc[data-finish='picked'] .fc-spark,
+a:is(:hover, :focus-visible) .fc-wrap[data-glow='hover'] .fc[data-finish='picked'] .fc-spark {
+  opacity: 1;
+  animation: fc-spin 4.8s linear infinite;
+}
+
+@keyframes fc-spin {
+  to {
+    --spin: 360deg;
+  }
+}
+
+@keyframes fc-breathe {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Foil on the frame only, never across a face: a spectrum printed through a
@@ -346,6 +434,17 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Still, under reduced motion: the halo stays as a quiet glow, the spark never runs. */
+@media (prefers-reduced-motion: reduce) {
+  .fc-halo,
+  .fc-spark {
+    animation: none !important;
+  }
+  .fc-spark {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

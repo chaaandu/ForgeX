@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { Avatar } from '@/components/ui/Avatar'
 import Link from 'next/link'
 import { useState } from 'react'
 import { DifficultyTag } from '@/components/ui/DifficultyTag'
@@ -76,13 +76,7 @@ export function Queue({
                 aria-current={position === index ? 'true' : undefined}
                 className={`press flex w-full items-center gap-3 rounded-xl border-0 p-2 text-left ${position === index ? 'bg-white/10' : 'bg-transparent hover:bg-white/5'}`}
               >
-                <Image
-                  src={entry.founder.photo}
-                  alt=""
-                  width={32}
-                  height={32}
-                  className="size-8 rounded-lg object-cover"
-                />
+                <Avatar src={entry.founder.photo} size={36} />
                 <span className="grid min-w-0">
                   <span className="text-ink-1 truncate text-[14px]">{entry.founder.name}</span>
                   <span className="text-ink-3 truncate text-[12px]">
@@ -102,13 +96,7 @@ export function Queue({
       >
         <div className="grid content-start gap-6">
           <header className="flex flex-wrap items-center gap-4">
-            <Image
-              src={item.founder.photo}
-              alt=""
-              width={64}
-              height={64}
-              className="size-16 rounded-2xl object-cover"
-            />
+            <Avatar src={item.founder.photo} size={64} />
             <div className="grid gap-1">
               <h1 className="display m-0 text-[32px] leading-none">{item.founder.name}</h1>
               <p className="text-ink-2 m-0 text-[14px]">

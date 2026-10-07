@@ -79,7 +79,12 @@ export function Why({
       >
         <div className="mx-auto grid w-full max-w-[1040px] items-center gap-12 md:grid-cols-[minmax(0,380px)_1fr]">
           <div className="sent-card justify-self-center">
-            <FounderCard data={{ ...card, problemTitle: title, finish: 'picked' }} size="lg" tilt />
+            <FounderCard
+              data={{ ...card, problemTitle: title, finish: 'picked' }}
+              size="lg"
+              tilt
+              glow="always"
+            />
           </div>
           <div className="grid gap-5">
             <h1 className="display rise m-0 text-[clamp(56px,8vw,104px)] leading-none [animation-delay:900ms]">

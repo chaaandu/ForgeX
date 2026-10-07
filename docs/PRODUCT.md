@@ -274,7 +274,7 @@ After **Try another**:
 ### Team console `/team`
 
 **Founders** (`/team`): a table of all 117 founders.
-- **Columns:** photo, name, archetype, level reached, pick, status, last active, link to the page.
+- **Columns:** photo (round, on the wall's ground), name, archetype, onboarding (the step they're on, or Done once their why is sent), pick, status, last active. Clicking anywhere on a row opens their profile.
 - **Sort and filter** by any column.
 - **Export CSV.**
 

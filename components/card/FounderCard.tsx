@@ -36,12 +36,15 @@ export function FounderCard({
   size = 'md',
   tilt = false,
   priority = false,
+  glow = 'hover',
   className,
 }: {
   data: FounderCardData
   size?: 'sm' | 'md' | 'lg'
   tilt?: boolean
   priority?: boolean
+  /** When a picked card's frame comes alive: always, or only under the pointer. */
+  glow?: 'always' | 'hover'
   className?: string
 }) {
   const kind = data.archetype ? ARCHETYPES[data.archetype] : null
@@ -55,6 +58,7 @@ export function FounderCard({
       style={family ? ({ ['--fam' as string]: family.tint } as React.CSSProperties) : undefined}
     >
       <div className="fc-foil" aria-hidden="true" />
+      <div className="fc-spark" aria-hidden="true" />
       <div className="fc-face">
         <div className="fc-top">
           <span>{data.number ? copy.number(data.number, data.of) : copy.unnumbered}</span>
@@ -91,7 +95,12 @@ export function FounderCard({
     </div>
   )
   return (
-    <div className={['fc-wrap', className].filter(Boolean).join(' ')} data-size={size}>
+    <div
+      className={['fc-wrap', className].filter(Boolean).join(' ')}
+      data-size={size}
+      data-glow={glow}
+    >
+      <div className="fc-halo" aria-hidden="true" />
       {tilt ? <Tilt>{body}</Tilt> : body}
     </div>
   )

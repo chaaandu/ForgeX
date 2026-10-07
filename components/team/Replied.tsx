@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { Avatar } from '@/components/ui/Avatar'
 import Link from 'next/link'
 import { useState } from 'react'
 import { ReplyForm } from './ReplyForm'
@@ -73,13 +73,7 @@ export function Replied({
             <li key={item.pickId} className="panel grid gap-4 p-4">
               <div className="grid gap-3 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)_auto] md:items-center md:gap-6">
                 <div className="flex min-w-0 items-center gap-3">
-                  <Image
-                    src={item.photo}
-                    alt=""
-                    width={40}
-                    height={40}
-                    className="size-10 shrink-0 rounded-xl object-cover"
-                  />
+                  <Avatar src={item.photo} size={44} />
                   <span className="grid min-w-0">
                     <span className="text-ink-1 truncate text-[15px]">{item.name}</span>
                     <span className="text-ink-3 truncate text-[12px]">{item.archetype}</span>

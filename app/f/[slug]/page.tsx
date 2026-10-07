@@ -92,7 +92,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
 
         <section className="grid items-center gap-10 md:grid-cols-[minmax(0,360px)_1fr] lg:gap-16">
           <div className="grid justify-items-center gap-5 md:justify-items-start">
-            <FounderCard data={context.card} size="lg" tilt priority />
+            <FounderCard data={context.card} size="lg" tilt priority glow="always" />
             {full ? <CardActions slug={founder.slug} name={founder.name} /> : null}
           </div>
           <div className="grid gap-4">

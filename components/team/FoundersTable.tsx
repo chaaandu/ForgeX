@@ -1,7 +1,8 @@
 'use client'
 
-import Image from 'next/image'
+import { Avatar } from '@/components/ui/Avatar'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { consoleCopy } from '@/content/copy'
 import { ago } from '@/lib/dates'
@@ -12,6 +13,7 @@ type Key = 'name' | 'archetype' | 'level' | 'pick' | 'status' | 'lastActive'
 const STATUS_ORDER = ['waiting', 'talk', 'tweak', 'another', 'go', 'none'] as const
 
 export function FoundersTable({ rows }: { rows: FounderRow[] }) {
+  const router = useRouter()
   const [query, setQuery] = useState('')
   const [status, setStatus] = useState<'all' | FounderRow['status']>('all')
   const [sort, setSort] = useState<{ key: Key; dir: 1 | -1 }>({ key: 'name', dir: 1 })
@@ -106,34 +108,41 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
             <tr>
               {header('name', copy.columns.name, 'w-[24%]')}
               {header('archetype', copy.columns.archetype, 'w-[19%]')}
-              {header('level', copy.columns.level, 'w-[7%]')}
-              {header('pick', copy.columns.pick, 'w-[28%]')}
+              {header('level', copy.columns.level, 'w-[11%]')}
+              {header('pick', copy.columns.pick, 'w-[24%]')}
               {header('status', copy.columns.status, 'w-[10%]')}
               {header('lastActive', copy.columns.active, 'w-[12%]')}
             </tr>
           </thead>
           <tbody>
             {shown.map((row) => (
-              <tr key={row.slug} className="border-line border-b hover:bg-white/[0.025]">
+              // The whole row opens their profile; the name stays a real link
+              // for the keyboard, a new tab and a screen reader.
+              <tr
+                key={row.slug}
+                className="border-line cursor-pointer border-b hover:bg-white/[0.035]"
+                onClick={(event) => {
+                  if ((event.target as HTMLElement).closest('a')) return
+                  router.push(`/f/${row.slug}`)
+                }}
+              >
                 <td className="py-2.5 pr-4">
                   <Link
                     href={`/f/${row.slug}`}
                     className="text-ink-1 hover:text-violet-ink flex items-center gap-3 no-underline"
                   >
-                    <Image
-                      src={row.photo}
-                      alt=""
-                      width={36}
-                      height={36}
-                      className="size-9 shrink-0 rounded-lg object-cover"
-                    />
+                    <Avatar src={row.photo} size={40} />
                     <span className="truncate">{row.name}</span>
                   </Link>
                 </td>
                 <td className="text-ink-2 truncate py-2.5 pr-4">
                   {row.archetype ? `${row.family} · ${row.archetype}` : '—'}
                 </td>
-                <td className="text-ink-2 py-2.5 pr-4 font-mono">{row.level}/6</td>
+                <td
+                  className={`py-2.5 pr-4 ${row.level >= 6 ? 'text-ink-3' : row.level === 0 ? 'text-ink-3' : 'text-ink-1'}`}
+                >
+                  {copy.steps[Math.min(row.level, 6)]}
+                </td>
                 <td className="text-ink-2 truncate py-2.5 pr-4" title={row.pick || undefined}>
                   {row.pick || copy.noPick}
                 </td>

@@ -617,11 +617,13 @@ export const consoleCopy = {
     columns: {
       name: 'Founder',
       archetype: 'Archetype',
-      level: 'Level',
+      level: 'Onboarding',
       pick: 'Pick',
       status: 'Status',
       active: 'Last active',
     },
+    /** Where each founder is in the six steps. Done once their why is sent; Status takes over from there. */
+    steps: ['Not started', 'Arrived', 'Archetype', 'Profile', 'Your world', 'Matches', 'Done'],
     all: 'All',
     none: 'No founders match.',
     noPick: '—',

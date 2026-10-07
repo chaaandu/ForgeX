@@ -160,3 +160,9 @@ Every animation must explain something: a transition, a reveal or a change of st
 5. Does any animation exist without a reason?
 
 The loop for every screen: screenshot it at 390, 1080 and 1440 with Playwright, critique it against the five questions above, fix what falls short, and repeat at least twice.
+
+## The live frame (2026-10-07)
+
+A picked card's violet frame is alive: a spark of light runs round it (a conic gradient on a ring mask, turned by an animated `@property` angle, 4.8s a lap) and a soft violet halo breathes behind the card. It is always on where one card is the subject (the founder's profile and the Sent screen) and on hover in a grid (the landing), so a wall of cards never strobes. Under reduced motion the spark never runs and the halo is still. `glow` on `FounderCard` chooses.
+
+Console faces are round, on `--color-s2`, the same ground as a tile on the wall: the photos are cut-outs and float without one (`components/ui/Avatar.tsx`).
