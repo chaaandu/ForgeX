@@ -114,6 +114,25 @@ export function statusOf(pick: Pick, responses: Response[]): PickStatus {
   return mine.at(-1)?.type ?? 'waiting'
 }
 
+/**
+ * The tweak a pick answers, if it is a revision: the founder's pick just
+ * before it was told Needs a tweak. Derived rather than stored, so the Sheet
+ * needs no new column and an old pick can never point at the wrong one.
+ */
+export function revisionOf(
+  pick: Pick,
+  picks: Pick[],
+  responses: Response[],
+): { note: string; author: string; sentAt: string } | null {
+  const before = picks
+    .filter((item) => item.email === pick.email && item.id !== pick.id && !item.withdrawnAt)
+    .filter((item) => item.submittedAt < pick.submittedAt)
+    .at(-1)
+  if (!before) return null
+  const last = responses.filter((response) => response.pickId === before.id).at(-1)
+  return last?.type === 'tweak' ? { note: last.note, author: last.author, sentAt: last.sentAt } : null
+}
+
 /** Every pick a founder has made, oldest first, with each one's thread. */
 export async function threadFor(email: string) {
   const [picks, responses] = await Promise.all([allPicks(), allResponses()])

@@ -9,6 +9,7 @@ import {
   allPicks,
   allResponses,
   RESPONSE_TYPES,
+  revisionOf,
   statusOf,
   type ResponseType,
 } from '@/lib/data/picks'
@@ -48,7 +49,12 @@ export default async function QueuePage({
   const byId = new Map(problems.map((item) => [item.id, item]))
   const live = picks.filter((pick) => !pick.withdrawnAt)
   const waitingPicks = live.filter((pick) => statusOf(pick, responses) === 'waiting')
-  const repliedPicks = live.filter((pick) => statusOf(pick, responses) !== 'waiting')
+  // Only each founder's latest pick: an old tweak they have since revised is
+  // history, kept on their profile, not something to answer again.
+  const latestOf = new Map(live.map((pick) => [pick.email, pick.id]))
+  const repliedPicks = live.filter(
+    (pick) => latestOf.get(pick.email) === pick.id && statusOf(pick, responses) !== 'waiting',
+  )
 
   const tabs = (
     <nav className="flex flex-wrap gap-2" aria-label={copy.views.label}>
@@ -67,6 +73,10 @@ export default async function QueuePage({
       ))}
     </nav>
   )
+
+  const bankList = problems
+    .filter((item) => item.status === 'approved')
+    .map((item) => ({ id: item.id, title: item.title }))
 
   if (view === 'replied') {
     const items: RepliedItem[] = repliedPicks
@@ -95,7 +105,7 @@ export default async function QueuePage({
     return (
       <div className="grid gap-6">
         {tabs}
-        <Replied items={items} filter={filter} />
+        <Replied items={items} filter={filter} bank={bankList} />
       </div>
     )
   }
@@ -140,12 +150,10 @@ export default async function QueuePage({
           whyUser: pick.whyUser,
           whyPay: pick.whyPay,
           contact: pick.contact,
+          revision: revisionOf(pick, picks, responses),
         },
       ]
     })
-  const bankList = problems
-    .filter((item) => item.status === 'approved')
-    .map((item) => ({ id: item.id, title: item.title }))
   return (
     <div className="grid gap-6">
       {tabs}

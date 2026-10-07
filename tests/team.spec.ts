@@ -129,6 +129,70 @@ test('a founder who needs a tweak is not counted as approved', async ({ page }) 
   expect((await page.goto('/f/aarav-shrivastava'))?.status()).toBe(404)
 })
 
+async function reply(page: Page, label: string, note = '') {
+  await page.getByRole('radio', { name: label, exact: true }).click()
+  if (note) await page.getByLabel('Note to the founder').fill(note)
+  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
+}
+
+test('a tweak goes back to the founder, comes back as a change, and is approved', async ({
+  page,
+}) => {
+  await sendWhy(page)
+  await signIn(page, TEAM)
+  await page.goto('/team/queue')
+  await reply(page, 'Needs a tweak', 'Narrow it to hardware shops in one city.')
+  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+
+  // The founder sees one clear next step, and our note waits for them where they make the change.
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/f/aarav-shrivastava')
+  await page.getByRole('link', { name: 'Make the change' }).click()
+  await page.waitForURL('**/why?revise=1')
+  await expect(page.getByRole('complementary', { name: 'What we asked' })).toContainText(
+    'Narrow it to hardware shops in one city.',
+  )
+  await expect(page.getByLabel('Why this problem?')).toHaveValue(WHY.whyProblem)
+  await page
+    .getByLabel('Why this problem?')
+    .fill(`${WHY.whyProblem} I will start with the 12 hardware shops on our street in Nagpur.`)
+  await page.getByRole('button', { name: 'Send the change' }).click()
+  await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
+
+  // The team sees it is a revision, and what they asked for.
+  await page.context().clearCookies()
+  await signIn(page, TEAM)
+  await page.goto('/team/queue')
+  await expect(page.getByText('Revised after a tweak')).toBeVisible()
+  await expect(page.getByRole('complementary', { name: 'You asked' })).toContainText(
+    'Narrow it to hardware shops in one city.',
+  )
+  await reply(page, 'Approve')
+  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+
+  await page.context().clearCookies()
+  await page.goto('/')
+  await expect(
+    page
+      .getByRole('region', { name: "What they're building" })
+      .getByRole('link', { name: /Aarav/ }),
+  ).toBeVisible()
+})
+
+test('the team can send a new reply to a pick it already answered', async ({ page }) => {
+  await sendWhy(page)
+  await signIn(page, TEAM)
+  await page.goto('/team/queue')
+  await reply(page, 'Needs a tweak', 'Talk to two more shops first.')
+  await page.getByRole('link', { name: /^Replied/ }).click()
+  await page.getByRole('button', { name: 'Send a new reply' }).click()
+  await expect(page.getByText('New reply to Aarav Shrivastava')).toBeVisible()
+  await reply(page, 'Approve', 'Settled on a call. Go build it.')
+  await page.getByRole('link', { name: /^Approved/ }).click()
+  await expect(page.getByText('Settled on a call. Go build it.')).toBeVisible()
+})
+
 test('a tweak without a note is held back', async ({ page }) => {
   await sendWhy(page)
   await signIn(page, TEAM)

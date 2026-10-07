@@ -155,6 +155,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
               note={latestResponse?.note ?? ''}
               suggested={suggested}
               own={own}
+              reviseHref={latest.pick.problemId ? '/why?revise=1' : '/matches/new?revise=1'}
             />
             {context.entries.length ? (
               <div

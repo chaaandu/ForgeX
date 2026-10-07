@@ -157,9 +157,10 @@ export async function saveWorld(raw: unknown): Promise<Result> {
 
 /**
  * Level 6. Sends a why for a problem from the bank or one the founder wrote.
- * A pick the team has already answered with anything but Try another is
- * settled and cannot be replaced; one still waiting is withdrawn in favour of
- * the new one.
+ * A pick still waiting is withdrawn in favour of the new one. After Try
+ * another, anything goes. After Needs a tweak, only a revision of the same
+ * problem: the same bank problem, or their own problem reworded. Approved and
+ * Talk to your mentor are settled.
  */
 export async function submitPick(raw: unknown): Promise<Result<{ slug: string }>> {
   return guarded<{ slug: string }>(async (founder) => {
@@ -174,14 +175,28 @@ export async function submitPick(raw: unknown): Promise<Result<{ slug: string }>
     const [picks, responses] = await Promise.all([allPicks(), allResponses()])
     const mine = picks.filter((pick) => pick.email === founder.email && !pick.withdrawnAt)
     const latest = mine.at(-1)
+    let revises: string | null = null
     if (latest) {
       const status = statusOf(latest, responses)
-      if (status !== 'another' && status !== 'waiting') return { ok: false, error: 'locked' }
+      if (status === 'tweak') {
+        const same = latest.problemId
+          ? parsed.data.problemId === latest.problemId
+          : parsed.data.custom !== null
+        if (!same) return { ok: false, error: 'locked' }
+        revises = latest.id
+      } else if (status !== 'another' && status !== 'waiting') {
+        return { ok: false, error: 'locked' }
+      }
       if (status === 'waiting') await withdraw(latest)
     }
     const id = await addPick(founder.email, parsed.data)
     await patchFounder(founder, { 'Pick ID': id, Status: 'waiting', ...levelPatch(founder, LEVELS.why) })
-    await logEvent(founder.email, 'pick', { id, problemId: parsed.data.problemId, custom: Boolean(parsed.data.custom) })
+    await logEvent(founder.email, 'pick', {
+      id,
+      problemId: parsed.data.problemId,
+      custom: Boolean(parsed.data.custom),
+      revises,
+    })
     return { ok: true, slug: founder.slug }
   })
 }

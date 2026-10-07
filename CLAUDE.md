@@ -75,6 +75,7 @@ pnpm sheet:migrate     # once, on a Sheet from before tracks: Rarity → Difficu
 - **A founder page opens to the cohort** only once that founder is building (their current pick is Approved; Needs a tweak does not count), and then without the thread, the team's note or the download. Otherwise it is the founder and the team, and a 404 for anyone else.
 - **Six archetypes, three families.** The family is the Hackathon 1 class and keeps its portrait (`public/art/`). The card and the wall's flip side show the full figure, never a crop. The wall only shows founders who have an archetype. The second-strongest axis splits it. Ties break experiment, understand, structure. `pnpm test:archetype` must stay at 117/117.
 - **Picks close** at `PICKS_CLOSE_AT`, checked in `submitPick` and `withdrawPick`.
+- **After Needs a tweak, a founder can only send a revision of the same problem** (`submitPick`). A revision is derived, not stored: a pick whose previous pick's latest reply is `tweak` (`revisionOf` in `lib/data/picks.ts`). Approved and Talk to your mentor are settled; the team changes them with **Send a new reply**.
 - **Mock mode** needs `MOCK_BACKEND=true` and a deploy that is not Vercel production (`lib/store/mode.ts`).
 - **Copy:** second person, short. No decorative quote or comma glyphs anywhere. The fixed lines in `docs/PRODUCT.md` are the owner's, so use them verbatim.
 

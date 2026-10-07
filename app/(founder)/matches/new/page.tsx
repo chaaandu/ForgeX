@@ -12,12 +12,31 @@ import { levels } from '@/content/copy'
 
 export const metadata: Metadata = { title: meta.pages.writeOwn }
 
-export default async function ComposerPage() {
+export default async function ComposerPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ revise?: string }>
+}) {
   const { founder } = await requireFounder()
   if (!mayEnter(founder, 'why')) redirect(currentPath(founder))
-  const context = await founderContext(founder)
+  const [{ revise }, context] = await Promise.all([searchParams, founderContext(founder)])
   const ownOnly = !seesBank(trackOf(founder.track))
-  if (context.current && context.current.status !== 'waiting') redirect(`/f/${founder.slug}`)
+  const current = context.current
+  // Their own problem, sent back after Needs a tweak: everything as they left it.
+  const revision =
+    revise && context.tweak && current?.pick.custom
+      ? {
+          note: context.tweak.note,
+          custom: current.pick.custom,
+          answers: {
+            whyProblem: current.pick.whyProblem,
+            whyUser: current.pick.whyUser,
+            whyPay: current.pick.whyPay,
+            contact: current.pick.contact,
+          },
+        }
+      : null
+  if (current && current.status !== 'waiting' && !revision) redirect(`/f/${founder.slug}`)
   return (
     <LevelShell
       level={ownOnly ? 'matches' : 'why'}
@@ -29,6 +48,7 @@ export default async function ComposerPage() {
         slug={founder.slug}
         closesAt={closeLabel(process.env.PICKS_CLOSE_AT ?? '')}
         ownOnly={ownOnly}
+        revision={revision}
       />
     </LevelShell>
   )

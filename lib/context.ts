@@ -10,7 +10,11 @@ import type { Problem } from '@/lib/problem'
  * picks and our answers, and the one pick that is current.
  */
 export async function founderContext(founder: Founder) {
-  const [founders, thread, problems] = await Promise.all([allFounders(), threadFor(founder.email), bank()])
+  const [founders, thread, problems] = await Promise.all([
+    allFounders(),
+    threadFor(founder.email),
+    bank(),
+  ])
   const of = founders.length
   const byId = new Map(problems.map((item) => [item.id, item]))
   const entries = thread.map((entry) => {
@@ -24,8 +28,29 @@ export async function founderContext(founder: Founder) {
     of,
     entries,
     current: live,
-    card: cardFor(founder, of, live ? { title: live.title, problem: live.problem, status: live.status } : null),
-    tried: entries.filter((entry) => entry.pick.problemId).map((entry) => entry.pick.problemId as string),
+    card: cardFor(
+      founder,
+      of,
+      live ? { title: live.title, problem: live.problem, status: live.status } : null,
+    ),
+    tried: entries
+      .filter((entry) => entry.pick.problemId)
+      .map((entry) => entry.pick.problemId as string),
     suggested: current?.status === 'another' ? (current.responses.at(-1)?.suggested ?? []) : [],
+    /**
+     * The tweak being answered, while a founder is revising: the current pick
+     * if it was told Needs a tweak, or the one before it if the change has just
+     * been sent and is waiting. Null otherwise.
+     */
+    tweak: (() => {
+      if (!current) return null
+      if (current.status === 'tweak')
+        return { entry: current, note: current.responses.at(-1)?.note ?? '' }
+      if (current.status !== 'waiting') return null
+      const before = entries.filter((entry) => !entry.pick.withdrawnAt && entry !== current).at(-1)
+      return before?.status === 'tweak'
+        ? { entry: before, note: before.responses.at(-1)?.note ?? '' }
+        : null
+    })(),
   }
 }

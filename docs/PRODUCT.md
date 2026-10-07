@@ -244,7 +244,7 @@ The prompts:
 | Response | Founder sees |
 | --- | --- |
 | **Approved** | The team's note, if any |
-| **Needs a tweak** | The note, which is required |
+| **Needs a tweak** | The note, which is required, in a **What we asked** box, and one button: **Make the change** |
 | **Talk to your mentor** | The note. Mentor names come once mentors are confirmed |
 | **Try another** | The note and the suggested problems; **Back to matches** keeps every answer |
 
@@ -280,7 +280,14 @@ After **Try another**:
 
 **Queue** (`/team/queue`) has two views.
 - **Waiting:** submitted whys, oldest first, one at a time. Four plain buttons answer it: **Approve**, **Needs a tweak** (a note is required), **Talk to mentor**, **Try another** (opens the problem picker). Then **Send reply**. There are no keyboard shortcuts anywhere in the product.
-- **Replied:** every answered pick, newest first, filterable by answer, with who replied, when, their note and a link to the founder's profile. This is where the team checks who is approved.
+- **Replied:** each founder's latest answered pick, newest first, filterable by answer, with who replied, when, their note and a link to the founder's profile. This is where the team checks who is approved. Every row has **Send a new reply**, which opens the same reply form in place: approving a tweak settled on a call, or changing a decision. The newest reply is the one the founder sees. A tweak still out reads *Waiting for their change*.
+
+**The tweak loop.**
+1. The team answers **Needs a tweak** with a note.
+2. The founder's profile shows *Almost there*, the note in a **What we asked** box, and **Make the change**.
+3. That opens their why with every answer as they left it and the note pinned on top (their own problem opens in the composer first, prefilled). **Send the change** sends it back; nothing else about the problem can change.
+4. It lands in **Waiting** marked *Revised after a tweak*, with a **You asked** box showing the note, who wrote it and when. Their thread on the profile labels it *The change*.
+5. Any answer from there, as usual. Only **Approved** puts them on the landing.
 
 Beside each waiting why sits a brief of the person: who they can reach this week first (access decides most fits), then industries, who they build for, what they want to learn, why they're here, and tech comfort on a five-step meter; then only the profile fields they filled in. The problem's difficulty is on the problem.
 

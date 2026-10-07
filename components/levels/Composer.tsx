@@ -7,6 +7,7 @@ import { composer as copy, why as whyCopy, world as worldCopy } from '@/content/
 import type { CustomProblem } from '@/lib/data/picks'
 import { composerNudge, wordCount } from '@/lib/nudges'
 import { INDUSTRIES, SIDES } from '@/lib/taxonomy'
+import { AskedNote } from '@/components/founder/AskedNote'
 import { Why } from './Why'
 
 /**
@@ -19,20 +20,29 @@ export function Composer({
   slug,
   closesAt,
   ownOnly = false,
+  revision = null,
 }: {
   card: FounderCardData
   slug: string
   closesAt: string
   ownOnly?: boolean
+  /** Revising their own problem after Needs a tweak: what they sent, and our note. */
+  revision?: {
+    note: string
+    custom: CustomProblem
+    answers: { whyProblem: string; whyUser: string; whyPay: string; contact: string }
+  } | null
 }) {
-  const [draft, setDraft] = useState<CustomProblem>({
-    title: '',
-    problem: '',
-    challenge: '',
-    industry: 'retail',
-    side: 'business',
-  })
-  const [picked, setPicked] = useState(false)
+  const [draft, setDraft] = useState<CustomProblem>(
+    revision?.custom ?? {
+      title: '',
+      problem: '',
+      challenge: '',
+      industry: 'retail',
+      side: 'business',
+    },
+  )
+  const [picked, setPicked] = useState(Boolean(revision))
   const [ready, setReady] = useState(false)
 
   if (ready)
@@ -44,6 +54,8 @@ export function Composer({
         slug={slug}
         closesAt={closesAt}
         onBack={() => setReady(false)}
+        initial={revision?.answers}
+        revision={revision ? { note: revision.note } : null}
       />
     )
 
@@ -100,11 +112,12 @@ export function Composer({
     <div className="grid max-w-[760px] gap-8">
       <div className="grid gap-3">
         <h1 className="display rise m-0 text-[clamp(40px,5.4vw,64px)] leading-none">
-          {ownOnly ? copy.ownTitle : copy.title}
+          {revision ? whyCopy.revise.title : ownOnly ? copy.ownTitle : copy.title}
         </h1>
         <p className="rise text-lead text-ink-2 m-0 [animation-delay:80ms]">
-          {ownOnly ? copy.ownLead : copy.lead}
+          {revision ? whyCopy.revise.lead : ownOnly ? copy.ownLead : copy.lead}
         </p>
+        {revision ? <AskedNote note={revision.note} /> : null}
       </div>
       {field('title', false, 80)}
       {field('problem', true, 700)}
@@ -169,7 +182,11 @@ export function Composer({
         </div>
       </div>
       <div className="dock md:border-line justify-between md:border-t md:pt-6">
-        {ownOnly ? (
+        {revision ? (
+          <Link href={`/f/${slug}`} className="btn btn-quiet press -ml-3">
+            {copy.backToProfile}
+          </Link>
+        ) : ownOnly ? (
           <Link href="/world" className="btn btn-quiet press -ml-3">
             {worldCopy.back}
           </Link>

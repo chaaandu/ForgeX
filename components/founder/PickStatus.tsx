@@ -7,6 +7,7 @@ import { withdrawPick } from '@/app/actions/founder'
 import { page as copy } from '@/content/copy'
 import type { PickStatus as Status } from '@/lib/data/picks'
 import type { FounderProblem } from '@/lib/problem'
+import { AskedNote } from './AskedNote'
 
 /**
  * Level 7. While a why is waiting, this says one thing. When we answer, the
@@ -20,6 +21,7 @@ export function PickStatus({
   note,
   suggested,
   own,
+  reviseHref,
 }: {
   title: string
   challenge: string
@@ -27,6 +29,8 @@ export function PickStatus({
   note: string
   suggested: FounderProblem[]
   own: boolean
+  /** Where Make the change goes, after Needs a tweak. */
+  reviseHref?: string
 }) {
   const router = useRouter()
   const [pending, start] = useTransition()
@@ -65,8 +69,24 @@ export function PickStatus({
             <p className="display m-0 text-[clamp(24px,2.8vw,32px)] leading-tight">
               {copy.headline[status]}
             </p>
-            {note ? (
+            {note && status === 'tweak' ? (
+              <AskedNote note={note} />
+            ) : note ? (
               <p className="m-0 text-[17px] leading-relaxed whitespace-pre-line">{note}</p>
+            ) : null}
+            {status === 'tweak' ? (
+              own && reviseHref ? (
+                <div className="grid gap-2">
+                  <div>
+                    <Link href={reviseHref} className="btn btn-primary press">
+                      {copy.makeChange}
+                    </Link>
+                  </div>
+                  <p className="text-ink-3 m-0 text-[14px]">{copy.makeChangeHint}</p>
+                </div>
+              ) : (
+                <p className="meta m-0">{copy.awaitingChange}</p>
+              )
             ) : null}
             {status === 'another' ? (
               <div className="grid gap-3">

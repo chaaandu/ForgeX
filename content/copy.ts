@@ -513,9 +513,19 @@ export const why = {
     lead: "Your card now carries your problem. We read every why and reply to each one. You'll see our reply on your profile within 24 hours.",
     go: 'See my profile',
   },
+  /** Sending a pick back after Needs a tweak. */
+  revise: {
+    title: 'Make the change',
+    lead: "Your answers are here as you left them. Change what our note asks, then send it back.",
+    asked: 'What we asked',
+    send: 'Send the change',
+    editProblem: 'Edit the problem',
+    sentLead: "We'll read your change and reply on your profile within 24 hours.",
+  },
 }
 
 export const composer = {
+  backToProfile: 'Back to my profile',
   title: 'Write your own',
   lead: "Same shape as ours. Say what's broken, not what you'll build.",
   ownTitle: 'What problem will you solve?',
@@ -550,6 +560,10 @@ export const page = {
     another: "Let's find you a better fit.",
   },
   pickAnother: 'Pick another instead',
+  makeChange: 'Make the change',
+  makeChangeHint: "Your answers open as you left them. We'll reply again.",
+  awaitingChange: 'Waiting for their change',
+  revisedTag: 'The change',
   backToMatches: 'Back to matches',
   status: {
     waiting: 'Waiting',
@@ -685,6 +699,14 @@ export const consoleCopy = {
     their: 'Their world',
     profile: 'Profile',
     open: 'Open their profile',
+    revised: 'Revised after a tweak',
+    revisedShort: 'Revised',
+    youAsked: 'You asked',
+    askedBy: (who: string, date: string) => `${who} · ${date}`,
+    newReply: 'Send a new reply',
+    cancel: 'Cancel',
+    awaitingChange: 'Waiting for their change',
+    replyTo: (name: string) => `New reply to ${name}`,
     views: { label: 'Queue view', waiting: 'Waiting', replied: 'Replied' },
     byAnswer: 'Filter by answer',
     allAnswers: 'All answers',

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useTransition } from 'react'
 import { submitPick } from '@/app/actions/founder'
 import { FounderCard, type FounderCardData } from '@/components/card/FounderCard'
+import { AskedNote } from '@/components/founder/AskedNote'
 import { Lines } from '@/components/ui/Lines'
 import { why as copy } from '@/content/copy'
 import type { CustomProblem } from '@/lib/data/picks'
@@ -26,6 +27,8 @@ export function Why({
   slug,
   closesAt,
   onBack,
+  initial,
+  revision = null,
 }: {
   problem: FounderProblem | null
   custom: CustomProblem | null
@@ -34,13 +37,14 @@ export function Why({
   /** When picks close, already formatted, for the closed message. */
   closesAt: string
   onBack?: () => void
+  /** Answers to start from: their last ones, when they are revising. */
+  initial?: Fields
+  /** Set when this is a revision after Needs a tweak: the note they are answering. */
+  revision?: { note: string } | null
 }) {
-  const [fields, setFields] = useState<Fields>({
-    whyProblem: '',
-    whyUser: '',
-    whyPay: '',
-    contact: '',
-  })
+  const [fields, setFields] = useState<Fields>(
+    initial ?? { whyProblem: '', whyUser: '', whyPay: '', contact: '' },
+  )
   const [error, setError] = useState<string | null>(null)
   const [sent, setSent] = useState(false)
   const [pending, start] = useTransition()
@@ -82,7 +86,7 @@ export function Why({
               {copy.sent.title}
             </h1>
             <p className="text-lead text-ink-2 rise m-0 max-w-[40ch] [animation-delay:960ms]">
-              {copy.sent.lead}
+              {revision ? copy.revise.sentLead : copy.sent.lead}
             </p>
             <div className="dock">
               <Link
@@ -102,8 +106,14 @@ export function Why({
     <div className="grid max-w-[760px] gap-10">
       <div className="grid gap-5">
         <h1 className="display rise m-0 text-[clamp(32px,4.4vw,52px)] leading-[1.04]">
-          <Lines text={copy.heading} />
+          <Lines text={revision ? copy.revise.title : copy.heading} />
         </h1>
+        {revision ? (
+          <>
+            <p className="text-lead text-ink-2 m-0 max-w-[48ch]">{copy.revise.lead}</p>
+            <AskedNote note={revision.note} />
+          </>
+        ) : null}
         <div className="border-line flex flex-wrap items-baseline gap-x-4 gap-y-1 border-y py-4">
           <span className="meta">{copy.for}</span>
           <span className="display text-[22px] leading-tight">{title}</span>
@@ -113,9 +123,9 @@ export function Why({
               className="btn btn-quiet press ml-auto min-h-9 px-2 text-[13px]"
               onClick={onBack}
             >
-              {copy.change}
+              {revision ? copy.revise.editProblem : copy.change}
             </button>
-          ) : (
+          ) : revision ? null : (
             <Link href="/matches" className="btn btn-quiet press ml-auto min-h-9 px-2 text-[13px]">
               {copy.change}
             </Link>
@@ -187,7 +197,7 @@ export function Why({
           disabled={!ready || pending}
           onClick={send}
         >
-          {pending ? copy.sending : copy.send}
+          {pending ? copy.sending : revision ? copy.revise.send : copy.send}
         </button>
         {error ? (
           <p role="alert" className="text-violet-ink m-0 text-[14px]">
