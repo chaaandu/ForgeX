@@ -22,8 +22,24 @@
 }
 
 .fc-tilt {
+  --rx: 0deg;
+  --ry: 0deg;
   --mx: 0.5;
   --my: 0.3;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transform-style: preserve-3d;
+  /* Settling back is slower than following, so it feels weighted, not twitchy. */
+  transition: transform 450ms var(--ease-out);
+}
+
+.fc-tilt[data-live] {
+  transition: transform 80ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fc-tilt {
+    transform: none;
+  }
 }
 
 .fc {
