@@ -131,7 +131,7 @@ None of the first three overwrites a cell you've edited or removes anything. `sh
 
 | Task | Where |
 | --- | --- |
-| Answer whys | `/team/queue`, oldest first. `G` Go, `W` Go with a tweak, `L` Let's talk, `A` Try another, `N` note, `⌘↵` send |
+| Answer whys | `/team/queue`, oldest first: Approve, Needs a tweak, Talk to mentor or Try another, then Send reply. **Replied** lists every answer, filterable |
 | See everyone | `/team`, with CSV export |
 | A founder's page | `/f/<slug>`, which shows the team-only panel to you |
 | Change a founder's track | Edit their `Track` cell in Founders; their matches follow within 15 seconds. To make it stick through `pnpm sheet:migrate` and `pnpm data:students`, also add them to `TRACK_FIXES` in `scripts/import-students.ts` and rerun `pnpm data:students` |

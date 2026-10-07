@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from 'react'
 import { respond } from '@/app/actions/team'
 import { DifficultyTag } from '@/components/ui/DifficultyTag'
+import { FounderBrief, type Brief } from './FounderBrief'
 import { consoleCopy, why as whyCopy } from '@/content/copy'
 import { ago } from '@/lib/dates'
 import type { Difficulty } from '@/lib/taxonomy'
@@ -13,7 +14,6 @@ import type { Difficulty } from '@/lib/taxonomy'
 const copy = consoleCopy.queue
 const TYPES = ['go', 'tweak', 'talk', 'another'] as const
 type Type = (typeof TYPES)[number]
-const KEY_TO_TYPE: Record<string, Type> = { g: 'go', w: 'tweak', l: 'talk', a: 'another' }
 
 export type QueueItem = {
   pickId: string
@@ -23,10 +23,8 @@ export type QueueItem = {
     slug: string
     photo: string
     archetype: string
-    bio: string
-    facts: string[]
-    world: string[]
     previous: number
+    brief: Brief
   }
   problem: {
     title: string
@@ -42,9 +40,8 @@ export type QueueItem = {
 }
 
 /**
- * Oldest first. One why on screen at a time with everything needed to judge
- * the fit beside it, and the four answers on single keys so a careful review
- * is still a quick one.
+ * Oldest first. One why on screen at a time, with everything needed to judge
+ * the fit beside it, and four plain buttons for the answer.
  */
 export function Queue({
   items,
@@ -92,31 +89,6 @@ export function Queue({
       } else setMessage(copy.failed)
     })
   }, [item, note, router, suggested, type])
-
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      const target = event.target as HTMLElement
-      const typing = target.tagName === 'TEXTAREA' || target.tagName === 'INPUT'
-      if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-        event.preventDefault()
-        send()
-        return
-      }
-      if (typing) {
-        if (event.key === 'Escape') target.blur()
-        return
-      }
-      const key = event.key.toLowerCase()
-      if (key === 'j') setIndex((value) => Math.min(items.length - 1, value + 1))
-      else if (key === 'k') setIndex((value) => Math.max(0, value - 1))
-      else if (key === 'n') {
-        event.preventDefault()
-        noteRef.current?.focus()
-      } else if (KEY_TO_TYPE[key]) setType(KEY_TO_TYPE[key])
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [items.length, send])
 
   const matches = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -166,7 +138,6 @@ export function Queue({
             </li>
           ))}
         </ol>
-        <p className="text-ink-3 mt-2 hidden text-[12px] leading-relaxed md:block">{copy.help}</p>
       </aside>
 
       <article
@@ -235,7 +206,6 @@ export function Queue({
                   className="chip press"
                   onClick={() => setType(value)}
                 >
-                  <span className="font-mono text-[11px]">{copy.keys[value]}</span>
                   {copy.types[value]}
                 </button>
               ))}
@@ -298,7 +268,7 @@ export function Queue({
                 disabled={!type || pending}
                 onClick={send}
               >
-                {copy.send} <span className="font-mono text-[11px]">⌘↵</span>
+                {copy.send}
               </button>
               {message ? (
                 <p className="text-ink-2 m-0 text-[14px]" role="status">
@@ -310,27 +280,7 @@ export function Queue({
         </div>
 
         <aside className="grid content-start gap-5 xl:sticky xl:top-24">
-          {item.founder.bio ? (
-            <p className="display m-0 text-[20px] leading-snug italic">{item.founder.bio}</p>
-          ) : null}
-          <div className="grid gap-2">
-            <p className="meta m-0">{copy.their}</p>
-            <ul className="text-ink-2 m-0 grid list-none gap-1.5 p-0 text-[14px]">
-              {item.founder.world.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
-          {item.founder.facts.length ? (
-            <div className="grid gap-2">
-              <p className="meta m-0">{copy.profile}</p>
-              <ul className="text-ink-2 m-0 grid list-none gap-1.5 p-0 text-[14px]">
-                {item.founder.facts.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+          <FounderBrief brief={item.founder.brief} />
         </aside>
       </article>
     </div>

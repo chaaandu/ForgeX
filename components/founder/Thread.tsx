@@ -66,7 +66,7 @@ export function Thread({
                   {copy.status[response.type]}
                 </span>
                 <span className="text-ink-3 font-mono text-[12px]">
-                  {authors && response.author ? copy.teamBy(nameOf(response.author)) : copy.team} ·{' '}
+                  {authors && response.author ? nameOf(response.author) : copy.team} ·{' '}
                   <span className="whitespace-nowrap">{shortDate(response.sentAt)}</span>
                 </span>
               </div>

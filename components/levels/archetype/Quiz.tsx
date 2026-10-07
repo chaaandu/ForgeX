@@ -57,21 +57,6 @@ export function Quiz({
     [answers, question, saving, send, step],
   )
 
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (!question || event.metaKey || event.ctrlKey || event.altKey) return
-      const index = Number(event.key) - 1
-      const option = question.options[index]
-      if (option) {
-        event.preventDefault()
-        choose(option.key)
-      }
-      if (event.key === 'ArrowLeft' && step > 0) setStep(step - 1)
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [choose, question, step])
-
   if (step < 0) {
     return (
       <div className="grid max-w-[640px] gap-8">

@@ -34,21 +34,27 @@ test.beforeEach(async ({ page }) => {
   await reset(page)
 })
 
-for (const [key, label, stamp] of [
-  ['g', 'Go', 'Go'],
-  ['w', 'Go, with a tweak', 'Go, with a tweak'],
-  ['l', "Let's talk", "Let's talk"],
+for (const [label, stamp] of [
+  ['Approve', 'Approved'],
+  ['Needs a tweak', 'Needs a tweak'],
+  ['Talk to mentor', 'Talk to your mentor'],
 ] as const) {
-  test(`the team answers ${label} from the keyboard and the founder sees it`, async ({ page }) => {
+  test(`the team answers ${label} and the founder sees it`, async ({ page }) => {
     await sendWhy(page)
     await signIn(page, TEAM)
     await page.goto('/team/queue')
     await expect(page.getByRole('heading', { name: 'Aarav Shrivastava' })).toBeVisible()
-    await page.keyboard.press(key)
-    await page.keyboard.press('n')
-    await page.keyboard.type('Talk to three shop owners before you build anything.')
-    await page.keyboard.press('Meta+Enter')
+    // No shortcut letters anywhere: the buttons are just their words.
+    await expect(page.getByRole('radio', { name: label, exact: true })).toBeVisible()
+    await page.getByRole('radio', { name: label, exact: true }).click()
+    await page
+      .getByLabel('Note to the founder')
+      .fill('Talk to three shop owners before you build anything.')
+    await page.getByRole('button', { name: 'Send reply', exact: true }).click()
     await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+
+    await page.getByRole('link', { name: /^Replied/ }).click()
+    await expect(page.getByText('Aarav Shrivastava')).toBeVisible()
 
     await page.context().clearCookies()
     await signIn(page, AARAV)
@@ -66,10 +72,10 @@ test('Try another sends the founder back to fresh matches with suggestions first
   await sendWhy(page)
   await signIn(page, TEAM)
   await page.goto('/team/queue')
-  await page.keyboard.press('a')
+  await page.getByRole('radio', { name: 'Try another', exact: true }).click()
   await page.getByPlaceholder('kirana').fill('a')
   await page.getByRole('list', { name: 'Matching problems' }).getByRole('button').first().click()
-  await page.getByPlaceholder('kirana').press('Meta+Enter')
+  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
   await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
 
   await page.context().clearCookies()
@@ -79,17 +85,18 @@ test('Try another sends the founder back to fresh matches with suggestions first
   await expect(page.getByText('The team suggested this').first()).toBeVisible()
 })
 
-test('a founder told go shows on the landing, and the cohort sees their page but not the thread', async ({
+test('an approved founder shows on the landing, and the cohort sees their page but not the thread', async ({
   page,
 }) => {
   await sendWhy(page)
   await signIn(page, TEAM)
   await page.goto('/team/queue')
-  await page.keyboard.press('g')
-  await page.keyboard.press('Meta+Enter')
+  await page.getByRole('radio', { name: 'Approve', exact: true }).click()
+  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
   await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
   await page.goto('/f/aarav-shrivastava')
-  await expect(page.getByText(/, for the team/).first()).toBeVisible()
+  // The team sees who replied, by name and nothing more.
+  await expect(page.getByText(/^Team ·/).first()).toBeVisible()
 
   await page.context().clearCookies()
   await page.goto('/')
@@ -109,12 +116,14 @@ test('a tweak without a note is held back', async ({ page }) => {
   await sendWhy(page)
   await signIn(page, TEAM)
   await page.goto('/team/queue')
-  await page.keyboard.press('w')
-  await page.getByRole('button', { name: /^Send/ }).click()
+  await page.getByRole('radio', { name: 'Needs a tweak', exact: true }).click()
+  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
   await expect(page.getByRole('status')).toHaveText('A tweak needs a note.')
 })
 
-test('the bank offers only the moves that fit each state, and the founders table exports', async ({ page }) => {
+test('the bank offers only the moves that fit each state, and the founders table exports', async ({
+  page,
+}) => {
   await signIn(page, TEAM)
   await page.goto('/team/bank')
   await page.getByRole('button', { name: /^Live/ }).click()

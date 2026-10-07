@@ -9,7 +9,7 @@ import './card.css'
  * the slots not yet filled are drawn as empty, so a founder can always see what
  * is left to earn. Photo and number on arrival, archetype and portrait after the
  * quiz, and the finish when they send their
- * why. The team's answer lives on their page, not stamped across their face.
+ * why. The team's answer lives on their profile, not stamped across their face.
  * The archetype stands in the corner whole, never cropped. The bottom line is always the
  * archetype's own line: never their bio, never their problem.
  *

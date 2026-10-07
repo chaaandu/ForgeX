@@ -280,7 +280,8 @@
     cursor: not-allowed;
   }
   .chip[aria-pressed='true'],
-  .chip[aria-checked='true'] {
+  .chip[aria-checked='true'],
+  .chip[aria-current='page'] {
     color: var(--color-on-violet);
     background: var(--color-violet);
     box-shadow: none;

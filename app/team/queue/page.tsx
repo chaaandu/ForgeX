@@ -1,18 +1,43 @@
 import type { Metadata } from 'next'
-import { meta } from '@/content/copy'
+import Link from 'next/link'
 import { Queue, type QueueItem } from '@/components/team/Queue'
-import { archetypes, consoleCopy, families } from '@/content/copy'
+import { Replied, type RepliedItem } from '@/components/team/Replied'
+import { archetypes, consoleCopy, families, meta } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
-import { allFounders } from '@/lib/data/founders'
-import { allPicks, allResponses, statusOf } from '@/lib/data/picks'
+import { allFounders, type Founder } from '@/lib/data/founders'
+import {
+  allPicks,
+  allResponses,
+  RESPONSE_TYPES,
+  statusOf,
+  type ResponseType,
+} from '@/lib/data/picks'
 import { bank } from '@/lib/data/problems'
-import { INTENTS, labelOf } from '@/lib/taxonomy'
+import { briefFor } from '@/lib/team-brief'
 
 export const metadata: Metadata = { title: meta.pages.queue }
 
-const facts = consoleCopy.queue.facts
+const copy = consoleCopy.queue
 
-export default async function QueuePage() {
+const archetypeLine = (founder: Founder) => {
+  const kind = founder.archetype ? ARCHETYPES[founder.archetype] : null
+  return kind ? `${families[kind.family].name} · ${archetypes[kind.id].name}` : '—'
+}
+
+/**
+ * Two views of the same picks: what is waiting on us, oldest first, and what
+ * we have already answered, newest first, so anyone on the team can see who
+ * was approved, who needs a tweak and who is talking to a mentor.
+ */
+export default async function QueuePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ view?: string; type?: string }>
+}) {
+  const params = await searchParams
+  const view = params.view === 'replied' ? 'replied' : 'waiting'
+  const filter = RESPONSE_TYPES.find((type) => type === params.type) ?? null
+
   const [picks, responses, founders, problems] = await Promise.all([
     allPicks(),
     allResponses(),
@@ -21,15 +46,66 @@ export default async function QueuePage() {
   ])
   const byEmail = new Map(founders.map((founder) => [founder.email, founder]))
   const byId = new Map(problems.map((item) => [item.id, item]))
-  const items: QueueItem[] = picks
-    .filter((pick) => !pick.withdrawnAt && statusOf(pick, responses) === 'waiting')
+  const live = picks.filter((pick) => !pick.withdrawnAt)
+  const waitingPicks = live.filter((pick) => statusOf(pick, responses) === 'waiting')
+  const repliedPicks = live.filter((pick) => statusOf(pick, responses) !== 'waiting')
+
+  const tabs = (
+    <nav className="flex flex-wrap gap-2" aria-label={copy.views.label}>
+      {(['waiting', 'replied'] as const).map((key) => (
+        <Link
+          key={key}
+          href={key === 'waiting' ? '/team/queue' : '/team/queue?view=replied'}
+          aria-current={view === key ? 'page' : undefined}
+          className="chip press min-h-9 text-[13px] no-underline"
+        >
+          {copy.views[key]}{' '}
+          <span className="font-mono text-[11px]">
+            {key === 'waiting' ? waitingPicks.length : repliedPicks.length}
+          </span>
+        </Link>
+      ))}
+    </nav>
+  )
+
+  if (view === 'replied') {
+    const items: RepliedItem[] = repliedPicks
+      .flatMap((pick) => {
+        const founder = byEmail.get(pick.email)
+        const last = responses.filter((response) => response.pickId === pick.id).at(-1)
+        if (!founder || !last) return []
+        const problem = pick.problemId ? byId.get(pick.problemId) : null
+        return [
+          {
+            pickId: pick.id,
+            name: founder.name,
+            slug: founder.slug,
+            photo: founder.photo,
+            archetype: archetypeLine(founder),
+            title: problem?.title ?? pick.custom?.title ?? '',
+            own: !problem,
+            type: last.type as ResponseType,
+            note: last.note,
+            author: last.author,
+            sentAt: last.sentAt,
+          },
+        ]
+      })
+      .sort((a, b) => b.sentAt.localeCompare(a.sentAt))
+    return (
+      <div className="grid gap-6">
+        {tabs}
+        <Replied items={items} filter={filter} />
+      </div>
+    )
+  }
+
+  const items: QueueItem[] = waitingPicks
     .sort((a, b) => a.submittedAt.localeCompare(b.submittedAt))
     .flatMap((pick) => {
       const founder = byEmail.get(pick.email)
       if (!founder) return []
       const problem = pick.problemId ? byId.get(pick.problemId) : null
-      const kind = founder.archetype ? ARCHETYPES[founder.archetype] : null
-      const world = founder.world
       const previous = picks.filter(
         (item) => item.email === pick.email && item.id !== pick.id,
       ).length
@@ -41,54 +117,9 @@ export default async function QueuePage() {
             name: founder.name,
             slug: founder.slug,
             photo: founder.photo,
-            archetype: kind ? `${families[kind.family].name} · ${archetypes[kind.id].name}` : '—',
-            bio: founder.profile.bio,
-            facts: [
-              founder.profile.degree,
-              founder.profile.city,
-              founder.profile.goodAt.length ? facts.goodAt(founder.profile.goodAt.join(', ')) : '',
-              founder.profile.wantToLearn.length
-                ? facts.wants(founder.profile.wantToLearn.join(', '))
-                : '',
-            ].filter(Boolean),
-            world: world
-              ? [
-                  facts.industries(
-                    world.industries
-                      .map((id) =>
-                        id === 'other'
-                          ? (world.industryOther ?? 'Other')
-                          : labelOf.industryShort(id),
-                      )
-                      .join(', '),
-                  ),
-                  facts.side(
-                    world.side === 'unsure'
-                      ? 'not sure yet'
-                      : labelOf.side(world.side).toLowerCase(),
-                  ),
-                  facts.reach(
-                    world.access.length
-                      ? world.access
-                          .map(
-                            (entry) =>
-                              `${entry.kind === 'other' ? (entry.other ?? 'Other') : labelOf.access(entry.kind)} (${entry.worlds.map((id) => (id === 'elsewhere' ? (entry.elsewhere ?? 'elsewhere') : labelOf.industryShort(id))).join(', ')})`,
-                          )
-                          .join('; ')
-                      : facts.nobody,
-                  ),
-                  facts.learn(
-                    world.learn
-                      .map((id) =>
-                        id === 'other' ? (world.learnOther ?? 'Other') : labelOf.learn(id),
-                      )
-                      .join(', '),
-                  ),
-                  facts.intent(INTENTS.find((intent) => intent.id === world.intent)?.label ?? ''),
-                  facts.comfort(world.comfort),
-                ]
-              : [],
+            archetype: archetypeLine(founder),
             previous,
+            brief: briefFor(founder),
           },
           problem: problem
             ? {
@@ -115,5 +146,10 @@ export default async function QueuePage() {
   const bankList = problems
     .filter((item) => item.status === 'approved')
     .map((item) => ({ id: item.id, title: item.title }))
-  return <Queue items={items} bank={bankList} />
+  return (
+    <div className="grid gap-6">
+      {tabs}
+      <Queue items={items} bank={bankList} />
+    </div>
+  )
 }

@@ -58,7 +58,7 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 - **Headline:** *Don't start with an idea.* / *Start with a problem.*
 - **Sub:** *Find one. Prove it's real. Then build.*
 - **One button:** **Enter**.
-- **Below the fold, What they're building:** the cards of founders on the wall whose current pick got **Go** or **Go, with a tweak**, newest first, each with its problem title only and a link to their page. It refreshes whenever the team responds. Nothing appears until the first Go.
+- **Below the fold, What they're building:** the cards of founders on the wall whose current pick was **Approved** or **Needs a tweak**, newest first, each with its problem title only and a link to their profile. It refreshes whenever the team responds. Until the first approval the section says so.
 - **No problem bank on the landing page.** Problems are earned by finishing the levels, not browsed from the door. Titles of problems already being built are the only exception.
 - **Signed in?** The landing stays open: the logo, and **The wall** on every page header, lead back to it. **Enter** goes straight to the founder's furthest level, or to `/team` for the team.
 
@@ -243,9 +243,9 @@ The prompts:
 
 | Response | Founder sees |
 | --- | --- |
-| **Go** | The team's note, if any |
-| **Go, with a tweak** | The note, which is required |
-| **Let's talk** | The note and a **Book 15 minutes** button |
+| **Approved** | The team's note, if any |
+| **Needs a tweak** | The note, which is required |
+| **Talk to your mentor** | The note. Mentor names come once mentors are confirmed |
 | **Try another** | The note and the suggested problems; **Back to matches** keeps every answer |
 
 No stamp goes on the card: the landing already says who has a go, and the card stays about the person.
@@ -260,7 +260,7 @@ After **Try another**:
 - **Slug:** built from the full name, with a numeric suffix if two names clash (`/f/ananya-rao`, `/f/ananya-rao-2`). Slugs are frozen once seeded.
 - **Who can see it:**
   - **The founder and the team** see everything.
-  - **Any other signed-in user** can see it once the founder is building (their current pick got **Go** or **Go, with a tweak**): the card, archetype, bio, the problem title and challenge, and profile facts. Never the thread, the team's note, the team panel or the card download.
+  - **Any other signed-in user** can see it once the founder is building (their current pick was **Approved** or **Needs a tweak**): the card, archetype, bio, the problem title and challenge, and profile facts. Never the thread, the team's note, the team panel or the card download.
   - Anyone else gets a 404.
 - **What it shows the founder and the team:**
   - the founder card, with download and share
@@ -268,7 +268,7 @@ After **Try another**:
   - the profile, edited inline when it's their own
   - their links
   - their pick and its status
-  - the full thread of their why and our responses. The team sees each response signed *Name, for the team*; the founder sees *The ForgeX team*
+  - the full thread of their why and our responses. The team sees each response signed with the name of whoever sent it; the founder sees *The ForgeX team*
 - **After onboarding,** this page is the founder's home.
 
 ### Team console `/team`
@@ -278,19 +278,11 @@ After **Try another**:
 - **Sort and filter** by any column.
 - **Export CSV.**
 
-**Queue** (`/team/queue`): submitted whys, oldest first.
+**Queue** (`/team/queue`) has two views.
+- **Waiting:** submitted whys, oldest first, one at a time. Four plain buttons answer it: **Approve**, **Needs a tweak** (a note is required), **Talk to mentor**, **Try another** (opens the problem picker). Then **Send reply**. There are no keyboard shortcuts anywhere in the product.
+- **Replied:** every answered pick, newest first, filterable by answer, with who replied, when, their note and a link to the founder's profile. This is where the team checks who is approved.
 
-| Key | Action |
-| --- | --- |
-| `J` / `K` | Next / previous |
-| `G` | Go |
-| `W` | Go, with a tweak |
-| `L` | Let's talk |
-| `A` | Try another (opens the problem picker) |
-| `N` | Focus the note |
-| `⌘↵` | Send |
-
-The founder's profile, archetype and Level 4 answers sit beside each why, with the problem's difficulty, because a fit can only be judged against the person.
+Beside each waiting why sits a brief of the person: who they can reach this week first (access decides most fits), then industries, who they build for, what they want to learn, why they're here, and tech comfort on a five-step meter; then only the profile fields they filled in. The problem's difficulty is on the problem.
 
 **Bank** (`/team/bank`): every problem with its difficulty (Easy, Medium or Hard), evidence and scores, and who last edited it and when.
 - Filters by state (Drafts, Live, Archived) and by difficulty (Easy, Medium, Hard).
