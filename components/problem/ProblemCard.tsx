@@ -20,7 +20,7 @@ export function ProblemCard({
 }) {
   const inner = (
     <>
-      {note ? <span className="meta text-pink-ink">{note}</span> : null}
+      {note ? <span className="meta text-violet-ink">{note}</span> : null}
       <h3 className="display m-0 text-[26px] leading-[1.05]">{problem.title}</h3>
       <p className="text-ink-2 m-0 text-[15px] leading-relaxed">{problem.problem}</p>
       <p className="m-0 grid gap-1.5 rounded-xl bg-black/25 px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_var(--color-line)]">

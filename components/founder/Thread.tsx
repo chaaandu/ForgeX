@@ -58,11 +58,11 @@ export function Thread({
           {entry.responses.map((response) => (
             <div
               key={response.id}
-              className="grid gap-2 rounded-2xl p-5 shadow-[inset_0_0_0_1px_rgb(255_72_176/0.45)]"
-              style={{ background: 'color-mix(in oklab, var(--color-pink) 7%, transparent)' }}
+              className="grid gap-2 rounded-2xl p-5 shadow-[inset_0_0_0_1px_rgb(124_77_204/0.45)]"
+              style={{ background: 'color-mix(in oklab, var(--color-violet) 7%, transparent)' }}
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <span className="text-pink-ink text-[15px] font-semibold">
+                <span className="text-violet-ink text-[15px] font-semibold">
                   {copy.status[response.type]}
                 </span>
                 <span className="text-ink-3 font-mono text-[12px]">

@@ -21,10 +21,14 @@ export function TeamNav({ waiting, drafts }: { waiting: number; drafts: number }
             key={item.href}
             href={item.href}
             aria-current={active ? 'page' : undefined}
-            className={`press inline-flex min-h-9 items-center gap-2 rounded-full px-3.5 text-[14px] ${active ? 'bg-white/10 text-ink-1' : 'text-ink-2 hover:text-ink-1'}`}
+            className={`press inline-flex min-h-9 items-center gap-2 rounded-full px-3.5 text-[14px] ${active ? 'text-ink-1 bg-white/10' : 'text-ink-2 hover:text-ink-1'}`}
           >
             {item.label}
-            {item.count ? <span className="rounded-full bg-pink px-1.5 font-mono text-[11px] leading-[18px] text-on-pink">{item.count}</span> : null}
+            {item.count ? (
+              <span className="bg-violet text-on-violet rounded-full px-1.5 font-mono text-[11px] leading-[18px]">
+                {item.count}
+              </span>
+            ) : null}
           </Link>
         )
       })}

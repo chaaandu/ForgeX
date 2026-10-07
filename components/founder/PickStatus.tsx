@@ -32,10 +32,9 @@ export function PickStatus({
   const [pending, start] = useTransition()
   return (
     <section className="panel grid gap-5 p-6 md:p-8" aria-labelledby="pick-title">
-      <span className="meta">{copy.yourPick}</span>
-      <h2 id="pick-title" className="display m-0 text-[clamp(28px,3.4vw,40px)] leading-[1.05]">
+      <h3 id="pick-title" className="display m-0 text-[clamp(28px,3.4vw,40px)] leading-[1.05]">
         {title}
-      </h2>
+      </h3>
       <p className="text-ink-2 m-0 text-[16px]">{challenge}</p>
       <div className="border-line border-t pt-5">
         {status === 'waiting' ? (

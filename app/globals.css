@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 /* ==========================================================================
-   ForgeX 2.0 · Matte, with Riso's pink
+   ForgeX 2.0 · Matte, with Mesa's violet
    Graphite ground, one soft light, an editorial serif. White carries the
-   words; pink carries the moments. Every text colour here passes WCAG AA on
+   words; violet carries the moments. Every text colour here passes WCAG AA on
    every surface it can sit on (checked in docs/DESIGN.md).
    ========================================================================== */
 
@@ -19,10 +19,13 @@
   --color-ink-2: #b3b0a9;
   --color-ink-3: #8f8c85;
 
-  /* The accent. Primary actions, the live state, one phrase per screen. */
-  --color-pink: #ff48b0;
-  --color-pink-ink: #ff6fc2;
-  --color-on-pink: #1a0510;
+  /* Mesa's purple family. Vivid Violet fills the primary action and carries
+     white text at 5.5:1; the ink is the same hue lifted to 6.7:1 on the
+     ground, for words and marks. */
+  --color-violet: #7c4dcc;
+  --color-violet-hover: #8a5dd9;
+  --color-violet-ink: #a98beb;
+  --color-on-violet: #ffffff;
 
   --color-legendary: #f2ab3c;
   --color-mythic: #ff6a61;
@@ -72,7 +75,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-pink);
+    outline: 2px solid var(--color-violet-ink);
     outline-offset: 3px;
   }
 
@@ -89,8 +92,8 @@
   }
 
   ::selection {
-    background: var(--color-pink);
-    color: var(--color-on-pink);
+    background: var(--color-violet);
+    color: var(--color-on-violet);
   }
 
   /* One grain over everything: the matte in matte. */
@@ -118,7 +121,7 @@
   .display em,
   .ask em {
     font-style: italic;
-    color: var(--color-pink-ink);
+    color: var(--color-violet-ink);
   }
 
   .ask {
@@ -172,14 +175,14 @@
   }
 
   .btn-primary {
-    background: var(--color-pink);
-    color: var(--color-on-pink);
+    background: var(--color-violet);
+    color: var(--color-on-violet);
     box-shadow:
       inset 0 -2px 0 rgb(0 0 0 / 0.22),
-      0 10px 30px -12px rgb(255 72 176 / 0.55);
+      0 10px 30px -12px rgb(124 77 204 / 0.55);
   }
   .btn-primary:hover:not(:disabled) {
-    background: #ff5cba;
+    background: var(--color-violet-hover);
   }
   .btn-primary:active:not(:disabled) {
     box-shadow: inset 0 0 0 rgb(0 0 0 / 0.22);
@@ -198,10 +201,10 @@
     min-height: 40px;
     padding: 0 12px;
     background: transparent;
-    color: var(--color-pink-ink);
+    color: var(--color-violet-ink);
   }
   .btn-quiet:hover:not(:disabled) {
-    color: color-mix(in oklab, var(--color-pink-ink) 70%, white);
+    color: color-mix(in oklab, var(--color-violet-ink) 70%, white);
   }
 
   /* --------------------------------------------------------------- panel */
@@ -240,10 +243,18 @@
   }
   .choice[aria-pressed='true'],
   .choice[aria-checked='true'] {
-    background: color-mix(in oklab, var(--color-pink) 14%, transparent);
+    background: color-mix(in oklab, var(--color-violet) 14%, transparent);
     box-shadow:
-      inset 0 0 0 1.5px var(--color-pink),
-      0 10px 30px -18px rgb(255 72 176 / 0.6);
+      inset 0 0 0 1.5px var(--color-violet),
+      0 10px 30px -18px rgb(124 77 204 / 0.6);
+  }
+
+  /* Chosen, but not finished: a way in that hasn't said where yet. */
+  .choice[aria-pressed='mixed'] {
+    background: rgb(255 255 255 / 0.035);
+    box-shadow: none;
+    outline: 1.5px dashed var(--color-violet-ink);
+    outline-offset: -1.5px;
   }
 
   .chip {
@@ -270,8 +281,8 @@
   }
   .chip[aria-pressed='true'],
   .chip[aria-checked='true'] {
-    color: var(--color-on-pink);
-    background: var(--color-pink);
+    color: var(--color-on-violet);
+    background: var(--color-violet);
     box-shadow: none;
   }
 
@@ -307,7 +318,7 @@
   }
   .field:focus {
     outline: none;
-    box-shadow: inset 0 0 0 1.5px var(--color-pink);
+    box-shadow: inset 0 0 0 1.5px var(--color-violet);
   }
   textarea.field {
     min-height: 120px;
@@ -461,16 +472,16 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--color-pink);
+  background: var(--color-violet);
   animation: pulse 2.4s ease-out infinite;
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(255 72 176 / 0.55);
+    box-shadow: 0 0 0 0 rgb(124 77 204 / 0.55);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 8px rgb(255 72 176 / 0);
+    box-shadow: 0 0 0 8px rgb(124 77 204 / 0);
   }
 }
 
@@ -694,7 +705,7 @@
 }
 
 .rv-who h1 em {
-  color: var(--color-pink-ink);
+  color: var(--color-violet-ink);
 }
 
 /* The family, said quietly above the name: its colour, its name, its line. */
@@ -872,7 +883,7 @@
   outline: none;
 }
 .inline-edit:focus {
-  border-bottom-color: var(--color-pink);
+  border-bottom-color: var(--color-violet);
 }
 .inline-edit::placeholder {
   color: var(--color-ink-3);

@@ -97,12 +97,12 @@ Copy is as important as the design. Every string is written to `docs/VOICE.md`.
 
 ## Design
 
-The direction is Matte, with Riso's pink:
+The direction is Matte, with Mesa's violet (it replaced Riso's pink on 2026-10-07):
 - graphite ground, one grain, Instrument Serif for display, Geist and Geist Mono;
-- white carries the words, pink (`--color-pink`) the moments: the primary action, one italic phrase, the live state;
+- white carries the words, violet (`--color-violet`, `--color-violet-ink` for text) the moments: the primary action, one italic phrase, the live state;
 - difficulty colours are accents only, in the console, never backgrounds for text.
 
-- **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component. One finish, `picked` (pink, with foil), for any pick. The bottom line is always the archetype's identity line, never the bio or the problem.
+- **The founder card is the progress bar.** Every level adds a layer. Change what the card shows in `lib/card.ts`, not in the component. One finish, `picked` (violet, with foil), for any pick. The bottom line is always the archetype's identity line, never the bio or the problem.
 - **One progress bar.** Levels with questions report to it through `setLevelProgress` (`components/shell/progress.ts`), so the current segment fills; never add a second bar. The onboarding shows no logo. Founders never get a sign-out at all; the team signs out from the account menu (`components/shell/Account.tsx`).
 - **Nothing a founder sees ranks a problem.** Difficulty (easy, medium, hard) and signal never reach a founder's browser; difficulty still pitches matching, and the team sees it in the bank and the queue. Rarity survives only as the research pipeline's input, mapped by `DIFFICULTY_OF_RARITY`.
 - **Nothing rotates** except the landing wall's flip. The card's light follows the pointer; the card itself stays still.

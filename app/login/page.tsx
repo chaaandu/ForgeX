@@ -20,7 +20,10 @@ const PERSONAS = [
     label: 'Aarav, guided, placed in Hackathon 1',
   },
   { email: 'diya_agrawal@forge27.mesaschool.co', label: 'Diya, structured, new to archetypes' },
-  { email: 'aadishwar_r@forge27.mesaschool.co', label: 'Aadishwar, autonomous, placed in Hackathon 1' },
+  {
+    email: 'aadishwar_r@forge27.mesaschool.co',
+    label: 'Aadishwar, autonomous, placed in Hackathon 1',
+  },
   { email: 'team@mesaschool.co', label: 'the team' },
 ]
 
@@ -79,7 +82,7 @@ export default async function Login({
           {refused ? (
             <p
               role="alert"
-              className="m-0 rounded-xl px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_rgb(255_72_176/0.5)]"
+              className="m-0 rounded-xl px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_rgb(124_77_204/0.5)]"
             >
               {refused}
             </p>

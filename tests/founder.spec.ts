@@ -59,7 +59,7 @@ test('a founder placed in Hackathon 1 keeps their archetype and walks to a sent 
   await page.getByRole('button', { name: 'Send my why' }).click()
   await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
 
-  await page.getByRole('link', { name: 'See my page' }).click()
+  await page.getByRole('link', { name: 'See my profile' }).click()
   await page.waitForURL('**/f/aarav-shrivastava')
   await expect(page.getByText("You'll see our response here.")).toBeVisible()
 })

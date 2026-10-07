@@ -33,7 +33,7 @@ export const INDUSTRY_IDS = INDUSTRIES.map((industry) => industry.id) as Industr
  */
 export const SIDES = [
   { id: 'business', label: 'Businesses' },
-  { id: 'consumer', label: 'People' },
+  { id: 'consumer', label: 'Everyday people' },
   { id: 'creator', label: 'Self-employed' },
 ] as const
 

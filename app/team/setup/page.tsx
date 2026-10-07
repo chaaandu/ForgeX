@@ -101,7 +101,7 @@ export default async function SetupPage() {
     <div className="grid max-w-[880px] gap-8">
       <div className="grid gap-2">
         <h1 className="display m-0 text-[40px] leading-none">{copy.title}</h1>
-        <p className={`text-lead m-0 ${failing ? 'text-pink-ink' : 'text-ok'}`}>
+        <p className={`text-lead m-0 ${failing ? 'text-violet-ink' : 'text-ok'}`}>
           {failing ? copy.failing(failing) : copy.allGood}
         </p>
       </div>
@@ -112,7 +112,7 @@ export default async function SetupPage() {
             className="border-line grid grid-cols-[28px_minmax(0,1fr)] gap-3 border-t py-3.5 md:grid-cols-[28px_280px_minmax(0,1fr)]"
           >
             <span
-              className={`font-mono text-[15px] ${check.ok ? 'text-ok' : 'text-pink-ink'}`}
+              className={`font-mono text-[15px] ${check.ok ? 'text-ok' : 'text-violet-ink'}`}
               aria-label={check.ok ? copy.pass : copy.fail}
             >
               {check.ok ? '✓' : '✗'}

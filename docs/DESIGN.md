@@ -8,9 +8,11 @@ Good enough to be featured on Awwwards, and still an honest tool that a nervous 
 
 **A card being made.** The portal is a press for one collectible card. Every level adds a layer to it: the photo, the number, the archetype, the edge marks and the finish. The landing is the whole cohort's cards laid out as a wall. The reveal is the moment a card is struck. The team's response lives on the founder's page, not on the card. Every choice below — material, motion, type — comes from that one physical metaphor. Nothing is decoration.
 
-## Chosen direction: Matte, with Riso's pink
+## Chosen direction: Matte, with Mesa's violet
 
-The owner chose on 2026-10-06: **A's matte world and type, with B's pink as the one accent.** Graphite ground, one soft light, Instrument Serif for display with Geist and Geist Mono, monochrome faces that come alive on touch. White carries the words; pink carries the moments (the primary action, the overprinted phrase in the hero, the live state, the picked finish on the card). Quiet, tertiary buttons are pink text too. The three lab directions below are kept for the record; their per-rarity finishes were retired with rarity.
+The owner chose on 2026-10-06: **A's matte world and type, with B's pink as the one accent.** Graphite ground, one soft light, Instrument Serif for display with Geist and Geist Mono, monochrome faces that come alive on touch. White carries the words; violet carries the moments (the primary action, the overprinted phrase in the hero, the live state, the picked finish on the card). Quiet, tertiary buttons are violet text too.
+
+On 2026-10-07 the owner replaced the pink with Mesa's purple family, and nothing else: Vivid Violet `#7c4dcc` fills primary actions (white text, 5.5:1), `#8a5dd9` is its hover, and the ink `#a98beb` (6.7:1 on the ground) carries violet words and marks. The picked card frame runs from the ink to Amethyst `#5a3a8e`. The three lab directions below are kept for the record; their per-rarity finishes were retired with rarity.
 
 ## Three directions for `/lab`
 
@@ -74,7 +76,7 @@ Everything lives in `app/globals.css` under `@theme`. Components never use raw h
   - `--ground`, `--surface-1..3`, `--line`, `--ink-1..3` (text, from strongest to weakest)
   - `--accent`, for primary actions only, at most about 5% of any screen
   - `--focus`
-- **The card's finish:** one, `picked`, for any pick: `--color-pink` on the frame, with foil. A finish per difficulty would tell a founder how hard their problem is, so there isn't one.
+- **The card's finish:** one, `picked`, for any pick: `--color-violet` on the frame, with foil. A finish per difficulty would tell a founder how hard their problem is, so there isn't one.
 - **Difficulty** (team only, `DifficultyTag`):
 
   | Difficulty | Colour |
@@ -99,7 +101,7 @@ Everything lives in `app/globals.css` under `@theme`. Components never use raw h
 | `Choice` (tap card), `Chip`, `ChipInput`, `Slider`, `OtherField` | The question controls. |
 | `InlineField` | The profile's click-to-edit field, with its view, edit, saving and error states. |
 | `Progress` | The founder card in the corner; see PRODUCT. |
-| `Button` (primary, secondary, quiet), `Sheet`, `Toast`, `Skeleton` | General controls. Quiet is pink text on no fill. |
+| `Button` (primary, secondary, quiet), `Sheet`, `Toast`, `Skeleton` | General controls. Quiet is violet text on no fill. |
 | `.dock` | A step's own buttons. Fixed to the bottom of the screen on phones (under 768px), inline on desktop. Never inside a `.rise`, whose translate would trap it. |
 | `Nudge` | The live writing guidance in Level 6. |
 
@@ -147,7 +149,7 @@ Every animation must explain something: a transition, a reveal or a change of st
 - **Focus rings** are designed with as much care as hover: a 2px `--focus` ring, offset, that follows the radius of what it surrounds.
 - **Mobile first:** every screen is designed at 360px and checked at 390, 1080 and 1440. Tap targets are at least 44px. Primary actions sit in thumb reach on mobile: on the onboarding they live in the `.dock`.
 - **No quotation glyphs,** no decorative commas, and no ornamental punctuation.
-- **Contrast:** WCAG 2.2 AA everywhere, checked with axe and by hand on the pink and difficulty inks.
+- **Contrast:** WCAG 2.2 AA everywhere, checked with axe and by hand on the violet and difficulty inks.
 
 ## Self-review before showing any screen
 

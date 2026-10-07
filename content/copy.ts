@@ -254,8 +254,8 @@ export const world = {
     options: {
       business: { label: 'Businesses', sub: 'Shops, clinics, factories, offices.' },
       consumer: {
-        label: 'People, for themselves',
-        sub: 'Patients, parents, renters, job seekers.',
+        label: 'Everyday people',
+        sub: 'Patients, parents, renters, job seekers. Paying for themselves.',
       },
       creator: {
         label: 'People who earn on their own',
@@ -271,6 +271,7 @@ export const world = {
     otherPlaceholder: 'My cricket club',
     worlds: (who: string) => `Which industry is ${who} in?`,
     elsewhere: 'Somewhere else',
+    pickBelow: 'Pick where, below',
     elsewherePlaceholder: 'Pharma distribution',
     none: 'Nobody yet',
     whoLabel: {
@@ -327,13 +328,14 @@ export const login = {
 
 export const arrive = {
   hi: (first: string) => `Hi, ${first}.`,
-  lead: "6 steps. By the last one, you'll have a problem worth building.",
+  /** Two lines on purpose: the promise gets a line of its own. */
+  lead: ['6 steps. By the last one,', "you'll have a problem worth building."],
   steps: 'The 6 steps',
   path: [
     { name: 'Arrive', line: "You're here." },
     { name: 'Archetype', line: 'The kind of builder you are.' },
     { name: 'Profile', line: 'You, in your own words.' },
-    { name: 'Your world', line: 'Tell us where to look for your problem.' },
+    { name: 'Your world', line: "Tell us which problems you'd want to solve." },
     {
       name: 'Matches',
       line: '4 problems picked for you.',
@@ -355,7 +357,6 @@ export const archetypeFlow = {
   },
   question: (at: number, of: number) => `${at} of ${of}`,
   back: 'Back',
-  keys: 'Press 1, 2 or 3',
   placing: 'Working out your archetype',
   retry: 'Try again',
   error: "That didn't save. Your answers are still here. Try again.",
@@ -390,12 +391,13 @@ export const profile = {
     add: 'Add one line about you',
   },
   facts: {
-    city: { label: 'Lives in', placeholder: 'Pune' },
-    languages: { label: 'Speaks', placeholder: 'Marathi' },
-    degree: { label: 'Studies', placeholder: 'BBA, Commerce and Management' },
+    city: { label: 'Lives in', icon: '📍', placeholder: 'Pune' },
+    languages: { label: 'Speaks', icon: '🗣️', placeholder: 'Marathi' },
+    degree: { label: 'Studies', icon: '🎓', placeholder: 'BBA, Commerce and Management' },
   },
   goodAt: {
     label: 'Good at today',
+    icon: '💪',
     placeholder: 'Cold calling',
     suggestions: [
       'Sales',
@@ -411,6 +413,7 @@ export const profile = {
   },
   wantToLearn: {
     label: 'Wants to learn',
+    icon: '🌱',
     placeholder: 'Voice AI',
     suggestions: [
       'AI agents',
@@ -424,6 +427,7 @@ export const profile = {
   },
   links: {
     label: 'Find me',
+    icon: '🔗',
     github: 'GitHub',
     linkedin: 'LinkedIn',
     portfolio: 'Portfolio or personal site',
@@ -506,8 +510,8 @@ export const why = {
   locked: "The team has answered this pick, so it's settled.",
   sent: {
     title: 'Sent.',
-    lead: "Your card now carries your problem. We read every why and reply to each one. You'll see our reply on your page.",
-    go: 'See my page',
+    lead: "Your card now carries your problem. We read every why and reply to each one. You'll see our reply on your profile within 24 hours.",
+    go: 'See my profile',
   },
 }
 
@@ -536,7 +540,6 @@ export const composer = {
 
 export const page = {
   continue: (level: string) => `Continue: ${level}`,
-  yourPick: 'Your pick',
   building: 'Building',
   noPick: 'No pick yet.',
   waiting: "You'll see our response here.",
@@ -556,6 +559,13 @@ export const page = {
     another: 'Try another',
   },
   thread: 'Your why and our replies',
+  threadTeam: 'Their why and our replies',
+  sections: {
+    problem: 'Your problem',
+    theirProblem: 'Their problem',
+    profile: 'Your profile',
+    theirProfile: 'Profile',
+  },
   you: 'You',
   team: 'The ForgeX team',
   /** What the team sees in place of the line above: which of us wrote it. */
@@ -565,7 +575,6 @@ export const page = {
   console: 'Back to console',
   suggested: 'Try one of these',
   own: 'Your own problem',
-  about: 'About',
   teamOnly: 'Team only',
   teamFields: {
     email: 'Email',
@@ -719,7 +728,7 @@ export const email = {
     another: () => 'A few problems we think fit you better',
   },
   hi: (first: string) => `Hi ${first},`,
-  readMore: 'Read the full reply on your page:',
+  readMore: 'Read the full reply on your profile:',
   fallbackTitle: 'your problem',
   signOff: 'The ForgeX team',
 }

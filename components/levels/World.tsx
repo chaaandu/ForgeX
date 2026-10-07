@@ -74,20 +74,18 @@ export function World({
     ...INDUSTRIES.filter((industry) => !draft.industries.includes(industry.id)),
   ]
 
+  // A way in counts once it says where: until then it is only half chosen.
+  const complete = (entry: Draft['access'][number]) =>
+    (entry.kind !== 'other' || (entry.other ?? '').trim().length > 1) &&
+    entry.worlds.length > 0 &&
+    (!entry.worlds.includes('elsewhere') || (entry.elsewhere ?? '').trim().length > 1)
+
   const ready: Record<(typeof STEPS)[number], boolean> = {
     industries:
       draft.industries.length > 0 &&
       (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
     side: draft.side !== null,
-    access:
-      draft.nobody ||
-      (draft.access.length > 0 &&
-        draft.access.every(
-          (entry) =>
-            (entry.kind !== 'other' || (entry.other ?? '').trim().length > 1) &&
-            entry.worlds.length > 0 &&
-            (!entry.worlds.includes('elsewhere') || (entry.elsewhere ?? '').trim().length > 1),
-        )),
+    access: draft.nobody || (draft.access.length > 0 && draft.access.every(complete)),
     learn:
       draft.learn.length > 0 &&
       (!draft.learn.includes('other') || draft.learnOther.trim().length > 1),
@@ -213,13 +211,18 @@ export function World({
                     <button
                       type="button"
                       className="choice press"
-                      aria-pressed={Boolean(entry)}
+                      aria-pressed={entry ? (complete(entry) ? true : 'mixed') : false}
                       onClick={() => setAccess(option.id, entry ? null : {})}
                     >
                       {option.label}
+                      {entry && !complete(entry) ? (
+                        <span aria-hidden="true" className="text-ink-3 ml-auto text-[13px]">
+                          {copy.access.pickBelow}
+                        </span>
+                      ) : null}
                     </button>
                     {entry ? (
-                      <div className="rise grid gap-3 pb-2 pl-4 shadow-[inset_2px_0_0_var(--color-pink)]">
+                      <div className="rise grid gap-3 pb-2 pl-4 shadow-[inset_2px_0_0_var(--color-violet)]">
                         {option.id === 'other' ? (
                           <input
                             className="field"
@@ -350,7 +353,7 @@ export function World({
           {copy.back}
         </button>
         {error ? (
-          <p role="alert" className="text-pink-ink m-0 text-[14px]">
+          <p role="alert" className="text-violet-ink m-0 text-[14px]">
             {copy.error}
           </p>
         ) : null}
@@ -385,7 +388,7 @@ function Ask({ text, hint, count }: { text: string; hint?: string; count?: [numb
         <h1 className="ask m-0">{text}</h1>
         {count ? (
           <span
-            className={`mt-2 shrink-0 rounded-full px-2.5 py-1 font-mono text-[12px] ${count[0] >= count[1] ? 'bg-pink text-on-pink' : 'text-ink-2 shadow-[inset_0_0_0_1px_var(--color-line-2)]'}`}
+            className={`mt-2 shrink-0 rounded-full px-2.5 py-1 font-mono text-[12px] ${count[0] >= count[1] ? 'bg-violet text-on-violet' : 'text-ink-2 shadow-[inset_0_0_0_1px_var(--color-line-2)]'}`}
             aria-label={copy.picked(count[0], count[1])}
           >
             {count[0]} / {count[1]}

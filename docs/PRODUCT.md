@@ -37,7 +37,7 @@ Every level adds a layer to the founder's collectible card, so the thing they ar
 | 1 Arrive | Photo, name, number `#023 / 117` |
 | 2 Archetype | The family's character, full length, standing in the photo's corner; *Family · Archetype*; and the archetype's identity line along the bottom |
 | 4 Your world | Industry and side marks along the edge |
-| 6 Your why | The picked finish: pink, with foil. The same for every problem, so the card never says how hard a pick is |
+| 6 Your why | The picked finish: violet, with foil. The same for every problem, so the card never says how hard a pick is |
 | 7 Response | Nothing on the card. The answer lives on the founder's page; a card with a Go shows on the landing |
 
 The bottom line of the card is always the archetype's identity line, never the bio and never the problem. The bio and the problem live on the founder page.
@@ -148,7 +148,7 @@ It looks like a personal page, not a settings screen. The card sits beside it, a
 | LinkedIn | — | Yes, normalised on the server |
 | Portfolio or personal site | — | Yes, any https URL |
 
-It opens as the profile the team will see. **Edit** turns the same page into fields that save one at a time; **Looks like me** moves on. Nothing on this page is required except the bio. Any link that won't normalise is shown inline, with a fix.
+It opens as the profile the team will see. **Edit** turns the same page into fields that save one at a time; **Looks like me** moves on. Nothing on this page is required except the bio. Any link that won't normalise is shown inline, with a fix. The bio edits in place in one tap: **Add one line about you** opens the field, focused, where the invitation was. If **Looks like me** is pressed without one, the field opens with the reason. Field headers carry an emoji: 📍 Lives in, 🎓 Studies, 🗣️ Speaks, 💪 Good at today, 🌱 Wants to learn, 🔗 Find me.
 
 ### Level 4 · Your world `/world`
 
@@ -232,7 +232,7 @@ The prompts:
 | 3 | No money words (pay, price, fee, subscription, save, commission, ads) | *Who hands over money, and for what?* |
 | Any | Under about 25 words | *A little more. Two or three sentences is plenty.* |
 
-**Submit** is **Send it**. The card flips, and the picked finish sweeps across it: pink, with foil, the same for a bank problem and one the founder wrote.
+**Submit** is **Send it**. The card flips, and the picked finish sweeps across it: violet, with foil, the same for a bank problem and one the founder wrote.
 
 **Pending picks:** while a pick is waiting, the founder can withdraw it and go back to matches. Once the team has responded, the pick is locked until a **Try another**.
 

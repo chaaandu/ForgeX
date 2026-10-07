@@ -23,6 +23,8 @@ export function InlineField({
   onSave,
   error: outerError,
   inputRef,
+  emptyLabel,
+  openKey = 0,
 }: {
   label: string
   value: string
@@ -34,6 +36,10 @@ export function InlineField({
   onSave: (value: string) => Promise<SaveResult>
   error?: string | null
   inputRef?: React.RefObject<HTMLButtonElement | null>
+  /** An invitation instead of "Not added yet": one tap and the field is open. */
+  emptyLabel?: string
+  /** Bump to open the field from outside, for example when it is required. */
+  openKey?: number
 }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(value)
@@ -43,6 +49,9 @@ export function InlineField({
   const id = useId()
 
   useEffect(() => setDraft(value), [value])
+  useEffect(() => {
+    if (openKey > 0) setEditing(true)
+  }, [openKey])
   useEffect(() => {
     if (editing) field.current?.focus()
   }, [editing])
@@ -94,7 +103,7 @@ export function InlineField({
                 void commit()
               }
             }}
-            rows={2}
+            rows={3}
           />
         ) : (
           <input
@@ -121,15 +130,31 @@ export function InlineField({
           type="button"
           ref={inputRef}
           className="inline-read press text-left"
-          aria-label={copy.fieldEdit(label, value || placeholder)}
+          aria-label={
+            !value && emptyLabel ? emptyLabel : copy.fieldEdit(label, value || placeholder)
+          }
           onClick={() => setEditing(true)}
         >
-          <span className={value ? '' : 'text-ink-3'}>{value ? (display ? display(value) : value) : copy.empty}</span>
-          <Pencil size={14} strokeWidth={1.5} className="inline-pen" aria-hidden="true" />
+          {!value && emptyLabel ? (
+            <span className="text-violet-ink font-sans text-[16px] not-italic underline decoration-1 underline-offset-4">
+              {emptyLabel}
+            </span>
+          ) : (
+            <>
+              <span className={value ? '' : 'text-ink-3'}>
+                {value ? (display ? display(value) : value) : copy.empty}
+              </span>
+              <Pencil size={14} strokeWidth={1.5} className="inline-pen" aria-hidden="true" />
+            </>
+          )}
         </button>
       )}
       <span className="min-h-[18px] font-sans text-[13px] not-italic" aria-live="polite">
-        {shown ? <span className="text-pink-ink">{shown}</span> : status ? <span className="meta">{status}</span> : null}
+        {shown ? (
+          <span className="text-violet-ink">{shown}</span>
+        ) : status ? (
+          <span className="meta">{status}</span>
+        ) : null}
       </span>
     </div>
   )

@@ -43,7 +43,11 @@ export function Arrive({
             {copy.hi(first)}
           </h1>
           <p className="rise text-lead text-ink-2 m-0 max-w-[34ch] [animation-delay:120ms]">
-            {copy.lead}
+            {copy.lead.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </p>
         </div>
         <ol className="m-0 grid list-none gap-0 p-0" aria-label={copy.steps}>
@@ -56,7 +60,7 @@ export function Arrive({
                 style={{ animationDelay: `${220 + index * 60}ms` }}
               >
                 <span
-                  className={`font-mono text-[12px] ${index === 0 ? 'text-pink-ink' : 'text-ink-3'}`}
+                  className={`font-mono text-[12px] ${index === 0 ? 'text-violet-ink' : 'text-ink-3'}`}
                 >
                   {String(index + 1).padStart(2, '0')}
                 </span>

@@ -44,8 +44,8 @@ export async function throughArchetype(page: Page, quiz: boolean) {
 }
 
 export async function throughProfile(page: Page) {
+  // One tap opens the field, focused, right where the invitation was.
   await page.getByRole('button', { name: 'Add one line about you' }).click()
-  await page.getByRole('button', { name: /^One line about you/ }).click()
   await page.keyboard.type('I run the counter at my family shop on weekends.')
   await page.keyboard.press('Enter')
   await expect(page.getByText('Saved')).toBeVisible()
@@ -60,7 +60,7 @@ export async function throughWorld(page: Page, lands = '**/matches') {
   await page.getByRole('button', { name: 'Next' }).click()
   // Prefilled for anyone whose prior work mentions a family business.
   const family = page.getByRole('button', { name: 'Family business', exact: true })
-  if ((await family.getAttribute('aria-pressed')) !== 'true') await family.click()
+  if ((await family.getAttribute('aria-pressed')) === 'false') await family.click()
   await page.getByRole('button', { name: 'Retail', exact: true }).click()
   await page.getByRole('button', { name: 'Next' }).click()
   await page.getByRole('button', { name: 'Data and dashboards' }).click()

@@ -32,7 +32,7 @@ export function Matches({
         <p className="rise text-lead text-ink-2 m-0 max-w-[52ch] [animation-delay:80ms]">
           {gentle ? copy.gentleLead : list.length ? copy.lead : copy.empty.lead}
         </p>
-        {again && list.length ? <p className="meta text-pink-ink m-0">{copy.again}</p> : null}
+        {again && list.length ? <p className="meta text-violet-ink m-0">{copy.again}</p> : null}
         {waitingFor ? (
           <p className="text-ink-2 m-0 rounded-xl px-4 py-3 text-[14px] shadow-[inset_0_0_0_1px_var(--color-line-2)]">
             {copy.waiting(waitingFor)}

@@ -149,11 +149,7 @@ export function Quiz({
         >
           {copy.back}
         </button>
-        {saving ? (
-          <p className="meta m-0">{copy.placing}</p>
-        ) : (
-          <p className="meta m-0 hidden md:block">{copy.keys}</p>
-        )}
+        {saving ? <p className="meta m-0">{copy.placing}</p> : null}
         {error ? (
           <div className="flex items-center gap-3" role="alert">
             <p className="text-ink-2 m-0 text-[14px]">{copy.error}</p>

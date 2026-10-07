@@ -89,7 +89,7 @@ export function Composer({
             }
           />
         )}
-        <span className="text-pink-ink min-h-5 text-[13px]" aria-live="polite">
+        <span className="text-violet-ink min-h-5 text-[13px]" aria-live="polite">
           {nudge ? whyCopy.nudges[nudge] : ''}
         </span>
       </div>
@@ -147,17 +147,23 @@ export function Composer({
         <p className="meta m-0" id="own-side">
           {copy.fields.side}
         </p>
-        <div className="grid gap-2 sm:grid-cols-3" role="radiogroup" aria-labelledby="own-side">
+        {/* The same words as Your world, so a founder never meets two names for one group. */}
+        <div className="grid gap-2.5" role="radiogroup" aria-labelledby="own-side">
           {SIDES.map((side) => (
             <button
               key={side.id}
               type="button"
               role="radio"
               aria-checked={draft.side === side.id}
-              className="choice press"
+              className="choice press min-h-[72px]"
               onClick={() => setDraft((current) => ({ ...current, side: side.id }))}
             >
-              {side.label}
+              <span className="grid gap-0.5 text-left">
+                <span>{worldCopy.side.options[side.id].label}</span>
+                <span className="text-ink-3 text-[14px]">
+                  {worldCopy.side.options[side.id].sub}
+                </span>
+              </span>
             </button>
           ))}
         </div>

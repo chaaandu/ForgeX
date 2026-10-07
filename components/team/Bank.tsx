@@ -257,7 +257,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                       </span>
                     ) : null}
                     <span
-                      className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-pink-ink' : ''}`}
+                      className={`meta ${item.status === 'approved' ? 'text-ok' : item.status === 'rejected' ? 'text-violet-ink' : ''}`}
                     >
                       {copy.status[item.status]}
                     </span>
@@ -392,7 +392,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                           href={entry.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-ink-1 decoration-line-2 hover:decoration-pink underline underline-offset-4"
+                          className="text-ink-1 decoration-line-2 hover:decoration-violet underline underline-offset-4"
                         >
                           {entry.paraphrase}
                         </a>

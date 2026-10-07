@@ -19,24 +19,42 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
   const shown = useMemo(() => {
     const q = query.trim().toLowerCase()
     return rows
-      .filter((row) => (status === 'all' || row.status === status) && (!q || row.name.toLowerCase().includes(q)))
+      .filter(
+        (row) =>
+          (status === 'all' || row.status === status) && (!q || row.name.toLowerCase().includes(q)),
+      )
       .sort((a, b) => {
         const by = (row: FounderRow) =>
-          sort.key === 'status' ? STATUS_ORDER.indexOf(row.status) : sort.key === 'level' ? row.level : (row[sort.key] ?? '')
+          sort.key === 'status'
+            ? STATUS_ORDER.indexOf(row.status)
+            : sort.key === 'level'
+              ? row.level
+              : (row[sort.key] ?? '')
         const x = by(a)
         const y = by(b)
         return (x < y ? -1 : x > y ? 1 : a.name.localeCompare(b.name)) * sort.dir
       })
   }, [query, rows, sort, status])
 
-  const counts = STATUS_ORDER.map((key) => [key, rows.filter((row) => row.status === key).length] as const)
+  const counts = STATUS_ORDER.map(
+    (key) => [key, rows.filter((row) => row.status === key).length] as const,
+  )
 
   const header = (key: Key, label: string, className = '') => (
-    <th scope="col" className={`py-3 pr-4 text-left font-normal ${className}`} aria-sort={sort.key === key ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'}>
+    <th
+      scope="col"
+      className={`py-3 pr-4 text-left font-normal ${className}`}
+      aria-sort={sort.key === key ? (sort.dir === 1 ? 'ascending' : 'descending') : 'none'}
+    >
       <button
         type="button"
-        className="meta press cursor-pointer border-0 bg-transparent p-0 hover:text-ink-1"
-        onClick={() => setSort((current) => ({ key, dir: current.key === key ? (current.dir === 1 ? -1 : 1) : 1 }))}
+        className="meta press hover:text-ink-1 cursor-pointer border-0 bg-transparent p-0"
+        onClick={() =>
+          setSort((current) => ({
+            key,
+            dir: current.key === key ? (current.dir === 1 ? -1 : 1) : 1,
+          }))
+        }
       >
         {label}
         {sort.key === key ? (sort.dir === 1 ? ' ↑' : ' ↓') : ''}
@@ -48,26 +66,43 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
     <div className="grid gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <h1 className="display m-0 text-[40px] leading-none">
-          {copy.title} <span className="font-mono text-[14px] text-ink-3">{rows.length}</span>
+          {copy.title} <span className="text-ink-3 font-mono text-[14px]">{rows.length}</span>
         </h1>
         <a href="/api/team/export.csv" className="btn btn-secondary press" download>
           {copy.export}
         </a>
       </div>
       <div className="quiet-scroll -mx-5 flex items-center gap-2 overflow-x-auto px-5 pb-1 md:mx-0 md:flex-wrap md:px-0">
-        <input className="field h-10 min-h-0 w-[220px] shrink-0 py-0 text-[14px]" placeholder={copy.searchPlaceholder} aria-label={copy.search} value={query} onChange={(event) => setQuery(event.target.value)} />
-        <button type="button" className="chip press min-h-9 shrink-0 text-[13px]" aria-pressed={status === 'all'} onClick={() => setStatus('all')}>
+        <input
+          className="field h-10 min-h-0 w-[220px] shrink-0 py-0 text-[14px]"
+          placeholder={copy.searchPlaceholder}
+          aria-label={copy.search}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+        <button
+          type="button"
+          className="chip press min-h-9 shrink-0 text-[13px]"
+          aria-pressed={status === 'all'}
+          onClick={() => setStatus('all')}
+        >
           {copy.all}
         </button>
         {counts.map(([key, count]) => (
-          <button key={key} type="button" className="chip press min-h-9 shrink-0 text-[13px]" aria-pressed={status === key} onClick={() => setStatus(key)}>
+          <button
+            key={key}
+            type="button"
+            className="chip press min-h-9 shrink-0 text-[13px]"
+            aria-pressed={status === key}
+            onClick={() => setStatus(key)}
+          >
             {copy.statuses[key]} <span className="font-mono text-[11px]">{count}</span>
           </button>
         ))}
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[860px] table-fixed border-collapse text-[14px]">
-          <thead className="border-b border-line">
+          <thead className="border-line border-b">
             <tr>
               {header('name', copy.columns.name, 'w-[24%]')}
               {header('archetype', copy.columns.archetype, 'w-[19%]')}
@@ -79,27 +114,50 @@ export function FoundersTable({ rows }: { rows: FounderRow[] }) {
           </thead>
           <tbody>
             {shown.map((row) => (
-              <tr key={row.slug} className="border-b border-line hover:bg-white/[0.025]">
+              <tr key={row.slug} className="border-line border-b hover:bg-white/[0.025]">
                 <td className="py-2.5 pr-4">
-                  <Link href={`/f/${row.slug}`} className="flex items-center gap-3 text-ink-1 no-underline hover:text-pink-ink">
-                    <Image src={row.photo} alt="" width={36} height={36} className="size-9 shrink-0 rounded-lg object-cover" />
+                  <Link
+                    href={`/f/${row.slug}`}
+                    className="text-ink-1 hover:text-violet-ink flex items-center gap-3 no-underline"
+                  >
+                    <Image
+                      src={row.photo}
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="size-9 shrink-0 rounded-lg object-cover"
+                    />
                     <span className="truncate">{row.name}</span>
                   </Link>
                 </td>
-                <td className="truncate py-2.5 pr-4 text-ink-2">{row.archetype ? `${row.family} · ${row.archetype}` : '—'}</td>
-                <td className="py-2.5 pr-4 font-mono text-ink-2">{row.level}/6</td>
-                <td className="truncate py-2.5 pr-4 text-ink-2" title={row.pick || undefined}>{row.pick || copy.noPick}</td>
+                <td className="text-ink-2 truncate py-2.5 pr-4">
+                  {row.archetype ? `${row.family} · ${row.archetype}` : '—'}
+                </td>
+                <td className="text-ink-2 py-2.5 pr-4 font-mono">{row.level}/6</td>
+                <td className="text-ink-2 truncate py-2.5 pr-4" title={row.pick || undefined}>
+                  {row.pick || copy.noPick}
+                </td>
                 <td className="py-2.5 pr-4">
-                  <span className={row.status === 'waiting' ? 'text-pink-ink' : row.status === 'none' ? 'text-ink-3' : 'text-ink-1'}>
+                  <span
+                    className={
+                      row.status === 'waiting'
+                        ? 'text-violet-ink'
+                        : row.status === 'none'
+                          ? 'text-ink-3'
+                          : 'text-ink-1'
+                    }
+                  >
                     {copy.statuses[row.status]}
                   </span>
                 </td>
-                <td className="py-2.5 pr-4 font-mono text-[13px] text-ink-3">{row.lastActive ? ago(row.lastActive) : '—'}</td>
+                <td className="text-ink-3 py-2.5 pr-4 font-mono text-[13px]">
+                  {row.lastActive ? ago(row.lastActive) : '—'}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {shown.length === 0 ? <p className="py-10 text-center text-ink-3">{copy.none}</p> : null}
+        {shown.length === 0 ? <p className="text-ink-3 py-10 text-center">{copy.none}</p> : null}
       </div>
     </div>
   )

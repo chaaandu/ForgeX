@@ -100,7 +100,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
               {founder.name}
             </h1>
             {kind && founder.level >= 2 ? (
-              <p className="display text-pink-ink m-0 text-[clamp(22px,2.6vw,30px)] italic">
+              <p className="display text-violet-ink m-0 text-[clamp(22px,2.6vw,30px)] italic">
                 {families[kind.family].name} · {archetypes[kind.id].name}
               </p>
             ) : null}
@@ -127,15 +127,31 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
           </section>
         ) : null}
 
-        {latest && full ? (
-          <PickStatus
-            title={latest.title}
-            challenge={latest.problem?.challenge ?? latest.pick.custom?.challenge ?? ''}
-            status={latest.status}
-            note={latestResponse?.note ?? ''}
-            suggested={suggested}
-            own={own}
-          />
+        {full && latest ? (
+          <section className="grid gap-6" aria-labelledby="problem">
+            <h2 id="problem" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
+              {own ? copy.sections.problem : copy.sections.theirProblem}
+            </h2>
+            <PickStatus
+              title={latest.title}
+              challenge={latest.problem?.challenge ?? latest.pick.custom?.challenge ?? ''}
+              status={latest.status}
+              note={latestResponse?.note ?? ''}
+              suggested={suggested}
+              own={own}
+            />
+            {context.entries.length ? (
+              <div
+                className="grid gap-6 rounded-[var(--radius-card)] p-6 shadow-[inset_0_0_0_1px_var(--color-line)] md:p-8"
+                aria-labelledby="thread"
+              >
+                <h3 id="thread" className="meta m-0">
+                  {own ? copy.thread : copy.threadTeam}
+                </h3>
+                <Thread entries={context.entries} authors={team} />
+              </div>
+            ) : null}
+          </section>
         ) : null}
 
         {team ? (
@@ -143,7 +159,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             className="grid gap-5 rounded-[var(--radius-card)] p-6 shadow-[inset_0_0_0_1px_var(--color-line-2)] md:p-8"
             aria-labelledby="team-only"
           >
-            <h2 id="team-only" className="meta text-pink-ink m-0">
+            <h2 id="team-only" className="meta text-violet-ink m-0">
               {copy.teamOnly}
             </h2>
             <dl className="m-0 grid gap-5 sm:grid-cols-3">
@@ -208,18 +224,9 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
           </section>
         ) : null}
 
-        {full && context.entries.length ? (
-          <section className="grid gap-6" aria-labelledby="thread">
-            <h2 id="thread" className="meta m-0">
-              {copy.thread}
-            </h2>
-            <Thread entries={context.entries} authors={team} />
-          </section>
-        ) : null}
-
-        <section className="border-line grid gap-6 border-t pt-10" aria-labelledby="about">
-          <h2 id="about" className="meta m-0">
-            {copy.about}
+        <section className="border-line grid gap-8 border-t pt-12" aria-labelledby="about">
+          <h2 id="about" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
+            {own ? copy.sections.profile : copy.sections.theirProfile}
           </h2>
           {own ? (
             <Profile

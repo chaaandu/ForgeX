@@ -129,7 +129,7 @@ export function Why({
         return (
           <div key={field} className="grid gap-3">
             <label htmlFor={id} className="flex items-baseline gap-3">
-              <span className="text-pink-ink font-mono text-[12px]">
+              <span className="text-violet-ink font-mono text-[12px]">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <span className="display text-[clamp(22px,2.4vw,28px)] leading-tight">
@@ -152,7 +152,7 @@ export function Why({
               className="flex min-h-5 items-start justify-between gap-4 text-[13px]"
               aria-live="polite"
             >
-              <span className={nudge ? 'text-pink-ink' : ''}>
+              <span className={nudge ? 'text-violet-ink' : ''}>
                 {nudge ? copy.nudges[nudge] : ''}
               </span>
               <span className="meta shrink-0">{copy.words(wordCount(fields[field]))}</span>
@@ -190,7 +190,7 @@ export function Why({
           {pending ? copy.sending : copy.send}
         </button>
         {error ? (
-          <p role="alert" className="text-pink-ink m-0 text-[14px]">
+          <p role="alert" className="text-violet-ink m-0 text-[14px]">
             {error}
           </p>
         ) : null}

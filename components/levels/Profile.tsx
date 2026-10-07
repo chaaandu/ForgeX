@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useRef, useState, useTransition } from 'react'
+import { useState, useTransition } from 'react'
 import { finishProfile, saveProfile } from '@/app/actions/founder'
 import { ChipList } from '@/components/ui/ChipList'
 import { Lines } from '@/components/ui/Lines'
+import { FieldHead } from '@/components/ui/FieldHead'
 import { InlineField, type SaveResult } from '@/components/ui/InlineField'
 import { profile as copy } from '@/content/copy'
 import { linkLabel, LINK_FIELDS, type LinkField } from '@/lib/links'
@@ -32,7 +33,7 @@ export function Profile({
   const [editing, setEditing] = useState(false)
   const [bioError, setBioError] = useState<string | null>(null)
   const [pending, start] = useTransition()
-  const bioButton = useRef<HTMLButtonElement>(null)
+  const [openBio, setOpenBio] = useState(0)
   const onboarding = next !== null
 
   async function save(patch: ProfilePatch): Promise<SaveResult> {
@@ -62,9 +63,8 @@ export function Profile({
       const result = await finishProfile()
       if (result.ok && next) router.push(next)
       else {
-        setEditing(true)
         setBioError(copy.bio.required)
-        window.setTimeout(() => bioButton.current?.focus(), 50)
+        setOpenBio((value) => value + 1)
       }
     })
   }
@@ -118,42 +118,31 @@ export function Profile({
           {onboarding ? (
             <p className="display m-0 text-[clamp(30px,4vw,48px)] leading-none">{name}</p>
           ) : null}
-          {editing ? null : data.bio ? (
-            <p className="display text-ink-1 m-0 text-[clamp(20px,2.4vw,28px)] leading-snug italic">
-              {data.bio}
-            </p>
-          ) : (
-            <button
-              type="button"
-              className="press text-pink-ink m-0 w-fit border-0 bg-transparent p-0 text-left text-[16px] underline decoration-1 underline-offset-4"
-              onClick={() => setEditing(true)}
-            >
-              {copy.bio.add}
-            </button>
-          )}
+          {/* The bio edits in place, in one tap, whatever mode the page is in:
+              it is the one thing a founder must add, so it never hides behind Edit. */}
+          <InlineField
+            label={copy.bio.label}
+            value={data.bio}
+            placeholder={copy.bio.placeholder}
+            multiline
+            maxLength={120}
+            emptyLabel={copy.bio.add}
+            openKey={openBio}
+            className="display text-ink-1 text-[clamp(20px,2.4vw,28px)] leading-snug italic"
+            error={bioError}
+            onSave={async (bio) => {
+              setBioError(null)
+              return save({ bio })
+            }}
+          />
         </div>
       </section>
 
-      {editing ? (
-        <InlineField
-          label={copy.bio.label}
-          value={data.bio}
-          placeholder={copy.bio.placeholder}
-          multiline
-          maxLength={120}
-          className="display -mt-4 text-[clamp(20px,2.4vw,28px)] leading-snug italic"
-          inputRef={bioButton}
-          error={bioError}
-          onSave={async (bio) => {
-            setBioError(null)
-            return save({ bio })
-          }}
-        />
-      ) : null}
-
       <dl className="border-line m-0 grid gap-x-10 gap-y-6 border-t pt-8 sm:grid-cols-3">
         <div className="grid content-start gap-2">
-          <dt className="meta">{copy.facts.city.label}</dt>
+          <dt className="meta">
+            <FieldHead icon={copy.facts.city.icon} label={copy.facts.city.label} />
+          </dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
               <InlineField
@@ -169,7 +158,9 @@ export function Profile({
           </dd>
         </div>
         <div className="grid content-start gap-2">
-          <dt className="meta">{copy.facts.degree.label}</dt>
+          <dt className="meta">
+            <FieldHead icon={copy.facts.degree.icon} label={copy.facts.degree.label} />
+          </dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
               <InlineField
@@ -185,7 +176,9 @@ export function Profile({
           </dd>
         </div>
         <div className="grid content-start gap-2">
-          <dt className="meta">{copy.facts.languages.label}</dt>
+          <dt className="meta">
+            <FieldHead icon={copy.facts.languages.icon} label={copy.facts.languages.label} />
+          </dt>
           <dd className="m-0 text-[18px]">
             {editing ? (
               <ChipList
@@ -204,7 +197,9 @@ export function Profile({
       <section className="border-line grid gap-10 border-t pt-8 md:grid-cols-2">
         {(['goodAt', 'wantToLearn'] as const).map((key) => (
           <div key={key} className="grid content-start gap-3">
-            <h2 className="meta m-0">{copy[key].label}</h2>
+            <h2 className="meta m-0">
+              <FieldHead icon={copy[key].icon} label={copy[key].label} />
+            </h2>
             {editing ? (
               <ChipList
                 label={copy[key].label}
@@ -229,7 +224,9 @@ export function Profile({
       </section>
 
       <section className="border-line grid gap-4 border-t pt-8">
-        <h2 className="meta m-0">{copy.links.label}</h2>
+        <h2 className="meta m-0">
+          <FieldHead icon={copy.links.icon} label={copy.links.label} />
+        </h2>
         <dl className="m-0 grid gap-5 sm:grid-cols-3">
           {LINK_FIELDS.map((field) => (
             <div key={field} className="grid content-start gap-1.5">
@@ -249,7 +246,7 @@ export function Profile({
                     href={data[field]}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-ink-1 decoration-line-2 hover:decoration-pink break-words underline underline-offset-4"
+                    className="text-ink-1 decoration-line-2 hover:decoration-violet break-words underline underline-offset-4"
                   >
                     {linkLabel(field, data[field])}
                   </a>

@@ -23,7 +23,7 @@ export function LevelBar({ level, label }: { level: LevelName; label?: string })
         className="m-0 flex items-baseline gap-3"
         aria-label={copy.of(index + 1, LEVEL_NAMES.length, label ?? copy.names[level])}
       >
-        <span className="text-pink-ink font-mono text-[12px]">
+        <span className="text-violet-ink font-mono text-[12px]">
           {String(index + 1).padStart(2, '0')}
         </span>
         <span className="text-ink-1 text-[14px] font-medium">{label ?? copy.names[level]}</span>
@@ -43,7 +43,7 @@ export function LevelBar({ level, label }: { level: LevelName; label?: string })
                     : position === index
                       ? `${Math.max(12, within * 100)}%`
                       : '0%',
-                background: position < index ? 'var(--color-ink-1)' : 'var(--color-pink)',
+                background: position < index ? 'var(--color-ink-1)' : 'var(--color-violet)',
               }}
             />
           </li>

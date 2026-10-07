@@ -19,7 +19,7 @@ const H = 1512
 
 const FRAME: Record<string, [string, string]> = {
   none: ['#5a5a62', '#2a2a30'],
-  picked: ['#ffb3dc', '#d62e8f'],
+  picked: ['#a98beb', '#5a3a8e'],
 }
 
 let fonts: Promise<
@@ -147,7 +147,16 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
         </div>
         {/* The archetype whole, feet in the fade, the same as the card on screen. */}
         {figure ? (
-          <div style={{ position: 'absolute', right: 10, top: 710, width: 320, height: 320, display: 'flex' }}>
+          <div
+            style={{
+              position: 'absolute',
+              right: 10,
+              top: 710,
+              width: 320,
+              height: 320,
+              display: 'flex',
+            }}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={figure} width={320} height={320} alt="" />
           </div>
