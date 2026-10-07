@@ -143,7 +143,7 @@ A service account gets about 60 read requests and 60 write requests per minute.
 | `/enter` | Anyone | Where the landing's Enter goes: a relative redirect to sign-in, the founder's furthest level, or the console |
 | `/login` | Public | Google sign-in, and the refused state |
 | `/arrive`, `/archetype`, `/profile`, `/world`, `/matches`, `/matches/new`, `/why` | Founder | The levels. A server-side guard redirects to the furthest level reached. An autonomous founder's `/matches` redirects to `/matches/new` |
-| `/f/[slug]` | Founder (own page), Team; any signed-in user once the founder is building | The founder and the team see everything. Once the founder's current pick has Go or Go with a tweak, other signed-in users see the card, archetype, bio, problem title and challenge, and profile facts; never the thread, team note, team panel or card download. 404 otherwise |
+| `/f/[slug]` | Founder (own page), Team; any signed-in user once the founder is building | The founder and the team see everything. Once the founder's current pick is Approved (`go`; a tweak does not count), other signed-in users see the card, archetype, bio, problem title and challenge, and profile facts; never the thread, team note, team panel or card download. 404 otherwise |
 | `/team`, `/team/queue`, `/team/bank` | Team | The console |
 | `/api/card/[slug]` | Founder (own card), Team | PNG of the founder card |
 | `/api/team/export.csv` | Team | CSV export |
@@ -186,7 +186,7 @@ Identity always comes from the session. It is never accepted as input.
 - **Never sent to a founder:** track, H1 outcome, internal level, team notes, other founders' picks, `problems.internal`, and a problem's difficulty and signal. `forFounder` in `lib/problem.ts` builds the `FounderProblem` that crosses to the browser by naming fields. A test greps the built client chunks for roster emails and these field names, and fails if it finds any.
 - **Mock mode** requires `MOCK_BACKEND=true` and a deploy that is not Vercel production (`VERCEL_ENV !== 'production'`), so the Playwright suite can still run against a production build locally. `.env.example` defaults it to `false`.
 - **Public wall:** shows first name, photo and archetype only. Founders can switch themselves off it.
-- **What they're building** (`lib/building.ts`): founders on the wall whose current pick got Go or Go with a tweak. Only the card and the problem title travel, never the why or the team's note.
+- **What they're building** (`lib/building.ts`): founders on the wall whose current pick is Approved (`go` only). Only the card and the problem title travel, never the why or the team's note.
 - **The team in the thread:** the team sees *Name, for the team* on each response; founders see *The ForgeX team*.
 - **Secrets** (`GOOGLE_SA_EMAIL`, `GOOGLE_SA_KEY`, `RESEND_API_KEY`, `AUTH_SECRET`) are read only in `server-only` modules.
 

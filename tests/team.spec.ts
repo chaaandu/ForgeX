@@ -112,6 +112,23 @@ test('an approved founder shows on the landing, and the cohort sees their page b
   await expect(page.getByText('Team only')).toHaveCount(0)
 })
 
+test('a founder who needs a tweak is not counted as approved', async ({ page }) => {
+  await sendWhy(page)
+  await signIn(page, TEAM)
+  await page.goto('/team/queue')
+  await page.getByRole('radio', { name: 'Needs a tweak', exact: true }).click()
+  await page.getByLabel('Note to the founder').fill('Narrow it to one city first.')
+  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
+  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+
+  await page.context().clearCookies()
+  await page.goto('/')
+  const building = page.getByRole('region', { name: "What they're building" })
+  await expect(building.getByRole('link', { name: /Aarav Shrivastava/ })).toHaveCount(0)
+  await signIn(page, DIYA)
+  expect((await page.goto('/f/aarav-shrivastava'))?.status()).toBe(404)
+})
+
 test('a tweak without a note is held back', async ({ page }) => {
   await sendWhy(page)
   await signIn(page, TEAM)

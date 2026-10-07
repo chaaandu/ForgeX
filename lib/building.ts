@@ -8,7 +8,7 @@ import { bank } from '@/lib/data/problems'
 export type Building = { slug: string; card: FounderCardData; title: string }
 
 /**
- * Founders whose pick the team has said go to, newest first: what the landing
+ * Founders whose pick the team has approved, newest first: what the landing
  * shows under the wall. Only the title travels, never their why or our note,
  * and anyone who asked to be left off the wall is left off here too.
  */
@@ -27,7 +27,8 @@ export async function building(): Promise<Building[]> {
       const pick = picks.find((item) => item.id === founder.pickId && !item.withdrawnAt)
       if (!pick) return []
       const status = statusOf(pick, responses)
-      if (status !== 'go' && status !== 'tweak') return []
+      // Approved only: a tweak is still a conversation, not a yes.
+      if (status !== 'go') return []
       const problem = pick.problemId ? (byId.get(pick.problemId) ?? null) : null
       const title = problem?.title ?? pick.custom?.title ?? ''
       if (!title) return []

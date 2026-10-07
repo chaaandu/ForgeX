@@ -58,7 +58,7 @@ Each level has its own route. A founder who signs in is sent to the furthest lev
 - **Headline:** *Don't start with an idea.* / *Start with a problem.*
 - **Sub:** *Find one. Prove it's real. Then build.*
 - **One button:** **Enter**.
-- **Below the fold, What they're building:** the cards of founders on the wall whose current pick was **Approved** or **Needs a tweak**, newest first, each with its problem title only and a link to their profile. It refreshes whenever the team responds. Until the first approval the section says so.
+- **Below the fold, What they're building:** the cards of founders on the wall whose current pick was **Approved**, newest first. **Needs a tweak** does not count until the team approves the change, each with its problem title only and a link to their profile. It refreshes whenever the team responds. Until the first approval the section says so.
 - **No problem bank on the landing page.** Problems are earned by finishing the levels, not browsed from the door. Titles of problems already being built are the only exception.
 - **Signed in?** The landing stays open: the logo, and **The wall** on every page header, lead back to it. **Enter** goes straight to the founder's furthest level, or to `/team` for the team.
 
@@ -260,7 +260,7 @@ After **Try another**:
 - **Slug:** built from the full name, with a numeric suffix if two names clash (`/f/ananya-rao`, `/f/ananya-rao-2`). Slugs are frozen once seeded.
 - **Who can see it:**
   - **The founder and the team** see everything.
-  - **Any other signed-in user** can see it once the founder is building (their current pick was **Approved** or **Needs a tweak**): the card, archetype, bio, the problem title and challenge, and profile facts. Never the thread, the team's note, the team panel or the card download.
+  - **Any other signed-in user** can see it once the founder is building (their current pick was **Approved**): the card, archetype, bio, the problem title and challenge, and profile facts. Never the thread, the team's note, the team panel or the card download.
   - Anyone else gets a 404.
 - **What it shows the founder and the team:**
   - the founder card, with download and share
