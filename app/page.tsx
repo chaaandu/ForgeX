@@ -16,13 +16,14 @@ export const revalidate = 300
  */
 export default async function Landing() {
   const [founders, live] = await Promise.all([allFounders(), building()])
+  // Only founders with an archetype: every face on the wall turns over to show one.
   const faces = founders
     .filter((founder) => founder.wall)
-    .map((founder) => ({
-      first: founder.first,
-      photo: founder.photo,
-      archetype: founder.level >= 2 || founder.archetypeSource === 'h1' ? founder.archetype : null,
-    }))
+    .flatMap((founder) => {
+      const archetype =
+        founder.level >= 2 || founder.archetypeSource === 'h1' ? founder.archetype : null
+      return archetype ? [{ first: founder.first, photo: founder.photo, archetype }] : []
+    })
 
   return (
     <>

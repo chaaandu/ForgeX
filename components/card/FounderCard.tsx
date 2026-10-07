@@ -8,7 +8,7 @@ import './card.css'
  * The founder card. It is also the progress bar: every level adds a layer, and
  * the slots not yet filled are drawn as empty, so a founder can always see what
  * is left to earn. Photo and number on arrival, archetype and portrait after the
- * quiz, the edge marks after their world, and the finish when they send their
+ * quiz, and the finish when they send their
  * why. The team's answer lives on their page, not stamped across their face.
  * The archetype stands in the corner whole, never cropped. The bottom line is always the
  * archetype's own line: never their bio, never their problem.
@@ -27,11 +27,9 @@ export type FounderCardData = {
   of: number
   archetype: ArchetypeId | null
   bio?: string
-  marks?: string[]
   problemTitle?: string
   finish?: CardFinish | null
 }
-
 
 export function FounderCard({
   data,
@@ -88,7 +86,6 @@ export function FounderCard({
           )}
           {kind ? <p className="fc-line">{archetypes[kind.id].identity}</p> : null}
         </div>
-        {data.marks?.length ? <p className="fc-marks">{data.marks.join(' · ')}</p> : null}
       </div>
       <div className="fc-glare" aria-hidden="true" />
     </div>

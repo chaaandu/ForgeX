@@ -74,18 +74,20 @@ export function World({
     ...INDUSTRIES.filter((industry) => !draft.industries.includes(industry.id)),
   ]
 
-  // A way in counts once it says where: until then it is only half chosen.
+  // A way in counts once it says where. Until then it is only half chosen,
+  // and anything still half chosen is left out when the answers are saved.
+  // A "Somewhere else" with nothing typed says nowhere, so it doesn't count.
+  const usable = (entry: Draft['access'][number]) =>
+    entry.worlds.filter((id) => id !== 'elsewhere' || (entry.elsewhere ?? '').trim().length > 1)
   const complete = (entry: Draft['access'][number]) =>
-    (entry.kind !== 'other' || (entry.other ?? '').trim().length > 1) &&
-    entry.worlds.length > 0 &&
-    (!entry.worlds.includes('elsewhere') || (entry.elsewhere ?? '').trim().length > 1)
+    (entry.kind !== 'other' || (entry.other ?? '').trim().length > 1) && usable(entry).length > 0
 
   const ready: Record<(typeof STEPS)[number], boolean> = {
     industries:
       draft.industries.length > 0 &&
       (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
     side: draft.side !== null,
-    access: draft.nobody || (draft.access.length > 0 && draft.access.every(complete)),
+    access: draft.nobody || draft.access.some(complete),
     learn:
       draft.learn.length > 0 &&
       (!draft.learn.includes('other') || draft.learnOther.trim().length > 1),
@@ -99,7 +101,16 @@ export function World({
       industries: draft.industries,
       industryOther: draft.industries.includes('other') ? draft.industryOther.trim() : undefined,
       side: draft.side,
-      access: draft.nobody ? [] : draft.access,
+      access: draft.nobody
+        ? []
+        : draft.access.filter(complete).map((entry) => {
+            const worlds = usable(entry)
+            return {
+              ...entry,
+              worlds,
+              elsewhere: worlds.includes('elsewhere') ? entry.elsewhere : undefined,
+            }
+          }),
       learn: draft.learn,
       learnOther: draft.learn.includes('other') ? draft.learnOther.trim() : undefined,
       intent: draft.intent,

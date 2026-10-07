@@ -220,8 +220,7 @@ export const crashed = {
 
 export const wall = {
   face: (first: string, archetype: string | null) => (archetype ? `${first}, ${archetype}` : first),
-  unplaced: 'Archetype to come',
-  label: 'The 117 founders of ForgeX',
+  label: 'The founders of ForgeX',
 }
 
 export const levels = {

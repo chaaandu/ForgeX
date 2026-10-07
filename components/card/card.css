@@ -89,7 +89,7 @@
   z-index: 1;
   height: 100%;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
+  grid-template-rows: auto 1fr auto;
   border-radius: 4cqi;
   background: #121214;
   overflow: hidden;
@@ -213,19 +213,6 @@
   overflow: hidden;
 }
 
-.fc-marks {
-  margin: 0;
-  padding: 2cqi 5cqi 3cqi;
-  border-top: 1px solid var(--color-line);
-  font: 500 3cqi/1.2 var(--font-mono);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--color-ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* The team's answer, pressed into the card. */
 .fc-glare {
   position: absolute;
@@ -308,40 +295,57 @@
 
 .wf-back {
   transform: rotateY(180deg);
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 2px;
-  padding: 8px;
-  text-align: center;
   background:
-    radial-gradient(circle at 50% 30%, rgb(124 77 204 / 0.2), transparent 70%),
-    linear-gradient(160deg, var(--color-s3), var(--color-s1));
+    radial-gradient(
+      70% 60% at 50% 42%,
+      color-mix(in oklab, var(--fam) 38%, transparent),
+      transparent 72%
+    ),
+    linear-gradient(180deg, var(--color-s2), var(--color-ground));
   box-shadow:
-    inset 0 0 0 1px rgb(124 77 204 / 0.45),
+    inset 0 0 0 1px color-mix(in oklab, var(--fam) 55%, transparent),
     0 14px 30px -12px rgb(0 0 0 / 0.9);
 }
 
-.wf-head {
-  width: 46%;
-  height: auto;
-  margin-bottom: 4px;
-  border-radius: 50%;
-  box-shadow: 0 0 0 2px rgb(124 77 204 / 0.45);
+/* The archetype whole, the full height of the tile, feet on its floor. */
+.wf-figure {
+  position: absolute;
+  inset: 4% 0 0;
+  width: 100%;
+  height: 96%;
+  object-fit: contain;
+  object-position: 50% 100%;
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.6));
+}
+
+/* Name and archetype sit on a fade at the bottom, over the boots. */
+.wf-text {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 1px;
+  padding: 18% 6% 7%;
+  text-align: center;
+  background: linear-gradient(to bottom, transparent, rgb(12 12 14 / 0.88) 55%);
 }
 
 .wf-back b {
-  font: 400 clamp(14px, 1.5vw, 19px) / 1 var(--font-display);
+  font: 400 clamp(11px, 1.15vw, 16px) / 1 var(--font-display);
   color: var(--color-ink-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .wf-back i {
-  white-space: pre-line;
-  font: 500 clamp(8px, 0.75vw, 10px) / 1.25 var(--font-mono);
+  font: 500 clamp(7px, 0.62vw, 9px) / 1.2 var(--font-mono);
   font-style: normal;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-violet-ink);
+  color: color-mix(in oklab, var(--fam) 60%, white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (prefers-reduced-motion: reduce) {
