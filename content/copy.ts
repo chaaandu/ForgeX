@@ -139,6 +139,7 @@ export const landing = {
   building: {
     title: "What they're building",
     lead: 'They found a problem, made their case, and got the go.',
+    empty: 'No one has the go yet. The first founders to get it will show up here.',
     open: (name: string) => `Open ${name}'s page`,
   },
 }

@@ -26,7 +26,9 @@ pnpm dev                     # http://localhost:3000
 Set `MOCK_BACKEND=true` in `.env.local` to run without Google or the Sheet. Mock mode:
 - uses an in-memory copy of the Sheet;
 - shows mock sign-in buttons on `/login`, one per track plus a teammate: Aarav (guided, placed in Hackathon 1), Diya (structured, takes the quiz), Aadishwar (autonomous, placed in Hackathon 1) and the team;
-- `POST /api/mock/reset` puts that memory back to the seed.
+- A fresh dev server starts with eight demo founders who already have a go, so the landing's **What they're building** and the console have something to show. They are placeholder picks on real names, in memory only, never in the Sheet.
+- `POST /api/mock/reset` puts that memory back to a clean seed (what the tests use). `POST /api/mock/reset?demo=1` brings the demo founders back.
+- On the live site the section is always there; until the first go it says so.
 
 Mock mode never runs on a Vercel production deploy, whatever the flag says.
 

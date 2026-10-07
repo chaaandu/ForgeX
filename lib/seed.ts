@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import archetypeRows from '@/data/archetypes.json'
 import profileRows from '@/data/profiles.json'
-import { archetypeOf } from '@/lib/archetype'
+import { ARCHETYPES, archetypeOf, type ArchetypeId } from '@/lib/archetype'
 import { problemInternalSchema, problemSchema } from '@/lib/problem'
 import { TABS, type Header, type TabKey } from '@/lib/sheet/tabs'
 import { assignSlugs } from '@/lib/slug'
@@ -111,15 +111,91 @@ function toGrid<K extends TabKey>(key: K, rows: Partial<Record<Header<K>, string
   ]
 }
 
-/** Every tab, seeded, for mock mode. */
-export function seedGrids(): Record<TabKey, string[][]> {
+/** The mock sign-in personas start clean, so every flow can still be walked from the top. */
+const PERSONAS = new Set([
+  'aarav_shrivastava@forge27.mesaschool.co',
+  'diya_agrawal@forge27.mesaschool.co',
+  'aadishwar_r@forge27.mesaschool.co',
+])
+
+const DEMO_WHY = {
+  'Why problem':
+    'I have watched this happen up close, and nobody I asked had a way around it that did not cost them hours every week.',
+  'Why user':
+    'The people stuck with it today, because they already lose time and money to it and have told me so.',
+  'Why pay':
+    'They already pay for worse workarounds, so a fix that saves them a few hours a week is worth a monthly fee.',
+}
+
+/**
+ * Mock mode only: eight founders who have already walked the whole way and
+ * been told go, spread across the three families, so a demo has a populated
+ * landing and console. Never written to a real Sheet.
+ */
+function demo(founders: Partial<Record<Header<'founders'>, string>>[], problemIds: string[]) {
+  const perFamily = new Map<string, number>()
+  const chosen = founders
+    .filter((row) => {
+      const archetype = row.Archetype as ArchetypeId | ''
+      if (!archetype || PERSONAS.has(row.Email ?? '')) return false
+      const family = ARCHETYPES[archetype].family
+      const taken = perFamily.get(family) ?? 0
+      if (taken >= 3) return false
+      perFamily.set(family, taken + 1)
+      return true
+    })
+    .slice(0, 8)
+  const picks: Partial<Record<Header<'picks'>, string>>[] = []
+  const responses: Partial<Record<Header<'responses'>, string>>[] = []
+  const events: Partial<Record<Header<'events'>, string>>[] = []
+  chosen.forEach((row, index) => {
+    const at = new Date(Date.UTC(2026, 9, 6, 5, index * 7)).toISOString()
+    const pickId = `K-demo-${index + 1}`
+    const type = index % 3 === 2 ? 'tweak' : 'go'
+    Object.assign(row, {
+      Level: '6',
+      Number: String(index + 1),
+      'Pick ID': pickId,
+      Status: type,
+      'Last active': at,
+    })
+    events.push({ At: at, Email: row.Email, Kind: 'arrived', Data: '{}' })
+    picks.push({
+      'Pick ID': pickId,
+      Email: row.Email,
+      'Problem ID': problemIds[(index * 29) % problemIds.length],
+      ...DEMO_WHY,
+      'Submitted at': at,
+    })
+    responses.push({
+      'Response ID': `R-demo-${index + 1}`,
+      'Pick ID': pickId,
+      Author: 'team@mesaschool.co',
+      Type: type,
+      Note: type === 'tweak' ? 'Narrow it to one city before you build anything.' : '',
+      'Sent at': at,
+    })
+  })
+  return { picks, responses, events }
+}
+
+/** Every tab, seeded, for mock mode. With `withDemo`, eight founders already have a go. */
+export function seedGrids(withDemo = false): Record<TabKey, string[][]> {
+  const founders = founderSeedRows()
+  const problems = problemSeedRows('approved')
+  const extra = withDemo
+    ? demo(
+        founders,
+        problems.map((row) => row.ID ?? ''),
+      )
+    : { picks: [], responses: [], events: [] }
   return {
-    founders: toGrid('founders', founderSeedRows()),
-    problems: toGrid('problems', problemSeedRows('approved')),
+    founders: toGrid('founders', founders),
+    problems: toGrid('problems', problems),
     internal: toGrid('internal', internalSeedRows()),
-    picks: toGrid('picks', []),
-    responses: toGrid('responses', []),
-    events: toGrid('events', []),
+    picks: toGrid('picks', extra.picks),
+    responses: toGrid('responses', extra.responses),
+    events: toGrid('events', extra.events),
   }
 }
 

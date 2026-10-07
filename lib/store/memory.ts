@@ -12,17 +12,19 @@ type Memory = {
   grid(key: TabKey): string[][]
   append(key: TabKey, rows: string[][]): void
   update(key: TabKey, row: number, head: string[], patch: Record<string, string>): void
-  reset(): void
+  reset(demo?: boolean): void
 }
 
 const holder = globalThis as typeof globalThis & { __forgexMemory?: Grids }
 
-function fresh(): Grids {
-  return seedGrids()
+// A dev server starts with the demo founders, so the landing has something
+// to show; a reset (what the tests do) starts clean unless it asks for them.
+function fresh(demo: boolean): Grids {
+  return seedGrids(demo)
 }
 
 export function memory(): Memory {
-  holder.__forgexMemory ??= fresh()
+  holder.__forgexMemory ??= fresh(true)
   const grids = holder.__forgexMemory
   return {
     grid: (key) => grids[key].map((row) => [...row]),
@@ -37,8 +39,8 @@ export function memory(): Memory {
         if (column >= 0) target[column] = value
       }
     },
-    reset: () => {
-      holder.__forgexMemory = fresh()
+    reset: (demo = false) => {
+      holder.__forgexMemory = fresh(demo)
     },
   }
 }

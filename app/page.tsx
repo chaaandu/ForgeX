@@ -47,17 +47,20 @@ export default async function Landing() {
           </div>
         </main>
       </div>
-      {live.length ? (
-        <section
-          className="mx-auto grid max-w-[1400px] gap-10 px-5 pt-16 pb-24 md:px-12 md:pt-24"
-          aria-labelledby="building"
-        >
-          <div className="grid gap-3">
-            <h2 id="building" className="display m-0 text-[clamp(32px,4.4vw,56px)] leading-none">
-              {copy.building.title}
-            </h2>
-            <p className="text-lead text-ink-2 m-0 max-w-[48ch]">{copy.building.lead}</p>
-          </div>
+      {/* Always there, so a scroll down shows what this becomes, even before the first go. */}
+      <section
+        className="mx-auto grid max-w-[1400px] gap-10 px-5 pt-16 pb-24 md:px-12 md:pt-24"
+        aria-labelledby="building"
+      >
+        <div className="grid gap-3">
+          <h2 id="building" className="display m-0 text-[clamp(32px,4.4vw,56px)] leading-none">
+            {copy.building.title}
+          </h2>
+          <p className="text-lead text-ink-2 m-0 max-w-[48ch]">
+            {live.length ? copy.building.lead : copy.building.empty}
+          </p>
+        </div>
+        {live.length ? (
           <ul className="m-0 grid list-none grid-cols-2 gap-x-4 gap-y-10 p-0 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {live.map((item) => (
               <li key={item.slug}>
@@ -73,8 +76,8 @@ export default async function Landing() {
               </li>
             ))}
           </ul>
-        </section>
-      ) : null}
+        ) : null}
+      </section>
     </>
   )
 }
