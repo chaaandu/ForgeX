@@ -13,11 +13,17 @@ test('an account outside Mesa is refused, calmly', async ({ page }) => {
   })
   expect(response.headers()['location']).toContain('error=domain')
   await page.goto('/login?error=domain')
-  await expect(page.getByText("That's not a Mesa founder account. Sign in with your @forge27.mesaschool.co address.")).toBeVisible()
+  await expect(
+    page.getByText(
+      "That's not a Mesa founder account. Sign in with your @forge27.mesaschool.co address.",
+    ),
+  ).toBeVisible()
   await expect(page.getByRole('button', { name: 'Use another account' })).toBeVisible()
 })
 
-test('a founder-domain account off the roster is refused with its own message', async ({ page }) => {
+test('a founder-domain account off the roster is refused with its own message', async ({
+  page,
+}) => {
   await page.goto('/login?error=roster')
   await expect(page.getByText(/isn't on the ForgeX roster/)).toBeVisible()
 })
@@ -30,16 +36,25 @@ test("a founder cannot see another founder's page, card or the console", async (
   expect((await page.request.get('/api/team/export.csv')).status()).toBe(404)
 })
 
-test('signed out, everything but the door asks you to sign in, remembering where you were going', async ({ page }) => {
-  for (const path of ['/arrive', '/matches', '/f/aarav-shrivastava', '/team']) {
+test('signed out, everything but the door asks you to sign in, remembering where you were going', async ({
+  page,
+}) => {
+  for (const path of ['/arrive', '/today', '/f/aarav-shrivastava', '/team']) {
     await page.goto(path)
-    await expect(page).toHaveURL(new RegExp(`/login\\?next=${encodeURIComponent(path).replace(/%2F/g, '(%2F|/)')}$`))
+    await expect(page).toHaveURL(
+      new RegExp(`/login\\?next=${encodeURIComponent(path).replace(/%2F/g, '(%2F|/)')}$`),
+    )
   }
   expect((await page.goto('/'))?.status()).toBe(200)
 })
 
 test('static images are never sent to the login screen', async ({ page }) => {
-  for (const path of ['/art/alchemist.webp', '/art/heads/cartographer.webp', '/brand/mesa-logo.png', '/students/aarav.webp']) {
+  for (const path of [
+    '/art/alchemist.webp',
+    '/art/heads/cartographer.webp',
+    '/brand/mesa-logo.png',
+    '/students/aarav.webp',
+  ]) {
     const response = await page.request.get(path, { maxRedirects: 0 })
     expect(response.status(), path).toBe(200)
   }

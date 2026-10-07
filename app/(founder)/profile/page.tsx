@@ -15,7 +15,12 @@ export default async function ProfilePage() {
   const context = await founderContext(founder)
   return (
     <LevelShell level="profile" card={context.card}>
-      <Profile name={founder.name} photo={founder.photo} initial={founder.profile} next="/world" />
+      <Profile
+        name={founder.name}
+        photo={founder.photo}
+        initial={founder.profile}
+        next="/challenge"
+      />
     </LevelShell>
   )
 }

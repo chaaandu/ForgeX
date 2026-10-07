@@ -1,6 +1,6 @@
 import { logEvent } from '@/lib/data/events'
 import { getViewer } from '@/lib/session'
-import { founderRows } from '@/lib/team-rows'
+import { founderRows, type FounderRow } from '@/lib/team-rows'
 
 const cell = (value: string | number | null) => {
   const text = value === null ? '' : String(value)
@@ -13,9 +13,49 @@ export async function GET() {
   const viewer = await getViewer()
   if (viewer?.role !== 'team') return new Response('Not found', { status: 404 })
   const rows = await founderRows()
-  const head = ['Number', 'Name', 'Email', 'Track', 'Family', 'Archetype', 'Level', 'Pick', 'Status', 'Last active', 'Page']
+  const head = [
+    'Number',
+    'Name',
+    'Email',
+    'Track',
+    'Pod',
+    'Family',
+    'Archetype',
+    'Level',
+    'Building for',
+    'Steps done',
+    'Steps due',
+    'Behind',
+    'Stop 1',
+    'Stop 2',
+    'Stop 3',
+    'Waiting on us',
+    'Last active',
+    'Page',
+  ]
+  const stop = (cell: FounderRow['stops'][number] | undefined) =>
+    cell ? [cell.state, cell.rating].filter(Boolean).join(' ') : ''
   const body = rows.map((row) =>
-    [row.number, row.name, row.email, row.track, row.family, row.archetype, row.level, row.pick, row.status, row.lastActive, `/f/${row.slug}`]
+    [
+      row.number,
+      row.name,
+      row.email,
+      row.trackLabel,
+      row.pod,
+      row.family,
+      row.archetype,
+      row.level,
+      row.forWho,
+      row.done,
+      row.due,
+      row.behind,
+      stop(row.stops[0]),
+      stop(row.stops[1]),
+      stop(row.stops[2]),
+      row.waiting ? 'yes' : '',
+      row.lastActive,
+      `/f/${row.slug}`,
+    ]
       .map(cell)
       .join(','),
   )

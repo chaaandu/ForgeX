@@ -103,6 +103,46 @@ export const TABS = {
     name: 'Events',
     headers: ['At', 'Email', 'Kind', 'Data'],
   },
+  /** Each save of a founder's research, newest last. Status is draft or sent. */
+  research: {
+    name: 'Research',
+    headers: [
+      'At',
+      'Email',
+      'Status',
+      'For',
+      'Problem',
+      'Moment',
+      'Apps',
+      'Conversations',
+      'Reading',
+    ],
+  },
+  /** Every tick and untick of a plan step, with the link or answer it asked for. */
+  steps: {
+    name: 'Steps',
+    headers: ['At', 'Email', 'Step ID', 'Done', 'Value'],
+  },
+  /** One thread per founder with the team. From is whoever wrote the line. */
+  messages: {
+    name: 'Messages',
+    headers: ['Message ID', 'Founder', 'From', 'Step ID', 'Text', 'Screenshot', 'At', 'Emailed at'],
+  },
+  /** Each save of a stop, newest last. Fields is JSON keyed by field ID. */
+  submissions: {
+    name: 'Submissions',
+    headers: ['Submission ID', 'Email', 'Stop', 'Status', 'Fields', 'Saved at', 'Late'],
+  },
+  /** The team's rating of a stop, or a check-in note (Stop is `checkin`). Newest wins. */
+  reviews: {
+    name: 'Reviews',
+    headers: ['Review ID', 'Email', 'Stop', 'Rating', 'Notes', 'Fixes', 'Author', 'At'],
+  },
+  /** Pod and mentor assignments. Role is member or mentor; an empty Pod takes someone out. */
+  pods: {
+    name: 'Pods',
+    headers: ['At', 'Email', 'Pod', 'Role', 'Set by'],
+  },
 } as const
 
 export type TabKey = keyof typeof TABS

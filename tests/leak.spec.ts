@@ -22,7 +22,15 @@ test('client bundles carry no roster emails and no team-only fields', () => {
   for (const student of students as { email: string }[]) {
     expect(text.includes(student.email), student.email).toBe(false)
   }
-  for (const field of ['H1 outcome', 'H1 level', 'Prior work', 'Venture to Role', 'autonomous', 'structured', 'guided']) {
+  for (const field of [
+    'H1 outcome',
+    'H1 level',
+    'Prior work',
+    'Venture to Role',
+    'autonomous',
+    'structured',
+    'guided',
+  ]) {
     expect(text.includes(field), field).toBe(false)
   }
 })

@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import * as copy from '@/content/copy'
+import * as planContent from '@/content/plan'
 import { bannedIn, bareSomethingWentWrong, decorativeQuotes } from '@/lib/voice'
 
 /**
@@ -27,12 +28,13 @@ function leaves(value: unknown, path: string, out: Leaf[] = []): Leaf[] {
   return out
 }
 
-const all = leaves(copy, '')
+const all = [...leaves(copy, ''), ...leaves(planContent, 'content/plan')]
 const at = (path: string) => all.find((leaf) => leaf.path === path)?.text
 
 /** Buttons a founder or the team presses. Each must be a verb under 24 characters. */
 const BUTTONS = [
   'landing.enter',
+  'landing.building.live',
   'login.google',
   'login.another',
   'arrive.go',
@@ -47,30 +49,36 @@ const BUTTONS = [
   'profile.editProfile',
   'profile.finishEditing',
   'profile.done',
-  'world.next',
-  'world.back',
-  'world.done',
-  'world.doneOwn',
+  'challenge.start',
+  'research.secondary.addReading',
+  'research.primary.add',
+  'research.primary.remove',
+  'research.save',
+  'research.send',
+  'research.update',
+  'research.sent.go',
+  'plan.save',
+  'plan.workAhead',
+  'plan.researchEdit',
+  'plan.openCard()',
+  'plan.openStop()',
+  'stops.save',
+  'stops.send()',
+  'stops.sendChanges',
+  'messages.open',
+  'messages.send',
+  'messages.back',
+  'messages.removeStep',
+  'page.console',
+  'page.openThread',
+  'page.checkins.add',
   'consoleCopy.wall',
   'account.signOut',
-  'matches.changeAnswers',
-  'problem.build',
-  'why.send',
-  'why.revise.send',
-  'page.makeChange',
-  'consoleCopy.queue.newReply',
-  'why.change',
-  'why.sent.go',
-  'composer.next',
-  'composer.back',
-  'composer.backToProfile',
-  'page.pickAnother',
-  'page.backToMatches',
-  'page.console',
   'notFound.home',
   'crashed.retry',
   'consoleCopy.founders.export',
-  'consoleCopy.queue.send',
+  'consoleCopy.messages.send',
+  'consoleCopy.stops.save',
   'consoleCopy.bank.approve',
   'consoleCopy.bank.reject',
   'consoleCopy.bank.draft',
@@ -85,23 +93,22 @@ const HEADINGS = [
   'archetypeFlow.intro.title',
   'archetypeFlow.intro.retakeTitle',
   'archetypeFlow.reveal.cardTitle',
-  'matches.title',
-  'matches.gentleTitle',
-  'matches.empty.title',
-  'composer.title',
-  'why.sent.title',
-  'why.revise.title',
+  'challenge.title',
+  'research.title',
+  'research.secondary.title',
+  'research.primary.title',
+  'research.yours.title',
+  'research.sent.title',
+  'plan.title',
+  'stops.title',
+  'stops.heading()',
+  'messages.title',
   'notFound.title',
   'crashed.title',
   'login.title',
-  'world.industries.ask',
-  'world.side.ask',
-  'world.access.ask',
-  'world.learn.ask',
-  'world.intent.ask',
-  'world.comfort.ask',
+  ...planContent.PLAN_STEPS.map((_, index) => `content/plan.PLAN_STEPS[${index}].title`),
 ]
-const OWNER_HEADINGS = ['profile.heading', 'why.heading']
+const OWNER_HEADINGS = ['profile.heading']
 
 /** The two places an exclamation mark is allowed: the archetype reveal and the founder card. */
 const EXCLAIM_OK = /^(archetypeFlow\.reveal\.|card\.)/

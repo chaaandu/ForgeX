@@ -1,5 +1,7 @@
 # Product
 
+> **From 7 Oct 2026 the build plan replaces everything after the profile.** The problem bank, matching, Your world, Your why and the team's four replies are gone for founders. See [BUILD_PLAN.md](BUILD_PLAN.md); where the two disagree, it wins.
+
 ForgeX 2.0 is a three-week build sprint for 117 first-year founders at Mesa School of Business. This portal is where each founder:
 - arrives,
 - finds out what kind of builder they are,

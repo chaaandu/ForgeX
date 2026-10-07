@@ -15,12 +15,10 @@ export function Arrive({
   first,
   card,
   numbered,
-  ownOnly = false,
 }: {
   first: string
   card: FounderCardData
   numbered: boolean
-  ownOnly?: boolean
 }) {
   const [number, setNumber] = useState<number | null>(card.number)
 
@@ -51,8 +49,7 @@ export function Arrive({
           </p>
         </div>
         <ol className="m-0 grid list-none gap-0 p-0" aria-label={copy.steps}>
-          {copy.path.map((raw, index) => {
-            const step = ownOnly && 'own' in raw && raw.own ? raw.own : raw
+          {copy.path.map((step, index) => {
             return (
               <li
                 key={step.name}

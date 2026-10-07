@@ -32,7 +32,9 @@ describe('slugs', () => {
 
 describe('links', () => {
   it('accepts urls, handles and @handles', () => {
-    expect(normaliseLink('github', 'https://github.com/ananya?tab=repos')).toBe('https://github.com/ananya')
+    expect(normaliseLink('github', 'https://github.com/ananya?tab=repos')).toBe(
+      'https://github.com/ananya',
+    )
     expect(normaliseLink('github', '@ananya')).toBe('https://github.com/ananya')
     expect(normaliseLink('linkedin', 'ananya-rao')).toBe('https://www.linkedin.com/in/ananya-rao')
     expect(normaliseLink('portfolio', 'ananya.dev')).toBe('https://ananya.dev')
@@ -60,7 +62,9 @@ describe('sheet codec', () => {
     expect(rows[0]?.row).toBe(2)
   })
   it('fails loudly when a column is renamed', () => {
-    expect(() => decode('events', [['When', 'Email', 'Kind', 'Data']])).toThrow(/missing columns: At/)
+    expect(() => decode('events', [['When', 'Email', 'Kind', 'Data']])).toThrow(
+      /missing columns: At/,
+    )
   })
   it('writes in the sheet’s own column order', () => {
     expect(encode(['Kind', 'Email'], { Email: 'a@x', Kind: 'pick' })).toEqual(['pick', 'a@x'])

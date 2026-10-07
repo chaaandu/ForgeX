@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { levels as copy } from '@/content/copy'
 import { setLevelProgress, useLevelProgress } from './progress'
 
-export const LEVEL_NAMES = ['arrive', 'archetype', 'profile', 'world', 'matches', 'why'] as const
+export const LEVEL_NAMES = ['arrive', 'archetype', 'profile', 'challenge', 'research'] as const
 export type LevelName = (typeof LEVEL_NAMES)[number]
 
 /** One bar for the whole journey. The current level's segment fills as its questions are answered. */

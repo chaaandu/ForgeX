@@ -1,12 +1,16 @@
 import type { Metadata } from 'next'
 import { meta } from '@/content/copy'
 import { Bank, type BankItem } from '@/components/team/Bank'
+import { notFound } from 'next/navigation'
 import { bank, internalFor } from '@/lib/data/problems'
+import { bankOn } from '@/lib/flags'
 import { labelOf } from '@/lib/taxonomy'
 
 export const metadata: Metadata = { title: meta.pages.bank }
 
+/** The old problem bank, read-only for founders forever and off for the team unless PROBLEM_BANK=on. */
 export default async function BankPage() {
+  if (!bankOn()) notFound()
   const problems = await bank()
   const items: BankItem[] = await Promise.all(
     problems.map(async (item) => ({

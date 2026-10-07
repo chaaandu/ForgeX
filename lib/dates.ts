@@ -18,8 +18,17 @@ export function shortDate(iso: string): string {
 export function closeLabel(iso: string): string {
   const date = new Date(iso)
   if (Number.isNaN(date.getTime())) return ''
-  const day = new Intl.DateTimeFormat('en-GB', { timeZone: IST, day: 'numeric', month: 'short' }).format(date)
-  const time = new Intl.DateTimeFormat('en-GB', { timeZone: IST, hour: 'numeric', minute: '2-digit', hour12: true })
+  const day = new Intl.DateTimeFormat('en-GB', {
+    timeZone: IST,
+    day: 'numeric',
+    month: 'short',
+  }).format(date)
+  const time = new Intl.DateTimeFormat('en-GB', {
+    timeZone: IST,
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })
     .format(date)
     .replace(':00', '')
   return `${day} at ${time} IST`
@@ -36,4 +45,34 @@ export function ago(iso: string, now = Date.now()): string {
   if (hours < 24) return `${hours} h ago`
   const days = Math.round(hours / 24)
   return `${days} d ago`
+}
+
+/** `Sun 11 Oct`, for a plan day written as `2026-10-11`. */
+export function dayLabel(day: string): string {
+  const date = new Date(`${day}T12:00:00+05:30`)
+  if (Number.isNaN(date.getTime())) return day
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: IST,
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+  })
+    .format(date)
+    .replace(',', '')
+}
+
+/** `Fri 16 Oct at 6 pm IST`, for when a stop closes. */
+export function stopLabel(iso: string): string {
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  const day = dayLabel(new Intl.DateTimeFormat('en-CA', { timeZone: IST }).format(date))
+  const time = new Intl.DateTimeFormat('en-GB', {
+    timeZone: IST,
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })
+    .format(date)
+    .replace(':00', '')
+  return `${day} at ${time} IST`
 }

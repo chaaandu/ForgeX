@@ -1,5 +1,7 @@
 # Architecture
 
+> **From 7 Oct 2026, see [BUILD_PLAN.md](BUILD_PLAN.md).** Matching (`lib/match.ts`) is removed, the bank is behind `PROBLEM_BANK`, and the Sheet gains Research, Steps, Messages, Submissions, Reviews and Pods. Where this file and the plan disagree, the plan wins.
+
 ## Stack
 
 | Concern | Choice | Why |

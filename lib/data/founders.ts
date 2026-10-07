@@ -3,20 +3,24 @@ import { ARCHETYPE_IDS, type ArchetypeId, type Scores } from '@/lib/archetype'
 import { list, type Profile } from '@/lib/profile'
 import { appendRows, rows, updateRow } from '@/lib/store'
 import type { Header, Row } from '@/lib/sheet/tabs'
-import { worldSchema, type World } from '@/lib/world'
 
 /**
  * Founders, as the server sees them. `track`, the Hackathon 1 outcome and the
  * H1 level are the team's and never cross to a founder; see `selfView`.
  */
 
+/**
+ * The furthest onboarding step a founder has finished. Research sent is 5,
+ * and from there the plan takes over. Rows from the old bank flow may hold 5
+ * or 6 without any research; `/today` checks for sent research itself, so
+ * they land on the research step rather than skipping it.
+ */
 export const LEVELS = {
   arrived: 1,
   archetype: 2,
   profile: 3,
-  world: 4,
-  picked: 5,
-  why: 6,
+  challenge: 4,
+  research: 5,
 } as const
 
 export type ArchetypeSource = 'h1' | 'quiz' | 'retake' | ''
@@ -41,9 +45,6 @@ export type Founder = {
   h1Level: string
   priorWork: string
   profile: Profile
-  world: World | null
-  pickId: string
-  status: string
   lastActive: string
 }
 
@@ -58,7 +59,8 @@ function parseJson<T>(cell: string, guard: (value: unknown) => T | null): T | nu
 
 function toFounder({ row, cells }: Row<'founders'>): Founder {
   const archetype = ARCHETYPE_IDS.find((id) => id === cells.Archetype) ?? null
-  const source = (['h1', 'quiz', 'retake'] as const).find((value) => value === cells['Archetype source']) ?? ''
+  const source =
+    (['h1', 'quiz', 'retake'] as const).find((value) => value === cells['Archetype source']) ?? ''
   return {
     row,
     email: cells.Email.trim().toLowerCase(),
@@ -94,12 +96,6 @@ function toFounder({ row, cells }: Row<'founders'>): Founder {
       linkedin: cells.LinkedIn,
       portfolio: cells.Portfolio,
     },
-    world: parseJson(cells.World, (value) => {
-      const parsed = worldSchema.safeParse(value)
-      return parsed.success ? parsed.data : null
-    }),
-    pickId: cells['Pick ID'],
-    status: cells.Status,
     lastActive: cells['Last active'],
   }
 }
@@ -131,10 +127,15 @@ export async function patchFounder(
 }
 
 /** Moves the furthest level forward, never back. */
-export function levelPatch(founder: Founder, level: number): Partial<Record<Header<'founders'>, string>> {
+export function levelPatch(
+  founder: Founder,
+  level: number,
+): Partial<Record<Header<'founders'>, string>> {
   return level > founder.level ? { Level: String(level) } : {}
 }
 
-export async function appendFounder(cells: Partial<Record<Header<'founders'>, string>>): Promise<void> {
+export async function appendFounder(
+  cells: Partial<Record<Header<'founders'>, string>>,
+): Promise<void> {
   await appendRows('founders', [cells])
 }

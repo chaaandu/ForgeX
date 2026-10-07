@@ -1,29 +1,29 @@
+import 'server-only'
+
 /**
  * The three tracks Mesa sorts founders into. A staffing decision, never shown
- * to a founder, but it decides what they're offered:
+ * to a founder, not even as a level: it decides which plan they get, and the
+ * plan simply reads differently. The names live in the console only.
  *
- *   autonomous  strong in tech; brings their own problem, so sees no bank
- *   structured  can build with some support; medium and hard problems
- *   guided      new to tech and AI; easy and medium problems
- *
- * Every track can write their own problem.
+ *   guided      new to tech and AI; one core flow, step-by-step build cards
+ *   structured  can use the tools; 2 or 3 connected flows, with direction
+ *   autonomous  builds on their own; a full product with AI at the centre
  */
-import type { Difficulty } from './taxonomy'
-
-export const TRACKS = ['autonomous', 'structured', 'guided'] as const
+export const TRACKS = ['guided', 'structured', 'autonomous'] as const
 export type Track = (typeof TRACKS)[number]
 
-export const TRACK_DIFFICULTIES: Record<Track, Difficulty[]> = {
-  autonomous: [],
-  structured: ['hard', 'medium'],
-  guided: ['medium', 'easy'],
-}
-
+/** An unknown or empty track reads as structured, the middle of the three. */
 export function trackOf(raw: string): Track {
   return TRACKS.find((track) => track === raw.trim().toLowerCase()) ?? 'structured'
 }
 
-/** Autonomous founders skip the bank and go straight to writing their own problem. */
-export function seesBank(track: Track): boolean {
-  return TRACK_DIFFICULTIES[track].length > 0
+/**
+ * The tracks' names, for the console. Kept here, server only, rather than in
+ * content/copy.ts, which ships to every browser: the leak test fails the build
+ * if a track's name reaches a client bundle.
+ */
+export const TRACK_LABELS: Record<Track, string> = {
+  guided: 'Guided',
+  structured: 'Structured',
+  autonomous: 'Autonomous',
 }

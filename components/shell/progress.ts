@@ -4,7 +4,7 @@ import { useSyncExternalStore } from 'react'
 
 /**
  * How far through the current level a founder is, 0 to 1. Levels with their
- * own questions (the quiz, your world) report here, and the one progress bar
+ * own questions (the quiz, the research) report here, and the one progress bar
  * at the top fills its current segment, so there is never a second bar.
  */
 let value = 0

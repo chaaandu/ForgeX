@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { consoleCopy, meta } from '@/content/copy'
-import { closeLabel } from '@/lib/dates'
+import { stopLabel } from '@/lib/dates'
+import { bankOn } from '@/lib/flags'
+import { nextStop, planNow, STOPS } from '@/lib/plan'
 import { batchGet } from '@/lib/sheet/google'
 import { decode, TABS, type TabKey } from '@/lib/sheet/tabs'
 import { isMock } from '@/lib/store/mode'
@@ -35,13 +37,7 @@ async function sheetChecks(): Promise<Check[]> {
         }
       }
     })
-    const problems = decode('problems', grids[TABS.problems.name] ?? [])
-    const live = problems.filter((row) => row.cells.Status.trim() === 'approved').length
-    return [
-      { label: copy.sheet, ok: true, detail: copy.sheetOk },
-      ...checks,
-      { label: copy.bank, ok: live > 0, detail: live > 0 ? copy.live(live) : copy.noneLive },
-    ]
+    return [{ label: copy.sheet, ok: true, detail: copy.sheetOk }, ...checks]
   } catch (error) {
     return [
       {
@@ -59,8 +55,7 @@ async function sheetChecks(): Promise<Check[]> {
  * this page is itself the test that Google sign-in works.
  */
 export default async function SetupPage() {
-  const close = process.env.PICKS_CLOSE_AT ?? ''
-  const closeAt = Date.parse(close)
+  const stop = nextStop(planNow())
   const checks: Check[] = [
     { label: copy.signIn, ok: true, detail: copy.signInOk },
     {
@@ -80,15 +75,12 @@ export default async function SetupPage() {
       detail: process.env.NEXT_PUBLIC_SITE_URL || copy.missing,
     },
     {
-      label: 'PICKS_CLOSE_AT',
-      ok: Number.isFinite(closeAt) && closeAt > Date.now(),
-      detail: Number.isFinite(closeAt)
-        ? closeAt > Date.now()
-          ? closeLabel(close)
-          : copy.closed(closeLabel(close))
-        : copy.missing,
+      label: copy.plan,
+      ok: true,
+      detail: stop ? copy.planLine(String(stop), stopLabel(STOPS[stop].closes)) : copy.planOver,
     },
     ...(await sheetChecks()),
+    { label: copy.bank, ok: true, detail: bankOn() ? copy.bankOn : copy.bankOff },
     {
       label: copy.email,
       ok: true,

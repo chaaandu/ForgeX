@@ -20,7 +20,12 @@ export default defineConfig({
   use: { baseURL, trace: 'retain-on-failure', reducedMotion: 'reduce' },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] }, grepInvert: /@phone/ },
-    { name: 'phone', use: { ...devices['Pixel 7'] }, grep: /@phone/ },
+    // 390px wide: the narrowest phone the cohort is likely to carry.
+    {
+      name: 'phone',
+      use: { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } },
+      grep: /@phone/,
+    },
   ],
   webServer: {
     command: `pnpm build && pnpm exec next start -p ${PORT}`,
@@ -33,7 +38,8 @@ export default defineConfig({
       AUTH_SECRET: 'playwright-secret-playwright-secret',
       AUTH_TRUST_HOST: 'true',
       AUTH_URL: baseURL,
-      PICKS_CLOSE_AT: '2030-01-01T00:00:00+05:30',
+      // Day 6 of the sprint, before stop 1 closes. Honoured in mock mode only.
+      PLAN_NOW: '2026-10-14T10:00:00+05:30',
       SHEET_ID: 'mock',
       GOOGLE_SA_EMAIL: 'mock@example.com',
       GOOGLE_SA_KEY: 'mock',

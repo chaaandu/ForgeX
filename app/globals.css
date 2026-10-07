@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+/* Scanned by name: a folder called build can be skipped by Tailwind's own detection. */
+@source '../components/build';
 
 /* ==========================================================================
    ForgeX 2.0 · Matte, with Mesa's violet

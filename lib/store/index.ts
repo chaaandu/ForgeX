@@ -19,6 +19,12 @@ const TTL: Record<TabKey, number> = {
   picks: 15,
   responses: 15,
   events: 30,
+  research: 15,
+  steps: 15,
+  messages: 15,
+  submissions: 15,
+  reviews: 15,
+  pods: 30,
 }
 
 const tag = (key: TabKey) => `tab:${key}`

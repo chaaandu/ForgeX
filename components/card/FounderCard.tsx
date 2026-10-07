@@ -8,8 +8,7 @@ import './card.css'
  * The founder card. It is also the progress bar: every level adds a layer, and
  * the slots not yet filled are drawn as empty, so a founder can always see what
  * is left to earn. Photo and number on arrival, archetype and portrait after the
- * quiz, and the finish when they send their
- * why. The team's answer lives on their profile, not stamped across their face.
+ * quiz, and the finish when they send their research and start building.
  * The archetype stands in the corner whole, never cropped. The bottom line is always the
  * archetype's own line: never their bio, never their problem.
  *
@@ -17,7 +16,7 @@ import './card.css'
  * corner companion, the reveal and the profile without three layouts.
  */
 
-/** One finish for any pick: a finish per difficulty would tell a founder how hard theirs is. */
+/** One finish, for everyone who is building: a finish per track would tell a founder their track. */
 export type CardFinish = 'picked'
 
 export type FounderCardData = {
@@ -27,7 +26,6 @@ export type FounderCardData = {
   of: number
   archetype: ArchetypeId | null
   bio?: string
-  problemTitle?: string
   finish?: CardFinish | null
 }
 

@@ -1,10 +1,18 @@
 import type { Metadata } from 'next'
-import { meta } from '@/content/copy'
 import { FoundersTable } from '@/components/team/FoundersTable'
-import { founderRows } from '@/lib/team-rows'
+import { meta } from '@/content/copy'
+import { POD_COUNT } from '@/lib/data/pods'
+import { founderRows, trackOptions } from '@/lib/team-rows'
 
 export const metadata: Metadata = { title: meta.pages.founders }
 
 export default async function TeamPage() {
-  return <FoundersTable rows={await founderRows()} />
+  const rows = await founderRows()
+  return (
+    <FoundersTable
+      rows={rows}
+      tracks={trackOptions(rows)}
+      pods={Array.from({ length: POD_COUNT }, (_, index) => index + 1)}
+    />
+  )
 }

@@ -55,9 +55,71 @@ export function normaliseLink(field: LinkField, raw: string): string | null {
 export function linkLabel(field: LinkField, url: string): string {
   try {
     const parsed = new URL(url)
-    if (field === 'portfolio') return parsed.hostname.replace(/^www\./, '') + parsed.pathname.replace(/\/$/, '')
+    if (field === 'portfolio')
+      return parsed.hostname.replace(/^www\./, '') + parsed.pathname.replace(/\/$/, '')
     const last = parsed.pathname.split('/').filter(Boolean).pop() ?? ''
     return last ? `@${last.replace(/^@/, '')}` : parsed.hostname
+  } catch {
+    return url
+  }
+}
+
+/**
+ * Links to a founder's work: a repo, a live app, a design, a video, a doc, a
+ * screenshot. Each kind is checked for the place it should live, so a GitHub
+ * profile can't stand in for a repo, or a private file for a video.
+ */
+export const WORK_LINK_KINDS = ['github', 'live', 'design', 'video', 'doc', 'screenshot'] as const
+export type WorkLinkKind = (typeof WORK_LINK_KINDS)[number]
+
+const DRIVE = ['drive.google.com', 'docs.google.com']
+
+const WORK_HOSTS: Record<WorkLinkKind, string[] | null> = {
+  github: ['github.com'],
+  live: null,
+  design: ['figma.com', ...DRIVE],
+  video: ['youtube.com', 'youtu.be', 'loom.com', ...DRIVE],
+  doc: null,
+  screenshot: DRIVE,
+}
+
+const onHost = (host: string, allowed: string) => host === allowed || host.endsWith(`.${allowed}`)
+
+export function normaliseWorkLink(kind: WorkLinkKind, raw: string): string | null {
+  const value = raw.trim()
+  if (!value) return null
+  const withScheme = /^https?:\/\//i.test(value)
+    ? value
+    : /^[\w.-]+\.[a-z]{2,}(\/|$)/i.test(value)
+      ? `https://${value}`
+      : ''
+  if (!withScheme) return null
+  let url: URL
+  try {
+    url = new URL(withScheme)
+  } catch {
+    return null
+  }
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') return null
+  const host = url.hostname.toLowerCase()
+  if (!host.includes('.')) return null
+  const allowed = WORK_HOSTS[kind]
+  if (allowed && !allowed.some((item) => onHost(host, item))) return null
+  // A repo is github.com/owner/name, not a profile.
+  if (kind === 'github' && url.pathname.split('/').filter(Boolean).length < 2) return null
+  url.hash = ''
+  // Keep the query for videos and Drive (it can carry the file), drop it elsewhere.
+  if (kind === 'github' || kind === 'live') url.search = ''
+  return url.toString().replace(/\/$/, '')
+}
+
+/** How a work link reads on a page: the host and path, without the scheme. */
+export function workLabel(url: string): string {
+  try {
+    const parsed = new URL(url)
+    const path = parsed.pathname.replace(/\/$/, '')
+    const label = parsed.hostname.replace(/^www\./, '') + path
+    return label.length > 48 ? `${label.slice(0, 47)}…` : label
   } catch {
     return url
   }

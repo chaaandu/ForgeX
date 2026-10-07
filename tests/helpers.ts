@@ -50,32 +50,46 @@ export async function throughProfile(page: Page) {
   await page.keyboard.press('Enter')
   await expect(page.getByText('Saved')).toBeVisible()
   await page.getByRole('button', { name: 'Looks like me' }).click()
-  await page.waitForURL('**/world')
+  await page.waitForURL('**/challenge')
 }
 
-export async function throughWorld(page: Page, lands = '**/matches') {
-  await page.getByRole('button', { name: 'Retail and local shops' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('radio', { name: 'Businesses' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  // Prefilled for anyone whose prior work mentions a family business.
-  const family = page.getByRole('button', { name: 'Family business', exact: true })
-  if ((await family.getAttribute('aria-pressed')) === 'false') await family.click()
-  await page.getByRole('button', { name: 'Retail', exact: true }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: 'Data and dashboards' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('radio', { name: 'Both' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: /^(Show my matches|Next: your problem)$/ }).click()
-  await page.waitForURL(lands)
+export async function throughChallenge(page: Page) {
+  await expect(page.getByRole('heading', { name: /Small shops run on WhatsApp/ })).toBeVisible()
+  await page.getByRole('button', { name: 'Start your research' }).click()
+  await page.waitForURL('**/research')
 }
 
-export const WHY = {
-  whyProblem:
-    'My uncle runs a hardware shop and still reorders from memory, so he runs out of the things people ask for most and overstocks the rest every season.',
-  whyUser:
-    'Shop owners like my uncle, who stand at the counter all day and have no time to count stock, would use it because they lose sales every week.',
-  whyPay:
-    'They already pay for a billing app every month, and a few lost sales a week cost far more than a small monthly fee would.',
+export const RESEARCH = {
+  apps: [
+    ['Khatabook', 'Owners use it for credit, but orders still live in WhatsApp.'],
+    ['WhatsApp Business', 'Orders arrive here, but nothing turns them into a list.'],
+    ['A paper notebook', 'The record everyone trusts, and nobody can search.'],
+  ],
+  forWho: 'Home bakers who take cake orders on WhatsApp',
+  problem:
+    'Orders arrive on WhatsApp, Instagram and calls. Bakers write them on paper and miss some every week.',
+  moment: "Saturday night, when Sunday's orders are spread across 3 apps",
+}
+
+/** Fills the research and sends it, landing on Today. */
+export async function sendResearch(page: Page) {
+  for (const [index, [name, note]] of RESEARCH.apps.entries()) {
+    await page.getByLabel('App or tool').nth(index).fill(name!)
+    await page.getByLabel('What it gets wrong for owners').nth(index).fill(note!)
+  }
+  await page.getByLabel('Who are you building for?').fill(RESEARCH.forWho)
+  await page.getByLabel('The problem, in 3 lines').fill(RESEARCH.problem)
+  await page.getByLabel('The moment it breaks').fill(RESEARCH.moment)
+  await page.getByRole('button', { name: 'Send my research' }).click()
+  await expect(page.getByRole('heading', { name: "You're building." })).toBeVisible()
+  await page.getByRole('link', { name: "See today's steps" }).click()
+  await page.waitForURL('**/today')
+}
+
+/** Onboarding to Today, quickly, for tests that start further in. */
+export async function toToday(page: Page, quiz = false) {
+  await throughArchetype(page, quiz)
+  await throughProfile(page)
+  await throughChallenge(page)
+  await sendResearch(page)
 }

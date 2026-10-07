@@ -2,16 +2,18 @@
 
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
-import { email } from '@/content/copy'
 import { logEvent } from '@/lib/data/events'
-import { allFounders, patchFounder } from '@/lib/data/founders'
-import { addResponse, allPicks, allResponses, RESPONSE_TYPES, statusOf } from '@/lib/data/picks'
+import { allFounders } from '@/lib/data/founders'
+import { addMessage, markEmailed } from '@/lib/data/messages'
+import { POD_COUNT, seat } from '@/lib/data/pods'
 import { bank, problemById, setProblem } from '@/lib/data/problems'
-import { responseEmail, sendEmail } from '@/lib/email/send'
+import { addReview, RATINGS } from '@/lib/data/reviews'
+import { replyEmail, sendEmail } from '@/lib/email/send'
 import { problemIdSchema } from '@/lib/problem'
 import { getViewer } from '@/lib/session'
-import { rows, updateRow } from '@/lib/store'
+import { bankOn } from '@/lib/flags'
 import { DIFFICULTIES } from '@/lib/taxonomy'
+import { trackOf } from '@/lib/tracks'
 
 /**
  * What the team can do. Every action checks the role from the session, never
@@ -25,59 +27,145 @@ async function team(): Promise<string | null> {
   return viewer?.role === 'team' ? viewer.email : null
 }
 
-const respondSchema = z
-  .object({
-    pickId: z.string().min(3).max(60),
-    type: z.enum(RESPONSE_TYPES),
-    note: z.string().trim().max(2000),
-    suggested: z.array(problemIdSchema).max(6),
-  })
-  .refine((value) => value.type !== 'tweak' || value.note.length > 0, 'A tweak needs a note')
+/** The bank's actions, only while the bank is switched on. */
+async function bankEditor(): Promise<string | null> {
+  return bankOn() ? team() : null
+}
 
-/** Answers a founder's why, mirrors the status onto their row, and emails them. */
-export async function respond(raw: unknown): Promise<TeamResult> {
+const reviewSchema = z.object({
+  email: z.string().email().max(200),
+  stop: z.enum(['1', '2', '3']),
+  rating: z.enum(RATINGS),
+  notes: z.string().trim().max(2000),
+  fixes: z.array(z.string().trim().min(1).max(200)).max(12),
+})
+
+/**
+ * Rates a founder's stop green, amber or red, with notes and a fix list. The
+ * founder sees the rating as words, the notes, and the fixes as ticks on
+ * Today. A new review replaces the last one; both stay in the Sheet.
+ */
+export async function reviewStop(raw: unknown): Promise<TeamResult> {
   const author = await team()
   if (!author) return { ok: false, error: 'forbidden' }
-  const parsed = respondSchema.safeParse(raw)
+  const parsed = reviewSchema.safeParse(raw)
   if (!parsed.success) return { ok: false, error: 'invalid' }
   try {
-    const [picks, responses, founders] = await Promise.all([
-      allPicks(),
-      allResponses(),
-      allFounders(),
-    ])
-    const pick = picks.find((item) => item.id === parsed.data.pickId)
-    if (!pick || pick.withdrawnAt) return { ok: false, error: 'invalid' }
-    const founder = founders.find((item) => item.email === pick.email)
+    const founder = (await allFounders()).find((item) => item.email === parsed.data.email)
     if (!founder) return { ok: false, error: 'invalid' }
-    const responseId = await addResponse({ ...parsed.data, author })
-    await patchFounder(founder, { Status: parsed.data.type })
-    // A go puts them on the landing, and any other answer takes them off it.
-    revalidatePath('/')
-    await logEvent(author, 'response', {
-      pickId: pick.id,
+    const id = await addReview({ ...parsed.data, author })
+    await logEvent(author, 'review', {
+      id,
       founder: founder.email,
-      type: parsed.data.type,
-      previous: statusOf(pick, responses),
+      stop: parsed.data.stop,
+      rating: parsed.data.rating,
+      fixes: parsed.data.fixes.length,
     })
+    // A green stop 2 puts their live link on the landing.
+    if (parsed.data.stop === '2') revalidatePath('/')
+    revalidatePath(`/team/stops/${parsed.data.stop}`)
+    return { ok: true }
+  } catch (error) {
+    console.error(error)
+    return { ok: false, error: 'failed' }
+  }
+}
 
-    const problem = pick.problemId ? await problemById(pick.problemId) : null
-    const title = problem?.title ?? pick.custom?.title ?? email.fallbackTitle
-    const base = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.AUTH_URL ?? 'http://localhost:3000'
-    const message = responseEmail({
-      first: founder.first,
-      title,
-      type: parsed.data.type,
-      note: parsed.data.note,
-      url: `${base.replace(/\/$/, '')}/f/${founder.slug}`,
+const checkinSchema = z.object({
+  email: z.string().email().max(200),
+  notes: z.string().trim().min(1).max(2000),
+})
+
+/** A note from a 1:1 check-in, 27 to 30 Oct. The team's alone; founders never see it. */
+export async function addCheckin(raw: unknown): Promise<TeamResult> {
+  const author = await team()
+  if (!author) return { ok: false, error: 'forbidden' }
+  const parsed = checkinSchema.safeParse(raw)
+  if (!parsed.success) return { ok: false, error: 'invalid' }
+  try {
+    const founder = (await allFounders()).find((item) => item.email === parsed.data.email)
+    if (!founder) return { ok: false, error: 'invalid' }
+    await addReview({
+      email: founder.email,
+      stop: 'checkin',
+      rating: null,
+      notes: parsed.data.notes,
+      fixes: [],
+      author,
     })
-    const sent = await sendEmail({ to: founder.email, ...message })
-    if (sent) {
-      const found = (await rows('responses')).find(
-        (entry) => entry.cells['Response ID'] === responseId,
-      )
-      if (found) await updateRow('responses', found.row, { 'Emailed at': new Date().toISOString() })
-    }
+    await logEvent(author, 'checkin', { founder: founder.email })
+    revalidatePath(`/f/${founder.slug}`)
+    return { ok: true }
+  } catch (error) {
+    console.error(error)
+    return { ok: false, error: 'failed' }
+  }
+}
+
+const replySchema = z.object({
+  founder: z.string().email().max(200),
+  text: z.string().trim().min(1).max(2000),
+})
+
+/** Answers a founder's message in their thread, and emails them that it's there. */
+export async function replyMessage(raw: unknown): Promise<TeamResult> {
+  const author = await team()
+  if (!author) return { ok: false, error: 'forbidden' }
+  const parsed = replySchema.safeParse(raw)
+  if (!parsed.success) return { ok: false, error: 'invalid' }
+  try {
+    const founder = (await allFounders()).find((item) => item.email === parsed.data.founder)
+    if (!founder) return { ok: false, error: 'invalid' }
+    const id = await addMessage({
+      founder: founder.email,
+      from: author,
+      stepId: '',
+      text: parsed.data.text,
+      screenshot: '',
+    })
+    await logEvent(author, 'message', { id, founder: founder.email, reply: true })
+    const base = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.AUTH_URL ?? 'http://localhost:3000'
+    const sent = await sendEmail({
+      to: founder.email,
+      ...replyEmail({
+        first: founder.first,
+        text: parsed.data.text,
+        url: `${base.replace(/\/$/, '')}/messages`,
+      }),
+    })
+    if (sent) await markEmailed(id)
+    revalidatePath('/team/messages')
+    return { ok: true }
+  } catch (error) {
+    console.error(error)
+    return { ok: false, error: 'failed' }
+  }
+}
+
+const seatSchema = z.object({
+  email: z.string().email().max(200),
+  pod: z.number().int().min(1).max(POD_COUNT).nullable(),
+  role: z.enum(['member', 'mentor']),
+})
+
+/**
+ * Puts a founder in a pod, or takes them out. Members are guided founders;
+ * mentors are autonomous volunteers. Anyone else is refused.
+ */
+export async function setSeat(raw: unknown): Promise<TeamResult> {
+  const author = await team()
+  if (!author) return { ok: false, error: 'forbidden' }
+  const parsed = seatSchema.safeParse(raw)
+  if (!parsed.success) return { ok: false, error: 'invalid' }
+  try {
+    const founder = (await allFounders()).find((item) => item.email === parsed.data.email)
+    if (!founder) return { ok: false, error: 'invalid' }
+    const track = trackOf(founder.track)
+    if (parsed.data.role === 'member' ? track !== 'guided' : track !== 'autonomous')
+      return { ok: false, error: 'invalid' }
+    await seat(founder.email, parsed.data.pod, parsed.data.role, author)
+    await logEvent(author, 'pod', { founder: founder.email, ...parsed.data })
+    revalidatePath('/team/pods')
     return { ok: true }
   } catch (error) {
     console.error(error)
@@ -92,7 +180,7 @@ const statusSchema = z.object({
 
 /** Approves, rejects or returns a problem to draft. Founders only ever see approved ones. */
 export async function setProblemStatus(raw: unknown): Promise<TeamResult> {
-  const editor = await team()
+  const editor = await bankEditor()
   if (!editor) return { ok: false, error: 'forbidden' }
   const parsed = statusSchema.safeParse(raw)
   if (!parsed.success) return { ok: false, error: 'invalid' }
@@ -105,7 +193,7 @@ export async function setProblemStatus(raw: unknown): Promise<TeamResult> {
 
 /** Approves every draft at once, for after a full read-through. */
 export async function approveAll(raw: unknown): Promise<TeamResult> {
-  const editor = await team()
+  const editor = await bankEditor()
   if (!editor) return { ok: false, error: 'forbidden' }
   const ids = z.array(problemIdSchema).max(400).safeParse(raw)
   if (!ids.success) return { ok: false, error: 'invalid' }
@@ -126,7 +214,7 @@ const editSchema = z.object({
 })
 
 export async function editProblem(raw: unknown): Promise<TeamResult> {
-  const editor = await team()
+  const editor = await bankEditor()
   if (!editor) return { ok: false, error: 'forbidden' }
   const parsed = editSchema.safeParse(raw)
   if (!parsed.success) return { ok: false, error: 'invalid' }

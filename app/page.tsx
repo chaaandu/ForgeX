@@ -11,8 +11,8 @@ export const revalidate = 300
 
 /**
  * The door. The whole cohort's faces, one line, and one way in. Below the
- * fold, the founders the team has said go to, by title only: what people are
- * building, not a bank to browse from the doorway.
+ * fold, every founder who has sent their research, by who they're building
+ * for, with a live link once the team has rated their stop 2 green.
  */
 export default async function Landing() {
   const [founders, live] = await Promise.all([allFounders(), building()])
@@ -47,7 +47,7 @@ export default async function Landing() {
           </div>
         </main>
       </div>
-      {/* Always there, so a scroll down shows what this becomes, even before the first go. */}
+      {/* Always there, so a scroll down shows what this becomes, even before anyone sends research. */}
       <section
         className="mx-auto grid max-w-[1400px] gap-10 px-5 pt-16 pb-24 md:px-12 md:pt-24"
         aria-labelledby="building"
@@ -63,7 +63,7 @@ export default async function Landing() {
         {live.length ? (
           <ul className="m-0 grid list-none grid-cols-2 gap-x-4 gap-y-10 p-0 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {live.map((item) => (
-              <li key={item.slug}>
+              <li key={item.slug} className="grid content-start gap-3">
                 {/* Signed out, this goes through sign-in and lands back on the page. */}
                 <Link
                   href={`/f/${item.slug}`}
@@ -71,8 +71,18 @@ export default async function Landing() {
                   aria-label={copy.building.open(item.card.name)}
                 >
                   <FounderCard data={item.card} />
-                  <span className="text-ink-1 text-[15px] leading-snug">{item.title}</span>
+                  <span className="text-ink-1 text-[15px] leading-snug">{item.forWho}</span>
                 </Link>
+                {item.live ? (
+                  <a
+                    href={item.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-violet-ink w-fit text-[14px] font-medium"
+                  >
+                    {copy.building.live}
+                  </a>
+                ) : null}
               </li>
             ))}
           </ul>

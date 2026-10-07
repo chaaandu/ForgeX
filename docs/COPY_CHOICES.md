@@ -229,3 +229,15 @@ The founder sees the reply's headline on their page and in the email, then the t
 | 5 | Your ForgeX pick: try another |
 
 **Recommended: 4.** It leads with what they're getting, not with what they lost.
+
+## The challenge (7 Oct 2026)
+
+The owner's statement is used whole on BUILD_PLAN.md and split on the screen so it lands on a phone: a heading, two short lines of what goes wrong, then the 3 asks as numbered lines.
+
+| Option | Heading | Why |
+| --- | --- | --- |
+| **A (live)** | Small shops run on WhatsApp and a notebook. | 8 words. Names the world before the mess, and every founder can picture a shop they know |
+| B | Orders get missed. Credit goes unwritten. | Hits harder, but opens on the symptom before saying whose |
+| C | Most of India's shops still run on paper. | Shorter, but "paper" loses WhatsApp, which is where orders actually arrive |
+
+The depth line (how far you take it is yours) does the work the old ladder did, without telling anyone their track.
