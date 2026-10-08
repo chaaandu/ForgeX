@@ -50,7 +50,7 @@ export default async function PodPage() {
     <BuildShell card={context.card} slug={founder.slug} pod={mentorOf !== null}>
       <div className="grid max-w-[760px] gap-8">
         <div className="grid gap-3">
-          <h1 className="display m-0 text-[clamp(40px,5vw,60px)] leading-none">
+          <h1 className="page-title m-0">
             {mentorOf === null ? meta.pages.pod : copy.title(String(mentorOf))}
           </h1>
           <p className="text-lead text-ink-2 m-0 max-w-[48ch]">

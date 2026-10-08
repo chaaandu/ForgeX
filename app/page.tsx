@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { FounderCard } from '@/components/card/FounderCard'
 import { Brand } from '@/components/shell/Brand'
 import { Wall } from '@/components/landing/Wall'
+import { Lines } from '@/components/ui/Lines'
 import { landing as copy } from '@/content/copy'
 import { building } from '@/lib/building'
 import { allFounders } from '@/lib/data/founders'
@@ -57,7 +58,7 @@ export default async function Landing() {
             {copy.building.title}
           </h2>
           <p className="text-lead text-ink-2 m-0 max-w-[48ch]">
-            {live.length ? copy.building.lead : copy.building.empty}
+            <Lines text={live.length ? copy.building.lead : copy.building.empty} />
           </p>
         </div>
         {live.length ? (

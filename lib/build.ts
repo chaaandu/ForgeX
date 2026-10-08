@@ -5,7 +5,7 @@ import { dayLabel } from '@/lib/dates'
 import type { Founder } from '@/lib/data/founders'
 import { allReviews, fixStepId, latestBy, type Review } from '@/lib/data/reviews'
 import type { Ticks } from '@/lib/data/steps'
-import { STOP_NUMBERS, type StopNumber } from '@/lib/plan'
+import { dayOf, LAUNCH, RESEARCH_DAYS, STOP_NUMBERS, type StopNumber } from '@/lib/plan'
 import { stepsFor, type FounderStep } from '@/lib/steps'
 import { trackOf } from '@/lib/tracks'
 
@@ -69,9 +69,25 @@ export function stepsOf(founder: Founder): FounderStep[] {
 }
 
 /** Steps with where each one stands today, ready for a founder's browser. */
-export function viewSteps(steps: FounderStep[], ticks: Ticks, today: string): StepView[] {
+export function viewSteps(
+  steps: FounderStep[],
+  ticks: Ticks,
+  today: string,
+  researchSent = true,
+): StepView[] {
   return steps.map((step) => ({
     ...step,
+    // The build days wait for the research; the research days never lock.
+    locked: !researchSent && step.day > RESEARCH_DAYS[1],
+    // Opens by itself when it waits on them: something to add or send that's
+    // due, or a card or template to open on its own day.
+    needsAction:
+      !ticks[step.id]?.done &&
+      (researchSent || step.day <= RESEARCH_DAYS[1]) &&
+      ((Boolean(step.input) &&
+        !(step.input?.kind === 'link' && step.input.optional) &&
+        step.day <= today) ||
+        (Boolean(step.guide) && step.day === today)),
     ticked: Boolean(ticks[step.id]?.done),
     value: ticks[step.id]?.value ?? '',
     overdue: step.day < today && !ticks[step.id]?.done,
@@ -91,7 +107,7 @@ export function stretchFor(steps: FounderStep[]) {
 export function workLinks(
   ticks: Ticks,
   submissions: { stop: StopNumber; status: string; fields: Record<string, string> }[],
-): { live: string; repo: string; design: string; video: string } {
+): { live: string; repo: string; design: string; video: string; producthunt: string } {
   const sent = [...submissions]
     .filter((item) => item.status === 'sent')
     .sort((a, b) => b.stop - a.stop)
@@ -103,5 +119,55 @@ export function workLinks(
     repo: fromStops('repo') || fromSteps(['g-card-1', 's-repo', 'a-repo']),
     design: fromStops('design') || fromSteps(['sketch']),
     video: fromStops('video') || fromSteps(['g-card-15', 'demo']),
+    producthunt: fromStops('producthunt') || fromSteps(['producthunt']),
   }
+}
+
+export type DayCell = {
+  day: string
+  label: string
+  inMonth: boolean
+  future: boolean
+  steps: { title: string; done: boolean }[]
+}
+
+/**
+ * One month as GitHub draws a year: a column per week, Monday at the top,
+ * and each day carrying that day's steps and whether each is done. The two
+ * research days carry the research itself.
+ */
+export function monthGrid(
+  steps: FounderStep[],
+  ticks: Ticks,
+  research: { sent: boolean; title: string },
+  today: string,
+  month = LAUNCH.slice(0, 7),
+): DayCell[][] {
+  const first = new Date(`${month}-01T12:00:00+05:30`)
+  const start = new Date(first)
+  // Back to the Monday on or before the 1st.
+  start.setUTCDate(start.getUTCDate() - ((start.getUTCDay() + 6) % 7))
+  const weeks: DayCell[][] = []
+  const at = new Date(start)
+  while (weeks.length === 0 || dayOf(at).slice(0, 7) === month) {
+    const week: DayCell[] = []
+    for (let index = 0; index < 7; index += 1) {
+      const day = dayOf(at)
+      const own = steps
+        .filter((step) => step.day === day)
+        .map((step) => ({ title: step.title, done: Boolean(ticks[step.id]?.done) }))
+      week.push({
+        day,
+        label: dayLabel(day),
+        inMonth: day.slice(0, 7) === month,
+        future: day > today,
+        steps: (RESEARCH_DAYS as readonly string[]).includes(day)
+          ? [{ title: research.title, done: research.sent }]
+          : own,
+      })
+      at.setUTCDate(at.getUTCDate() + 1)
+    }
+    weeks.push(week)
+  }
+  return weeks
 }

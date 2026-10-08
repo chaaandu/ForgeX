@@ -34,6 +34,10 @@
 
   --color-ok: #6be39a;
 
+  /* Errors: a muted coral, warm enough to read as a problem on graphite
+     without shouting. 7.6:1 on the ground. */
+  --color-error: #e8877f;
+
   --font-display: var(--font-instrument), 'Times New Roman', serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -131,6 +135,27 @@
     font-size: var(--text-ask);
     line-height: var(--text-ask--line-height);
     letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  /* The one size for a page's title, on every screen after onboarding's
+     big moments: the build, the phases, research, the challenge. */
+  .page-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* A section inside a page: the plan's weeks, a profile's parts. */
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 

@@ -15,8 +15,8 @@ type Option = { id: string; label: string; count: number }
 
 /**
  * Every founder, as the day stands: their track and pod, who they're building
- * for, steps done against steps due, how far behind, the three stops, and
- * whether a message is waiting on us. Filter to whoever needs a nudge.
+ * for, steps done against steps due, how far behind, and the three phases.
+ * Filter to whoever needs a nudge.
  */
 export function FoundersTable({
   rows,
@@ -32,7 +32,6 @@ export function FoundersTable({
   const [track, setTrack] = useState<string>('all')
   const [pod, setPod] = useState<string>('all')
   const [behind, setBehind] = useState(false)
-  const [waiting, setWaiting] = useState(false)
   const [sort, setSort] = useState<{ key: Key; dir: 1 | -1 }>({ key: 'name', dir: 1 })
 
   const shown = useMemo(() => {
@@ -43,7 +42,6 @@ export function FoundersTable({
           (track === 'all' || row.track === track) &&
           (pod === 'all' || (pod === 'none' ? row.pod === null : String(row.pod) === pod)) &&
           (!behind || row.behind >= 2) &&
-          (!waiting || row.waiting) &&
           (!q || row.name.toLowerCase().includes(q) || row.forWho.toLowerCase().includes(q)),
       )
       .sort((a, b) => {
@@ -57,7 +55,7 @@ export function FoundersTable({
         const y = by(b)
         return (x < y ? -1 : x > y ? 1 : a.name.localeCompare(b.name)) * sort.dir
       })
-  }, [behind, pod, query, rows, sort, track, waiting])
+  }, [behind, pod, query, rows, sort, track])
 
   const header = (key: Key, label: string, className = '') => (
     <th
@@ -134,12 +132,6 @@ export function FoundersTable({
           <option value="none">{copy.noPod}</option>
         </select>
         {chip(behind, () => setBehind((value) => !value), copy.behindOnly)}
-        {chip(
-          waiting,
-          () => setWaiting((value) => !value),
-          copy.waitingOnly,
-          rows.filter((row) => row.waiting).length,
-        )}
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[980px] table-fixed border-collapse text-[14px]">
@@ -202,13 +194,7 @@ export function FoundersTable({
                   <StopDots stops={row.stops} />
                 </td>
                 <td className="text-ink-3 py-2.5 pr-4 font-mono text-[13px]">
-                  {row.waiting ? (
-                    <span className="text-violet-ink">{copy.waitingOnly}</span>
-                  ) : row.lastActive ? (
-                    ago(row.lastActive)
-                  ) : (
-                    copy.dash
-                  )}
+                  {row.lastActive ? ago(row.lastActive) : copy.dash}
                 </td>
               </tr>
             ))}

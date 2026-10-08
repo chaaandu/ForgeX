@@ -23,3 +23,11 @@ export function stopState(history: Submission[], closes: string, now: Date): Sto
   const closed = now.getTime() > deadline
   return { current, sent: onTime || late, late, closed, locked: closed && (onTime || late) }
 }
+
+/**
+ * Phases go in order: a phase opens once the one before it has been sent, on
+ * time or late. Phase 1 is open from the start.
+ */
+export function phaseOpen(stop: 1 | 2 | 3, sentStops: ReadonlySet<number>): boolean {
+  return stop === 1 || sentStops.has(stop - 1)
+}

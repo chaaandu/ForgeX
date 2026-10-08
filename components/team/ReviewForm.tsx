@@ -111,7 +111,7 @@ export function ReviewForm({
             {copy.saved}
           </p>
         ) : status === 'failed' ? (
-          <p role="alert" className="text-violet-ink m-0 text-[14px]">
+          <p role="alert" className="text-error m-0 text-[14px]">
             {copy.failed}
           </p>
         ) : null}

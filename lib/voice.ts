@@ -33,7 +33,9 @@ export const BANNED = [
 /** Flags any banned word or phrase, matched on word boundaries. */
 export function bannedIn(text: string): string[] {
   const lower = text.toLowerCase()
-  return BANNED.filter((word) => new RegExp(`(^|[^a-z])${word.replace(/[-']/g, (c) => `\\${c}`)}([^a-z]|$)`).test(lower))
+  return BANNED.filter((word) =>
+    new RegExp(`(^|[^a-z])${word.replace(/[-']/g, (c) => `\\${c}`)}([^a-z]|$)`).test(lower),
+  )
 }
 
 /** "Something went wrong" is allowed only when it is followed by what to do. */
@@ -41,14 +43,40 @@ export function bareSomethingWentWrong(text: string): boolean {
   return /something went wrong\.?$/i.test(text.trim())
 }
 
-const SPELLED = ['two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'twenty', 'thirty', 'forty', 'fifty', 'hundred']
+const SPELLED = [
+  'two',
+  'three',
+  'four',
+  'five',
+  'six',
+  'seven',
+  'eight',
+  'nine',
+  'ten',
+  'eleven',
+  'twelve',
+  'twenty',
+  'thirty',
+  'forty',
+  'fifty',
+  'hundred',
+]
 
 /** Numbers written as words where the voice wants digits. "One" is allowed: it is often not a count. */
 export function spelledNumbers(text: string): string[] {
   return SPELLED.filter((word) => new RegExp(`\\b${word}\\b`, 'i').test(text))
 }
 
-const US = [/\b\w+iz(e|es|ed|ing|ation|ations)\b/i, /\bcolor\b/i, /\bcenter\b/i, /\bprogram\b/i, /\bbehavior\b/i, /\bfavorite\b/i, /\blicense\b/i, /\bcatalog\b/i]
+const US = [
+  /\b\w+iz(e|es|ed|ing|ation|ations)\b/i,
+  /\bcolor\b/i,
+  /\bcenter\b/i,
+  /\bprogram\b/i,
+  /\bbehavior\b/i,
+  /\bfavorite\b/i,
+  /\blicense\b/i,
+  /\bcatalog\b/i,
+]
 const US_OK = /\b(size|sizes|sized|sizing|prize|seize|seized|citizen|citizens|realize?d?)\b/i
 
 /** American spellings, for a voice that writes British English as used in India. */

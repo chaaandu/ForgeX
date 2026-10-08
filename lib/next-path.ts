@@ -4,6 +4,13 @@
  * through /enter, which sends a founder to the furthest level they reached.
  */
 export function safeNext(raw: string | undefined | null): string {
-  if (!raw || !raw.startsWith('/') || raw.startsWith('//') || raw.startsWith('/\\') || raw.startsWith('/login')) return '/enter'
+  if (
+    !raw ||
+    !raw.startsWith('/') ||
+    raw.startsWith('//') ||
+    raw.startsWith('/\\') ||
+    raw.startsWith('/login')
+  )
+    return '/enter'
   return raw
 }

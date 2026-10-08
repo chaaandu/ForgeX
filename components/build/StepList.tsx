@@ -4,11 +4,16 @@ import Link from 'next/link'
 import { useId, useState, useTransition } from 'react'
 import { Check, ChevronDown } from 'lucide-react'
 import { tickStep } from '@/app/actions/founder'
-import { messages as messagesCopy, plan as copy } from '@/content/copy'
+import { Fill } from '@/components/ui/Fill'
+import { plan as copy } from '@/content/copy'
 import type { FounderStep } from '@/lib/steps'
 
 export type StepView = FounderStep & {
   ticked: boolean
+  /** Due, not done, and waiting on something they must add or send: opens by itself. */
+  needsAction: boolean
+  /** A build day, before the research is sent. */
+  locked: boolean
   value: string
   overdue: boolean
   /** Ticked or changed in the last 12 hours. */
@@ -21,6 +26,16 @@ export type FixView = { id: string; text: string; done: boolean }
 export type StretchOption = { id: string; label: string }
 
 type Stretch = { picked: string[]; own: string }
+
+/** Mirrors stepComplete in lib/inputs.ts, so a tick that would fail opens the step instead. */
+function stepCanTick(input: NonNullable<FounderStep['input']>, value: string): boolean {
+  if (input.kind === 'link' && input.optional) return true
+  if (input.kind === 'stretch') {
+    const stretch = readStretch(value)
+    return stretch.picked.length + (stretch.own.trim() ? 1 : 0) === 2
+  }
+  return value.trim().length > 0
+}
 
 function readStretch(value: string): Stretch {
   try {
@@ -52,14 +67,17 @@ export function StepList({
 
 function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] }) {
   const panel = useId()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(step.needsAction)
   const [done, setDone] = useState(step.ticked)
   const [value, setValue] = useState(step.value)
   const [saved, setSaved] = useState(step.value)
   const [error, setError] = useState<string | null>(null)
+  const [hint, setHint] = useState(false)
   const [pending, start] = useTransition()
   const input = step.input
-  const isStop = input?.kind === 'stop'
+  // Stops and research tick themselves when they are sent.
+  const isStop = input?.kind === 'stop' || input?.kind === 'research'
+  const locked = step.locked
 
   const errorFor = (field?: string) => {
     if (field === 'required') return copy.needed
@@ -87,8 +105,26 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
     })
   }
 
+  // A step that ticks itself, or waits for the research, says so instead.
+  const autoNote =
+    input?.kind === 'research'
+      ? copy.autoTick.research
+      : input?.kind === 'stop'
+        ? copy.autoTick.stop(String(input.stop))
+        : null
+
   function toggle() {
-    if (isStop) return
+    // Ticks itself, or waits for the research: open it; the panel says why.
+    if (isStop || locked) {
+      setOpen(true)
+      return
+    }
+    // Asks for a link or an answer that isn't there yet: open it and say what.
+    if (!done && input && !stepCanTick(input, saved)) {
+      setOpen(true)
+      setHint(true)
+      return
+    }
     send(!done, saved)
   }
 
@@ -97,26 +133,17 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
   return (
     <li className="border-line border-t py-3 first:border-t-0">
       <div className="flex items-start gap-3">
-        {isStop ? (
-          <span
-            className={`mt-1 grid size-7 shrink-0 place-items-center rounded-full ${done ? 'bg-violet text-on-violet' : 'shadow-[inset_0_0_0_1.5px_var(--color-violet)]'}`}
-            aria-hidden="true"
-          >
-            {done ? <Check size={16} strokeWidth={1.5} /> : null}
-          </span>
-        ) : (
-          <button
-            type="button"
-            role="checkbox"
-            aria-checked={done}
-            aria-label={done ? copy.untick(step.title) : copy.tick(step.title)}
-            disabled={pending}
-            onClick={toggle}
-            className={`press mt-1 grid size-7 shrink-0 cursor-pointer place-items-center rounded-full border-0 p-0 ${done ? 'bg-violet text-on-violet' : 'bg-transparent shadow-[inset_0_0_0_1.5px_var(--color-line-2)] hover:shadow-[inset_0_0_0_1.5px_var(--color-violet)]'}`}
-          >
-            {done ? <Check size={16} strokeWidth={1.5} aria-hidden="true" /> : null}
-          </button>
-        )}
+        <button
+          type="button"
+          role="checkbox"
+          aria-checked={done}
+          aria-label={done ? copy.untick(step.title) : copy.tick(step.title)}
+          disabled={pending}
+          onClick={toggle}
+          className={`press mt-1 grid size-7 shrink-0 cursor-pointer place-items-center rounded-full border-0 p-0 ${done ? 'bg-violet text-on-violet' : locked ? 'bg-transparent shadow-[inset_0_0_0_1.5px_var(--color-line)]' : isStop ? 'bg-transparent shadow-[inset_0_0_0_1.5px_var(--color-violet)]' : 'bg-transparent shadow-[inset_0_0_0_1.5px_var(--color-line-2)] hover:shadow-[inset_0_0_0_1.5px_var(--color-violet)]'}`}
+        >
+          {done ? <Check size={16} strokeWidth={1.5} aria-hidden="true" /> : null}
+        </button>
         <button
           type="button"
           aria-expanded={open}
@@ -126,7 +153,7 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
           className="grid min-w-0 flex-1 cursor-pointer gap-1 border-0 bg-transparent p-0 py-1 text-left"
         >
           <span
-            className={`text-[16px] leading-snug font-medium ${done ? 'text-ink-3 line-through decoration-1' : 'text-ink-1'}`}
+            className={`text-[16px] leading-snug font-medium ${done ? 'text-ink-3 line-through decoration-1' : locked ? 'text-ink-3' : 'text-ink-1'}`}
           >
             {step.title}
           </span>
@@ -147,11 +174,32 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
 
       {open ? (
         <div id={panel} className="grid gap-4 pt-3 pb-2 pl-10">
-          <p className="text-ink-1 m-0 max-w-[56ch] text-[15px] leading-relaxed">{step.what}</p>
+          {locked ? <p className="text-ink-1 m-0 text-[14px] font-medium">{copy.locked}</p> : null}
+          {autoNote && !locked && !done ? (
+            <p className="text-ink-1 m-0 text-[14px] font-medium">{autoNote}</p>
+          ) : null}
+          {hint && !done ? (
+            <p className="text-ink-1 m-0 text-[14px] font-medium">{copy.needed}</p>
+          ) : null}
+          <p className="text-ink-2 m-0 max-w-[56ch] text-[15px] leading-relaxed">
+            <Fill text={step.what} />
+          </p>
           <div className="grid gap-1">
             <span className="meta">{copy.doneMeans}</span>
-            <p className="text-ink-2 m-0 max-w-[56ch] text-[15px]">{step.done}</p>
+            <p className="text-ink-2 m-0 max-w-[56ch] text-[15px]">
+              <Fill text={step.done} />
+            </p>
           </div>
+          {step.tool ? (
+            <div className="grid gap-1">
+              <span className="meta">{copy.toolTitle}</span>
+              <p className="text-ink-2 m-0 max-w-[56ch] text-[15px]">
+                <span className="text-ink-1 font-medium">{copy.tools.names[step.tool]}</span>
+                {' · '}
+                {copy.tools.lines[step.tool]}
+              </p>
+            </div>
+          ) : null}
           {step.example ? (
             <div className="grid gap-1">
               <span className="meta">{copy.example}</span>
@@ -159,27 +207,38 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
             </div>
           ) : null}
 
-          {step.guide && step.card ? (
+          {step.guide ? (
             <a
               href={step.guide}
               target="_blank"
               rel="noreferrer"
               className="btn btn-secondary press min-h-10 w-fit text-[14px]"
             >
-              {copy.openCard(String(step.card))}
+              {step.card
+                ? copy.openCard(String(step.card))
+                : step.id === 'r-talk'
+                  ? copy.openTemplate
+                  : copy.openPrompt}
             </a>
           ) : null}
 
-          {input?.kind === 'stop' ? (
+          {input?.kind === 'research' ? (
+            <Link href="/research" className="btn btn-primary press min-h-11 w-fit text-[15px]">
+              {copy.openResearch}
+            </Link>
+          ) : null}
+
+          {input?.kind === 'stop' && !locked ? (
             <Link
-              href={`/stops/${input.stop}`}
+              href={`/phases/${input.stop}`}
               className="btn btn-primary press min-h-11 w-fit text-[15px]"
             >
               {copy.openStop(String(input.stop))}
             </Link>
           ) : null}
 
-          {input?.kind === 'link' || input?.kind === 'number' || input?.kind === 'text' ? (
+          {!locked &&
+          (input?.kind === 'link' || input?.kind === 'number' || input?.kind === 'text') ? (
             <form
               className="grid gap-2"
               onSubmit={(event) => {
@@ -202,6 +261,7 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
                   placeholder={input.kind === 'text' ? input.placeholder : undefined}
                   onChange={(event) => {
                     setError(null)
+                    setHint(false)
                     setValue(event.target.value)
                   }}
                 />
@@ -281,17 +341,10 @@ function StepItem({ step, stretch }: { step: StepView; stretch: StretchOption[] 
           ) : null}
 
           {error ? (
-            <p role="alert" className="text-violet-ink m-0 text-[14px]">
+            <p role="alert" className="text-error m-0 text-[14px]">
               {error}
             </p>
           ) : null}
-
-          <Link
-            href={`/messages?step=${encodeURIComponent(step.id)}`}
-            className="btn btn-quiet press w-fit px-0 text-[14px]"
-          >
-            {messagesCopy.open}
-          </Link>
         </div>
       ) : null}
     </li>
@@ -337,7 +390,7 @@ function FixItem({ fix }: { fix: FixView }) {
         {fix.text}
       </span>
       {failed ? (
-        <span role="alert" className="text-violet-ink ml-auto pt-1 text-[13px]">
+        <span role="alert" className="text-error ml-auto pt-1 text-[13px]">
           {copy.failed}
         </span>
       ) : null}

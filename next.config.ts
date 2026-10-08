@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     '/**': ['./data/problems.json', './data/problems.internal.json'],
   },
   images: {
+    // Served as they are. The photos (450px webp, about 16 KB) and the art are
+    // already small, and Vercel bills every resize; a resize saves little here.
+    unoptimized: true,
     remotePatterns: [{ protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' }],
   },
   eslint: { ignoreDuringBuilds: false },

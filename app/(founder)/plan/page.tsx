@@ -1,18 +1,17 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import { Check } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { BuildShell } from '@/components/build/BuildShell'
 import { StepList, type StepView } from '@/components/build/StepList'
 import { meta, plan as copy } from '@/content/copy'
 import { progressOf, stretchFor, viewSteps } from '@/lib/build'
 import { requireBuilding } from '@/lib/require-building'
-import { dayLabel, shortDate } from '@/lib/dates'
-import { RESEARCH_DAYS, STOPS, WORKSHOP_IDS, WORKSHOPS } from '@/lib/plan'
-import { TOOLS } from '@/lib/steps'
+import { dayLabel } from '@/lib/dates'
+import { PITCH_DAY, RESEARCH_DAYS, STOPS, WORKSHOP_IDS, WORKSHOPS } from '@/lib/plan'
 
 export const metadata: Metadata = { title: meta.pages.plan }
 
 const PHASES = [
+  { key: 'research', until: RESEARCH_DAYS[1] },
   { key: 'week1', until: STOPS[1].day },
   { key: 'week2', until: STOPS[2].day },
   { key: 'week3', until: STOPS[3].day },
@@ -20,16 +19,18 @@ const PHASES = [
 ] as const
 
 /**
- * The whole sprint, day by day, for this founder's plan only. Every step is
- * open from the start, so anyone ahead can keep going; workshops are marked,
- * and pass to done on their own.
+ * The whole sprint, day by day, for this founder's plan only, a week at a
+ * time. The current week is open; the others fold away but are never locked,
+ * so anyone ahead can keep going. Workshops are marked on their day.
  */
 export default async function PlanPage() {
-  const { founder, context, ticks, today, steps, mentorOf } = await requireBuilding()
-  const views = viewSteps(steps, ticks, today)
+  const { founder, context, ticks, today, steps, mentorOf, researchSent } = await requireBuilding()
+  const views = viewSteps(steps, ticks, today, researchSent)
   const progress = progressOf(steps, ticks, today)
   const stretch = stretchFor(steps)
 
+  // The first week not yet behind them opens; the rest stay folded.
+  const opened = new Set<string>()
   let from = ''
   const phases = PHASES.map((phase) => {
     const inPhase = views.filter((step) => step.day > from && step.day <= phase.until)
@@ -49,86 +50,64 @@ export default async function PlanPage() {
     <BuildShell card={context.card} slug={founder.slug} pod={mentorOf !== null}>
       <div className="grid max-w-[760px] gap-12">
         <div className="grid gap-3">
-          <h1 className="display m-0 text-[clamp(40px,5vw,60px)] leading-none">{copy.title}</h1>
+          <h1 className="page-title m-0">{copy.title}</h1>
           <p className="text-lead text-ink-2 m-0">{copy.lead}</p>
           <p className="text-violet-ink m-0 font-mono text-[13px]">
             {copy.progress(String(progress.done), String(progress.total))}
           </p>
         </div>
 
-        <section className="grid gap-3" aria-labelledby="research">
-          <h2 id="research" className="display m-0 text-[28px] leading-none">
-            {copy.phases.research}
-          </h2>
-          <p className="text-ink-3 m-0 font-mono text-[12px]">
-            {RESEARCH_DAYS.map(dayLabel).join(' · ')}
-          </p>
-          <div className="border-line flex flex-wrap items-center gap-3 border-t pt-3">
-            <span className="bg-violet text-on-violet grid size-7 place-items-center rounded-full">
-              <Check size={16} strokeWidth={1.5} aria-hidden="true" />
-            </span>
-            <span className="text-ink-1 text-[16px] font-medium">{copy.researchStep}</span>
-            <span className="text-ink-3 text-[13px]">
-              {copy.researchSent} · {shortDate(context.research?.at ?? '')}
-            </span>
-            <Link href="/research" className="btn btn-quiet press ml-auto min-h-9 px-2 text-[14px]">
-              {copy.researchEdit}
-            </Link>
-          </div>
-        </section>
-
-        {phases.map((phase) => (
-          <section key={phase.key} className="grid gap-6" aria-labelledby={`phase-${phase.key}`}>
-            <h2 id={`phase-${phase.key}`} className="display m-0 text-[28px] leading-none">
-              {copy.phases[phase.key]}
-            </h2>
-            {phase.days.map(({ day, steps: daySteps, workshop }) => (
-              <Day
-                key={day}
-                day={day}
-                today={day === today}
-                workshop={workshop ? copy.workshopOn(copy.workshops[workshop]) : null}
-                steps={daySteps}
-                stretch={stretch}
-              />
-            ))}
-          </section>
-        ))}
-
-        <section className="grid gap-4" aria-labelledby="workshops">
-          <h2 id="workshops" className="meta m-0">
-            {copy.workshopsTitle}
-          </h2>
-          <ul className="m-0 grid list-none gap-2 p-0">
-            {WORKSHOP_IDS.map((id) => {
-              const done = WORKSHOPS[id].day < today
-              return (
-                <li key={id} className="flex flex-wrap items-baseline gap-x-3">
-                  <span className="text-ink-3 w-[96px] font-mono text-[13px]">
-                    {dayLabel(WORKSHOPS[id].day)}
+        {phases.map((phase) => {
+          const all = phase.days.flatMap((day) => day.steps)
+          const done = all.filter((step) => step.ticked).length
+          const current = phase.days.some((day) => day.day >= today) && !opened.has('done')
+          if (current) opened.add('done')
+          return (
+            <details
+              key={phase.key}
+              open={current}
+              className="group border-line border-t pt-6"
+              aria-labelledby={`phase-${phase.key}`}
+            >
+              <summary className="flex cursor-pointer list-none items-baseline justify-between gap-4">
+                <h2 id={`phase-${phase.key}`} className="section-title m-0">
+                  {copy.phases[phase.key]}
+                </h2>
+                <span className="flex items-center gap-3">
+                  <span
+                    className={`font-mono text-[13px] ${done === all.length ? 'text-violet-ink' : 'text-ink-3'}`}
+                  >
+                    {copy.progress(String(done), String(all.length))}
                   </span>
-                  <span className={done ? 'text-ink-3' : 'text-ink-1'}>{copy.workshops[id]}</span>
-                  {done ? <span className="meta">{copy.workshopDone}</span> : null}
-                </li>
-              )
-            })}
-          </ul>
-        </section>
-
-        <section className="grid gap-4" aria-labelledby="tools">
-          <h2 id="tools" className="meta m-0">
-            {copy.tools.title}
-          </h2>
-          <dl className="m-0 grid gap-3 sm:grid-cols-2">
-            {TOOLS.map((tool) => (
-              <div key={tool} className="grid gap-0.5">
-                <dt className="text-ink-1 text-[15px] font-medium">{copy.tools.names[tool]}</dt>
-                <dd className="text-ink-2 m-0 text-[14px]">{copy.tools.lines[tool]}</dd>
+                  <ChevronDown
+                    size={16}
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                    className="text-ink-3 transition-transform duration-200 group-open:rotate-180"
+                  />
+                </span>
+              </summary>
+              <div className="grid gap-6 pt-6">
+                {phase.days.map(({ day, steps: daySteps, workshop }) => (
+                  <Day
+                    key={day}
+                    day={day}
+                    today={day === today}
+                    workshop={
+                      day === PITCH_DAY
+                        ? copy.pitchOn
+                        : workshop
+                          ? copy.workshopOn(copy.workshops[workshop])
+                          : null
+                    }
+                    steps={daySteps}
+                    stretch={stretch}
+                  />
+                ))}
               </div>
-            ))}
-          </dl>
-          <p className="text-ink-3 m-0 text-[14px]">{copy.helpRule}</p>
-        </section>
+            </details>
+          )
+        })}
       </div>
     </BuildShell>
   )

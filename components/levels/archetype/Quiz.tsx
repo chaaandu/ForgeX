@@ -137,7 +137,7 @@ export function Quiz({
         {saving ? <p className="meta m-0">{copy.placing}</p> : null}
         {error ? (
           <div className="flex items-center gap-3" role="alert">
-            <p className="text-ink-2 m-0 text-[14px]">{copy.error}</p>
+            <p className="text-error m-0 text-[14px]">{copy.error}</p>
             <button
               type="button"
               className="btn btn-secondary press"

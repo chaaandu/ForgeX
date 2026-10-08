@@ -4,11 +4,9 @@ import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { logEvent } from '@/lib/data/events'
 import { allFounders } from '@/lib/data/founders'
-import { addMessage, markEmailed } from '@/lib/data/messages'
 import { POD_COUNT, seat } from '@/lib/data/pods'
 import { bank, problemById, setProblem } from '@/lib/data/problems'
 import { addReview, RATINGS } from '@/lib/data/reviews'
-import { replyEmail, sendEmail } from '@/lib/email/send'
 import { problemIdSchema } from '@/lib/problem'
 import { getViewer } from '@/lib/session'
 import { bankOn } from '@/lib/flags'
@@ -63,7 +61,7 @@ export async function reviewStop(raw: unknown): Promise<TeamResult> {
     })
     // A green stop 2 puts their live link on the landing.
     if (parsed.data.stop === '2') revalidatePath('/')
-    revalidatePath(`/team/stops/${parsed.data.stop}`)
+    revalidatePath(`/team/phases/${parsed.data.stop}`)
     return { ok: true }
   } catch (error) {
     console.error(error)
@@ -95,46 +93,6 @@ export async function addCheckin(raw: unknown): Promise<TeamResult> {
     })
     await logEvent(author, 'checkin', { founder: founder.email })
     revalidatePath(`/f/${founder.slug}`)
-    return { ok: true }
-  } catch (error) {
-    console.error(error)
-    return { ok: false, error: 'failed' }
-  }
-}
-
-const replySchema = z.object({
-  founder: z.string().email().max(200),
-  text: z.string().trim().min(1).max(2000),
-})
-
-/** Answers a founder's message in their thread, and emails them that it's there. */
-export async function replyMessage(raw: unknown): Promise<TeamResult> {
-  const author = await team()
-  if (!author) return { ok: false, error: 'forbidden' }
-  const parsed = replySchema.safeParse(raw)
-  if (!parsed.success) return { ok: false, error: 'invalid' }
-  try {
-    const founder = (await allFounders()).find((item) => item.email === parsed.data.founder)
-    if (!founder) return { ok: false, error: 'invalid' }
-    const id = await addMessage({
-      founder: founder.email,
-      from: author,
-      stepId: '',
-      text: parsed.data.text,
-      screenshot: '',
-    })
-    await logEvent(author, 'message', { id, founder: founder.email, reply: true })
-    const base = process.env.NEXT_PUBLIC_SITE_URL ?? process.env.AUTH_URL ?? 'http://localhost:3000'
-    const sent = await sendEmail({
-      to: founder.email,
-      ...replyEmail({
-        first: founder.first,
-        text: parsed.data.text,
-        url: `${base.replace(/\/$/, '')}/messages`,
-      }),
-    })
-    if (sent) await markEmailed(id)
-    revalidatePath('/team/messages')
     return { ok: true }
   } catch (error) {
     console.error(error)

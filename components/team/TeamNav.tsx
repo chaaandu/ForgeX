@@ -4,20 +4,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { consoleCopy as copy } from '@/content/copy'
 
-export function TeamNav({
-  waiting,
-  toReview,
-  bank,
-}: {
-  waiting: number
-  toReview: number
-  bank: number | null
-}) {
+export function TeamNav({ toReview, bank }: { toReview: number; bank: number | null }) {
   const path = usePathname()
   const items = [
     { href: '/team', label: copy.nav.founders, count: null },
-    { href: '/team/messages', label: copy.nav.messages, count: waiting },
-    { href: '/team/stops', label: copy.nav.stops, count: toReview },
+    { href: '/team/phases', label: copy.nav.stops, count: toReview },
     { href: '/team/pods', label: copy.nav.pods, count: null },
     ...(bank === null ? [] : [{ href: '/team/bank', label: copy.nav.bank, count: bank }]),
   ]

@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   await reset(page)
 })
 
-test('a founder placed in Hackathon 1 walks from arriving to building', async ({ page }) => {
+test('a founder placed in Hackathon 1 walks from arriving to their first day', async ({ page }) => {
   await signIn(page, AARAV)
   await page.goto('/')
   await page.getByRole('link', { name: 'Enter' }).click()
@@ -29,17 +29,37 @@ test('a founder placed in Hackathon 1 walks from arriving to building', async ({
   await throughProfile(page)
   await throughChallenge(page)
 
+  // The 3 weeks are open, but the build days wait for the research.
+  await expect(page.getByRole('heading', { name: 'Day 6 of 22' })).toBeVisible()
+  await page.getByRole('checkbox', { name: 'Mark done: Go live on Vercel' }).click()
+  await expect(page.getByText('Opens when you send your research.').first()).toBeVisible()
+  await expect(page.getByText('Your build days open when you send your research.')).toBeVisible()
+  // A circle that can't be ticked by hand opens its step and says why.
+  await page.getByRole('checkbox', { name: /Get your mentor/ }).click()
+  await expect(page.getByText('This ticks itself when you send your research.')).toBeVisible()
+  await page.getByRole('link', { name: /Your build days open/ }).click()
+  await page.waitForURL('**/research')
+
   // Research can't be sent half done, and saving a draft keeps it.
   await expect(page.getByRole('button', { name: 'Send my research' })).toBeDisabled()
-  await page.getByLabel('Who are you building for?').fill(RESEARCH.forWho)
+  await page.getByLabel('Who exactly are you building for?').fill(RESEARCH.forWho)
   await page.getByRole('button', { name: 'Save for later' }).click()
   await expect(page.getByText('Saved', { exact: true })).toBeVisible()
   await page.reload()
-  await expect(page.getByLabel('Who are you building for?')).toHaveValue(RESEARCH.forWho)
+  await expect(page.getByLabel('Who exactly are you building for?')).toHaveValue(RESEARCH.forWho)
+})
 
-  // Building isn't open until research is sent.
-  await page.goto('/today')
-  await page.waitForURL('**/research')
+test('a founder cannot leave the profile without GitHub and LinkedIn', async ({ page }) => {
+  await signIn(page, AARAV)
+  await throughArchetype(page, false)
+  await page.getByRole('button', { name: 'Add one line about you' }).click()
+  await page.keyboard.type('I run the counter at my family shop on weekends.')
+  await page.keyboard.press('Enter')
+  await expect(page.getByText('Saved')).toBeVisible()
+  await expect(page.getByText('(required)')).toHaveCount(2)
+  await page.getByRole('button', { name: 'Looks like me' }).click()
+  await expect(page.getByText('Add your GitHub and LinkedIn to carry on.')).toBeVisible()
+  await expect(page).toHaveURL(/\/profile$/)
 })
 
 test('a founder without an archetype sits the quiz, and the server decides the result', async ({
@@ -54,7 +74,7 @@ test('a founder without an archetype sits the quiz, and the server decides the r
 
 test('levels cannot be skipped', async ({ page }) => {
   await signIn(page, DIYA)
-  for (const path of ['/challenge', '/research', '/today', '/plan', '/stops/1']) {
+  for (const path of ['/challenge', '/start', '/research', '/today', '/plan', '/phases/1']) {
     await page.goto(path)
     // Visiting /arrive numbers them, so the furthest they can be is the archetype.
     await expect(page).toHaveURL(/\/(arrive|archetype)$/)
@@ -96,20 +116,23 @@ const TRACK_RUNS = [
     quiz: true,
     today: 'Go live on Vercel',
     fill: async (page: import('@playwright/test').Page) => {
-      await page.getByLabel('How many of your 10 real examples work?').fill('8')
+      await page.getByLabel('How many of your 10 real cases work?').fill('8')
     },
   },
   {
     name: 'autonomous',
     who: AADISHWAR,
     quiz: false,
-    today: 'AI reads a real order',
+    today: 'AI does its one job on real input',
     fill: async (page: import('@playwright/test').Page) => {
       await page
         .getByLabel('Your architecture note')
         .fill('github.com/aadishwar/orders/blob/main/ARCHITECTURE.md')
-      await page.getByRole('button', { name: 'GST invoice PDFs' }).click()
-      await page.getByRole('button', { name: 'A demand forecast' }).click()
+      await page
+        .getByLabel('Your 2 stretch features, and why')
+        .fill(
+          '1. A reorder nudge: owners lose regulars at month end. 2. Hindi voice: owners asked for it.',
+        )
     },
   },
 ] as const
@@ -119,7 +142,7 @@ for (const run of TRACK_RUNS) {
     await signIn(page, run.who)
     await toToday(page, run.quiz)
     await expect(page.getByRole('heading', { name: 'Day 6 of 22' })).toBeVisible()
-    await expect(page.getByText('Stop 1 closes')).toBeVisible()
+    await expect(page.getByText('Phase 1 due')).toBeVisible()
     await expect(page.getByRole('button', { name: `Show more: ${run.today}` })).toBeVisible()
 
     const tick = page.getByRole('checkbox', { name: 'Mark done: Sketch every screen' })
@@ -135,12 +158,21 @@ for (const run of TRACK_RUNS) {
     await repoStep.click()
     await expect(page.getByText('Add this first, then tick it.')).toBeVisible()
 
-    await page.goto('/stops/1')
-    await expect(page.getByRole('heading', { name: 'Stop 1 · Prototype' })).toBeVisible()
+    // Phases go in order: phase 2 waits for phase 1.
+    await page.goto('/phases/2')
+    await expect(page.getByText('Send phase 1 first. This one opens after it.')).toBeVisible()
+    await expect(page.getByRole('button', { name: 'Send phase 2' })).toHaveCount(0)
+
+    await page.goto('/phases/1')
+    await expect(page.getByRole('heading', { name: 'Phase 1 · MVP version 1' })).toBeVisible()
     await page.getByLabel('Your repo').fill('github.com/founder/orders')
     await page.getByLabel('Your live link').fill('orders-demo.vercel.app')
+    await page.getByLabel('Your website: the problem and your solution').fill('kirana-keep.in')
+    await page
+      .getByLabel('What makes your solution different?')
+      .fill('Most will build delivery. Mine keeps the khata the regulars already trust.')
     await run.fill(page)
-    await page.getByRole('button', { name: 'Send stop 1' }).click()
+    await page.getByRole('button', { name: 'Send phase 1' }).click()
     await expect(page.getByText('Sent. The team will review it.')).toBeVisible()
     await expect(page.getByRole('button', { name: 'Send changes' })).toBeVisible()
 

@@ -5,25 +5,17 @@ import { z } from 'zod'
 import { archetypeOf, isCompleteTrial, scoreTrial, TRIAL } from '@/lib/archetype'
 import { arrivalRank, logEvent } from '@/lib/data/events'
 import { founderByEmail, LEVELS, levelPatch, patchFounder, type Founder } from '@/lib/data/founders'
-import { addMessage } from '@/lib/data/messages'
-import {
-  addResearch,
-  cleanResearch,
-  readyToSend,
-  researchOf,
-  researchSchema,
-} from '@/lib/data/research'
+import { addResearch, readyToSend, researchOf, researchSchema } from '@/lib/data/research'
 import { allReviews, fixStepId } from '@/lib/data/reviews'
 import { addTick } from '@/lib/data/steps'
 import { addSubmission, historyOf } from '@/lib/data/submissions'
 import { cleanStepValue, cleanStopValue, stepComplete, stopFieldComplete } from '@/lib/inputs'
 import { LINK_FIELDS, normaliseLink, normaliseWorkLink, type LinkField } from '@/lib/links'
-import { planNow, STOP_NUMBERS, STOPS } from '@/lib/plan'
+import { planNow, RESEARCH_DAYS, STOP_NUMBERS, STOPS } from '@/lib/plan'
 import { list, profilePatchSchema } from '@/lib/profile'
-import { MESSAGE_LINES, MESSAGE_MAX } from '@/lib/limits'
 import { getViewer } from '@/lib/session'
-import { stepById, stepsFor, stopFieldsFor, stopStepId } from '@/lib/steps'
-import { stopState } from '@/lib/stops'
+import { stepById, stopFieldsFor, stopStepId } from '@/lib/steps'
+import { phaseOpen, stopState } from '@/lib/stops'
 import { trackOf } from '@/lib/tracks'
 
 /**
@@ -35,7 +27,7 @@ import { trackOf } from '@/lib/tracks'
 
 export type Result<T = object> =
   ({ ok: true } & T) | { ok: false; error: ActionError; fields?: Record<string, string> }
-export type ActionError = 'signed-out' | 'forbidden' | 'invalid' | 'locked' | 'failed'
+export type ActionError = 'signed-out' | 'forbidden' | 'invalid' | 'locked' | 'order' | 'failed'
 
 async function me(): Promise<Founder | ActionError> {
   const viewer = await getViewer()
@@ -154,18 +146,21 @@ export async function saveProfile(
   })
 }
 
-/** Level 3 done. A one-line bio is the only thing we insist on. */
+/** Level 3 done. A one-line bio, GitHub and LinkedIn are what we insist on. */
 export async function finishProfile(): Promise<Result> {
   return guarded<object>(async (founder) => {
-    if (!founder.profile.bio.trim())
-      return { ok: false, error: 'invalid', fields: { bio: 'required' } }
+    const missing: Record<string, string> = {}
+    if (!founder.profile.bio.trim()) missing.bio = 'required'
+    if (!founder.profile.github.trim()) missing.github = 'required'
+    if (!founder.profile.linkedin.trim()) missing.linkedin = 'required'
+    if (Object.keys(missing).length) return { ok: false, error: 'invalid', fields: missing }
     await patchFounder(founder, levelPatch(founder, LEVELS.profile))
     await logEvent(founder.email, 'level', { level: LEVELS.profile })
     return { ok: true }
   })
 }
 
-/** Level 4. They've read the challenge and are starting their research. */
+/** Level 4. They've taken the challenge: the 3 weeks open, starting with research. */
 export async function startResearch(): Promise<Result> {
   return guarded<object>(async (founder) => {
     if (founder.level < LEVELS.profile) return { ok: false, error: 'forbidden' }
@@ -179,20 +174,24 @@ const researchInput = z.object({ research: researchSchema, send: z.boolean() })
 
 /**
  * Saves their research, as a draft or sent. Sending needs who it's for, the
- * problem, the moment it breaks and 3 apps; nobody approves it. The first
- * send opens the plan, and they can keep editing it after.
+ * problem, their research doc and their mentor's yes; the team approves
+ * nothing here. The first send opens the plan, and it stays editable.
  */
 export async function saveResearch(raw: unknown): Promise<Result<{ sent: boolean }>> {
   return guarded<{ sent: boolean }>(async (founder) => {
     if (founder.level < LEVELS.challenge) return { ok: false, error: 'forbidden' }
     const parsed = researchInput.safeParse(raw)
     if (!parsed.success) return { ok: false, error: 'invalid' }
-    const research = cleanResearch(parsed.data.research)
-    if (!research) return { ok: false, error: 'invalid', fields: { reading: 'link' } }
+    const doc = parsed.data.research.doc
+      ? normaliseWorkLink('research', parsed.data.research.doc)
+      : ''
+    if (doc === null) return { ok: false, error: 'invalid', fields: { doc: 'link' } }
+    const research = { ...parsed.data.research, doc }
     const before = await researchOf(founder.email)
     const sent = parsed.data.send || Boolean(before?.sent)
     if (sent && !readyToSend(research)) return { ok: false, error: 'invalid' }
     await addResearch(founder.email, research, sent)
+    if (sent) await addTick(founder.email, 'r-send', true, '')
     await patchFounder(founder, sent ? levelPatch(founder, LEVELS.research) : {})
     await logEvent(founder.email, 'research', { sent, first: sent && !before?.sent })
     // Sending puts them on the landing, under the wall.
@@ -201,9 +200,14 @@ export async function saveResearch(raw: unknown): Promise<Result<{ sent: boolean
   })
 }
 
-/** Founders who have sent their research: the plan is theirs from here. */
-async function building(founder: Founder): Promise<boolean> {
-  return founder.level >= LEVELS.research && Boolean((await researchOf(founder.email))?.sent)
+/** Founders who have seen the challenge: the 3 weeks are theirs. */
+function inPlan(founder: Founder): boolean {
+  return founder.level >= LEVELS.challenge
+}
+
+/** Sending research unlocks the build days; until then only research steps can move. */
+async function researchSent(founder: Founder): Promise<boolean> {
+  return Boolean((await researchOf(founder.email))?.sent)
 }
 
 const tickInput = z.object({
@@ -218,7 +222,7 @@ const tickInput = z.object({
  */
 export async function tickStep(raw: unknown): Promise<Result<{ value: string }>> {
   return guarded<{ value: string }>(async (founder) => {
-    if (!(await building(founder))) return { ok: false, error: 'forbidden' }
+    if (!inPlan(founder)) return { ok: false, error: 'forbidden' }
     const parsed = tickInput.safeParse(raw)
     if (!parsed.success) return { ok: false, error: 'invalid' }
     const { stepId, done } = parsed.data
@@ -237,7 +241,10 @@ export async function tickStep(raw: unknown): Promise<Result<{ value: string }>>
     const step = stepById(stepId)
     const track = trackOf(founder.track)
     if (!step || !step.tracks.includes(track)) return { ok: false, error: 'forbidden' }
-    if (step.input?.kind === 'stop') return { ok: false, error: 'invalid' }
+    if (step.input?.kind === 'stop' || step.input?.kind === 'research')
+      return { ok: false, error: 'invalid' }
+    if (step.day > RESEARCH_DAYS[1] && !(await researchSent(founder)))
+      return { ok: false, error: 'locked' }
     const value = cleanStepValue(step.input, parsed.data.value)
     if (value === null) return { ok: false, error: 'invalid', fields: { value: 'format' } }
     if (done && !stepComplete(step.input, value))
@@ -263,12 +270,18 @@ export async function saveStop(
   raw: unknown,
 ): Promise<Result<{ late: boolean; fields: Record<string, string> }>> {
   return guarded<{ late: boolean; fields: Record<string, string> }>(async (founder) => {
-    if (!(await building(founder))) return { ok: false, error: 'forbidden' }
+    if (!inPlan(founder) || !(await researchSent(founder))) return { ok: false, error: 'forbidden' }
     const parsed = stopInput.safeParse(raw)
     if (!parsed.success || !STOP_NUMBERS.includes(parsed.data.stop))
       return { ok: false, error: 'invalid' }
     const { stop, send } = parsed.data
     const now = planNow()
+    // Phases go in order: the one before must have been sent first.
+    if (stop > 1) {
+      const before = await historyOf(founder.email, (stop - 1) as 1 | 2)
+      const sent = new Set(before.some((item) => item.status === 'sent') ? [stop - 1] : [])
+      if (!phaseOpen(stop, sent)) return { ok: false, error: 'order' }
+    }
     const history = await historyOf(founder.email, stop)
     const state = stopState(history, STOPS[stop].closes, now)
     if (state.locked) return { ok: false, error: 'locked' }
@@ -295,45 +308,7 @@ export async function saveStop(
     })
     if (sending) await addTick(founder.email, stopStepId(stop), true, '')
     await logEvent(founder.email, 'stop', { stop, sent: sending, late })
-    if (sending) revalidatePath('/team/stops')
+    if (sending) revalidatePath('/team/phases')
     return { ok: true, late: late || state.late, fields }
-  })
-}
-
-const messageInput = z.object({
-  text: z
-    .string()
-    .trim()
-    .min(3)
-    .max(MESSAGE_MAX)
-    .refine((value) => value.split('\n').length <= MESSAGE_LINES, 'Three lines at most'),
-  stepId: z.string().max(80),
-  screenshot: z.string().max(600),
-})
-
-/** Stuck? Message the team. Open from the challenge on, before research too. */
-export async function sendMessage(raw: unknown): Promise<Result> {
-  return guarded<object>(async (founder) => {
-    if (founder.level < LEVELS.challenge) return { ok: false, error: 'forbidden' }
-    const parsed = messageInput.safeParse(raw)
-    if (!parsed.success) return { ok: false, error: 'invalid' }
-    const screenshot = parsed.data.screenshot.trim()
-      ? normaliseWorkLink('screenshot', parsed.data.screenshot)
-      : ''
-    if (screenshot === null) return { ok: false, error: 'invalid', fields: { screenshot: 'link' } }
-    // A step tag must be one of their own steps, or it's dropped.
-    const stepId = stepsFor(trackOf(founder.track)).some((step) => step.id === parsed.data.stepId)
-      ? parsed.data.stepId
-      : ''
-    const id = await addMessage({
-      founder: founder.email,
-      from: founder.email,
-      stepId,
-      text: parsed.data.text,
-      screenshot,
-    })
-    await logEvent(founder.email, 'message', { id, stepId })
-    revalidatePath('/team/messages')
-    return { ok: true }
   })
 }

@@ -26,10 +26,9 @@ export async function GET() {
     'Steps done',
     'Steps due',
     'Behind',
-    'Stop 1',
-    'Stop 2',
-    'Stop 3',
-    'Waiting on us',
+    'Phase 1',
+    'Phase 2',
+    'Phase 3',
     'Last active',
     'Page',
   ]
@@ -52,7 +51,6 @@ export async function GET() {
       stop(row.stops[0]),
       stop(row.stops[1]),
       stop(row.stops[2]),
-      row.waiting ? 'yes' : '',
       row.lastActive,
       `/f/${row.slug}`,
     ]

@@ -15,7 +15,7 @@ import type { Profile as ProfileData, ProfilePatch } from '@/lib/profile'
 /**
  * Level 3, and the founder's page after it. By default it shows the profile
  * the way anyone on the team will see it; Edit turns the same page into fields
- * that save one at a time. Only the bio is required.
+ * that save one at a time. The bio, GitHub and LinkedIn are required.
  */
 export function Profile({
   name,
@@ -32,6 +32,8 @@ export function Profile({
   const [data, setData] = useState(initial)
   const [editing, setEditing] = useState(false)
   const [bioError, setBioError] = useState<string | null>(null)
+  const [linkError, setLinkError] = useState<string | null>(null)
+  const [openLinks, setOpenLinks] = useState(0)
   const [pending, start] = useTransition()
   const [openBio, setOpenBio] = useState(0)
   const onboarding = next !== null
@@ -62,9 +64,16 @@ export function Profile({
     start(async () => {
       const result = await finishProfile()
       if (result.ok && next) router.push(next)
-      else {
-        setBioError(copy.bio.required)
-        setOpenBio((value) => value + 1)
+      else if (!result.ok) {
+        const missing = result.fields ?? {}
+        if (missing.bio) {
+          setBioError(copy.bio.required)
+          setOpenBio((value) => value + 1)
+        }
+        if (missing.github || missing.linkedin) {
+          setLinkError(copy.links.needed)
+          setOpenLinks((value) => value + 1)
+        }
       }
     })
   }
@@ -101,7 +110,7 @@ export function Profile({
   return (
     <div className="grid gap-10">
       {onboarding ? (
-        <h1 className="display rise m-0 max-w-[22ch] text-[clamp(34px,5vw,60px)] leading-[1.02]">
+        <h1 className="page-title rise m-0 max-w-[22ch]">
           <Lines text={copy.heading} />
         </h1>
       ) : null}
@@ -228,35 +237,58 @@ export function Profile({
           <FieldHead icon={copy.links.icon} label={copy.links.label} />
         </h2>
         <dl className="m-0 grid gap-5 sm:grid-cols-3">
-          {LINK_FIELDS.map((field) => (
-            <div key={field} className="grid content-start gap-1.5">
-              <dt className="text-ink-3 text-[13px]">{copy.links[field]}</dt>
-              <dd className="m-0 min-w-0 text-[16px]">
-                {editing ? (
-                  <InlineField
-                    label={copy.links[field]}
-                    value={data[field]}
-                    placeholder={copy.links.placeholder[field]}
-                    maxLength={200}
-                    display={(url) => linkLabel(field, url)}
-                    onSave={(value) => save({ [field]: value })}
-                  />
-                ) : data[field] ? (
-                  <a
-                    href={data[field]}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-ink-1 decoration-line-2 hover:decoration-violet break-words underline underline-offset-4"
-                  >
-                    {linkLabel(field, data[field])}
-                  </a>
-                ) : (
-                  <Value text="" />
-                )}
-              </dd>
-            </div>
-          ))}
+          {LINK_FIELDS.map((field) => {
+            const required = field === 'github' || field === 'linkedin'
+            return (
+              <div key={field} className="grid content-start gap-1.5">
+                <dt className="text-ink-3 text-[13px]">
+                  {copy.links[field]}
+                  {required ? <span className="text-ink-2"> {copy.links.required}</span> : null}
+                </dt>
+                <dd className="m-0 min-w-0 text-[16px]">
+                  {/* Required links edit in place, like the bio: never behind Edit. */}
+                  {editing || required ? (
+                    <InlineField
+                      label={copy.links[field]}
+                      value={data[field]}
+                      placeholder={copy.links.placeholder[field]}
+                      maxLength={200}
+                      display={(url) => linkLabel(field, url)}
+                      emptyLabel={
+                        field === 'github'
+                          ? copy.links.addGithub
+                          : field === 'linkedin'
+                            ? copy.links.addLinkedin
+                            : undefined
+                      }
+                      openKey={required && !data[field] ? openLinks : 0}
+                      onSave={(value) => {
+                        setLinkError(null)
+                        return save({ [field]: value })
+                      }}
+                    />
+                  ) : data[field] ? (
+                    <a
+                      href={data[field]}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-ink-1 decoration-line-2 hover:decoration-violet break-words underline underline-offset-4"
+                    >
+                      {linkLabel(field, data[field])}
+                    </a>
+                  ) : (
+                    <Value text="" />
+                  )}
+                </dd>
+              </div>
+            )
+          })}
         </dl>
+        {linkError ? (
+          <p role="alert" className="text-error m-0 text-[14px]">
+            {linkError}
+          </p>
+        ) : null}
       </section>
 
       {actions}

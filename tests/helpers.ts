@@ -49,40 +49,44 @@ export async function throughProfile(page: Page) {
   await page.keyboard.type('I run the counter at my family shop on weekends.')
   await page.keyboard.press('Enter')
   await expect(page.getByText('Saved')).toBeVisible()
+  // GitHub and LinkedIn are required, and edit in place like the bio.
+  await page.getByRole('button', { name: 'Add your GitHub' }).click()
+  await page.keyboard.type('aarav-builds')
+  await page.keyboard.press('Enter')
+  await page.getByRole('button', { name: 'Add your LinkedIn' }).click()
+  await page.keyboard.type('aarav-shrivastava')
+  await page.keyboard.press('Enter')
+  await expect(page.getByText('@aarav-shrivastava')).toBeVisible()
   await page.getByRole('button', { name: 'Looks like me' }).click()
   await page.waitForURL('**/challenge')
 }
 
 export async function throughChallenge(page: Page) {
-  await expect(page.getByRole('heading', { name: /Small shops run on WhatsApp/ })).toBeVisible()
-  await page.getByRole('button', { name: 'Start your research' }).click()
-  await page.waitForURL('**/research')
+  await expect(page.getByRole('heading', { name: /2 lakh kiranas closed/ })).toBeVisible()
+  await page.getByRole('button', { name: 'Take the challenge' }).click()
+  await page.waitForURL('**/start')
+  await expect(page.getByRole('heading', { name: 'Go keep a kirana open.' })).toBeVisible()
+  await page.getByRole('link', { name: "See what's on today" }).click()
+  await page.waitForURL('**/today')
 }
 
 export const RESEARCH = {
-  apps: [
-    ['Khatabook', 'Owners use it for credit, but orders still live in WhatsApp.'],
-    ['WhatsApp Business', 'Orders arrive here, but nothing turns them into a list.'],
-    ['A paper notebook', 'The record everyone trusts, and nobody can search.'],
-  ],
-  forWho: 'Home bakers who take cake orders on WhatsApp',
+  forWho: 'Kirana owners near new dark stores in Jayanagar',
   problem:
-    'Orders arrive on WhatsApp, Instagram and calls. Bakers write them on paper and miss some every week.',
-  moment: "Saturday night, when Sunday's orders are spread across 3 apps",
+    'Regulars still drop in for milk, but the monthly list now goes to an app. The owner only notices when they stop coming.',
+  doc: 'docs.google.com/document/d/research-demo',
 }
 
-/** Fills the research and sends it, landing on Today. */
+/** Fills the research and sends it, landing back on Today with the build days open. */
 export async function sendResearch(page: Page) {
-  for (const [index, [name, note]] of RESEARCH.apps.entries()) {
-    await page.getByLabel('App or tool').nth(index).fill(name!)
-    await page.getByLabel('What it gets wrong for owners').nth(index).fill(note!)
-  }
-  await page.getByLabel('Who are you building for?').fill(RESEARCH.forWho)
-  await page.getByLabel('The problem, in 3 lines').fill(RESEARCH.problem)
-  await page.getByLabel('The moment it breaks').fill(RESEARCH.moment)
+  await page.goto('/research')
+  await page.getByLabel('Who exactly are you building for?').fill(RESEARCH.forWho)
+  await page.getByLabel('What you found, in 3 lines').fill(RESEARCH.problem)
+  await page.getByLabel('Your research doc').fill(RESEARCH.doc)
+  await page
+    .getByRole('checkbox', { name: 'My mentor has gone through it and approved it' })
+    .click()
   await page.getByRole('button', { name: 'Send my research' }).click()
-  await expect(page.getByRole('heading', { name: "You're building." })).toBeVisible()
-  await page.getByRole('link', { name: "See today's steps" }).click()
   await page.waitForURL('**/today')
 }
 

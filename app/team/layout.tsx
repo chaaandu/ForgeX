@@ -5,7 +5,6 @@ import { Users } from 'lucide-react'
 import { Account } from '@/components/shell/Account'
 import { HeaderLink } from '@/components/shell/HeaderLink'
 import { TeamNav } from '@/components/team/TeamNav'
-import { allMessages, threads, waitingOnTeam } from '@/lib/data/messages'
 import { bank } from '@/lib/data/problems'
 import { allReviews, latestBy } from '@/lib/data/reviews'
 import { allSubmissions } from '@/lib/data/submissions'
@@ -19,13 +18,11 @@ export const metadata: Metadata = {
 
 export default async function TeamLayout({ children }: { children: React.ReactNode }) {
   const viewer = await requireTeam()
-  const [messages, submissions, reviews, problems] = await Promise.all([
-    allMessages(),
+  const [submissions, reviews, problems] = await Promise.all([
     allSubmissions(),
     allReviews(),
     bankOn() ? bank() : Promise.resolve([]),
   ])
-  const waiting = [...threads(messages).values()].filter(waitingOnTeam).length
   // Sent stops without a review yet, across all three.
   const sent = new Set(
     submissions
@@ -45,7 +42,7 @@ export default async function TeamLayout({ children }: { children: React.ReactNo
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-3 md:flex-nowrap md:px-8">
           <Brand href="/team" />
           <div className="order-last -mx-1 w-full md:order-none md:mx-0 md:mr-auto md:w-auto">
-            <TeamNav waiting={waiting} toReview={toReview} bank={drafts} />
+            <TeamNav toReview={toReview} bank={drafts} />
           </div>
           <div className="flex items-center gap-2">
             <HeaderLink

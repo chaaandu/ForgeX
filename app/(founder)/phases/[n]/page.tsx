@@ -3,14 +3,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { BuildShell } from '@/components/build/BuildShell'
 import { StopForm } from '@/components/build/StopForm'
-import { meta, stops as copy } from '@/content/copy'
+import { meta, plan as planCopy, stops as copy } from '@/content/copy'
 import { reviewsFor, stretchFor } from '@/lib/build'
 import { requireBuilding } from '@/lib/require-building'
 import { shortDate, stopLabel } from '@/lib/dates'
 import { historyOf } from '@/lib/data/submissions'
 import { STOP_NUMBERS, STOPS, type StopNumber } from '@/lib/plan'
 import { stopFieldsFor } from '@/lib/steps'
-import { stopState } from '@/lib/stops'
+import { phaseOpen, stopState } from '@/lib/stops'
 import { trackOf } from '@/lib/tracks'
 
 export async function generateMetadata({
@@ -29,8 +29,13 @@ export async function generateMetadata({
 export default async function StopPage({ params }: { params: Promise<{ n: string }> }) {
   const n = Number((await params).n) as StopNumber
   if (!STOP_NUMBERS.includes(n)) notFound()
-  const { founder, context, ticks, now, steps, mentorOf } = await requireBuilding()
-  const [history, reviews] = await Promise.all([historyOf(founder.email, n), reviewsFor(founder)])
+  const { founder, context, ticks, now, steps, mentorOf, researchSent } = await requireBuilding()
+  const [history, reviews, before] = await Promise.all([
+    historyOf(founder.email, n),
+    reviewsFor(founder),
+    n > 1 ? historyOf(founder.email, (n - 1) as 1 | 2) : Promise.resolve([]),
+  ])
+  const open = phaseOpen(n, new Set(before.some((item) => item.status === 'sent') ? [n - 1] : []))
   const state = stopState(history, STOPS[n].closes, now)
   const fields = stopFieldsFor(trackOf(founder.track), n)
   const initial = Object.fromEntries(
@@ -48,12 +53,10 @@ export default async function StopPage({ params }: { params: Promise<{ n: string
     <BuildShell card={context.card} slug={founder.slug} pod={mentorOf !== null}>
       <div className="grid max-w-[680px] gap-10">
         <div className="grid gap-3">
-          <Link href="/stops" className="meta no-underline">
+          <Link href="/phases" className="meta no-underline">
             {copy.title}
           </Link>
-          <h1 className="display m-0 text-[clamp(36px,5vw,56px)] leading-none">
-            {copy.heading(String(n), name)}
-          </h1>
+          <h1 className="page-title m-0">{copy.heading(String(n), name)}</h1>
           <p className="text-ink-3 m-0 font-mono text-[13px]">
             {state.closed
               ? copy.closed(stopLabel(STOPS[n].closes))
@@ -112,13 +115,18 @@ export default async function StopPage({ params }: { params: Promise<{ n: string
           </div>
         ) : null}
 
+        {!researchSent ? (
+          <p className="text-ink-1 m-0 text-[15px] font-medium">{planCopy.locked}</p>
+        ) : !open ? (
+          <p className="text-ink-1 m-0 text-[15px] font-medium">{copy.order(String(n - 1))}</p>
+        ) : null}
         <StopForm
           stop={n}
           fields={fields}
           initial={initial}
           stretch={stretchFor(steps)}
           sent={state.sent}
-          locked={state.locked}
+          locked={state.locked || !researchSent || !open}
         />
       </div>
     </BuildShell>

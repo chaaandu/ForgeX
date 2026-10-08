@@ -103,30 +103,15 @@ export const TABS = {
     name: 'Events',
     headers: ['At', 'Email', 'Kind', 'Data'],
   },
-  /** Each save of a founder's research, newest last. Status is draft or sent. */
+  /** Each save of a founder's research, newest last. Status is draft or sent; Doc is the research doc. */
   research: {
     name: 'Research',
-    headers: [
-      'At',
-      'Email',
-      'Status',
-      'For',
-      'Problem',
-      'Moment',
-      'Apps',
-      'Conversations',
-      'Reading',
-    ],
+    headers: ['At', 'Email', 'Status', 'For', 'Problem', 'Doc', 'Mentor'],
   },
   /** Every tick and untick of a plan step, with the link or answer it asked for. */
   steps: {
     name: 'Steps',
     headers: ['At', 'Email', 'Step ID', 'Done', 'Value'],
-  },
-  /** One thread per founder with the team. From is whoever wrote the line. */
-  messages: {
-    name: 'Messages',
-    headers: ['Message ID', 'Founder', 'From', 'Step ID', 'Text', 'Screenshot', 'At', 'Emailed at'],
   },
   /** Each save of a stop, newest last. Fields is JSON keyed by field ID. */
   submissions: {

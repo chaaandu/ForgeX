@@ -38,10 +38,13 @@ export const WORKSHOPS: Record<WorkshopId, { day: string }> = {
   vercel: { day: '2026-10-23' },
 }
 
+/** AI Sprint: everyone pitches their MVP version 1, the day after phase 1 is due. */
+export const PITCH_DAY = '2026-10-17'
+
 /** One-to-one check-ins with the team, after stop 3. */
 export const CHECKINS = { from: '2026-10-27', to: '2026-10-30' } as const
 
-/** Founders who committed to tech and AI move into venture building. */
+/** Venture Building launches, for founders going further with tech and AI. */
 export const VENTURE_BUILDING = '2026-11-02'
 
 const IST = 'Asia/Kolkata'
@@ -92,3 +95,36 @@ export function nextStop(now: Date): StopNumber | null {
 export function stopClosed(n: StopNumber, now: Date): boolean {
   return now.getTime() > new Date(STOPS[n].closes).getTime()
 }
+
+/** Everything the calendar marks, from the dates above. Words are in content/copy.ts. */
+export type PlanEvent = {
+  id:
+    | 'research'
+    | 'figma'
+    | 'cursor'
+    | 'stop1'
+    | 'pitch'
+    | 'cloud'
+    | 'vercel'
+    | 'stop2'
+    | 'stop3'
+    | 'checkins'
+    | 'venture'
+  kind: 'research' | 'workshop' | 'stop' | 'pitch' | 'checkin' | 'venture'
+  from: string
+  to: string
+}
+
+export const PLAN_EVENTS: PlanEvent[] = [
+  { id: 'research', kind: 'research', from: RESEARCH_DAYS[0], to: RESEARCH_DAYS[1] },
+  { id: 'figma', kind: 'workshop', from: WORKSHOPS.figma.day, to: WORKSHOPS.figma.day },
+  { id: 'cursor', kind: 'workshop', from: WORKSHOPS.cursor.day, to: WORKSHOPS.cursor.day },
+  { id: 'stop1', kind: 'stop', from: STOPS[1].day, to: STOPS[1].day },
+  { id: 'pitch', kind: 'pitch', from: PITCH_DAY, to: PITCH_DAY },
+  { id: 'cloud', kind: 'workshop', from: WORKSHOPS.cloud.day, to: WORKSHOPS.cloud.day },
+  { id: 'vercel', kind: 'workshop', from: WORKSHOPS.vercel.day, to: WORKSHOPS.vercel.day },
+  { id: 'stop2', kind: 'stop', from: STOPS[2].day, to: STOPS[2].day },
+  { id: 'stop3', kind: 'stop', from: STOPS[3].day, to: STOPS[3].day },
+  { id: 'checkins', kind: 'checkin', from: CHECKINS.from, to: CHECKINS.to },
+  { id: 'venture', kind: 'venture', from: VENTURE_BUILDING, to: VENTURE_BUILDING },
+]

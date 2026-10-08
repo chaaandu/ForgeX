@@ -30,5 +30,9 @@ export const list = {
       .split(',')
       .map((item) => item.trim())
       .filter(Boolean),
-  write: (items: string[]) => items.map((item) => item.replace(/,/g, ' ').trim()).filter(Boolean).join(', '),
+  write: (items: string[]) =>
+    items
+      .map((item) => item.replace(/,/g, ' ').trim())
+      .filter(Boolean)
+      .join(', '),
 }

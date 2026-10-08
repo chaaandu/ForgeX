@@ -110,7 +110,9 @@ export function classify(scores: Scores): FamilyId {
 /** The archetype: the strongest instinct, then the next. */
 export function archetypeOf(scores: Scores): ArchetypeId {
   const [lead, then] = rank(scores)
-  const found = ARCHETYPE_IDS.find((id) => ARCHETYPES[id].lead === lead && ARCHETYPES[id].then === then)
+  const found = ARCHETYPE_IDS.find(
+    (id) => ARCHETYPES[id].lead === lead && ARCHETYPES[id].then === then,
+  )
   if (!found) throw new Error(`no archetype for ${lead}→${then}`)
   return found
 }
@@ -187,7 +189,8 @@ export const TRIAL: TrialQuestion[] = [
 /** The most any one axis can reach, so a meter has something to fill towards. */
 export const TRIAL_MAX: Scores = TRIAL.reduce(
   (total, question) => {
-    for (const axis of AXES) total[axis] += Math.max(...question.options.map((option) => option[axis]))
+    for (const axis of AXES)
+      total[axis] += Math.max(...question.options.map((option) => option[axis]))
     return total
   },
   { u: 0, e: 0, s: 0 },
@@ -206,7 +209,9 @@ export function scoreTrial(answers: Record<string, string>): Scores {
 
 /** True only if every question has a valid answer. A partial trial places nobody. */
 export function isCompleteTrial(answers: Record<string, string>): boolean {
-  return TRIAL.every((question) => question.options.some((option) => option.key === answers[question.id]))
+  return TRIAL.every((question) =>
+    question.options.some((option) => option.key === answers[question.id]),
+  )
 }
 
 /**

@@ -119,62 +119,48 @@ const PERSONAS = new Set([
 ])
 
 /** Mock only: who each demo founder is building for, and what they found. */
-const DEMO_RESEARCH: { forWho: string; problem: string; moment: string }[] = [
+const DEMO_RESEARCH: { forWho: string; problem: string }[] = [
   {
-    forWho: 'Home bakers who take cake orders on WhatsApp',
+    forWho: 'Kirana owners near new dark stores in Jayanagar',
     problem:
-      'Orders arrive on WhatsApp, Instagram and calls. Each baker writes them on paper and checks the paper the night before.',
-    moment: "Saturday night, when Sunday's orders are spread across 3 apps",
+      'Regulars still drop in for milk, but the monthly list now goes to an app. The owner only notices when they stop coming.',
   },
   {
-    forWho: 'Water-can suppliers delivering to apartment blocks',
+    forWho: 'Kiranas in housing societies in Wakad, Pune',
     problem:
-      'Each supplier tracks cans and monthly dues in a notebook. Empty cans go missing, and dues are argued over at month end.',
-    moment: 'The 1st of the month, collecting payments door to door',
+      'Families order in the evening rush and the shop is full. The ones who cannot get through order on their phones instead.',
   },
   {
-    forWho: 'Tiffin services with monthly subscribers',
+    forWho: 'Two-person kiranas in Indiranagar',
     problem:
-      'Subscribers skip meals by WhatsApp message. The cook finds out at the door, and refunds are worked out from memory.',
-    moment: 'Lunch packing at 11 am, with 3 skips nobody saw',
+      'The owner is at the counter all day and cannot answer the phone. Calls go unanswered, and those households try an app.',
   },
   {
-    forWho: 'Kirana stores that sell on credit',
+    forWho: 'Kiranas that sell to students in hostels',
     problem:
-      'Regulars buy on credit written in a notebook. The owner forgets who owes what, and customers dispute the total.',
-    moment: 'When a regular asks how much they owe, and nobody is sure',
+      'Students want late-night snacks fast. The shop closes at 10 pm, and the apps never do.',
   },
   {
-    forWho: 'Florists taking wedding and event orders',
+    forWho: 'Old kiranas in Mylapore with elderly regulars',
     problem:
-      'Big orders come by phone with advance payments. Details change by WhatsApp, and the final order lives in 3 places.',
-    moment: 'The morning of an event, when the order changed overnight',
+      'Their regulars trust the shop but cannot read small app screens. Their children now order for them on apps.',
   },
   {
-    forWho: 'Pharmacies with regular monthly customers',
+    forWho: 'Kiranas next to a new Zepto store in Gurugram',
     problem:
-      'Regulars refill the same medicines each month. The pharmacist remembers some of them and runs out of stock for the rest.',
-    moment: 'A regular arrives for a refill that is out of stock',
+      'Prices on the app are lower on the items families compare. The owner loses the whole basket over 2 or 3 items.',
   },
   {
-    forWho: 'Printing shops handling college orders',
+    forWho: 'Kiranas in small towns outside Mysuru',
     problem:
-      'Students send files and changes on WhatsApp. Jobs get printed from the wrong version, and payment is chased later.',
-    moment: 'Exam week, with 40 jobs in the queue and 3 versions of each',
+      'Dark stores have not arrived yet, but the big monthly list already goes to online sales. The owner wants to keep it.',
   },
   {
-    forWho: 'Hardware stores supplying local contractors',
+    forWho: 'Kiranas run by second-generation owners in Lucknow',
     problem:
-      'Contractors order by phone and pay at the end of a job. The owner keeps a running tab in a ledger nobody else can read.',
-    moment: 'A contractor disputes a bill 2 months later',
+      'The son wants to bring the shop online, the father trusts the notebook. Regulars drift while they argue.',
   },
 ]
-
-const DEMO_APPS = JSON.stringify([
-  { name: 'Khatabook', note: 'Owners I asked use it for credit, but not for orders.' },
-  { name: 'WhatsApp Business', note: 'Orders arrive here, but nothing turns them into a list.' },
-  { name: 'A paper notebook', note: 'Still the record everyone trusts, and nobody can search.' },
-])
 
 /**
  * Mock mode only: eight founders who have sent their research and started
@@ -199,7 +185,6 @@ function demo(founders: Partial<Record<Header<'founders'>, string>>[]) {
   const steps: Partial<Record<Header<'steps'>, string>>[] = []
   const submissions: Partial<Record<Header<'submissions'>, string>>[] = []
   const reviews: Partial<Record<Header<'reviews'>, string>>[] = []
-  const messages: Partial<Record<Header<'messages'>, string>>[] = []
   const pods: Partial<Record<Header<'pods'>, string>>[] = []
   const events: Partial<Record<Header<'events'>, string>>[] = []
   chosen.forEach((row, index) => {
@@ -214,10 +199,8 @@ function demo(founders: Partial<Record<Header<'founders'>, string>>[]) {
       Status: 'sent',
       For: item.forWho,
       Problem: item.problem,
-      Moment: item.moment,
-      Apps: DEMO_APPS,
-      Conversations: '[]',
-      Reading: '',
+      Doc: 'https://docs.google.com/document/d/demo-research',
+      Mentor: 'yes',
     })
     const slug = (row.Slug ?? `demo-${index}`).replace(/[^a-z0-9-]/g, '')
     const repo = `https://github.com/${slug}/shop-orders`
@@ -284,17 +267,6 @@ function demo(founders: Partial<Record<Header<'founders'>, string>>[]) {
         At: at,
       })
     }
-    if (index === 3 || index === 5) {
-      messages.push({
-        'Message ID': `M-demo-${index}`,
-        Founder: email,
-        From: email,
-        'Step ID': 'g-card-3',
-        Text: 'Vercel says the build failed. I checked the keys twice.',
-        Screenshot: '',
-        At: new Date(Date.now() - (index + 1) * 3600_000).toISOString(),
-      })
-    }
   })
   // Two pods with members, from whichever guided founders the seed has.
   const guided = founders.filter((row) => row.Track === 'guided' && !PERSONAS.has(row.Email ?? ''))
@@ -307,7 +279,7 @@ function demo(founders: Partial<Record<Header<'founders'>, string>>[]) {
       'Set by': 'team@mesaschool.co',
     })
   })
-  return { research, steps, submissions, reviews, messages, pods, events }
+  return { research, steps, submissions, reviews, pods, events }
 }
 
 /** Every tab, seeded, for mock mode. With `withDemo`, eight founders are building. */
@@ -316,7 +288,7 @@ export function seedGrids(withDemo = false): Record<TabKey, string[][]> {
   const problems = problemSeedRows('approved')
   const extra = withDemo
     ? demo(founders)
-    : { research: [], steps: [], submissions: [], reviews: [], messages: [], pods: [], events: [] }
+    : { research: [], steps: [], submissions: [], reviews: [], pods: [], events: [] }
   return {
     founders: toGrid('founders', founders),
     problems: toGrid('problems', problems),
@@ -326,7 +298,6 @@ export function seedGrids(withDemo = false): Record<TabKey, string[][]> {
     events: toGrid('events', extra.events),
     research: toGrid('research', extra.research),
     steps: toGrid('steps', extra.steps),
-    messages: toGrid('messages', extra.messages),
     submissions: toGrid('submissions', extra.submissions),
     reviews: toGrid('reviews', extra.reviews),
     pods: toGrid('pods', extra.pods),

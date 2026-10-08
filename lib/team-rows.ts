@@ -3,7 +3,6 @@ import { archetypes, families } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
 import { progressOf, stepsOf } from '@/lib/build'
 import { allFounders } from '@/lib/data/founders'
-import { allMessages, threads, waitingOnTeam } from '@/lib/data/messages'
 import { seats } from '@/lib/data/pods'
 import { allResearch } from '@/lib/data/research'
 import { allReviews, latestBy, type Rating } from '@/lib/data/reviews'
@@ -33,24 +32,21 @@ export type FounderRow = {
   due: number
   behind: number
   stops: StopCell[]
-  waiting: boolean
   lastActive: string
 }
 
 /** One row per founder for the console and the CSV, built from the Sheet. Team only. */
 export async function founderRows(): Promise<FounderRow[]> {
-  const [founders, research, ticks, submissions, reviews, seatMap, messages] = await Promise.all([
+  const [founders, research, ticks, submissions, reviews, seatMap] = await Promise.all([
     allFounders(),
     allResearch(),
     allTicks(),
     allSubmissions(),
     allReviews(),
     seats(),
-    allMessages(),
   ])
   const now = planNow()
   const today = dayOf(now)
-  const byThread = threads(messages)
   const latest = Object.fromEntries(
     STOP_NUMBERS.map((n) => [n, latestBy(reviews, String(n) as '1')]),
   ) as Record<1 | 2 | 3, ReturnType<typeof latestBy>>
@@ -88,7 +84,6 @@ export async function founderRows(): Promise<FounderRow[]> {
           rating: latest[n].get(founder.email)?.rating ?? null,
         }
       }),
-      waiting: waitingOnTeam(byThread.get(founder.email) ?? []),
       lastActive: founder.lastActive,
     }
   })

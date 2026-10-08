@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: meta.pages.signIn }
 
 /**
  * Mock personas, one per track, plus a teammate. Aarav was placed in
- * Hackathon 1; Diya sits the quiz; Aadishwar gets no matches, only the form.
+ * Hackathon 1; Diya sits the quiz; Aadishwar is autonomous, and can be seated as a pod mentor.
  */
 const PERSONAS = [
   {
@@ -82,7 +82,7 @@ export default async function Login({
           {refused ? (
             <p
               role="alert"
-              className="m-0 rounded-xl px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_rgb(124_77_204/0.5)]"
+              className="text-error m-0 rounded-xl px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_color-mix(in_oklab,var(--color-error)_45%,transparent)]"
             >
               {refused}
             </p>

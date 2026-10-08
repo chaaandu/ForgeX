@@ -6,11 +6,13 @@ import { BuildNav } from '@/components/build/BuildNav'
 import { CardActions } from '@/components/card/CardActions'
 import { FounderCard } from '@/components/card/FounderCard'
 import { ProfileFacts } from '@/components/founder/ProfileFacts'
+import { SocialLinks } from '@/components/founder/SocialLinks'
 import { Profile } from '@/components/levels/Profile'
 import { Account } from '@/components/shell/Account'
 import { Brand } from '@/components/shell/Brand'
 import { HeaderLink } from '@/components/shell/HeaderLink'
 import { CheckinForm } from '@/components/team/CheckinForm'
+import { ProgressGrid } from '@/components/build/ProgressGrid'
 import {
   archetypes,
   consoleCopy,
@@ -18,14 +20,15 @@ import {
   levels,
   meta,
   page as copy,
+  plan,
   stops as stopsCopy,
 } from '@/content/copy'
 import { ARCHETYPES } from '@/lib/archetype'
-import { progressOf, stepsOf, workLinks } from '@/lib/build'
+import { monthGrid, progressOf, stepsOf, workLinks } from '@/lib/build'
 import { isBuilding } from '@/lib/building'
 import { founderContext } from '@/lib/context'
 import { ago, shortDate } from '@/lib/dates'
-import { founderBySlug, LEVELS } from '@/lib/data/founders'
+import { founderByEmail, founderBySlug, LEVELS } from '@/lib/data/founders'
 import { seats } from '@/lib/data/pods'
 import { allReviews, latestBy } from '@/lib/data/reviews'
 import { ticksOf } from '@/lib/data/steps'
@@ -50,7 +53,6 @@ const NEXT_LEVEL = [
   levels.names.archetype,
   levels.names.profile,
   levels.names.challenge,
-  levels.names.research,
 ]
 
 /**
@@ -79,10 +81,16 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
     seats(),
   ])
   const research = context.research?.sent ? context.research : null
+  // Any founder in their 3 weeks keeps their own Today, Plan, Phases and
+  // Profile in the bar, on their page and on everyone else's.
+  const me = viewer.role === 'founder' ? (own ? founder : await founderByEmail(viewer.email)) : null
+  const building = Boolean(me && me.level >= LEVELS.challenge)
   const mine = submissions.filter((item) => item.email === founder.email)
   const links = workLinks(ticks, mine)
   const today = dayOf(planNow())
-  const progress = progressOf(stepsOf(founder), ticks, today)
+  const steps = stepsOf(founder)
+  const progress = progressOf(steps, ticks, today)
+  const weeks = monthGrid(steps, ticks, { sent: Boolean(research), title: plan.research }, today)
   const kind = founder.archetype ? ARCHETYPES[founder.archetype] : null
   const seat = seatMap.get(founder.email)
   const checkins = reviews.filter((item) => item.email === founder.email && item.stop === 'checkin')
@@ -92,39 +100,51 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
       [copy.links.repo, links.repo],
       [copy.links.design, links.design],
       [copy.links.video, links.video],
+      [copy.links.producthunt, links.producthunt],
+      [copy.links.research, full ? (research?.doc ?? '') : ''],
     ] as const
   ).filter(([, url]) => url)
 
   return (
     <div className="min-h-dvh">
-      <header className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-x-4 gap-y-2 px-5 pt-5 md:flex-nowrap md:px-10 md:pt-7">
-        <Brand href={team ? '/team' : own && research ? '/today' : '/'} />
-        {own && research ? (
-          <div className="order-last w-full md:order-none md:mr-auto md:w-auto">
-            <BuildNav slug={founder.slug} pod={seat?.role === 'mentor'} />
-          </div>
-        ) : null}
-        <div className="flex items-center gap-2">
-          {team ? (
-            <HeaderLink
-              href="/team"
-              label={copy.console}
-              icon={<LayoutDashboard size={16} strokeWidth={1.5} aria-hidden="true" />}
-            />
+      {/* The same bar as Today, Plan and Phases, so the profile reads as one of them. */}
+      <header className="border-line bg-ground/90 sticky top-0 z-30 border-b backdrop-blur">
+        <div className="mx-auto flex max-w-[1240px] flex-wrap items-center gap-x-6 gap-y-2 px-5 py-3 md:flex-nowrap md:px-10">
+          <Brand href={team ? '/team' : building ? '/today' : '/'} />
+          {building ? (
+            <div className="order-last w-full md:order-none md:w-auto">
+              <BuildNav
+                slug={me?.slug ?? founder.slug}
+                pod={seatMap.get(me?.email ?? '')?.role === 'mentor'}
+              />
+            </div>
           ) : null}
-          <HeaderLink
-            href="/"
-            label={consoleCopy.wall}
-            icon={<Users size={16} strokeWidth={1.5} aria-hidden="true" />}
-          />
-          {team ? <Account name={viewer.name} email={viewer.email} photo={viewer.photo} /> : null}
+          {building ? null : (
+            <div className="ml-auto flex items-center gap-2">
+              {team ? (
+                <HeaderLink
+                  href="/team"
+                  label={copy.console}
+                  icon={<LayoutDashboard size={16} strokeWidth={1.5} aria-hidden="true" />}
+                />
+              ) : null}
+              <HeaderLink
+                href="/"
+                label={consoleCopy.wall}
+                icon={<Users size={16} strokeWidth={1.5} aria-hidden="true" />}
+              />
+              {team ? (
+                <Account name={viewer.name} email={viewer.email} photo={viewer.photo} />
+              ) : null}
+            </div>
+          )}
         </div>
       </header>
 
-      <main className="mx-auto grid max-w-[1240px] gap-16 px-5 pt-10 pb-24 md:px-10 md:pt-14">
-        {own && founder.level < LEVELS.research ? (
+      <main className="mx-auto grid max-w-[1240px] gap-16 px-5 pt-8 pb-24 md:px-10 md:pt-12">
+        {own && founder.level < LEVELS.challenge ? (
           <Link href={currentPath(founder)} className="btn btn-primary press w-fit">
-            {copy.continue(NEXT_LEVEL[founder.level] ?? levels.names.research)}
+            {copy.continue(NEXT_LEVEL[founder.level] ?? levels.names.challenge)}
           </Link>
         ) : null}
 
@@ -147,11 +167,36 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
                 {founder.profile.bio}
               </p>
             ) : null}
+            <div className="mt-2">
+              <SocialLinks
+                name={founder.first || founder.name}
+                github={founder.profile.github}
+                linkedin={founder.profile.linkedin}
+                live={links.live}
+                site={founder.profile.portfolio}
+              />
+            </div>
           </div>
         </section>
 
+        <section className="border-line grid gap-8 border-t pt-12" aria-labelledby="about">
+          <h2 id="about" className="section-title m-0">
+            {own ? copy.sections.profile : copy.sections.theirProfile}
+          </h2>
+          {own ? (
+            <Profile
+              name={founder.name}
+              photo={founder.photo}
+              initial={founder.profile}
+              next={null}
+            />
+          ) : (
+            <ProfileFacts profile={founder.profile} />
+          )}
+        </section>
+
         <section className="border-line grid gap-8 border-t pt-12" aria-labelledby="build">
-          <h2 id="build" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
+          <h2 id="build" className="section-title m-0">
             {own ? copy.sections.build : copy.sections.theirBuild}
           </h2>
           {research ? (
@@ -167,12 +212,6 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
                   <dt className="meta">{copy.building.problem}</dt>
                   <dd className="m-0 max-w-[60ch] text-[17px] leading-relaxed whitespace-pre-line">
                     {research.problem}
-                  </dd>
-                </div>
-                <div className="grid gap-1">
-                  <dt className="meta">{copy.building.moment}</dt>
-                  <dd className="text-ink-2 m-0 max-w-[60ch] text-[16px] italic">
-                    {research.moment}
                   </dd>
                 </div>
               </dl>
@@ -236,22 +275,14 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
               {own ? copy.building.yoursNotYet : copy.building.notYet}
             </p>
           )}
-        </section>
-
-        <section className="grid gap-8" aria-labelledby="about">
-          <h2 id="about" className="display m-0 text-[clamp(32px,3.6vw,44px)] leading-none">
-            {own ? copy.sections.profile : copy.sections.theirProfile}
-          </h2>
-          {own ? (
-            <Profile
-              name={founder.name}
-              photo={founder.photo}
-              initial={founder.profile}
-              next={null}
-            />
-          ) : (
-            <ProfileFacts profile={founder.profile} />
-          )}
+          {research ? (
+            <section className="border-line grid gap-5 border-t pt-8" aria-labelledby="month">
+              <h3 id="month" className="meta m-0">
+                {copy.grid.title}
+              </h3>
+              <ProgressGrid weeks={weeks} today={today} />
+            </section>
+          ) : null}
         </section>
 
         {team ? (
@@ -302,60 +333,6 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
                 </div>
               ))}
             </dl>
-
-            {research ? (
-              <div className="grid gap-4">
-                <h3 className="meta m-0">{copy.research.title}</h3>
-                <div className="grid gap-6 md:grid-cols-3">
-                  <div className="grid content-start gap-2">
-                    <span className="text-ink-3 text-[13px]">{copy.research.apps}</span>
-                    {research.apps.map((app) => (
-                      <p key={app.name} className="m-0 text-[14px]">
-                        <span className="text-ink-1 font-medium">{app.name}</span>
-                        <span className="text-ink-2"> · {app.note}</span>
-                      </p>
-                    ))}
-                  </div>
-                  <div className="grid content-start gap-2">
-                    <span className="text-ink-3 text-[13px]">{copy.research.talks}</span>
-                    {research.talks.length
-                      ? research.talks.map((talk) => (
-                          <p key={talk.who} className="m-0 text-[14px]">
-                            <span className="text-ink-1 font-medium">{talk.who}</span>
-                            <span className="text-ink-2"> · {talk.breaks}</span>
-                            {talk.said ? (
-                              <span className="text-ink-3 block italic">{talk.said}</span>
-                            ) : null}
-                          </p>
-                        ))
-                      : copy.research.none}
-                  </div>
-                  <div className="grid content-start gap-2">
-                    <span className="text-ink-3 text-[13px]">{copy.research.reading}</span>
-                    {research.reading.length
-                      ? research.reading.map((url) => (
-                          <a
-                            key={url}
-                            href={url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-ink-1 text-[14px] break-all"
-                          >
-                            {workLabel(url)}
-                          </a>
-                        ))
-                      : copy.research.none}
-                  </div>
-                </div>
-              </div>
-            ) : null}
-
-            <Link
-              href={`/team/messages?f=${founder.slug}`}
-              className="btn btn-secondary press w-fit text-[14px]"
-            >
-              {copy.openThread}
-            </Link>
 
             <div className="grid gap-4">
               <h3 className="meta m-0">{copy.checkins.title}</h3>

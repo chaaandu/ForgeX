@@ -69,7 +69,16 @@ export function linkLabel(field: LinkField, url: string): string {
  * screenshot. Each kind is checked for the place it should live, so a GitHub
  * profile can't stand in for a repo, or a private file for a video.
  */
-export const WORK_LINK_KINDS = ['github', 'live', 'design', 'video', 'doc', 'screenshot'] as const
+export const WORK_LINK_KINDS = [
+  'github',
+  'live',
+  'design',
+  'video',
+  'doc',
+  'research',
+  'producthunt',
+  'screenshot',
+] as const
 export type WorkLinkKind = (typeof WORK_LINK_KINDS)[number]
 
 const DRIVE = ['drive.google.com', 'docs.google.com']
@@ -78,8 +87,11 @@ const WORK_HOSTS: Record<WorkLinkKind, string[] | null> = {
   github: ['github.com'],
   live: null,
   design: ['figma.com', ...DRIVE],
-  video: ['youtube.com', 'youtu.be', 'loom.com', ...DRIVE],
+  // The demo is a Loom: one place for the team to watch all 117.
+  video: ['loom.com'],
   doc: null,
+  research: DRIVE,
+  producthunt: ['producthunt.com'],
   screenshot: DRIVE,
 }
 

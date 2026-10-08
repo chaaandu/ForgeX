@@ -151,7 +151,7 @@ export function InlineField({
       )}
       <span className="min-h-[18px] font-sans text-[13px] not-italic" aria-live="polite">
         {shown ? (
-          <span className="text-violet-ink">{shown}</span>
+          <span className="text-error">{shown}</span>
         ) : status ? (
           <span className="meta">{status}</span>
         ) : null}

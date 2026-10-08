@@ -9,9 +9,9 @@ import { dayOf, planNow } from '@/lib/plan'
 import { requireFounder } from '@/lib/session'
 
 /**
- * Every screen of the build: a founder who has sent their research. Anyone
- * earlier in onboarding goes back to where they are; a row from the old flow
- * with a high level but no research goes to research.
+ * Every screen of the 3 weeks: a founder who has seen the challenge. Anyone
+ * earlier in onboarding goes back to where they are. Research is part of the
+ * plan; until it is sent, the build days show but stay locked.
  */
 export async function requireBuilding() {
   const { viewer, founder } = await requireFounder()
@@ -21,7 +21,6 @@ export async function requireBuilding() {
     ticksOf(founder.email),
     seats(),
   ])
-  if (!context.research?.sent) redirect('/research')
   const now = planNow()
   const seat = seatMap.get(founder.email)
   return {
@@ -32,6 +31,7 @@ export async function requireBuilding() {
     now,
     today: dayOf(now),
     steps: stepsOf(founder),
+    researchSent: Boolean(context.research?.sent),
     mentorOf: seat?.role === 'mentor' ? seat.pod : null,
   }
 }

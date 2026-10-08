@@ -21,7 +21,6 @@ const TTL: Record<TabKey, number> = {
   events: 30,
   research: 15,
   steps: 15,
-  messages: 15,
   submissions: 15,
   reviews: 15,
   pods: 30,

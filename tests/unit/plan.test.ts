@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { PLAN_STEPS, STOP_FIELDS, STRETCH } from '@/content/plan'
-import { progressOf } from '@/lib/build'
+import { PLAN_STEPS, STRETCH } from '@/content/plan'
+import { monthGrid, progressOf } from '@/lib/build'
 import type { Submission } from '@/lib/data/submissions'
 import { cleanValue, stepComplete, stretchComplete } from '@/lib/inputs'
 import { normaliseWorkLink } from '@/lib/links'
 import { dayNumber, LAST_DAY, LAUNCH, nextStop, sprintDays, STOPS } from '@/lib/plan'
 import { stepsFor, stopFieldsFor } from '@/lib/steps'
-import { stopState } from '@/lib/stops'
+import { phaseOpen, stopState } from '@/lib/stops'
 import { TRACKS } from '@/lib/tracks'
 
 describe('the calendar', () => {
@@ -76,17 +76,16 @@ describe('the plan', () => {
     }
   })
 
-  it('asks autonomous founders, and only them, for stretch features', () => {
-    expect(STRETCH).toHaveLength(7)
+  it('suggests no solutions: no stretch list, no example answers', () => {
+    expect(STRETCH).toHaveLength(0)
+    for (const step of PLAN_STEPS) expect(step.example, step.id).toBeUndefined()
+    expect(stepsFor('autonomous').some((step) => step.id === 'a-stretch')).toBe(true)
+  })
+
+  it('puts the pitch on Sat 17 Oct, for everyone', () => {
     for (const track of TRACKS) {
-      const asks = stepsFor(track).some((step) => step.input?.kind === 'stretch')
-      expect(asks, track).toBe(track === 'autonomous')
+      expect(stepsFor(track).find((step) => step.id === 'pitch')?.day).toBe('2026-10-17')
     }
-    expect(
-      STOP_FIELDS.filter((field) => field.kind === 'stretch').every(
-        (field) => field.tracks.join() === 'autonomous',
-      ),
-    ).toBe(true)
   })
 })
 
@@ -141,6 +140,16 @@ describe('a stop', () => {
   })
 })
 
+describe('phase order', () => {
+  it('opens each phase only after the one before was sent', () => {
+    expect(phaseOpen(1, new Set())).toBe(true)
+    expect(phaseOpen(2, new Set())).toBe(false)
+    expect(phaseOpen(2, new Set([1]))).toBe(true)
+    expect(phaseOpen(3, new Set([1]))).toBe(false)
+    expect(phaseOpen(3, new Set([1, 2]))).toBe(true)
+  })
+})
+
 describe('work links', () => {
   it('wants a repo, not a profile, for GitHub', () => {
     expect(normaliseWorkLink('github', 'github.com/meera/cake-orders')).toBe(
@@ -152,8 +161,8 @@ describe('work links', () => {
 
   it('checks where designs, videos and screenshots live', () => {
     expect(normaliseWorkLink('design', 'https://www.figma.com/design/abc/Orders')).not.toBeNull()
-    expect(normaliseWorkLink('video', 'https://youtu.be/abc123')).not.toBeNull()
     expect(normaliseWorkLink('video', 'https://www.loom.com/share/abc')).not.toBeNull()
+    expect(normaliseWorkLink('video', 'https://youtu.be/abc123')).toBeNull()
     expect(normaliseWorkLink('video', 'https://vimeo.com/123')).toBeNull()
     expect(
       normaliseWorkLink('screenshot', 'https://drive.google.com/file/d/abc/view'),
@@ -176,16 +185,11 @@ describe('answers', () => {
     expect(cleanValue({ kind: 'number' }, '07')).toBe('7')
     expect(cleanValue({ kind: 'number' }, 'seven')).toBeNull()
     expect(cleanValue({ kind: 'check' }, 'yes')).toBe('yes')
+    // No list is offered any more, so any picked ID is refused; their own idea still counts.
     expect(
-      cleanValue({ kind: 'stretch' }, JSON.stringify({ picked: ['gst', 'voice'], own: '' })),
-    ).not.toBeNull()
-    expect(
-      cleanValue({ kind: 'stretch' }, JSON.stringify({ picked: ['gst', 'teleport'], own: '' })),
+      cleanValue({ kind: 'stretch' }, JSON.stringify({ picked: ['anything'], own: '' })),
     ).toBeNull()
-    expect(
-      cleanValue({ kind: 'stretch' }, JSON.stringify({ picked: ['gst', 'voice'], own: 'x' })),
-    ).toBeNull()
-    expect(stretchComplete({ picked: ['gst'], own: 'Reorder in one tap' })).toBe(true)
+    expect(stretchComplete({ picked: ['a'], own: 'b' })).toBe(true)
   })
 
   it('lets an optional link tick empty, and nothing else', () => {
@@ -193,5 +197,21 @@ describe('answers', () => {
     expect(stepComplete({ kind: 'link', link: 'github', label: '' }, '')).toBe(false)
     expect(stepComplete({ kind: 'stop', stop: 1 }, '')).toBe(false)
     expect(stepComplete(undefined, '')).toBe(true)
+  })
+})
+
+describe('the month grid', () => {
+  it('lays October out in Monday-first weeks, with research on its two days', () => {
+    const steps = stepsFor('structured')
+    const weeks = monthGrid(steps, {}, { sent: true, title: 'Your research' }, '2026-10-14')
+    expect(weeks).toHaveLength(5)
+    expect(weeks[0]![0]!.day).toBe('2026-09-28')
+    const days = weeks.flat()
+    expect(days.filter((cell) => cell.inMonth)).toHaveLength(31)
+    expect(days.find((cell) => cell.day === '2026-10-09')!.steps).toEqual([
+      { title: 'Your research', done: true },
+    ])
+    expect(days.find((cell) => cell.day === '2026-10-15')!.future).toBe(true)
+    expect(days.find((cell) => cell.day === '2026-10-12')!.steps.length).toBeGreaterThan(0)
   })
 })

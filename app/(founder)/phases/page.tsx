@@ -7,7 +7,7 @@ import { requireBuilding } from '@/lib/require-building'
 import { stopLabel } from '@/lib/dates'
 import { allSubmissions } from '@/lib/data/submissions'
 import { STOP_NUMBERS, STOPS } from '@/lib/plan'
-import { stopState } from '@/lib/stops'
+import { phaseOpen, stopState } from '@/lib/stops'
 
 export const metadata: Metadata = { title: meta.pages.stops }
 
@@ -19,7 +19,7 @@ export default async function StopsPage() {
     <BuildShell card={context.card} slug={founder.slug} pod={mentorOf !== null}>
       <div className="grid max-w-[760px] gap-10">
         <div className="grid gap-3">
-          <h1 className="display m-0 text-[clamp(40px,5vw,60px)] leading-none">{copy.title}</h1>
+          <h1 className="page-title m-0">{copy.title}</h1>
           <p className="text-lead text-ink-2 m-0 max-w-[48ch]">{copy.lead}</p>
         </div>
         <ol className="m-0 grid list-none gap-3 p-0">
@@ -38,10 +38,16 @@ export default async function StopsPage() {
                     ? copy.state.draft
                     : copy.state.none
             const review = reviews[n]
+            const sentBefore = new Set(
+              submissions
+                .filter((item) => item.email === founder.email && item.status === 'sent')
+                .map((item) => item.stop),
+            )
+            const open = phaseOpen(n, sentBefore)
             return (
               <li key={n}>
                 <Link
-                  href={`/stops/${n}`}
+                  href={`/phases/${n}`}
                   className="panel press grid gap-2 p-5 no-underline md:grid-cols-[1fr_auto] md:items-center"
                 >
                   <span className="grid gap-1">
@@ -55,7 +61,7 @@ export default async function StopsPage() {
                     </span>
                   </span>
                   <span className="flex flex-wrap items-center gap-2">
-                    <span className="tag">{word}</span>
+                    <span className="tag">{open ? word : copy.opensAfter(String(n - 1))}</span>
                     {review?.rating ? (
                       <span className="tag text-violet-ink">
                         {copy.review.ratings[review.rating]}

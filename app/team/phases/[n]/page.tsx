@@ -112,7 +112,7 @@ export default async function TeamStopPage({
     for (const [key, value] of Object.entries(merged))
       if (value && value !== 'all') next.set(key, value)
     const qs = next.toString()
-    return `/team/stops/${n}${qs ? `?${qs}` : ''}`
+    return `/team/phases/${n}${qs ? `?${qs}` : ''}`
   }
 
   return (
@@ -134,7 +134,7 @@ export default async function TeamStopPage({
           {STOP_NUMBERS.map((stop) => (
             <Link
               key={stop}
-              href={`/team/stops/${stop}`}
+              href={`/team/phases/${stop}`}
               aria-current={stop === n ? 'page' : undefined}
               className="chip press min-h-9 text-[13px] no-underline"
             >

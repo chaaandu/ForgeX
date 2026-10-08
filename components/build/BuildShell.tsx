@@ -5,7 +5,7 @@ import { levels as copy } from '@/content/copy'
 import { BuildNav } from './BuildNav'
 
 /**
- * Home, once a founder is building: Today, Plan, Stops, Messages and their
+ * Home, once a founder is building: Today, Plan, Phases and their
  * profile, with the card beside it on wider screens. Still no sign-out:
  * founders never get one.
  */

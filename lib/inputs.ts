@@ -64,7 +64,7 @@ export function cleanValue(kind: Kind, raw: string): string | null {
 
 /** A step's answer, or null. Stop steps take no answer: sending the stop ticks them. */
 export function cleanStepValue(input: StepInput | undefined, raw: string): string | null {
-  if (!input || input.kind === 'stop') return raw.trim() ? null : ''
+  if (!input || input.kind === 'stop' || input.kind === 'research') return raw.trim() ? null : ''
   return cleanValue(input, raw)
 }
 
@@ -73,7 +73,7 @@ export function stepComplete(input: StepInput | undefined, value: string): boole
   if (!input) return true
   if (input.kind === 'link' && input.optional) return true
   if (input.kind === 'stretch') return stretchComplete(parseStretch(value))
-  if (input.kind === 'stop') return false
+  if (input.kind === 'stop' || input.kind === 'research') return false
   return value.length > 0
 }
 

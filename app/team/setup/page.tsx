@@ -81,11 +81,6 @@ export default async function SetupPage() {
     },
     ...(await sheetChecks()),
     { label: copy.bank, ok: true, detail: bankOn() ? copy.bankOn : copy.bankOff },
-    {
-      label: copy.email,
-      ok: true,
-      detail: has('RESEND_API_KEY') && has('EMAIL_FROM') ? copy.emailOn : copy.emailOff,
-    },
   ]
   const failing = checks.filter((check) => !check.ok).length
 

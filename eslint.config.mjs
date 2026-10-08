@@ -17,6 +17,7 @@ const config = [
       '.next/**',
       '.next-prod/**',
       '.next-test/**',
+      '.next-local/**',
       'next-env.d.ts',
       'node_modules/**',
       'data/the-117-c1/**',

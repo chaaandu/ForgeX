@@ -49,7 +49,9 @@ export function StopForm({
   const router = useRouter()
   const [values, setValues] = useState<Record<string, string>>(initial)
   const [errors, setErrors] = useState<Record<string, string>>({})
-  const [status, setStatus] = useState<'idle' | 'saved' | 'sent' | 'failed' | 'locked'>('idle')
+  const [status, setStatus] = useState<'idle' | 'saved' | 'sent' | 'failed' | 'locked' | 'order'>(
+    'idle',
+  )
   const [pending, start] = useTransition()
   const ready = fields.every((field) => complete(field, values[field.id] ?? ''))
 
@@ -76,6 +78,7 @@ export function StopForm({
         setStatus(send || sent ? 'sent' : 'saved')
         router.refresh()
       } else if (result.error === 'locked') setStatus('locked')
+      else if (result.error === 'order') setStatus('order')
       else {
         setErrors(result.fields ?? {})
         setStatus('failed')
@@ -143,7 +146,7 @@ export function StopForm({
               />
             )}
             {problem ? (
-              <p role="alert" className="text-violet-ink m-0 text-[14px]">
+              <p role="alert" className="text-error m-0 text-[14px]">
                 {message(field, problem)}
               </p>
             ) : null}
@@ -178,9 +181,13 @@ export function StopForm({
             <p role="status" className="text-ink-2 m-0 text-[14px]">
               {copy.sentNow}
             </p>
-          ) : status === 'failed' || status === 'locked' ? (
-            <p role="alert" className="text-violet-ink m-0 basis-full text-[14px]">
-              {status === 'locked' ? copy.locked : copy.failed}
+          ) : status === 'failed' || status === 'locked' || status === 'order' ? (
+            <p role="alert" className="text-error m-0 basis-full text-[14px]">
+              {status === 'locked'
+                ? copy.locked
+                : status === 'order'
+                  ? copy.order(String(stop - 1))
+                  : copy.failed}
             </p>
           ) : null}
         </div>

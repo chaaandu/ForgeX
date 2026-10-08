@@ -42,7 +42,6 @@ Mock mode never runs on a Vercel production deploy, whatever the flag says.
 | `GOOGLE_SA_EMAIL` | The service account email |
 | `GOOGLE_SA_KEY` | The `private_key` from the service account JSON, `\n` escapes included, in quotes |
 | `PROBLEM_BANK` | `off`. The old bank's data stays in the Sheet; `on` shows it to the team at `/team/bank`. Founders never see it |
-| `RESEND_API_KEY`, `EMAIL_FROM` | Response emails. Optional; without them nothing is sent and nothing breaks |
 | `NEXT_PUBLIC_SITE_URL` | The public URL, for example `https://forgex.mesaschool.co.in`. Used in email links |
 | `MOCK_BACKEND` | `false` everywhere except your laptop |
 
@@ -89,10 +88,10 @@ None of the first three overwrites a cell you've edited or removes anything. `sh
 | Problems | The bank. Only rows with `Status` set to `approved` reach founders. Anything else reads as a draft. `Difficulty` is `easy`, `medium` or `hard`, and founders never see it. `Edited by` and `Edited at` record the last team change |
 | Problems internal | Evidence, scores, why now and existing players, for the team |
 | Picks, Responses | The old why-and-reply flow. Kept, no longer written |
-| Research | Every save of a founder's research, append-only. The newest row stands; `Status` is `draft` or `sent` |
+| Research | Every save of a founder's research, append-only. The newest row stands; `Status` is `draft` or `sent`; `Doc` is their research doc; `Mentor` is `yes` once their mentor approved it |
 | Steps | Every tick of a plan step, with the link or answer it asked for |
-| Messages | Stuck? Message the team. One thread per founder; `From` is whoever wrote the line |
-| Submissions | Every save of a stop. `Late` is `yes` for a stop sent after 6 pm |
+| Messages | No longer used: help is in person |
+| Submissions | Every save of a phase. `Late` is `yes` for one sent after 6 pm |
 | Reviews | Green, amber or red per stop, notes and a fix list, plus check-in notes (`Stop` is `checkin`). `Author` is the teammate |
 | Pods | Pod and mentor seats. The newest row per person stands |
 | Events | The audit log |
@@ -104,7 +103,7 @@ None of the first three overwrites a cell you've edited or removes anything. `sh
 
 ## 5. The plan's dates
 
-Launch, research days, workshops, the 3 stops (6 pm IST each) and the check-in week all live in `lib/plan.ts`. Change a date there and redeploy. What each track does on each day is in `content/plan.ts`.
+Launch, research days, workshops, the 3 phases (6 pm IST each) and the check-in week all live in `lib/plan.ts`. Change a date there and redeploy. What each track does on each day is in `content/plan.ts`.
 
 ## 6. Deploy to Vercel
 
@@ -114,12 +113,6 @@ Launch, research days, workshops, the 3 stops (6 pm IST each) and the check-in w
 4. Add the domain's redirect URI to the OAuth client (section 3).
 
 **Before go-live:** run `pnpm sheet:migrate` once on any Sheet created before the switch from rarity to difficulty. Until then the app fails on the Problems tab, naming the missing `Difficulty` column.
-
-## 7. Email, when you want it
-
-1. Create a Resend account and verify a sending subdomain, such as `mail.mesaschool.co`.
-2. Set `RESEND_API_KEY` and `EMAIL_FROM` (for example `ForgeX <forgex@mail.mesaschool.co>`) in Vercel.
-3. Each reply to a message then emails the founder a link to their messages. The `Emailed at` cell in Messages records it.
 
 ## 8. Photos and the roster
 
@@ -133,9 +126,8 @@ Launch, research days, workshops, the 3 stops (6 pm IST each) and the check-in w
 
 | Task | Where |
 | --- | --- |
-| Who's behind, who's stuck | `/team`: steps done against due, how far behind, the 3 stops, and who is waiting on a reply. CSV export |
-| Answer messages | `/team/messages`, waiting first. Replies are emailed when Resend is set |
-| Review a stop | `/team/stops/1`, `2` or `3`: filter by track, pod and rating; rate green, amber or red with notes and a fix list |
+| Who's behind | `/team`: steps done against due, how far behind, and the 3 phases. CSV export |
+| Review a phase | `/team/phases/1`, `2` or `3`: filter by track, pod and rating; rate green, amber or red with notes and a fix list |
 | Pods and mentors | `/team/pods` |
 | Check-in notes, 27 to 30 Oct | On each founder's page, in the team-only panel |
 | A founder's page | `/f/<slug>`, which shows the team-only panel to you |

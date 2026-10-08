@@ -5,6 +5,9 @@ function isOpen(pathname: string): boolean {
   return (
     pathname === '/' ||
     pathname === '/login' ||
+    // A shared card and its link preview: public, so a shared link unfurls.
+    pathname.startsWith('/c/') ||
+    pathname.startsWith('/api/og/') ||
     pathname.startsWith('/api/auth') ||
     // The design lab and the relic renderer. Never reachable in production.
     (pathname.startsWith('/lab') && process.env.NODE_ENV !== 'production') ||

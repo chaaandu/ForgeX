@@ -30,6 +30,8 @@ export type StepInput =
   | { kind: 'text'; label: string; placeholder: string }
   | { kind: 'stretch' }
   | { kind: 'stop'; stop: StopNumber }
+  /** Sending the research form ticks it. */
+  | { kind: 'research' }
 
 export type PlanStep = {
   /** Frozen once founders can tick it: ticks are stored against this. */
@@ -73,24 +75,27 @@ type OmitEach<T, K extends PropertyKey> = T extends unknown ? Omit<T, K> : never
 
 export type FounderStopField = OmitEach<StopField, 'tracks'>
 
-/** The starter's build cards, read on GitHub. Filenames are in the starter's cards/ folder. */
-export const CARDS_BASE = 'https://github.com/chaaandu/mesa-starter/blob/main/cards'
+/** The ForgeX starter on GitHub: its build cards, frameworks and prompts. */
+export const STARTER_BASE = 'https://github.com/chaaandu/forgex-starter/blob/main'
+export const CARDS_BASE = `${STARTER_BASE}/cards`
+export const RESEARCH_TEMPLATE = `${STARTER_BASE}/frameworks/01-research-doc.md`
+export const WEBSITE_PROMPT = `${STARTER_BASE}/prompts/build-my-website.md`
 export const CARD_FILES: Record<number, string> = {
   1: '01-make-your-copy.md',
   2: '02-run-it-in-cursor.md',
   3: '03-go-live-on-vercel.md',
-  4: '04-name-and-colours.md',
-  5: '05-first-screen-stop-1.md',
-  6: '06-your-products.md',
-  7: '07-order-from-whatsapp.md',
-  8: '08-order-status.md',
-  9: '09-today-and-total.md',
+  4: '04-make-it-yours.md',
+  5: '05-first-screen-phase-1.md',
+  6: '06-your-data.md',
+  7: '07-core-flow-part-1.md',
+  8: '08-core-flow-part-2.md',
+  9: '09-daily-screen.md',
   10: '10-connect-supabase.md',
   11: '11-real-data.md',
-  12: '12-phone-check-stop-2.md',
-  13: '13-real-orders.md',
+  12: '12-phone-check-phase-2.md',
+  13: '13-real-owner.md',
   14: '14-readme-case-study.md',
-  15: '15-demo-video-stop-3.md',
+  15: '15-loom-demo-phase-3.md',
 }
 
 export function cardHref(n: number): string {
@@ -98,9 +103,18 @@ export function cardHref(n: number): string {
   return file ? `${CARDS_BASE}/${file}` : `${CARDS_BASE}/README.md`
 }
 
+/** Website steps link to the starter's website prompt. */
+const isSite = (id: string) => /(^|-)site-|^a-landing$/.test(id)
+
 const strip = ({ tracks: _tracks, ...step }: PlanStep): FounderStep => ({
   ...step,
-  guide: step.card ? cardHref(step.card) : null,
+  guide: step.card
+    ? cardHref(step.card)
+    : isSite(step.id)
+      ? WEBSITE_PROMPT
+      : step.id === 'r-talk'
+        ? RESEARCH_TEMPLATE
+        : null,
 })
 
 /** A track's steps, oldest day first. */

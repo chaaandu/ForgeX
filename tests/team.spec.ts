@@ -5,13 +5,15 @@ import { AADISHWAR, AARAV, DIYA, RESEARCH, reset, signIn, TEAM, toToday } from '
 async function aaravSendsStop1(page: Page) {
   await signIn(page, AARAV)
   await toToday(page)
-  await page.goto('/stops/1')
+  await page.goto('/phases/1')
   await page.getByLabel('Your repo').fill('github.com/aarav/cake-orders')
   await page.getByLabel('Your live link').fill('cake-orders.vercel.app')
+  await page.getByLabel('Your website: the problem and your solution').fill('kirana-keep.in')
+  await page.getByLabel('What makes your solution different?').fill('It starts from the regulars.')
   await page
     .getByLabel('Which screen did you build first, and why that one?')
     .fill('The order list, because orders get lost first.')
-  await page.getByRole('button', { name: 'Send stop 1' }).click()
+  await page.getByRole('button', { name: 'Send phase 1' }).click()
   await expect(page.getByText('Sent. The team will review it.')).toBeVisible()
   await page.context().clearCookies()
 }
@@ -25,9 +27,9 @@ test('the team rates a stop amber with fixes, and the founder sees them on Today
 }) => {
   await aaravSendsStop1(page)
   await signIn(page, TEAM)
-  await expect(page.goto('/team/stops/1?rating=unrated')).resolves.toBeTruthy()
+  await expect(page.goto('/team/phases/1?rating=unrated')).resolves.toBeTruthy()
   await expect(page.getByRole('link', { name: 'To review 1' })).toBeVisible()
-  await page.goto('/team/stops/1')
+  await page.goto('/team/phases/1')
   const row = page.locator('details', { hasText: 'Aarav Shrivastava' })
   await row.locator('summary').click()
   await expect(row.getByText('github.com/aarav/cake-orders')).toBeVisible()
@@ -39,7 +41,7 @@ test('the team rates a stop amber with fixes, and the founder sees them on Today
 
   await page.context().clearCookies()
   await signIn(page, AARAV)
-  await page.goto('/stops/1')
+  await page.goto('/phases/1')
   await expect(page.getByText('A few fixes')).toBeVisible()
   await expect(page.getByText('Good start. Fix sign-in first.')).toBeVisible()
   await page.goto('/today')
@@ -49,37 +51,6 @@ test('the team rates a stop amber with fixes, and the founder sees them on Today
   await expect(
     fixes.getByRole('checkbox', { name: 'Mark not done: Sign-in fails on the live link' }),
   ).toBeVisible()
-})
-
-test('a stuck founder messages the team, and the reply comes back', async ({ page }) => {
-  await signIn(page, AARAV)
-  await toToday(page)
-  await page.goto('/messages?step=g-card-3')
-  await expect(page.getByText('About: Go live on Vercel')).toBeVisible()
-  await page
-    .getByLabel('Where are you stuck?')
-    .fill('Vercel says the build failed. I checked the keys.')
-  await page.getByLabel('Screenshot link').fill('imgur.com/abc')
-  await page.getByRole('button', { name: 'Message the team' }).click()
-  await expect(page.getByText('Paste a Google Drive link to the screenshot.')).toBeVisible()
-  await page.getByLabel('Screenshot link').fill('drive.google.com/file/d/abc/view')
-  await page.getByRole('button', { name: 'Message the team' }).click()
-  await expect(page.getByText("Sent. We'll reply here, and by email.")).toBeVisible()
-  await page.context().clearCookies()
-
-  await signIn(page, TEAM)
-  await page.goto('/team/messages')
-  const thread = page.locator('li', { hasText: 'Aarav Shrivastava' }).first()
-  await expect(thread.getByText('Vercel says the build failed.')).toBeVisible()
-  await thread.getByRole('textbox').fill('Open the build log and look for the first red line.')
-  await thread.getByRole('button', { name: 'Send reply' }).click()
-  await expect(page.getByText('Nobody is waiting. Every message has a reply.')).toBeVisible()
-  await page.context().clearCookies()
-
-  await signIn(page, AARAV)
-  await page.goto('/messages')
-  await expect(page.getByText('Open the build log and look for the first red line.')).toBeVisible()
-  await expect(page.getByText('The ForgeX team').first()).toBeVisible()
 })
 
 test('the cohort sees a building founder, without ratings or the team block', async ({ page }) => {

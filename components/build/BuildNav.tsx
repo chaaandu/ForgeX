@@ -10,8 +10,7 @@ export function BuildNav({ slug, pod }: { slug: string; pod: boolean }) {
   const items = [
     { href: '/today', label: copy.nav.today },
     { href: '/plan', label: copy.nav.plan },
-    { href: '/stops', label: copy.nav.stops },
-    { href: '/messages', label: copy.nav.messages },
+    { href: '/phases', label: copy.nav.stops },
     ...(pod ? [{ href: '/pod', label: copy.nav.pod }] : []),
     { href: `/f/${slug}`, label: copy.nav.profile },
   ]

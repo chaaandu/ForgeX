@@ -61,7 +61,7 @@ export function PodBoard({
   return (
     <div className="grid gap-4">
       {failed ? (
-        <p role="alert" className="text-violet-ink m-0 text-[14px]">
+        <p role="alert" className="text-error m-0 text-[14px]">
           {copy.failed}
         </p>
       ) : null}
