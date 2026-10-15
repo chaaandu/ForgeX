@@ -446,7 +446,7 @@ export const ownProblem = {
     industry: { label: 'Which industry is it in?' },
     industryOther: { label: 'Which industry is it?' },
     title: {
-      label: 'Name it in a few words',
+      label: 'Title of your problem',
       placeholder: 'Weekend markets lose their regulars',
       help: 'Under 10 words.',
     },
@@ -485,7 +485,9 @@ export const ownProblem = {
   errors: {
     required: 'This one is required.',
     link: 'Paste a full link, like drive.google.com/drive/folders/1AbC.',
+    words: (max: number) => `Keep it to ${max} words.`,
   },
+  words: (count: number, max: number) => `${count} / ${max} words`,
   send: 'Send for review',
   sendAgain: 'Send it again',
   sending: 'Sending',

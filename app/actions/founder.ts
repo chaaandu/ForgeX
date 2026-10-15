@@ -39,14 +39,9 @@ import { worldSchema } from '@/lib/world'
  * (never back).
  */
 
-export type Result<T = object> = ({ ok: true } & T) | { ok: false; error: ActionError; fields?: Record<string, string> }
-export type ActionError =
-  | 'signed-out'
-  | 'forbidden'
-  | 'invalid'
-  | 'closed'
-  | 'locked'
-  | 'failed'
+export type Result<T = object> =
+  ({ ok: true } & T) | { ok: false; error: ActionError; fields?: Record<string, string> }
+export type ActionError = 'signed-out' | 'forbidden' | 'invalid' | 'closed' | 'locked' | 'failed'
 
 async function me(): Promise<Founder | ActionError> {
   const viewer = await getViewer()
@@ -72,7 +67,8 @@ async function guarded<T>(run: (founder: Founder) => Promise<Result<T>>): Promis
 export async function arrive(): Promise<Result<{ number: number }>> {
   return guarded<{ number: number }>(async (founder) => {
     if (founder.number) {
-      if (founder.level < LEVELS.arrived) await patchFounder(founder, levelPatch(founder, LEVELS.arrived))
+      if (founder.level < LEVELS.arrived)
+        await patchFounder(founder, levelPatch(founder, LEVELS.arrived))
       return { ok: true, number: founder.number }
     }
     await logEvent(founder.email, 'arrived')
@@ -93,7 +89,9 @@ export async function saveTrial(raw: unknown): Promise<Result<{ archetype: strin
   return guarded<{ archetype: string }>(async (founder) => {
     const parsed = trialSchema.safeParse(raw)
     if (!parsed.success || !isCompleteTrial(parsed.data)) return { ok: false, error: 'invalid' }
-    const answers = Object.fromEntries(TRIAL.map((question) => [question.id, parsed.data[question.id] ?? '']))
+    const answers = Object.fromEntries(
+      TRIAL.map((question) => [question.id, parsed.data[question.id] ?? '']),
+    )
     const retake = Boolean(founder.archetype)
     if (retake && founder.retakesUsed >= 1) return { ok: false, error: 'locked' }
     const axes = scoreTrial(answers)
@@ -106,7 +104,12 @@ export async function saveTrial(raw: unknown): Promise<Result<{ archetype: strin
       'Retakes used': String(founder.retakesUsed + (retake ? 1 : 0)),
       ...levelPatch(founder, LEVELS.archetype),
     })
-    await logEvent(founder.email, 'archetype', { archetype, axes, retake, previous: founder.archetype })
+    await logEvent(founder.email, 'archetype', {
+      archetype,
+      axes,
+      retake,
+      previous: founder.archetype,
+    })
     return { ok: true, archetype }
   })
 }
@@ -122,7 +125,9 @@ export async function keepArchetype(): Promise<Result> {
 }
 
 /** Level 3. Saves whatever changed; links are normalised here, never in the browser. */
-export async function saveProfile(raw: unknown): Promise<Result<{ links: Partial<Record<LinkField, string>> }>> {
+export async function saveProfile(
+  raw: unknown,
+): Promise<Result<{ links: Partial<Record<LinkField, string>> }>> {
   return guarded<{ links: Partial<Record<LinkField, string>> }>(async (founder) => {
     const parsed = profilePatchSchema.safeParse(raw)
     if (!parsed.success) return { ok: false, error: 'invalid' }
@@ -180,7 +185,10 @@ export async function saveWorld(raw: unknown): Promise<Result> {
     if (!parsed.success) return { ok: false, error: 'invalid' }
     if (founder.level < LEVELS.profile) return { ok: false, error: 'forbidden' }
     if (hasProblem(await entryOf(founder.email))) return { ok: false, error: 'locked' }
-    await patchFounder(founder, { World: JSON.stringify(parsed.data), ...levelPatch(founder, LEVELS.world) })
+    await patchFounder(founder, {
+      World: JSON.stringify(parsed.data),
+      ...levelPatch(founder, LEVELS.world),
+    })
     await logEvent(founder.email, 'world', parsed.data)
     return { ok: true }
   })
@@ -204,7 +212,10 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
     const parsed = ownProblemSchema.safeParse(raw)
     if (!parsed.success) {
       const fields = Object.fromEntries(
-        parsed.error.issues.map((issue) => [String(issue.path[0] ?? ''), 'required']),
+        parsed.error.issues.map((issue) => [
+          String(issue.path[0] ?? ''),
+          issue.message === 'words' ? 'words' : 'required',
+        ]),
       )
       return { ok: false, error: 'invalid', fields }
     }
@@ -214,7 +225,10 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
       return {
         ok: false,
         error: 'invalid',
-        fields: { ...(primary ? {} : { primary: 'link' }), ...(secondary ? {} : { secondary: 'link' }) },
+        fields: {
+          ...(primary ? {} : { primary: 'link' }),
+          ...(secondary ? {} : { secondary: 'link' }),
+        },
       }
     }
     const now = clock()
@@ -267,7 +281,10 @@ export async function pickFromBank(raw: unknown): Promise<Result> {
     if (hasProblem(entry)) return { ok: false, error: 'locked' }
     await pickProblem(founder, entry, { id: problem.id, title: problem.scope.task })
     await patchFounder(founder, levelPatch(founder, LEVELS.picked))
-    await logEvent(founder.email, 'pick', { problemId: problem.id, replaces: entry?.state ?? 'none' })
+    await logEvent(founder.email, 'pick', {
+      problemId: problem.id,
+      replaces: entry?.state ?? 'none',
+    })
     revalidatePath('/')
     return { ok: true }
   })
@@ -276,7 +293,9 @@ export async function pickFromBank(raw: unknown): Promise<Result> {
 const researchSchema = z.object({ primary: z.string().max(400), secondary: z.string().max(400) })
 
 /** The research behind a problem picked from the bank. It counts once both links are in. */
-export async function saveResearch(raw: unknown): Promise<Result<Warnings & { research: Record<string, string> }>> {
+export async function saveResearch(
+  raw: unknown,
+): Promise<Result<Warnings & { research: Record<string, string> }>> {
   return guarded<Warnings & { research: Record<string, string> }>(async (founder) => {
     const parsed = researchSchema.safeParse(raw)
     if (!parsed.success) return { ok: false, error: 'invalid' }
@@ -322,7 +341,8 @@ async function writeStage(raw: unknown, submit: boolean): Promise<StageResult> {
     const now = clock()
     const entry = await entryOf(founder.email)
     if (!entry || !mayBuild(entry.state)) return { ok: false, error: 'forbidden' }
-    if (phaseAt(now).locked[stage] && !entry.reopened.has(stage)) return { ok: false, error: 'locked' }
+    if (phaseAt(now).locked[stage] && !entry.reopened.has(stage))
+      return { ok: false, error: 'locked' }
 
     const own = new Set<string>(fieldsOf(stage).map((field) => field.id))
     const required = new Set<string>(requiredOf(stage))
@@ -376,4 +396,3 @@ export async function saveStage(raw: unknown): Promise<StageResult> {
 export async function submitStage(raw: unknown): Promise<StageResult> {
   return writeStage(raw, true)
 }
-

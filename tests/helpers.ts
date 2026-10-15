@@ -118,7 +118,7 @@ export const OWN = {
 /** Fills the problem form, in whole or in part. The industry is pressed only on a blank form. */
 export async function fillProblem(page: Page, values: Partial<typeof OWN> = OWN) {
   const labels: Record<keyof typeof OWN, RegExp> = {
-    title: /^Name it in a few words/,
+    title: /^Title of your problem/,
     person: /^Person: who has this problem/,
     problem: /^Problem: what's broken/,
     promise: /^Promise: what changes/,

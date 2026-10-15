@@ -9,16 +9,30 @@ import { INDUSTRY_IDS } from '@/lib/taxonomy'
  */
 const text = (min: number, max: number) => z.string().trim().min(min).max(max)
 
+/**
+ * The most words each written field may have. Only words count, never the
+ * spaces or blank lines between them. The research lives in the linked docs,
+ * so these stay short. The title is under 10 words.
+ */
+export const WORD_LIMITS = { title: 9, person: 40, problem: 80, promise: 40, plan: 100 } as const
+export type WordField = keyof typeof WORD_LIMITS
+
+export const wordCount = (value: string) => value.trim().split(/\s+/).filter(Boolean).length
+
+/** A written field: present, and within its word limit. The issue reads `words` when it is too long. */
+const written = (field: WordField, min: number) =>
+  text(min, 3000).refine((value) => wordCount(value) <= WORD_LIMITS[field], 'words')
+
 export const ownProblemSchema = z
   .object({
     industry: z.enum([...INDUSTRY_IDS, 'other']),
     /** The industry in their words, when none of ours fits. */
     industryOther: z.string().trim().max(40).default(''),
-    title: text(3, 80).refine((value) => value.split(/\s+/).length < 10, 'Under ten words'),
-    person: text(10, 600),
-    problem: text(20, 900),
-    promise: text(10, 600),
-    plan: text(10, 900),
+    title: written('title', 3),
+    person: written('person', 10),
+    problem: written('problem', 20),
+    promise: written('promise', 10),
+    plan: written('plan', 10),
     primary: text(4, 400),
     secondary: text(4, 400),
   })

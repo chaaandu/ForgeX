@@ -6,13 +6,20 @@ import { checkResearch, submitProblem } from '@/app/actions/founder'
 import { Hint } from '@/components/ui/Hint'
 import { ownProblem as copy, submit as submitCopy, world as worldCopy } from '@/content/copy'
 import type { LinkHealth } from '@/lib/link-check'
-import { OWN_FIELDS, RESEARCH_FIELDS, type OwnProblem } from '@/lib/own-problem'
+import {
+  OWN_FIELDS,
+  RESEARCH_FIELDS,
+  WORD_LIMITS,
+  wordCount,
+  type OwnProblem,
+  type WordField,
+} from '@/lib/own-problem'
 import { INDUSTRIES } from '@/lib/taxonomy'
 
 type Field = (typeof OWN_FIELDS)[number] | (typeof RESEARCH_FIELDS)[number]
-type Draft = Omit<OwnProblem, 'industry'> & { industry: OwnProblem['industry'] | '' }
 
-const words = (text: string) => text.trim().split(/\s+/).filter(Boolean).length
+const isWordField = (field: Field): field is WordField => field in WORD_LIMITS
+type Draft = Omit<OwnProblem, 'industry'> & { industry: OwnProblem['industry'] | '' }
 
 const EMPTY: Draft = {
   industry: '',
@@ -47,7 +54,9 @@ export function OwnProblemForm({
 }) {
   const router = useRouter()
   const [draft, setDraft] = useState<Draft>(initial ?? EMPTY)
-  const [errors, setErrors] = useState<Partial<Record<Field | 'industry' | 'industryOther', string>>>({})
+  const [errors, setErrors] = useState<
+    Partial<Record<Field | 'industry' | 'industryOther', string>>
+  >({})
   const [warnings, setWarnings] = useState<Partial<Record<Field, LinkHealth>>>({})
   const [failed, setFailed] = useState(false)
   const [pending, start] = useTransition()
@@ -59,18 +68,25 @@ export function OwnProblemForm({
     if (!value) return
     const result = await checkResearch({ [field]: value })
     if (!result.ok) return
-    setErrors((current) => ({ ...current, [field]: result.bad.includes(field) ? 'link' : undefined }))
+    setErrors((current) => ({
+      ...current,
+      [field]: result.bad.includes(field) ? 'link' : undefined,
+    }))
     setWarnings((current) => ({ ...current, [field]: result.warnings[field] }))
   }
 
   function send() {
     const missing: Partial<Record<Field | 'industry' | 'industryOther', string>> = {}
     if (!draft.industry) missing.industry = 'required'
-    if (draft.industry === 'other' && draft.industryOther.trim().length < 2) missing.industryOther = 'required'
+    if (draft.industry === 'other' && draft.industryOther.trim().length < 2)
+      missing.industryOther = 'required'
     for (const field of [...OWN_FIELDS, ...RESEARCH_FIELDS]) {
       if (!draft[field].trim()) missing[field] = 'required'
     }
-    if (words(draft.title) >= 10) missing.title = 'title'
+    for (const field of OWN_FIELDS) {
+      if (draft[field].trim() && wordCount(draft[field]) > WORD_LIMITS[field])
+        missing[field] = 'words'
+    }
     if (Object.keys(missing).length) {
       setErrors(missing)
       document.getElementById(`own-${Object.keys(missing)[0]}`)?.scrollIntoView({ block: 'center' })
@@ -97,11 +113,18 @@ export function OwnProblemForm({
     const error = errors[field]
     if (error === 'required') return { text: copy.errors.required, bad: true }
     if (error === 'link') return { text: copy.errors.link, bad: true }
-    if (error === 'title') return { text: copy.fields.title.help, bad: true }
+    if (error === 'words' && isWordField(field))
+      return { text: copy.errors.words(WORD_LIMITS[field]), bad: true }
     const warning = warnings[field]
     if (warning === 'private') return { text: submitCopy.warnings.private, bad: true }
     if (warning === 'broken') return { text: submitCopy.warnings.broken, bad: true }
     return { text: copy.fields[field].help, bad: false }
+  }
+
+  // Typing clears what was wrong with this field; the counter keeps the score.
+  const change = (field: Field, value: string) => {
+    set({ [field]: value } as Partial<Draft>)
+    setErrors((current) => (current[field] ? { ...current, [field]: undefined } : current))
   }
 
   const input = (field: Field, rows: number) => {
@@ -111,8 +134,7 @@ export function OwnProblemForm({
     return (
       <div key={field} className="grid gap-2">
         <label htmlFor={id} className="text-ink-1 text-[15px] font-medium">
-          {copy.fields[field].label}{' '}
-          <span className="text-ink-3 font-normal">{copy.required}</span>
+          {copy.fields[field].label} <span className="text-ink-3 font-normal">{copy.required}</span>
         </label>
         {rows === 1 ? (
           <input
@@ -122,11 +144,11 @@ export function OwnProblemForm({
             inputMode={link ? 'url' : 'text'}
             autoCapitalize={link ? 'none' : 'sentences'}
             value={draft[field]}
-            maxLength={link ? 400 : 80}
+            maxLength={link ? 400 : 200}
             placeholder={copy.fields[field].placeholder}
             aria-describedby={`${id}-help`}
             aria-invalid={note.bad || undefined}
-            onChange={(event) => set({ [field]: event.target.value } as Partial<Draft>)}
+            onChange={(event) => change(field, event.target.value)}
             onBlur={link ? () => void check(field) : undefined}
           />
         ) : (
@@ -135,19 +157,26 @@ export function OwnProblemForm({
             className="field min-h-0"
             rows={rows}
             value={draft[field]}
-            maxLength={900}
+            maxLength={3000}
             placeholder={copy.fields[field].placeholder}
             aria-describedby={`${id}-help`}
             aria-invalid={note.bad || undefined}
-            onChange={(event) => set({ [field]: event.target.value } as Partial<Draft>)}
+            onChange={(event) => change(field, event.target.value)}
           />
         )}
         <p
           id={`${id}-help`}
-          className={`m-0 text-[13px] ${note.bad ? 'text-error' : 'text-ink-3'}`}
+          className={`m-0 flex justify-between gap-4 text-[13px] ${note.bad ? 'text-error' : 'text-ink-3'}`}
           role={note.bad ? 'alert' : undefined}
         >
-          {note.text}
+          <span>{note.text}</span>
+          {isWordField(field) ? (
+            <span
+              className={`shrink-0 font-mono text-[12px] ${wordCount(draft[field]) > WORD_LIMITS[field] ? 'text-error' : ''}`}
+            >
+              {copy.words(wordCount(draft[field]), WORD_LIMITS[field])}
+            </span>
+          ) : null}
         </p>
       </div>
     )
@@ -217,10 +246,10 @@ export function OwnProblemForm({
         <h2 id="three-p" className="section-title m-0">
           {copy.threeP}
         </h2>
-        {input('person', 2)}
-        {input('problem', 3)}
-        {input('promise', 2)}
-        {input('plan', 3)}
+        {input('person', 3)}
+        {input('problem', 4)}
+        {input('promise', 3)}
+        {input('plan', 4)}
       </section>
 
       <section className="grid gap-7" aria-labelledby="research">

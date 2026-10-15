@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { HACKATHON, phaseAt, STAGE_IDS, type StageId } from '@/lib/hackathon'
 import { currentPath, mayEnter } from '@/lib/journey'
 import { normaliseWorkLink } from '@/lib/links'
-import { mayBuild, needsNote, ownProblemSchema } from '@/lib/own-problem'
+import { mayBuild, needsNote, ownProblemSchema, wordCount } from '@/lib/own-problem'
 import { bullets, problemSchema, scopeFileSchema } from '@/lib/problem'
 import { mayAct, mayDecide, staffOf } from '@/lib/staff'
 import { nextDue, stepsFor, type StepInput } from '@/lib/steps'
@@ -209,6 +209,20 @@ describe('an own problem', () => {
     expect(ownProblemSchema.safeParse(good).success).toBe(true)
     expect(ownProblemSchema.safeParse({ ...good, primary: '' }).success).toBe(false)
     expect(ownProblemSchema.safeParse({ ...good, title: 'one two three four five six seven eight nine ten' }).success).toBe(false)
+  })
+
+  it('counts only words, and holds each field to its limit', () => {
+    expect(wordCount('  one   two\n\nthree  ')).toBe(3)
+    expect(wordCount('')).toBe(0)
+    const many = (n: number) => Array.from({ length: n }, () => 'word').join(' ')
+    expect(ownProblemSchema.safeParse({ ...good, person: many(40) }).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, person: many(41) }).success).toBe(false)
+    expect(ownProblemSchema.safeParse({ ...good, problem: many(80) }).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, problem: many(81) }).success).toBe(false)
+    expect(ownProblemSchema.safeParse({ ...good, plan: many(100) }).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, plan: many(101) }).success).toBe(false)
+    const tooLong = ownProblemSchema.safeParse({ ...good, promise: many(41) })
+    expect(tooLong.success ? '' : tooLong.error.issues[0]?.message).toBe('words')
   })
 
   it('is built only once approved, approved with changes, or picked from the bank', () => {

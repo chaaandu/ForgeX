@@ -77,7 +77,7 @@ test('a problem in review can still be changed and sent again', async ({ page })
   await toProblem(page)
   await sendProblem(page)
   await page.getByRole('button', { name: 'Edit and send again' }).click()
-  await expect(page.getByLabel(/^Name it in a few words/)).toHaveValue(OWN.title)
+  await expect(page.getByLabel(/^Title of your problem/)).toHaveValue(OWN.title)
   await sendProblem(page, { title: 'Sunday markets lose their regulars' }, true)
   await expect(page.getByText('Sunday markets lose their regulars').first()).toBeVisible()
   await expect(page.getByText('Version 2').first()).toBeVisible()
@@ -98,12 +98,31 @@ test('an industry outside our list is named in their own words', async ({ page }
   await expect(page.getByRole('article', { name: 'Aarav Shrivastava' }).getByText('Sports', { exact: true })).toBeVisible()
 })
 
+test('each written field shows its word count, and nothing goes over the limit', async ({ page }) => {
+  await toProblem(page)
+  await fillProblem(page)
+  await expect(page.getByText(`${OWN.person.split(' ').length} / 40 words`)).toBeVisible()
+  // Spaces and blank lines never count, only words.
+  await page.getByLabel(/^Promise: what changes/).fill('  Their   regulars\n\n find them.  ')
+  await expect(page.getByText('4 / 40 words')).toBeVisible()
+  await page.getByLabel(/^Your plan/).fill(Array.from({ length: 101 }, () => 'word').join(' '))
+  await expect(page.getByText('101 / 100 words')).toBeVisible()
+  await page.getByRole('button', { name: 'Send for review' }).click()
+  await expect(page.getByText('Keep it to 100 words.')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'Your problem' })).toBeVisible()
+  // Trimming it back clears the message, and it sends.
+  await page.getByLabel(/^Your plan/).fill(OWN.plan)
+  await expect(page.getByText('Keep it to 100 words.')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Send for review' }).click()
+  await expect(page.getByRole('heading', { name: 'In review.' })).toBeVisible()
+})
+
 test('a name of 10 words or more is refused before it is sent', async ({ page }) => {
   await toProblem(page)
   await fillProblem(page, { ...OWN, title: 'one two three four five six seven eight nine ten' })
   await page.getByRole('button', { name: 'Send for review' }).click()
   await expect(page.getByRole('heading', { name: 'Your problem' })).toBeVisible()
-  await expect(page.getByLabel(/^Name it in a few words/)).toHaveAttribute('aria-invalid', 'true')
+  await expect(page.getByLabel(/^Title of your problem/)).toHaveAttribute('aria-invalid', 'true')
 })
 
 test('a founder without an archetype sits the quiz, and the server decides the result', async ({
