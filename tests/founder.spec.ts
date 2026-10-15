@@ -198,6 +198,16 @@ test('rejected after the window, a founder picks from the bank, adds research, a
   await toProblem(page)
   await sendProblem(page)
   await setClock(page, WHEN.bank)
+  // Still in review once the bank opens: they wait, with no way into the bank.
+  await page.goto('/problem')
+  await expect(page.getByRole('heading', { name: 'In review.' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Pick from the bank' })).toHaveCount(0)
+  await page.goto('/build')
+  await expect(page.getByRole('link', { name: 'Pick from the bank' })).toHaveCount(0)
+  for (const path of ['/world', '/matches']) {
+    await page.goto(path)
+    await page.waitForURL('**/build')
+  }
   await page.context().clearCookies()
   await signIn(page, CHANDU)
   await answer(page, 'Aarav Shrivastava', 'Reject', 'Too broad.')

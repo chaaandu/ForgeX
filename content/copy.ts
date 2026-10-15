@@ -523,7 +523,6 @@ export const ownProblem = {
   earlier: 'Earlier versions',
   bank: 'Pick from the bank',
   bankSoon: (when: string) => `The bank opens on ${when}.`,
-  bankInstead: 'Rather not wait? You can pick from the bank instead.',
 }
 
 /** A founder's home: how far they have got, what is next, and when. */

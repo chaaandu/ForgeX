@@ -96,14 +96,6 @@ export default async function ProblemPage() {
               )}
             </div>
           ) : null}
-          {state === 'waiting' && toBank ? (
-            <p className="text-ink-2 m-0 text-[14px]">
-              {copy.bankInstead}{' '}
-              <Link href={toBank} className="text-violet-ink">
-                {copy.bank}
-              </Link>
-            </p>
-          ) : null}
         </div>
 
         {latest && entry ? (

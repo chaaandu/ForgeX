@@ -15,6 +15,7 @@ import {
   type Entry,
 } from '@/lib/data/hackathon'
 import { isOpen, problemById } from '@/lib/data/problems'
+import { mayUseBank } from '@/lib/bank-access'
 import { clock, phaseAt, STAGE_IDS } from '@/lib/hackathon'
 import { linkWarnings, type LinkHealth } from '@/lib/link-check'
 import { cleanResearch, mayBuild, ownProblemSchema, RESEARCH_FIELDS } from '@/lib/own-problem'
@@ -265,7 +266,8 @@ export async function checkResearch(raw: unknown): Promise<Result<Warnings & { b
 
 /**
  * Picks a problem from the bank: only once the bank is open, and only for a
- * founder with no approved problem of their own. Final the moment it is made.
+ * founder with no problem of their own approved or in review. Final the
+ * moment it is made.
  */
 export async function pickFromBank(raw: unknown): Promise<Result> {
   return guarded<object>(async (founder) => {
@@ -278,7 +280,7 @@ export async function pickFromBank(raw: unknown): Promise<Result> {
     const problem = await problemById(id.data)
     if (!problem || !isOpen(problem)) return { ok: false, error: 'invalid' }
     const entry = await entryOf(founder.email)
-    if (hasProblem(entry)) return { ok: false, error: 'locked' }
+    if (!mayUseBank(entry, phase)) return { ok: false, error: 'locked' }
     await pickProblem(founder, entry, { id: problem.id, title: problem.scope.task })
     await patchFounder(founder, levelPatch(founder, LEVELS.picked))
     await logEvent(founder.email, 'pick', {
