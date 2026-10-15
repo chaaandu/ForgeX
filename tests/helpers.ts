@@ -2,11 +2,31 @@ import { expect, type Page } from '@playwright/test'
 
 export const AARAV = 'aarav_shrivastava@forge27.mesaschool.co' // placed in Hackathon 1
 export const DIYA = 'diya_agrawal@forge27.mesaschool.co' // sits the quiz
-export const AADISHWAR = 'aadishwar_r@forge27.mesaschool.co' // autonomous, placed in Hackathon 1: no bank
-export const TEAM = 'team@mesaschool.co'
+export const CHANDU = 'chandu@mesaschool.co' // the super admin
+export const SAURABH = 'saurabh@mesaschool.co' // a reviewer
+export const PARAM = 'param@mesaschool.co' // a reviewer, by his mock email
+export const TEAM = 'team@mesaschool.co' // anyone else at Mesa: watches, never acts
 
-export async function reset(page: Page) {
-  const response = await page.request.post('/api/mock/reset')
+/** Moments of the event to stand on. The suite starts on 17 Oct, with the problem window open. */
+export const WHEN = {
+  beforeOpen: '2026-10-14T17:00:00+05:30',
+  during: '2026-10-17T12:00:00+05:30',
+  /** The problem window has shut, and the bank is not open yet. */
+  shut: '2026-10-20T23:59:30+05:30',
+  bank: '2026-10-21T10:00:00+05:30',
+  afterPrototype: '2026-10-22T13:05:00+05:30',
+  over: '2026-10-23T13:05:00+05:30',
+}
+
+/** Puts the in-memory Sheet back to its seed and the clock back to 17 Oct. */
+export async function reset(page: Page, demo = false) {
+  const response = await page.request.post(`/api/mock/reset${demo ? '?demo=1' : ''}`)
+  expect(response.ok()).toBeTruthy()
+}
+
+/** Moves the clock, keeping everything founders have done so far. */
+export async function setClock(page: Page, iso: string) {
+  const response = await page.request.post(`/api/mock/reset?now=${encodeURIComponent(iso)}`)
   expect(response.ok()).toBeTruthy()
 }
 
@@ -44,38 +64,155 @@ export async function throughArchetype(page: Page, quiz: boolean) {
 }
 
 export async function throughProfile(page: Page) {
-  // One tap opens the field, focused, right where the invitation was.
-  await page.getByRole('button', { name: 'Add one line about you' }).click()
-  await page.keyboard.type('I run the counter at my family shop on weekends.')
-  await page.keyboard.press('Enter')
-  await expect(page.getByText('Saved')).toBeVisible()
-  await page.getByRole('button', { name: 'Looks like me' }).click()
-  await page.waitForURL('**/world')
+  // The one line about them is optional, so it is left empty here.
+  // GitHub and LinkedIn are required: the step will not finish without them.
+  for (const [name, value] of [
+    ['Add your GitHub', 'github.com/forgex-founder'],
+    ['Add your LinkedIn', 'linkedin.com/in/forgex-founder'],
+  ] as const) {
+    await page.getByRole('button', { name }).click()
+    await page.keyboard.type(value)
+    await page.keyboard.press('Enter')
+    await expect(page.getByRole('button', { name })).toHaveCount(0)
+  }
+  await page.getByRole('button', { name: 'Next: my problem' }).click()
+  await page.waitForURL('**/problem')
 }
 
-export async function throughWorld(page: Page, lands = '**/matches') {
-  await page.getByRole('button', { name: 'Retail and local shops' }).click()
+/** The three questions. */
+export async function throughWorld(page: Page) {
+  // Answering again starts from the last answers, so only press what is not pressed yet.
+  const press = async (name: string) => {
+    const chip = page.getByRole('button', { name })
+    if ((await chip.getAttribute('aria-pressed')) !== 'true') await chip.click()
+  }
+  await press('Retail and local shops')
   await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('radio', { name: 'Businesses' }).click()
+  await page.getByRole('radio', { name: /^Businesses/ }).click()
   await page.getByRole('button', { name: 'Next' }).click()
-  // Prefilled for anyone whose prior work mentions a family business.
-  const family = page.getByRole('button', { name: 'Family business', exact: true })
-  if ((await family.getAttribute('aria-pressed')) === 'false') await family.click()
-  await page.getByRole('button', { name: 'Retail', exact: true }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: 'Data and dashboards' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('radio', { name: 'Both' }).click()
-  await page.getByRole('button', { name: 'Next' }).click()
-  await page.getByRole('button', { name: /^(Show my matches|Next: your problem)$/ }).click()
-  await page.waitForURL(lands)
+  await press('AI agents')
+  await page.getByRole('button', { name: 'Show my problems' }).click()
+  await page.waitForURL('**/matches')
 }
 
-export const WHY = {
-  whyProblem:
-    'My uncle runs a hardware shop and still reorders from memory, so he runs out of the things people ask for most and overstocks the rest every season.',
-  whyUser:
-    'Shop owners like my uncle, who stand at the counter all day and have no time to count stock, would use it because they lose sales every week.',
-  whyPay:
-    'They already pay for a billing app every month, and a few lost sales a week cost far more than a small monthly fee would.',
+export const problems = (page: Page) =>
+  page.getByRole('list', { name: '4 problems picked for you.' }).locator(':scope > li')
+
+/** From sign-in to the problem form, through the three onboarding steps. */
+export async function toProblem(page: Page, email = AARAV) {
+  await signIn(page, email)
+  await throughArchetype(page, email !== AARAV)
+  await throughProfile(page)
+}
+
+export const OWN = {
+  title: 'Weekend markets lose their regulars',
+  person: 'Stall owners at the Sunday market in Pune, who sell the same goods every week.',
+  problem: 'Regulars cannot tell where a stall will be next week, so sales depend on luck.',
+  promise: 'Their regulars always know where to find them.',
+  plan: 'Spoke to 6 stall owners. Next, a page where a stall posts its next market.',
+  primary: 'drive.google.com/drive/folders/interviews',
+  secondary: 'docs.google.com/document/d/reading',
+}
+
+/** Fills the problem form, in whole or in part. The industry is pressed only on a blank form. */
+export async function fillProblem(page: Page, values: Partial<typeof OWN> = OWN) {
+  const labels: Record<keyof typeof OWN, RegExp> = {
+    title: /^Name it in a few words/,
+    person: /^Person: who has this problem/,
+    problem: /^Problem: what's broken/,
+    promise: /^Promise: what changes/,
+    plan: /^Your plan/,
+    primary: /^Primary research/,
+    secondary: /^Secondary research/,
+  }
+  const retail = page.getByRole('radio', { name: 'Retail and local shops' })
+  if ((await retail.getAttribute('aria-checked')) !== 'true') await retail.click()
+  for (const [key, value] of Object.entries(values) as [keyof typeof OWN, string][])
+    await page.getByLabel(labels[key]).fill(value)
+}
+
+/** Sends the whole problem for review, from the problem page. */
+export async function sendProblem(page: Page, values: Partial<typeof OWN> = OWN, again = false) {
+  await fillProblem(page, values)
+  await page.getByRole('button', { name: again ? 'Send it again' : 'Send for review' }).click()
+  await expect(page.getByRole('heading', { name: 'In review.' })).toBeVisible()
+}
+
+/** Answers a founder's newest version from the Reviews page, as whoever is signed in. */
+export async function answer(
+  page: Page,
+  name: string,
+  decision: 'Approve' | 'Approve with changes' | 'Reject',
+  note = '',
+) {
+  await page.goto('/team/reviews')
+  const item = page.getByRole('article', { name })
+  await item.getByRole('radio', { name: decision, exact: true }).click()
+  if (note) await item.getByLabel('Note to the student').fill(note)
+  await item.getByRole('button', { name: 'Send answer' }).click()
+  await expect(page.getByRole('article', { name })).toHaveCount(0)
+}
+
+/** Aarav, from sign-in to an approved problem, back on his home. */
+export async function approved(page: Page) {
+  await toProblem(page)
+  await sendProblem(page)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await answer(page, 'Aarav Shrivastava', 'Approve')
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/build')
+}
+
+export const STAGE = {
+  scope: 'docs.google.com/document/d/market-day-scope',
+  github: 'github.com/aarav/market-day',
+  prototype: 'market-day.vercel.app',
+  proof: 'drive.google.com/drive/folders/market-day-proof',
+  linkedin: 'linkedin.com/posts/aarav_forgex-activity-1',
+  live: 'market-day.vercel.app',
+  docs: 'docs.google.com/document/d/market-day',
+  deck: 'docs.google.com/presentation/d/1AbC/edit',
+  video: 'loom.com/share/1a2b3c',
+}
+
+const STAGE_FIELDS = {
+  scope: ['scope'],
+  prototype: ['github', 'prototype', 'proof'],
+  launch: ['linkedin', 'live', 'docs'],
+  pitch: ['deck', 'video'],
+} as const
+
+const STAGE_LABELS: Record<keyof typeof STAGE, RegExp> = {
+  scope: /^MVP scope document/,
+  github: /^GitHub repo/,
+  prototype: /^Prototype link/,
+  proof: /^Proof of progress/,
+  linkedin: /^LinkedIn post/,
+  live: /^Live link on Vercel/,
+  docs: /^Documentation/,
+  deck: /^Pitch deck/,
+  video: /^Loom video/,
+}
+
+/** Fills a stage's required links and submits it. */
+export async function sendStage(page: Page, stage: keyof typeof STAGE_FIELDS) {
+  await page.goto(`/submit/${stage}`)
+  for (const field of STAGE_FIELDS[stage]) await page.getByLabel(STAGE_LABELS[field]).fill(STAGE[field])
+  await page.getByRole('button', { name: `Submit my ${stage === 'scope' ? 'MVP scope' : stage}` }).click()
+  await expect(page.getByRole('heading', { name: 'Submitted.' })).toBeVisible()
+}
+
+/** From the bank: the three questions, then the first of the 4. Returns the problem's title. */
+export async function pickFromBank(page: Page): Promise<string> {
+  await page.goto('/world')
+  await throughWorld(page)
+  const first = problems(page).first()
+  const title = (await first.getByRole('heading').innerText()).replace(/\s+/g, ' ').trim()
+  await first.getByRole('button').click()
+  await page.getByRole('button', { name: "I'll build this" }).click()
+  await page.waitForURL('**/build')
+  return title
 }

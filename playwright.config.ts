@@ -33,7 +33,8 @@ export default defineConfig({
       AUTH_SECRET: 'playwright-secret-playwright-secret',
       AUTH_TRUST_HOST: 'true',
       AUTH_URL: baseURL,
-      PICKS_CLOSE_AT: '2030-01-01T00:00:00+05:30',
+      // 17 Oct: the portal is open and founders can still send their problem.
+      PLAN_NOW: process.env.PLAN_NOW ?? '2026-10-17T12:00:00+05:30',
       SHEET_ID: 'mock',
       GOOGLE_SA_EMAIL: 'mock@example.com',
       GOOGLE_SA_KEY: 'mock',

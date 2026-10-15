@@ -1,5 +1,5 @@
 import 'server-only'
-import { problemSchema, type Problem } from '@/lib/problem'
+import { bullets, problemSchema, scopeSchema, type Problem, type Scope } from '@/lib/problem'
 import { rows, updateRow } from '@/lib/store'
 import type { Header, Row } from '@/lib/sheet/tabs'
 
@@ -11,6 +11,8 @@ export type ProblemStatus = 'draft' | 'approved' | 'rejected'
 
 export type BankProblem = Problem & {
   status: ProblemStatus
+  /** The 2-day version. Null until someone writes one, and then it is never offered. */
+  scope: Scope | null
   row: number
   editedBy: string
   editedAt: string
@@ -44,7 +46,19 @@ function toProblem({ row, cells }: Row<'problems'>): BankProblem | null {
     },
   })
   if (!parsed.success) return null
-  return { ...parsed.data, status, row, editedBy: cells['Edited by'], editedAt: cells['Edited at'] }
+  const scope = scopeSchema.safeParse({
+    task: cells.Task,
+    expect: bullets.read(cells.Expect),
+    further: bullets.read(cells.Further),
+  })
+  return {
+    ...parsed.data,
+    status,
+    scope: scope.success ? scope.data : null,
+    row,
+    editedBy: cells['Edited by'],
+    editedAt: cells['Edited at'],
+  }
 }
 
 /** Every problem the Sheet holds, with rows that fail validation left out. */
@@ -54,26 +68,20 @@ export async function bank(): Promise<BankProblem[]> {
     .filter((item): item is BankProblem => item !== null)
 }
 
+export type OpenProblem = BankProblem & { scope: Scope }
+
+/** Whether a founder may be offered this: approved, and cut down to 2 days. */
+export function isOpen(item: BankProblem): item is OpenProblem {
+  return item.status === 'approved' && item.scope !== null
+}
+
 /**
- * Approved problems, for the matcher. Still carries difficulty and signal, so
- * it stays on the server: anything bound for a browser goes through
+ * The problems on offer, for the matcher. Still carries difficulty and signal,
+ * so it stays on the server: anything bound for a browser goes through
  * `forFounder` first.
  */
-export async function openProblems(): Promise<Problem[]> {
-  return (await bank())
-    .filter((item) => item.status === 'approved')
-    .map((item) => ({
-      id: item.id,
-      title: item.title,
-      problem: item.problem,
-      challenge: item.challenge,
-      difficulty: item.difficulty,
-      industries: item.industries,
-      side: item.side,
-      learn: item.learn,
-      geo: item.geo,
-      signal: item.signal,
-    }))
+export async function openProblems(): Promise<OpenProblem[]> {
+  return (await bank()).filter(isOpen)
 }
 
 export async function problemById(id: string): Promise<BankProblem | null> {

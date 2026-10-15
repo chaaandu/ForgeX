@@ -25,6 +25,13 @@ export function closeLabel(iso: string): string {
   return `${day} at ${time} IST`
 }
 
+/** `15 Oct`, in India time, for a day that has no hour worth saying. */
+export function dayLabel(iso: string): string {
+  const date = new Date(iso)
+  if (Number.isNaN(date.getTime())) return ''
+  return new Intl.DateTimeFormat('en-GB', { timeZone: IST, day: 'numeric', month: 'short' }).format(date)
+}
+
 /** `3 hours ago` style, for last active. */
 export function ago(iso: string, now = Date.now()): string {
   const then = new Date(iso).getTime()

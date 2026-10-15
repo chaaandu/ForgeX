@@ -2,31 +2,24 @@ import { problem as copy } from '@/content/copy'
 import type { FounderProblem } from '@/lib/problem'
 
 /**
- * A matched problem: the title, what is broken, the challenge and the reasons
- * it was matched. Nothing else: no rarity, no score, nothing that ranks one
- * problem above another in a founder's eyes. Finding the user, the market and
- * the product is the founder's work, so none of that is here.
+ * A matched problem: the 2-day challenge as its headline, what is broken under
+ * it, and how many others are on it. Nothing else: no difficulty, no score,
+ * nothing that ranks one problem above another in a founder's eyes.
  */
 export function ProblemCard({
   problem,
-  note,
-  as: Tag = 'article',
+  others = 0,
   onOpen,
 }: {
   problem: FounderProblem
-  note?: string
-  as?: 'article' | 'div'
+  others?: number
   onOpen?: () => void
 }) {
   const inner = (
     <>
-      {note ? <span className="meta text-violet-ink">{note}</span> : null}
-      <h3 className="display m-0 text-[26px] leading-[1.05]">{problem.title}</h3>
+      <h3 className="display m-0 text-[26px] leading-[1.08]">{problem.challenge}</h3>
       <p className="text-ink-2 m-0 text-[15px] leading-relaxed">{problem.problem}</p>
-      <p className="m-0 grid gap-1.5 rounded-xl bg-black/25 px-4 py-3.5 text-[15px] leading-snug shadow-[inset_0_0_0_1px_var(--color-line)]">
-        <span className="meta text-[11px]">{copy.challenge}</span>
-        {problem.challenge}
-      </p>
+      {others > 0 ? <span className="meta text-[11px]">{copy.others(others)}</span> : null}
     </>
   )
   const base = 'panel relative grid content-start gap-4 self-start p-6 text-left'
@@ -41,5 +34,5 @@ export function ProblemCard({
       </button>
     )
   }
-  return <Tag className={base}>{inner}</Tag>
+  return <article className={base}>{inner}</article>
 }

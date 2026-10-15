@@ -4,47 +4,32 @@ import { useRouter } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 import { saveWorld } from '@/app/actions/founder'
 import { setLevelProgress } from '@/components/shell/progress'
-import { ComfortSlider } from '@/components/ui/ComfortSlider'
 import { OtherField } from '@/components/ui/OtherField'
 import { world as copy } from '@/content/copy'
-import { ACCESS, INDUSTRIES, INTENTS, LEARN, type AccessId, type IntentId } from '@/lib/taxonomy'
-import type { Access, World as WorldAnswers } from '@/lib/world'
+import { BUILD_WITH, INDUSTRIES } from '@/lib/taxonomy'
+import type { World as WorldAnswers } from '@/lib/world'
 
 /**
- * Level 4. Six questions, one per screen, about two minutes. Every list has a
- * way out, and nothing is saved until the last answer is in, because half a
- * set of answers would skew every match made from them.
+ * Three questions, one per screen, about a minute. Every list has a way out,
+ * and nothing is saved until the last answer is in, because half a set of
+ * answers would skew every match made from them.
  */
 
 type Draft = {
   industries: string[]
   industryOther: string
   side: WorldAnswers['side'] | null
-  access: Access[]
-  nobody: boolean
   learn: string[]
-  learnOther: string
-  intent: IntentId | null
-  comfort: number
 }
 
-const STEPS = ['industries', 'side', 'access', 'learn', 'intent', 'comfort'] as const
+const STEPS = ['industries', 'side', 'learn'] as const
 
 function toggle<T>(list: T[], item: T, max: number): T[] {
   if (list.includes(item)) return list.filter((value) => value !== item)
   return list.length >= max ? list : [...list, item]
 }
 
-export function World({
-  initial,
-  familyBusiness,
-  ownOnly = false,
-}: {
-  initial: WorldAnswers | null
-  familyBusiness: boolean
-  /** An autonomous founder: no matches follow, so the last button says what does. */
-  ownOnly?: boolean
-}) {
+export function World({ initial }: { initial: WorldAnswers | null }) {
   const router = useRouter()
   const [step, setStep] = useState(0)
   const [error, setError] = useState(false)
@@ -53,12 +38,7 @@ export function World({
     industries: initial?.industries ?? [],
     industryOther: initial?.industryOther ?? '',
     side: initial?.side ?? null,
-    access: initial?.access ?? (familyBusiness ? [{ kind: 'family', worlds: [] }] : []),
-    nobody: initial ? initial.access.length === 0 : false,
     learn: initial?.learn ?? [],
-    learnOther: initial?.learnOther ?? '',
-    intent: initial?.intent ?? null,
-    comfort: initial?.comfort ?? 3,
   }))
 
   const set = (patch: Partial<Draft>) => setDraft((current) => ({ ...current, ...patch }))
@@ -68,79 +48,27 @@ export function World({
     setLevelProgress(step / STEPS.length)
   }, [step])
 
-  // The founder's own industries come first wherever a list of worlds appears.
-  const ordered = [
-    ...INDUSTRIES.filter((industry) => draft.industries.includes(industry.id)),
-    ...INDUSTRIES.filter((industry) => !draft.industries.includes(industry.id)),
-  ]
-
-  // A way in counts once it says where. Until then it is only half chosen,
-  // and anything still half chosen is left out when the answers are saved.
-  // A "Somewhere else" with nothing typed says nowhere, so it doesn't count.
-  const usable = (entry: Draft['access'][number]) =>
-    entry.worlds.filter((id) => id !== 'elsewhere' || (entry.elsewhere ?? '').trim().length > 1)
-  const complete = (entry: Draft['access'][number]) =>
-    (entry.kind !== 'other' || (entry.other ?? '').trim().length > 1) && usable(entry).length > 0
-
   const ready: Record<(typeof STEPS)[number], boolean> = {
     industries:
       draft.industries.length > 0 &&
       (!draft.industries.includes('other') || draft.industryOther.trim().length > 1),
     side: draft.side !== null,
-    access: draft.nobody || draft.access.some(complete),
-    learn:
-      draft.learn.length > 0 &&
-      (!draft.learn.includes('other') || draft.learnOther.trim().length > 1),
-    intent: draft.intent !== null,
-    comfort: true,
+    learn: draft.learn.length > 0,
   }
 
   function finish() {
     const answers = {
-      v: 1 as const,
+      v: 2 as const,
       industries: draft.industries,
       industryOther: draft.industries.includes('other') ? draft.industryOther.trim() : undefined,
       side: draft.side,
-      access: draft.nobody
-        ? []
-        : draft.access.filter(complete).map((entry) => {
-            const worlds = usable(entry)
-            return {
-              ...entry,
-              worlds,
-              elsewhere: worlds.includes('elsewhere') ? entry.elsewhere : undefined,
-            }
-          }),
       learn: draft.learn,
-      learnOther: draft.learn.includes('other') ? draft.learnOther.trim() : undefined,
-      intent: draft.intent,
-      comfort: draft.comfort,
     }
     start(async () => {
       setError(false)
       const result = await saveWorld(answers)
       if (result.ok) router.push('/matches')
       else setError(true)
-    })
-  }
-
-  function setAccess(kind: AccessId | 'other', patch: Partial<Access> | null) {
-    setDraft((current) => {
-      const existing = current.access.find((entry) => entry.kind === kind)
-      if (patch === null)
-        return { ...current, access: current.access.filter((entry) => entry.kind !== kind) }
-      if (!existing)
-        return {
-          ...current,
-          nobody: false,
-          access: [...current.access, { kind, worlds: [], ...patch }],
-        }
-      return {
-        ...current,
-        access: current.access.map((entry) =>
-          entry.kind === kind ? { ...entry, ...patch } : entry,
-        ),
-      }
     })
   }
 
@@ -211,145 +139,23 @@ export function World({
           </>
         ) : null}
 
-        {name === 'access' ? (
-          <>
-            <Ask text={copy.access.ask} hint={copy.access.hint} />
-            <div className="grid gap-2.5">
-              {[...ACCESS, { id: 'other' as const, label: copy.access.other }].map((option) => {
-                const entry = draft.access.find((item) => item.kind === option.id)
-                return (
-                  <div key={option.id} className="grid gap-3">
-                    <button
-                      type="button"
-                      className="choice press"
-                      aria-pressed={entry ? (complete(entry) ? true : 'mixed') : false}
-                      onClick={() => setAccess(option.id, entry ? null : {})}
-                    >
-                      {option.label}
-                      {entry && !complete(entry) ? (
-                        <span aria-hidden="true" className="text-ink-3 ml-auto text-[13px]">
-                          {copy.access.pickBelow}
-                        </span>
-                      ) : null}
-                    </button>
-                    {entry ? (
-                      <div className="rise grid gap-3 pb-2 pl-4 shadow-[inset_2px_0_0_var(--color-violet)]">
-                        {option.id === 'other' ? (
-                          <input
-                            className="field"
-                            value={entry.other ?? ''}
-                            maxLength={80}
-                            placeholder={copy.access.otherPlaceholder}
-                            aria-label={copy.access.otherPlaceholder}
-                            onChange={(event) => setAccess('other', { other: event.target.value })}
-                          />
-                        ) : null}
-                        <p className="text-ink-2 m-0 text-[15px]">
-                          {copy.access.worlds(copy.access.whoLabel[option.id])}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {ordered.map((industry) => (
-                            <button
-                              key={industry.id}
-                              type="button"
-                              className="chip press min-h-9 text-[13px]"
-                              aria-pressed={entry.worlds.includes(industry.id)}
-                              onClick={() =>
-                                setAccess(option.id, {
-                                  worlds: toggle(entry.worlds, industry.id, 3),
-                                })
-                              }
-                            >
-                              {industry.short}
-                            </button>
-                          ))}
-                          <OtherField
-                            label={copy.access.elsewhere}
-                            on={entry.worlds.includes('elsewhere')}
-                            onToggle={() =>
-                              setAccess(option.id, { worlds: toggle(entry.worlds, 'elsewhere', 3) })
-                            }
-                            value={entry.elsewhere ?? ''}
-                            onChange={(elsewhere) => setAccess(option.id, { elsewhere })}
-                            placeholder={copy.access.elsewherePlaceholder}
-                          />
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                )
-              })}
-              <button
-                type="button"
-                className="choice press"
-                aria-pressed={draft.nobody}
-                onClick={() =>
-                  set({ nobody: !draft.nobody, access: draft.nobody ? draft.access : [] })
-                }
-              >
-                {copy.access.none}
-              </button>
-            </div>
-          </>
-        ) : null}
-
         {name === 'learn' ? (
           <>
-            <Ask text={copy.learn.ask} count={[draft.learn.length, 3]} />
+            <Ask text={copy.learn.ask} hint={copy.learn.hint} count={[draft.learn.length, 3]} />
             <div className="flex flex-wrap gap-2">
-              {LEARN.map((learn) => (
+              {BUILD_WITH.map((item) => (
                 <button
-                  key={learn.id}
+                  key={item.id}
                   type="button"
                   className="chip press"
-                  aria-pressed={draft.learn.includes(learn.id)}
-                  aria-disabled={!draft.learn.includes(learn.id) && draft.learn.length >= 3}
-                  onClick={() => set({ learn: toggle(draft.learn, learn.id, 3) })}
+                  aria-pressed={draft.learn.includes(item.id)}
+                  aria-disabled={!draft.learn.includes(item.id) && draft.learn.length >= 3}
+                  onClick={() => set({ learn: toggle(draft.learn, item.id, 3) })}
                 >
-                  {learn.label}
-                </button>
-              ))}
-              <OtherField
-                label={copy.learn.other}
-                on={draft.learn.includes('other')}
-                full={draft.learn.length >= 3}
-                onToggle={() => set({ learn: toggle(draft.learn, 'other', 3) })}
-                value={draft.learnOther}
-                onChange={(learnOther) => set({ learnOther })}
-                placeholder={copy.learn.otherPlaceholder}
-              />
-            </div>
-          </>
-        ) : null}
-
-        {name === 'intent' ? (
-          <>
-            <Ask text={copy.intent.ask} />
-            <div
-              className="grid gap-2.5 sm:grid-cols-2"
-              role="radiogroup"
-              aria-label={copy.intent.ask}
-            >
-              {INTENTS.map((intent) => (
-                <button
-                  key={intent.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={draft.intent === intent.id}
-                  className="choice press min-h-[68px] text-[17px]"
-                  onClick={() => set({ intent: intent.id })}
-                >
-                  {intent.label}
+                  {item.label}
                 </button>
               ))}
             </div>
-          </>
-        ) : null}
-
-        {name === 'comfort' ? (
-          <>
-            <Ask text={copy.comfort.ask} hint={copy.comfort.hint} />
-            <ComfortSlider value={draft.comfort} onChange={(comfort) => set({ comfort })} />
           </>
         ) : null}
       </div>
@@ -364,7 +170,7 @@ export function World({
           {copy.back}
         </button>
         {error ? (
-          <p role="alert" className="text-violet-ink m-0 text-[14px]">
+          <p role="alert" className="text-error m-0 text-[14px]">
             {copy.error}
           </p>
         ) : null}
@@ -381,10 +187,10 @@ export function World({
           <button
             type="button"
             className="btn btn-primary press min-w-[180px]"
-            disabled={pending}
+            disabled={pending || !ready[name]}
             onClick={finish}
           >
-            {pending ? copy.saving : ownOnly ? copy.doneOwn : copy.done}
+            {pending ? copy.saving : copy.done}
           </button>
         )}
       </div>

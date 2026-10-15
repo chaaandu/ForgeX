@@ -1,0 +1,704 @@
+[
+  {
+    "email": "aadishwar_r@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "aarav_shrivastava@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "abeer_bhati@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "abhishek_gaur@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "abhishek_hosmani@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "abhishek_kambalath@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "adithya_rajagopalan@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "aditi_bhateja@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "aditi_roy@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "aditya_agarwal@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "aditya_peter@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "aditya_singhal@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "adnaan_r@forge27.mesaschool.co",
+    "group": "Group 3",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "ajitesh_senthilkumar@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "akash_ghorpade@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "akassh_puranik@forge27.mesaschool.co",
+    "group": "Group 3",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "akhilesh_bijjargi@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "akristi_mohta@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "akshat_thakur@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "ananta_tantia@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "annashri_mahato@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "ansh_loya@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "anshul_dhapte@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "anubhav_rastogi@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "anuj_bajaj@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "anushka_ghogre@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "archit_pathak@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "arpita_mahata@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "ashutosh_saxena@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "atharva_agrawal@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "bhadar_singh@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "bhavit_gupta@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "bhavya_tandon@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "brijesh_attal@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "darsh_shah@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "darshan_chopda@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "dev_mehra@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "devansh_mehta@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "devansh_vora@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "dhruvi_lohiya@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "dhyay_popat@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "divy_hardenia@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "divyam_arora@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "diya_agrawal@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "diya_harish@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Shubhang",
+    "reviewer": "Param"
+  },
+  {
+    "email": "diya_ispahani@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "haider_millwala@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "happy_panjwani@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "harsh_dubey@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "harsh_malani@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "harsh_nain@forge27.mesaschool.co",
+    "group": "Group 8",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "hritik_gani@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "itish_pande@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "jenessa_bhathena@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "kaavya_goenka@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "kalika_srivastava@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "kavya_zala@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "lipika_arya@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "madhuresh_binzani@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "maitree_shah@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "mayank_agrawal@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "meith_jain@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "naveen_kolla@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "naveen_kumar@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "nikhil_kanjolia@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "nirmalya_sah@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "param_deora@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "parin_kumat@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "pragati_singh@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "pratiksha_bengani@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "pratiksha_bihani@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "praval_goud@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "preet_jain@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "preethi_s@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "radha_hutkey@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "rahul_m@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "ridhima_gupta@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "risheet_gangar@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "rishika_choudhary@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "rishika_uppalapati@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "ritesh_oswal@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "riya_khurana@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "riya_kothavade@forge27.mesaschool.co",
+    "group": "Group 5",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "rohan_vivek@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "rushabh_shah@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "rydham_jain@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "sachidananda_dehury@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Riya",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "sahil_agrawal@forge27.mesaschool.co",
+    "group": "Group 9",
+    "poc": "Vedansh",
+    "reviewer": "Param"
+  },
+  {
+    "email": "sairaj_g@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "sakshi_awasthi@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "sarth_raghuwanshi@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "satvik_bansal@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "shashank_pandey@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "shivansh_sarraf@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "shweta_singh@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "simran_kalra@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "sinchan_rai@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "sohum_shikhare@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "somanshu_singhal@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "tanishka_desai@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "tanishq_lomte@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "tanishque_jain@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "tejas_joshi@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "tushar_ram_reddy@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "udhav_kothari@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "ujjwal_sitlani@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "utkarsh_kapoor@forge27.mesaschool.co",
+    "group": "Group 6",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "vatsal_shah@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "vidhi_agarwal@forge27.mesaschool.co",
+    "group": "Group 2",
+    "poc": "Akshita",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "vikram_agarwal@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "vion_dsouza@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "yashansh_savla@forge27.mesaschool.co",
+    "group": "Group 1",
+    "poc": "Chandu",
+    "reviewer": "Ebrahim"
+  },
+  {
+    "email": "yashwi_agrawal@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "yaswanth_krishna@forge27.mesaschool.co",
+    "group": "Group 4",
+    "poc": "Shruti",
+    "reviewer": "Saurabh"
+  },
+  {
+    "email": "yogita_bhuwania@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "zalak_gogri@forge27.mesaschool.co",
+    "group": "Group 10",
+    "poc": "Rakshita",
+    "reviewer": "Param"
+  },
+  {
+    "email": "zuha_fathima@forge27.mesaschool.co",
+    "group": "Group 7",
+    "poc": "Muskan",
+    "reviewer": "Saurabh"
+  }
+]

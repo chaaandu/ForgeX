@@ -1,31 +1,31 @@
 # The problem bank
 
-250 problems, grouped by the industry each is mainly about. Founders see the title, the problem and the challenge, and never the difficulty, the evidence or the scores. Approve, edit or reject each one in `/team/bank` or in the Problems tab of the Sheet. Generated from `data/problems.json` by `pnpm bank:list`.
+283 problems, grouped by the industry each is mainly about. Founders see the title, the problem and the challenge, and never the difficulty, the evidence or the scores. Approve, edit or reject each one in `/team/bank` or in the Problems tab of the Sheet. Generated from `data/problems.json` by `pnpm bank:list`.
 
 | Industry | Problems |
 | --- | --- |
-| Retail and local shops | 15 |
+| Retail and local shops | 22 |
 | Food and quick commerce | 21 |
 | Money and finance | 24 |
-| Health and fitness | 20 |
+| Health and fitness | 24 |
 | Education and careers | 20 |
 | Work and teams | 34 |
 | Creators and media | 29 |
-| Travel and mobility | 13 |
-| Farming and food supply | 11 |
+| Travel and mobility | 21 |
+| Farming and food supply | 20 |
 | Homes and real estate | 23 |
 | Manufacturing and logistics | 24 |
-| Fashion and beauty | 16 |
+| Fashion and beauty | 21 |
 
 ## Retail and local shops
 
 ### P009 · Tax notices built on UPI receipts
 
-Small traders received thousands of tax notices based purely on their UPI receipts, then were asked for years of purchase bills and statements they never kept, and some pulled their QR codes to go cash-only. Their billing software does not help, because records vanish at year-end, calculations go wrong and they still pay an accountant to redo it.
+Small traders received thousands of tax notices based purely on their UPI receipts. They were then asked for years of purchase bills and statements they never kept.
 
 **Challenge:** Turn a small shop's payment history into books that can answer a tax notice in a day.
 
-Hard · for businesses · India · teaches Data and dashboards, Automation and integrations, AI agents · also Money
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -43,11 +43,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P021 · Sold on paper, still waiting for the cash
 
-Small online sellers in India see about a quarter of cash-on-delivery orders come back, then wait 3–7 days for couriers to hand over the cash from the rest, which stalls restocking. Shops selling on ONDC lose 25–35% of earnings to delivery, packaging and fees, and wait 7–15 days for payouts. A month that looks profitable in the books can still run out of cash before the next stock order.
+About a quarter of cash-on-delivery orders come back to small online sellers in India. They wait 3–7 days for couriers to hand over cash from the rest, which delays restocking.
 
 **Challenge:** Show a small online seller which orders will turn into cash, and when, before they spend on stock or ads.
 
-Medium · for self-employed · India · teaches Payments, Data and dashboards · also Money
+Easy · for self-employed · India · teaches Payments, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -63,11 +63,11 @@ pain 5 · frequency 5 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P033 · The billing screen that freezes at the busiest hour
 
-Billing at Indian shop counters freezes during busy hours, settings reset after updates and bugs can take 3–4 months to fix, so invoices shared on WhatsApp arrive blank. Owners fall back to a paper khata for small credit because logging it while serving the next customer is too slow, and paper notes get lost. One supplier waited over 15 days for support, only to be told the shop's network was to blame.
+Billing at Indian shop counters freezes during busy hours, and bugs can take 3–4 months to fix. Owners go back to a paper khata for small credit because logging it is too slow, and paper notes get lost.
 
 **Challenge:** Let a shopkeeper record a sale or a credit entry in under 5 seconds, even with no network.
 
-Easy · for businesses · India · teaches Mobile apps, Voice AI · also Money
+Medium · for businesses · India · teaches Mobile apps, Voice AI · also Money
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -86,11 +86,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P045 · 2 lakh kiranas closed in a single year
 
-A retailer federation says 2 lakh kiranas closed in a year, and 60% of Mumbai grocery stores near quick-commerce dark stores saw volumes fall. Buying through distributors and stocking only 1,000–1,500 items, a kirana cannot match dark-store prices or range. It needs hundreds of loyal households to survive on thin margins, so a handful of defections can be enough to close it.
+A kirana needs hundreds of loyal households to survive on thin margins, so losing a handful can close it. A retailer federation says 2 lakh kiranas closed in a year.
 
 **Challenge:** Help a kirana keep its loyal households ordering from it rather than from the nearest dark store.
 
-Medium · for businesses · India · teaches Full-stack web, AI agents · also Food
+Hard · for businesses · India · teaches Full-stack web, AI agents · also Food
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -107,11 +107,11 @@ pain 5 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P057 · Fake cash-on-delivery orders bleeding small sellers
 
-Small online sellers lose around ₹600 on every fake or refused cash-on-delivery order once shipping and ad spend are counted, and competitors place bomb orders on purpose. The verification add-ons meant to catch them break for days, while scammers send unordered cash-on-delivery parcels to leaked addresses under real stores' names.
+Small online sellers lose around ₹600 on every fake or refused cash-on-delivery order once shipping and ad spend are counted. Competitors place such orders on purpose, and the add-ons meant to catch them break for days.
 
 **Challenge:** Stop fake cash-on-delivery orders before they ship, without turning away real first-time buyers.
 
-Easy · for self-employed · India · teaches Voice AI, Automation and integrations, Payments · also Fashion
+Hard · for self-employed · India · teaches Voice AI, Automation and integrations, Payments · also Fashion
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -127,11 +127,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P069 · Your own business records, held hostage by the vendor
 
-Small firms depend on vendors and implementation partners to reach their own records: in November 2025 a partner deleted a company's Odoo database without permission. Vendors break upgrade promises and change renewal terms at will, and some families keep 1980s business software alive in emulators because moving the data feels impossible.
+Small firms depend on vendors and implementation partners to reach their own records. In November 2025 a partner deleted a company's Odoo database without permission.
 
 **Challenge:** Get a small business's records out of any old setup into a file it owns, in an afternoon.
 
-Hard · for businesses · global · teaches Data and dashboards, Automation and integrations · also Work
+Easy · for businesses · global · teaches Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -147,11 +147,11 @@ pain 4 · frequency 2 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P081 · Same van, same costs, 50 shops instead of 80
 
-Metro consumer-goods distributors are losing 10–25% of snack and beverage volume to quick commerce, and revenue per kirana stop has dropped 15–30%. Their vans now serve 50 kiranas instead of 80 while costs stay fixed. Struggling shops then pay late, stretching 30–60 day credit further, so the distributor is squeezed from both sides.
+Metro consumer-goods distributors are losing 10 to 25% of snack and beverage volume to quick commerce. Their vans now serve 50 kiranas instead of 80 while costs stay fixed.
 
 **Challenge:** Help a distributor win back revenue per route, or cut the cost of serving each shop, by a fifth.
 
-Hard · for businesses · India · teaches Data and dashboards, Mobile apps · also Manufacturing
+Medium · for businesses · India · teaches Data and dashboards, Mobile apps · also Manufacturing
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -167,11 +167,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P093 · Sold out of fast sellers, stuck with slow ones
 
-Kirana owners reorder hundreds of items by gut feel, running out of fast sellers while slow stock ties up cash. They stock what distributors push rather than what shoppers ask for, so customers settle for second-best or come back tomorrow. Small shops live on turning stock: one independent bookshop has to turn its shelves 4–5 times a year just to cover fixed costs.
+Kirana owners reorder hundreds of items by gut feel, running out of fast sellers while slow stock ties up cash. Small shops live on turning stock, and one bookshop has to turn its shelves 4–5 times a year to cover fixed costs.
 
 **Challenge:** Make the weekly reorder take 10 minutes and leave fewer empty shelves and fewer dusty ones.
 
-Easy · for businesses · India · teaches Data and dashboards, AI agents
+Medium · for businesses · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -187,7 +187,7 @@ pain 4 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P105 · Card fees and add-ons eating a shop's margin
 
-Small retailers pay flat processing fees plus a monthly charge for nearly every point-of-sale feature, and surprise invoices for using an outside card processor. One shop spends about $400 a month on card fees, chargebacks go through without goods returned, and basic stock valuation reports cost extra.
+Small retailers pay flat processing fees plus a monthly charge for nearly every point-of-sale feature. One shop spends about $400 a month on card fees, and basic stock valuation reports cost extra.
 
 **Challenge:** Show a small retailer exactly what payments and software cost per sale, and how to cut it.
 
@@ -209,11 +209,11 @@ pain 4 · frequency 5 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P117 · One flag and a seller's balance is gone
 
-Small online sellers depend on a handful of marketplaces and payment providers that can close an account overnight and freeze its balance for months, sometimes after one unusually large sale. Honest market vendors have lost their main way to get paid because a provider banned every customer of one fraudulent stall.
+Small online sellers depend on a few marketplaces and payment providers that can close an account overnight. Their balance can stay frozen for months, sometimes after one unusually large sale.
 
 **Challenge:** Keep a small seller trading and paid on the day one marketplace or payment provider freezes them.
 
-Hard · for self-employed · global · teaches Payments, Automation and integrations · also Money, Creators
+Medium · for self-employed · global · teaches Payments, Automation and integrations · also Money, Creators
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -230,7 +230,7 @@ pain 5 · frequency 2 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P129 · Over-order and block cash, or run out of stock
 
-Shop owners cannot see what their suppliers have in stock, so they either over-order and block cash or run out, and a main supplier's website search is often useless. Buying direct from brands is out of reach at small order sizes, so distributors take a large share of the margin. In August 2024 a retailer who bought rice wholesale online got poor-quality stock and had the return rejected.
+Shop owners cannot see what their suppliers have in stock, so they over-order and block cash, or run out. In August 2024 a retailer who bought rice wholesale online got poor-quality stock and had the return rejected.
 
 **Challenge:** Let a shopkeeper know what will arrive, and at what price, before the money leaves their hand.
 
@@ -251,11 +251,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P141 · The shop that cannot say what went missing
 
-In April 2025 a retailer with several stores found that stock discrepancies varied wildly from store to store on identical software, because staff counted carelessly. When the inventory module itself throws errors, support staff keep changing and every ticket starts from scratch. Small shop owners have stopped reporting shoplifting because police never respond, so the losses go unrecorded.
+In April 2025 a retailer found stock mismatches varied wildly from store to store, because staff counted carelessly. Small shop owners have stopped reporting shoplifting, so the losses go unrecorded.
 
 **Challenge:** Make a full stock count take an hour and come out right, so a shop knows exactly what went missing.
 
-Medium · for businesses · global · teaches Vision, Data and dashboards
+Hard · for businesses · global · teaches Vision, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -271,11 +271,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P152 · Packaging costs and rules that shut out tiny sellers
 
-Micro sellers face thousands of euros a year in packaging registration fees before their first sale in the EU, and one tiny repair-and-resale shop has stopped shipping there altogether. At home, Indian beauty brands saw packaging component costs jump 60–70% within weeks in March 2026, before they could raise prices. Customers, meanwhile, open single small items in boxes far too big for them, stuffed with plastic.
+Indian beauty brands saw packaging component costs jump 60 to 70% within weeks in March 2026, before they could raise prices. Customers open single small items in boxes far too big for them, stuffed with plastic.
 
 **Challenge:** Cut a small seller's packaging cost and paperwork per order by a third, at home and abroad.
 
-Hard · for self-employed · global · teaches Full-stack web, Automation and integrations · also Fashion
+Medium · for self-employed · global · teaches Full-stack web, Automation and integrations · also Fashion
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -292,7 +292,7 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P162 · On ONDC, then no orders once the discounts stop
 
-About 85% of shops onboarded to ONDC never transact meaningfully, and retail orders fell about 35% from their peak once buyer discounts ended. Sellers juggle separate services for discovery, fulfilment, delivery and payment, and inconsistent logistics partners turn the few orders they do get into failures.
+About 85% of shops that joined ONDC never do meaningful business on it. Retail orders fell about 35% from their peak once buyer discounts ended.
 
 **Challenge:** Get a small shop its first 10 repeat online orders without paying for discounts.
 
@@ -312,11 +312,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P172 · Re-entering the whole catalogue every time the till dies
 
-Small shops keep switching point-of-sale vendors as subsidised terminals break, startups fold or prices climb, and every switch means re-entering the catalogue and retraining staff. One store's card terminal stopped working, so staff keyed card numbers by hand while the subscription went up by $40 a month. A growing shop that outgrew its till went through 3 systems, paying for each migration.
+Small shops keep switching point-of-sale vendors as terminals break or prices climb, and every switch means re-entering the catalogue. A growing shop that outgrew its till went through 3 systems, paying for each move.
 
 **Challenge:** Move a shop from one billing system to another in an hour, with catalogue, prices and history intact.
 
-Medium · for businesses · global · teaches Automation and integrations, Full-stack web · also Work
+Easy · for businesses · global · teaches Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -331,15 +331,158 @@ pain 3 · frequency 2 · willingness 3 · buildability 4 · learning 3 · novelt
 
 </details>
 
+### P272 · The payment screen was fake, the goods are gone
+
+Customers show shopkeepers a fake payment screen on their phone and walk out with the goods. One Ahmedabad shop lost a ₹67,000 laptop this way, and 4 garment shops lost about ₹55,695.
+
+**Challenge:** Tell a shop owner the same day which UPI payments never reached their bank.
+
+Medium · for businesses · India · teaches Data and dashboards, Full-stack web · also Money
+
+<details><summary>Evidence (4) and scores (24)</summary>
+
+- Andaman police arrested 7 people for cheating merchants with a fake PhonePe app that shows a payment-success screen while no money moves. Police told shops not to trust screenshots. [news, 2025-06-05](https://nicobartimes.com/?p=19002)
+- A payments firm cites a man who took a ₹67,000 laptop from an Ahmedabad shop on a fake confirmation, and a couple who took clothes worth about ₹55,695 from 4 garment shops. [other, 2025-07-17](https://razorpay.com/learn/fake-payment-app-scams/)
+- Police in Awantipora arrested a man after several shopkeepers complained that he scanned their QR codes, showed a fake payment confirmation and left with goods. [news, 2026-02-10](https://kashmirlife.net/police-arrest-man-for-qr-code-payment-fraud-424671/)
+- 2 men took 5 kg of cardamom from a spice shop in Idukki after showing the owner a fake Google Pay screenshot, then fled on a motorcycle. [news, 2026-09-10](https://www.onmanorama.com/news/kerala/2026/09/10/cardamom-thieves-caught-vandiperiyar-fake-payment-scam-foiled.amp.html)
+
+**Why now:** Fake payment apps that copy the real success screen are now ready-made, and arrests were reported from the Andamans, Kashmir and Kerala between June 2025 and September 2026.
+
+pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P273 · The price that changes at the pay button
+
+Online shops add fees and extras to the cart only at the last step. In a 2025 audit, 75% of shoppers met fees that appeared at checkout and 21% found extras added for them.
+
+**Challenge:** Show a shopper every fee and extra added between the product page and the pay button.
+
+Easy · for everyday people · India · teaches Vision, Full-stack web
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- A LocalCircles audit found 97% of 290 big online platforms still use dark patterns. 75% of shoppers met fees shown only at checkout, 48% saw offers change, and 21% had extras added to the cart. [news, 2025-10-09](https://www.medianama.com/2025/10/223-localcircles-e-commerce-platforms-dark-patterns-hidden-fees/)
+- Budget shoppers find shipping, handling and platform fees appear only at checkout and push the total up by 30–50%, so the purchase stops being worth it. [fixmyitch, 2026-01-16](https://razorpay.com/m/fix-my-itch/#OfHt73BRU)
+- A Datum Intelligence report says about 88% of online buyers are hit by dark patterns and lose ₹78 to ₹87 a month each. Fees shown only at final checkout were found on 69% of platforms. [news, 2026-06-09](https://www.businesstoday.in/amp/india/story/dark-patterns-cost-indians-up-to-rs28000-cr-a-year-88-of-online-buyers-affected-report-535812-2026-06-09)
+
+**Why now:** The consumer authority banned these tricks in 2023, yet a 2025 audit found them on 97% of big platforms and a 2026 report put the loss at ₹25,000 to ₹28,000 crore a year.
+
+pain 3 · frequency 5 · willingness 2 · buildability 5 · learning 3 · novelty 2 · openness 3
+
+</details>
+
+### P274 · The ₹10 pack that quietly lost 4 grams
+
+Small packs are getting lighter while the price on the front stays the same. In July 2026 a ₹10 noodle pack went from 52 g to 48 g, and other small packs lost 2–7%.
+
+**Challenge:** Show a shopper the real price per gram of any 2 packs before they pick one.
+
+Easy · for everyday people · India · teaches Vision, Data and dashboards · also Food
+
+<details><summary>Evidence (3) and scores (24)</summary>
+
+- Distributors expect a big biscuit maker to raise its family packs by ₹10, while its ₹5 and ₹10 packs keep their price and lose grams instead. [news, 2026-05-26](https://www.outlookbusiness.com/corporate/good-day-family-packs-may-get-costlier-as-britannia-plans-10-price-hike)
+- Maggi packs got lighter at the same price: the ₹10 pack went from 52 g to 48 g and the ₹7 pack from 35 g to 32 g, cuts of 7–9% blamed on palm oil and packaging costs. [news, 2026-07-01](https://www.angelone.in/news/stocks/nestl-india-cuts-maggi-pack-sizes-by-up-to-9-while-keeping-prices-unchanged)
+- A broker's research note says small packs of biscuits, snacks, noodles, shampoo, detergent, sugar and tea are 2–7% lighter at the same ₹10, ₹20 and ₹50 prices, while 1 kg packs cost 5–6% more. [report, 2026-10-06](https://www.venturasecurities.com/?p=64839)
+
+**Why now:** Costs of palm oil and packaging rose through 2026, and makers chose to keep the ₹5, ₹10 and ₹20 prices and cut grams instead.
+
+pain 2 · frequency 5 · willingness 2 · buildability 5 · learning 3 · novelty 3 · openness 4
+
+</details>
+
+### P275 · The licence that lapsed while the shop stayed open
+
+Shop owners miss the yearly date to renew a trade licence, and the penalty can double the fee. In Guwahati, about 42,000 of 65,000 traders had not renewed 3 months after the window closed.
+
+**Challenge:** Warn a shop owner about every licence and permit well before its renewal date passes.
+
+Hard · for businesses · India · teaches Vision, Automation and integrations
+
+<details><summary>Evidence (3) and scores (24)</summary>
+
+- Hyderabad traders who miss the 31 Jan renewal date pay 25% extra until 31 March and 50% after. Trading with no licence brings a 100% penalty and 10% more every month. [news, 2025-01-17](https://deccanchronicle.com/southern-states/telangana/get-trade-licence-by-jan-31-ghmc-1854601)
+- A compliance firm notes that for 2025-26 Bengaluru traders renewing in February paid no penalty, 25% in March and 100% from 1 April, and could apply only online. [other, 2025-01-31](https://lexplosion.in/bbmp-mandates-online-renewal-of-trade-licenses-for-2025-26-traders-face-25-to100-penalty-for-late-applications-post-february-2025/)
+- About 42,000 of Guwahati's 65,000 registered traders had not renewed their licences 3 months after the window closed, despite online renewal and repeated reminders. Every shop is to be checked. [news, 2026-07-04](https://www.sentinelassam.com/topheadlines/gmc-to-launch-crackdown-as-42000-traders-fail-to-renew-trade-licences)
+
+**Why now:** Cities moved renewals online with fixed penalty steps of 25%, 50% and 100%, and in July 2026 Guwahati said it would check the licence of every shop.
+
+pain 3 · frequency 2 · willingness 3 · buildability 4 · learning 4 · novelty 4 · openness 4
+
+</details>
+
+### P276 · You searched for customer care and reached a fraudster
+
+People who search online for a customer care number often reach a fraudster posing as support staff. In Varanasi, at least 114 people were allegedly cheated of nearly ₹1.5 crore this way.
+
+**Challenge:** Tell a shopper whether the helpline number they found is the real one before they call it.
+
+Medium · for everyday people · India · teaches AI agents, Full-stack web · also Money
+
+<details><summary>Evidence (5) and scores (24)</summary>
+
+- Rajasthan Police's cyber branch warned online shoppers that customer care numbers found through a web search often lead to fraudsters, and to use only the number inside the official app or site. [news, 2025-10-16](https://www.patrika.com/en/special-news/online-shoppers-beware-accounts-emptied-in-four-ways-this-diwali-police-issue-alert-20029023)
+- The national cybercrime centre's CyberDost warned that shoppers chasing a late refund land on fake helplines, where callers ask for an OTP, a remote-access app or a small payment and then empty the account. [news, 2026-02-09](https://www.storyboard18.com/digital/refund-delays-become-new-bait-for-cyber-fraud-targeting-online-shoppers-89185.htm)
+- A payments firm's fraud guide, last updated in July 2026, warns that fake customer care numbers and sites show up in search results, and that callers then ask for a UPI PIN, an OTP or a remote-access app. [other, 2026-07-17](https://paytm.com/blog/payments/upi/upi-frauds/)
+- In Varanasi at least 114 people were allegedly cheated of nearly ₹1.50 crore after searching online for contact numbers and being led to fake listings, sites and profiles. [news, 2026-09-19](https://the420.in/?p=95090)
+- Kerala Police warned that fake helpline numbers for banks and shopping sites are posted where searches find them. Callers ask victims to install a screen-sharing app or pay a small fee such as ₹5. [news, 2026-10-03](https://www.outlookindia.com/national/don-t-trust-customer-care-numbers-from-web-searches-keralam-police)
+
+**Why now:** Late refunds on large shopping sites became the bait in 2026, and police in Rajasthan and Kerala and the national cybercrime centre all issued warnings within 12 months.
+
+pain 5 · frequency 3 · willingness 2 · buildability 4 · learning 4 · novelty 3 · openness 3
+
+</details>
+
+### P277 · Damaged stock, and a claim pending for 15 months
+
+Distributors of packaged goods wait months to be paid back for damaged and expired stock. In October 2025 a federation said some damage claims had been pending for more than 15 months.
+
+**Challenge:** Help a distributor file every damage and expiry claim with proof, and see which are still unpaid.
+
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Manufacturing
+
+<details><summary>Evidence (3) and scores (26)</summary>
+
+- A distributors' federation said damage claims with one consumer goods company had been pending for more than 15 months, with rat-bitten and warehouse-damaged stock still unpaid after repeated follow-ups. [news, 2025-10-08](https://www.storyboard18.com/how-it-works/tata-consumer-products-distributors-allege-mismanagement-call-for-non-cooperation-movement-82179.htm)
+- Maharashtra distributors wrote that damage and expiry claims are settled slowly, credit notes often fail to generate on returns, and they have to beg the depot team to take stock back. [news, 2025-10-29](https://storyboard18.com/how-it-works/tata-consumer-distributors-flag-forced-stock-dumping-delayed-claims-in-email-to-ceo-83306.htm)
+- A chartered accountant writes that damage and expiry claims fail when there is no physical proof, the batch cannot be tied to a dispatch, or the stock was destroyed before anyone approved it. [other, 2026-08-19](https://www.patronaccounting.com/blog/fmcg-damage-and-expiry-claims)
+
+**Why now:** In October 2025 distributors in Maharashtra stopped buying from a large company over unpaid claims, and the federation told members in 24 states to refuse new targets.
+
+pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P278 · No-cost EMI that still costs ₹1,700 more
+
+A no-cost EMI is sold as free, but tax and a processing fee are added on top. In one worked example from 2025, a no-cost EMI on a ₹1 lakh purchase still cost about ₹1,700 extra.
+
+**Challenge:** Show a shopper what a no-cost EMI will really cost before they tap Buy.
+
+Easy · for everyday people · India · teaches Vision, Data and dashboards · also Money
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- Most no-cost EMI plans carry a one-time processing fee, ₹199 to ₹299 on one large shopping site, and paying in full can bring a discount of about 10% that the EMI buyer gives up. [news, 2025-08-16](https://www.theweek.in/news/biz-tech/2025/08/16/no-cost-emi-hidden-charges-india-festive-shopping-guide.html)
+- In a worked example, a no-cost EMI on a ₹1 lakh device still cost about ₹1,700 more than the price: ₹1,467 of GST on the interest part and ₹235 in processing fee and its GST. [news, 2025-12-06](https://www.businesstoday.in/amp/personal-finance/banking/story/no-cost-emi-popular-available-but-misunderstood-expert-busts-myths-hidden-charges-risks-505406-2025-12-06)
+- A fund house's example: an item that costs ₹95,000 in cash is priced at ₹1,00,000 on no-cost EMI, so ₹5,000 of interest sits inside the price before fees, GST and lost cashback. [other, 2026-05-21](https://www.kotakmf.com/Information/blogs/economics-behind-no-cost-emi)
+
+**Why now:** No-cost EMI is offered at almost every large checkout, and banks added flat processing fees of ₹199 to ₹299 that were reported through 2025.
+
+pain 3 · frequency 4 · willingness 2 · buildability 5 · learning 3 · novelty 3 · openness 3
+
+</details>
+
 ## Food and quick commerce
 
 ### P001 · The delivery payout that quietly shrinks to zero
 
-Delivery aggregators keep running ad campaigns a restaurant refused, and one stretched a 2-hour discount on 3 dishes into an all-day, full-menu offer the restaurant paid for. Payout statements stack commissions, fees and GST so densely that owners cannot tell what an order earned. A 6-outlet chain lost ₹16 lakh in small, unnotified deductions before hiring a recovery service to claw most of it back.
+Delivery payout statements stack commissions, fees and GST so densely that restaurant owners cannot tell what an order earned. A 6-outlet chain lost ₹16 lakh in small, unnotified deductions.
 
 **Challenge:** Catch every wrong deduction on a restaurant's delivery payout the week it lands, with the proof to claim it back.
 
-Hard · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Money
+Medium · for businesses · India · teaches AI agents, Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (6) and scores (31)</summary>
 
@@ -358,11 +501,11 @@ pain 5 · frequency 4 · willingness 5 · buildability 4 · learning 5 · novelt
 
 ### P013 · Weeks of chasing a chatbot for your own money
 
-Refunds for cancelled or undelivered food orders take weeks, and chatbots block every route to a human, so customers chase support and threaten public escalation to get their money back. Those who cannot argue in English are denied outright, and restaurants owed money by the same services wait weeks through repeated escalations too.
+Refunds for cancelled or undelivered food orders take weeks, and bots block every route to a human. Customers who cannot argue in English are denied outright.
 
 **Challenge:** Get people their refund from a delivery service without them writing a single complaint themselves.
 
-Medium · for people · India · teaches AI agents, Voice AI, Automation and integrations · also Money
+Medium · for everyday people · India · teaches AI agents, Voice AI, Automation and integrations · also Money
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -380,11 +523,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P025 · One inspection, no hygiene records, licence gone
 
-Small food units and farms keep hygiene, pest-control and field records on paper or in clunky software, and a single inspection is enough to expose the gaps. In September 2026 a food manufacturer lost its licence after inspectors found pests and no food-safety records. Inspection drives in Indian cities stepped up through 2025 and 2026, so the record a unit skips is the one it gets asked for.
+Small food units keep hygiene and pest-control records on paper or in clunky software, and one inspection exposes the gaps. In September 2026 a food manufacturer lost its licence over pests and no food-safety records.
 
 **Challenge:** Make a small food unit inspection-ready every day with 5 minutes of record keeping.
 
-Hard · for businesses · global · teaches Mobile apps, Vision, Automation and integrations · also Farming
+Medium · for businesses · global · teaches Mobile apps, Vision, Automation and integrations · also Farming
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -400,11 +543,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P037 · The food reel paid for with a free meal
 
-Micro food bloggers in India are often paid only in free meals, with no standard rates or agreed deliverables, so their income is unpredictable. Restaurants cannot spot inflated follower counts or tell whether a reel brought in a single paying diner, so they will not pay real money. Small food brands are just as lost on ads, unable to tell paid demand from organic while spend returns barely 1.2–1.5x.
+Micro food bloggers are often paid only in free meals because restaurants cannot tell whether a reel brought any paying diner. Small food brands are as lost on ads, where spend returns barely 1.2–1.5x.
 
 **Challenge:** Let a small food creator prove what their last reel sold, and get paid for it.
 
-Hard · for self-employed · India · teaches Data and dashboards, Payments, Full-stack web · also Creators
+Medium · for self-employed · India · teaches Data and dashboards, Payments, Full-stack web · also Creators
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -420,11 +563,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P049 · One viral reel and the home bakery breaks
 
-Home chefs struggle with reliable delivery, spill-proof packaging and steady quality, and a single viral post can flood a small food seller with more orders than its stock and hands can manage. Customised celebration cakes arrive hours late or damaged, ruining birthdays, and the seller's reputation takes the hit.
+A single viral post can flood a small food seller with more orders than its stock and hands can manage. Customised celebration cakes arrive hours late or damaged, ruining birthdays.
 
 **Challenge:** Help a home food seller say yes to the right number of orders and deliver every one intact.
 
-Hard · for self-employed · India · teaches Automation and integrations, Mobile apps, AI agents · also Travel
+Medium · for self-employed · India · teaches Automation and integrations, Mobile apps, AI agents · also Travel
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -440,7 +583,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P061 · Card money that never reaches the restaurant
 
-Restaurants run on same-day cash for suppliers and wages, yet card settlements arrive late, and after a change of bank details some stop arriving at all while support cannot trace them. Refunds owed by vendors after a cancelled contract can vanish the same way, squeezing working capital in a business with thin margins.
+Restaurants need same-day cash for suppliers and wages, yet money from card sales arrives late. After a change of bank details, some payments stop arriving at all and support cannot trace them.
 
 **Challenge:** Tell a restaurant owner every morning which payments are due, which are late, and who to chase.
 
@@ -460,11 +603,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P073 · Every rupee of the menu price already spoken for
 
-Owner-run restaurants were hit by rising ingredient, labour and rent costs in 2025, on top of taxes, card fees and aggregator commissions. Card fees alone push owners to raise menu prices or add surcharges that irritate diners. Chains and fast-food stands ride out the squeeze while owner-run places buckle.
+Owner-run restaurants were hit by rising ingredient, labour and rent costs in 2025, on top of taxes, card fees and aggregator commissions. Card fees alone push owners to raise menu prices or add charges that annoy diners.
 
 **Challenge:** Show a restaurant owner, dish by dish, where the money goes and which change would save the most this month.
 
-Easy · for businesses · global · teaches Data and dashboards, AI agents, Full-stack web · also Money
+Hard · for businesses · global · teaches Data and dashboards, AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -480,11 +623,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P085 · Too big for retail, too small for wholesale
 
-Small restaurants pay suppliers more because their orders are unpredictable, and vendors discount only for committed, prepaid volumes. Large joint families buying staples in bulk still pay consumer prices, because grocery services sell only retail packs. For an owner who works 14-hour shifts and keeps almost nothing once ingredients, wages and rent are paid, that premium hurt more after the food inflation of 2025.
+Small restaurants pay suppliers more because vendors discount only committed, prepaid orders. An owner works 14-hour shifts and keeps almost nothing once ingredients, wages and rent are paid.
 
 **Challenge:** Get a small kitchen or a big household wholesale prices without prepaying for a truckload.
 
-Medium · for businesses · global · teaches Payments, Full-stack web, Automation and integrations · also Retail
+Hard · for businesses · global · teaches Payments, Full-stack web, Automation and integrations · also Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -500,11 +643,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P097 · The restaurant that can't call its own regulars
 
-Delivery aggregators mask customer details, so a restaurant cannot build a direct relationship with the people who order from it. In 2025 aggregators launched their own food brands, and restaurants fear the order data they generate will be used to compete with them. Small owners lack the time to keep a website current, so every repeat order still goes through the aggregator.
+Delivery aggregators hide customer details, so a restaurant cannot build direct ties with its own customers. In 2025 aggregators launched their own food brands, and restaurants fear their order data will be used against them.
 
 **Challenge:** Help a small restaurant turn one-time delivery customers into regulars who order direct.
 
-Easy · for businesses · India · teaches Full-stack web, Payments, Mobile apps · also Creators
+Hard · for businesses · India · teaches Full-stack web, Payments, Mobile apps · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -520,11 +663,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P109 · 6 fees stacked on top of one meal
 
-One delivery receipt in September 2026 stacked 6 separate fees on top of the food, making the real price impossible to judge before checkout. Delivery services raised fees several times within weeks in 2025 and moved to pass new GST on delivery fees to customers, so the same meal can cost nearly double what the restaurant's own site charges. Some riders still demand extra cash on top.
+A meal on a delivery service can cost nearly double what the restaurant's own site charges. One delivery receipt in September 2026 stacked 6 separate fees on top of the food.
 
 **Challenge:** Show a hungry customer the true total for the same order across every way of buying it, before they pay.
 
-Medium · for people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
+Easy · for everyday people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -542,11 +685,11 @@ pain 3 · frequency 5 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P121 · Infested kitchens, and diners order blind
 
-A September 2026 inspection drive in Hyderabad found infestations, expired stock and poor handler hygiene in most of the restaurants it checked. That same month, live insects turned up inside a sealed noodle packet bought through quick commerce. Diners ordering online still have no way to see a kitchen's hygiene before they pay.
+A September 2026 inspection drive in Hyderabad found infestations, expired stock and poor handler hygiene in most of the restaurants it checked. Diners ordering online still have no way to see a kitchen's hygiene before they pay.
 
 **Challenge:** Let a diner see how clean a kitchen is before ordering, in a way the kitchen cannot fake.
 
-Hard · for people · India · teaches Vision, Data and dashboards, Full-stack web · also Health
+Hard · for everyday people · India · teaches Vision, Data and dashboards, Full-stack web · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -566,7 +709,7 @@ Families distrust packaged spice powders for adulteration and staleness, yet gri
 
 **Challenge:** Help a family check its spices, water and milk at home in under 5 minutes.
 
-Medium · for people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
+Medium · for everyday people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -582,11 +725,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P144 · Ghee that arrives already expired and growing fungus
 
-In a June 2026 survey, 48% of Indian online grocery shoppers could not see best-before dates before checkout, and near-expiry deliveries were common. Bread has arrived with no manufacturing or expiry date printed at all, and ghee from a quick-commerce dark store arrived already expired and growing fungus, in a home with a young child.
+In a June 2026 survey, 48% of Indian online grocery shoppers could not see best-before dates before checkout. Ghee from a quick-commerce store arrived already expired and growing fungus.
 
 **Challenge:** Catch every expired or undated pack before it reaches a customer's door.
 
-Medium · for people · India · teaches Vision, Mobile apps, Automation and integrations · also Health
+Medium · for everyday people · India · teaches Vision, Mobile apps, Automation and integrations · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -602,11 +745,11 @@ pain 4 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P155 · Labels that hide the sugar and the milk
 
-Health-conscious shoppers cannot easily tell how much sugar a packaged snack holds, because the labels are hard to read. Parents struggle to spot the ultra-processed, high-sugar snacks that dominate quick-commerce listings, and in December 2025 most said they wanted clear red warnings on the front of the pack. Parents of a baby with a milk-protein allergy struggle to find safe substitutes, in the shop and in the kitchen.
+Health-conscious shoppers struggle to tell how much sugar a packaged snack holds, because the labels are hard to read. In December 2025 most parents said they wanted clear red warnings on the front of the pack.
 
 **Challenge:** Let a parent know in one glance whether a packaged food is right for their child.
 
-Easy · for people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
+Easy · for everyday people · India · teaches Vision, Mobile apps, Data and dashboards · also Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -622,11 +765,11 @@ pain 3 · frequency 5 · willingness 2 · buildability 5 · learning 4 · novelt
 
 ### P165 · Home bakers pricing by gut, selling at a loss
 
-Home bakers and small-batch cooks find a full online store overkill, so they take orders over chat and price by gut feel without tracking what the ingredients cost, and many sell at a loss without knowing it. Tiffin services serve the same fixed menu every day, with no way to swap a dish for an allergy, a diet or taste.
+Home bakers price by gut feel without tracking what ingredients cost, and many sell at a loss without knowing it. Tiffin services serve the same fixed menu every day, with no way to swap a dish.
 
 **Challenge:** Let a home cook take an order, price every dish at a profit and handle swaps, all from a phone.
 
-Easy · for self-employed · global · teaches Mobile apps, Payments, Data and dashboards · also Creators
+Medium · for self-employed · global · teaches Mobile apps, Payments, Data and dashboards · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -642,11 +785,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 5 · learning 3 · novelt
 
 ### P175 · The tiffin business that breaks at 50 customers
 
-Home tiffin cooks running subscriptions on notebooks and WhatsApp lose track of payments, pauses and dues once they pass about 40–50 customers. Cottage-food rules keep home bakers to a residential oven, so output stays capped and per-unit costs stay high as demand grows. The next step, a rented commercial kitchen, means paying recurring rent before the revenue exists to cover it.
+Home tiffin cooks running subscriptions on notebooks and WhatsApp lose track of payments, pauses and dues. This happens once they pass about 40 to 50 customers.
 
 **Challenge:** Give a home food business a cheap, safe step between the home kitchen and a rented one.
 
-Hard · for self-employed · global · teaches Full-stack web, Payments, Automation and integrations · also Homes
+Medium · for self-employed · global · teaches Full-stack web, Payments, Automation and integrations · also Homes
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -662,11 +805,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P184 · The free days the milk subscription never gave
 
-Milk and food subscribers find benefits withdrawn after signing up, offers only partly honoured, deliveries erratic and items silently out of stock. In January 2026 a dairy subscriber got only part of a promised free-days offer and was refused help without screenshots, and another paid for an address later declared unserviceable. Paid food-delivery members lost their rain-surge exemption in 2025 and now pay the surcharge anyway.
+Milk and food subscribers find benefits withdrawn after signing up and offers only partly honoured. In January 2026 a dairy subscriber got only part of a promised free-days offer and was refused help without screenshots.
 
 **Challenge:** Show a subscriber what was promised against what arrived, and get the difference back in one message.
 
-Medium · for people · India · teaches Automation and integrations, Payments, Mobile apps · also Money
+Medium · for everyday people · India · teaches Automation and integrations, Payments, Mobile apps · also Money
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -683,11 +826,11 @@ pain 2 · frequency 4 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P192 · The ice cream that melted, and nobody's fault
 
-Frozen food and ice cream ordered online often arrive melted and refrozen, and paneer arrives sour, with no way for the buyer to tell where the cold chain broke. In August 2026 one buyer's ice cream came melted and support offered an unrelated coupon instead of a refund; days later another was told sour paneer was the brand's problem. Nobody pays for a broken cold chain, so it keeps breaking.
+Frozen food and ice cream ordered online often arrive melted and refrozen. In August 2026 one buyer's ice cream came melted and support offered an unrelated coupon instead of a refund.
 
 **Challenge:** Make a broken cold chain visible to the buyer and costly to whoever broke it.
 
-Hard · for people · India · teaches Vision, Data and dashboards, Mobile apps · also Manufacturing
+Easy · for everyday people · India · teaches Vision, Data and dashboards, Mobile apps · also Manufacturing
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -703,11 +846,11 @@ pain 3 · frequency 3 · willingness 2 · buildability 3 · learning 4 · novelt
 
 ### P200 · Dinner decided at the last minute, again
 
-Hosts planning a last-minute get-together cannot put good food together quickly, because shopping and cooking take hours. Office workers grab fried snacks in the late afternoon because nothing healthy is nearby, and tracking what is already in the kitchen is so tedious to set up that most people give up. So every food decision gets made late, and badly.
+Hosts planning a last-minute get-together cannot put good food together quickly, because shopping and cooking take hours. Tracking what is already in the kitchen is so tedious that most people give up.
 
 **Challenge:** Make tonight's food plan in 2 minutes, using what is already in the kitchen.
 
-Easy · for people · India · teaches Vision, Voice AI, AI agents · also Health
+Easy · for everyday people · India · teaches Vision, Voice AI, AI agents · also Health
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -723,11 +866,11 @@ pain 2 · frequency 5 · willingness 2 · buildability 5 · learning 4 · novelt
 
 ### P208 · Kiranas losing their own street to quick commerce
 
-Neighbourhood kiranas and distributors say deep discounting by quick commerce is draining their footfall, and they have no way to compete on speed. Small food brands that try to join pay non-refundable listing fees per product and per state plus mandatory ad wallets, burning lakhs before seeing returns. Meanwhile shoppers who would happily order next-day from a local butcher or baker have no way to do it.
+Neighbourhood kiranas say deep discounting by quick commerce is draining their footfall, and they cannot compete on speed. Shoppers who would happily order next-day from a local butcher or baker have no way to do it.
 
 **Challenge:** Let a neighbourhood food shop take next-day orders from its own street without paying to be listed.
 
-Easy · for businesses · India · teaches Mobile apps, Payments, Full-stack web · also Retail
+Medium · for businesses · India · teaches Mobile apps, Payments, Full-stack web · also Retail
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -743,11 +886,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P216 · The vendor who vanishes once the restaurant signs
 
-Restaurants sign up for billing and ordering systems, then support goes quiet, promised features never arrive, and one food business's Odoo rollout was still unfinished after a year. When the counter slows at peak hour or a vendor loses years of loyalty data, the restaurant pays in late orders and lost regulars. One Indian outlet on Petpooja said the vendor seemed busier signing new outlets than fixing its problems.
+Restaurants sign up for billing and ordering systems, then support goes quiet and promised features never arrive. When a vendor loses years of loyalty data, the restaurant pays in lost regulars.
 
 **Challenge:** Get a small restaurant from one billing system to a better one in a weekend, with every record intact.
 
-Medium · for businesses · global · teaches Full-stack web, Data and dashboards, Automation and integrations · also Work
+Easy · for businesses · global · teaches Full-stack web, Data and dashboards, Automation and integrations · also Work
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -766,11 +909,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 2 · novelt
 
 ### P006 · The gateway discount that was promised and never applied
 
-Merchants on Razorpay and Cashfree report fees deducted above the rate they signed for, and one found a promised discount had never been applied, costing lakhs. Complaints go nowhere: one merchant raised a dozen tickets over 4 months and had the account deactivated before anything was fixed. Often there is no way even to see where a ticket stands.
+Merchants on Razorpay and Cashfree report fees deducted above the rate they signed for. One merchant raised tickets for 4 months and had the account deactivated before anything was fixed.
 
 **Challenge:** Check every fee a merchant's gateway charged last month against the agreed rate, and recover the overcharge.
 
-Hard · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -787,11 +930,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P018 · The digital arrest that ends in a UPI transfer
 
-Callers posing as officials tell people they are under digital arrest and pressure them into moving their savings over UPI before they realise it is a scam. Voice clones and deepfake video calls became cheap in 2025, so the official on the screen can look and sound real. Meanwhile elderly parents already struggle with the endless security checks meant to protect them.
+Callers posing as officials tell people they are under digital arrest and pressure them into moving their savings over UPI. Voice clones and deepfake video calls became cheap in 2025.
 
 **Challenge:** Stop a digital arrest scam before the money moves, without locking the target out of their own account.
 
-Hard · for people · global · teaches Voice AI, AI agents
+Medium · for everyday people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -807,11 +950,11 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P030 · One gateway freeze can stop a business overnight
 
-Online merchants have accounts blocked, settlements held or collections closed by their payment provider without explanation, sometimes for months. Money already earned stays frozen, working capital vanishes, and a business relying on a single provider has nobody to call.
+Payment providers block online merchants' accounts or hold their money without explanation, sometimes for months. Money already earned stays frozen, and a business with a single provider has nobody to call.
 
 **Challenge:** Keep a small online business taking payments the day its gateway freezes it.
 
-Medium · for businesses · India · teaches Payments, Data and dashboards · also Retail
+Hard · for businesses · India · teaches Payments, Data and dashboards · also Retail
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -830,11 +973,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P042 · Weeks of setup, then a gateway rejection nobody explains
 
-Small businesses spend weeks integrating a payment gateway, then get rejected for their line of business with no clear reason, or turned down by a machine check with no human review and no refund of the onboarding fee. One waited over a month for activation, unable to take payments online. Live accounts are not safe either: one was closed for suspicious patterns its own upsell checkout created, and another had payouts frozen for months.
+Small businesses spend weeks integrating a payment gateway, then get rejected for their line of business with no clear reason. One waited over a month for activation, unable to take payments online.
 
 **Challenge:** Get a small business approved to take payments online at the first attempt.
 
-Hard · for businesses · India · teaches AI agents, Payments · also Retail
+Easy · for businesses · India · teaches AI agents, Payments · also Retail
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -853,11 +996,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P054 · The claim rejected over a clause nobody explained
 
-Over half of Indian health insurance claimants face rejection or partial approval, often over exclusions buried in legal language or paperwork they did not understand. Premiums have jumped 50–200% in 3 years, and hospital discharge waits stretch to 2 days. Families then fight the insurer through the ombudsman alone.
+Over half of Indian health insurance claimants face rejection or partial approval, often over exclusions or paperwork they did not understand. Premiums have jumped 50–200% in 3 years.
 
 **Challenge:** Help a family get a health claim paid in full on the first submission.
 
-Hard · for people · India · teaches AI agents, Vision · also Health
+Easy · for everyday people · India · teaches AI agents, Vision · also Health
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -874,11 +1017,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P066 · Scammed over UPI, and the money never comes back
 
-1 in 5 Indian families that use UPI has been hit by fraud in 3 years, and half of victims never complained because reporting felt pointless or complicated. Fraud is roughly doubling every year, while victims recover only a small fraction. Fake merchants and lenders that are not RBI-registered operate freely, and payment gateways have refused to investigate.
+1 in 5 Indian families that use UPI has been hit by fraud in 3 years. Half of victims never complained because reporting felt pointless or complicated.
 
 **Challenge:** Get a scam victim's complaint filed everywhere it matters within the first hour.
 
-Hard · for people · India · teaches AI agents, Mobile apps
+Easy · for everyday people · India · teaches AI agents, Mobile apps
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -895,7 +1038,7 @@ pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P078 · Paid in 90 days, paying their vendors in 30
 
-Small suppliers wait 60–90 days or more for big buyers to pay, while paying their own vendors in 30, and borrow at high interest to bridge the gap. Wages, raw material and loan repayments get squeezed, and one supplier spent 6 months chasing a single delayed payment. The 45-day rule meant to protect them has some buyers avoiding registered small suppliers altogether.
+Small suppliers wait 60–90 days or more for big buyers to pay, while paying their own vendors in 30. They borrow at high interest to cover the gap, and one spent 6 months chasing a single delayed payment.
 
 **Challenge:** Shorten the gap between delivery and payment for a small supplier by a month.
 
@@ -917,11 +1060,11 @@ pain 5 · frequency 5 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P090 · Foreign client paid, freelancer still waiting
 
-Freelancers and small sellers earning from abroad see payouts held for days, accounts blocked over address typos or missed OTPs, and funds returned to clients without clear reason. Surprise fees and poor conversion routes shave off more, and some clients never pay what they promised.
+Freelancers earning from abroad see payouts held for days and accounts blocked over address typos or missed OTPs. Surprise fees and poor conversion routes shave off more.
 
 **Challenge:** Get an Indian freelancer's foreign earnings into their bank on a predictable day, at a known cost.
 
-Hard · for self-employed · India · teaches Payments, Automation and integrations · also Creators
+Medium · for self-employed · India · teaches Payments, Automation and integrations · also Creators
 
 <details><summary>Evidence (8) and scores (25)</summary>
 
@@ -942,11 +1085,11 @@ pain 5 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P102 · The fees on your statement you never agreed to
 
-Indian cardholders unknowingly pay thousands of crores in surprise annual fees, late fees and add-ons buried in their statements, and most bank customers cannot easily spot or reverse them. A 2.5% surcharge can appear at a wallet checkout with no warning, and trading fees arrive with no breakdown of what was charged or why.
+Indian cardholders unknowingly pay thousands of crores in surprise annual fees, late fees and add-ons buried in their statements. Most bank customers find them hard to spot or reverse.
 
 **Challenge:** Find every fee a household paid this year that it could have avoided, and get it reversed.
 
-Medium · for people · India · teaches Data and dashboards, Vision
+Easy · for everyday people · India · teaches Data and dashboards, Vision
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -963,11 +1106,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P114 · The GST notice: pay it, or reply to it?
 
-Small taxpayers receive GST demand notices without knowing whether to pay or reply, and guessing wrong risks penalties or an order passed without them being heard. As of July 2026, repeated e-way bill rule changes leave small businesses and their billing vendors unsure what to comply with and when. Getting it right still means reading dense rules and cross-checking documents by hand.
+Small taxpayers get GST demand notices and do not know whether to pay or reply. A wrong guess risks penalties, and as of July 2026 e-way bill rules keep changing too.
 
-**Challenge:** Tell a small business what a notice means, what to file and by when, in its own language, within the hour.
+**Challenge:** Tell a small business what a notice means, what to file and by when, in its regional language, within the hour.
 
-Medium · for businesses · India · teaches AI agents, Voice AI
+Easy · for businesses · India · teaches AI agents, Voice AI
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -983,7 +1126,7 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P126 · Prising ledgers out of Tally piece by piece
 
-Accountants pull ledgers out of TallyPrime piece by piece to analyse them, which is slow and lets errors creep into their reports. Elsewhere, a bookkeeper can bulk-update only 25 items at a time and has no project cost reports, so hours go on repetitive edits. The rest of the day goes on switching between full-screen spreadsheets.
+Accountants pull ledgers out of TallyPrime piece by piece to analyse them, which is slow and lets errors in. Elsewhere, a bookkeeper can bulk-update only 25 items at a time, so hours go on repetitive edits.
 
 **Challenge:** Get every ledger out of Tally in one clean pull, ready to analyse in minutes rather than a day.
 
@@ -1004,11 +1147,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P138 · Ticking bank lines against the ledger, one by one
 
-Bookkeeping is repetitive and easy to check against the bank, yet small firms still reconcile their ledgers by hand, and it remains the slowest part of the work. The bank feeds meant to help keep dropping: in September 2026 one firm found transactions missing and support unable to fix the connection.
+Small firms still match their ledgers to the bank by hand, and it remains the slowest part of bookkeeping. In September 2026 one firm found transactions missing from its bank feed, and support could not fix it.
 
 **Challenge:** Match a small firm's month of bank lines to its ledger, leaving a person only the ones that need judgement.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations
+Medium · for businesses · global · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1024,7 +1167,7 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P149 · Flying blind on next month's cash
 
-Standard small-business accounting software has no basic cash forecast, so owners build spreadsheet workarounds to see what is coming. In July 2026 merchants found settlements landing later than expected, which made day-to-day cash planning harder still. Growing firms need senior financial planning help but cannot afford a full-time finance head.
+Standard small-business accounting software has no basic cash forecast, so owners build spreadsheet workarounds. In July 2026 merchants found their payouts landing later than expected, which made cash planning harder still.
 
 **Challenge:** Show a small owner, each morning, how much cash they will have in 30 days.
 
@@ -1044,11 +1187,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P159 · Evenings lost to chasing invoices by hand
 
-Micro businesses spend 10 or more hours a week making, chasing and matching invoices by hand, because ERP software is too heavy for them. Late-paying customers strain small suppliers, and contractors lose their evenings chasing what they are owed instead of doing billable work or being with family.
+Micro businesses spend 10 or more hours a week making, chasing and matching invoices by hand. Contractors lose their evenings chasing what they are owed instead of being with family.
 
 **Challenge:** Get a small owner paid on time without a single evening spent chasing.
 
-Easy · for businesses · global · teaches Voice AI, Automation and integrations · also Work
+Medium · for businesses · global · teaches Voice AI, Automation and integrations · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1064,7 +1207,7 @@ pain 4 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P169 · The chargeback you had proof for, and still lost
 
-Small online merchants lose chargeback disputes they could have won, because writing an evidence-backed response is slow and confusing and the payment provider rarely helps. In September 2026 one merchant holding documentary evidence on a large dispute could not get any response from the gateway's support team. Bots testing stolen cards add more disputes, and funds stay held while every order is checked by hand.
+Small online merchants lose chargeback disputes they could have won, because writing a reply with evidence is slow and confusing. In September 2026 one merchant with proof got no response from the gateway's support team.
 
 **Challenge:** Turn a merchant's order and delivery records into a chargeback reply that wins, in minutes rather than an evening.
 
@@ -1085,11 +1228,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P179 · Money debited, transaction failed, nobody owns the refund
 
-Payments get debited while the merchant, gateway or booking site shows them as failed, and the refund goes missing as each side points at the other. It happens to train tickets, pension contributions and gateway checkouts alike, and the money can sit for days with no owner and no status. Salaried taxpayers waited months for refunds with no visible reason, risking the deadline to revise their returns.
+Payments get debited while the merchant or booking site shows them as failed, and each side points at the other. The money can sit for days with no owner and no status.
 
 **Challenge:** Get a stuck refund back to the payer without them chasing both companies.
 
-Medium · for people · India · teaches AI agents, Automation and integrations
+Medium · for everyday people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -1109,11 +1252,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P188 · Locked out after a death or a lost phone
 
-After a death, families spend months reaching scattered accounts, documents and assets because succession paperwork is slow and few people prepare. Losing an email account or a phone holding authentication codes can lock someone out of banking and work with no human to help.
+After a death, families spend months reaching scattered accounts, documents and assets because few people prepare. Losing a phone that holds authentication codes can lock someone out of banking and work.
 
 **Challenge:** Make sure the people who need your accounts can reach them, and nobody else can.
 
-Hard · for people · global · teaches Full-stack web, AI agents
+Hard · for everyday people · global · teaches Full-stack web, AI agents
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -1131,11 +1274,11 @@ pain 5 · frequency 2 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P196 · Input credit lost because a supplier filed late
 
-Small businesses lose input tax credit whenever a supplier files late or invoices fail to appear in their auto-drafted returns, and stricter matching now triggers notices for small mismatches. Reconciling books against returns at year end is slow, and errors surface only when the notice arrives.
+Small businesses lose input tax credit when a supplier files late or an invoice is missing from their auto-drafted return. Matching books against returns at year end is slow, and errors surface only when the notice arrives.
 
 **Challenge:** Catch every GST mismatch in the month it happens, not when the notice lands.
 
-Easy · for businesses · India · teaches Data and dashboards, Automation and integrations
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1151,11 +1294,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P204 · Freelancers chasing clients who stopped answering
 
-Freelancers face at least one unpaid invoice a month, burn hours drafting awkward follow-ups, and lose thousands to clients who vanish after receiving the final work. Reminders go out late or not at all, and invoicing, tracking and escalation are stitched across tools built for bigger companies.
+Freelancers face at least one unpaid invoice a month and burn hours drafting awkward follow-ups. They lose thousands to clients who vanish after receiving the final work.
 
 **Challenge:** Make sure a freelancer is paid before the final files leave their hands.
 
-Easy · for self-employed · global · teaches AI agents, Automation and integrations · also Creators
+Hard · for self-employed · global · teaches AI agents, Automation and integrations · also Creators
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -1174,11 +1317,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 5 · learning 3 · novelt
 
 ### P212 · The subscription that costs more every renewal
 
-Small firms find basic features locked behind premium add-ons, hidden costs after they buy, and a price rise every year with no way to push back. Usage-based AI pricing makes the monthly bill harder still to predict. One Indian buyer of Zoho Books hit hidden costs after purchase and got no useful answer from support for 7 months.
+Small firms find basic features locked behind premium add-ons, hidden costs after they buy, and a price rise every year. One Indian buyer of Zoho Books got no useful answer from support for 7 months.
 
 **Challenge:** Cut a small company's subscription bill by a fifth without losing a feature it uses.
 
-Easy · for businesses · global · teaches Data and dashboards, AI agents · also Work
+Medium · for businesses · global · teaches Data and dashboards, AI agents · also Work
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1195,11 +1338,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P219 · The day a PDF invoice stopped counting
 
-E-invoicing mandates reached smaller businesses in India and across Europe in 2025 and 2026, so a PDF sent by email no longer counts and small firms pay an intermediary to connect. One accounting service switched e-invoicing on without warning, and its clients missed invoices and waited on payments. A small Indian retailer found Zoho Books too rigid for retail GST rules and was left processing card payments by hand.
+E-invoicing rules reached smaller businesses in India and across Europe in 2025 and 2026. A PDF sent by email no longer counts, so small firms pay a middleman to connect.
 
 **Challenge:** Get a small firm compliant with a new invoicing mandate in an afternoon, not a quarter.
 
-Medium · for businesses · global · teaches Automation and integrations, Full-stack web
+Easy · for businesses · global · teaches Automation and integrations, Full-stack web
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -1215,7 +1358,7 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P224 · The GST threshold you crossed without noticing
 
-Independent coaches and side-gig earners cross the GST threshold without knowing when registration kicks in, how to bill clients in the meantime or what they owe, and nobody tells them. Pulling together a profit and loss summary is tedious, so taxes get put off. The chartered accountant they see once a year comes in too late to plan anything.
+Independent coaches and side-gig earners cross the GST threshold without knowing when registration kicks in or what they owe. The chartered accountant they see once a year comes in too late to plan anything.
 
 **Challenge:** Give a freelancer a running view of their tax position that is ready to hand to an accountant.
 
@@ -1235,11 +1378,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P229 · The WhatsApp invoice that arrives blank
 
-Small Indian shops find their billing crashes often, barcode printing fails and invoices shared on WhatsApp arrive as blank files, while Vyapar leaves their feature requests unanswered. Businesses with under 10 staff still work out salaries by hand each month, juggling leave, overtime and bonuses, because the payroll module in Tally needs training they cannot afford.
+Businesses with under 10 staff still work out salaries by hand each month, juggling leave, overtime and bonuses. The payroll module in Tally needs training they cannot afford.
 
 **Challenge:** Make billing and monthly salaries for a 10-person shop take minutes and never fail at the counter.
 
-Easy · for businesses · India · teaches Mobile apps, Full-stack web · also Retail
+Hard · for businesses · India · teaches Mobile apps, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1256,11 +1399,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P234 · Cryptic UPI names turn every statement into a puzzle
 
-Spending is scattered across UPI, cards, wallets and subscriptions, and cryptic merchant names make small payments impossible to recall weeks later. Budgeting that needs manual entry gets abandoned within weeks, and bank sync shows up late or not at all.
+Spending is scattered across UPI, cards, wallets and subscriptions, and unclear merchant names make small payments impossible to recall weeks later. Budgeting that needs manual entry gets abandoned within weeks.
 
 **Challenge:** Tell someone where their money went last month without asking them to type anything.
 
-Easy · for people · India · teaches Mobile apps, Data and dashboards
+Easy · for everyday people · India · teaches Mobile apps, Data and dashboards
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -1279,11 +1422,11 @@ pain 2 · frequency 5 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P003 · Every 5th appointment is an empty chair
 
-An audit of 47 Indian specialist practices found about 1 in 5 booked appointments end as no-shows, and few clinics even track it. A patient who wants to reschedule can only call during working hours or reply to an SMS nobody reads, so a cancellation quietly turns into an empty slot that no other patient can use.
+A patient who wants to reschedule can only call in working hours or reply to an SMS nobody reads. An audit of 47 Indian specialist clinics found about 1 in 5 booked appointments end as no-shows.
 
 **Challenge:** Cut a clinic's no-shows in half without adding a single call to the front desk.
 
-Medium · for businesses · India · teaches Voice AI, Automation and integrations, AI agents
+Hard · for businesses · India · teaches Voice AI, Automation and integrations, AI agents
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1299,11 +1442,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P015 · Every new doctor starts from a folder of X-rays
 
-Hospitals rarely hand over digital copies, so patients carry folders of paper reports and X-rays from one doctor to the next. Complaints from January 2026 describe doctors at a new hospital unable to see past prescriptions or allergies, and an online doctor on PharmEasy advised without opening the reports the patient had uploaded. Families of a sick child bounce between hospitals with nobody pulling the records into one diagnosis.
+Hospitals rarely hand over digital copies, so patients carry folders of paper reports and X-rays from doctor to doctor. Complaints from January 2026 describe doctors at a new hospital unable to see past prescriptions or allergies.
 
 **Challenge:** Turn a folder of paper reports into a one-page history any new doctor can read in a minute.
 
-Hard · for people · India · teaches Vision, AI agents, Mobile apps
+Medium · for everyday people · India · teaches Vision, AI agents, Mobile apps
 
 <details><summary>Evidence (4) and scores (28)</summary>
 
@@ -1320,11 +1463,11 @@ pain 5 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P027 · A parent's care, arranged from another city
 
-Sole earners living in another city find arranging care for an ageing parent fragmented and stressful. Paying someone to coordinate it is out of reach for most, and one family was quoted about $20,000 a year for concierge care coordination. One caregiver of a parent with dementia says the time and money it takes has stalled their career completely.
+Sole earners living in another city find arranging care for an ageing parent fragmented and stressful. One family was quoted about $20,000 a year for concierge care coordination.
 
 **Challenge:** Let a working child keep a parent's doctors, medicines and helpers on track in 10 minutes a day.
 
-Hard · for people · global · teaches Voice AI, Automation and integrations, Mobile apps · also Homes
+Hard · for everyday people · global · teaches Voice AI, Automation and integrations, Mobile apps · also Homes
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1340,11 +1483,11 @@ pain 5 · frequency 5 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P039 · The memory slip you can't hear over the phone
 
-Children living far from an ageing parent struggle to notice a slow decline in memory from ordinary phone calls. The internet is dangerous for an elder whose judgement is slipping, yet daily life is nearly impossible without it, and digital payment scams aimed at elders have risen sharply. Y Combinator's 2026 call for startups put it plainly: almost no technology is built for older people.
+Children living far from an ageing parent struggle to notice a slow decline in memory from ordinary phone calls. Y Combinator's 2026 call for startups said almost no technology is built for older people.
 
 **Challenge:** Help a family notice a parent's memory slipping early, and keep that parent safe online meanwhile.
 
-Hard · for people · global · teaches Voice AI, AI agents, Mobile apps
+Medium · for everyday people · global · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -1360,7 +1503,7 @@ pain 5 · frequency 4 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P051 · The meal nobody logs, and the coach advising blind
 
-Online nutrition coaches advise from their clients' food logs, but typing every meal is tedious and logs from separate trackers sync unreliably, so coaches see half the picture. Clients would rather send a photo of the plate, and when the coach's reply comes late, the weight creeps back. Coaches have posted the same complaint in reviews from May 2025 to September 2026.
+Online nutrition coaches advise from clients' food logs, but typing every meal is a chore, so they see half the picture. Coaches have posted the same complaint in reviews from May 2025 to September 2026.
 
 **Challenge:** Let a client log a whole day of meals in under a minute, and the coach see it the same day.
 
@@ -1382,11 +1525,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 5 · novelt
 
 ### P063 · Booked, travelled, and the doctor is on leave
 
-Patients book a specialist online, travel to the appointment and find the doctor on leave, not practising at that hospital, or the clinic shut, with no warning from anyone. The fee shown online can be half what the clinic charges at the visit. Reports like these run from November 2025 to August 2026, and support lines rarely confirm anything before the trip.
+Patients book a specialist online, travel there and find the doctor on leave or the clinic shut, with no warning. Reports like these run from November 2025 to August 2026.
 
 **Challenge:** Make sure a patient who books a doctor finds that doctor, at that place, at that price.
 
-Hard · for people · India · teaches Voice AI, AI agents, Data and dashboards
+Medium · for everyday people · India · teaches Voice AI, AI agents, Data and dashboards
 
 <details><summary>Evidence (6) and scores (27)</summary>
 
@@ -1405,11 +1548,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P075 · A hospital bill with nothing to check it against
 
-Patients get long itemised hospital bills with no upfront price for a routine procedure to compare against, and the same visit can cost far more depending on how it is coded. People without health cover pay the highest rates, and medical bills push families into debt. Courts and regulators pushed Indian hospitals to publish standard rates in 2024 and 2025, yet the bill still arrives before any price does.
+Patients get long itemised hospital bills with no upfront price for a routine procedure to compare against. Courts and regulators pushed Indian hospitals to publish standard rates in 2024 and 2025, yet the bill still comes first.
 
 **Challenge:** Tell a patient before admission what a routine procedure should cost, and flag what does not belong on the bill.
 
-Hard · for people · global · teaches Vision, Data and dashboards, AI agents · also Money
+Medium · for everyday people · global · teaches Vision, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1426,11 +1569,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P087 · Wrong medicine at the door, and the return refused
 
-Medicines arrive with expiry dates washed off, vaccines arrive at room temperature, and a wrong drug is refused for return because the buyer supposedly checked it on delivery. Complaints sit unresolved for months. India's top 300 drug brands have carried QR codes since 2023, yet a patient holding a strip still cannot tell if it is right, in date and genuine.
+A wrong medicine is refused for return because the buyer supposedly checked it on delivery. Complaints sit unresolved for months.
 
 **Challenge:** Let a patient know, before accepting a delivery, that a medicine is the right drug, in date and genuine.
 
-Hard · for people · India · teaches Vision, Mobile apps
+Easy · for everyday people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1447,11 +1590,11 @@ pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P099 · The claim rejected, and nobody will say why
 
-Over 40% of surveyed Indian policyholders say health claims were rejected or only part paid for reasons they consider invalid, and nobody explains the decision. Half of those filing cashless claims waited 6–48 hours for approval before discharge, even after IRDAI tightened cashless timelines in 2024.
+Over 40% of surveyed Indian policyholders say health claims were rejected or only part paid for reasons they consider invalid. Nobody explains the decision.
 
 **Challenge:** Help a family fight a rejected health claim with the right clause and the right letter, in one evening.
 
-Hard · for people · India · teaches AI agents, Vision, Full-stack web · also Money
+Medium · for everyday people · India · teaches AI agents, Vision, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -1468,11 +1611,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P111 · The home exercises nobody does once sessions end
 
-Patients and coaching clients tend to stop their home exercises once paid sessions end, and coaches cannot compare what was prescribed with what was done. Exercise libraries skew young, so one coach for middle-aged women filmed many exercises herself, and older clients find remote programmes confusing. In July 2026 a client of a paid fitness coach got only forwarded YouTube videos, no follow-up, and regained the weight.
+Clients tend to stop their home exercises once paid sessions end, and coaches cannot compare what was prescribed with what was done. In July 2026 a paid coach's client got only forwarded YouTube videos and no follow-up.
 
 **Challenge:** Show a coach which clients actually did this week's exercises, and how well, without a single extra call.
 
-Hard · for self-employed · global · teaches Vision, Mobile apps, Voice AI
+Medium · for self-employed · global · teaches Vision, Mobile apps, Voice AI
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -1491,7 +1634,7 @@ pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P123 · Clinics pay lakhs for listings that bring one patient
 
-Indian doctors pay booking marketplaces tens of thousands to lakhs a year for visibility and receive a handful of leads or none. Terms change without notice, ads stop running, and support vanishes after the sale, while the middlemen take a growing share of what patients pay.
+Indian doctors pay booking marketplaces tens of thousands to lakhs a year for visibility. They get a handful of leads or none, and terms change without notice.
 
 **Challenge:** Show a small clinic exactly which rupee of its marketing brought which patient.
 
@@ -1515,11 +1658,11 @@ pain 4 · frequency 3 · willingness 5 · buildability 4 · learning 3 · novelt
 
 ### P135 · Therapists write reports in the hours they should rest
 
-An autism services worker writes very long insurance justification reports every 6 months, with almost no time set aside for them. Staff at mid-sized Indian clinics spend about 11 hours a week on confirmation calls, copying paper into records, sending lab results and reconciling bills. It lands on people who are already overworked and underpaid.
+An autism services worker writes very long insurance reports every 6 months, with almost no time set aside for them. Staff at mid-sized Indian clinics spend about 11 hours a week on calls, paperwork and bills.
 
 **Challenge:** Turn a therapist's session notes into a progress report ready to send before the next session starts.
 
-Medium · for businesses · global · teaches AI agents, Voice AI · also Work
+Easy · for businesses · global · teaches AI agents, Voice AI · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1535,11 +1678,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P146 · One coach, a separate payment link for every package
 
-Online coaches cannot show all their packages on one page, so each needs its own payment link, and clients have no booking view to see when a session is free. Coaching software keeps moving key features into paid add-ons, and when a session is missed, rescheduling is a tedious round of calls. These complaints came from 3 different coaches in 3 days of July 2026.
+Online coaches need a separate payment link for every package, and clients cannot see when a session is free. Such complaints came from 3 different coaches in 3 days of July 2026.
 
 **Challenge:** Let a solo coach sell any package, take payment and fill the calendar from one link they share.
 
-Easy · for self-employed · India · teaches Payments, Full-stack web, Automation and integrations · also Money
+Hard · for self-employed · India · teaches Payments, Full-stack web, Automation and integrations · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1556,11 +1699,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 5 · learning 3 · novelt
 
 ### P157 · The same strip of tablets costs half next door
 
-The same prescription can cost 30 to 50 percent more at one pharmacy than another, and patients cannot compare. Online orders are approved and then cancelled days later because the partner shop never had the stock, leaving patients without medicine.
+The same prescription can cost 30 to 50% more at one pharmacy than another, and patients cannot compare. Online orders are approved, then cancelled days later because the partner shop never had the stock.
 
 **Challenge:** Tell a patient where their prescription is in stock today, nearby, and at the lowest price.
 
-Medium · for people · India · teaches Data and dashboards, Full-stack web, Mobile apps · also Retail
+Hard · for everyday people · India · teaches Data and dashboards, Full-stack web, Mobile apps · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1577,11 +1720,11 @@ pain 4 · frequency 5 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P167 · Fitness plans easy to buy, impossible to cancel
 
-Diet and fitness programmes are sold through limited-time offers and sales promises, then refuse refunds, hide deadlines in the terms and keep billing after cancellation. Members and even trainers report being charged months after they tried to leave.
+Diet and fitness programmes refuse refunds, hide deadlines in the terms and keep billing after cancellation. Members and even trainers report being charged months after they tried to leave.
 
 **Challenge:** Make cancelling a fitness or diet subscription take one minute and leave a record the seller cannot dispute.
 
-Medium · for people · India · teaches Payments, Automation and integrations, AI agents · also Money
+Medium · for everyday people · India · teaches Payments, Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -1599,7 +1742,7 @@ pain 3 · frequency 3 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P177 · Small gyms lose money between card and payout
 
-Small gyms pay monthly software fees plus card charges, then wait on erratic payouts of their own members' fees. Billing systems lock loyal members out the instant a payment fails and double-charge others, while coaches still have to be paid by hand outside the system.
+Small gyms pay monthly software fees plus card charges, then wait on unpredictable payouts of their own members' fees. Billing systems lock loyal members out the instant a payment fails and double-charge others.
 
 **Challenge:** Show a small gym owner every rupee a member paid, when it lands, and who is owed what, in one view.
 
@@ -1621,11 +1764,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P186 · 6 months for a fix, and no way out
 
-Small studios and solo therapists wait months for fixes, get pushed through AI bots before any human help, and absorb new fees added without notice. One wellness practitioner waited 6 months for a scheduling fix, and a solo therapist was hit with a new per-claim fee while long-used features were removed. Leaving feels impossible, because every client, package and booking lives inside the vendor's records.
+Small studios and solo therapists wait months for fixes and absorb new fees added without notice. Leaving feels impossible, because every client, package and booking lives inside the vendor's records.
 
 **Challenge:** Let a small practice move every client, package and booking to a new provider in one afternoon.
 
-Hard · for businesses · global · teaches Automation and integrations, AI agents, Data and dashboards · also Work
+Medium · for businesses · global · teaches Automation and integrations, AI agents, Data and dashboards · also Work
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -1642,11 +1785,11 @@ pain 3 · frequency 2 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P194 · Matching aggregator visits to bookings by hand
 
-Corporate fitness aggregators grew fast in 2025, and studios and clinics now run bookings, aggregator visits, invoices and accounting in separate places that barely connect, matching visits and recurring packages by hand. Some practice software cannot even issue recurring invoices or membership packages. Across healthcare, roughly a third of spending goes on administration created by disconnected systems and paperwork.
+Corporate fitness aggregators grew fast in 2025. Studios now run bookings, aggregator visits and invoices in separate places, and match visits and packages by hand.
 
 **Challenge:** Turn a month of bookings, aggregator visits and invoices into one reconciled ledger without a spreadsheet.
 
-Medium · for businesses · global · teaches Data and dashboards, Automation and integrations, Payments · also Money
+Hard · for businesses · global · teaches Data and dashboards, Automation and integrations, Payments · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -1664,11 +1807,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P202 · Small-city patients pay for specialists, get 2 minutes
 
-Patients in smaller cities wait weeks for specialists, so they pay for online consults that get handed to a different doctor, downgraded to audio, cut to 2 minutes or cancelled without a refund. One instant consult cost roughly 3 times the doctor's own direct fee for a brief, poor consultation. They lose the fee and still leave with no diagnosis.
+Patients in smaller cities wait weeks for specialists, so they pay for online consults. These get handed to a different doctor, cut to 2 minutes or cancelled without a refund.
 
 **Challenge:** Make sure a patient who pays for a specialist gets that specialist, that time, or their money back.
 
-Medium · for people · India · teaches AI agents, Automation and integrations, Payments
+Easy · for everyday people · India · teaches AI agents, Automation and integrations, Payments
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -1686,11 +1829,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P210 · A blood test should not cost a day
 
-Rural patients travel tens of kilometres and lose a day for a basic test, and women in conservative areas delay tests over privacy and transport. Home packages booked online arrive missing tests, results are delayed, and refunds stall.
+Rural patients travel tens of kilometres and lose a day for a basic test. Home packages booked online arrive missing tests, results are delayed, and refunds stall.
 
 **Challenge:** Get a basic blood test done and the report into the patient's hand within a day, wherever they live.
 
-Medium · for people · India · teaches Full-stack web, Mobile apps, Data and dashboards
+Easy · for everyday people · India · teaches Full-stack web, Mobile apps, Data and dashboards
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -1705,11 +1848,94 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 2 · novelt
 
 </details>
 
+### P268 · The doctor whose degree nobody checked
+
+Police in one Assam district made 14 arrests in a fake doctor inquiry, and 12 more followed in Hyderabad in 2026. Checking a doctor means searching separate registers for different kinds of medicine.
+
+**Challenge:** Let a patient check in a minute that the doctor in front of them is registered to practise.
+
+Easy · for everyday people · India · teaches Vision, AI agents
+
+<details><summary>Evidence (5) and scores (26)</summary>
+
+- Police arrested the alleged head of a fake medical degree racket in Assam, the 14th arrest in one district. Certificate holders worked as doctors in several states. [news, 2025-10-25](https://medicaldialogues.in/news/health/doctors/silchar-fake-doctor-arrested-for-running-bogus-medical-degree-racket-157446)
+- A man ran a children clinic in Bhadohi on a degree found to be fake. The clinic had no registration and was sealed after complaints. [news, 2025-10-29](https://medicaldialogues.in/amp/news/health/doctors/quack-caught-operating-unauthorised-childrens-clinic-157626)
+- 12 people were arrested in Hyderabad for running clinics with no proper medical qualification, giving injections and prescribing medicines. [news, 2026-08-25](https://www.khaleejtimes.com/world/asia/12-alleged-fake-doctors-arrested-in-hyderabad-raids-in-jubilee-hills-secunderabad)
+- Only 75 of about 11,600 active doctors in Chhattisgarh had completed registration on the national medical register. [news, 2025-08-10](https://www.thehitavada.com/Encyc/2025/8/10/only-75-allopathic-doctors-at-chhattisgarh-registered-in-national-medical-register-of-nmc.html)
+- Guide: the national register covers only modern medicine and is still being updated. State council records and a separate AYUSH portal must be checked too. [other, 2026-10-01](https://www.medboundtimes.com/medicine/verify-doctor-registration-india)
+
+**Why now:** The national medical register opened in 2024 but few doctors are on it, so a patient still has to know which of several registers to search.
+
+pain 5 · frequency 3 · willingness 2 · buildability 4 · learning 4 · novelty 4 · openness 4
+
+</details>
+
+### P269 · The ad that promises to cure diabetes
+
+Of 332 healthcare ads India's advertising council examined in 6 months of 2025, 82% broke the law against miracle cures. Such ads promise sure cures for cancer and diabetes, and 97% of all ads flagged were online.
+
+**Challenge:** Tell a family whether a health ad makes a claim the law bans, and help them report it in a minute.
+
+Easy · for everyday people · India · teaches AI agents, Full-stack web
+
+<details><summary>Evidence (3) and scores (25)</summary>
+
+- April to September 2025: 332 healthcare ads scrutinised and 82% broke the Drugs and Magic Remedies Act. Digital media made up 97% of all violations. [report, 2025-11-11](https://www.ascionline.in/wp-content/uploads/2025/11/Press-Release-ASCI-Half-Yearly-Complaints-Report-2025-26.pdf)
+- In 2025-26, products breaking the Drugs and Magic Remedies Act were a top 5 violating category with 274 cases. 97.3% of ads scrutinised were digital. [report, 2026-05-28](https://www.ascionline.in/wp-content/uploads/2026/05/annual-complaints-report-2026.pdf)
+- 233 health ads promising sure cures for cancer, diabetes and other conditions were referred to the AYUSH ministry. 56% of 370 healthcare ads were misleading. [news, 2025-06-03](https://thesouthfirst.com/health/from-cancer-cures-to-sexual-weakness-fixes-asci-flags-233-misleading-health-ads-to-ayush-ministry/)
+
+**Why now:** Nearly all flagged ads now run on social media, and the council found 93% of its 2025-26 cases through its own monitoring, not from the public.
+
+pain 4 · frequency 4 · willingness 1 · buildability 5 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P270 · Every 2 weeks, the family hunts for blood again
+
+Thalassemia patients need blood every 2 to 4 weeks, and families are expected to bring a donor each time. In Chhattisgarh, blood banks meet only 45 to 60% of the monthly need.
+
+**Challenge:** Get a family that needs blood again and again a willing, matching donor nearby before each transfusion is due.
+
+Medium · for everyday people · India · teaches Automation and integrations, Full-stack web
+
+<details><summary>Evidence (4) and scores (23)</summary>
+
+- Thalassemia patients need blood every 2 to 4 weeks. Families are unofficially expected to bring replacement donors and often post appeals on social media. [news, 2026-02-25](https://www.isignal.in/health/thalassemia-children-navigate-depleted-blood-supply-infection-risk-980732)
+- Chhattisgarh blood banks meet only 45 to 60% of the monthly need, 30% for negative groups. Families must find replacement donors or pay thousands. [news, 2026-04-03](https://www.thehitavada.com/Encyc/2026/4/3/shortage-of-blood-leaves-patients-struggling-across-state.html)
+- A Mumbai hospital blood bank collected 6,817 units in the first half of 2026, down 23%. A family treating blood cancer had to buy blood outside. [news, 2026-07-10](https://www.freepressjournal.in/mumbai/sion-hospital-blood-bank-faces-shortage-as-donations-drop-thalassemia-patients-at-risk)
+- Study of thalassemia transfusions in Nellore, 2019 to May 2025: packed cell issues rose from 445 to 1,367 a year. Authors call for stronger local donor networks. [study, 2025-10-31](https://pmc.ncbi.nlm.nih.gov/articles/PMC12859267/)
+
+**Why now:** Camp collections fell in 2025 and 2026 while transfusion demand kept rising, and a national rare donor registry launched in 2025 covers only rare groups.
+
+pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 3 · novelty 2 · openness 3
+
+</details>
+
+### P271 · Checking the air every morning before practice
+
+In Delhi's winter smog, a 13-year-old missed 5 days of cricket training and a cycling club stopped its weekly 20 km ride. Parents check the air reading each morning, and coaches shift sessions to the afternoon.
+
+**Challenge:** Tell a sports group each morning whether the air allows practice, and when today's cleanest hour is.
+
+Medium · for everyday people · India · teaches Automation and integrations, Data and dashboards
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- Survey with over 44,000 responses: 3 in 4 Delhi NCR households feel the effects of toxic air and 44% are trying to cut time outdoors. [survey, 2025-10-25](https://www.localcircles.com/a/press/page/delhi-ncr-air-quality-survey-2025)
+- A 13-year-old missed 5 days of cricket training. Parents check the air reading every morning and coaches move sessions to the afternoon. [news, 2025-12-03](https://www.newslaundry.com/2025/12/03/we-have-to-live-with-air-pollution-delhis-athletes-parents-and-coaches-feel-they-have-no-choice)
+- A 15-member cycling club suspended its weekly 20 km ride. Academies cut outdoor time and a runner could finish only 2 of 4 repeats. [news, 2025-12-05](https://www.tribuneindia.com/news/delhi/toxic-haze-keeps-athletes-indoors-disrupts-training-routines)
+
+**Why now:** Authorities asked for school sports to be postponed in November and December 2025, and each coach and parent is left to decide day by day.
+
+pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelty 3 · openness 3
+
+</details>
+
 ## Education and careers
 
 ### P008 · The take-home test AI can now sit for you
 
-Since 2025, take-home coding work has been easy to hand to AI, so one programming instructor moved most of the grade into in-class exams. Another educator found even recorded take-home oral exams could be gamed, leaving live, in-person checks as the only honest test. Those checks do not stretch beyond a small class, and teaching methods have barely changed in decades.
+Since 2025, take-home coding work has been easy to hand to AI. One instructor moved most of the grade into in-class exams, but live checks only work for a small class.
 
 **Challenge:** Let a teacher check, in 5 minutes per student, that whoever submitted the work actually understands it.
 
@@ -1729,11 +1955,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P020 · The sales call promised it, the course denied it
 
-Edtech sales staff promise deferrals, content and mentoring on calls, then the company denies it after payment and refuses to check the recording. Parents and students are pressured into upgrades, told their existing course is worthless, and spammed from many numbers after signing up. Complaints about coaching to the consumer helpline tripled in a year.
+Edtech sales staff promise deferrals, content and mentoring on calls, then the company denies it after payment. Complaints about coaching to the consumer helpline tripled in a year.
 
 **Challenge:** Make every promise on an edtech sales call show up in writing before the buyer pays.
 
-Hard · for people · India · teaches Voice AI, AI agents
+Medium · for everyday people · India · teaches Voice AI, AI agents
 
 <details><summary>Evidence (7) and scores (26)</summary>
 
@@ -1753,11 +1979,11 @@ pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 5 · novelt
 
 ### P032 · Half of job seekers cannot spot a fake recruiter
 
-Most Indian job seekers have met fraudulent job offers, and half cannot tell a genuine recruiter from a scammer, with the youngest hit hardest. Fake postings sit on major internship boards with no visible employer check, and fear of scams now makes young candidates ignore real opportunities. People lose registration fees and months of search time.
+Most Indian job seekers have met fake job offers, and half cannot tell a genuine recruiter from a scammer. People lose registration fees and months of search time.
 
 **Challenge:** Tell a first-time job seeker within seconds whether an offer, recruiter or posting is real.
 
-Medium · for people · India · teaches AI agents, Data and dashboards, Mobile apps · also Work
+Easy · for everyday people · India · teaches AI agents, Data and dashboards, Mobile apps · also Work
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -1774,11 +2000,11 @@ pain 4 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P044 · Good marks, but can't fix a bug
 
-Most engineering and MBA graduates of 2026 are still unplaced, and those from campuses few recruiters visit are far less likely to be hired. Employers say fresh graduates with good marks cannot debug code or apply what they learnt, because colleges teach mostly theory. Most students believe they are ready for work, few employers agree, and firms want ready hires without paying to train them.
+Most engineering and MBA graduates of 2026 are still unplaced. Employers say fresh graduates with good marks cannot debug code or apply what they learnt, because colleges teach mostly theory.
 
 **Challenge:** Let a graduate from a small college prove one real skill to an employer in a single afternoon.
 
-Hard · for people · India · teaches AI agents, Full-stack web · also Work
+Medium · for everyday people · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1794,11 +2020,11 @@ pain 5 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P056 · Paid for the course, then the company went silent
 
-Learners pay for courses, books, certificates and exam help, and then the books never arrive, the certificate stays locked or the classes freeze right before exams. One online degree provider took a ₹10,000 reservation fee, rejected the applicant and kept the money. Refunds are denied over terms the buyer never clearly saw, and follow-ups go unanswered until the buyer stops chasing.
+Learners pay for courses, books and certificates, then the books never arrive or the classes freeze right before exams. One online degree provider took a ₹10,000 reservation fee, rejected the applicant and kept the money.
 
 **Challenge:** Get a stranded learner their money back, or a written answer, within 2 weeks of the first complaint.
 
-Medium · for people · India · teaches AI agents, Automation and integrations · also Homes
+Hard · for everyday people · India · teaches AI agents, Automation and integrations · also Homes
 
 <details><summary>Evidence (7) and scores (25)</summary>
 
@@ -1818,11 +2044,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P068 · Patient one-on-one tutoring is still for the few
 
-Most young children learn reading and arithmetic without patient one-on-one help, because tutoring that adapts to each child is reserved for the few. Parents want to let children explore an encyclopedia or AI assistant on their own, but have no child-safe controls over what it says, and struggle to explain where AI fails. Parents were asking for those controls as early as May 2025, and the worry is now mainstream.
+Most young children learn reading and arithmetic without patient one-on-one help. Parents have no child-safe controls over what an AI assistant says, and were asking for them as early as May 2025.
 
 **Challenge:** Give a young child a patient voice tutor whose every answer a parent can limit and review.
 
-Medium · for people · global · teaches Voice AI, AI agents
+Medium · for everyday people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -1838,11 +2064,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P080 · 100 applications, 7 interviews, and no feedback
 
-One candidate got interviews from just 7 of 100 applications, and new graduates in a weak junior market hear almost nothing back. Keyword filters reject qualified freshers for missing a brand name, ghost listings waste their time and boards are flooded with machine-written applications. Candidates lose track of where they applied, submit twice, miss follow-ups and get ghosted after long interview rounds.
+One candidate got interviews from only 7 of 100 applications, and new graduates hear almost nothing back. Candidates lose track of where they applied, submit twice and miss follow-ups.
 
 **Challenge:** Turn a graduate's next 50 applications into 20 targeted ones that each get a reply.
 
-Easy · for people · global · teaches AI agents, Automation and integrations, Full-stack web · also Work
+Medium · for everyday people · global · teaches AI agents, Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -1860,11 +2086,11 @@ pain 4 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P092 · ₹2.5 lakh on a data course, and zero interviews
 
-Learners pay lakhs for tech and data courses sold with placement guarantees, then meet weak teaching, labs that barely work and support that goes silent. One paid about ₹2.5 lakh and had zero interviews 3 months after finishing; another spent 1.6 years and ₹3 lakh and is still unplaced. They lose the fee, the time and the job they were promised.
+Learners pay lakhs for tech and data courses sold with placement guarantees, then meet weak teaching and silent support. One paid about ₹2.5 lakh and had zero interviews 3 months after finishing.
 
 **Challenge:** Show a learner, before they pay, what the last batch of a course actually went on to do.
 
-Hard · for people · India · teaches Data and dashboards, Full-stack web · also Work
+Easy · for everyday people · India · teaches Data and dashboards, Full-stack web · also Work
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -1883,11 +2109,11 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P104 · College advice paid for by the colleges
 
-School leavers in India get college advice from counsellors who earn referral commissions, steering them toward costly private colleges. Young people leaving formal education lack mentors and structure, and teenagers who can already code cannot find paid internships to test a direction. A wrong choice at eighteen costs years and lakhs of rupees.
+School leavers in India get college advice from counsellors who earn referral commissions, steering them towards costly private colleges. A wrong choice costs years and lakhs of rupees.
 
 **Challenge:** Give a school leaver advice on what to study next that no college has paid to influence.
 
-Medium · for people · India · teaches AI agents, Voice AI · also Work
+Medium · for everyday people · India · teaches AI agents, Voice AI · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1903,11 +2129,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P116 · A year of exam prep, paid upfront
 
-Exam-prep courses demand non-refundable yearly fees upfront, with no way to pay per topic or try first. Buyers find advertised content later locked behind a pricier tier, are pushed into instalment plans with threats about credit scores, and cannot move a paid batch when they switch streams. Students on tight budgets pay for a year they may never use.
+Exam-prep courses demand non-refundable yearly fees upfront, with no way to pay per topic or try first. Students on tight budgets pay for a year they may never use.
 
 **Challenge:** Let an exam aspirant pay only for the topics and weeks they actually use.
 
-Medium · for people · India · teaches Payments, Full-stack web · also Money
+Hard · for everyday people · India · teaches Payments, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -1924,7 +2150,7 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P128 · Parents pay the tutor and never see the learning
 
-Parents pay for tuition and get no proof their child is learning, while tutors who solve the homework for them leave children weak in fundamentals. A tutoring business cannot move easily between attendance, notes and lesson plans, and has nowhere to share a report card per student. In September 2026 one parent paying for online coding and maths classes reported connectivity trouble and no visible progress at all.
+Parents pay for tuition and get no proof their child is learning. In September 2026 one parent paying for online coding and maths classes reported no visible progress at all.
 
 **Challenge:** Let a tutor show every parent what their child learnt this week, in the time it takes to pack up.
 
@@ -1946,11 +2172,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P140 · Stuck on one problem with no one to ask
 
-Coaching students say only a few learners ever get live doubt sessions despite repeated requests, and offline centres teach unevenly and favour some students. Outside paid tutors or office hours, a student stuck on a textbook problem has nowhere to turn. Unanswered doubts pile up into the gaps that sink an exam.
+Coaching students say only a few learners ever get live doubt sessions, despite repeated requests. Outside paid tutors or office hours, a student stuck on a textbook problem has nowhere to turn.
 
 **Challenge:** Get a stuck student from a photo of the problem to understanding it, without handing them the answer.
 
-Easy · for people · India · teaches Vision, AI agents
+Easy · for everyday people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1966,11 +2192,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P151 · The best courses are only in English
 
-Bright students outside big cities miss top online courses because most are available only in English. Learners of less common languages can barely find beginner reading material, and flashcards drill the same sentences instead of fresh audio examples. Indian-language speech models matured in 2025, yet good teaching still rarely arrives in the language a learner thinks in.
+Bright students outside big cities miss top online courses because most are available only in English. Indian-language speech models matured in 2025, yet good teaching rarely arrives in the language a learner thinks in.
 
 **Challenge:** Turn one strong English course into one a student who thinks in an Indian language learns from just as well.
 
-Medium · for people · global · teaches Voice AI, AI agents
+Easy · for everyday people · global · teaches Voice AI, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -1986,11 +2212,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 5 · novelt
 
 ### P161 · A course business the host can cut overnight
 
-Course creators build years of income on teaching marketplaces and hosts that can change terms at will: one forced shift to subscription payouts cut earnings by over ninety percent, and another educator was terminated without notice. Long-time sellers leave over rising prices and weak support, and tutors want more control over their business than the software allows. The audience and income belong to the host, not the teacher.
+Course creators build years of income on teaching marketplaces and hosts that can change terms at will. One educator was removed without notice, and the audience and income belong to the host, not the teacher.
 
 **Challenge:** Let a course creator move their students, content and payments to a home they own in one weekend.
 
-Medium · for self-employed · global · teaches Full-stack web, Payments · also Creators
+Hard · for self-employed · global · teaches Full-stack web, Payments · also Creators
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2007,11 +2233,11 @@ pain 5 · frequency 2 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P171 · 6 months of job-portal premium, a handful of calls
 
-Indian job seekers pay for premium job-portal plans that promise recruiter visibility, then get fewer calls than they did applying by hand. One subscriber got a handful of recruiter calls across 6 months, and an experienced professional with an accurate, updated profile says the portal only works for freshers. What arrives instead is a stream of repeated or irrelevant listings.
+Indian job seekers pay for premium job-portal plans, then get fewer recruiter calls than they did applying by hand. One subscriber got a handful of recruiter calls across 6 months.
 
 **Challenge:** Show a job seeker, before they pay, how many real recruiter calls a profile like theirs gets.
 
-Medium · for people · India · teaches Data and dashboards, Full-stack web · also Work
+Medium · for everyday people · India · teaches Data and dashboards, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2027,11 +2253,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P181 · Paid for a resume writer, got a template
 
-Job seekers in India pay for resume writing, job-lead add-ons and personal job experts, and get generic content, emailed feeds of public listings, or a relationship manager who vanishes after payment. Features that once helped freshers for free now sit behind paid tiers that do not deliver, a complaint that kept coming up from October 2025 to September 2026. Candidates lose money at the point they can least afford it.
+Job seekers in India pay for resume writing and get generic content. Free features for freshers moved behind paid tiers that do not deliver, a complaint heard from October 2025 to September 2026.
 
 **Challenge:** Give a fresher the resume and job-lead help they were sold, at a fraction of the price, and prove it worked.
 
-Easy · for people · India · teaches AI agents, Full-stack web · also Work
+Easy · for everyday people · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2047,7 +2273,7 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P190 · Hiring an accountant, getting a mechanic
 
-Small Indian employers pay for job posts and get a trickle of mismatched, duplicate or inactive applicants, with slow support when they complain. In July 2026 one business paid about ₹3,000 for a post and got 11 applicants, including a mechanic for an accountant role; another ran a 3-month hiring plan and made no hires at all. A premium portal can do worse than a cheaper one.
+Small Indian businesses pay for job posts and get mismatched, duplicate or inactive applicants. In July 2026 one business paid about ₹3,000 for a post and got 11 applicants, including a mechanic for an accountant role.
 
 **Challenge:** Get a small business 3 qualified candidates for a role within a week, without another paid post.
 
@@ -2068,11 +2294,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P198 · Hours of lectures and podcasts, almost nothing retained
 
-Learners take in hours of podcasts, books, articles and recorded lectures and forget most of it within days, despite highlighting and notes. Notes end up long and messy, backlogs of recorded classes pile up across subjects, and nothing brings back what was learned when it is needed. Time spent learning turns into very little knowledge kept.
+Learners take in hours of podcasts, books, articles and recorded lectures. They forget most of it within days, despite highlighting and notes.
 
 **Challenge:** Make what someone heard or read this week come back to them at the moment it is useful.
 
-Easy · for people · global · teaches Voice AI, AI agents, Mobile apps
+Medium · for everyday people · global · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -2091,11 +2317,11 @@ pain 2 · frequency 5 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P206 · The tutor who can't say what last month earned
 
-Independent tutors enter payments by hand, cannot customise the invoices they send families, and track profit and loss outside the billing they already pay for. Splitting income with partner tutors happens on spreadsheets, and in August 2026 a long-time course creator called per-learner and transaction fees punishingly expensive as the business grew. UPI made fee collection instant, but matching it against fees and splits is still manual.
+Independent tutors enter payments by hand and split income with partner tutors on spreadsheets. In August 2026 a long-time course creator called per-learner and transaction fees punishingly expensive.
 
 **Challenge:** Show an independent tutor what each student and each month earned them, after every fee.
 
-Easy · for self-employed · global · teaches Payments, Data and dashboards, Automation and integrations · also Creators
+Medium · for self-employed · global · teaches Payments, Data and dashboards, Automation and integrations · also Creators
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2112,7 +2338,7 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P214 · Hiring plans sold hard, then nobody answers
 
-Recruiters buy hiring plans after aggressive sales calls promising guarantees, then face early plan expiry, money-back promises that are never honoured, verification stuck for weeks and support that stays silent. Access to candidate databases costs more every quarter with no alternative of similar reach. Small employers end up paying again just to keep hiring.
+Recruiters buy hiring plans after aggressive sales calls, then face early plan expiry and money-back promises that are never honoured. Verification stays stuck for weeks and support stays silent.
 
 **Challenge:** Let a small employer see what each hiring channel delivered per rupee before renewing anything.
 
@@ -2137,7 +2363,7 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P010 · The job post that drowns in generated applications
 
-An open job post can pull in hundreds of irrelevant, machine-generated applications within hours, so one hiring manager gave up and went back to referrals. Remote screening is no safer, with candidates quietly feeding questions to AI, and a small business running a design contest on Freelancer got over 1,000 AI-generated logos and could not get its prize money back. Referrals shut out good people with no network.
+An open job post can draw hundreds of irrelevant, machine-written applications within hours. One hiring manager gave up and went back to referrals, which shut out good people with no network.
 
 **Challenge:** Let a small employer open a role to anyone and still find the genuine applicants by the end of the first day.
 
@@ -2157,7 +2383,7 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P022 · Nobody remembers why it was built this way
 
-Teams lose the reasoning behind past decisions, so new hires spend weeks digging through old tickets and commit history to learn why things are the way they are. Work inherited from departed colleagues arrives with no context or owner, and the meetings and customer conversations that held the answer were never captured.
+Teams lose the reasons behind past decisions, so new hires spend weeks digging through old tickets to learn why. Work inherited from colleagues who have left arrives with no context and no owner.
 
 **Challenge:** Let anyone ask why a past decision was made and get the reason, the people and the date in seconds.
 
@@ -2178,11 +2404,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P034 · Small tweaks and AI hours that never get billed
 
-Freelancers and small agencies leak margin through unbilled client tweaks, retainer hours nobody tracks, and time spent prompting and waiting on AI that no timesheet captures. Larger projects get underpriced at the start, and firms that pay in parts see freelancers disappear midway with money paid and work unfinished.
+Freelancers and small agencies lose margin to unbilled client tweaks and retainer hours nobody tracks. No timesheet records the time spent prompting and waiting on AI.
 
 **Challenge:** Show a freelancer, every week, exactly which unbilled work is eating their margin and what to charge for it.
 
-Medium · for self-employed · global · teaches Data and dashboards, Automation and integrations · also Creators
+Easy · for self-employed · global · teaches Data and dashboards, Automation and integrations · also Creators
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2200,11 +2426,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P046 · 150 applications, 2 interviews, and not one reason why
 
-Experienced people apply steadily, some for over a year, and hear nothing back. One job seeker sent around 150 applications and got 2 interviews. Hiring filters never show what they read or why they said no, so people guess at length, format and how to explain a career break, and burn out guessing.
+Hiring filters never show what they read or why they said no, so job seekers guess and burn out. One job seeker sent around 150 applications and got 2 interviews.
 
 **Challenge:** Tell a job seeker, with evidence, why their applications stall and the one change to make next.
 
-Medium · for people · global · teaches AI agents, Data and dashboards, Full-stack web · also Education
+Easy · for everyday people · global · teaches AI agents, Data and dashboards, Full-stack web · also Education
 
 <details><summary>Evidence (6) and scores (25)</summary>
 
@@ -2244,11 +2470,11 @@ pain 4 · frequency 2 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P070 · Every HR change waits for the one admin
 
-HR setups are so complex that staff wait while someone works through every feature, and routine workflows and reports still need an admin to step in. Every role sees the same crowded screens, so workarounds pile up until the setup makes more work than it saves. HR managers, recruiters and analysts have said so in reviews from April to September 2026.
+HR software is so complex that routine reports still need an admin to step in. HR managers, recruiters and analysts have said so in reviews from April to September 2026.
 
 **Challenge:** Let any manager change an HR workflow or pull a report by describing it in one sentence, without the admin.
 
-Easy · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
+Medium · for businesses · global · teaches AI agents, Data and dashboards, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2265,7 +2491,7 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P082 · The sync that broke 3 payroll cycles ago
 
-Payment notifications that never arrive, scheduled jobs that report success while doing nothing, and backups that never covered a critical store all fail without an alarm, and teams find out hours later if at all. One healthcare HR team keyed in leave by hand for 61 staff across 3 payroll cycles because a time-clock sync had quietly broken.
+Scheduled jobs can report success while doing nothing, and teams find out hours later if at all. One HR team typed in leave by hand for 61 staff across 3 payroll cycles after a sync quietly broke.
 
 **Challenge:** Tell a small team within the hour when data that should have moved between their services did not.
 
@@ -2287,11 +2513,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P094 · The support ticket that holds up everyone's salary
 
-Small teams get support requests across chat servers, code trackers and email with no single place to see them, so urgent ones wait behind trivial ones. Customers who phone sit through long holds and phone trees. A query stuck with an HR provider's support during payroll week can stop salaries going out.
+Small teams get support requests across chat, code trackers and email, so urgent ones wait behind trivial ones. A query stuck with an HR provider's support during payroll week can stop salaries going out.
 
 **Challenge:** Answer a small team's routine support questions in minutes, and get the urgent ones to a person first.
 
-Easy · for businesses · global · teaches Voice AI, AI agents, Automation and integrations
+Hard · for businesses · global · teaches Voice AI, AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2307,11 +2533,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 5 · novelt
 
 ### P106 · The answer is in someone's head, and they're away
 
-Team know-how sits in a few heads and in old email, chat threads and tickets, and internal wikis decay because writing things down is tedious. Newcomers depend on whoever happens to know, search finds nothing useful, and work stalls when that person is away. Threads from April 2025 to April 2026 keep reaching the same finding: documentation never catches up unless capture happens on its own.
+Team know-how sits in a few heads and old chat threads, so work stalls when that person is away. Threads from April 2025 to April 2026 keep finding that documentation never catches up unless it happens on its own.
 
 **Challenge:** Keep a team's know-how written down as a side effect of the work it already does, with nobody editing a wiki.
 
-Easy · for businesses · global · teaches AI agents, Data and dashboards, Automation and integrations
+Medium · for businesses · global · teaches AI agents, Data and dashboards, Automation and integrations
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2329,11 +2555,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 5 · novelt
 
 ### P118 · Decided in the chat, never on the task list
 
-Small teams split work across chat, task and document tools, so decisions made in a thread never reach the task list, and promises made aloud, like sending a file, are forgotten. In one 2025 case the official work chat failed and staff moved real discussions into personal WhatsApp groups, scattering decisions and leaking company information. People waiting on several colleagues lose track of who owes what, and for how long.
+Small teams decide things in chat threads that never reach the task list, and spoken promises are forgotten. In one 2025 case, staff moved real discussions into personal WhatsApp groups, scattering decisions.
 
 **Challenge:** Turn every promise made in a chat or a call into a task with an owner and a date, the same day.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
+Medium · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -2351,11 +2577,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P130 · Your fingers are the slowest part of the job
 
-Much of a working day now goes on writing messages and prompts, and for people who chat with AI heavily, typing speed has become the limit, worst of all for those who cannot type fast for long. Time away from the keyboard, like the drive to work, is lost, even though email could be triaged and replies drafted by voice. The complaint turned up in January 2025, May 2025 and January 2026.
+Much of a working day now goes on writing messages and prompts. For people who chat with AI heavily, typing speed is the limit, and the drive to work is lost time.
 
 **Challenge:** Let someone clear their inbox and draft every reply by voice before they reach the office.
 
-Easy · for people · global · teaches Voice AI, Mobile apps, AI agents
+Hard · for everyday people · global · teaches Voice AI, Mobile apps, AI agents
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2371,7 +2597,7 @@ pain 2 · frequency 5 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P142 · Code is cheap; knowing what to build is not
 
-Since coding agents made building cheap in 2025, the hard part is deciding what to build, and that is still guesswork. Aspiring builders struggle to find problems people would pay to have solved, and keyword research says nothing about unmet needs. Inside companies, every client request arrives labelled top priority, so product managers get noise instead of evidence.
+Since coding agents made building cheap in 2025, the hard part is deciding what to build. Inside companies, every client request arrives labelled top priority, so product managers get noise instead of evidence.
 
 **Challenge:** Turn a pile of customer requests and public complaints into a ranked list of what to build, with the evidence attached.
 
@@ -2392,11 +2618,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P153 · Customers who never say what went wrong
 
-Local service businesses hear almost nothing back from customers, because long surveys go unanswered. Early-stage makers struggle to keep any regular feedback loop with the first people who try their work, and software firms have little feel for their non-technical customers' working day. Yet many Indian customers now prefer to talk in voice notes, not forms.
+Local service businesses hear almost nothing back from customers, because long surveys go unanswered. Yet many Indian customers today prefer to talk in voice notes, not forms.
 
 **Challenge:** Get a local business honest feedback from a third of its customers, for under 30 seconds of their time.
 
-Easy · for businesses · global · teaches Voice AI, Mobile apps, Automation and integrations · also Retail
+Hard · for businesses · global · teaches Voice AI, Mobile apps, Automation and integrations · also Retail
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2412,11 +2638,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 5 · learning 4 · novelt
 
 ### P163 · Automations that break more than the work they replace
 
-Workflow automation breaks often or takes more setup than the task itself, so people keep repeating the same tedious steps every day, and say they would pay for something dependable. Many workflows still need a person clicking through websites and desktop programs that offer no other way in, and one small marketing agency hand-builds scripts for client work because nothing off the shelf fits.
+Work automations break often or take more setup than the task itself. So people keep repeating the same tedious steps every day, and say they would pay for something dependable.
 
 **Challenge:** Let an office worker hand over one daily chore by showing it once, and have it still work next month.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
+Hard · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -2433,11 +2659,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P173 · Firms bought AI and still do the work themselves
 
-Firms that buy AI still do the legal and professional work themselves, because what they bought helps a person do the job rather than handing back the finished result. Cleaning messy data and combining many documents into one reliable decision stayed a repetitive manual chore in reports from February 2025 to May 2026, across many industries.
+Firms that buy AI still do the legal and professional work themselves. Combining many documents into one reliable decision stayed a repetitive manual chore in reports from February 2025 to May 2026.
 
 **Challenge:** Hand a firm one finished piece of back-office work, like a cleaned dataset or a decision memo, not another assistant.
 
-Medium · for businesses · global · teaches AI agents, Data and dashboards, Vision
+Easy · for businesses · global · teaches AI agents, Data and dashboards, Vision
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2453,11 +2679,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P182 · A personal assistant, but only if you're rich
 
-Help with errands, admin and planning has only ever been affordable for the wealthy. Meeting the right people is no easier: matching by shared interest for activities, services or dating is still unsolved, and single people in their 40s say they would pay well for real help getting past first dates. Voice and agent models became good enough in 2025 to make calls, fill forms and book things for someone.
+Help with errands, admin and planning has only ever been affordable for the wealthy. Voice and agent models became good enough in 2025 to make calls, fill forms and book things for someone.
 
 **Challenge:** Give an ordinary person the errands, admin and introductions help that used to need a personal assistant.
 
-Medium · for people · global · teaches AI agents, Voice AI, Payments
+Medium · for everyday people · global · teaches AI agents, Voice AI, Payments
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -2473,11 +2699,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P191 · Freelance income decided by a ranking nobody explains
 
-Established freelancers with perfect feedback watch client invitations collapse overnight when a marketplace changes its ranking, with no explanation and no way to recover. Fees keep rising, a single unfair rating on a refunded order cannot be contested, and generated proposals now bury real ones, so years of reputation can stop paying without warning.
+Established freelancers with perfect feedback watch client invitations collapse overnight when a marketplace changes its ranking. Years of reputation can stop paying without warning.
 
 **Challenge:** Give a freelancer a steady flow of clients that no single marketplace's ranking change can switch off.
 
-Hard · for self-employed · global · teaches Data and dashboards, Full-stack web, Automation and integrations · also Creators
+Medium · for self-employed · global · teaches Data and dashboards, Full-stack web, Automation and integrations · also Creators
 
 <details><summary>Evidence (6) and scores (24)</summary>
 
@@ -2496,11 +2722,11 @@ pain 5 · frequency 4 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P199 · Locked out of your earnings with nobody to call
 
-Freelancers and tiny consultancies can lose access overnight to the account that holds their clients, bids and invoices, through a vague suspension, a restriction mid-bidding or a login failure. In October 2026 one freelancer was restricted mid-bid after paying for connects and visibility boosts, and could not reach a single human. Deadlines slip and a whole income channel goes dark while they wait.
+Freelancers can lose access overnight to the account that holds their clients, bids and invoices. In October 2026 one freelancer was restricted mid-bid after paying for visibility boosts and could not reach a single human.
 
 **Challenge:** Make sure a freelancer locked out of any one account still has their clients, invoices and history the same day.
 
-Hard · for self-employed · global · teaches Automation and integrations, Data and dashboards · also Creators
+Medium · for self-employed · global · teaches Automation and integrations, Data and dashboards · also Creators
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2516,7 +2742,7 @@ pain 5 · frequency 2 · willingness 3 · buildability 4 · learning 2 · novelt
 
 ### P207 · Crossed the GST threshold, and nobody showed you how
 
-Indian freelancers who cross the GST threshold must issue compliant invoices but rarely know how, while dues arrive as cash and bank transfers from many small clients that nobody reconciles. Very small firms find even the TDS return due every 3 months clumsy, so they pay for separate compliance software or an accountant. UPI turned dues into dozens of small transfers, and the rules keep tightening for earners who never had an accountant.
+Indian freelancers who cross the GST threshold must issue invoices that meet the rules, but rarely know how. Very small firms find even the TDS return due every 3 months clumsy.
 
 **Challenge:** Make a freelancer's GST invoices, TDS records and who-has-paid list correct by default, without an accountant.
 
@@ -2536,11 +2762,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P215 · The work is done and the money never comes
 
-Money already earned arrives late or not at all: a freelancer sits through a 5-day security hold and then over a week of bank transfer, and contractors on international payroll services still go unpaid by foreign employers. One Indian startup shutdown left 300 staff jobless without notice, many unpaid for over a month. With no clear record of what is owed and no cheap way to press for it, most people swallow the loss.
+Money already earned arrives late or not at all. One Indian startup shutdown left 300 staff jobless without notice, many unpaid for over a month.
 
 **Challenge:** Help someone owed money for finished work turn their records into a claim the payer cannot ignore.
 
-Hard · for self-employed · global · teaches AI agents, Data and dashboards · also Money
+Easy · for self-employed · global · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2556,7 +2782,7 @@ pain 5 · frequency 3 · willingness 2 · buildability 3 · learning 4 · novelt
 
 ### P221 · Paid for a resume, got a train ticket
 
-Small Indian employers pay a monthly fee to job portals and still get candidates living 30 km away for a job that needs someone within 2–3 km. One downloaded 50 resumes and found many were train tickets and blank pages, and another found a paid Naukri membership did not include contact details. Recruiters everywhere say mass-generated applications are burying the qualified people.
+Small Indian businesses pay job portals a monthly fee and still get candidates living 30 km away. One downloaded 50 resumes and found many were train tickets and blank pages.
 
 **Challenge:** Get a neighbourhood employer 3 genuine, nearby candidates for an entry-level role within a week.
 
@@ -2577,11 +2803,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P226 · Paying for profile boosts that nobody sees
 
-Job seekers pay for profile boosting and still see zero recruiter views for months, while their search visibility drops without explanation and sales calls push more upgrades. Many say they would rather pay for one guaranteed interview than keep paying to vanish into applicant pools.
+Job seekers pay for profile boosting and still see zero recruiter views for months. Many say they would rather pay for one guaranteed interview than keep paying to vanish into applicant pools.
 
 **Challenge:** Turn what a job seeker is willing to pay into a guaranteed conversation with a real hiring manager.
 
-Hard · for people · India · teaches Payments, Full-stack web · also Education
+Hard · for everyday people · India · teaches Payments, Full-stack web · also Education
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2597,11 +2823,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 2 · novelt
 
 ### P231 · Payroll errors found only after salaries go out
 
-Small firms pay for all-in-one HR suites that feel expensive for their size and still get payroll data errors, missing tax forms and income tax computed wrong for a whole year. Support lacks product knowledge or takes a week, so mistakes surface after salaries go out and HR fixes them by hand.
+Small firms pay for all-in-one HR software and still get payroll data errors and income tax computed wrong for a whole year. Support lacks product knowledge or takes a week, so mistakes surface after salaries go out.
 
 **Challenge:** Catch every payroll and tax mistake before salaries go out, not after employees complain.
 
-Medium · for businesses · India · teaches Data and dashboards, AI agents, Automation and integrations · also Money
+Easy · for businesses · India · teaches Data and dashboards, AI agents, Automation and integrations · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2618,11 +2844,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P235 · Shift rosters and hourly attendance kept on paper
 
-HR software is built for salaried desk staff, so shift workers cannot fix a forgotten clock-in, managers cannot see who is off on a given day, and recurring rosters must be recopied every few months. Hours from swipe cards and deskless staff do not export cleanly into payroll, and volunteers do not fit at all, so every pay run starts with manual fixes.
+HR software is built for salaried desk staff, so shift workers cannot fix a forgotten clock-in. Recurring rosters must be recopied every few months, and every pay run starts with manual fixes.
 
 **Challenge:** Make the weekly roster and the hours that reach payroll match without anybody retyping them.
 
-Easy · for businesses · global · teaches Mobile apps, Automation and integrations, Data and dashboards · also Retail
+Hard · for businesses · global · teaches Mobile apps, Automation and integrations, Data and dashboards · also Retail
 
 <details><summary>Evidence (7) and scores (24)</summary>
 
@@ -2642,11 +2868,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P237 · The changelog nobody read until payroll broke
 
-Software makers ship breaking changes with little warning, and customers either miss the changelog or never get one, so the first notice is an outage. In August 2025, a people team at a real estate firm on greytHR found features changed without notice and payroll calculated wrong, with no support contact to call. Teams that do write release notes rewrite them several times, for engineers and for non-technical readers.
+Software makers ship breaking changes with little warning, so customers first find out when something breaks. In August 2025 an HR team on greytHR found features changed without notice and payroll calculated wrong.
 
 **Challenge:** Make sure every customer learns about a change that affects them, in their own terms, before it ships.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
+Hard · for businesses · global · teaches AI agents, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2662,11 +2888,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 5 · learning 4 · novelt
 
 ### P239 · Half the workday spent saying what you did
 
-Employees spend hours in status meetings that a short written update could replace, yet engineers will not keep task boards current after stand-ups. Managers get guesswork, and the people doing the work are interrupted again and again to feed status reports.
+Employees spend hours in status meetings that a short written update could replace. Managers get guesswork, and the people doing the work are interrupted again and again to feed status reports.
 
 **Challenge:** Give managers an accurate status of every task without one meeting or one manual board update.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
+Medium · for businesses · global · teaches AI agents, Automation and integrations, Voice AI
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2682,11 +2908,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P241 · A dozen tabs checked before the day begins
 
-Founders of small teams spend half an hour every morning checking a dozen services for code changes, messages and payments, and constant switching between tabs, chats and email breaks deep focus. Small teams can now build big companies on little capital, but the means to run that lean are still immature. With a handful of people doing what once took dozens, all that watching falls on 1 or 2 of them.
+Founders of small teams spend half an hour every morning checking a dozen services for code changes, messages and payments. With a handful of people doing what once took dozens, all that watching falls on 1 or 2 of them.
 
 **Challenge:** Give a small-team founder one morning briefing that replaces checking a dozen services.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations, Data and dashboards
+Hard · for businesses · global · teaches AI agents, Automation and integrations, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -2702,11 +2928,11 @@ pain 2 · frequency 5 · willingness 3 · buildability 5 · learning 4 · novelt
 
 ### P243 · The shop website nobody has ever checked
 
-Small firms running websites and online stores cannot afford accessibility audits or security checks, so people on screen readers are shut out and malware or holes go unnoticed. Since 2025, shopping and booking agents have browsed the web on people's behalf, yet sites are still built for humans clicking buttons. A store an agent cannot use is now a store losing sales.
+Small firms with online stores cannot afford accessibility checks, so people on screen readers are shut out. Since 2025, shopping and booking agents have browsed the web for people, yet sites are built for humans clicking buttons.
 
 **Challenge:** Tell a small online store, in one afternoon, what stops a blind shopper, an attacker or a buying agent on its site.
 
-Medium · for businesses · global · teaches Vision, AI agents, Full-stack web · also Retail
+Easy · for businesses · global · teaches Vision, AI agents, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -2723,11 +2949,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P245 · Job ad budgets burned on clicks, not hires
 
-Small employers find free job posts get no visibility, sponsored posts and pay-per-click ads always spend the full monthly budget, and job board subscriptions can quadruple in price while results get worse. What arrives is a flood of irrelevant, mass-produced applications, so the cost per real hire keeps rising for businesses that can least afford it.
+Small businesses find free job posts get no visibility, while pay-per-click ads always spend the full monthly budget. What arrives is a flood of irrelevant, mass-produced applications, so the cost per real hire keeps rising.
 
 **Challenge:** Cut a small employer's cost per genuine applicant in half without raising their job ad spend.
 
-Easy · for businesses · global · teaches Data and dashboards, Automation and integrations, Full-stack web
+Medium · for businesses · global · teaches Data and dashboards, Automation and integrations, Full-stack web
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2744,11 +2970,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P246 · The job offer that asks for a laptop deposit
 
-Job seekers on WorkIndia have found fake tech postings demanding a laptop deposit, and fake take-home coding tests plant malware or harvest unpaid work. Employers on the same site get candidates who lie about availability and leads that turn out fake, with no support once they have paid. Complaints from January 2025, May 2026 and July 2026 tell the same story: neither side can trust a first contact.
+Job seekers on WorkIndia have found fake tech postings demanding a laptop deposit, while fake coding tests plant malware. Complaints from January 2025, May 2026 and July 2026 tell the same story.
 
 **Challenge:** Let a job seeker check, in under a minute, whether a job offer or test is real before they pay or download anything.
 
-Medium · for people · India · teaches AI agents, Full-stack web, Data and dashboards
+Easy · for everyday people · India · teaches AI agents, Full-stack web, Data and dashboards
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2764,11 +2990,11 @@ pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P247 · Job matches that ignore everything you said
 
-Job seekers on Naukri report that almost every recommended job is unrelated to their profile, and posting a profile brings a flood of spam calls and messages. Listings marked remote often turn out to be restricted by region, so hours go into filtering roles that were never a real fit.
+Job seekers on Naukri report that almost every recommended job is unrelated to their profile. Listings marked remote often turn out to be restricted by region, so hours go into filtering roles that never fit.
 
 **Challenge:** Cut the jobs a seeker has to read by 90%, while missing none that truly fit.
 
-Easy · for people · India · teaches AI agents, Data and dashboards, Mobile apps · also Education
+Easy · for everyday people · India · teaches AI agents, Data and dashboards, Mobile apps · also Education
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -2784,11 +3010,11 @@ pain 3 · frequency 5 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P248 · Every AI conversation starts from zero
 
-People who lean on AI assistants lose old conversations once dozens pile up in a day, keep reusable prompts scattered across notes, and repeat the same background to every assistant they use. Assistants added memory and project spaces in 2025, but each keeps its own. Those chats are private by design, so a team cannot build on each other's work with agents the way it does in a shared document.
+People who lean on AI assistants lose old conversations and repeat the same background to every assistant they use. Assistants added memory and project spaces in 2025, but each keeps its own.
 
 **Challenge:** Make what a person or team has already told any AI assistant findable and reusable everywhere they work.
 
-Easy · for people · global · teaches AI agents, Full-stack web, Data and dashboards
+Medium · for everyday people · global · teaches AI agents, Full-stack web, Data and dashboards
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -2805,11 +3031,11 @@ pain 2 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P249 · A year of building, and not one paying customer
 
-Solo builders spend a year on a working product beside a day job, then stall at a few dozen people, because distribution, not engineering, is the bottleneck. Cold emails to small firms go unanswered in inboxes flooded by generated outreach, and demo videos go unwatched. Individuals rarely pay for small web products themselves, even when their employers would pay for one that saves the team time.
+Solo builders spend a year on a working product beside a day job, then stall at a few dozen people. Cold emails to small firms go unanswered in inboxes flooded by generated messages.
 
 **Challenge:** Get a solo builder's working product its first 10 paying customers in 3 weeks.
 
-Easy · for businesses · global · teaches AI agents, Full-stack web, Automation and integrations · also Creators
+Hard · for businesses · global · teaches AI agents, Full-stack web, Automation and integrations · also Creators
 
 <details><summary>Evidence (8) and scores (23)</summary>
 
@@ -2830,7 +3056,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P250 · Code ships faster than anyone can check it
 
-Coding agents multiplied how much code a small team ships in 2025, but startups without testers cannot keep quality up, and tiny companies grep raw logs instead of getting an alert when production breaks. Developers test build pipelines through commit after commit because they cannot reproduce that environment locally. Too often, the first person to find the bug is a customer.
+Coding agents multiplied how much code a small team ships in 2025, but startups without testers cannot keep quality up. Too often, the first person to find the bug is a customer.
 
 **Challenge:** Catch the bug a small team's AI-written code introduced before a customer does, without hiring a tester.
 
@@ -2853,11 +3079,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P005 · Hindi Shorts that stall, and nobody explains why
 
-Hindi-speaking creators see far more watch hours in their analytics than YouTube counts towards monetisation, and nothing explains the gap. Shorts reach stalls and subscriber growth stops with no word on what to change, while makers posting daily get buried under machine-made noise. Both questions were asked on YouTube's own help forum on 6 Oct.
+Hindi-speaking creators see their Shorts stall and subscribers stop growing, and nobody says what to change. Their analytics show far more watch hours than YouTube counts towards monetisation, as raised on its help forum on 6 Oct.
 
 **Challenge:** Give a Hindi-speaking creator a weekly note, in Hindi, on what to change next and why.
 
-Medium · for self-employed · India · teaches Data and dashboards, Voice AI, AI agents · also Education
+Easy · for self-employed · India · teaches Data and dashboards, Voice AI, AI agents · also Education
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -2873,11 +3099,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P017 · The small community losing its feed to bots
 
-Cheap AI-generated posts flooded small online communities in 2025, and they cannot filter the bots without demanding everyone's real identity. Checking uploads still needs trusted human moderators that small hosts cannot afford, so one hosting startup had to build its own checks. Meanwhile readers drown in newsletters they never signed up for, and Substack makes them open an account just to report it.
+Cheap AI-generated posts flooded small online communities in 2025, and they cannot filter bots without asking everyone for a real identity. Checking uploads still needs trusted human moderators that small hosts cannot afford.
 
 **Challenge:** Keep a small community free of bots, spam and unsafe uploads for less than the cost of one moderator.
 
-Easy · for businesses · global · teaches Vision, AI agents · also Work
+Medium · for businesses · global · teaches Vision, AI agents · also Work
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -2895,11 +3121,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 4 · learning 5 · novelt
 
 ### P029 · A famous face, a fake investment link, real losses
 
-Deepfake videos of well-known public figures push fake investment links, and scams like these surged across India in 2025. Finance influencers hide conflicts or misrepresent their results, and young followers lose money acting on advice they have no easy way to check. Even an honest search for real information keeps landing on machine-made filler.
+Deepfake videos of well-known public figures push fake investment links, and scams like these surged across India in 2025. Young followers lose money acting on advice they have no easy way to check.
 
 **Challenge:** Help a young investor check a finance video's claims, and who is making them, before they act on it.
 
-Hard · for people · India · teaches Vision, Voice AI, AI agents · also Money
+Easy · for everyday people · India · teaches Vision, Voice AI, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -2915,11 +3141,11 @@ pain 5 · frequency 4 · willingness 2 · buildability 3 · learning 5 · novelt
 
 ### P041 · Suspended overnight and never told why
 
-Indian creators lose channels and seller accounts overnight for policy breaches nobody names, sometimes over a linked account they cannot even identify. Appeals vanish without a reply, so a business built over years stops earning with no way to fix the actual problem.
+Indian creators lose channels and seller accounts overnight for policy breaches nobody names. Appeals vanish without a reply, so a business built over years stops earning.
 
 **Challenge:** Turn a vague suspension notice into a clear, evidence-backed appeal filed in one afternoon.
 
-Hard · for self-employed · India · teaches AI agents, Full-stack web · also Work
+Easy · for self-employed · India · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -2955,11 +3181,11 @@ pain 4 · frequency 3 · willingness 2 · buildability 3 · learning 5 · novelt
 
 ### P065 · Brand money stops at the metro limits
 
-2 in 3 Indian creators come from smaller cities, and regional-language creators now outnumber the rest, yet brand spend still flows mostly to metro creators. Most land only 1 paid campaign a year, so creating rarely becomes an income. Affiliate networks are cluttered and assume an agency, which shuts small creators out of the other way to earn.
+2 in 3 Indian creators come from smaller cities, yet brand spend still flows mostly to metro creators. Most land only 1 paid campaign a year, so creating rarely becomes an income.
 
 **Challenge:** Help a small-town creator land their second paid campaign this quarter, not next year.
 
-Hard · for self-employed · India · teaches AI agents, Data and dashboards · also Money
+Easy · for self-employed · India · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (4) and scores (26)</summary>
 
@@ -2976,11 +3202,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P077 · The influencer budget nobody can prove paid off
 
-2 in 5 brands say they cannot measure return on influencer campaigns, and judging them on direct-response numbers misses the trust they build. Agencies spend hours every week exporting ad data, cleaning it and building client reports in spreadsheets. Budget meetings still end on the same question: did it work?
+2 in 5 brands say they cannot measure return on influencer campaigns. Agencies spend hours every week exporting ad data, cleaning it and building client reports in spreadsheets.
 
 **Challenge:** Show a brand what each creator campaign returned, in a report nobody has to build by hand.
 
-Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Easy · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -2998,7 +3224,7 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P089 · Lakhs owed, and the brand pays when it likes
 
-Indian creators routinely wait over 2 months for brands to pay, and small agencies have dues outstanding for over a year, far past the 90-day cycle. Creators under half a million followers negotiate, invoice and chase alone, so many now refuse new work without a 25–50% advance. The problem is so common that one agency pays creators from its own balance sheet.
+Indian creators routinely wait over 2 months for brands to pay. Creators under half a million followers negotiate, invoice and chase alone, so many refuse new work without a 25–50% advance.
 
 **Challenge:** Get a creator paid on time for brand work without a single awkward reminder.
 
@@ -3022,7 +3248,7 @@ pain 5 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P101 · The blog worth reading that search no longer shows
 
-Independent blogs and niche forums have become hard to find through mainstream search, and since AI answers began replacing clicks in 2025, staying visible takes a huge content effort with uncertain returns. As synthetic content floods feeds, readers trust less of what they see, and human writers get buried beneath it.
+Independent blogs and niche forums have become hard to find through mainstream search. Since AI answers began replacing clicks in 2025, staying visible takes a huge content effort with uncertain returns.
 
 **Challenge:** Get a small independent writer found by the readers already searching for exactly what they write.
 
@@ -3042,11 +3268,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P113 · Money stuck, and only a bot will answer
 
-Creator and payment services moved most of their support to bots in 2025, so when money goes wrong there is often no human to reach. One link-in-bio service kept taking payments a creator never authorised while its support bot said the account did not exist. In India, account managers change without notice once a subscription is paid, and unresponsive payment support has sunk an organiser's ticket sales.
+Creator and payment services moved most of their support to bots in 2025. One link-in-bio service kept taking payments a creator never authorised while its support bot said the account did not exist.
 
 **Challenge:** Get a small seller's stuck money or broken account in front of a human who can fix it, within a day.
 
-Hard · for self-employed · India · teaches AI agents, Voice AI · also Money
+Medium · for self-employed · India · teaches AI agents, Voice AI · also Money
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -3063,11 +3289,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P125 · 11 weeks in monetisation review, and nobody to ask
 
-Creators who cross the monetisation thresholds can wait months in review: one has waited over 11 weeks for a re-review with no timeline from support. A viral Short with millions of views can be left out of the eligibility count with no reason given, and the earnings page in YouTube Studio lags by days. So creators keep uploading blind while income they qualified for stays out of reach.
+Creators who cross the monetisation thresholds can wait months in review. One has waited over 11 weeks for a re-review with no timeline from support.
 
 **Challenge:** Tell a creator where their monetisation stands and what to fix next, in plain words, in under a minute.
 
-Hard · for self-employed · global · teaches Data and dashboards, AI agents · also Money
+Medium · for self-employed · global · teaches Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3083,7 +3309,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P137 · Payout dates that move without a reason
 
-Expected payout dates slip by a full month, paid subscriber revenue fails to arrive, and Indian sellers wait on delayed payouts or see an account suspended the day before money is due, all without a reason shown. Creators who budget around these payments cannot plan rent, equipment or the next shoot.
+Payout dates slip by a full month, or an account is suspended the day before money is due. Creators who budget around these payments cannot plan rent, equipment or the next shoot.
 
 **Challenge:** Show every creator when each rupee they have earned will land, and raise the alarm the day it slips.
 
@@ -3104,11 +3330,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P148 · Hijacked channels and a support desk that cannot help
 
-When a creator account is hijacked, moved between owners or caught in a login loop, recovery options are already changed and support cannot restore access. A small media team can lose a channel it spent years building, along with the earnings attached to it.
+When a creator account is hijacked, recovery options are already changed and support cannot restore access. A small media team can lose a channel it spent years building, along with its earnings.
 
 **Challenge:** Get a locked-out creator back in control within days, and make the next takeover far harder to pull off.
 
-Hard · for self-employed · global · teaches Automation and integrations, Full-stack web · also Work
+Medium · for self-employed · global · teaches Automation and integrations, Full-stack web · also Work
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3124,11 +3350,11 @@ pain 5 · frequency 2 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P158 · Holding the licence and losing the dispute anyway
 
-Creators who paid for a stock music licence, or used only the official licensed audio library, still get Content ID claims, unlisted videos and rejected disputes. In October 2026 one claim hit a Short with hundreds of thousands of views, and the music could not be swapped without reposting and losing them. Digital sellers with a clear no-refund policy lose buyer disputes the same way.
+Creators who paid for a stock music licence still get Content ID claims, unlisted videos and rejected disputes. In October 2026 one claim hit a Short with hundreds of thousands of views.
 
 **Challenge:** Make a creator's proof of rights impossible to ignore, attached and ready the moment a claim lands.
 
-Hard · for self-employed · global · teaches Automation and integrations, AI agents · also Money
+Medium · for self-employed · global · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -3145,11 +3371,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P168 · The counter-notice that hands your details to the harasser
 
-Impostors file false copyright strikes against small channels, and fighting back means a counter-notice that sends the creator's personal details straight to the person attacking them. In October 2026 a gaming creator took 3 strikes in a day from someone posing as a game publisher on a free email address, enough to put the channel at risk of deletion. Reports of real stalking, meanwhile, go unmoderated.
+A creator fighting a false copyright strike must send a counter-notice that gives the attacker their personal details. In October 2026 a gaming creator took 3 strikes in a day from someone posing as a game publisher.
 
 **Challenge:** Help a creator beat a false strike within a day without giving the attacker their personal details.
 
-Hard · for self-employed · global · teaches AI agents, Full-stack web
+Easy · for self-employed · global · teaches AI agents, Full-stack web
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3185,7 +3411,7 @@ pain 3 · frequency 3 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P187 · Translation is either 8 hours or wrong
 
-Creators and small publishers working in less common languages get auto-captions they cannot remove and machine translations that still need checking line by line. Agencies are overkill for small jobs, so one website owner spent 8 or more hours per file translating by hand. In September 2026 a creator in a niche language still could not remove wrong captions, even after uploading correct subtitles.
+Small publishers in less common languages get machine translations that still need checking line by line. Agencies are overkill for small jobs, so one website owner spent 8 or more hours per file translating by hand.
 
 **Challenge:** Get a small publisher's video or page into another language, checked and accurate, in under an hour.
 
@@ -3205,11 +3431,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P195 · The fake manager quoting double in a creator's name
 
-Over half of Indian creators surveyed in May 2025 had lost brand deals because brands had no verified way to reach them directly. Fake talent managers fill the gap, impersonating creators and quoting double their rates, so brands walk away from deals the creator never knew existed. One founder who contacted 600 creators found the deal admin pain real, but not yet painful enough to pay for.
+Over half of Indian creators surveyed in May 2025 had lost brand deals because brands had no verified way to reach them. Fake talent managers fill the gap, impersonating creators and quoting double their rates.
 
 **Challenge:** Make sure a brand that wants a creator reaches the creator, not someone pretending to manage them.
 
-Hard · for self-employed · India · teaches Full-stack web, Automation and integrations
+Medium · for self-employed · India · teaches Full-stack web, Automation and integrations
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3225,11 +3451,11 @@ pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P203 · The sender change that sank a course creator's emails
 
-Independent course creators keep their videos, students and mailing list with one host, so a single decision upstream can sink the business. In August 2026 a course host changed a creator's sender domain without notice and email open rates fell from about 30% to under 10%. Another Indian creator paid for a package whose promised website setup and marketing support never arrived.
+In August 2026 a course host changed a creator's sender domain without notice. Email open rates fell from about 30% to under 10%.
 
 **Challenge:** Let an educator move their courses, students and emails anywhere in a day, and know the moment something breaks.
 
-Hard · for self-employed · global · teaches Automation and integrations, Full-stack web · also Education
+Medium · for self-employed · global · teaches Automation and integrations, Full-stack web · also Education
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3245,11 +3471,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P211 · The course videos gone in one server crash
 
-In September 2026 an Indian course creator lost uploaded videos for good when the course host's server crashed, with no recovery offered. The same month, a long-time creator's membership account was terminated instantly, taking the content and the member list with it. Cloud services make it hard to download everything, so people find out they never had their own copy only after it is gone.
+In September 2026 an Indian course creator lost uploaded videos for good when the host's server crashed. The same month, a long-time creator's membership account was terminated, taking the content and member list with it.
 
 **Challenge:** Keep a complete, usable copy of everything a creator has made and every fan they have, without them thinking about it.
 
-Hard · for self-employed · global · teaches Automation and integrations, Data and dashboards
+Medium · for self-employed · global · teaches Automation and integrations, Data and dashboards
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3265,7 +3491,7 @@ pain 5 · frequency 2 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P218 · Tiny ad budgets burned in a week
 
-Independent makers and small brands with tiny budgets find paid ads expensive and ineffective, and lack the time or skill to keep tuning low-budget campaigns. Money goes out every week with no clear sign of what worked.
+Independent makers and small brands with tiny budgets find paid ads expensive and ineffective. Money goes out every week with no clear sign of what worked.
 
 **Challenge:** Make ₹5,000 of ads teach a small seller something they can act on next week.
 
@@ -3285,11 +3511,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P223 · The honest opinion that was a paid ad
 
-About 2 in 3 influencer ads that ASCI checked in India in 2025 failed disclosure rules, and some paid posts are deleted after the campaign so nobody can check later. Followers cannot tell an ad from an opinion. One fan who paid a scam creator profile on Patreon had the refund rejected without a person ever looking at it.
+About 2 in 3 influencer ads that ASCI checked in India in 2025 failed disclosure rules. Followers cannot tell an ad from an opinion.
 
 **Challenge:** Let a follower check in seconds whether a creator's post was paid for and who paid.
 
-Hard · for people · India · teaches Vision, Mobile apps · also Money
+Easy · for everyday people · India · teaches Vision, Mobile apps · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3305,11 +3531,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 3 · learning 4 · novelt
 
 ### P228 · Launched to a handful of likes, then silence
 
-Building software became nearly free by 2025, but solo founders launch to a handful of likes and have no repeatable way to reach buyers. Marketing feels alien, and most do not know where to begin. 3 years into the AI shift, Y Combinator notes that few new consumer products have reached ordinary people beyond chat assistants.
+Building software became nearly free by 2025, but solo founders launch to a handful of likes. They have no repeatable way to reach buyers, and most do not know where to begin.
 
 **Challenge:** Get a solo founder's new product in front of 100 people who want it, within 2 weeks.
 
-Easy · for businesses · global · teaches AI agents, Automation and integrations · also Work
+Medium · for businesses · global · teaches AI agents, Automation and integrations · also Work
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3327,7 +3553,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P233 · Reach that drops to zero with no explanation
 
-Short videos that used to reach tens of thousands now sit at zero, second posts in a day get a fraction of the first, and accepting a collaboration post can cut reach sharply. Creators cannot tell which choice caused the drop, so they change everything at once and learn nothing.
+Short videos that used to reach tens of thousands now sit at zero. Second posts in a day get a fraction of the first, and creators cannot tell which choice caused the drop.
 
 **Challenge:** Show a creator which of their own choices moved reach this week, using only their own numbers.
 
@@ -3367,7 +3593,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P238 · Share your own work and get banned as spam
 
-Independent makers who share their own work in online communities get flagged as spammers unless they are long-standing members, and Substack's spam filters have blocked a writer from linking to their own site. After generated posts flooded communities in 2025, moderators tightened self-promotion rules just as more people began shipping. The people with the most reason to talk about their work are the ones the rules silence.
+Independent makers who share their own work in online communities get flagged as spammers unless they are long-standing members. After generated posts flooded communities in 2025, moderators tightened self-promotion rules.
 
 **Challenge:** Help an independent maker earn a community's trust fast enough to share their work there within a month.
 
@@ -3387,11 +3613,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P240 · Scheduled posts that quietly never go out
 
-Small businesses pay Buffer and Later to schedule social posts, then watch tags drop, the Instagram connection fail and posts never publish. One was charged a large annual fee right after the trial and refused a refund despite cancelling the same day, and another, double-charged, could reach only AI bots and never a person. Owners who do not use social media themselves get no traction at all as organic reach shrinks.
+Small businesses pay Buffer and Later to schedule social posts, then watch posts never publish. One was charged a large annual fee right after the trial and refused a refund despite cancelling the same day.
 
 **Challenge:** Give a small business a month of posts that go out on time, every time, with proof that they did.
 
-Easy · for businesses · global · teaches Automation and integrations, Mobile apps · also Work, Retail
+Hard · for businesses · global · teaches Automation and integrations, Mobile apps · also Work, Retail
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -3410,11 +3636,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P242 · Lakhs of followers, and the sales never came
 
-A Mumbai skincare founder paid a creator with lakhs of followers for 4 Reels; the reach looked fine, but sales never followed. Indian D2C brands have dropped agencies to deal with creators directly, so the vetting falls on founders, and nearly 3 in 4 brands call fake followers a major challenge. First-time founders on small budgets cannot even tell whether a campaign worked.
+A Mumbai skincare founder paid a creator with lakhs of followers for 4 Reels, but sales never followed. Nearly 3 in 4 brands call fake followers a major challenge.
 
 **Challenge:** Tell a small brand, before it pays, whether a creator's audience is real and likely to buy.
 
-Medium · for businesses · India · teaches Data and dashboards, Vision · also Retail
+Easy · for businesses · India · teaches Data and dashboards, Vision · also Retail
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3431,11 +3657,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P244 · A calm media diet nobody curates
 
-People hunt for focus music through ads and endless playlists, struggle to stay informed without the stress of the news cycle, and lack an easy way to listen to saved articles. Book recommendations rarely match their taste, and cheap generative media has not yet become something they use every day.
+People struggle to stay informed without the stress of the news cycle, and lack an easy way to listen to saved articles. Cheap generative media has not yet become something they use every day.
 
 **Challenge:** Give someone a daily mix of reading, news and listening that fits their taste and leaves them calmer, not more anxious.
 
-Easy · for people · global · teaches Voice AI, Mobile apps
+Hard · for everyday people · global · teaches Voice AI, Mobile apps
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -3455,11 +3681,11 @@ pain 2 · frequency 5 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P004 · Cab drivers accept trips blind and earn below cost
 
-Drivers cannot see whether a trip is long or short before accepting, fares no longer cover running costs on hot days, and fees and penalties take close to 40 percent. Broken buttons and penalties for cancellations they did not cause cut earnings further.
+Cab drivers cannot see whether a trip is long or short before accepting it. Fares no longer cover running costs on hot days, and fees and penalties take close to 40 percent.
 
 **Challenge:** Show a driver, before accepting, whether a trip will make or lose money after fuel and fees.
 
-Hard · for self-employed · India · teaches Data and dashboards, Mobile apps, Voice AI · also Work, Money
+Medium · for self-employed · India · teaches Data and dashboards, Mobile apps, Voice AI · also Work, Money
 
 <details><summary>Evidence (5) and scores (28)</summary>
 
@@ -3477,11 +3703,11 @@ pain 5 · frequency 5 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P016 · The late ride home that starts with fear
 
-Women heading home late avoid autos and cabs, solo travellers fear being stranded in an unfamiliar city, and families avoid parks nobody can vouch for. When a ride does go wrong there is little recourse: in May 2025 a Rapido driver headed away from the railway station, and another drove abusively. Even the bike-taxi ride PIN meant to confirm the right driver never changes between trips.
+Women heading home late avoid autos and cabs, and there is little recourse when a ride goes wrong. In May 2025 a Rapido driver headed away from the railway station.
 
 **Challenge:** Let a woman travelling late know the moment her ride goes off route, and bring help within seconds.
 
-Medium · for people · India · teaches Mobile apps, Voice AI, AI agents · also Health
+Hard · for everyday people · India · teaches Mobile apps, Voice AI, AI agents · also Health
 
 <details><summary>Evidence (6) and scores (26)</summary>
 
@@ -3500,11 +3726,11 @@ pain 5 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P028 · Car hosts lose their income to unsettled claims
 
-People who rent out their car through sharing marketplaces wait months or a year for damage, seizure or total-loss payouts while the car sits idle. New drivers wait days for activation with no way to fix a rejected document.
+People who rent out their car through sharing marketplaces wait months or a year for damage, seizure or total-loss payouts. The car sits idle while they wait.
 
 **Challenge:** Help a car host or driver build a claim the marketplace cannot ignore, and track it to payment.
 
-Hard · for self-employed · India · teaches AI agents, Vision, Automation and integrations · also Money
+Medium · for self-employed · India · teaches AI agents, Vision, Automation and integrations · also Money
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -3522,11 +3748,11 @@ pain 5 · frequency 2 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P040 · The bus that never arrives, and nobody tells you
 
-Intercity buses are cancelled the day before travel, or never reach the boarding point at all, and no one warns the passenger. They find out at the roadside, with no other bus offered and no word on their refund. The same story turns up in reports from December 2025, June 2026 and October 2026.
+Intercity buses are cancelled the day before travel, or never reach the boarding point at all, and no one warns the passenger. They find out at the roadside, with no other bus offered and no word on their refund.
 
 **Challenge:** Get a stranded passenger onto the next bus before they've left the stop.
 
-Hard · for people · India · teaches AI agents, Automation and integrations
+Easy · for everyday people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -3542,11 +3768,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P052 · Paid in full, and the hotel has no record
 
-Travellers arrive with a paid voucher and a confirmation to find the hotel has no record of them, no room, or the wrong number of guests. Booking sites and hotel inventory drift out of sync, and in August 2026 a corporate booking for 4 guests was recorded as 1, forcing a large surcharge at the desk. The traveller pays twice or sleeps elsewhere.
+Travellers arrive with a paid voucher to find the hotel has no record of them, or no room. In August 2026 a corporate booking for 4 guests was recorded as 1, forcing a large extra charge at the desk.
 
 **Challenge:** Make sure the hotel knows about a paid booking, with the right guests, before the traveller arrives.
 
-Medium · for people · India · teaches Voice AI, AI agents, Automation and integrations
+Hard · for everyday people · India · teaches Voice AI, AI agents, Automation and integrations
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -3563,11 +3789,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P064 · The fare you only learn when the ride ends
 
-In a 2025 survey, 59% of ride-hailing riders faced charges added only at the end of the trip, and one rider paid about 4 times the estimated fare for the same route. Riders who get out early are still billed to the final destination. In Bengaluru, auto fares on ride services have crept above the meter rate since subsidies ended.
+In a 2025 survey, 59% of ride-hailing riders faced charges added only at the end of the trip. One rider paid about 4 times the estimated fare for the same route.
 
 **Challenge:** Tell a rider before booking what this trip should cost, and flag the overcharge before they pay.
 
-Medium · for people · India · teaches Data and dashboards, Full-stack web, AI agents · also Money
+Medium · for everyday people · India · teaches Data and dashboards, Full-stack web, AI agents · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3585,11 +3811,11 @@ pain 3 · frequency 5 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P076 · Drivers cancel the moment they see your destination
 
-In a 2026 survey, 82% of ride-hailing riders had faced driver cancellations, often after the driver learned the destination or that they would pay digitally. Airport bookings get stuck in accept-then-cancel loops, and one rider waited over 20 minutes for a driver who then refused the trip. A missed early-morning airport ride costs far more than the small credit given back.
+In a 2026 survey, 82% of ride-hailing riders had faced driver cancellations. One rider waited over 20 minutes for a driver who then refused the trip.
 
 **Challenge:** Get a rider to the airport on time even when 3 drivers cancel in a row.
 
-Medium · for people · India · teaches Data and dashboards, Automation and integrations, Mobile apps
+Medium · for everyday people · India · teaches Data and dashboards, Automation and integrations, Mobile apps
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3607,11 +3833,11 @@ pain 4 · frequency 5 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P088 · Airline refunded weeks ago, and the money never arrived
 
-Airlines release refunds for cancelled flights to online travel agents, who sit on them for weeks before anything reaches the traveller, even on fares paid in full up front. When one leg of a connecting flight is cancelled, the refund for the whole one-way ticket can go missing. Train passengers delayed 3 hours or more see refund claims rejected on technicalities.
+Airlines release refunds for cancelled flights to online travel agents, who hold them for weeks before anything reaches the traveller. Train passengers delayed 3 hours or more see refund claims rejected on technical grounds.
 
 **Challenge:** Get every refund a traveller is owed into their account without them writing a single email.
 
-Medium · for people · India · teaches Automation and integrations, AI agents, Data and dashboards · also Money
+Hard · for everyday people · India · teaches Automation and integrations, AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -3633,7 +3859,7 @@ Intercity buses change pickup points by phone, run hours late or leave while boo
 
 **Challenge:** Make sure every passenger knows where and when their bus really is, before they leave home.
 
-Medium · for people · India · teaches Mobile apps, Automation and integrations, Voice AI
+Medium · for everyday people · India · teaches Mobile apps, Automation and integrations, Voice AI
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3650,11 +3876,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P112 · Airline refunded in full, traveller got ₹1,750 less
 
-Online travel agents keep their convenience fee even when the airline cancels, deduct coupon value from refunds without warning, and pass on less than the airline paid back. In one April 2026 case the airline refunded the agent in full and the traveller received about ₹1,750 less. Near-identical reschedules get different refund rules, so nobody knows what they are owed.
+Online travel agents keep their convenience fee even when the airline cancels, and pass on less than the airline paid back. In April 2026 one airline refunded the agent in full, and the traveller got about ₹1,750 less.
 
 **Challenge:** Show a traveller exactly what the airline refunded, and make sure every rupee of it reaches them.
 
-Medium · for people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
+Easy · for everyday people · India · teaches Full-stack web, Data and dashboards, AI agents · also Money
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -3673,11 +3899,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P124 · The flexible fare that wasn't, and a no-show instead
 
-Flexible fares, free-cancellation add-ons, travel insurance and baggage allowances are sold at checkout and then not honoured: a flexi-fare booking was marked no-show instead of changed, insurance covered the wrong dates, and a promised bag was missing from the ticket. India's dark-pattern guidelines named pre-ticked add-ons and travel agents were asked to audit them in 2025, yet the complaints kept coming through 2026.
+Flexible fares, travel insurance and baggage allowances are sold at checkout and then not honoured. Travel agents were asked to audit pre-ticked add-ons in 2025, yet complaints kept coming through 2026.
 
 **Challenge:** Tell a traveller, before they pay, exactly what each add-on will and will not cover.
 
-Medium · for people · India · teaches AI agents, Full-stack web · also Money
+Easy · for everyday people · India · teaches AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -3695,11 +3921,11 @@ pain 3 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P136 · Peer car rental runs on trust nobody can check
 
-Self-drive renters are blacklisted without reason or appeal, verification stalls before trips, listings use fake registration numbers, and hosts fail to hand over cars. Deposits and damage refunds stay pending for months.
+Self-drive renters are blacklisted without reason, listings use fake registration numbers, and hosts fail to hand over cars. Deposits and damage refunds stay pending for months.
 
 **Challenge:** Let a renter and a car owner verify each other and settle deposits without a third party.
 
-Medium · for people · India · teaches Vision, Mobile apps, Full-stack web · also Money
+Hard · for everyday people · India · teaches Vision, Mobile apps, Full-stack web · also Money
 
 <details><summary>Evidence (8) and scores (23)</summary>
 
@@ -3720,11 +3946,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P147 · Driver cancels, and the rider pays the fee
 
-Drivers demand more than the fare shown, in one case nearly 50% more, then cancel when the rider refuses, and the rider is charged the cancellation fee. Some take cash for the trip and then mark it cancelled, so the rider pays twice. Riders told the same story in June, September and October 2025.
+Drivers demand more than the fare shown, in one case nearly 50% more, then cancel when the rider refuses. The rider is charged the cancellation fee.
 
 **Challenge:** Make sure the person who cancels a ride is the one who pays for it.
 
-Medium · for people · India · teaches Automation and integrations, AI agents · also Money
+Medium · for everyday people · India · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -3736,6 +3962,170 @@ Medium · for people · India · teaches Automation and integrations, AI agents 
 **Why now:** India's 2025 aggregator guidelines set cancellation penalties, giving riders a rule to cite.
 
 pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P260 · The late train, and the refund claim thrown out
+
+A refund for a train running 3 hours late needs a claim filed before the scheduled departure. Passengers who filed after delays still had claims rejected, in complaints from August 2025 and April 2026.
+
+**Challenge:** Tell a passenger with a late or missed train which refund rule applies, and get the claim filed inside its deadline.
+
+Easy · for everyday people · India · teaches AI agents, Full-stack web
+
+<details><summary>Evidence (3) and scores (25)</summary>
+
+- Late first train made a family miss its connection. They filed a refund claim on customer care advice and it came back repudiated. [forum, 2026-04-24](https://voxya.com/consumer-complaints/tdr-status-repudiate/264844)
+- Train ran hours late after the chart was made. Passenger filed a refund claim, took another train, and the claim was rejected. [forum, 2025-08-23](https://voxya.com/consumer-complaints/irctc-repudiated-edr-incorrectly/249206)
+- For a train 3 hours late the claim must be filed before scheduled departure. AC failure allows 20 hours, a diverted train 72 hours. [news, 2025-06-30](https://keralakaumudi.com/en/news/news.php?id=1561377)
+
+**Why now:** Refund claims are filed online against rules with different deadlines for each case, and reports say the cancellation windows changed again in April 2026.
+
+pain 3 · frequency 4 · willingness 2 · buildability 5 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P261 · A helmet fine, sent to a car owner
+
+A scooter in Coimbatore showed 249 pending traffic fines worth ₹3.69 lakh, many with photos of trucks and cars. In Ghaziabad a car owner was fined for not wearing a helmet.
+
+**Challenge:** Help a vehicle owner prove a traffic fine is not theirs and get it cancelled without a trip to the station.
+
+Easy · for everyday people · India · teaches Vision, AI agents
+
+<details><summary>Evidence (4) and scores (25)</summary>
+
+- A Coimbatore scooter showed 249 pending challans worth ₹3.69 lakh. Many carried photos and numbers of other vehicles, including trucks and cars. [news, 2026-07-27](https://businesstoday.in/latest/trends/story/a-scooter-in-coimbatore-was-slapped-with-249-traffic-challans-worth-rs3-69-lakh-but-theres-a-twist-545289-2026-07-27)
+- A Ghaziabad car owner got a challan for not wearing a helmet, with a photo of his parked car attached. Police called it human error. [news, 2025-09-11](https://www.tribuneindia.com/news/uttar-pradesh/car-owner-fined-for-not-wearing-helmet-in-ups-ghaziabad-police-call-it-human-error/)
+- Driver in Thane says he stopped at a red signal and was still fined. His grievance was declined without a proper explanation. [forum, 2026-02-09](https://www.consumercomplaints.in/maharashtra-traffic-police-wrongly-levied-challan-mmvr-239177-mva-c3539312)
+- Industry report: 7.69 crore challans are pending in court and a driver takes 842 days on average to pay one. [report, 2025-07-29](https://www.autoguideindia.com/reports/indias-vehicle-health-report-cars24-orbit-highlights-a-compliance-crisis/)
+
+**Why now:** Cameras and handheld devices now issue fines at scale, so one misread plate or wrong photo lands on an owner who was never there.
+
+pain 3 · frequency 3 · willingness 2 · buildability 5 · learning 4 · novelty 4 · openness 4
+
+</details>
+
+### P262 · The fake traffic fine that emptied a bank account
+
+Messages posing as traffic fine notices carry a file that reads a phone's bank passwords and one-time codes. A 54-year-old in Pune lost ₹11.66 lakh, and one such campaign infected about 7,400 devices.
+
+**Challenge:** Tell someone holding a traffic fine message whether it is real before they tap anything in it.
+
+Easy · for everyday people · India · teaches AI agents, Full-stack web · also Money
+
+<details><summary>Evidence (4) and scores (25)</summary>
+
+- Two Pune residents lost over ₹14.16 lakh after installing files sent as RTO e-challan notices. A 54-year-old lost ₹11.66 lakh. [news, 2026-06-27](https://www.thebridgechronicle.com/pune/cyber-fraud-pune-fake-rto-e-challan-apk-scam-rs14-lakh-loss-agn97)
+- A Nagpur man got a WhatsApp fine notice for ₹2,000 with his real vehicle number, a forged challan number and an attached file. He did not open it. [news, 2026-01-20](https://www.thehitavada.com//Encyc/2026/1/20/fake-e-challan-whatsapp-scam-targeting-citizens.html)
+- PIB warns that fake e-challan messages with links, files and PDFs can expose messages and OTPs and lead to unauthorised bank and UPI transfers. [news, 2026-07-10](https://www.outlookmoney.com/amp/story/news/fake-traffic-e-challan-messages-can-expose-otps-trigger-unauthorised-bank-transactions-pib-warns)
+- Security lab traced a fake RTO challan campaign spread on WhatsApp to about 7,400 infected devices. It took UPI PINs, net banking logins and SMS. [report, 2026-02-04](https://seqrite.com/blog/inside-a-multi-stage-android-malware-campaign-leveraging-rto-themed-social-engineering)
+
+**Why now:** Real e-challans now arrive by SMS, so a fake one with the right vehicle number looks normal. Police in Pune and Nagpur and the government fact-check unit all warned of it in 2026.
+
+pain 5 · frequency 3 · willingness 2 · buildability 5 · learning 3 · novelty 3 · openness 4
+
+</details>
+
+### P263 · Visa refused over one missing bank statement
+
+Schengen consulates refused 1,81,111 Indian visa applications in 2025, costing about ₹154 crore in fees. One family was refused over missing bank statements and lost about ₹1 lakh on the trip.
+
+**Challenge:** Catch the gaps in a visa application before the fee is paid and the file is handed in.
+
+Medium · for everyday people · India · teaches Vision, AI agents
+
+<details><summary>Evidence (4) and scores (24)</summary>
+
+- Indians filed about 11.5 lakh Schengen applications in 2025 and 1,81,111 were refused, losing about ₹154 crore in fees. Incomplete documents are a listed cause. [news, 2026-06-07](https://curlytales.com/visa/over-lakh-indians-faced-schengen-visa-rejections-in-crore-lost-in-visa-fees/)
+- A well-travelled family was refused an Austria visa over missing personal bank statements and lost about ₹1 lakh on the cancelled trip. [news, 2025-06-30](https://curlytales.com/indian-family-whos-visited-countries-denied-schengen-visa-lose-lakh/amp/)
+- A professional was refused twice for France. The first refusal was blamed on an agency documentation error, and he missed the conference. [news, 2025-10-24](https://www.businesstoday.in/amp/nri/visa/story/indian-mans-schengen-visa-rejected-for-these-2-reasons-heres-a-lesson-for-all-travellers-499411-2025-10-24)
+- The European Commission published its 2025 short-stay visa statistics, with applications and refusals for every consulate. [report, 2026-05-28](https://home-affairs.ec.europa.eu/policies/schengen/visa-policy/short-stay-visas-issued-schengen-countries_en)
+
+**Why now:** Applications from India hit a record in 2025 and about 1 in 6 was refused, with the fee kept each time.
+
+pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelty 3 · openness 3
+
+</details>
+
+### P264 · A broken suitcase, and the airline offers ₹500
+
+Airlines offered ₹500 for a dented trolley and a ₹3,000 travel credit for a bag that came 10 days late. Consumer commissions later ordered ₹17,000 and ₹2 lakh, after both passengers filed cases.
+
+**Challenge:** Help a passenger with a damaged or late bag file a claim the airline cannot brush off with a token offer.
+
+Medium · for everyday people · India · teaches AI agents, Automation and integrations
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- A bag sent to the wrong country came back 10 days late, damaged and half its weight. The airline offered a ₹3,000 credit and a commission ordered ₹2 lakh. [news, 2026-03-25](https://www.etvbharat.com/en/bharat/consumer-commission-orders-indigo-to-pay-rs-two-lakh-compensation-to-hyderabad-flyer-enn26032502837)
+- Airline offered ₹500, then ₹1,000, for a dented trolley and staff would not register the complaint. A commission ordered ₹17,000 in total. [news, 2026-03-09](https://curlytales.com/india/trending/bengaluru-resident-gets-as-compensation-after-suing-air-india-over-dented-luggage/amp/)
+- A suitcase under 2 years old was damaged on a Chennai to Delhi flight. The airline offered less than half the loss, citing its conditions of carriage. [forum, 2025-05-12](https://voxya.com/consumer-complaints/bag-damage-in-transit/244600)
+
+**Why now:** Consumer commissions ordered far more than the airline offers in rulings from February and March 2026, which gives passengers a benchmark.
+
+pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelty 3 · openness 4
+
+</details>
+
+### P265 · The charger that has been dead for months
+
+In a 2025 survey of over 1,000 drivers, 73% of Indian electric vehicle owners had a charging attempt fail. In Delhi, drivers say many public chargers have stayed out of service for months.
+
+**Challenge:** Show an electric vehicle driver which nearby chargers worked today, before they drive there on a low battery.
+
+Medium · for everyday people · India · teaches Data and dashboards, Full-stack web
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- Briefing note: a 2024 sample found nearly 84% of Delhi chargers examined not working, and drivers still complain. Being registered does not show a charger works. [report, 2026-09-11](https://ieefa.org/sites/default/files/2026-09/EV%20charging%20experience%20in%20India.pdf)
+- Survey of over 1,000 drivers: 73% of Indian EV owners have had a failed charging attempt, the most faulty chargers of the 3 regions studied. [survey, 2025-11-19](https://www.here.com/about/press-releases/india-ev-momentum-holds-strong-in-2025-but-infrastructure-faces-pressure-to)
+- Ground report found defunct chargers at 4 Delhi sites, and drivers said many had been out of service for months. [news, 2026-07-05](https://www.businesstoday.in/bt-tv/whats-hot/video/delhi-ev-policy-under-scanner-india-today-finds-defunct-charging-stations-across-city-540831-2026-07-05)
+
+**Why now:** Public charging stations grew from 5,151 in 2022 to 52,718 by July 2026, and subsidies paid for installing them, not for keeping them running.
+
+pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P266 · Paid ₹1.9 lakh for holidays that never got booked
+
+Holiday memberships sold at seminars promise yearly hotel stays, then no booking comes through. One buyer paid ₹1,90,000 for 12 years of holidays and was told the fee could never be refunded.
+
+**Challenge:** Help a holiday member who cannot get a booking build the refund demand a consumer commission would back.
+
+Easy · for everyday people · India · teaches AI agents, Full-stack web
+
+<details><summary>Evidence (4) and scores (25)</summary>
+
+- Buyer paid ₹1,90,000 in 2022 for a 12-year holiday plan and got no trip. Seller called the fee non-refundable and a commission ordered a full refund. [news, 2026-07-14](https://www.livelaw.in/consumer-cases/delhi-consumer-commission-holds-forbcorp-liable-for-deficient-holiday-services-541078)
+- Man paid ₹91,000 at a hotel seminar in 2022. No promised hotel was free for his dates, and a commission ordered the fee refunded with interest. [news, 2026-06-19](https://www.livelaw.in/amp/consumer-cases/country-holidays-travel-ordered-to-refund-membership-fee-after-failing-to-provide-hotel-bookings-under-holiday-package-538339)
+- Member paid part of a multi-year vacation package and says the company gives no bookings and does not answer. He wants a refund and out of the contract. [forum, 2026-07-13](https://voxya.com/consumer-complaints/no-refund-or-bookings-provided-under-soneva-seasons-vacation-package-membership/270197)
+- Member cancelled before an ID was issued and was promised a refund within a week. It came in 6 part payments with a balance still owed. [forum, 2026-05-06](https://voxya.com/consumer-complaints/full-refund-not-given-by-the-company-/266017)
+
+**Why now:** Commissions in Delhi ruled in June and July 2026 that a no-refund clause does not hold when the holidays are never delivered.
+
+pain 4 · frequency 2 · willingness 3 · buildability 5 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P267 · A ₹10,000 fine for a pollution paper that expired
+
+About 56% of India's 30.48 crore registered vehicles have no valid insurance. In Delhi, over 20,000 fines of ₹10,000 each went out in under 3 weeks, mainly over missing or expired pollution certificates.
+
+**Challenge:** Warn a vehicle owner before insurance, pollution or fitness papers lapse, so a roadside camera never catches them out.
+
+Hard · for everyday people · India · teaches Vision, Automation and integrations, Data and dashboards
+
+<details><summary>Evidence (3) and scores (22)</summary>
+
+- Supreme Court cited about 56% of vehicles as uninsured, 16.54 crore of 30.48 crore, and ordered camera data linked to insurance records for automatic e-challans. [news, 2026-08-05](https://www.verdictum.in/supreme-court/national-insurance-co-ltd-v-thungala-dhana-laxmi-citation-2026-insc-793-four-layer-policy-structure-motor-insurance-enforcement-1619216)
+- Industry report: over 50% of vehicles are uninsured, mostly two-wheelers, and pollution certificate compliance is below 30% in 4 large states. [report, 2025-07-29](https://www.autoguideindia.com/reports/indias-vehicle-health-report-cars24-orbit-highlights-a-compliance-crisis/)
+- Delhi police issued over 20,000 challans of ₹10,000 each between 19 Oct and 5 Nov 2025, mainly for missing or expired pollution certificates. [news, 2025-11-06](https://www.tribuneindia.com/news/delhi/over-20k-vehicles-fined-for-violating-grap-rules/)
+
+**Why now:** In August 2026 the Supreme Court ordered camera data linked to insurance records for automatic fines, so a lapsed paper will be caught without a traffic stop.
+
+pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelty 2 · openness 3
 
 </details>
 
@@ -3764,11 +4154,11 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P024 · Farmer collectives that can grow but cannot sell
 
-Farmer producer organisations default on dues and fail at marketing, with no budget for branding, weak buyer trust and part-time boards who cannot price, contract or manage cold chain. Those that list online stall on cataloguing, labelling, food-safety rules, costly rural shipping and payments that take weeks.
+Farmer producer organisations default on dues and fail at marketing, with no budget for branding and weak buyer trust. Those that list online stall on cataloguing, labelling and payments that take weeks.
 
 **Challenge:** Let a farmer collective run its selling side without hiring a full-time trading team.
 
-Hard · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web · also Retail
+Medium · for businesses · India · teaches AI agents, Automation and integrations, Full-stack web · also Retail
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -3784,7 +4174,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P036 · Milk poured daily, incentives paid 4 months late
 
-Nearly 4 lakh farmers who supply Aavin in Tamil Nadu went 4 months without their per-litre incentives, while village societies ran at a loss. Dairy farmers in Kenya's Rift Valley were owed 4 months of milk payments and could not cover feed or school fees. Collectives short of working capital cannot say when members will be paid, so farmers drift to private buyers.
+Nearly 4 lakh farmers who supply Aavin in Tamil Nadu went 4 months without their per-litre incentives. Collectives short of working capital cannot say when members will be paid, so farmers drift to private buyers.
 
 **Challenge:** Make sure every dairy farmer knows, each evening, what they are owed and when it will arrive.
 
@@ -3808,7 +4198,7 @@ pain 5 · frequency 4 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P048 · Crops ploughed under because the mandi offered ₹2
 
-Small growers of onion, tomato, gourd, coconut and grains sell into the one market and the few traders within reach, often at ₹2 to ₹8 a kilo when it cost more to grow. Prices swing by half within days and nobody tells a grower where a better buyer sits a few hours away, so whole harvests are dumped or ploughed back into the soil.
+Small growers sell into the one market within reach, often at ₹2 to ₹8 a kilo, less than it cost to grow. Prices swing by half within days, and nobody tells a grower where a better buyer is a few hours away.
 
 **Challenge:** Tell a small grower, before harvest day, where and when their crop will fetch the most.
 
@@ -3832,11 +4222,11 @@ pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P060 · Growers get ₹5–7 a kilo, kitchens pay retail
 
-Onion and potato growers get barely 43% of the retail price, and mandi rates have crashed to ₹5–7 a kilo while shoppers still pay high. Independent restaurants nearby pay retail for the same produce, because wholesalers want minimum orders bigger than they can store. Growers who try to sell direct end up building their own farm-to-plate network just to get paid fairly and on time.
+Onion and potato growers get barely 43% of the retail price, and mandi rates have crashed to ₹5–7 a kilo. Restaurants nearby pay retail for the same produce, because wholesalers want bigger minimum orders than they can store.
 
 **Challenge:** Connect small growers to the kitchens near them, with orders sized for both and paid within the week.
 
-Medium · for self-employed · India · teaches Full-stack web, Payments, Automation and integrations · also Food, Retail
+Hard · for self-employed · India · teaches Full-stack web, Payments, Automation and integrations · also Food, Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -3852,7 +4242,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P072 · Pest advice that arrives after the crop is gone
 
-Farmers struggle to get timely crop and cattle advice in their own language, so a vet visit costs money and days while informal advice often misleads. Pest attacks arrive without early warning, sprays are applied by guesswork, and residues end up in food while pests adapt.
+Farmers struggle to get timely crop and cattle advice in their regional language, so a vet visit costs money and days. Pest attacks come without early warning, sprays are applied by guesswork, and residues end up in food.
 
 **Challenge:** Give a farmer a trustworthy answer about a sick plant or animal, in their language, within the hour.
 
@@ -3873,7 +4263,7 @@ pain 4 · frequency 4 · willingness 2 · buildability 4 · learning 5 · novelt
 
 ### P084 · Fruit that rots between the field and the buyer
 
-Up to 15 percent of fruit and 12 percent of vegetables are lost between harvest and sale, because growers lack storage and grading at the farm gate and sell into gluts. Perishable shipments that do move are delayed or damaged in transit with no record of what happened, so claims go nowhere.
+Up to 15 percent of fruit and 12 percent of vegetables are lost between harvest and sale. Perishable shipments are delayed or damaged in transit with no record, so claims go nowhere.
 
 **Challenge:** Make it cheaper for a grower to hold, grade or ship a perishable crop than to dump it.
 
@@ -3894,11 +4284,11 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P096 · The farm ledger nobody finishes setting up
 
-Farm accounting packages want entities and a chart of accounts configured before they do anything useful, record entry is tedious, and input stock does not update when a purchase is logged. Bank reconciliation is slow, so the books fall behind. In September 2026, women-led farmer producer companies were reported folding once grants ended, lacking management skills and financial literacy.
+Farm accounting packages need setting up before they do anything useful, and entering records is a chore. In September 2026, women-led farmer producer companies were reported shutting down once grants ended.
 
 **Challenge:** Turn a farm's receipts and purchases into usable books on the first day, with no setup.
 
-Easy · for businesses · global · teaches Vision, Automation and integrations, Data and dashboards · also Money
+Medium · for businesses · global · teaches Vision, Automation and integrations, Data and dashboards · also Money
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -3916,11 +4306,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P108 · Signed up for carbon credits, and never paid
 
-Farmers in private carbon programmes do not know what they will earn or when, see payouts cut without explanation, and never get back the soil test results taken from their own fields. A December 2024 study found nearly all farmers in voluntary carbon projects received no payment, and over a quarter quit. The company apps meant to keep them informed go ignored.
+Farmers in private carbon programmes do not know what they will earn or when. A December 2024 study found nearly all farmers in voluntary carbon projects received no payment.
 
 **Challenge:** Show every enrolled farmer what their fields have earned, why, and when the money arrives.
 
-Hard · for businesses · India · teaches Data and dashboards, Voice AI, Full-stack web · also Money
+Easy · for businesses · India · teaches Data and dashboards, Voice AI, Full-stack web · also Money
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -3937,11 +4327,11 @@ pain 3 · frequency 2 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P120 · The watermelon nobody could trace
 
-When a family in Mumbai died after eating a contaminated watermelon, nobody could trace where it came from. Vegetables reaching Delhi through Azadpur carry no record of whether drain water grew them, and in July 2026 cakes ordered online arrived stale with no record of when they were made. Buyers cannot judge safety, and honest sellers cannot prove it.
+When a family in Mumbai died after eating a contaminated watermelon, nobody could trace where it came from. In July 2026 cakes ordered online arrived stale with no record of when they were made.
 
 **Challenge:** Let a fruit seller or small food maker prove where and when their food was grown or made, for paise a label.
 
-Hard · for people · India · teaches Mobile apps, Vision, Data and dashboards · also Food, Health
+Medium · for everyday people · India · teaches Mobile apps, Vision, Data and dashboards · also Food, Health
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -3957,11 +4347,11 @@ pain 5 · frequency 3 · willingness 2 · buildability 3 · learning 3 · novelt
 
 ### P132 · Queueing for urea, then paying above the subsidised price
 
-Farmers in Telangana queue for urea with no reliable word on which dealer has stock, then pay above the subsidised price and get pushed into tie-in purchases. Feed is no easier: poultry farmers have seen feed cost per egg nearly double and absorb about 20% losses, and nearly 3 in 4 small cattle rearers struggle to get affordable fodder. Buy inputs online instead, and a refund on AgroStar can go unanswered.
+Farmers in Telangana queue for urea with no reliable word on which dealer has stock, then pay above the subsidised price. Nearly 3 in 4 small cattle rearers also struggle to get affordable fodder.
 
 **Challenge:** Show a farmer which dealer has urea today, at the fair price, before they leave home.
 
-Hard · for businesses · India · teaches Mobile apps, Data and dashboards, Voice AI · also Retail
+Medium · for businesses · India · teaches Mobile apps, Data and dashboards, Voice AI · also Retail
 
 <details><summary>Evidence (4) and scores (22)</summary>
 
@@ -3976,15 +4366,201 @@ pain 4 · frequency 3 · willingness 2 · buildability 3 · learning 3 · novelt
 
 </details>
 
+### P251 · 72 hours to report a ruined crop
+
+A farmer whose field is hit by hail or flooding has 72 hours to report the loss to the crop insurer. Missing that window is the most common reason these claims are rejected.
+
+**Challenge:** Get a farmer's crop loss reported, with every detail the insurer asks for, inside the 72 hours allowed.
+
+Easy · for self-employed · India · teaches Voice AI, Full-stack web · also Money
+
+<details><summary>Evidence (4) and scores (24)</summary>
+
+- Guide says a localised loss such as hail or inundation must be reported within 72 hours with geo-tagged photos, and that missing the window is the single most common reason such a claim is rejected. [other, 2026-09-20](https://righttoinformation.wiki/_export/xhtml/rti-for-pmfby-crop-insurance)
+- Hindi explainer lists late reporting among the common reasons crop insurance claims are rejected, next to wrong land, crop, Aadhaar or bank details, and repeats the 72 hour limit for losses on a single farm. [news, 2026-08-02](https://www.patrika.com/patrikaplus/pmfby-crop-insurance-claim-rejected-solution-complaint-process-20798025)
+- A consumer commission pulled up an insurer that refused hail claims from over 100 Parbhani farmers for not reporting within 48 hours, noting it gave them no clear way to report in time. [news, 2025-07-08](https://moneylife.in/article/ncdrc-raps-national-insurance-for-shortchanging-maharashtra-farmers-under-pmfby/77615.html)
+- Review of studies and scheme data finds awareness of features such as prevented sowing and localised calamity cover ranged from 1.66% to 5.00%, and borrowers name claim delay as the biggest challenge. [report, 2025-01](https://www.agriculturejournal.org/volume13number1/navigating-agricultural-risk-evaluating-farmers-perceptions-and-barriers-in-the-adoption-of-pmfby-scheme-for-risk-management/)
+
+**Why now:** From Kharif 2026 wild animal attack and paddy inundation also fall under the 72 hour rule, so more farmers must report fast. Language models can now turn a spoken account into a complete report.
+
+pain 5 · frequency 3 · willingness 2 · buildability 5 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P252 · A ₹2,000 payment stopped by a name mismatch
+
+By July 2025, more than 48 lakh farmers had PM-KISAN payments withheld over incomplete e-KYC. A wrong name on a land record or an unlinked bank account stops the ₹2,000 too.
+
+**Challenge:** Tell a farmer which record is holding up their instalment, and what to carry to which office to fix it.
+
+Easy · for self-employed · India · teaches Vision, Full-stack web · also Money
+
+<details><summary>Evidence (5) and scores (21)</summary>
+
+- Guide lists 5 places an instalment gets stuck: the land record, the Aadhaar name, the bank mapping, e-KYC and the transfer itself. A status of FTO generated does not mean the money was credited. [other, 2026-08-28](https://righttoinformation.wiki/rti-for-pm-kisan-installment)
+- Explainer says lakhs of farmers find nothing credited, with pending e-KYC, unverified land records and a missing Aadhaar bank link as the 3 usual blocks on the ₹2,000. [other, 2026-07-31](https://indianpaycalculator.in/govt-news/pm-kisan-why-2000-gets-stuck-ekyc-land-npci-2026)
+- A Farmer ID is being made mandatory for the next ₹2,000 instalment on top of e-KYC, and farmers without either may see payments delayed or stopped. [news, 2026-02-09](https://www.outlookmoney.com/news/pm-kisan-22nd-instalment-update-farmer-id-and-e-kyc-made-mandatory-to-receive-future-payouts)
+- RTI data shows more than 48 lakh of 10.64 crore registered farmers had not completed eKYC by 11 July 2025, so their payments were withheld. Some were marked ineligible after repeat biometric attempts. [news, 2026-01-07](https://thewire.in/rights/ekyc-failures-leave-millions-of-farmers-cut-off-from-pm-kisan-payments)
+- In Bahraich, 2,27,867 of about 5.08 lakh farmers had no Farmer ID days before the deadline, and officials said those without one would be left out of PM-KISAN. [news, 2025-10-31](https://www.dynamitenews.com/national/more-than-2-lakh-people-in-this-dist-of-up-will-be-deprived-of-pm-kisan-samman-nidhi-here-why/amp)
+
+**Why now:** A Farmer ID became a condition for the instalment in 2026 on top of e-KYC, adding one more record that can fail. Vision models can now read a status screenshot in any Indian language.
+
+pain 3 · frequency 3 · willingness 2 · buildability 5 · learning 3 · novelty 2 · openness 3
+
+</details>
+
+### P253 · Soil card says less urea, the field gets more
+
+Farmers who hold a soil health card still apply more urea than it recommends, a 2025 Haryana study found. India now uses nitrogen, phosphorus and potassium at about 10.9:4.1:1, against a benchmark of 4:2:1.
+
+**Challenge:** Turn a soil health card into the exact bags of each fertiliser a farmer should buy for this crop.
+
+Easy · for self-employed · India · teaches Vision, Data and dashboards
+
+<details><summary>Evidence (3) and scores (22)</summary>
+
+- Economic Survey says the nutrient use ratio moved from 4:3.2:1 in 2009-10 to about 10.9:4.1:1 in 2023-24 against a benchmark near 4:2:1, driven by excess urea sold at ₹242 a bag. [news, 2026-01-29](https://www.downtoearth.org.in/amp/story/agriculture/economic-survey-2026-raise-urea-price-provide-direct-transfers-to-farmers-to-curb-overuse)
+- Haryana farm survey of 2024-25, published in 2025, finds farmers with a soil health card use less urea than usual practice but still exceed the recommended dose, with no loss of yield from the cut. [report, 2025-04-01](https://epubs.icar.org.in/index.php/IJEE/article/view/165252)
+- Interviews with card holders and non-holders in Haryana find farmers see little benefit in the soil health card. The authors ask for mobile testing vans and timely delivery of cards. [report, 2025-01-01](https://epubs.icar.org.in/index.php/IJEE/article/view/159696)
+
+**Why now:** The Economic Survey of January 2026 put urea overuse back on the agenda, and vision models can now read a printed soil health card from a phone photo.
+
+pain 3 · frequency 3 · willingness 2 · buildability 5 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P254 · Spraying by the dealer's word, not the label
+
+Farmers mix and spray pesticide on a dealer's advice, and in a 2026 Gujarat survey 91.2% used no protective gear. An Akola hospital treated up to 170 poisoning cases between June and October 2025.
+
+**Challenge:** Tell a farmer the right dose, the gear to wear and the days to wait, from the pack in their hand.
+
+Easy · for self-employed · India · teaches Vision, Voice AI · also Health
+
+<details><summary>Evidence (4) and scores (26)</summary>
+
+- Akola's government hospital treated up to 170 pesticide poisoning cases among farmers and farm workers from June to October 2025. One family says local merchants were its main source of advice. [news, 2026-04-17](https://www.britsafe.in/safety-management-news/2026/the-human-cost-of-pesticides-in-indian-farming)
+- Survey of 170 farmers in a tribal district of Gujarat finds 91.2% used no protective gear while spraying, 5.3% had formal training, and 97.6% reported at least 1 symptom after exposure. [report, 2026-03-31](https://www.iapsmupuk.org/journal/index.php/IJCH/article/download/3588/1862/21831)
+- Review of pesticide misuse in India lists cocktail mixing, doses that ignore the measurements on the label, and re-entry periods on the label that are not followed. [report, 2025-02-08](https://ojs.pphouse.org/index.php/CBM/article/download/5412/3137/15043)
+- Among 150 farmers in Gadchiroli, dealers ranked first as the source of pesticide information, and 68.67% named not knowing how to use the products as a constraint. [report, 2023-12-31](https://agriculturejournal.org/?p=17050)
+
+**Why now:** Poisoning cases were still filling a district hospital in the 2025 spraying season, and vision models can now read small print on a pack from a phone photo.
+
+pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelty 3 · openness 4
+
+</details>
+
+### P255 · The hailstorm warning that came hours too late
+
+Storm alerts often reach farmers only hours ahead, in technical language many cannot follow. In May 2025, hail, rain and pests cut moong yields by an estimated 30% to 45% in 5 Madhya Pradesh districts.
+
+**Challenge:** Warn a farmer in plain words, the evening before, when tomorrow's weather will ruin a spray or a harvest.
+
+Medium · for self-employed · India · teaches Automation and integrations, AI agents, Voice AI
+
+<details><summary>Evidence (3) and scores (22)</summary>
+
+- Survey of 200 farmers in 20 villages of Ahmedabad district finds only a medium level of awareness of agromet advisories for 51.50%, and the authors point to a gap in reach and trust. [report, 2026-04](https://econpapers.repec.org/RePEc:ags:ajaees:402857)
+- Moong growers in 5 Madhya Pradesh districts put losses at 30% to 45% after May hail, rain and pests. Farmers call forecast services too technical and mostly English, and say warnings came too late. [news, 2025-07-14](https://odishabytes.com/mission-mausam-faces-rural-roadblock-how-digital-gaps-jargon-keep-weather-forecasts-from-reaching-mps-farmers/)
+- Delhi farmers lost vegetables and corn to May 2025 storms. A red alert came only hours before one hit, and the official advisory service had about 3.75 lakh downloads nationwide by the end of 2024. [news, 2025-06-27](https://india.mongabay.com/2025/06/weather-forecasting-improves-but-access-remains-uneven-for-farmers/)
+
+**Why now:** A 6 km national forecast grid went live in May 2025 and free forecast feeds cover any village, so the missing piece is a plain warning in the farmer's language at the right hour.
+
+pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 4 · novelty 2 · openness 3
+
+</details>
+
+### P256 · 8 kg cut from every quintal of paddy
+
+At paddy procurement centres, staff and millers cut kilos from a farmer's weighed crop. In a Telangana survey of 5,000 farmers, 57.3% reported cuts, up to 8 kg a quintal at mills.
+
+**Challenge:** Show a paddy farmer how many kilos and rupees were cut from each sale, with a complaint ready to send.
+
+Medium · for self-employed · India · teaches Vision, Data and dashboards, Full-stack web
+
+<details><summary>Evidence (4) and scores (24)</summary>
+
+- Phone survey of 5,000 Telangana paddy farmers: 57.3% reported cuts in net weight, about 2 to 4 kg a bag at centres and 5 to 8 kg a quintal at mills. 77.18% did not know the toll-free complaint number. [report, 2026-05](https://cess.ac.in/wp-content/uploads/2026/07/CESS-Policy-Brief-19.pdf)
+- Thrissur paddy farmers accepted a 1.5% cut per quintal after millers asked for 2.5% and harvesting stopped for 3 days. [news, 2026-02-14](https://www.onmanorama.com/news/kerala/2026/02/14/paddy-procurement-cut-farmers-agree.amp.html)
+- Odisha's opposition leader wrote that millers are cutting 5 to 7 kg a quintal on the pretext of moisture or quality, and that payments promised within 48 hours are taking weeks. [news, 2026-02-09](https://www.socialnews.xyz/2026/02/09/odisha-lop-seeks-cm-majhis-intervention-to-address-paddy-procurement-lapses/)
+- A Bhadrak collector posing as a farmer was told about 8 kg of his paddy would be cut as wastage, and issued a notice to the society secretary on the spot. [news, 2025-02-03](https://odishabytes.com/after-ministers-warning-odisha-collector-probes-katni-chhatni-allegation-posing-as-farmer/)
+
+**Why now:** Weight cuts were raised in Odisha, Telangana and Kerala across the 2025 and 2026 procurement seasons, and a phone can now read a sale slip and keep a dated record.
+
+pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P257 · The cow everyone assumed was pregnant
+
+In a 2025 Jharkhand survey, 92.22% of dairy farmers assumed an animal that skipped a heat was pregnant. Only 11.11% got it confirmed, and 57.59% bred animals 6 months or more after calving.
+
+**Challenge:** Remind a dairy farmer of every date that matters for each animal, from heat check to vaccination.
+
+Medium · for self-employed · India · teaches Automation and integrations, Data and dashboards, Voice AI
+
+<details><summary>Evidence (3) and scores (25)</summary>
+
+- A vet writes that lumpy skin disease is now endemic, with uneven vaccine coverage across states and milk losses of ₹8,000 to ₹12,000 a cow in some regions during outbreaks. [other, 2025-08-10](https://pashusandesh.com/From-Outbreak-to-Endemic-Managing-Lumpy-Skin-Disease-in-India)
+- Lumpy skin disease was reported in 10 states in 2025. About 2 lakh cattle died in the last 2 years and millions more lost milk, the Centre told Parliament. [news, 2025-08-02](https://english.punjabkesari.com/india/2025/08/02/lumpy-skin-disease-reported-in-10-states-over-28-cr-animals-vaccinated-centre)
+- Survey of 180 farmers and 24 service staff in 3 Jharkhand districts: 92.22% of farmers read a missed heat as pregnancy, 11.11% confirmed it with a professional, and 57.59% bred animals 6 months after calving. [report, 2025-07-23](https://epubs.icar.org.in/index.php/IJDS/article/view/134679)
+
+**Why now:** Lumpy skin disease returned in 10 states in 2025, so vaccination dates matter more, and a cheap phone reminder can now reach a farmer with 2 or 3 animals.
+
+pain 4 · frequency 4 · willingness 3 · buildability 5 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P258 · Elephants ate the crop, the claim never got filed
+
+After wild animals destroy a crop, only 25% of affected Maharashtra farmers seek compensation, a 2025 report found. Only 1% to 2% got payments that matched the damage, and many did not know the scheme existed.
+
+**Challenge:** Help a farmer file a complete wildlife damage claim the same day, and keep chasing it until it is paid.
+
+Hard · for self-employed · India · teaches Vision, Automation and integrations, AI agents
+
+<details><summary>Evidence (4) and scores (26)</summary>
+
+- A 2025 Gokhale Institute report on Maharashtra finds 25% of farmers hit by wild animals sought compensation and only 1-2% got payments matching the damage. 62% had cut their cropped area. [news, 2026-03-11](https://www.downtoearth.org.in/amp/story/wildlife-biodiversity/conflict-in-the-backyard)
+- From Kharif 2026 crop insurance adds a wild animal attack cover. Losses must be reported within 72 hours with geotagged photos. Such losses often went uncompensated before. [news, 2025-11-18](https://www.newsonair.gov.in/wild-animal-attacks-paddy-inundation-to-be-covered-under-pmfby-from-kharif-2026/)
+- Maharashtra's forest minister said crops are still lost to wild boars, gaurs and elephants despite solar fencing, and floated paying farmers ₹50,000 an acre a year as rent. [news, 2025-07-08](https://www.theweek.in/wire-updates/national/2025/07/08/bes27-mh-council-farmers-naik.html)
+- The Gokhale Institute study's own page calls the compensation process cumbersome, time-consuming and insufficient to cover the damages, and says it ignores indirect costs borne by farmers. [report, 2024-11-11](https://www.csd.gipe.ac.in/journey-from-conflict-to-coexistence/)
+
+**Why now:** A wild animal cover joins crop insurance from Kharif 2026 with a 72 hour reporting limit, so a dated photo record made on the day now decides whether a farmer is paid.
+
+pain 5 · frequency 3 · willingness 2 · buildability 4 · learning 4 · novelty 4 · openness 4
+
+</details>
+
+### P259 · Booked the harvester, and it never came
+
+At harvest, small farmers wait days for a hired machine and pay more when it comes. In Kottayam, combine rent rose to ₹2,300 an hour and booked machines ran up to a week late.
+
+**Challenge:** Let a machine owner and the farmers who book it share one harvest queue that shows every turn, delay and price.
+
+Hard · for self-employed · India · teaches Full-stack web, Automation and integrations, AI agents
+
+<details><summary>Evidence (3) and scores (25)</summary>
+
+- Hamirpur fixed hourly rates for tractor, reaper and thresher work after small farmers kept complaining of arbitrary charges, such as ₹2,000 an hour for ploughing now set at ₹1,200. [news, 2025-12-09](https://www.outlookbusiness.com/planet/climate/himachal-agriculture-dept-fixes-rates-for-sowing-harvesting-threshing-of-crops-in-hamirpur)
+- Kottayam paddy farmers say harvester owners exploit a shortage. Rent rose from about ₹2,000 to ₹2,300 an hour, and machines booked in advance were held up by as much as a week. [news, 2025-11-28](https://www.onmanorama.com/news/kerala/2025/11/28/paddy-harvesting-machine-rental-kottayam.html)
+- 100 farmers in Kurnool ranked their problems with custom hiring centres: too few machines at peak season first, then delays from high demand, then high rental costs. Favouritism was also named. [report, 2025-10-06](https://sasapjas.org/constraints-of-chcs-as-perceived-by-farmers-in-kurnool-district-of-andhra-pradesh/)
+
+**Why now:** Rain squeezed the 2025 paddy harvest in Kottayam and one district had to fix hire rates. A shared queue with a message on every delay can now be built by one person in 2 days.
+
+pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelty 3 · openness 4
+
+</details>
+
 ## Homes and real estate
 
 ### P007 · Interiors promised in 45 days, finished 4 months late
 
-Homeowners pay a large advance, or the whole amount upfront, then wait while interiors work starts late or never starts. Reviews of Livspace and HomeLane describe projects running months over, staff changing without handover and defects left open, and a NoBroker interiors customer was refused a refund after no work began. Once the money has moved, the family has nothing left to push with.
+Homeowners pay a large advance, or the whole amount upfront, then wait while interiors work starts late or never starts. Reviews of Livspace and HomeLane describe projects running months over.
 
 **Challenge:** Keep every rupee of an interiors payment back until that stage is finished and photographed.
 
-Hard · for people · India · teaches Payments, Mobile apps · also Money
+Hard · for everyday people · India · teaches Payments, Mobile apps · also Money
 
 <details><summary>Evidence (5) and scores (27)</summary>
 
@@ -4002,11 +4578,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P019 · One flat listed, 15 calls a day, years later
 
-Free listings on 99acres and MagicBricks are throttled to near-zero views while sales teams ring owners again and again to push paid upgrades. One portal shared an owner's number with developers without consent, and a former customer still gets over 15 sales calls a day years after closing the account. Listing a home once can cost an owner their phone number for good.
+Owners with free listings on 99acres and MagicBricks get call after call from sales teams pushing paid upgrades. A former customer still gets over 15 sales calls a day, years after closing the account.
 
 **Challenge:** Let an owner list a property without their real phone number ever reaching a sales team.
 
-Medium · for people · India · teaches Voice AI, AI agents, Mobile apps
+Medium · for everyday people · India · teaches Voice AI, AI agents, Mobile apps
 
 <details><summary>Evidence (5) and scores (26)</summary>
 
@@ -4024,11 +4600,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P031 · The deposit you lose even with photos
 
-Renters learn about mould, pests and other hazards only after signing the lease, and new owners find seepage, cracks or termites within weeks because proper pre-purchase inspections are rare. At move-out, tenants still face heavy deductions from their deposit, photos or not. With no record of condition that both sides agreed at handover, every later argument is one word against another.
+At move-out, tenants face heavy deductions from their deposit, photos or not, with no record both sides agreed at handover. Home buyers find seepage, cracks or termites within weeks because proper inspections are rare.
 
 **Challenge:** Make a dated record of a home's condition in 15 minutes that landlord and tenant both sign.
 
-Medium · for people · India · teaches Vision, Mobile apps
+Hard · for everyday people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4044,7 +4620,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P043 · A paid listing, hundreds of hits, no real tenant
 
-Landlords on paid listing plans see hundreds of hits and not a single genuine tenant enquiry. In June 2026 an owner who bought a MagicBricks premium plan got no genuine tenant or buyer enquiries, and a long-time landlord says leads from TenantCloud have deteriorated badly. The landlord pays twice: once for the plan, and again in time lost on calls that go nowhere.
+Landlords on paid listing plans see hundreds of hits and not a single genuine tenant enquiry. In June 2026 an owner who bought a MagicBricks premium plan got no genuine tenant or buyer enquiries.
 
 **Challenge:** Sort a landlord's rental enquiries into real tenants and noise before anyone picks up the phone.
 
@@ -4064,7 +4640,7 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P055 · Paid for inspections, and nobody ever came
 
-Landlords pay for property management or tenant-finding, then get no showings, no inspections and a manager who goes silent, and refunds are refused. One owner paying NoBroker a percentage fee in October 2026 got no inspections, missing tenant documents and no lease enforcement. Owners in other cities or abroad find out only when something has already gone wrong.
+Landlords pay for property management, then get no showings, no inspections and a manager who goes silent. One owner paying NoBroker a percentage fee in October 2026 got no inspections and missing tenant documents.
 
 **Challenge:** Give a distant landlord proof, every month, that someone visited and checked their flat.
 
@@ -4086,11 +4662,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P067 · Wiring a deposit to someone who cloned the listing
 
-Scammers clone real rental listings, impersonate the owner and collect deposits for homes that are not for rent, and police have logged hundreds of such reports. Renters who toured a real flat still wire money to the wrong person, and students lose PG booking deposits to owners who vanish. A deposit is often a month or more of savings.
+Scammers clone real rental listings, impersonate the owner and collect deposits for homes that are not for rent. A deposit is often a month or more of savings.
 
 **Challenge:** Let a renter confirm, before sending any money, that the person asking for it really controls the home.
 
-Hard · for people · global · teaches Vision, AI agents · also Money
+Easy · for everyday people · global · teaches Vision, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4106,11 +4682,11 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P079 · The quote that grows once the advance is paid
 
-Painting and interior jobs start with a low quote that balloons with extras once work begins, and the quotations are too confusing to push back on. In September 2026 one interiors firm took a ₹1 lakh advance, then quoted many times the original estimate and refused a refund. Another painting job was billed near ₹2 lakh, with substandard work and the wrong materials installed.
+Painting and interior jobs start with a low quote that grows with extras once work begins. In September 2026 one interiors firm took a ₹1 lakh advance, then quoted many times the original estimate.
 
 **Challenge:** Turn any interiors or painting quote into a fair-price check a homeowner can take back to the contractor the same day.
 
-Medium · for people · India · teaches AI agents, Vision, Data and dashboards
+Easy · for everyday people · India · teaches AI agents, Vision, Data and dashboards
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4128,11 +4704,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P091 · Paying an inspection fee to hear an inflated quote
 
-Appliance technicians charge an inspection fee, then push part replacements nobody can check, at inflated prices. Air conditioner installation costs vary several-fold for the same job, with surprise extras for piping and brackets. In September 2026, an AC repair booked through Urban Company was allegedly misdiagnosed and sold with the wrong warranty information.
+Appliance technicians charge an inspection fee, then push replacement parts nobody can check, at inflated prices. In September 2026, an AC repair booked through Urban Company was allegedly misdiagnosed.
 
 **Challenge:** Give a household a second opinion on a repair quote before they say yes to the technician.
 
-Medium · for people · India · teaches Voice AI, AI agents
+Easy · for everyday people · India · teaches Voice AI, AI agents
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -4149,11 +4725,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P103 · Paid to avoid brokers, and still calling brokers
 
-Renters pay for owner-only plans and still get handed broker numbers, as one paying house hunter reported in September 2026. Many attractive listings are broker bait, with borrowed photos or homes that are not available. Support goes quiet once the subscription is sold, and relationship managers change so often that nobody owns the promise made at sale.
+Renters pay for owner-only plans and still get handed broker numbers, as one paying house hunter reported in September 2026. Many attractive listings are broker bait, with borrowed photos or homes that are not available.
 
 **Challenge:** Flag a broker posing as an owner, or a borrowed photo, before a renter makes the call.
 
-Easy · for people · India · teaches Vision, AI agents
+Easy · for everyday people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4169,11 +4745,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P115 · The token amount that never comes back
 
-Renters pay a token advance to hold a flat, then the owner backs out or rents it to someone else and the refund stays pending for months. Escalation contacts do not work and managers stop responding. Small sums vanish because chasing them costs more than they are worth.
+Renters pay a token advance to hold a flat, then the owner backs out or rents it to someone else. The refund stays pending for months, and chasing a small sum costs more than it is worth.
 
 **Challenge:** Make a rental token refundable by default, released only when both sides confirm the deal.
 
-Medium · for people · India · teaches Payments, Full-stack web · also Money
+Hard · for everyday people · India · teaches Payments, Full-stack web · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4189,11 +4765,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P127 · 6 months' rent upfront, and cuts nobody explains
 
-Bengaluru brokers quote legal deposit limits that do not exist and still demand 6 months of rent upfront. At move-out, inspection teams inflate repair costs, and co-living operators cut flat amounts for service charges they never explain. Tenants lose money they have no way to contest, and new cases surfaced in both August and September 2026.
+Bengaluru brokers still demand 6 months of rent upfront. At move-out, inspection teams inflate repair costs, and tenants lose money they have no way to contest.
 
 **Challenge:** Give a tenant a deposit statement they can contest line by line before they hand back the keys.
 
-Medium · for people · India · teaches AI agents, Data and dashboards · also Money
+Medium · for everyday people · India · teaches AI agents, Data and dashboards · also Money
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4209,11 +4785,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P139 · Proving what was damaged and what it was worth
 
-When a technician damages an air conditioner compressor or a repair visit floods the home, households find no compensation process and service providers deny cover. Homeowners facing insurance claims must photograph and value every possession, a tedious job taking many hours. Without proof of what existed and what it cost, claims are cut or refused.
+Homeowners facing insurance claims must photograph and value every possession, a tedious job taking many hours. Without proof of what existed and what it cost, claims are cut or refused.
 
 **Challenge:** Help a household build a valued, photographed inventory of its home in under an hour.
 
-Medium · for people · India · teaches Vision, AI agents
+Easy · for everyday people · India · teaches Vision, AI agents
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -4229,11 +4805,11 @@ pain 4 · frequency 2 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P150 · Nobody will come to fix one switchboard
 
-Homeowners cannot get electricians to come for small jobs like a fan or switchboard because they prefer big contracts, and a night-time plumbing emergency means paying inflated rates for whoever answers. People who would fix things themselves lack experienced local help, and a tiny repair turns into a store trip plus research into paints, fillers and tools. Small faults linger for weeks.
+Electricians prefer big contracts, so homeowners cannot get one to come for a small job like a fan or switchboard. Small faults linger for weeks, and a night-time plumbing emergency means paying inflated rates.
 
 **Challenge:** Get a household's small repair diagnosed by video and either fixed by them or by someone nearby today.
 
-Easy · for people · India · teaches Voice AI, Vision
+Easy · for everyday people · India · teaches Voice AI, Vision
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4250,11 +4826,11 @@ pain 3 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P160 · Paying in full before anyone checks the work
 
-Deep cleaning varies wildly, with missed areas and no checklist or way to verify the work, and in September 2026 a harsh acid ruined a bathroom's chrome fittings and left the taps leaking, with no remedy offered. Carpentry has to be paid for in full before the quality can be checked, and defects show up after installation. The household carries the risk of work it cannot inspect.
+Deep cleaning varies wildly, with missed areas and no checklist or way to check the work. In September 2026 a harsh acid ruined a bathroom's chrome fittings and left the taps leaking, with no remedy offered.
 
 **Challenge:** Let a household sign off a cleaning or carpentry job from before-and-after photos before the final payment.
 
-Medium · for people · India · teaches Vision, Mobile apps
+Hard · for everyday people · India · teaches Vision, Mobile apps
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4271,11 +4847,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P170 · Paid rental search: 1 viewing in 20 days
 
-Renters pay for premium search plans promising dozens of matching homes and a set number of owner contacts, then get 1 viewing in 20 days, or none. A Housing.com buyer got a few suggestions across a whole 45-day plan, and one relationship manager admitted having no verified properties at all. Ask for a refund and the answer is that the service was already used.
+Renters pay for premium search plans promising dozens of matching homes, then get 1 viewing in 20 days, or none. A Housing.com buyer got a few suggestions across a whole 45-day plan.
 
 **Challenge:** Get a renter 5 real viewings that match their brief within a week.
 
-Medium · for people · India · teaches AI agents, Automation and integrations
+Medium · for everyday people · India · teaches AI agents, Automation and integrations
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -4294,11 +4870,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P180 · A short walk to the metro, says the ad
 
-Property ads promise a short walk to the metro when the real peak-hour commute is far longer, and portals stay full of ghost listings for homes already sold or rented. In September 2026 a developer found unverified listings of its own project on Housing.com with no way to control them. Buyers making huge purchases still lack reliable data on schools, safety, air, water and power cuts.
+Property ads promise a short walk to the metro when the real peak-hour commute is far longer. In September 2026 a developer found unverified listings of its own project on Housing.com.
 
 **Challenge:** Tell a home seeker the real commute, power cuts and air quality for any address in under a minute.
 
-Easy · for people · India · teaches Data and dashboards, AI agents
+Medium · for everyday people · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4315,11 +4891,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P189 · The co-living room that changes after you pay
 
-Co-living and PG residents face undisclosed upfront fees, unreliable internet, unauthorised rent increases and eviction threats. Bookings are confirmed without real availability, residents get moved to worse rooms, and in April 2026 one managed-rental tenant was charged move-out fees for damage the manager's own staff had caused. Co-living has grown fast in Indian cities since 2024, and complaints about hidden fees grew with it.
+Co-living and PG residents face undisclosed upfront fees, unauthorised rent increases and eviction threats. Co-living has grown fast in Indian cities since 2024, and complaints about hidden fees grew with it.
 
 **Challenge:** Let a tenant compare co-living operators on what residents actually paid and got, before they sign.
 
-Medium · for people · India · teaches Data and dashboards, Full-stack web
+Medium · for everyday people · India · teaches Data and dashboards, Full-stack web
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4336,11 +4912,11 @@ pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P197 · Housing societies find tank cleaners by word of mouth
 
-Apartment societies struggle to find and schedule water tank cleaning, wait months for municipal pruning of dangerous branches before the monsoon, and find no quick private service to assess risky trees. Where management firms are hired, boards say they hide behind a portal and lose contact with residents. Upkeep slips until something breaks or falls.
+Apartment societies struggle to find and schedule water tank cleaning. They wait months for the municipality to prune dangerous branches before the monsoon.
 
 **Challenge:** Let a housing society book, track and verify every seasonal upkeep job from one shared calendar.
 
-Easy · for businesses · India · teaches Automation and integrations, Mobile apps
+Medium · for businesses · India · teaches Automation and integrations, Mobile apps
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4357,11 +4933,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P205 · Warranty refused, so the same fault gets paid twice
 
-Local repair shops give no warranty on work or parts, and where one is promised it often is not honoured: in August 2026 an AC was still faulty after nearly ₹10,000 of repairs, and the warranty was refused. Pest control customers watch cockroaches or termites return within weeks or months, while warranty revisits are delayed or denied. Households end up paying again for the same fault.
+Local repair shops give no warranty on work or parts, and where one is promised it often is not honoured. In August 2026 an AC was still faulty after nearly ₹10,000 of repairs, and the warranty was refused.
 
 **Challenge:** Make a repair or pest control warranty something a household can claim in one message.
 
-Medium · for people · India · teaches Mobile apps, Automation and integrations
+Medium · for everyday people · India · teaches Mobile apps, Automation and integrations
 
 <details><summary>Evidence (4) and scores (23)</summary>
 
@@ -4378,11 +4954,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P213 · When the cook quits on Monday morning
 
-Families relying on a full-time domestic worker face chaos when she quits suddenly, with no stopgap help available. Parents who work late cannot find a verified, trustworthy babysitter for a few evening hours without hiring a full-time nanny, and prepaid household help can stay unavailable for months. Working parents lose workdays to gaps nobody can fill at short notice.
+Families relying on a full-time domestic worker face chaos when she quits suddenly, with no temporary help available. Prepaid household help can stay unavailable for months, and working parents lose workdays.
 
 **Challenge:** Find a family verified help for tonight or this week, without a month-long contract.
 
-Medium · for people · India · teaches Mobile apps, Payments · also Work
+Medium · for everyday people · India · teaches Mobile apps, Payments · also Work
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -4398,11 +4974,11 @@ pain 4 · frequency 3 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P220 · Your property back home, and nobody watching it
 
-Indians living abroad fear encroachment on property left empty back home and get no real-time word from caretakers, a worry posted to Razorpay's Fix My Itch in January 2026. The managers they rely on fare little better: Buildium cannot handle more than one currency, and TenantCloud makes them pay for a higher plan to get owners' tax documents. So the owner never sees what the property earns or what is happening to it.
+Indians living abroad fear encroachment on property left empty back home, a worry posted to Razorpay's Fix My Itch in January 2026. Caretakers send no live updates, so the owner never sees what is happening to it.
 
 **Challenge:** Give a property owner abroad a monthly statement and photo update they trust, in their own currency.
 
-Easy · for businesses · global · teaches Data and dashboards, Automation and integrations · also Money
+Hard · for businesses · global · teaches Data and dashboards, Automation and integrations · also Money
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -4421,11 +4997,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P225 · The customer who was never called back
 
-Small renovation and trade contractors cannot see which customers were contacted or still need an appointment, and Jobber gives them little reporting. Housecall Pro works on a phone but is a mess at the desk, and saves job-site photos only one at a time. As heat pump and solar upgrades grew in 2025, homeowners named unreliable contractors as the biggest thing holding them back.
+Small renovation contractors cannot see which customers were contacted or still need an appointment. As heat pump and solar upgrades grew in 2025, homeowners named unreliable contractors as the biggest thing holding them back.
 
 **Challenge:** Give a 2-person contractor a job book that keeps every customer, photo and follow-up straight from a phone.
 
-Easy · for self-employed · global · teaches Mobile apps, Vision, Automation and integrations · also Work
+Medium · for self-employed · global · teaches Mobile apps, Vision, Automation and integrations · also Work
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -4443,11 +5019,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P230 · Field crews derailed by an update nobody announced
 
-Small home-service contractors say Jobber and Housecall Pro lag when several jobs are open, push unannounced updates mid-job and schedule so weakly that the crew's day falls apart. In India, an independent RO repair professional is stuck as a third-party vendor on Urban Company, unable to get their own partner ID. The tradesperson does the work while somebody else's system decides how the day goes.
+In India, an independent RO repair professional cannot get their own partner ID on Urban Company. The tradesperson does the work while somebody else's system decides how the day goes.
 
 **Challenge:** Let a solo tradesperson run their own bookings and schedule without depending on an aggregator's system.
 
-Easy · for self-employed · global · teaches Mobile apps, Full-stack web · also Work
+Medium · for self-employed · global · teaches Mobile apps, Full-stack web · also Work
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -4467,11 +5043,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P002 · Machine down and the only expert is days away
 
-Small factories halt production for days after a breakdown because nothing connects them quickly with qualified repair technicians. Skilled trades take years to learn, technicians on the floor get little real-time guidance, and many cannot even complete a work order from a phone.
+Small factories halt production for days after a breakdown because nothing connects them quickly with qualified repair technicians. Many technicians on the floor cannot even complete a work order from a phone.
 
 **Challenge:** Get a stalled machine diagnosed within the hour by the people already on the floor.
 
-Hard · for businesses · global · teaches Vision, Voice AI, Mobile apps · also Work
+Medium · for businesses · global · teaches Vision, Voice AI, Mobile apps · also Work
 
 <details><summary>Evidence (3) and scores (28)</summary>
 
@@ -4487,11 +5063,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 5 · novelt
 
 ### P014 · Owed lakhs, afraid to ask the buyer for it
 
-About ₹8.1 lakh crore owed to small suppliers sits in overdue buyer payments, yet most avoid complaints for fear of losing the customer. Filing through the online dispute route means assembling invoices and evidence nobody has time for, resolution is not time-bound, and polite reminders get ignored.
+About ₹8.1 lakh crore owed to small suppliers sits in overdue buyer payments. Most avoid complaints for fear of losing the customer, and polite reminders get ignored.
 
 **Challenge:** Turn a supplier's overdue invoices into a ready-to-file claim in one evening, without burning the relationship.
 
-Hard · for businesses · India · teaches AI agents, Full-stack web · also Money
+Medium · for businesses · India · teaches AI agents, Full-stack web · also Money
 
 <details><summary>Evidence (5) and scores (28)</summary>
 
@@ -4509,11 +5085,11 @@ pain 5 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P026 · The 9 kg parcel billed as 13 kg
 
-Couriers re-weigh parcels after pickup and bill small online sellers for weight that was never there, sometimes 2–3 weeks after booking and with no photo proof. One seller's 9 kg parcel was charged as 13 kg, and Shiprocket ignored the dispute, leaving the extra charge in place. As these charges pile up, the aggregator's rates end up higher than going straight to the courier.
+Couriers re-weigh parcels after pickup and bill small online sellers for weight that was never there, sometimes with no photo proof. One seller's 9 kg parcel was charged as 13 kg, and Shiprocket ignored the dispute.
 
 **Challenge:** Give a small seller proof of weight and size that settles the dispute before it starts.
 
-Hard · for businesses · India · teaches Vision, Data and dashboards · also Retail
+Medium · for businesses · India · teaches Vision, Data and dashboards · also Retail
 
 <details><summary>Evidence (3) and scores (27)</summary>
 
@@ -4529,11 +5105,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P038 · FASTag tolls for a truck that was parked
 
-Small family truck operators move most of India's freight, and their earnings per trip are shrinking as costs rise. Several FASTag toll deductions hit one owner's truck while it was parked, and the refund was rejected. Another paid BlackBuck for access to loads, then got no loads for a month and no money back, while others find autopay charges taken without clear consent.
+Several FASTag toll deductions hit one owner's truck while it was parked, and the refund was rejected. Another paid BlackBuck for access to loads, then got no loads for a month and no money back.
 
 **Challenge:** Catch every wrong toll, autopay and fee on a truck owner's account, and get it refunded.
 
-Hard · for self-employed · India · teaches Payments, Data and dashboards · also Travel
+Medium · for self-employed · India · teaches Payments, Data and dashboards · also Travel
 
 <details><summary>Evidence (4) and scores (27)</summary>
 
@@ -4570,11 +5146,11 @@ pain 5 · frequency 4 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P062 · Every small export order carries a big exporter's paperwork
 
-Low-value shipments make up a large share of India's shipping bills, yet small exporters carry the same paperwork, and the same chasing of bank proof that the money arrived, as the biggest. Matching many small export receipts to bank entries is slow, and labelling rules reported in September 2026 add proof that materials are free of toxic substances to every shipment.
+Small exporters carry the same paperwork as the biggest, and matching many small export receipts to bank entries is slow. Labelling rules reported in September 2026 add more proof to every shipment.
 
 **Challenge:** Close every small export's paperwork and bank entries within a week of payment, without a full-time clerk.
 
-Hard · for businesses · India · teaches Automation and integrations, AI agents · also Money
+Medium · for businesses · India · teaches Automation and integrations, AI agents · also Money
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4590,7 +5166,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P074 · The shipping wallet that eats a seller's cash
 
-Small online sellers prepay shipping into a courier aggregator's wallet and wait on cash-on-delivery remittances, then watch unexplained deductions, disputed weight charges and add-ons eat into that money. Shiprocket sellers reported debits support could not explain or reverse in October 2025, and in July 2026 a frozen wallet blocked one seller's dispatches entirely.
+Small online sellers prepay shipping into a courier wallet, then watch unexplained deductions and disputed weight charges eat that money. In July 2026 a frozen wallet stopped one seller from shipping at all.
 
 **Challenge:** Show a small seller every rupee the courier holds or took, and get the wrong ones back within a week.
 
@@ -4610,7 +5186,7 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P086 · Broken in transit, and the claim takes forever
 
-Online sellers lose or see damaged a few percent of parcels in transit, and fragile goods suffer most because handling instructions are ignored. Claims drag on for weeks, insurance claims get denied for lack of evidence, and the seller usually absorbs the loss.
+A few percent of online sellers' parcels are lost or damaged in transit, and fragile goods suffer most. Claims drag on for weeks or are denied for lack of evidence, and the seller usually takes the loss.
 
 **Challenge:** Get a seller paid for a broken or lost parcel in days, not weeks.
 
@@ -4632,7 +5208,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P098 · Pickup today, says the message, every day
 
-Small sellers get repeated pickup-scheduled messages while no courier arrives, so dispatch slips for days and buyers get angry. Prepaid shipping is not refunded, dashboards make rescheduling hard, and some shipments show no movement for weeks.
+Small sellers get repeated pickup-scheduled messages while no courier arrives, so dispatch slips for days and buyers get angry. Prepaid shipping is not refunded, and some shipments show no movement for weeks.
 
 **Challenge:** Make sure a booked pickup happens the same day, or a different courier comes.
 
@@ -4653,11 +5229,11 @@ pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P110 · The idle truck nobody puts a price on
 
-Indian fleet owners face rising operating costs, yet vehicle downtime, one of their largest hidden expenses, is rarely tracked or planned for. Fleetio's promised telematics sync did not reliably fill in vehicle data, so records still needed manual cleanup, and a 2026 interface update forced one fleet team to retrain the staff who log inspections and repairs.
+Indian fleet owners rarely track the time a vehicle is off the road, one of their largest hidden expenses. A 2026 interface update forced one fleet team to retrain the staff who log inspections and repairs.
 
 **Challenge:** Show a fleet owner what each idle day costs in rupees, without anyone typing in more data.
 
-Medium · for businesses · global · teaches Data and dashboards, Automation and integrations · also Travel
+Easy · for businesses · global · teaches Data and dashboards, Automation and integrations · also Travel
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4673,7 +5249,7 @@ pain 4 · frequency 4 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P122 · No paid seat, no way to log the fault
 
-A chemical plant could afford only a few full MaintainX seats, so everyone else logs maintenance work through someone who has one, and the data suffers. A machinery firm pays full licence price for staff who log a fault now and then, because there is no shared or low-usage seat. Most of this work happens away from a desk, yet software for maintenance crews has barely changed in 20 years.
+A chemical plant could afford only a few MaintainX licences, so everyone else logs work through someone who has one. Software for maintenance crews has barely changed in 20 years.
 
 **Challenge:** Let anyone on the shop floor log a fault in 10 seconds, without a paid seat.
 
@@ -4693,11 +5269,11 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P134 · Decades-old code, and nobody left who can fix it
 
-Small family businesses depend on custom code written decades ago that nobody left can repair, and as late as 2025 freight, travel and banking firms still ran on old terminal systems with modern screens layered on top. Heavily customised Odoo installs grow expensive to maintain, and every major upgrade threatens costly redevelopment and testing. Owners also fear losing access to their own books, with no good offline alternative.
+Small family businesses depend on custom code written decades ago that nobody left can repair. As late as 2025 freight, travel and banking firms still ran on old terminal systems.
 
 **Challenge:** Get a small firm off its old custom code, books intact, without stopping the business for a day.
 
-Hard · for businesses · global · teaches AI agents, Full-stack web · also Work
+Easy · for businesses · global · teaches AI agents, Full-stack web · also Work
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -4714,11 +5290,11 @@ pain 4 · frequency 2 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P145 · Fixed-price orders meet metal prices that never sit still
 
-Small engineering, plastics and component makers quote fixed prices weeks before buying aluminium, copper, steel or polymer, then watch input costs jump. Margins on orders already won vanish, and metal buyers can wait months for material they cannot buy direct from mills.
+Small engineering, plastics and component makers quote fixed prices weeks before buying aluminium, copper, steel or polymer. Input costs then jump, and margins on orders already won vanish.
 
 **Challenge:** Help a small manufacturer quote and buy so that a price spike cannot wipe out an order.
 
-Hard · for businesses · India · teaches Data and dashboards, AI agents
+Medium · for businesses · India · teaches Data and dashboards, AI agents
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4736,7 +5312,7 @@ pain 5 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P156 · Chasing suppliers by phone, one invoice at a time
 
-In a June 2026 LocalCircles survey, about 2 in 3 MSMEs said they struggle to manage multiple suppliers, and half reported constant follow-ups and invoices that fail GST checks, blocking their input credit. Complex supply chains still run on spreadsheets and phone calls, so disruptions beyond the direct supplier go unseen.
+In a June 2026 LocalCircles survey, about 2 in 3 MSMEs said they struggle to manage multiple suppliers. Half reported constant follow-ups and invoices that fail GST checks, blocking their input credit.
 
 **Challenge:** Take supplier follow-ups and invoice fixes off a small owner's phone, so no input credit is lost to a bad bill.
 
@@ -4756,11 +5332,11 @@ pain 3 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P166 · Load boards full of stale and phantom freight
 
-Owner-operators pay rising subscriptions for load boards that show stale posts, the same load reposted by competing brokers, and fewer listings after unexplained algorithm changes. New carriers cannot get booked for months and brokers are shifting to fixed trusted partners, leaving one-truck operators without steady freight.
+One-truck operators pay rising subscriptions for load boards that show stale posts and the same load reposted by competing brokers. New carriers cannot get booked for months.
 
 **Challenge:** Help a one-truck carrier find real, bookable loads without paying for noise.
 
-Medium · for self-employed · global · teaches Data and dashboards, Full-stack web · also Travel
+Easy · for self-employed · global · teaches Data and dashboards, Full-stack web · also Travel
 
 <details><summary>Evidence (5) and scores (25)</summary>
 
@@ -4778,11 +5354,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P176 · Hauled the load, then the broker vanished
 
-Owner-operators haul loads that were secretly re-brokered, then go unpaid when the middleman disappears. Wrong charges take months to resolve and unexplained account holds freeze earnings for a week, so one dispute can cost the loads a small carrier needs to stay afloat.
+Small carriers haul loads that were secretly passed on by a broker, then go unpaid when the middleman disappears. Wrong charges take months to resolve and account holds freeze earnings for a week.
 
 **Challenge:** Make sure a small carrier knows who is really paying before the truck is loaded.
 
-Hard · for self-employed · global · teaches AI agents, Payments · also Money
+Easy · for self-employed · global · teaches AI agents, Payments · also Money
 
 <details><summary>Evidence (3) and scores (25)</summary>
 
@@ -4798,11 +5374,11 @@ pain 5 · frequency 3 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P185 · Small sellers pay the steepest courier rates going
 
-Online sellers spend up to an hour a day comparing courier prices across zones and weight slabs, and still pay full rates that large shippers never see. Returns and replacements cost even more to ship than forward orders, and discounted aggregator rates can end up above going direct.
+Online sellers spend up to an hour a day comparing courier prices across zones and weight slabs. They still pay full rates that large shippers never see, and returns cost even more to ship.
 
 **Challenge:** Cut what a small seller pays per parcel without adding an hour of rate-checking to their day.
 
-Easy · for businesses · India · teaches Data and dashboards, Full-stack web · also Retail
+Medium · for businesses · India · teaches Data and dashboards, Full-stack web · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4819,11 +5395,11 @@ pain 3 · frequency 5 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P193 · Delivery attempted, says the courier who never called
 
-Last-mile agents log failed delivery attempts without calling or visiting, so parcels bounce back and orders get cancelled while the buyer sat at home. Xpressbees agents log a single missed ring as a failed attempt, and buyers reported the same story again and again between September 2025 and September 2026. Each time they reorder, wait for a refund and chase support that cannot help.
+Delivery agents log failed attempts without calling or visiting, so orders get cancelled while the buyer sat at home. Buyers reported the same story again and again between September 2025 and September 2026.
 
 **Challenge:** Make a false delivery attempt cost the courier, not the buyer waiting at home.
 
-Medium · for people · India · teaches Voice AI, Automation and integrations · also Retail
+Easy · for everyday people · India · teaches Voice AI, Automation and integrations · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -4841,11 +5417,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P201 · Return to origin bills the seller twice for nothing
 
-Parcels come back to small sellers marked return to origin after attempts that never happened, so the seller pays shipping both ways and loses the sale. Wrong or damaged returns arrive, claims are denied without a clear evidence process, and lost return parcels stay unrefunded for weeks.
+Parcels come back to small sellers marked return to origin after attempts that never happened. The seller pays shipping both ways and loses the sale, and lost return parcels stay unrefunded for weeks.
 
 **Challenge:** Cut a small seller's return-to-origin losses by half within a month.
 
-Easy · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
+Medium · for businesses · India · teaches Data and dashboards, Automation and integrations · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4862,11 +5438,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P209 · Parcels stuck in the hub with nobody answering
 
-Parcels reach the destination city and then sit, or loop between hubs, for days or weeks with no updates and no office number that answers. In October 2026 a Delhivery parcel sat stuck for about 2 weeks while the recipient could not reach anyone, and a small seller shipping through Shiprocket lost clients when parcels went untraceable mid-route. No escalation path reaches a person who can find the box.
+Parcels reach the destination city and then sit, or loop between hubs, for days or weeks with no updates. In October 2026 a Delhivery parcel sat stuck for about 2 weeks while the recipient could not reach anyone.
 
 **Challenge:** Find a stuck parcel and get it moving within 48 hours of it going quiet.
 
-Medium · for people · India · teaches AI agents, Data and dashboards · also Retail
+Easy · for everyday people · India · teaches AI agents, Data and dashboards · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -4884,7 +5460,7 @@ pain 3 · frequency 4 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P217 · Job shops run production on spreadsheets and hope
 
-Generic ERPs cannot handle the routings, work orders and mixed production of a small job shop, so the shop falls back on spreadsheets. Customising an off-the-shelf system becomes a costly project, and even MaintainX cannot track one part held in several locations at different costs. Makers raised the same complaint in August 2025, March 2026 and April 2026.
+Generic ERPs cannot handle the work orders and mixed production of a small job shop, so the shop falls back on spreadsheets. Makers raised the same complaint in August 2025, March 2026 and April 2026.
 
 **Challenge:** Let a small job shop see every order's stage and material, set up in a week rather than a year.
 
@@ -4905,11 +5481,11 @@ pain 4 · frequency 5 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P222 · Outgrew the accounting package, cannot afford the ERP
 
-Small goods businesses outgrow entry-level accounting and inventory software, hitting order caps, drifting stock counts and integrations locked behind higher tiers. A traditional ERP costs too much and takes months, so they keep reconciling by hand.
+Small goods businesses outgrow entry-level accounting and inventory software, hitting order caps and drifting stock counts. A traditional ERP costs too much and takes months, so they keep reconciling by hand.
 
 **Challenge:** Keep stock counts right across sales channels and books, without moving to an ERP.
 
-Easy · for businesses · global · teaches Automation and integrations, Data and dashboards · also Retail
+Medium · for businesses · global · teaches Automation and integrations, Data and dashboards · also Retail
 
 <details><summary>Evidence (4) and scores (24)</summary>
 
@@ -4926,7 +5502,7 @@ pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P227 · Next-day pay that lands a week late
 
-Small carriers cover fuel and payroll with factoring and quick pay, yet Truckstop's next-day quick pay waits 3–5 days on document checks and most factoring submissions land almost a week late. Factoring takes a large fee to reach money that is already owed. The cheap cash is never fast, and the fast cash is never cheap.
+Small transporters cover fuel and payroll with quick pay, yet Truckstop's next-day quick pay waits 3 to 5 days on document checks. The cheap cash is never fast, and the fast cash is never cheap.
 
 **Challenge:** Get a small carrier paid within a day of delivery for less than a factoring fee.
 
@@ -4946,7 +5522,7 @@ pain 4 · frequency 5 · willingness 4 · buildability 3 · learning 3 · novelt
 
 ### P232 · The truck never came and nobody knows why
 
-Small manufacturers book local transporters who never turn up, leaving finished goods stuck at the factory and delivery deadlines missed. Regional transporters give no live tracking, so customers keep calling for updates. A container's pickup number passes through 4 hands before it reaches the driver, owner to forwarder to broker to trucker, and every delay runs up storage fees.
+Small manufacturers book local transporters who never turn up, leaving finished goods stuck at the factory. A container's pickup number passes through 4 hands before it reaches the driver.
 
 **Challenge:** Give a small factory and its buyer a live view of every regional truck booking, from pickup to delivery.
 
@@ -4968,11 +5544,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P011 · Size 32 at one label, 34 at the next
 
-Indian clothing brands borrowed US and UK size charts, so a 32 at one label is a 34 at another and most shoppers guess. Fashion e-commerce returns run at 25–40%, mostly for fit, and festive cash-on-delivery orders bounced 58% of the time against under 15% for prepaid. New EU rules now make retailers inspect and handle returns rather than destroy them, so every return costs more.
+Indian clothing brands borrowed US and UK size charts, so a 32 at one label is a 34 at another. Most shoppers guess, and online fashion returns run at 25–40%, mostly for fit.
 
 **Challenge:** Cut a fashion brand's size returns by a third within one season.
 
-Medium · for businesses · India · teaches Data and dashboards, AI agents · also Retail
+Easy · for businesses · India · teaches Data and dashboards, AI agents · also Retail
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -4988,11 +5564,11 @@ pain 5 · frequency 5 · willingness 4 · buildability 3 · learning 4 · novelt
 
 ### P023 · The fake moisturiser you only spot after using it
 
-Counterfeit cosmetics reach buyers through big marketplaces, and buyers often suspect a fake only after using it. In June 2026 a Nykaa buyer worked it out after the return window had closed and was refused a refund. The one reliable check is comparing the packaging with a store-bought original, and when one shopper did that, neither the brand nor the marketplace replied.
+Counterfeit cosmetics reach buyers through big marketplaces, and buyers often suspect a fake only after using it. In June 2026 a Nykaa buyer worked it out after the return window had closed and was refused a refund.
 
 **Challenge:** Let a buyer tell whether a beauty product is genuine within a minute of unboxing it.
 
-Hard · for people · India · teaches Vision, Mobile apps · also Health
+Medium · for everyday people · India · teaches Vision, Mobile apps · also Health
 
 <details><summary>Evidence (3) and scores (26)</summary>
 
@@ -5008,7 +5584,7 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 5 · novelt
 
 ### P035 · The empty box that comes back as a return
 
-Small Meesho fashion sellers find 5–12% of returns come back as wrong or tampered items, and some as empty boxes. Claims must be filed within 48–72 hours with heavy photo proof, under a quarter succeed without proof of packing, and one reseller's account was suspended for appealing. Buyers face the mirror image: 3 lipsticks missing from a sealed Nykaa order, and no way to prove it.
+Small Meesho fashion sellers find 5–12% of returns come back as wrong or tampered items, and some as empty boxes. Claims must be filed with photo proof within 48–72 hours, and under a quarter succeed without proof of packing.
 
 **Challenge:** Give a small seller proof of what went into every parcel that a marketplace will actually accept.
 
@@ -5030,11 +5606,11 @@ pain 4 · frequency 4 · willingness 4 · buildability 4 · learning 4 · novelt
 
 ### P047 · A confirmed salon slot, and still a half-hour wait
 
-Indian salons lose 4–5 appointments a day to no-shows, over ₹70,000 a month. Customers who do turn up with a confirmed slot still wait half an hour, because bookings are kept by hand and ignore how long each service takes. When a stylist is out, every affected client has to be called one by one.
+Salon bookings kept by hand ignore how long each service takes, so customers with a confirmed slot still wait half an hour. Indian salons lose 4–5 appointments a day to no-shows, over ₹70,000 a month.
 
 **Challenge:** Cut a salon's no-shows and waiting time in half without adding a receptionist.
 
-Easy · for businesses · India · teaches Voice AI, Automation and integrations
+Hard · for businesses · India · teaches Voice AI, Automation and integrations
 
 <details><summary>Evidence (4) and scores (25)</summary>
 
@@ -5051,7 +5627,7 @@ pain 4 · frequency 5 · willingness 3 · buildability 4 · learning 4 · novelt
 
 ### P059 · Bridal slots booked in DMs, lost to ghosting
 
-Freelance makeup artists, mehendi artists and saree drapers take bookings through direct messages with no deposit, contract or trial, so one ghosted wedding slot wipes out a full day's income. Customers face the mirror image: no way to find a skilled freelancer at short notice, and nothing to fall back on when a ₹2 lakh look goes wrong.
+Freelance makeup artists, mehendi artists and saree drapers take bookings through direct messages with no deposit, contract or trial. One ghosted wedding slot wipes out a full day's income.
 
 **Challenge:** Make booking a freelance beauty professional as binding as booking a salon, with a deposit, a trial and a findable profile.
 
@@ -5074,11 +5650,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 4 · learning 3 · novelt
 
 ### P071 · The foundation shade that turns wrong by noon
 
-Indian buyers often order several wrong foundation shades online, because undertone and oxidation do not show in a product photo and the shade turns wrong within hours. Bridal artists often apply one standard look to darker skin, and imported skincare made for cooler climates irritates in Indian humidity and pollution. Every wrong bottle is money spent on something that was never going to suit.
+Indian buyers often order several wrong foundation shades online, because undertone does not show in a product photo. The shade turns wrong within hours, and every wrong bottle is money wasted.
 
 **Challenge:** Help someone find a shade and a routine that work on their skin before they spend a rupee.
 
-Medium · for people · India · teaches Vision, Mobile apps · also Retail
+Easy · for everyday people · India · teaches Vision, Mobile apps · also Retail
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -5094,11 +5670,11 @@ pain 3 · frequency 3 · willingness 3 · buildability 4 · learning 5 · novelt
 
 ### P083 · Bought from the official store, delivered as a fake
 
-40% of Indian cosmetics buyers have hit counterfeits in 3 years, with online platforms the top source, and a quarter of them reported allergic reactions. Commingled inventory means even a brand's official storefront can ship a fake, and a Meesho Mall order in June 2026 arrived old, used and in worn packaging. Every fake makes buyers trust every seller a little less.
+40% of Indian cosmetics buyers have hit counterfeits in 3 years, with online platforms the top source. A quarter of them reported allergic reactions.
 
 **Challenge:** Show a beauty buyer where a specific unit came from before it touches their skin.
 
-Hard · for people · India · teaches Data and dashboards, Full-stack web · also Retail, Health
+Easy · for everyday people · India · teaches Data and dashboards, Full-stack web · also Retail, Health
 
 <details><summary>Evidence (3) and scores (24)</summary>
 
@@ -5114,11 +5690,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 3 · novelt
 
 ### P095 · The lipstick arrived opened, and the return was refused
 
-Beauty and grocery buyers cannot see a manufacturing or best-before date before ordering, so skincare has arrived with 13 of its 24 months of shelf life already gone. When a perfume came with a tampered seal, Nykaa refused the return; Purplle did the same for a used lipstick. The buyer is left unsure whether they got something used, fake or old.
+Beauty and grocery buyers cannot see a manufacturing or best-before date before ordering. Skincare has arrived with 13 of its 24 months of shelf life already gone.
 
 **Challenge:** Make a beauty order's shelf life and seal visible before payment, and provable after delivery.
 
-Medium · for people · India · teaches Vision, Mobile apps · also Retail
+Medium · for everyday people · India · teaches Vision, Mobile apps · also Retail
 
 <details><summary>Evidence (5) and scores (24)</summary>
 
@@ -5136,9 +5712,9 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P107 · A quarter of a shopkeeper's wage, for handwoven cloth
 
-A March 2025 report found Indian handloom weavers earn a quarter of what shopkeepers do, losing margin to middlemen and powerloom copies. They sell through seasonal fairs at prices that barely cover costs, and selling online means website builders that assume design and technical skills they do not have.
+A March 2025 report found Indian handloom weavers earn a quarter of what shopkeepers do, losing margin to middlemen. Selling online means website builders that assume design and technical skills they do not have.
 
-**Challenge:** Let a weaver list a piece for sale online from a phone, in their own language, in 5 minutes.
+**Challenge:** Let a weaver list a piece for sale online from a phone, in their regional language, in 5 minutes.
 
 Medium · for self-employed · India · teaches Voice AI, Mobile apps, Full-stack web · also Creators, Retail
 
@@ -5156,7 +5732,7 @@ pain 5 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P119 · Hand-counted commissions, and the disputes that follow
 
-Indian salon owners spend over 10 hours a month on GST reconciliation and still work out commissions and attendance by hand, which keeps causing disputes with staff. Those who move to software like Zenoti have seen financial data mapped wrongly in migration, loyalty and membership rules too fiddly to set up, and only a support bot when billing breaks.
+Indian salon owners still work out staff commissions and attendance by hand, which keeps causing disputes. They also spend over 10 hours a month on GST reconciliation.
 
 **Challenge:** Make a salon's month-end close, commissions and GST included, take an hour and end with no staff disputes.
 
@@ -5178,11 +5754,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P131 · Years of size charts you cannot take with you
 
-Small clothing stores on Shopify pay per-order fees for size-chart add-ons, so fit guidance costs more as sales grow, and one merchant could not export years of charts they had built. Size recommenders stop working silently and the store finds out later, while a model's height and size or a virtual try-on is too crude for shoppers to trust. So returns stay high.
+Small clothing stores on Shopify pay per-order fees for size-chart add-ons, so fit guidance costs more as sales grow. One merchant could not export years of charts they had built.
 
 **Challenge:** Give a small clothing store fit guidance it owns, that never silently breaks and costs nothing per order.
 
-Medium · for businesses · global · teaches Full-stack web, Vision · also Retail
+Hard · for businesses · global · teaches Full-stack web, Vision · also Retail
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -5200,11 +5776,11 @@ pain 3 · frequency 3 · willingness 4 · buildability 4 · learning 3 · novelt
 
 ### P143 · Destroying good clothes because nobody saw demand coming
 
-Garment makers produce on guesswork and lose heavily every year to unsold stock and clearance markdowns, and some brands destroy wearable excess rather than discount it, to protect their prices. Smaller makers cannot even see what is selling: in August 2026 an apparel manufacturer found Zoho Inventory's reports too rigid and its mobile version too limited for the factory floor.
+Garment makers produce on guesswork and lose heavily every year to unsold stock and clearance discounts. Some brands destroy wearable clothes rather than discount them, to protect their prices.
 
 **Challenge:** Help a small apparel maker cut next season's unsold stock by a fifth.
 
-Medium · for businesses · global · teaches Data and dashboards, AI agents · also Manufacturing
+Easy · for businesses · global · teaches Data and dashboards, AI agents · also Manufacturing
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -5220,11 +5796,11 @@ pain 4 · frequency 3 · willingness 3 · buildability 3 · learning 4 · novelt
 
 ### P154 · The dress that looks nothing like its photo
 
-Clothes bought online often arrive in an off colour, thinner fabric or a worse fit than the photos showed, and price no longer signals quality, since cheap and expensive pieces both fall apart. On Meesho, products repeatedly differ from their listings, and one buyer of a poor-quality dress waited 20 days with no reply to their return request.
+Clothes bought online often arrive in an off colour, thinner fabric or a worse fit than the photos showed. One Meesho buyer of a poor-quality dress waited 20 days with no reply to their return request.
 
 **Challenge:** Let a shopper judge fabric, colour and build quality before paying, from evidence rather than the seller's photos.
 
-Medium · for people · India · teaches Vision, Data and dashboards · also Retail
+Easy · for everyday people · India · teaches Vision, Data and dashboards · also Retail
 
 <details><summary>Evidence (5) and scores (23)</summary>
 
@@ -5242,11 +5818,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 3 · learning 4 · novelt
 
 ### P164 · Clothes that stop fitting after a handful of washes
 
-Mass-market garments lose their shape within a handful of washes, and cotton-spandex blends shrink badly even when washed cold and hung to dry, so a correctly sized purchase stops fitting within weeks. Silk sarees and embroidered outfits fare worse, ruined by local dry cleaners who use harsh chemicals. The result is paying again and again to replace clothes.
+Mass-market garments lose their shape within a handful of washes. Cotton-spandex blends shrink badly even when washed cold and hung to dry, so a correctly sized purchase stops fitting within weeks.
 
 **Challenge:** Tell a shopper how a garment will survive washing, and how to wash it, before it is ruined.
 
-Hard · for people · global · teaches Vision, Mobile apps
+Easy · for everyday people · global · teaches Vision, Mobile apps
 
 <details><summary>Evidence (3) and scores (23)</summary>
 
@@ -5262,11 +5838,11 @@ pain 3 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelt
 
 ### P174 · Return pickups that never come
 
-Online fashion returns stall at the doorstep: pickups are rescheduled for weeks with false notes that the customer was unavailable, or happen only during working hours when buyers are out. Even after a pickup, refunds sit pending for weeks with no status or escalation route, and some arrive only after a formal consumer complaint.
+Online fashion return pickups are rescheduled for weeks, with false notes that the customer was unavailable. Even after a pickup, refunds sit pending for weeks, and some arrive only after a formal consumer complaint.
 
 **Challenge:** Get a stuck return picked up and refunded within a week, without the buyer spending an hour on support.
 
-Medium · for people · India · teaches AI agents, Automation and integrations · also Retail
+Medium · for everyday people · India · teaches AI agents, Automation and integrations · also Retail
 
 <details><summary>Evidence (6) and scores (23)</summary>
 
@@ -5285,11 +5861,11 @@ pain 3 · frequency 4 · willingness 2 · buildability 4 · learning 4 · novelt
 
 ### P183 · Salons paying commission on their own regulars
 
-Booking software sold to small salons and solo stylists charges marketplace commission on clients who were already theirs, adds per-message and per-card fees, and changes plans without warning. The monthly bill becomes impossible to predict, and some owners give up and go back to a paper diary.
+Booking software charges solo stylists commission on clients who were already theirs, plus per-message and per-card fees. The monthly bill becomes impossible to predict, and some owners go back to a paper diary.
 
 **Challenge:** Let a solo stylist take bookings and deposits from their own clients without paying a cut on every visit.
 
-Easy · for self-employed · global · teaches Full-stack web, Payments · also Work
+Hard · for self-employed · global · teaches Full-stack web, Payments · also Work
 
 <details><summary>Evidence (5) and scores (22)</summary>
 
@@ -5302,6 +5878,106 @@ Easy · for self-employed · global · teaches Full-stack web, Payments · also 
 **Why now:** Several salon booking vendors changed pricing in 2025 and pushed solo professionals onto team plans, while payment links and calendar APIs make a lean alternative cheap to run.
 
 pain 3 · frequency 4 · willingness 4 · buildability 4 · learning 2 · novelty 2 · openness 3
+
+</details>
+
+### P279 · 8% wastage on the bill, ₹22,693 gone
+
+Gold jewellery bills can charge wastage on top of making charges, so the buyer pays twice for the same work. In one jeweller's example, an 8% wastage line adds about ₹22,693 to a 20 g bangle.
+
+**Challenge:** Show a gold buyer what each line on a jeweller's estimate really costs before they pay.
+
+Easy · for everyday people · India · teaches Vision, Data and dashboards · also Money
+
+<details><summary>Evidence (3) and scores (23)</summary>
+
+- A jewellery chain's sponsored explainer says making charges, wastage and stone values are often not itemised, and some jewellers bill wastage on top of making charges, so buyers pay twice. [other, 2026-04-16](https://www.tribuneindia.com/news/business/gold-jewellery-making-charges-hallmarking-hidden-costs-what-every-buyer-should-know-before-purchasing/)
+- On 2 Sept 2026 the bullion association quoted gold at ₹15,467 a gram while a jewellery bill showed ₹16,331 or more. Making charges of 5–12% and 3% GST make up most of the gap. [news, 2026-09-02](https://www.karmactive.com/gold-price-september-2-ibja-benchmark-vs-retail-jewelry-cost-markup-explained/)
+- A Nagpur jeweller writes that real making loss is 0.5–2% while buyers are quoted 5–12% wastage. On a 20 g bangle an 8% wastage line adds about ₹22,693, and those grams are not credited on exchange. [other, 2026-10-13](https://londejewellers.com/guides/gold-wastage-vs-making-charges-nagpur)
+
+**Why now:** Gold stood above ₹15,000 a gram in September 2026, so every percentage point of wastage or making charge now costs far more in rupees.
+
+pain 4 · frequency 2 · willingness 3 · buildability 5 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P280 · The boutique's Instagram page, copied by a thief
+
+Fake Instagram pages copy a real clothing shop's photos and take money for clothes that are fake or never sent. In July 2026 a buyer paid ₹7,000 for a silk saree and got one worth about ₹2,300.
+
+**Challenge:** Tell a shopper whether an Instagram clothing page is the real shop before they send money.
+
+Easy · for everyday people · India · teaches Vision, AI agents · also Retail
+
+<details><summary>Evidence (3) and scores (22)</summary>
+
+- A thrift seller's guide says fake pages use copied reviews and staged shipping videos, refuse cash on delivery and take payment only to a personal UPI ID or QR code. [other, 2025-08-19](https://thriftwallet.in/blogs/the-thrift-journal/how-to-detect-fake-thrift-pages-on-instagram-2025-gen-z-guide)
+- A Lucknowi clothing brand says buyers were cheated by pages using its photos and lookalike names. They take payment to a personal UPI ID, demand extra GST or delivery fees, then block the buyer. [other, 2025-10-09](https://hayatslucknowi.com/blogs/hayats-journal/don-t-get-duped-spotting-online-shopping-scams-in-india)
+- A man allegedly ran a fake Instagram page with a Kancheepuram silk showroom's photos and videos from December 2025. A buyer paid ₹7,000 and was sent a saree bought for about ₹2,300. [news, 2026-07-25](https://www.dtnext.in/news/tamilnadu/conman-creates-fake-insta-id-of-kancheepuram-silk-saree-showroom-arrested)
+
+**Why now:** Small clothing shops now sell mainly through Instagram, and a 2026 police case showed a copied page running for 7 months before the first complaint.
+
+pain 4 · frequency 3 · willingness 2 · buildability 4 · learning 3 · novelty 3 · openness 3
+
+</details>
+
+### P281 · Advance paid, wedding over, blouse still not stitched
+
+Tailors take advances for wedding outfits and miss the date, because orders live in a register and in memory. One Ahmedabad customer paid ₹4,395 and wore something else to the wedding.
+
+**Challenge:** Help a tailor promise only the dates they can keep, and deliver every outfit before the function.
+
+Hard · for self-employed · India · teaches Automation and integrations, Full-stack web
+
+<details><summary>Evidence (3) and scores (24)</summary>
+
+- An Ahmedabad tailor took a ₹4,395 advance for a blouse needed at a wedding on 24 Dec 2024 and never finished it. The consumer commission ordered a refund with 7% interest, compensation and costs. [news, 2025-10-29](https://lawtrend.in/?p=322215)
+- A messaging vendor's guide says Indian tailoring boutiques track orders by phone calls, memory and a register, so trials are forgotten and reminders are missed in the festive rush. [other, 2026-06-15](https://richautomate.in/blog/whatsapp-bespoke-tailoring-boutique-india-2026)
+- A Kollam customer paid ₹3,760 in February 2025 for 2 dresses for a wedding. The boutique moved the date twice, sent 1 dress in May, and was ordered to pay ₹25,000 in compensation. [news, 2026-07-31](https://livelaw.library.keralalawacademy.in/consumer-cases/boutique-liable-for-non-delivery-of-dress-despite-full-payment-kollam-consumer-commission-543727)
+
+**Why now:** Consumer commissions in Ahmedabad and Kollam ruled against a tailor and a boutique in 2025 and 2026, so a missed wedding date now costs far more than the advance.
+
+pain 4 · frequency 4 · willingness 3 · buildability 4 · learning 4 · novelty 2 · openness 3
+
+</details>
+
+### P282 · Monthly gold instalments paid, then the shop shut
+
+Families pay a jeweller every month towards gold, with nothing behind the money if the shop closes. In Mysuru in 2026, over 80 people said a jeweller took instalments and left the city.
+
+**Challenge:** Help a family see the risks in a jeweller's gold scheme and keep proof of every rupee paid in.
+
+Medium · for everyday people · India · teaches Data and dashboards, Vision · also Money
+
+<details><summary>Evidence (3) and scores (24)</summary>
+
+- Over 500 people went to police against a Kochi jeweller that ran gold schemes, some with money saved for their children's weddings. About 50 cases were filed at one station alone. [news, 2025-08-25](https://www.theweek.in/wire-updates/national/2025/08/25/mds2-kl-investment-scam-case.html)
+- A Nagpur jeweller's guide says a gold scheme is an advance for jewellery, not a deposit, with no regulator or insurance behind it, and that a term over 12 months is a warning sign. [other, 2026-08-07](https://londejewellers.com/guides/are-gold-saving-schemes-safe-nagpur-2026)
+- A Mysuru jeweller was detained after more than 80 people said he took monthly instalments for gold, kept the shop shut for a week and left the city. 2 earlier rounds had paid out as promised. [news, 2026-09-03](https://www.siasat.com/mysuru-jewellery-owner-held-for-alleged-gold-scheme-fraud-3535201/)
+
+**Why now:** With gold at record prices, monthly schemes are how many families now buy it, and police cases followed in Kochi in 2025 and Mysuru in 2026.
+
+pain 5 · frequency 2 · willingness 2 · buildability 4 · learning 3 · novelty 4 · openness 4
+
+</details>
+
+### P283 · The banned fairness cream still on the shelf
+
+Skin creams with mercury reach buyers through small cosmetic shops and salons. In July 2026 Maharashtra banned 3 creams after 18 women developed kidney disorders, and told every shop to pull its stock.
+
+**Challenge:** Tell a cosmetics shop owner which products on the shelf have been banned, the day the notice comes out.
+
+Medium · for businesses · India · teaches AI agents, Data and dashboards · also Retail
+
+<details><summary>Evidence (3) and scores (25)</summary>
+
+- A hospital's kidney specialists say they see more patients who used cheap fairness creams with mercury, which damages the kidney's filters. Most improve once the cream is stopped. [other, 2025-10-17](https://www.manipalhospitals.com/kanakapuraroad/blog/mercury-in-skin-creams-kidney-risk/)
+- After 18 Nagpur women developed kidney disorders, Maharashtra's FDA banned 3 skin-lightening creams, told shops and stockists to stop selling and recall stock, and a Mumbai shopkeeper faces a case. [news, 2026-07-05](https://www.businesstoday.in/india/story/goree-beauty-cream-ban-maharashtra-fda-nagpur-kidney-cases-high-mercury-pakistan-541041-2026-07-05)
+- Tests found mercury and lead above the limit in 5 cosmetic products that move through neighbourhood cosmetic shops, salons and online sellers. Several lacked batch, manufacturing and expiry details. [news, 2026-07-14](https://www.theweek.in/news/health/2026/07/14/why-is-the-maharashtra-fda-warning-against-these-skin-lightening-creams.html)
+
+**Why now:** The July 2026 ban in Maharashtra put the duty on every retailer and stockist to stop selling, recall stock and report quantities, and one shopkeeper already faces a criminal case.
+
+pain 5 · frequency 2 · willingness 2 · buildability 4 · learning 3 · novelty 5 · openness 4
 
 </details>
 

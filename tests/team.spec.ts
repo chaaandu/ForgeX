@@ -1,229 +1,169 @@
-import { expect, test, type Page } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import {
   AARAV,
+  answer,
+  approved,
+  CHANDU,
   DIYA,
+  PARAM,
   reset,
+  SAURABH,
+  sendProblem,
+  sendStage,
+  setClock,
   signIn,
   TEAM,
-  throughArchetype,
-  throughProfile,
-  throughWorld,
-  WHY,
+  toProblem,
+  WHEN,
 } from './helpers'
-
-async function sendWhy(page: Page) {
-  await signIn(page, AARAV)
-  await throughArchetype(page, false)
-  await throughProfile(page)
-  await throughWorld(page)
-  await page
-    .getByRole('list', { name: '4 problems picked for you.' })
-    .getByRole('button')
-    .first()
-    .click()
-  await page.getByRole('button', { name: "I'll build this" }).click()
-  await page.getByLabel('Why this problem?').fill(WHY.whyProblem)
-  await page.getByLabel('Who would use what you build, and why?').fill(WHY.whyUser)
-  await page.getByLabel('Why would they pay for it, or how would it make money?').fill(WHY.whyPay)
-  await page.getByRole('button', { name: 'Send my why' }).click()
-  await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
-  await page.context().clearCookies()
-}
 
 test.beforeEach(async ({ page }) => {
   await reset(page)
 })
 
-for (const [label, stamp] of [
-  ['Approve', 'Approved'],
-  ['Needs a tweak', 'Needs a tweak'],
-  ['Talk to mentor', 'Talk to your mentor'],
-] as const) {
-  test(`the team answers ${label} and the founder sees it`, async ({ page }) => {
-    await sendWhy(page)
-    await signIn(page, TEAM)
-    await page.goto('/team/queue')
-    await expect(page.getByRole('heading', { name: 'Aarav Shrivastava' })).toBeVisible()
-    // No shortcut letters anywhere: the buttons are just their words.
-    await expect(page.getByRole('radio', { name: label, exact: true })).toBeVisible()
-    await page.getByRole('radio', { name: label, exact: true }).click()
-    await page
-      .getByLabel('Note to the founder')
-      .fill('Talk to three shop owners before you build anything.')
-    await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-    await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
-
-    await page.getByRole('link', { name: /^Replied/ }).click()
-    await expect(page.getByText('Aarav Shrivastava')).toBeVisible()
-
-    await page.context().clearCookies()
-    await signIn(page, AARAV)
-    await page.goto('/f/aarav-shrivastava')
-    await expect(page.getByText(stamp, { exact: true }).first()).toBeVisible()
-    await expect(
-      page.getByText('Talk to three shop owners before you build anything.').first(),
-    ).toBeVisible()
-  })
-}
-
-test('Try another sends the founder back to fresh matches with suggestions first', async ({
+test('only the reviewers and the super admin can answer; everyone else at Mesa watches', async ({
   page,
 }) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await page.getByRole('radio', { name: 'Try another', exact: true }).click()
-  await page.getByPlaceholder('kirana').fill('a')
-  await page.getByRole('list', { name: 'Matching problems' }).getByRole('button').first().click()
-  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+  await toProblem(page)
+  await sendProblem(page)
+  const reviewer = (await page.getByText(/will review it\.$|will reply here/).first().innerText()).split(' ')[0]
 
   await page.context().clearCookies()
-  await signIn(page, AARAV)
-  await page.goto('/f/aarav-shrivastava')
-  await page.getByRole('link', { name: 'Back to matches' }).click()
-  await expect(page.getByText('The team suggested this').first()).toBeVisible()
+  await signIn(page, TEAM)
+  await page.goto('/team/reviews')
+  const item = page.getByRole('article', { name: 'Aarav Shrivastava' })
+  await expect(item).toBeVisible()
+  await expect(item.getByRole('button', { name: 'Send answer' })).toHaveCount(0)
+  await expect(item.getByText('Only the reviewers and the super admin can answer.')).toBeVisible()
+
+  // A reviewer answers only their own group; the other may read it.
+  const [mine, theirs] = reviewer === 'Param' ? [PARAM, SAURABH] : [SAURABH, PARAM]
+  await page.context().clearCookies()
+  await signIn(page, theirs)
+  await page.goto('/team/reviews?scope=all')
+  await expect(page.getByRole('article', { name: 'Aarav Shrivastava' }).getByRole('button', { name: 'Send answer' })).toHaveCount(0)
+  if (reviewer === 'Saurabh' || reviewer === 'Param') {
+    await page.context().clearCookies()
+    await signIn(page, mine)
+    await answer(page, 'Aarav Shrivastava', 'Approve')
+  }
 })
 
-test('an approved founder shows on the landing, and the cohort sees their page but not the thread', async ({
-  page,
-}) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await page.getByRole('radio', { name: 'Approve', exact: true }).click()
-  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+test('approve with changes and reject both need a note', async ({ page }) => {
+  await toProblem(page)
+  await sendProblem(page)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/team/reviews')
+  const item = page.getByRole('article', { name: 'Aarav Shrivastava' })
+  await item.getByRole('radio', { name: 'Reject', exact: true }).click()
+  await item.getByRole('button', { name: 'Send answer' }).click()
+  await expect(item.getByText('Add a note for this answer.')).toBeVisible()
+})
+
+test('every version and answer is in the history, newest first, and sorts by name', async ({ page }) => {
+  await toProblem(page)
+  await sendProblem(page)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await answer(page, 'Aarav Shrivastava', 'Reject', 'Too broad.')
+  await page.goto('/team/history')
+  const rows = page.getByRole('row')
+  await expect(rows.nth(1)).toContainText('Rejected')
+  await expect(rows.nth(2)).toContainText('Submitted')
+  await expect(page.getByText('Too broad.')).toBeVisible()
+})
+
+test('the progress board counts each status, and Chandu alone reopens a deadline', async ({ page }) => {
+  await approved(page)
+  await sendStage(page, 'prototype')
+  await page.context().clearCookies()
+
+  await signIn(page, SAURABH)
   await page.goto('/f/aarav-shrivastava')
-  // The team sees who replied, by name and nothing more.
-  await expect(page.getByText(/^Team ·/).first()).toBeVisible()
+  await expect(page.getByRole('button', { name: /^Reopen/ })).toHaveCount(0)
 
   await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/team')
+  await expect(page.getByRole('link', { name: /Aarav Shrivastava/ }).first()).toBeVisible()
+  await setClock(page, WHEN.over)
+  await page.goto('/f/aarav-shrivastava')
+  await page.getByRole('button', { name: 'Reopen Launch' }).click()
+  await expect(page.getByText('Reopened: Launch.')).toBeVisible()
+
+  // Reopened, Aarav can send that one stage, late; the pitch stays shut.
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/submit/launch')
+  await expect(page.getByText('The team has reopened this for you. Submit it as soon as you can.')).toBeVisible()
+  await sendStage(page, 'launch')
+  await page.goto('/submit/pitch')
+  await expect(page.getByText(/This closed before you submitted/)).toBeVisible()
+})
+
+test('a founder who is building shows on the landing with their progress, and the cohort sees only the live link and repo', async ({
+  page,
+}) => {
+  await approved(page)
+  await sendStage(page, 'prototype')
+  await sendStage(page, 'launch')
+  await page.context().clearCookies()
+
   await page.goto('/')
-  const building = page.getByRole('region', { name: "What they're building" })
-  await expect(building.getByRole('link', { name: /Aarav Shrivastava/ })).toBeVisible()
+  const card = page.getByRole('link', { name: "Open Aarav Shrivastava's profile" })
+  await expect(card).toContainText('Weekend markets lose their regulars')
+  await expect(card.getByRole('img', { name: '70% done' })).toBeVisible()
 
   await signIn(page, DIYA)
   await page.goto('/f/aarav-shrivastava')
-  await expect(page.getByRole('heading', { name: 'Aarav Shrivastava' })).toBeVisible()
-  // Founders get no way to sign out, and no account menu.
-  await expect(page.getByRole('button', { name: /Sign out|^Account:/ })).toHaveCount(0)
-  await expect(page.getByText(WHY.whyProblem)).toHaveCount(0)
-  await expect(page.getByText('Team only')).toHaveCount(0)
+  await expect(page.getByRole('link', { name: 'market-day.vercel.app' }).first()).toBeVisible()
+  await expect(page.getByText('Pitch deck')).toHaveCount(0)
+  await expect(page.getByText('Team view only')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: /^Reopen/ })).toHaveCount(0)
 })
 
-test('a founder who needs a tweak is not counted as approved', async ({ page }) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await page.getByRole('radio', { name: 'Needs a tweak', exact: true }).click()
-  await page.getByLabel('Note to the founder').fill('Narrow it to one city first.')
-  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
-
+test('a founder with nothing approved has no page for the cohort', async ({ page }) => {
+  await toProblem(page)
+  await sendProblem(page)
   await page.context().clearCookies()
-  await page.goto('/')
-  const building = page.getByRole('region', { name: "What they're building" })
-  await expect(building.getByRole('link', { name: /Aarav Shrivastava/ })).toHaveCount(0)
   await signIn(page, DIYA)
   expect((await page.goto('/f/aarav-shrivastava'))?.status()).toBe(404)
 })
 
-async function reply(page: Page, label: string, note = '') {
-  await page.getByRole('radio', { name: label, exact: true }).click()
-  if (note) await page.getByLabel('Note to the founder').fill(note)
-  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-}
+test('the demo cohort fills the console, and the export lists every founder', async ({ page }) => {
+  await reset(page, true)
+  await setClock(page, '2026-10-19T12:00:00+05:30')
+  await signIn(page, CHANDU)
+  await page.goto('/team/reviews')
+  await expect(page.getByRole('article').first()).toBeVisible()
+  const csv = await (await page.request.get('/api/team/export.csv')).text()
+  expect(csv.trim().split('\n').length).toBeGreaterThanOrEqual(118)
+})
 
-test('a tweak goes back to the founder, comes back as a change, and is approved', async ({
+test('the bank shows each 2-day version and level, only Chandu edits it, and the team signs out', async ({
   page,
 }) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await reply(page, 'Needs a tweak', 'Narrow it to hardware shops in one city.')
-  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
-
-  // The founder sees one clear next step, and our note waits for them where they make the change.
-  await page.context().clearCookies()
-  await signIn(page, AARAV)
-  await page.goto('/f/aarav-shrivastava')
-  await page.getByRole('link', { name: 'Make the change' }).click()
-  await page.waitForURL('**/why?revise=1')
-  await expect(page.getByRole('complementary', { name: 'What we asked' })).toContainText(
-    'Narrow it to hardware shops in one city.',
-  )
-  await expect(page.getByLabel('Why this problem?')).toHaveValue(WHY.whyProblem)
-  await page
-    .getByLabel('Why this problem?')
-    .fill(`${WHY.whyProblem} I will start with the 12 hardware shops on our street in Nagpur.`)
-  await page.getByRole('button', { name: 'Send the change' }).click()
-  await expect(page.getByRole('heading', { name: 'Sent.' })).toBeVisible()
-
-  // The team sees it is a revision, and what they asked for.
-  await page.context().clearCookies()
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await expect(page.getByText('Revised after a tweak')).toBeVisible()
-  await expect(page.getByRole('complementary', { name: 'You asked' })).toContainText(
-    'Narrow it to hardware shops in one city.',
-  )
-  await reply(page, 'Approve')
-  await expect(page.getByText('No one is waiting. Every why has a reply.')).toBeVisible()
+  for (const email of [TEAM, SAURABH]) {
+    await page.context().clearCookies()
+    await signIn(page, email)
+    await page.goto('/team/bank')
+    await page.getByRole('button', { name: /^Live/ }).click()
+    await expect(page.getByRole('button', { name: 'Take down' })).toHaveCount(0)
+  }
 
   await page.context().clearCookies()
-  await page.goto('/')
-  await expect(
-    page
-      .getByRole('region', { name: "What they're building" })
-      .getByRole('link', { name: /Aarav/ }),
-  ).toBeVisible()
-})
-
-test('the team can send a new reply to a pick it already answered', async ({ page }) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await reply(page, 'Needs a tweak', 'Talk to two more shops first.')
-  await page.getByRole('link', { name: /^Replied/ }).click()
-  await page.getByRole('button', { name: 'Send a new reply' }).click()
-  await expect(page.getByText('New reply to Aarav Shrivastava')).toBeVisible()
-  await reply(page, 'Approve', 'Settled on a call. Go build it.')
-  await page.getByRole('link', { name: /^Approved/ }).click()
-  await expect(page.getByText('Settled on a call. Go build it.')).toBeVisible()
-})
-
-test('a tweak without a note is held back', async ({ page }) => {
-  await sendWhy(page)
-  await signIn(page, TEAM)
-  await page.goto('/team/queue')
-  await page.getByRole('radio', { name: 'Needs a tweak', exact: true }).click()
-  await page.getByRole('button', { name: 'Send reply', exact: true }).click()
-  await expect(page.getByRole('status')).toHaveText('A tweak needs a note.')
-})
-
-test('the bank offers only the moves that fit each state, and the founders table exports', async ({
-  page,
-}) => {
-  await signIn(page, TEAM)
+  await signIn(page, CHANDU)
   await page.goto('/team/bank')
   await page.getByRole('button', { name: /^Live/ }).click()
-  await page.getByRole('button', { name: /^Hard/ }).click()
-  await expect(page.getByRole('heading', { level: 2 })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Approve', exact: true })).toHaveCount(0)
+  for (const level of ['Easy', 'Medium', 'Hard']) {
+    await page.getByRole('button', { name: new RegExp(`^${level}`) }).click()
+    await expect(page.getByRole('list', { name: 'What we expect' })).toBeVisible()
+  }
   await page.getByRole('button', { name: 'Take down' }).click()
   await page.getByRole('button', { name: /^Drafts 1/ }).click()
-  await page.getByRole('button', { name: 'Archive', exact: true }).click()
-  await page.getByRole('button', { name: /^Archived 1/ }).click()
-  await expect(page.getByRole('button', { name: 'Restore to drafts' })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Archive', exact: true })).toHaveCount(0)
-  await expect(page.getByText(/J and K move/)).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Approve', exact: true })).toBeVisible()
 
   await page.getByRole('button', { name: /^Account:/ }).click()
   await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible()
-  await page.goto('/team')
-  await expect(page.getByRole('table')).toBeVisible()
-  const csv = await page.request.get('/api/team/export.csv')
-  expect(csv.headers()['content-type']).toContain('text/csv')
-  expect((await csv.text()).split('\n')).toHaveLength(118)
 })

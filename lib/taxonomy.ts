@@ -1,6 +1,6 @@
 /**
  * The shared vocabulary between the founder's answers, the problem bank and the
- * matcher. Level 4 asks in these terms, the research pipeline tags every problem
+ * matcher. Onboarding asks in these terms, the research pipeline tags every problem
  * in these terms, and `lib/match.ts` joins the two on these IDs.
  *
  * Rename a label freely. Never rename or remove an ID once problems carry it:
@@ -55,34 +55,24 @@ export const LEARN = [
 export type LearnId = (typeof LEARN)[number]['id']
 export const LEARN_IDS = LEARN.map((learn) => learn.id) as LearnId[]
 
-/** People a founder can reach this week. Each is paired with the world that person is in. */
-export const ACCESS = [
-  { id: 'family', label: 'Family business' },
-  { id: 'relatives', label: "Relatives' work" },
-  { id: 'internship', label: 'A past internship or job' },
-  { id: 'parents', label: "Friends' parents" },
-  { id: 'community', label: "A community you're in" },
-] as const
+/**
+ * What a founder would like to build with, asked in onboarding. A subset of
+ * LEARN, in the hackathon's words: payments and mobile apps are tags a problem
+ * may carry, but not something to choose for a 2-day build.
+ */
+export const BUILD_WITH = [
+  { id: 'agents', label: 'AI agents' },
+  { id: 'automation', label: 'Automation, such as n8n' },
+  { id: 'data', label: 'Data and dashboards' },
+  { id: 'voice', label: 'Voice' },
+  { id: 'vision', label: 'Photos and documents' },
+  { id: 'web', label: 'A full web app' },
+] as const satisfies readonly { id: LearnId; label: string }[]
 
-export type AccessId = (typeof ACCESS)[number]['id']
-export const ACCESS_IDS = ACCESS.map((access) => access.id) as AccessId[]
-
-export const INTENTS = [
-  { id: 'career', label: 'A career in tech and AI' },
-  { id: 'company', label: 'Building a company' },
-  { id: 'both', label: 'Both' },
-  { id: 'exploring', label: 'Still working it out' },
-] as const
-
-export type IntentId = (typeof INTENTS)[number]['id']
-export const INTENT_IDS = INTENTS.map((intent) => intent.id) as IntentId[]
-
-/** Tech comfort, one to five. The words are the question; the number is for the matcher. */
-export const COMFORT = [1, 2, 3, 4, 5] as const
-export type Comfort = (typeof COMFORT)[number]
+export const BUILD_WITH_IDS = BUILD_WITH.map((item) => item.id) as LearnId[]
 
 /**
- * How hard a problem is to build in 3 weeks. The team's word, never shown to a
+ * How hard a problem is to build in 2 days, alone, with n8n and Claude Code. The team's word, never shown to a
  * founder: a label that ranks problems changes which one somebody picks.
  */
 export const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
@@ -103,8 +93,7 @@ export type Geo = (typeof GEOS)[number]
 
 export const labelOf = {
   industry: (id: string) => INDUSTRIES.find((item) => item.id === id)?.label ?? id,
-  industryShort: (id: string) => INDUSTRIES.find((item) => item.id === id)?.short ?? id,
+  industryShort: (id: string) => INDUSTRIES.find((item) => item.id === id)?.short ?? (id === 'other' ? 'Other' : id),
   side: (id: string) => SIDES.find((item) => item.id === id)?.label ?? id,
   learn: (id: string) => LEARN.find((item) => item.id === id)?.label ?? id,
-  access: (id: string) => ACCESS.find((item) => item.id === id)?.label ?? id,
 }

@@ -21,7 +21,7 @@ export function LevelShell({
   card: FounderCardData
   children: ReactNode
   wide?: boolean
-  /** Renames this step in the bar, for a track whose step 5 is different. */
+  /** Renames this step in the bar. */
   label?: string
 }) {
   return (

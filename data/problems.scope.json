@@ -1,0 +1,4356 @@
+[
+  {
+    "id": "P001",
+    "fit": true,
+    "task": "Help a restaurant owner spot wrong deductions on a delivery payout and claim them back.",
+    "expect": [
+      "An owner uploads or pastes a payout statement.",
+      "The owner types the commission and offers they agreed to.",
+      "The AI explains every deduction in plain words.",
+      "Deductions that do not match what was agreed are flagged.",
+      "The AI drafts a claim message listing each wrong deduction."
+    ],
+    "further": [
+      "Past statements are saved to show the total lost over months.",
+      "A weekly reminder asks the owner to upload the new statement."
+    ]
+  },
+  {
+    "id": "P002",
+    "fit": true,
+    "task": "Help a factory worker report a breakdown so a technician can diagnose it fast.",
+    "expect": [
+      "A worker describes the fault and adds a photo from a phone.",
+      "The AI asks follow-up questions until the fault is clear.",
+      "The AI writes a work order with symptoms and likely causes.",
+      "The worker sends the work order to a technician by link.",
+      "The owner sees every open breakdown and how long it has waited."
+    ],
+    "further": [
+      "The worker can speak the fault instead of typing it.",
+      "The AI answers from the machine's manual once the owner uploads it."
+    ]
+  },
+  {
+    "id": "P003",
+    "fit": true,
+    "task": "Let a patient move a clinic appointment without a call, and fill the slot they leave.",
+    "expect": [
+      "A patient can book, cancel or move an appointment at any hour.",
+      "The clinic sees the day's bookings and every freed slot.",
+      "The AI reminds each patient and understands a reply in plain words.",
+      "The next patient on the waiting list is offered a freed slot."
+    ],
+    "further": [
+      "Show the clinic its no-show rate week by week.",
+      "Let patients reply in Hindi or another Indian language."
+    ]
+  },
+  {
+    "id": "P004",
+    "fit": true,
+    "task": "Show a cab driver which trips make or lose money after fuel and fees.",
+    "expect": [
+      "A driver saves their fuel price and mileage once.",
+      "A driver types a trip or uploads a screenshot of it.",
+      "The AI reads the fare, distance and fees from the screenshot.",
+      "Each trip shows the money made or lost after costs.",
+      "The driver sees the lowest fare per km worth accepting."
+    ],
+    "further": [
+      "Trips are saved to show what a week really earned.",
+      "The AI points out which kinds of trips lose money most often."
+    ]
+  },
+  {
+    "id": "P005",
+    "fit": true,
+    "task": "Give a Hindi-speaking Shorts creator a weekly note in Hindi on what to change next.",
+    "expect": [
+      "A creator can upload or paste a few weeks of Shorts numbers.",
+      "It shows which Shorts held viewers and which lost them.",
+      "The AI writes a short note in Hindi on what to change.",
+      "Every suggestion points to the numbers behind it."
+    ],
+    "further": [
+      "Send the note every week without the creator asking.",
+      "Read the note aloud in Hindi."
+    ]
+  },
+  {
+    "id": "P006",
+    "fit": true,
+    "task": "Help an online seller check last month's gateway fees against the rate they agreed.",
+    "expect": [
+      "A seller uploads last month's settlement report from their gateway.",
+      "The seller types the fee rate they signed for.",
+      "The AI reads the report whatever its columns are called.",
+      "Every payment charged above the agreed rate is listed.",
+      "The AI drafts a complaint with the total overcharged."
+    ],
+    "further": [
+      "Each month's check is saved so the seller can show a pattern.",
+      "A reminder goes out when a complaint has had no reply."
+    ]
+  },
+  {
+    "id": "P007",
+    "fit": true,
+    "task": "Let a homeowner pay for interiors work stage by stage, only after seeing proof.",
+    "expect": [
+      "A homeowner and a contractor agree stages and an amount for each.",
+      "The contractor uploads photos when a stage is finished.",
+      "The AI checks the photos against what the stage promised.",
+      "The homeowner approves a stage and pays for it in test mode.",
+      "Both sides see what is paid, pending and late."
+    ],
+    "further": [
+      "A reminder goes to the contractor when a stage passes its date.",
+      "Defects the homeowner reports hold back the next payment."
+    ]
+  },
+  {
+    "id": "P008",
+    "fit": true,
+    "task": "Let a teacher check in 5 minutes that a student understands the work they submitted.",
+    "expect": [
+      "A teacher can upload a student's submitted work.",
+      "The AI writes questions that only fit that piece of work.",
+      "The student answers against a clock, in a single sitting.",
+      "The AI marks where the answers and the work do not match.",
+      "The teacher sees a short summary and makes the final call."
+    ],
+    "further": [
+      "Let the student answer by voice instead of typing.",
+      "Show the teacher a whole class on a single screen."
+    ]
+  },
+  {
+    "id": "P009",
+    "fit": true,
+    "task": "Turn a shop owner's UPI statement into a month-by-month record of sales.",
+    "expect": [
+      "A shop owner uploads a bank or UPI statement.",
+      "The AI reads every receipt and sorts sales from personal transfers.",
+      "The owner can correct any entry the AI sorted wrongly.",
+      "A month-by-month summary of sales is shown.",
+      "The summary downloads as a file for an accountant."
+    ],
+    "further": [
+      "The AI also reads photos of purchase bills into the record.",
+      "A monthly reminder asks for the new statement."
+    ]
+  },
+  {
+    "id": "P010",
+    "fit": false,
+    "why": "Repeats P190: picking the real applicants for one job."
+  },
+  {
+    "id": "P011",
+    "fit": true,
+    "task": "Help a shopper pick the right size at any clothing brand before they order.",
+    "expect": [
+      "A shopper can enter their measurements or a garment that fits them.",
+      "The AI reads a brand's size chart from a photo or text.",
+      "It recommends a size from that chart and gives the reason.",
+      "Between 2 sizes, it says which to pick."
+    ],
+    "further": [
+      "Show the brand which products draw the most size doubts.",
+      "Remember a shopper's fit for their next order."
+    ]
+  },
+  {
+    "id": "P012",
+    "fit": false,
+    "why": "Telling a genuine bag from a fake, or a fair price from a high one, needs the makers' product and price records, which a student cannot get."
+  },
+  {
+    "id": "P013",
+    "fit": true,
+    "task": "Help someone claim a food order refund without writing the complaint themselves.",
+    "expect": [
+      "A person can say what went wrong in their regional language.",
+      "The AI reads the order details from a photo or screenshot.",
+      "The AI writes the complaint in clear English, ready to send.",
+      "It tracks each claim and says when to follow up.",
+      "The AI drafts a firmer follow-up when no reply comes."
+    ],
+    "further": [
+      "Take the story by voice, in Hindi.",
+      "Let a restaurant chase money it is owed the same way."
+    ]
+  },
+  {
+    "id": "P014",
+    "fit": true,
+    "task": "Help a supplier chase overdue invoices and build a claim file in one evening.",
+    "expect": [
+      "A supplier uploads overdue invoices as PDFs or photos.",
+      "The AI reads the buyer, amount and due date from each.",
+      "A list shows what each buyer owes and how many days late.",
+      "The AI drafts a firm but polite reminder for each buyer.",
+      "One click builds a claim file with every invoice and reminder sent."
+    ],
+    "further": [
+      "Reminders go out on their own and get firmer each time.",
+      "The supplier marks an invoice paid and it leaves the list."
+    ]
+  },
+  {
+    "id": "P015",
+    "fit": true,
+    "task": "Turn a patient's folder of paper reports into one page a new doctor can read.",
+    "expect": [
+      "A patient uploads photos or PDFs of reports and prescriptions.",
+      "The AI reads the dates, tests, medicines and allergies from each.",
+      "A one-page history shows everything in date order.",
+      "The AI marks anything it could not read clearly.",
+      "The patient shares the page with a doctor by link."
+    ],
+    "further": [
+      "The doctor can open the original report behind any line.",
+      "New reports added later update the page."
+    ]
+  },
+  {
+    "id": "P016",
+    "fit": true,
+    "task": "Let a woman travelling late alert her family if she does not reach home on time.",
+    "expect": [
+      "A rider types her ride details or uploads a booking screenshot.",
+      "The AI reads the driver, vehicle number and drop point.",
+      "She sets the time she expects to reach home.",
+      "If she does not tap safe by then, her contact is alerted.",
+      "The alert carries the ride details and her last message."
+    ],
+    "further": [
+      "She can send an alert herself with one tap.",
+      "Her browser shares her location while the page is open."
+    ]
+  },
+  {
+    "id": "P017",
+    "fit": true,
+    "task": "Keep a small community's feed free of bots and spam without asking members who they are.",
+    "expect": [
+      "A member can post without giving their real identity.",
+      "The AI labels each new post clean, spam or unsure.",
+      "The AI gives a short reason for every label.",
+      "Unsure posts wait in a queue a volunteer can clear fast.",
+      "A volunteer can restore a wrongly held post in 1 tap."
+    ],
+    "further": [
+      "Check uploaded images as well as text.",
+      "Show how many posts the volunteer never had to read."
+    ]
+  },
+  {
+    "id": "P018",
+    "fit": true,
+    "task": "Help someone facing a digital arrest call check if it is a scam before paying.",
+    "expect": [
+      "A person types what the caller said or uploads their notice.",
+      "The AI names each sign of a scam it finds.",
+      "The AI says in plain words what to do next.",
+      "One tap sends a warning to a family member.",
+      "The answer can be read in Hindi or English."
+    ],
+    "further": [
+      "A family member can check a call on a parent's behalf.",
+      "Each check is saved so the family can report it."
+    ]
+  },
+  {
+    "id": "P019",
+    "fit": true,
+    "task": "Let a flat owner hear from people who want the flat without showing their phone number.",
+    "expect": [
+      "An owner can list a flat without their number appearing anywhere.",
+      "Anyone interested can send an enquiry from the listing page.",
+      "The AI questions each person and filters out the sales pitches.",
+      "The owner sees a short list and chooses who gets their number."
+    ],
+    "further": [
+      "Let the owner and a seeker fix a visit without sharing numbers.",
+      "Let an owner take the listing down and erase every enquiry."
+    ]
+  },
+  {
+    "id": "P020",
+    "fit": true,
+    "task": "Help a student get every promise from a sales call in writing before paying.",
+    "expect": [
+      "A buyer uploads a recording of the sales call.",
+      "The AI turns the recording into text.",
+      "The AI lists every promise made, with the time it was said.",
+      "The buyer edits the list and removes anything wrong.",
+      "The AI drafts a message asking the company to confirm each promise."
+    ],
+    "further": [
+      "The buyer can type notes when there is no recording.",
+      "The company's reply is saved next to each promise."
+    ]
+  },
+  {
+    "id": "P021",
+    "fit": true,
+    "task": "Show an online seller when cash from their orders will arrive, before they buy more stock.",
+    "expect": [
+      "A seller can upload their orders, prepaid and cash on delivery.",
+      "It shows the cash expected each day for the next 2 weeks.",
+      "It sets aside orders likely to come back and says why.",
+      "The AI says in plain words whether cash covers a stock order."
+    ],
+    "further": [
+      "Warn the seller days before cash runs short.",
+      "Compare what was expected with what arrived."
+    ]
+  },
+  {
+    "id": "P022",
+    "fit": true,
+    "task": "Tell a new hire in seconds why their team made a past decision.",
+    "expect": [
+      "A team can add its tickets, meeting notes and messages.",
+      "Anyone can ask a why question in plain words.",
+      "The AI answers with the reason, the people and the date.",
+      "Every answer links to the note or ticket it came from.",
+      "It says so when the record holds no answer."
+    ],
+    "further": [
+      "Record a new decision in a single line as it is made.",
+      "Give a new hire the 10 decisions to read first."
+    ]
+  },
+  {
+    "id": "P023",
+    "fit": false,
+    "why": "Repeats P083: spotting a fake beauty product."
+  },
+  {
+    "id": "P024",
+    "fit": true,
+    "task": "Help a farmer collective turn its produce into a catalogue buyers can order from.",
+    "expect": [
+      "A collective member types or photographs each product it sells.",
+      "The AI writes a clear listing with grade, pack size and price.",
+      "A member can change any price or detail later.",
+      "Buyers open the catalogue by link and send an order request.",
+      "The collective sees every request and marks it answered."
+    ],
+    "further": [
+      "The catalogue can be read in a local language.",
+      "A message tells the collective when a new request arrives."
+    ]
+  },
+  {
+    "id": "P025",
+    "fit": true,
+    "task": "Help a small food business keep its daily hygiene records ready for an inspection.",
+    "expect": [
+      "An owner describes the kitchen and the AI drafts a daily checklist.",
+      "The owner can add, change or remove any check.",
+      "Staff tick off the day's checks on a phone in 5 minutes.",
+      "A reminder goes out when the day's record is not filled.",
+      "One tap gives an inspector the past 30 days of records."
+    ],
+    "further": [
+      "Staff add a photo as proof for any check.",
+      "The AI points out checks that are often skipped."
+    ]
+  },
+  {
+    "id": "P026",
+    "fit": true,
+    "task": "Give a small online seller proof of each parcel's weight before the courier collects it.",
+    "expect": [
+      "A seller photographs each parcel on a weighing scale before pickup.",
+      "The AI reads the weight from the photo.",
+      "The seller adds the order number and the parcel's size.",
+      "Each record is saved with its photo, date and time.",
+      "The AI drafts a dispute when the courier bills a higher weight."
+    ],
+    "further": [
+      "The AI reads the size from a photo with a tape measure.",
+      "The seller sees the total overcharged across all parcels."
+    ]
+  },
+  {
+    "id": "P027",
+    "fit": true,
+    "task": "Help someone in another city keep a parent's medicines and doctor visits on track.",
+    "expect": [
+      "A son or daughter adds a parent's medicines, doctor visits and helpers.",
+      "The AI reads a prescription photo into a medicine schedule.",
+      "The parent or helper gets a reminder for each medicine and visit.",
+      "They mark each one done from the reminder.",
+      "An evening summary shows the family what was done and missed."
+    ],
+    "further": [
+      "The AI turns a voice note after a doctor visit into notes.",
+      "A second family member can share the same list."
+    ]
+  },
+  {
+    "id": "P028",
+    "fit": true,
+    "task": "Help a car owner build a damage claim the car-sharing company cannot ignore.",
+    "expect": [
+      "A car owner uploads damage photos and the trip details.",
+      "The owner pastes messages already exchanged with the company.",
+      "The AI builds a timeline of what happened and when.",
+      "The AI writes a claim letter listing each piece of proof.",
+      "The claim is saved with the date it was sent."
+    ],
+    "further": [
+      "A reminder goes out when 7 days pass without a reply.",
+      "The AI drafts a firmer follow-up for each reminder."
+    ]
+  },
+  {
+    "id": "P029",
+    "fit": true,
+    "task": "Help a young investor check what a finance video claims before acting on it.",
+    "expect": [
+      "A person pastes a finance video's caption or transcript.",
+      "The AI lists each claim the video makes.",
+      "The AI flags warning signs like promised returns or pressure to hurry.",
+      "Each warning quotes the exact words that caused it.",
+      "The AI lists questions to ask before trusting the speaker."
+    ],
+    "further": [
+      "A person pastes a video link and the AI fetches the words.",
+      "The check can be shared with a friend by link."
+    ]
+  },
+  {
+    "id": "P030",
+    "fit": true,
+    "task": "Keep a small online shop taking orders on the day its payment provider freezes it.",
+    "expect": [
+      "A customer can pay through a first provider in test mode.",
+      "When the owner marks it frozen, checkout offers a second provider.",
+      "The owner sees which payments went through which provider.",
+      "The AI reads the freeze notice and drafts the owner's appeal."
+    ],
+    "further": [
+      "Show how much money each provider is still holding.",
+      "Let the AI draft a message telling waiting customers what happened."
+    ]
+  },
+  {
+    "id": "P031",
+    "fit": true,
+    "task": "Make a dated record of a rented home's condition that landlord and tenant both sign.",
+    "expect": [
+      "A tenant can add photos room by room.",
+      "The AI describes each photo and marks any damage it sees.",
+      "Every photo and note carries a date and time.",
+      "Landlord and tenant can each review the record and sign it.",
+      "A signed record cannot be edited, and both can download it."
+    ],
+    "further": [
+      "Compare move-out photos with move-in photos, room by room.",
+      "Let either side comment on a single photo."
+    ]
+  },
+  {
+    "id": "P032",
+    "fit": true,
+    "task": "Tell a first-time job seeker in seconds whether a job offer looks real.",
+    "expect": [
+      "A job seeker can paste an offer or upload a screenshot.",
+      "The AI gives a verdict: looks real, be careful or likely fake.",
+      "The AI lists the warning signs it found, in plain words.",
+      "It tells the job seeker what to check or ask next."
+    ],
+    "further": [
+      "Check the recruiter's email and website against the company's own.",
+      "Work in Hindi as well as English."
+    ]
+  },
+  {
+    "id": "P033",
+    "fit": true,
+    "task": "Let a shopkeeper note who owes what in under 5 seconds, even with no network.",
+    "expect": [
+      "A shopkeeper can add a credit entry by typing a short line.",
+      "The AI turns that line into a customer, amount and date.",
+      "An entry made with no network is kept and saved later.",
+      "It shows what each customer owes, and the total."
+    ],
+    "further": [
+      "Take the entry by voice, in Hindi or English.",
+      "Send a customer a polite reminder of what they owe."
+    ]
+  },
+  {
+    "id": "P034",
+    "fit": true,
+    "task": "Show a freelancer which client requests went unbilled this week and what to charge.",
+    "expect": [
+      "A freelancer can add a project's agreed scope and rate.",
+      "They can paste the client's messages for the week.",
+      "The AI picks out every request outside the agreed scope.",
+      "The freelancer adds hours, and it shows the money each cost.",
+      "The AI drafts a polite note that prices the extra work."
+    ],
+    "further": [
+      "Count time spent prompting and waiting on AI as billable hours.",
+      "Send the summary every Friday without being asked."
+    ]
+  },
+  {
+    "id": "P035",
+    "fit": true,
+    "task": "Give a small seller dated proof of what went into each parcel, ready for a claim.",
+    "expect": [
+      "A seller can photograph each parcel with its order before sealing.",
+      "The AI checks the photo against the order and names missing items.",
+      "Every record carries the order number, date and time.",
+      "A seller can find any order's proof in seconds.",
+      "It makes a claim page with the photos and details."
+    ],
+    "further": [
+      "Compare a photo of the returned item with what was packed.",
+      "Warn the seller before a claim window closes."
+    ]
+  },
+  {
+    "id": "P036",
+    "fit": true,
+    "task": "Tell every dairy farmer each evening what they are owed and when it comes.",
+    "expect": [
+      "A society secretary enters each farmer's litres for the day.",
+      "The AI can read a photo of the paper register instead.",
+      "The secretary sets the rate, the incentive and the next payment date.",
+      "Each farmer gets an evening message with what they are owed.",
+      "The secretary marks a payment made and the balance updates."
+    ],
+    "further": [
+      "Messages go out in the farmer's regional language.",
+      "A farmer can open a page showing every day's entry."
+    ]
+  },
+  {
+    "id": "P037",
+    "fit": true,
+    "task": "Let a small food creator prove how many diners their last reel brought in.",
+    "expect": [
+      "A creator makes a link for one reel and one restaurant.",
+      "A diner opens the link and gets a code to show.",
+      "The restaurant enters the code and the bill amount.",
+      "Creator and restaurant both see diners and sales from the reel.",
+      "The AI writes a short report the creator can send to brands."
+    ],
+    "further": [
+      "The creator sends the restaurant an invoice from the report.",
+      "A creator can compare several reels side by side."
+    ]
+  },
+  {
+    "id": "P038",
+    "fit": true,
+    "task": "Help a truck owner catch wrong FASTag toll charges and ask for a refund.",
+    "expect": [
+      "A truck owner uploads a FASTag statement.",
+      "The owner enters the days and routes the truck ran.",
+      "The AI reads every toll charge from the statement.",
+      "Tolls charged twice or while the truck was parked are flagged.",
+      "The AI drafts a refund request for each flagged charge."
+    ],
+    "further": [
+      "Each request is saved with the date it was sent.",
+      "The owner also uploads a bank statement to catch unwanted autopay charges."
+    ]
+  },
+  {
+    "id": "P039",
+    "fit": true,
+    "task": "Help a family notice early when a parent's memory starts to slip.",
+    "expect": [
+      "After each call, a family member notes what they noticed.",
+      "The AI sorts notes into signs like repeated questions or missed dates.",
+      "A timeline shows how often each sign came up each week.",
+      "The AI writes a summary the family can take to a doctor.",
+      "It never names an illness and only reports what was noted."
+    ],
+    "further": [
+      "Several family members can add notes about the same parent.",
+      "A weekly reminder asks for a note after the regular call."
+    ]
+  },
+  {
+    "id": "P040",
+    "fit": true,
+    "task": "Help a passenger whose bus never came claim a refund from the roadside.",
+    "expect": [
+      "A passenger uploads a ticket screenshot and says what happened.",
+      "The AI reads the operator, route, time and fare from the ticket.",
+      "The AI drafts a refund claim for the operator and booking site.",
+      "The passenger copies or sends each claim with one tap.",
+      "A short list shows where to complain next if nobody replies."
+    ],
+    "further": [
+      "A reminder goes out if no refund comes within 7 days.",
+      "The passenger adds a photo of the empty stop as proof."
+    ]
+  },
+  {
+    "id": "P041",
+    "fit": true,
+    "task": "Help a creator turn a vague suspension notice into a clear appeal in one afternoon.",
+    "expect": [
+      "A creator pastes the suspension notice they received.",
+      "The AI explains in plain words what the notice likely means.",
+      "The AI asks questions about the account and recent activity.",
+      "It lists the proof worth attaching to an appeal.",
+      "The AI drafts an appeal the creator can edit and send."
+    ],
+    "further": [
+      "Each appeal is saved with the date it was sent.",
+      "A reminder goes out when no reply comes in 7 days."
+    ]
+  },
+  {
+    "id": "P042",
+    "fit": true,
+    "task": "Help a small business fix what a payment gateway would reject before applying.",
+    "expect": [
+      "An owner pastes their website link and describes what they sell.",
+      "The AI reads the site for the pages gateways ask for.",
+      "It lists what is missing, like a refund policy or contact page.",
+      "The AI warns when the line of business is often refused.",
+      "The AI drafts each missing page for the owner to edit."
+    ],
+    "further": [
+      "The owner fixes the site and runs the check again.",
+      "The AI drafts a reply to a rejection the owner pastes in."
+    ]
+  },
+  {
+    "id": "P043",
+    "fit": true,
+    "task": "Sort a flat's rental enquiries into real tenants and time-wasters before the landlord calls anyone.",
+    "expect": [
+      "A landlord can paste or forward the enquiries they receive.",
+      "The AI asks each person their move-in date and budget.",
+      "The AI sorts enquiries into likely tenant, unclear and noise, with reasons.",
+      "The landlord sees a short list of people worth calling today."
+    ],
+    "further": [
+      "Let a likely tenant book a viewing slot.",
+      "Show the landlord how many genuine enquiries each listing brought."
+    ]
+  },
+  {
+    "id": "P044",
+    "fit": true,
+    "task": "Let a graduate from a small college prove one real skill to an employer.",
+    "expect": [
+      "A graduate picks a skill, like fixing a bug or reading accounts.",
+      "The AI sets one small real task for that skill.",
+      "The graduate submits an answer within a time limit.",
+      "The AI marks the answer and explains what was right and wrong.",
+      "An employer opens a link showing the task, answer and result."
+    ],
+    "further": [
+      "An employer can set their own task for a graduate.",
+      "A graduate's page gathers every skill they have proved."
+    ]
+  },
+  {
+    "id": "P045",
+    "fit": true,
+    "task": "Help a kirana's regular customers reorder their usual basket in a single message.",
+    "expect": [
+      "The owner adds the shop's items and marks any out of stock.",
+      "A family can send its list in plain words or a photo.",
+      "The AI builds the order from those items and offers substitutes.",
+      "It remembers each family's usual basket for a 1-tap reorder.",
+      "The owner sees every order and marks it packed or delivered."
+    ],
+    "further": [
+      "Show the owner which regular customers have gone quiet.",
+      "Remind a family when its usual items are due to run out."
+    ]
+  },
+  {
+    "id": "P046",
+    "fit": true,
+    "task": "Show a job seeker how their CV fits a job post and what to fix first.",
+    "expect": [
+      "A job seeker can upload a CV and paste a job post.",
+      "The AI shows what the post asks and what the CV answers.",
+      "Every gap points to the exact line in the CV or post.",
+      "The AI names the first change to make, and why."
+    ],
+    "further": [
+      "Suggest a plain way to explain a career break.",
+      "Compare the CV with several posts and find the common gap."
+    ]
+  },
+  {
+    "id": "P047",
+    "fit": true,
+    "task": "Cut a salon's no-shows and waiting time without hiring a receptionist.",
+    "expect": [
+      "A customer can book a slot for a named service.",
+      "The salon sees every booking for the day.",
+      "It knows how long each service takes and never double-books.",
+      "The AI reminds customers and handles a reschedule in plain words."
+    ],
+    "further": [
+      "Show the owner what no-shows cost them this month.",
+      "Handle a stylist being out for the day."
+    ]
+  },
+  {
+    "id": "P048",
+    "fit": true,
+    "task": "Tell a farmer which nearby mandi to sell their crop at this week.",
+    "expect": [
+      "A grower can choose their crop and where they are.",
+      "It compares today's published prices for that crop across nearby mandis.",
+      "It shows how each mandi's price has moved over recent days.",
+      "The AI gives a recommendation and its reason, in the grower's language."
+    ],
+    "further": [
+      "Subtract the cost of transport from each mandi's price.",
+      "Read the answer aloud for a grower who prefers to listen."
+    ]
+  },
+  {
+    "id": "P049",
+    "fit": true,
+    "task": "Help a home baker take only as many orders as they can deliver.",
+    "expect": [
+      "A baker sets how many orders they can make each day.",
+      "A customer sends an order in their own words.",
+      "The AI turns it into an order and asks for missing details.",
+      "A full day stops taking orders and offers the next free date.",
+      "The baker sees each day's orders with delivery times."
+    ],
+    "further": [
+      "A message reminds the customer of the delivery time the day before.",
+      "The baker pastes orders from chat and the AI adds them."
+    ]
+  },
+  {
+    "id": "P050",
+    "fit": false,
+    "why": "Checking that a caller is the real carrier needs the official carrier registry and a call back to its listed number, so a 2-day build could only guess."
+  },
+  {
+    "id": "P051",
+    "fit": true,
+    "task": "Let a client log meals by photo so their nutrition coach sees them the same day.",
+    "expect": [
+      "A client can log a meal with a photo of the plate.",
+      "The AI names the foods on the plate and estimates the portions.",
+      "The client can correct what the AI got wrong.",
+      "The coach sees each client's whole day on a single screen.",
+      "The coach can reply to a meal the same day."
+    ],
+    "further": [
+      "Show the coach which clients have not logged today.",
+      "Sum up a client's week for the coach in a few lines."
+    ]
+  },
+  {
+    "id": "P052",
+    "fit": true,
+    "task": "Get a hotel to confirm a paid booking and guest count before the traveller arrives.",
+    "expect": [
+      "A traveller can upload their booking voucher.",
+      "The AI reads the dates, room and number of guests from it.",
+      "It sends the hotel a message asking it to confirm those details.",
+      "The hotel confirms or corrects them from a link, with no sign-in.",
+      "The traveller sees confirmed, corrected or no reply before they leave."
+    ],
+    "further": [
+      "Chase the hotel again when it has not replied.",
+      "Give the traveller a page to show at the front desk."
+    ]
+  },
+  {
+    "id": "P053",
+    "fit": false,
+    "why": "Proving a video is human-made needs the camera's or the video service's cooperation, so a 2-day build could only pretend to prove it."
+  },
+  {
+    "id": "P054",
+    "fit": true,
+    "task": "Help a family see which policy clauses could block a health claim before filing.",
+    "expect": [
+      "A person uploads their health policy and types the planned treatment.",
+      "The AI finds the clauses that could affect this claim.",
+      "Each clause is explained in plain words with its page number.",
+      "The AI lists the papers to collect before filing.",
+      "It says clearly that the insurer makes the final decision."
+    ],
+    "further": [
+      "A person uploads a rejection letter and the AI drafts an appeal.",
+      "The AI lists questions to ask the insurer before admission."
+    ]
+  },
+  {
+    "id": "P055",
+    "fit": true,
+    "task": "Give a landlord who lives far away dated proof each month that someone checked their flat.",
+    "expect": [
+      "A visitor can go through a flat checklist on their phone.",
+      "Every check needs a photo, stamped with date and time.",
+      "The AI reads the photos and writes the landlord a short report.",
+      "The landlord sees each month's visit and anything that needs attention."
+    ],
+    "further": [
+      "Compare this month's photos with last month's and point out changes.",
+      "Tell the landlord when a month passes with no visit."
+    ]
+  },
+  {
+    "id": "P056",
+    "fit": true,
+    "task": "Help someone who paid for a course and got nothing chase their refund.",
+    "expect": [
+      "A learner can upload the receipt, the terms and past messages.",
+      "The AI builds a dated timeline of what was paid and promised.",
+      "The AI points to the terms that apply, in plain words.",
+      "The AI drafts the complaint, and a firmer one if ignored.",
+      "It reminds the learner on the days a follow-up is due."
+    ],
+    "further": [
+      "Show where to take the complaint next if the company stays silent.",
+      "Keep every reply saved as a record."
+    ]
+  },
+  {
+    "id": "P057",
+    "fit": true,
+    "task": "Stop fake cash-on-delivery orders before a seller ships them, without blocking real buyers.",
+    "expect": [
+      "A seller can upload or paste new cash-on-delivery orders.",
+      "The AI flags doubtful orders and gives its reason for each.",
+      "A flagged buyer gets a message asking them to confirm.",
+      "Confirmed orders move to ship, and unconfirmed ones are held.",
+      "The seller can overrule any flag."
+    ],
+    "further": [
+      "Let a doubtful buyer pay a small advance, in test mode.",
+      "Show what the held orders would have cost in shipping."
+    ]
+  },
+  {
+    "id": "P058",
+    "fit": false,
+    "why": "Getting a firm live on HR and payroll needs the vendor's product and the firm's private staff data, and no slice of it stands alone."
+  },
+  {
+    "id": "P059",
+    "fit": true,
+    "task": "Let a freelance makeup artist take bridal bookings that are held with a deposit.",
+    "expect": [
+      "An artist sets up a profile with services, prices and free dates.",
+      "A customer picks a date and pays a deposit in test mode.",
+      "A paid date is blocked so nobody else can book it.",
+      "The AI writes a booking agreement from the details both entered.",
+      "Both get a confirmation and a reminder before the day."
+    ],
+    "further": [
+      "A customer can book a paid trial before the main booking.",
+      "The artist pastes a chat and the AI drafts the booking."
+    ]
+  },
+  {
+    "id": "P060",
+    "fit": true,
+    "task": "Let a farmer sell to nearby restaurant kitchens in order sizes that suit both.",
+    "expect": [
+      "A grower can list what they have, how much, and the price.",
+      "A kitchen can order a quantity small enough to store.",
+      "The AI turns a kitchen's plain message into an order.",
+      "The grower sees all orders for a delivery day in one list.",
+      "A kitchen can pay in test mode, and the grower sees it."
+    ],
+    "further": [
+      "Combine nearby kitchens' orders into a single delivery run.",
+      "Show the grower what the same produce fetched at the mandi."
+    ]
+  },
+  {
+    "id": "P061",
+    "fit": true,
+    "task": "Tell a restaurant owner each morning which card payments are late and who to chase.",
+    "expect": [
+      "An owner can add each day's card sales and bank deposits.",
+      "It matches deposits to sales and shows what is still missing.",
+      "It marks each payment as due, late or arrived.",
+      "The AI writes a short morning note on what to chase first.",
+      "The AI drafts the message to the provider, with dates and amounts."
+    ],
+    "further": [
+      "Send the morning note without the owner opening anything.",
+      "Track refunds that vendors owe as well."
+    ]
+  },
+  {
+    "id": "P062",
+    "fit": true,
+    "task": "Help a small exporter match each export invoice to the bank entry that paid it.",
+    "expect": [
+      "An exporter uploads a list of export invoices.",
+      "The exporter uploads the bank statement for the same period.",
+      "The AI matches each bank entry to an invoice and explains why.",
+      "Invoices with no payment yet are listed with days waiting.",
+      "The exporter confirms or corrects any match."
+    ],
+    "further": [
+      "The AI drafts a request to the bank for proof of payment.",
+      "The matched list downloads as a file for the accountant."
+    ]
+  },
+  {
+    "id": "P063",
+    "fit": true,
+    "task": "Help a patient confirm the doctor, place and fee before travelling to an appointment.",
+    "expect": [
+      "A patient uploads a screenshot of their booking.",
+      "The AI reads the doctor, clinic, time and fee from it.",
+      "The AI drafts a message asking the clinic to confirm all 3.",
+      "A reminder the day before asks if the clinic has confirmed.",
+      "The patient saves the clinic's reply as proof of the fee."
+    ],
+    "further": [
+      "The clinic confirms through a link with one tap.",
+      "The AI drafts a refund request when the doctor is not there."
+    ]
+  },
+  {
+    "id": "P064",
+    "fit": true,
+    "task": "Show a rider what an auto trip should cost and flag extras on the bill.",
+    "expect": [
+      "A rider can enter a pickup and a drop point.",
+      "It works out the distance and the fare at the meter rate.",
+      "The rider can see and change the meter rate used.",
+      "The AI reads a photo or screenshot of the final bill.",
+      "It marks every charge above the expected fare, by name and amount."
+    ],
+    "further": [
+      "Draft the rider's complaint about an overcharge.",
+      "Work out the fare for a rider who got out early."
+    ]
+  },
+  {
+    "id": "P065",
+    "fit": true,
+    "task": "Help a small-town creator pitch a brand for their next paid campaign.",
+    "expect": [
+      "A creator enters their niche, language, city and follower numbers.",
+      "The AI writes a media kit from those details.",
+      "The creator names a brand and pastes its website link.",
+      "The AI writes a pitch that fits that brand.",
+      "The creator can edit and copy both before sending."
+    ],
+    "further": [
+      "The media kit opens as a page the creator shares by link.",
+      "Sent pitches are saved with a reminder to follow up."
+    ]
+  },
+  {
+    "id": "P066",
+    "fit": true,
+    "task": "Help a UPI scam victim get every complaint ready within the first hour.",
+    "expect": [
+      "A victim types what happened and uploads the payment screenshot.",
+      "The AI reads the amount, time and transaction number.",
+      "The AI drafts a complaint for the bank and the UPI app.",
+      "It drafts a report for the cybercrime portal too.",
+      "A checklist shows where to file each one, in order."
+    ],
+    "further": [
+      "Each complaint is saved with its reference number.",
+      "A reminder goes out when a complaint has no reply."
+    ]
+  },
+  {
+    "id": "P067",
+    "fit": true,
+    "task": "Help a renter spot a fake rental listing before sending a deposit.",
+    "expect": [
+      "A renter pastes the listing and the chat with the owner.",
+      "The AI names each sign of a scam it finds.",
+      "It lists the proof to ask the owner for.",
+      "The renter uploads that proof and the AI checks names and address.",
+      "The AI drafts a polite message asking for anything still missing."
+    ],
+    "further": [
+      "A renter saves several listings and compares their checks.",
+      "The check can be shared with a flatmate by link."
+    ]
+  },
+  {
+    "id": "P068",
+    "fit": true,
+    "task": "Give a young child a patient tutor whose every answer a parent can read.",
+    "expect": [
+      "A child can ask a question and get an answer they understand.",
+      "The AI tutor gives hints before answers and never hurries the child.",
+      "A parent can set which topics the tutor may discuss.",
+      "A parent can read everything the tutor said.",
+      "The tutor kindly declines questions outside those limits."
+    ],
+    "further": [
+      "Let the child speak and hear the tutor instead of reading.",
+      "Tell the parent what the child found hard this week."
+    ]
+  },
+  {
+    "id": "P069",
+    "fit": true,
+    "task": "Help a small business move records out of old software into a file it owns.",
+    "expect": [
+      "An owner uploads reports, exports or screenshots from the old software.",
+      "The AI reads the records into rows and columns.",
+      "The owner checks a preview and fixes any wrong column.",
+      "The AI marks rows it was unsure about.",
+      "The records download as a spreadsheet file."
+    ],
+    "further": [
+      "Several uploads are joined into one file without repeats.",
+      "The AI names what kind of record each column holds."
+    ]
+  },
+  {
+    "id": "P070",
+    "fit": true,
+    "task": "Let a manager get a leave or attendance report by describing it in a sentence.",
+    "expect": [
+      "A manager can upload their team's leave and attendance sheet.",
+      "They type what they want to know in a sentence.",
+      "The AI turns that sentence into a report from the sheet.",
+      "It shows how it read the request so they can correct it.",
+      "A report can be saved and run again."
+    ],
+    "further": [
+      "Send a saved report every Monday.",
+      "Let a manager change a leave approval rule by describing it."
+    ]
+  },
+  {
+    "id": "P071",
+    "fit": true,
+    "task": "Help someone find foundation shades that suit their skin before they spend a rupee.",
+    "expect": [
+      "A buyer can upload a photo of their skin in daylight.",
+      "The AI suggests their undertone and explains how it decided.",
+      "The buyer pastes a product's shade list, and it shortlists with reasons.",
+      "It asks how past shades went wrong and uses the answer."
+    ],
+    "further": [
+      "Let a buyer record how a shade looked hours after applying it.",
+      "Compare a shade the buyer owns with its nearest match elsewhere."
+    ]
+  },
+  {
+    "id": "P072",
+    "fit": true,
+    "task": "Tell a farmer what is wrong with a sick plant, in their regional language.",
+    "expect": [
+      "A farmer can send a plant photo and describe the problem.",
+      "The AI names the likely cause and says how sure it is.",
+      "The answer comes in the farmer's regional language, in plain words.",
+      "It gives the next step and says when to call an expert.",
+      "It asks for another photo when the first is not clear."
+    ],
+    "further": [
+      "Take the question by voice and read the answer aloud.",
+      "Keep a history for each field, so repeat problems show up."
+    ]
+  },
+  {
+    "id": "P073",
+    "fit": true,
+    "task": "Show a small restaurant owner where the money goes on each dish and what to change.",
+    "expect": [
+      "An owner can enter each dish, its ingredients and its menu price.",
+      "It shows what every dish costs to make and what it leaves.",
+      "It counts card fees and aggregator commission against each sale.",
+      "The AI names the change that would save the most this month.",
+      "The AI reads a supplier bill and updates ingredient costs."
+    ],
+    "further": [
+      "Let the owner try a new price and see what changes.",
+      "Warn the owner when an ingredient's cost jumps."
+    ]
+  },
+  {
+    "id": "P074",
+    "fit": true,
+    "task": "Show a seller every rupee their courier wallet took and help dispute the wrong charges.",
+    "expect": [
+      "A seller can upload their courier wallet statement.",
+      "The AI labels each debit: shipping, weight charge, add-on or unexplained.",
+      "It checks each weight charge against the weight the seller recorded.",
+      "It totals what looks wrong, order by order.",
+      "The AI drafts a dispute for each wrong debit, with the evidence."
+    ],
+    "further": [
+      "Track each dispute until the money returns.",
+      "Show cash-on-delivery money the courier still holds, and for how long."
+    ]
+  },
+  {
+    "id": "P075",
+    "fit": true,
+    "task": "Help a patient check a hospital bill against the estimate they were given.",
+    "expect": [
+      "A patient uploads the estimate and the final bill.",
+      "The AI reads every line from both.",
+      "Each bill line is explained in plain words.",
+      "Lines that are new, repeated or higher than the estimate are flagged.",
+      "The AI lists questions to ask the billing desk."
+    ],
+    "further": [
+      "The AI drafts a written request to review the flagged lines.",
+      "A patient saves estimates from 2 hospitals and compares them."
+    ]
+  },
+  {
+    "id": "P076",
+    "fit": true,
+    "task": "Help a rider still reach the airport on time when drivers keep cancelling.",
+    "expect": [
+      "A rider enters the flight time, pickup place and usual travel time.",
+      "The AI works out a leave-by time with room for cancellations.",
+      "The rider adds a backup way to reach the airport.",
+      "The rider logs each cancellation and sees the time left.",
+      "A reminder says when to stop waiting and take the backup."
+    ],
+    "further": [
+      "The AI drafts a refund complaint from the logged cancellations.",
+      "A family member gets a message when the rider sets off."
+    ]
+  },
+  {
+    "id": "P077",
+    "fit": true,
+    "task": "Show a small brand what each creator campaign brought in, without building a report by hand.",
+    "expect": [
+      "A brand can upload campaign spend and results for each creator.",
+      "It shows spend, sales and cost per sale for each creator.",
+      "The report rebuilds itself when new numbers are added.",
+      "The AI writes a plain summary of what worked and what failed."
+    ],
+    "further": [
+      "Email the report to the client every week.",
+      "Track each creator's discount code or link back to sales."
+    ]
+  },
+  {
+    "id": "P078",
+    "fit": true,
+    "task": "Help a small supplier see which buyers pay late and chase each overdue invoice.",
+    "expect": [
+      "A supplier can add each invoice's buyer, amount and due date.",
+      "It shows what is owed, by whom, and how many days late.",
+      "The AI drafts a reminder that grows firmer the longer payment waits.",
+      "Reminders go out on set days without the supplier writing them.",
+      "It shows the gap between money due in and bills due out."
+    ],
+    "further": [
+      "Show how long each buyer usually takes to pay.",
+      "Read invoice details from a photo or PDF."
+    ]
+  },
+  {
+    "id": "P079",
+    "fit": true,
+    "task": "Turn a confusing painting quote into clear questions a homeowner can ask the contractor.",
+    "expect": [
+      "A homeowner can upload a quote as a photo or PDF.",
+      "The AI rewrites every line in plain words, with quantity and rate.",
+      "The AI flags vague lines and items likely to grow later.",
+      "It compares a second quote for the same job, line by line.",
+      "It gives a short list of questions to ask the contractor."
+    ],
+    "further": [
+      "Check the final bill against the quote that was agreed.",
+      "Let the homeowner add local rates and mark lines above them."
+    ]
+  },
+  {
+    "id": "P080",
+    "fit": true,
+    "task": "Help a new graduate track their job applications and apply only where they fit.",
+    "expect": [
+      "A graduate can save each job they apply to, with its status.",
+      "It warns before they apply to the same job twice.",
+      "The AI scores a pasted job post against their CV, with reasons.",
+      "The AI drafts a short note written for that job.",
+      "It reminds them when a follow-up is due."
+    ],
+    "further": [
+      "Flag a listing that looks like a ghost job.",
+      "Show which kinds of job have replied so far."
+    ]
+  },
+  {
+    "id": "P081",
+    "fit": true,
+    "task": "Show a distributor which shops on a van route cost more than they bring in.",
+    "expect": [
+      "The distributor uploads a list of shops with orders and unpaid dues.",
+      "They type in what the van costs to run each day.",
+      "Each shop shows what its stop costs and what it earns.",
+      "The AI suggests what to do with each loss-making shop.",
+      "The AI drafts a polite payment reminder for each late payer."
+    ],
+    "further": [
+      "Each week's list is saved and compared with the last.",
+      "Late payers get the reminder on WhatsApp on a set day."
+    ]
+  },
+  {
+    "id": "P082",
+    "fit": true,
+    "task": "Tell a small team within the hour when a scheduled data sync has quietly stopped.",
+    "expect": [
+      "A team can say what data should arrive, where, and how often.",
+      "It checks on schedule that the data really arrived.",
+      "An alert reaches the team within the hour when data is missing.",
+      "The AI explains in plain words what is missing and since when.",
+      "The team sees the history of every check."
+    ],
+    "further": [
+      "Watch a second kind of failure, such as a skipped backup.",
+      "Alert someone else when nobody responds."
+    ]
+  },
+  {
+    "id": "P083",
+    "fit": true,
+    "task": "Warn a beauty buyer about signs of a fake before they use a delivered product.",
+    "expect": [
+      "A buyer uploads photos of the product, label and box.",
+      "The AI reads the batch number, dates, maker and price.",
+      "It lists what is missing, expired, misspelt or looks used.",
+      "It says plainly what it cannot confirm from photos.",
+      "The AI drafts a return request with the problems found."
+    ],
+    "further": [
+      "A buyer compares it with photos of one they bought before.",
+      "Checked products are saved with the order date and seller."
+    ]
+  },
+  {
+    "id": "P084",
+    "fit": true,
+    "task": "Give a grower proof of how their fruit looked when it left the farm.",
+    "expect": [
+      "A grower logs a shipment with photos, weight and time.",
+      "The AI describes the condition of the fruit in each photo.",
+      "The buyer adds arrival photos through a shared link.",
+      "The AI compares both sets and lists what changed.",
+      "The grower gets a claim note with both sets of photos."
+    ],
+    "further": [
+      "The AI grades the fruit by size and visible damage.",
+      "The buyer gets a reminder to add arrival photos."
+    ]
+  },
+  {
+    "id": "P085",
+    "fit": true,
+    "task": "Let a few small restaurants order together to get a supplier's bulk price.",
+    "expect": [
+      "A kitchen can add what it needs for the week.",
+      "The AI merges matching items from every kitchen into a single order.",
+      "A kitchen enters the supplier's bulk price and minimum order.",
+      "It shows how far the pooled order is from that minimum.",
+      "Each kitchen sees its share and pays it in test mode."
+    ],
+    "further": [
+      "Let a large family join the same order.",
+      "Split the delivery list by kitchen for the supplier."
+    ]
+  },
+  {
+    "id": "P086",
+    "fit": true,
+    "task": "Get a seller's claim for a broken or lost parcel ready to file the same day.",
+    "expect": [
+      "A seller can upload the order, packing photos and damage photos.",
+      "The AI describes the damage and checks the evidence is complete.",
+      "It says what evidence is missing before the claim goes in.",
+      "The AI drafts the claim, ready for a courier or insurer.",
+      "The seller sees each claim, its status and days waited."
+    ],
+    "further": [
+      "Chase a claim that has had no reply.",
+      "Show which routes or couriers break the most parcels."
+    ]
+  },
+  {
+    "id": "P087",
+    "fit": true,
+    "task": "Check a delivered medicine against the prescription before a patient accepts it.",
+    "expect": [
+      "A patient uploads photos of the prescription and the delivered strip.",
+      "The AI reads the drug name, strength and expiry date.",
+      "It shows match, mismatch or cannot read for each one.",
+      "It warns when the expiry date is past or unreadable.",
+      "The AI drafts a refusal note to send to the pharmacy."
+    ],
+    "further": [
+      "A QR code in the photo is read and shown.",
+      "Each check is saved with its photos as proof for later."
+    ]
+  },
+  {
+    "id": "P088",
+    "fit": true,
+    "task": "Track every refund a traveller is owed for a cancelled trip and chase it for them.",
+    "expect": [
+      "A traveller can forward or upload booking and cancellation emails.",
+      "The AI reads them and lists each refund owed, and by whom.",
+      "It shows every refund as owed, promised or received.",
+      "The AI drafts each chasing email, so the traveller writes none.",
+      "It chases again on a schedule until the refund is marked received."
+    ],
+    "further": [
+      "Handle a connecting trip where only 1 leg was cancelled.",
+      "Do the same for a delayed train."
+    ]
+  },
+  {
+    "id": "P089",
+    "fit": true,
+    "task": "Get a creator paid on time for a brand deal without writing reminders themselves.",
+    "expect": [
+      "A creator can paste a brand's brief or agreement.",
+      "The AI pulls out the fee, the work due and payment date.",
+      "It makes an invoice from those details, ready to send.",
+      "Reminders go to the brand before and after the due date.",
+      "The creator sees which deals are paid, due and overdue."
+    ],
+    "further": [
+      "Let a brand pay an advance in test mode.",
+      "Show which brands paid late before."
+    ]
+  },
+  {
+    "id": "P090",
+    "fit": true,
+    "task": "Show a freelancer what a foreign payment really cost them in fees and rates.",
+    "expect": [
+      "A freelancer pastes or uploads a payout statement.",
+      "The AI reads the amount sent, amount received, fees and date.",
+      "It compares the rate they got with the market rate that day.",
+      "It shows the total cost in ₹ and as a percent.",
+      "Past payouts are saved so routes can be compared."
+    ],
+    "further": [
+      "The AI drafts a message asking the provider to explain a fee.",
+      "A monthly summary shows which route lost the least money."
+    ]
+  },
+  {
+    "id": "P091",
+    "fit": true,
+    "task": "Give someone a second opinion on an AC repair quote before they say yes.",
+    "expect": [
+      "A person can describe the fault and upload the technician's quote.",
+      "The AI explains each part on the quote and what it does.",
+      "The AI says whether each replacement fits the fault described.",
+      "It marks any charge that the quote does not explain.",
+      "It lists questions to ask the technician before agreeing."
+    ],
+    "further": [
+      "Compare the quote with a second technician's quote.",
+      "Check the warranty terms on the quote for gaps."
+    ]
+  },
+  {
+    "id": "P092",
+    "fit": true,
+    "task": "Show a learner what a course's placement guarantee really promises before they pay.",
+    "expect": [
+      "A learner pastes the course page or uploads the brochure.",
+      "The AI pulls out every placement promise and its conditions.",
+      "It marks each promise as clear, vague or missing.",
+      "It lists the questions to ask the course in writing.",
+      "The AI drafts that message, ready to send."
+    ],
+    "further": [
+      "2 courses are compared side by side.",
+      "The course's written reply is checked against the list."
+    ]
+  },
+  {
+    "id": "P093",
+    "fit": true,
+    "task": "Make a kirana's weekly reorder take 10 minutes, with fewer empty shelves and less dead stock.",
+    "expect": [
+      "An owner can add items, stock in hand and recent sales.",
+      "It suggests how much of each item to reorder this week.",
+      "It marks fast sellers about to run out and slow stock.",
+      "The AI explains each suggestion in a line the owner can question.",
+      "The owner can edit the list and send it to a distributor."
+    ],
+    "further": [
+      "Note what shoppers asked for that the shop did not have.",
+      "Read a distributor's bill from a photo to update stock."
+    ]
+  },
+  {
+    "id": "P094",
+    "fit": true,
+    "task": "Sort a small team's support requests, answer the routine ones and flag the urgent ones.",
+    "expect": [
+      "Requests from email and a chat channel land in a single list.",
+      "The AI marks each request urgent or routine, with its reason.",
+      "The AI answers routine questions from the team's own help notes.",
+      "An urgent request alerts a named person at once.",
+      "The team sees what is open, answered and waiting."
+    ],
+    "further": [
+      "Let a person correct an AI answer, and reuse the correction.",
+      "Show which questions come up most often."
+    ]
+  },
+  {
+    "id": "P095",
+    "fit": true,
+    "task": "Help a buyer prove a beauty order's shelf life and seal within minutes of delivery.",
+    "expect": [
+      "A buyer can photograph the label and seal on opening the parcel.",
+      "The AI reads the manufacturing and best-before dates from the photo.",
+      "It shows how much shelf life is left.",
+      "Each photo is saved with the date, time and order details.",
+      "The AI drafts a return request with that proof attached."
+    ],
+    "further": [
+      "Remind the buyer before a product they own expires.",
+      "Let buyers see the shelf life others got from the same seller."
+    ]
+  },
+  {
+    "id": "P096",
+    "fit": true,
+    "task": "Turn a small farm's photos of receipts and bills into usable accounts, with no setup.",
+    "expect": [
+      "A farmer can photograph a receipt or bill and do nothing else.",
+      "The AI reads the date, items, amount and who was paid.",
+      "It sorts each entry into income, inputs or other costs.",
+      "Input stock goes up when a purchase is logged.",
+      "It shows money in, money out and what is left each month."
+    ],
+    "further": [
+      "Match entries against a bank statement.",
+      "Let the farmer ask a question about the books in plain words."
+    ]
+  },
+  {
+    "id": "P097",
+    "fit": true,
+    "task": "Help a small restaurant turn a first delivery order into a regular who orders direct.",
+    "expect": [
+      "A customer can order direct from the restaurant's own page.",
+      "A returning customer can repeat their last order in 1 tap.",
+      "The owner can change the menu and prices in a minute.",
+      "The AI writes a come-back message for customers who have gone quiet.",
+      "A customer can pay in test mode."
+    ],
+    "further": [
+      "Reward a customer's 5th direct order.",
+      "Let the owner update the menu from a photo of it."
+    ]
+  },
+  {
+    "id": "P098",
+    "fit": true,
+    "task": "Tell a small seller the same day which booked pickups were missed and what to do.",
+    "expect": [
+      "A seller can log each booked pickup and mark it collected.",
+      "It alerts the seller when a pickup passes its cut-off time uncollected.",
+      "The AI drafts the courier complaint with dates and order numbers.",
+      "The AI drafts a short delay note for each affected buyer.",
+      "It shows how many days every parcel has waited."
+    ],
+    "further": [
+      "Let the seller add other couriers' rates and compare them.",
+      "Show which courier misses pickups most often."
+    ]
+  },
+  {
+    "id": "P099",
+    "fit": true,
+    "task": "Help a family understand a rejected health claim and write a strong appeal.",
+    "expect": [
+      "A family uploads the rejection letter and the policy document.",
+      "The AI finds the reason given and the clause it points to.",
+      "It explains both in plain words, with the page number.",
+      "The AI drafts an appeal letter that quotes the clause.",
+      "The case is saved with its documents and dates."
+    ],
+    "further": [
+      "A reminder goes out when the insurer has not replied.",
+      "The letter is also written in Hindi or another language."
+    ]
+  },
+  {
+    "id": "P100",
+    "fit": true,
+    "task": "Tell every booked bus passenger about a changed pickup point before they leave home.",
+    "expect": [
+      "An operator can add a trip's passengers and post a pickup change.",
+      "The AI turns the operator's rough note into a clear passenger message.",
+      "Every booked passenger on that trip gets the message.",
+      "A passenger can open a page showing where and when to board.",
+      "The operator sees who has read the change and who has not."
+    ],
+    "further": [
+      "Send the message in the passenger's regional language.",
+      "Let the driver share the bus's location from their phone."
+    ]
+  },
+  {
+    "id": "P101",
+    "fit": true,
+    "task": "Let a reader with a question find independent writers who have already answered it.",
+    "expect": [
+      "A writer can add their blog, and its posts are read in.",
+      "A reader can ask a question in plain words.",
+      "The AI matches the question to posts that answer it, with reasons.",
+      "Results show only posts from the independent blogs added.",
+      "Each result links straight to the writer's own site."
+    ],
+    "further": [
+      "Show a writer which questions led readers to them.",
+      "Let a reader follow a writer and hear of new posts."
+    ]
+  },
+  {
+    "id": "P102",
+    "fit": true,
+    "task": "Help a cardholder find every avoidable fee on their statement and ask for it back.",
+    "expect": [
+      "A cardholder can upload a statement as a PDF or photo.",
+      "The AI finds every fee, charge and add-on in it.",
+      "It explains each one in plain words, with the amount.",
+      "It marks which fees could have been avoided, and how.",
+      "The AI drafts a reversal request for each fee worth disputing."
+    ],
+    "further": [
+      "Add up fees across a year of statements.",
+      "Warn before an annual fee falls due."
+    ]
+  },
+  {
+    "id": "P103",
+    "fit": true,
+    "task": "Tell a renter whether a listing is really a broker's before they call.",
+    "expect": [
+      "A renter can paste a listing's text or upload a screenshot.",
+      "The AI rates how likely the listing is a broker's, with reasons.",
+      "It points to the exact phrases that gave the listing away.",
+      "It suggests questions an owner could answer and a broker could not."
+    ],
+    "further": [
+      "Spot the same photo used in several listings.",
+      "Let renters report a listing, and warn the next renter."
+    ]
+  },
+  {
+    "id": "P104",
+    "fit": true,
+    "task": "Give a school leaver 3 study options that fit them, with honest reasons and costs.",
+    "expect": [
+      "A school leaver can answer questions about interests, marks and budget.",
+      "The AI suggests 3 study options and explains why each fits.",
+      "It shows the cost and length of each option side by side.",
+      "Every fact links to the page it came from.",
+      "It takes no payment or listing from any college, and says so."
+    ],
+    "further": [
+      "Let a parent read the same advice in their regional language.",
+      "Suggest what to ask someone already on that path."
+    ]
+  },
+  {
+    "id": "P105",
+    "fit": true,
+    "task": "Show a shop owner what card fees and add-ons cost per sale, and where to cut.",
+    "expect": [
+      "A shop owner can upload a month's processing and software bills.",
+      "The AI reads every fee and add-on and names each plainly.",
+      "It shows the cost per sale and as a share of sales.",
+      "It lists the add-ons the shop pays for, by monthly cost.",
+      "The AI points to the saving worth making first, with its reason."
+    ],
+    "further": [
+      "Compare this month with last month and mark new charges.",
+      "Track chargebacks and whether the goods came back."
+    ]
+  },
+  {
+    "id": "P106",
+    "fit": true,
+    "task": "Turn a team's old chat threads into answers a newcomer can find without asking anyone.",
+    "expect": [
+      "A team member can paste or upload a chat thread or email.",
+      "The AI writes each answered question up as a short, titled note.",
+      "A newcomer can ask in plain words and get the answer.",
+      "Every answer shows the thread it came from.",
+      "It says so when the team has no answer yet."
+    ],
+    "further": [
+      "Capture new threads on their own, with nobody pasting anything.",
+      "Flag notes that a newer thread contradicts."
+    ]
+  },
+  {
+    "id": "P107",
+    "fit": true,
+    "task": "Let a weaver list a piece for sale online from a phone, in their regional language.",
+    "expect": [
+      "A weaver can add a piece with a photo and description.",
+      "The description can be given in an Indian language, not English.",
+      "The AI writes the listing in the weaver's language and in English.",
+      "A buyer can open the listing on a public page and order.",
+      "The weaver sees every order in a single list."
+    ],
+    "further": [
+      "Let the weaver describe the piece by voice.",
+      "Help the weaver set a price that covers their costs."
+    ]
+  },
+  {
+    "id": "P108",
+    "fit": true,
+    "task": "Tell a farmer in plain words what a carbon contract will pay and when.",
+    "expect": [
+      "A farmer uploads a photo or PDF of the contract.",
+      "The AI explains what is paid, when and on what conditions.",
+      "It lists what the contract does not say.",
+      "The answer comes in the farmer's regional language.",
+      "It gives questions to ask the company before signing."
+    ],
+    "further": [
+      "The explanation is read aloud for a farmer who cannot read.",
+      "Payments received are logged and compared with what was promised."
+    ]
+  },
+  {
+    "id": "P109",
+    "fit": true,
+    "task": "Show a hungry customer the true total for a meal across 2 ways of ordering it.",
+    "expect": [
+      "A customer can paste or upload the checkout screen from each way.",
+      "The AI reads every fee and tax on each one.",
+      "It shows the totals side by side, fee by fee.",
+      "It says which way is cheapest, and by how many rupees."
+    ],
+    "further": [
+      "Keep a history of fees so a customer sees when they rise.",
+      "Add a 3rd way of ordering to the comparison."
+    ]
+  },
+  {
+    "id": "P110",
+    "fit": true,
+    "task": "Show a small fleet owner what each truck's idle days cost in rupees.",
+    "expect": [
+      "An owner can upload trip records or driver messages they already have.",
+      "The AI works out which days each truck stood idle.",
+      "The owner enters a daily cost, and it prices each idle day.",
+      "The owner can see how each figure was worked out."
+    ],
+    "further": [
+      "Show the reason behind each idle day, like repair or no load.",
+      "Send the owner a weekly summary of idle days and their cost."
+    ]
+  },
+  {
+    "id": "P111",
+    "fit": true,
+    "task": "Show a coach which clients did this week's home exercises.",
+    "expect": [
+      "A coach sets a week's exercises for each client.",
+      "Each client opens a link and marks what they did.",
+      "The coach sees prescribed against done for every client.",
+      "The AI writes a short weekly note on each client.",
+      "The AI drafts a nudge for clients who fell behind."
+    ],
+    "further": [
+      "Clients get a daily reminder on WhatsApp or email.",
+      "A client can say an exercise hurt or was confusing."
+    ]
+  },
+  {
+    "id": "P112",
+    "fit": true,
+    "task": "Show a traveller what they are owed on a cancelled flight and help them claim it.",
+    "expect": [
+      "A traveller can upload the booking, fare break-up and refund received.",
+      "The AI lists every amount paid, refunded and held back.",
+      "It shows the gap in rupees, line by line.",
+      "The AI drafts a claim to the agent for the missing amount."
+    ],
+    "further": [
+      "Track the claim and remind the traveller when a reply is overdue.",
+      "Explain each deduction in plain language."
+    ]
+  },
+  {
+    "id": "P113",
+    "fit": true,
+    "task": "Get a seller's stuck-money complaint past the bot to a real person.",
+    "expect": [
+      "A seller pastes the bot chat and the payment details.",
+      "The AI builds a timeline with dates, amounts and reference numbers.",
+      "The AI writes a short complaint that asks for one clear fix.",
+      "The case is saved with every message sent and reply received.",
+      "A reminder goes out when nobody has replied in 2 days."
+    ],
+    "further": [
+      "The AI writes a short public post for the company's social page.",
+      "The case is shared as one link with the full timeline."
+    ]
+  },
+  {
+    "id": "P114",
+    "fit": true,
+    "task": "Tell a small business owner what a GST notice means and what to do next.",
+    "expect": [
+      "An owner can upload a notice as a photo or PDF.",
+      "The AI explains the notice in plain words.",
+      "It shows the deadline and the documents the notice asks for.",
+      "The owner can read it in an Indian language they choose.",
+      "It tells the owner to check with an accountant before acting."
+    ],
+    "further": [
+      "Draft a reply the owner can take to their accountant.",
+      "Remind the owner as the deadline gets close."
+    ]
+  },
+  {
+    "id": "P115",
+    "fit": true,
+    "task": "Keep a renter's token money safe until both renter and owner confirm the deal.",
+    "expect": [
+      "A renter can pay a token for a flat in test mode.",
+      "The renter and the owner each see the token's status.",
+      "The token is released only when both confirm the deal.",
+      "It goes back to the renter if the owner backs out.",
+      "The AI writes the agreed terms as a short, plain record."
+    ],
+    "further": [
+      "Handle a dispute where the 2 sides tell different stories.",
+      "Remind both sides before the deadline."
+    ]
+  },
+  {
+    "id": "P116",
+    "fit": true,
+    "task": "Let an exam student try a topic first, then pay for only that topic.",
+    "expect": [
+      "A teacher can add topics, each with a price and a preview.",
+      "A student can try the preview before paying.",
+      "A student can pay for one topic in test mode.",
+      "A paid topic opens for that student right away.",
+      "The AI asks about weak areas and suggests the next topic."
+    ],
+    "further": [
+      "Let a student move paid topics when they switch streams.",
+      "Show a student what they have spent and used so far."
+    ]
+  },
+  {
+    "id": "P117",
+    "fit": true,
+    "task": "Keep a seller taking orders and payments when their main account is frozen.",
+    "expect": [
+      "The AI turns a pasted product list into an order page.",
+      "The seller adds their own UPI ID or bank details.",
+      "A buyer places an order and sees a UPI QR to pay.",
+      "The seller sees every order and marks it paid or sent.",
+      "The AI drafts a message telling customers where to order now."
+    ],
+    "further": [
+      "The seller gets an alert the moment a new order comes in.",
+      "Buyers get an order confirmation by email or WhatsApp."
+    ]
+  },
+  {
+    "id": "P118",
+    "fit": true,
+    "task": "Turn each promise in a team chat into a task with a name and a date.",
+    "expect": [
+      "A team member can paste a chat thread or call notes.",
+      "The AI finds each promise and who made it.",
+      "Each promise becomes a task with an owner and a date.",
+      "The team sees who owes what, and for how long.",
+      "An owner can mark a task done."
+    ],
+    "further": [
+      "Pull promises straight from a chat, with no pasting.",
+      "Nudge an owner when their task is overdue."
+    ]
+  },
+  {
+    "id": "P119",
+    "fit": true,
+    "task": "Show every stylist in a salon how their monthly commission was counted.",
+    "expect": [
+      "The owner can enter or upload a month of services by stylist.",
+      "The owner sets the salon's own commission rules.",
+      "It works out each stylist's commission from those rules.",
+      "A stylist can see every service behind their figure.",
+      "The AI answers a stylist's question about their commission in plain words."
+    ],
+    "further": [
+      "Add attendance, so pay reflects days worked.",
+      "Total the month's GST from the same records."
+    ]
+  },
+  {
+    "id": "P120",
+    "fit": true,
+    "task": "Let a small food maker show buyers when and where each batch was made.",
+    "expect": [
+      "A maker logs a batch with a photo, place and ingredients.",
+      "The time is stamped when saved and cannot be changed later.",
+      "The AI turns a quick typed note into a clean record.",
+      "Each batch gets a QR code to print on the label.",
+      "A buyer scans it and sees when and where it was made."
+    ],
+    "further": [
+      "The maker sets a shelf life and old batches are flagged.",
+      "A buyer can report a problem against the batch."
+    ]
+  },
+  {
+    "id": "P121",
+    "fit": true,
+    "task": "Let a diner see today's photos of a kitchen before ordering from it.",
+    "expect": [
+      "Kitchen staff upload photos of the same set spots each day.",
+      "Each photo is stamped with the time and cannot be replaced.",
+      "The AI checks each photo and notes visible hygiene problems.",
+      "A diner opens the restaurant's page and sees today's photos.",
+      "A missed day shows clearly on the page."
+    ],
+    "further": [
+      "Staff get a reminder when today's photos are not in.",
+      "A diner can report what arrived, with a photo."
+    ]
+  },
+  {
+    "id": "P122",
+    "fit": true,
+    "task": "Let any factory worker report a machine fault in 10 seconds, with no account.",
+    "expect": [
+      "A worker can log a fault from a phone without signing in.",
+      "A fault can be a photo, a few words, or both.",
+      "The AI names the machine, the fault and how urgent it is.",
+      "The maintenance lead sees every open fault in one list.",
+      "A fault can be marked fixed."
+    ],
+    "further": [
+      "Let a worker log a fault by voice.",
+      "Spot the machine that keeps failing."
+    ]
+  },
+  {
+    "id": "P123",
+    "fit": true,
+    "task": "Show a small clinic which ad or listing brought each new patient.",
+    "expect": [
+      "A new patient says how they found the clinic when they book.",
+      "The clinic can enter what it spends on each listing or ad.",
+      "It shows patients and cost per patient for each source.",
+      "The AI sorts answers like 'a friend told me' into sources."
+    ],
+    "further": [
+      "Give each listing its own booking link, so the source is known.",
+      "Show which sources bring patients who come back."
+    ]
+  },
+  {
+    "id": "P124",
+    "fit": true,
+    "task": "Tell a traveller what a fare add-on covers and does not cover before they pay.",
+    "expect": [
+      "A traveller can paste or upload an add-on's terms.",
+      "The AI lists what the add-on covers and what it does not.",
+      "A traveller can ask 'what if I miss the flight'.",
+      "Each answer points to the line in the terms behind it.",
+      "It says so when the terms do not answer the question."
+    ],
+    "further": [
+      "Compare 2 add-ons side by side.",
+      "Check a booked ticket against what the add-on promised."
+    ]
+  },
+  {
+    "id": "P125",
+    "fit": true,
+    "task": "Tell a creator in plain words where their monetisation stands and what to do next.",
+    "expect": [
+      "A creator uploads a screenshot of their YouTube Studio earnings page.",
+      "The AI reads the numbers and the status shown.",
+      "It explains in plain words what is met and what is not.",
+      "Each screenshot is saved so progress shows over time.",
+      "The AI drafts a follow-up message to support for a stuck review."
+    ],
+    "further": [
+      "A reminder goes out when a review has waited 2 weeks.",
+      "The explanation is also given in Hindi."
+    ]
+  },
+  {
+    "id": "P126",
+    "fit": true,
+    "task": "Turn an exported Tally ledger file into a clean table an accountant can analyse.",
+    "expect": [
+      "An accountant can upload a ledger export file.",
+      "It shows every ledger entry in one clean, sortable table.",
+      "The AI flags entries that look wrong, like duplicates or odd amounts.",
+      "An accountant can ask a question about the ledger in plain words.",
+      "The clean data can be downloaded as a spreadsheet."
+    ],
+    "further": [
+      "Handle several ledgers in one upload.",
+      "Build a project cost report from the same data."
+    ]
+  },
+  {
+    "id": "P127",
+    "fit": true,
+    "task": "Help a tenant check each cut from their deposit and dispute the unfair ones.",
+    "expect": [
+      "A tenant can upload the deductions list and their rental agreement.",
+      "The AI checks each deduction against the rental agreement.",
+      "A tenant can attach move-in and move-out photos to any line.",
+      "The AI drafts a reply disputing the lines the tenant picks.",
+      "It shows the amount the tenant is asking back."
+    ],
+    "further": [
+      "Record a room-by-room photo check at move-in, with dates.",
+      "Let the landlord answer each line on a shared page."
+    ]
+  },
+  {
+    "id": "P128",
+    "fit": true,
+    "task": "Let a tutor send each parent a short weekly report on their child.",
+    "expect": [
+      "A tutor can write quick notes for a student after each class.",
+      "The AI turns the week's notes into a short parent report.",
+      "A parent can open their child's report from a link.",
+      "The report shows what was covered and what still needs work.",
+      "The tutor can edit a report before it goes."
+    ],
+    "further": [
+      "Let the tutor speak the notes instead of typing.",
+      "Show a child's progress across several weeks."
+    ]
+  },
+  {
+    "id": "P129",
+    "fit": true,
+    "task": "Let a shopkeeper see a supplier's stock and prices before they order.",
+    "expect": [
+      "A supplier can upload or paste today's stock and price list.",
+      "The AI turns that list into items a shopkeeper can search.",
+      "A shopkeeper can see what is in stock and at what price.",
+      "A shopkeeper can place an order and see when it will arrive.",
+      "The supplier confirms the order before any payment is due."
+    ],
+    "further": [
+      "Let a shopkeeper order by voice in their regional language.",
+      "Record a quality complaint against a delivery, with photos."
+    ]
+  },
+  {
+    "id": "P130",
+    "fit": true,
+    "task": "Let someone sort their morning emails and draft replies by speaking.",
+    "expect": [
+      "A person can paste or forward a batch of their own emails.",
+      "It reads out a short summary of each email.",
+      "The AI sorts the emails by what needs a reply first.",
+      "The AI turns a rough spoken reply into a clear draft.",
+      "Every draft waits for a check before anything is sent."
+    ],
+    "further": [
+      "Connect a real inbox, so no pasting is needed.",
+      "Work hands-free from start to finish, with no tapping."
+    ]
+  },
+  {
+    "id": "P131",
+    "fit": true,
+    "task": "Give a small clothing store size advice built from its own size charts.",
+    "expect": [
+      "The store can upload a size chart as a photo or file.",
+      "The AI turns the chart into measurements the store can edit.",
+      "A shopper enters their measurements and gets a size for that product.",
+      "The store can export every chart at any time.",
+      "It tells the store when a product has no chart."
+    ],
+    "further": [
+      "Explain to the shopper why that size was picked.",
+      "Show the store which products get returned for fit."
+    ]
+  },
+  {
+    "id": "P132",
+    "fit": true,
+    "task": "Show a farmer which dealer has urea today and at what price.",
+    "expect": [
+      "A farmer reports a dealer's stock and price in a few taps.",
+      "The AI turns a typed Telugu or Hindi message into a report.",
+      "Other farmers see the latest report for each dealer.",
+      "The official price is entered once and higher prices are flagged.",
+      "Each report shows how old it is."
+    ],
+    "further": [
+      "A farmer gets an alert when a nearby dealer has stock.",
+      "Reports can be sent as a voice note."
+    ]
+  },
+  {
+    "id": "P133",
+    "fit": false,
+    "why": "Telling pure spices, water or milk from adulterated ones needs a chemical test or a sensor, which a photo and an AI cannot honestly replace."
+  },
+  {
+    "id": "P134",
+    "fit": true,
+    "task": "Explain a business's old code in plain words so someone new can fix it.",
+    "expect": [
+      "An owner or developer uploads or pastes the old code.",
+      "The AI explains what each part does in plain words.",
+      "It lists the business rules hidden in the code.",
+      "It flags the risky parts and says why."
+    ],
+    "further": [
+      "A person asks a question about the code and gets an answer.",
+      "The guide downloads as one document for a new developer."
+    ]
+  },
+  {
+    "id": "P135",
+    "fit": true,
+    "task": "Turn a therapist's session notes into a progress report before the next session.",
+    "expect": [
+      "A therapist can paste or upload session notes for one client.",
+      "The AI drafts a progress report in a set structure.",
+      "Every statement in the report traces back to a note.",
+      "The therapist can edit the draft and download it.",
+      "It flags gaps where the notes say nothing."
+    ],
+    "further": [
+      "Draft a report that covers 6 months of notes.",
+      "Let the therapist dictate notes right after a session."
+    ]
+  },
+  {
+    "id": "P136",
+    "fit": true,
+    "task": "Let a renter and a car owner agree on the car's condition at pickup and return.",
+    "expect": [
+      "Renter and owner both join one trip record from a shared link.",
+      "Each can add dated photos of the car at pickup and return.",
+      "The AI compares the 2 sets of photos and lists new damage.",
+      "Both sides confirm the list before the deposit is settled.",
+      "It shows how much of the deposit goes back, and why."
+    ],
+    "further": [
+      "Hold the deposit in test mode and release it on confirmation.",
+      "Check a listing's registration number against the car's photo."
+    ]
+  },
+  {
+    "id": "P137",
+    "fit": true,
+    "task": "Show a creator when each payout should arrive and warn them when one is late.",
+    "expect": [
+      "A creator can add each expected payout with its source and date.",
+      "The AI reads a pasted payout email and fills in the details.",
+      "It shows every payout due on one calendar.",
+      "It alerts the creator the day a payout is late.",
+      "It shows this month's expected cash against bills the creator lists."
+    ],
+    "further": [
+      "Draft a message asking the platform why a payout slipped.",
+      "Keep a record of how late each platform tends to pay."
+    ]
+  },
+  {
+    "id": "P138",
+    "fit": true,
+    "task": "Help a bookkeeper match a month of bank entries to the ledger, leaving only doubtful ones.",
+    "expect": [
+      "A bookkeeper can upload one month's bank statement and ledger.",
+      "It matches lines that agree on amount and date.",
+      "The AI suggests matches where names differ, with a reason.",
+      "It lists the unmatched lines for a person to decide.",
+      "A bookkeeper can accept or reject any suggested match."
+    ],
+    "further": [
+      "Handle one bank line that settles several ledger entries.",
+      "Remember a bookkeeper's past decisions and apply them next month."
+    ]
+  },
+  {
+    "id": "P139",
+    "fit": true,
+    "task": "Help a homeowner list everything in one room, with photos and values.",
+    "expect": [
+      "A person can upload photos of a room or of single items.",
+      "The AI lists each item it sees, with a suggested value.",
+      "A person can correct any item, value or purchase date.",
+      "It shows the room's total value.",
+      "The list can be downloaded with its photos."
+    ],
+    "further": [
+      "Attach a bill or receipt to an item as proof.",
+      "Cover the whole home, room by room."
+    ]
+  },
+  {
+    "id": "P140",
+    "fit": true,
+    "task": "Help a stuck student understand a problem from its photo, without giving the answer.",
+    "expect": [
+      "A student can upload a photo of a textbook problem.",
+      "The AI reads the problem and asks where the student is stuck.",
+      "It gives one hint at a time and never the final answer.",
+      "It checks the student's own working and points to the first mistake.",
+      "It ends with a similar problem for the student to try."
+    ],
+    "further": [
+      "Keep a list of topics a student keeps getting stuck on.",
+      "Explain in the student's regional language."
+    ]
+  },
+  {
+    "id": "P141",
+    "fit": true,
+    "task": "Help a small shop count its stock in an hour and see what is missing.",
+    "expect": [
+      "The owner can upload the stock the records say should be there.",
+      "Staff can count shelf by shelf from a phone.",
+      "The AI reads a shelf photo and suggests a count to confirm.",
+      "It shows every item where the count and the records differ.",
+      "It shows the value of what is missing in rupees."
+    ],
+    "further": [
+      "Have 2 people count the same shelf and flag disagreements.",
+      "Compare this count with the last one to spot a pattern."
+    ]
+  },
+  {
+    "id": "P142",
+    "fit": true,
+    "task": "Turn a pile of customer requests into a ranked list of what to build first.",
+    "expect": [
+      "A product manager can paste or upload a batch of requests.",
+      "The AI groups requests that ask for the same thing.",
+      "It ranks the groups and shows how the rank was reached.",
+      "Every group opens to the original requests behind it."
+    ],
+    "further": [
+      "Add public complaints as a second source.",
+      "Weigh a request by who asked, not only how often."
+    ]
+  },
+  {
+    "id": "P143",
+    "fit": true,
+    "task": "Show a small clothing maker which styles to make less of next season.",
+    "expect": [
+      "A maker can upload last season's production and sales by style.",
+      "It shows what sold, what was marked down and what was left.",
+      "It suggests a quantity for each style next season.",
+      "The AI explains each suggestion in plain words.",
+      "It shows how much unsold stock the plan would avoid."
+    ],
+    "further": [
+      "Let the maker change a quantity and see the effect.",
+      "Break the suggestion down by size and colour."
+    ]
+  },
+  {
+    "id": "P144",
+    "fit": true,
+    "task": "Catch an expired or undated pack from a photo before it leaves the store.",
+    "expect": [
+      "A packer can upload a photo of a pack's label.",
+      "The AI reads the manufacturing and best-before dates from the photo.",
+      "It gives a clear pass, near-expiry or stop for each pack.",
+      "It stops a pack when no date can be found.",
+      "The store sees every stopped pack for the day."
+    ],
+    "further": [
+      "Show the customer the best-before date before they pay.",
+      "Check a whole crate from one photo."
+    ]
+  },
+  {
+    "id": "P145",
+    "fit": true,
+    "task": "Warn a small manufacturer when a metal price rise will wipe out an order.",
+    "expect": [
+      "An owner enters a quote with its materials, weights and prices.",
+      "It shows the profit on that order at today's price.",
+      "It shows the material price at which the profit hits 0.",
+      "The owner updates a price and every open quote is rechecked.",
+      "The AI drafts a price-change clause to add to the next quote."
+    ],
+    "further": [
+      "An alert goes out when a price crosses the danger line.",
+      "The AI reads the materials from an uploaded quote PDF."
+    ]
+  },
+  {
+    "id": "P146",
+    "fit": true,
+    "task": "Let a solo coach sell packages and take session bookings from one link.",
+    "expect": [
+      "A coach can add packages with prices, all shown on one page.",
+      "A client can pay for a package in test mode.",
+      "A client can see free slots and book a session.",
+      "A client can reschedule a session without calling the coach.",
+      "The AI answers a client's questions from the coach's own notes."
+    ],
+    "further": [
+      "Remind a client the day before a session.",
+      "Show the coach how many sessions each client has left."
+    ]
+  },
+  {
+    "id": "P147",
+    "fit": true,
+    "task": "Help a rider get back a cancellation fee they did not cause.",
+    "expect": [
+      "A rider can upload trip screenshots and say what happened.",
+      "The AI builds a timeline of the fares and who cancelled.",
+      "It shows the amount the rider was wrongly charged.",
+      "The AI drafts a complaint with the evidence attached.",
+      "The rider can track whether the fee came back."
+    ],
+    "further": [
+      "Remind the rider to follow up when no reply comes.",
+      "Keep a log of cases, so repeat overcharging shows up."
+    ]
+  },
+  {
+    "id": "P148",
+    "fit": true,
+    "task": "Find the weak spots in a creator team's accounts before a hijacker does.",
+    "expect": [
+      "A team lists each account and who has access to it.",
+      "They record the recovery email, phone and 2-step setting for each.",
+      "No password is ever asked for or stored.",
+      "The AI flags the weak spots and gives steps to fix each.",
+      "The team ticks off fixes and sees what is still open."
+    ],
+    "further": [
+      "A reminder goes out every month to review who has access.",
+      "The AI builds a recovery file with proof of ownership."
+    ]
+  },
+  {
+    "id": "P149",
+    "fit": true,
+    "task": "Show a small shop owner how much cash they will have in 30 days.",
+    "expect": [
+      "An owner can enter or upload expected money in and out.",
+      "It shows the cash balance for each of the next 30 days.",
+      "It warns of any day the balance falls below zero.",
+      "The AI explains in plain words what causes the low points.",
+      "An owner can move a payment date and see the forecast change."
+    ],
+    "further": [
+      "Send the owner the day's figure every morning.",
+      "Allow for payments that land later than expected."
+    ]
+  },
+  {
+    "id": "P150",
+    "fit": true,
+    "task": "Help someone find out what a small home repair needs from one photo.",
+    "expect": [
+      "A person can upload a photo and describe the fault.",
+      "The AI names the likely fault and asks follow-up questions.",
+      "It says whether to fix it yourself or call someone.",
+      "For a safe fix, it lists the steps, tools and materials.",
+      "It tells the person to stop when a job is unsafe."
+    ],
+    "further": [
+      "Let local repair workers sign up to take small jobs.",
+      "Accept a short video instead of a photo."
+    ]
+  },
+  {
+    "id": "P151",
+    "fit": true,
+    "task": "Turn an English lesson into one a student can learn in their regional language.",
+    "expect": [
+      "A student can paste an English lesson and pick an Indian language.",
+      "The AI explains the lesson in that language, not word for word.",
+      "It keeps key terms in English beside the translation.",
+      "A student can ask a doubt in their regional language.",
+      "A short quiz in that language checks what the student understood."
+    ],
+    "further": [
+      "Read the lesson aloud in the student's language.",
+      "Use examples from the student's own region."
+    ]
+  },
+  {
+    "id": "P152",
+    "fit": true,
+    "task": "Cut a small seller's packaging cost by picking the right box for every order.",
+    "expect": [
+      "A seller types in their box sizes and what each costs.",
+      "They paste an order and the AI reads the items and sizes.",
+      "It picks the smallest box that fits and shows the cost.",
+      "It shows how much empty space and filler the box needs.",
+      "Packed orders are saved with the box used and its cost."
+    ],
+    "further": [
+      "A monthly view shows what was spent on packaging.",
+      "The AI suggests a box size worth adding to the list."
+    ]
+  },
+  {
+    "id": "P153",
+    "fit": true,
+    "task": "Get a local business honest feedback from a customer in under 30 seconds.",
+    "expect": [
+      "A customer opens a link or scans a code, with no sign-in.",
+      "A customer can leave a voice note or a few words.",
+      "The AI turns each reply into text and tags its topic.",
+      "The owner sees the week's feedback grouped by theme.",
+      "It shows the owner which complaints to act on first."
+    ],
+    "further": [
+      "Accept feedback in more than one Indian language.",
+      "Draft a reply to an unhappy customer for the owner to send."
+    ]
+  },
+  {
+    "id": "P154",
+    "fit": true,
+    "task": "Help a shopper judge the fabric, colour and fit of clothes from buyers' reviews.",
+    "expect": [
+      "A shopper can paste a listing's reviews or upload buyers' photos.",
+      "The AI sums up what buyers say about fabric, colour and fit.",
+      "It shows where buyers say the product differs from the listing.",
+      "Each point links back to the reviews behind it.",
+      "It gives a plain verdict: buy, think twice or avoid."
+    ],
+    "further": [
+      "Compare a buyer's photo with the seller's photo for colour.",
+      "Let a buyer add their own photo and review after delivery."
+    ]
+  },
+  {
+    "id": "P155",
+    "fit": true,
+    "task": "Tell a parent quickly whether a packaged food is right for their child.",
+    "expect": [
+      "A parent can upload a photo of a pack's label.",
+      "The AI reads the ingredients and the nutrition table from the photo.",
+      "It shows the sugar per serving in a way anyone can read.",
+      "It gives a clear red, amber or green signal.",
+      "A parent can set an allergy and get a warning."
+    ],
+    "further": [
+      "Save each scan, so a parent can look back later.",
+      "Compare 2 packs side by side."
+    ]
+  },
+  {
+    "id": "P156",
+    "fit": true,
+    "task": "Catch a supplier invoice that would fail GST checks and get it fixed.",
+    "expect": [
+      "An owner can upload a supplier invoice as a photo or PDF.",
+      "The AI reads the invoice and checks its GST details.",
+      "It lists what is missing or wrong on each invoice.",
+      "The AI drafts a message asking the supplier for the fix.",
+      "The owner sees which invoices still wait on a supplier."
+    ],
+    "further": [
+      "Send follow-ups on its own until the supplier replies.",
+      "Show the input credit at risk across all open invoices."
+    ]
+  },
+  {
+    "id": "P157",
+    "fit": true,
+    "task": "Tell a patient which nearby pharmacy has all their medicines at the lowest price.",
+    "expect": [
+      "A patient can upload a photo of a prescription.",
+      "The AI reads the medicines and strengths, and the patient confirms them.",
+      "A pharmacy can update its own stock and prices.",
+      "It shows which pharmacies have every item today.",
+      "It shows the total price at each pharmacy, lowest first."
+    ],
+    "further": [
+      "Let a patient reserve the medicines before leaving home.",
+      "Handle a pharmacy that has only part of the prescription."
+    ]
+  },
+  {
+    "id": "P158",
+    "fit": true,
+    "task": "Keep a creator's music licence ready to send the moment a claim lands.",
+    "expect": [
+      "A creator uploads each licence or receipt as they buy music.",
+      "The AI reads the track, seller, date and licence terms.",
+      "Each licence is linked to the videos that use it.",
+      "The creator pastes a claim and the AI finds the matching licence.",
+      "The AI drafts the dispute with the licence details filled in."
+    ],
+    "further": [
+      "A video with no licence on file is flagged before upload.",
+      "Receipts are pulled in from the creator's email."
+    ]
+  },
+  {
+    "id": "P159",
+    "fit": true,
+    "task": "Help a small business owner chase unpaid invoices on time without giving up evenings.",
+    "expect": [
+      "An owner can add an invoice with customer, amount and due date.",
+      "It shows what is due, overdue and paid.",
+      "The AI drafts a reminder that fits how late the invoice is.",
+      "Reminders go out on a schedule the owner sets.",
+      "Marking an invoice paid stops its reminders."
+    ],
+    "further": [
+      "Add a test-mode payment link to every reminder.",
+      "Show which customers pay late most often."
+    ]
+  },
+  {
+    "id": "P160",
+    "fit": true,
+    "task": "Let a homeowner check a cleaning job from before and after photos before paying in full.",
+    "expect": [
+      "The homeowner describes the job and gets a checklist of areas.",
+      "The worker adds a before and an after photo for each area.",
+      "The AI compares each pair and flags areas that look missed.",
+      "The homeowner approves or disputes each area.",
+      "The final payment is marked due only after sign-off."
+    ],
+    "further": [
+      "Cover a carpentry job, with defects logged after installation.",
+      "Hold the final payment in test mode until sign-off."
+    ]
+  },
+  {
+    "id": "P161",
+    "fit": true,
+    "task": "Let a course creator sell a course and keep its students on their own page.",
+    "expect": [
+      "A creator can put up one course with lessons and a price.",
+      "A student can pay in test mode and open the lessons.",
+      "A creator can import a student list from a file.",
+      "The creator can export students and content at any time.",
+      "The AI turns a pasted course outline into a ready sales page."
+    ],
+    "further": [
+      "Invite imported students by email to the new page.",
+      "Offer both one-time and subscription pricing."
+    ]
+  },
+  {
+    "id": "P162",
+    "fit": true,
+    "task": "Help a small shop win repeat orders from past customers without giving discounts.",
+    "expect": [
+      "A shop can keep a list of customers and their last orders.",
+      "A customer can reorder their usual items from one link.",
+      "The AI drafts a personal reorder message from each customer's past orders.",
+      "The shop sees every new order in one list.",
+      "The shop sees which messages led to an order."
+    ],
+    "further": [
+      "Time each message to when the customer may run out.",
+      "Let the customer reply in plain words to change the order."
+    ]
+  },
+  {
+    "id": "P163",
+    "fit": true,
+    "task": "Run one daily office chore without clicking, and tell the worker the day it breaks.",
+    "expect": [
+      "One named daily chore runs from start to finish with no clicking.",
+      "A worker sets it up by describing it in plain words.",
+      "The AI handles the step that needs reading or writing text.",
+      "The worker sees a log of every run and its result.",
+      "A failed run says which step broke and alerts the worker."
+    ],
+    "further": [
+      "Let the worker change a step by describing the change.",
+      "Retry a failed step on its own before raising the alarm."
+    ]
+  },
+  {
+    "id": "P164",
+    "fit": true,
+    "task": "Tell a shopper how to wash a garment so it still fits afterwards.",
+    "expect": [
+      "A shopper uploads a photo of the care label or fabric tag.",
+      "The AI reads the fabric mix and the care symbols.",
+      "It explains each symbol in plain words.",
+      "It gives wash, dry and iron steps for that garment.",
+      "It warns when the fabric is likely to shrink or lose shape."
+    ],
+    "further": [
+      "Garments are saved so the steps are there on wash day.",
+      "A shopper pastes a product link and gets the warning before buying."
+    ]
+  },
+  {
+    "id": "P165",
+    "fit": true,
+    "task": "Let a home baker take orders and price every item at a profit.",
+    "expect": [
+      "A baker can enter a recipe with ingredients and what each costs.",
+      "It shows an item's cost and a price that makes a profit.",
+      "A customer can place an order from a shared link.",
+      "The AI turns a pasted chat message into an order.",
+      "The baker sees the profit on every order."
+    ],
+    "further": [
+      "Handle a swap for an allergy or diet, and reprice it.",
+      "Update every price when an ingredient's cost changes."
+    ]
+  },
+  {
+    "id": "P166",
+    "fit": true,
+    "task": "Help a one-truck owner see which posted loads are real, fresh and not repeats.",
+    "expect": [
+      "A carrier can paste or upload a batch of load posts.",
+      "The AI merges the same load posted by different brokers.",
+      "It flags posts that are stale or missing key details.",
+      "A carrier can filter the clean list by route and date."
+    ],
+    "further": [
+      "Let a carrier mark a load as fake, so others see it.",
+      "Draft a first message to the broker for a chosen load."
+    ]
+  },
+  {
+    "id": "P167",
+    "fit": true,
+    "task": "Help a member cancel a fitness plan with proof the seller cannot dispute.",
+    "expect": [
+      "A member can paste or upload the plan's terms.",
+      "The AI finds the cancellation rules, deadlines and refund terms.",
+      "The AI drafts a cancellation notice that cites those terms.",
+      "It keeps a dated record of the notice sent.",
+      "It reminds the member to check that billing has stopped."
+    ],
+    "further": [
+      "Draft a refund demand if a charge appears after cancellation.",
+      "Warn a buyer about hidden deadlines before they sign up."
+    ]
+  },
+  {
+    "id": "P168",
+    "fit": true,
+    "task": "Help a creator check if a copyright strike looks fake and how to answer safely.",
+    "expect": [
+      "A creator pastes the strike notice and the claimant's details.",
+      "The AI lists signs the claim is fake, with reasons.",
+      "It flags a free email address or a mismatched company name.",
+      "It explains what a counter-notice would share with the claimant.",
+      "The AI drafts a report to the platform about the impostor."
+    ],
+    "further": [
+      "Strikes are saved with dates so a pattern shows.",
+      "The AI drafts a note asking the real publisher to confirm."
+    ]
+  },
+  {
+    "id": "P169",
+    "fit": true,
+    "task": "Turn a merchant's order and delivery records into a chargeback reply in minutes.",
+    "expect": [
+      "A merchant can upload the dispute notice, the order and delivery proof.",
+      "The AI matches each claim in the dispute to its evidence.",
+      "The AI drafts a reply with the evidence set out in order.",
+      "It lists any missing evidence before the merchant sends.",
+      "The reply can be downloaded as one document."
+    ],
+    "further": [
+      "Track every open dispute and its reply deadline.",
+      "Flag orders that look like a stolen card being tested."
+    ]
+  },
+  {
+    "id": "P170",
+    "fit": true,
+    "task": "Help a renter turn what they want into viewing requests for homes that fit.",
+    "expect": [
+      "A renter can write what they need in plain words.",
+      "The AI turns it into must-haves and nice-to-haves.",
+      "A renter can paste listings, and it ranks each with a reason.",
+      "The AI drafts a viewing request to each owner.",
+      "The renter tracks every request as sent, replied or viewing fixed."
+    ],
+    "further": [
+      "Flag listings that look stale or copied.",
+      "Let an owner confirm a viewing slot from a link."
+    ]
+  },
+  {
+    "id": "P171",
+    "fit": true,
+    "task": "Show a job seeker what a paid plan got people like them before they pay.",
+    "expect": [
+      "A job seeker can report what they paid and calls received.",
+      "A visitor enters their experience and field, and sees matching reports.",
+      "It shows the usual number of recruiter calls for similar profiles.",
+      "The AI sums up what people with similar profiles say.",
+      "It shows how many reports each figure rests on."
+    ],
+    "further": [
+      "Compare 2 portals' plans side by side.",
+      "Ask for proof, like a receipt, before counting a report."
+    ]
+  },
+  {
+    "id": "P172",
+    "fit": true,
+    "task": "Help a shop owner move their product list to a new billing system, prices intact.",
+    "expect": [
+      "An owner uploads the old catalogue file and the new system's template.",
+      "The AI maps the old columns to the new format.",
+      "It shows rows that look wrong, like a missing price.",
+      "The owner can fix a row before export.",
+      "It exports a file ready for the new system."
+    ],
+    "further": [
+      "Bring sales history across as well.",
+      "Flag duplicate products before export."
+    ]
+  },
+  {
+    "id": "P173",
+    "fit": true,
+    "task": "Give a small firm one finished decision memo built from a pile of documents.",
+    "expect": [
+      "A person can upload several documents and state the decision needed.",
+      "The AI writes a finished memo with a recommendation.",
+      "Every claim in the memo names the document it came from.",
+      "It flags where documents disagree or facts are missing.",
+      "The memo can be downloaded ready to send."
+    ],
+    "further": [
+      "Clean a messy data file and hand back the cleaned file.",
+      "Show a reviewer what the AI was unsure about."
+    ]
+  },
+  {
+    "id": "P174",
+    "fit": true,
+    "task": "Help a buyer get a stuck clothing return moving without an hour on support.",
+    "expect": [
+      "A buyer can enter the order, the return date and what happened.",
+      "The AI builds a dated timeline from pasted messages and screenshots.",
+      "It shows how many days the pickup or refund is overdue.",
+      "The AI drafts a follow-up, and a consumer complaint if needed.",
+      "It reminds the buyer when the next step is due."
+    ],
+    "further": [
+      "Email the follow-up on its own when a deadline passes.",
+      "Track several returns at once."
+    ]
+  },
+  {
+    "id": "P175",
+    "fit": true,
+    "task": "Track every tiffin customer's meals, pauses and dues for a home cook.",
+    "expect": [
+      "A cook adds customers with their plan and price.",
+      "The cook pastes a WhatsApp message and the AI logs the pause.",
+      "Today's list shows who gets a tiffin and who has paused.",
+      "Each customer's dues are worked out from meals delivered and payments.",
+      "The AI drafts a polite dues reminder for each customer."
+    ],
+    "further": [
+      "Customers get their bill on WhatsApp at month end.",
+      "A customer pauses or restarts meals through their own link."
+    ]
+  },
+  {
+    "id": "P176",
+    "fit": true,
+    "task": "Check who is really paying for a load before a truck owner picks it up.",
+    "expect": [
+      "A truck owner uploads or pastes the load offer.",
+      "The AI pulls out the broker, the payer, the rate and terms.",
+      "It flags mismatched names, free email addresses and missing details.",
+      "It lists the questions to ask before loading.",
+      "The AI drafts a message asking the broker to confirm in writing."
+    ],
+    "further": [
+      "Past offers are saved with whether the load was paid.",
+      "A broker's registration number is checked against a public register."
+    ]
+  },
+  {
+    "id": "P177",
+    "fit": true,
+    "task": "Show a small gym owner what each member paid and what coaches are owed.",
+    "expect": [
+      "An owner can upload member payments and payout records.",
+      "It shows each payment, its charges and when it should arrive.",
+      "It flags failed payments and members charged twice.",
+      "It shows what each coach is owed this month.",
+      "The AI answers an owner's question, like 'who has not paid'."
+    ],
+    "further": [
+      "Give a member whose payment failed a grace period, not a lockout.",
+      "Alert the owner when a payout is late."
+    ]
+  },
+  {
+    "id": "P178",
+    "fit": false,
+    "why": "A client-grade video editor with its own export is a native app and far more than one student can build in 2 days."
+  },
+  {
+    "id": "P179",
+    "fit": true,
+    "task": "Help someone whose money was debited on a failed payment chase the refund.",
+    "expect": [
+      "A payer can paste the debit message and the failure screen.",
+      "The AI pulls out the amount, date, reference number and parties.",
+      "The AI drafts complaints for the bank and the merchant.",
+      "It tracks each complaint and how many days it has been open.",
+      "It tells the payer the next step when no reply comes."
+    ],
+    "further": [
+      "Send the follow-ups on a schedule, with no action from the payer.",
+      "Keep every reply in one timeline the payer can share."
+    ]
+  },
+  {
+    "id": "P180",
+    "fit": true,
+    "task": "Tell someone looking for a home whether a property ad's claims are true.",
+    "expect": [
+      "A home seeker can paste a property ad and their workplace.",
+      "The AI pulls out every claim the ad makes about the location.",
+      "It shows the peak-hour commute beside what the ad promised.",
+      "It marks each claim as checked, not checked or doubtful.",
+      "It lists the questions to ask the seller before a visit."
+    ],
+    "further": [
+      "Add air quality for the address.",
+      "Let residents report power cuts for their area."
+    ]
+  },
+  {
+    "id": "P181",
+    "fit": true,
+    "task": "Give a fresher a resume written for one job and show what changed.",
+    "expect": [
+      "A fresher can upload their resume and paste a job description.",
+      "The AI rewrites the resume using only the fresher's own facts.",
+      "It shows each change next to the original line.",
+      "It lists what the job asks for that the resume lacks.",
+      "The resume can be downloaded."
+    ],
+    "further": [
+      "Track applications and replies, to see if the new resume worked.",
+      "Draft a short cover note for the same job."
+    ]
+  },
+  {
+    "id": "P182",
+    "fit": true,
+    "task": "Help a busy person clear a week of errands without paying for an assistant.",
+    "expect": [
+      "A person can add errands by typing or pasting a message.",
+      "It shows every task with its next step and due date.",
+      "The AI drafts the message or booking request for each task.",
+      "A person can approve, edit or send each draft in one tap."
+    ],
+    "further": [
+      "Send a morning summary of what is due today.",
+      "Remind the person the day before a task is due."
+    ]
+  },
+  {
+    "id": "P183",
+    "fit": true,
+    "task": "Let a solo stylist take bookings and deposits from their own clients, with no commission.",
+    "expect": [
+      "The stylist sets their own services, prices and free slots.",
+      "A client can book a service and slot from the stylist's link.",
+      "A client pays a deposit in test mode to hold the slot.",
+      "The stylist sees the day's bookings and deposits in one list.",
+      "The AI turns a client's chat message into a booking."
+    ],
+    "further": [
+      "Remind clients the day before, and refill a cancelled slot.",
+      "Show the stylist which regulars have not booked in a while."
+    ]
+  },
+  {
+    "id": "P184",
+    "fit": true,
+    "task": "Show a milk subscriber what was promised, what arrived and how to claim the gap.",
+    "expect": [
+      "A subscriber can paste or upload what the offer promised.",
+      "A subscriber can log each delivery as arrived, missing or short.",
+      "It shows the month's gap between promised and delivered, in rupees.",
+      "The AI reads the offer and writes one claim message with proof."
+    ],
+    "further": [
+      "Keep a screenshot of every offer on the day it is made.",
+      "Track whether the claim was answered, and nudge when it was not."
+    ]
+  },
+  {
+    "id": "P185",
+    "fit": true,
+    "task": "Show a small online seller the cheapest courier for each parcel.",
+    "expect": [
+      "A seller can upload or paste their couriers' rate cards.",
+      "The AI reads each rate card into zones, weight slabs and prices.",
+      "A seller enters a parcel's weight and destination to see every price.",
+      "It shows the cheapest option for forward and for return shipping."
+    ],
+    "further": [
+      "Price a whole day's orders at once from an uploaded sheet.",
+      "Show what the seller would have saved last month."
+    ]
+  },
+  {
+    "id": "P186",
+    "fit": true,
+    "task": "Let a small studio or clinic move its clients and bookings to a new provider.",
+    "expect": [
+      "An owner uploads the export files from their current provider.",
+      "The AI works out what each column holds, like name or phone.",
+      "The owner corrects any wrong guess before going on.",
+      "Rows with missing or broken details are listed for fixing.",
+      "The owner downloads clean client, package and booking files."
+    ],
+    "further": [
+      "Each booking is linked to its client and package.",
+      "The AI drafts a message telling clients about the move."
+    ]
+  },
+  {
+    "id": "P187",
+    "fit": true,
+    "task": "Get a small publisher's page into another language, with doubtful lines marked for checking.",
+    "expect": [
+      "A publisher can paste a page or upload a subtitle file.",
+      "The AI translates it and keeps the original beside each line.",
+      "The AI flags lines it is unsure of and says why.",
+      "A publisher can correct a line and download the finished file."
+    ],
+    "further": [
+      "Remember a publisher's corrected terms and reuse them in the next file.",
+      "Translate a short video's captions with the timings kept."
+    ]
+  },
+  {
+    "id": "P188",
+    "fit": true,
+    "task": "Make sure a family can reach a person's accounts and documents when it matters.",
+    "expect": [
+      "A person lists their accounts, documents and where each is kept.",
+      "No password is ever asked for or stored.",
+      "The AI turns rough notes into clear steps for the family.",
+      "They name a trusted person, who sees nothing yet.",
+      "If the person misses a check-in, the trusted person gets the list."
+    ],
+    "further": [
+      "The AI flags accounts with no nominee or backup contact.",
+      "A second trusted person must agree before the list opens."
+    ]
+  },
+  {
+    "id": "P189",
+    "fit": true,
+    "task": "Let a tenant compare co-living places on what residents paid before they sign.",
+    "expect": [
+      "A resident can report what they paid, including fees not mentioned upfront.",
+      "A tenant can compare 2 operators on fees and complaints.",
+      "The AI reads residents' reports and sums up each operator's pattern.",
+      "It shows the full first-month cost, not only the advertised rent."
+    ],
+    "further": [
+      "Let a tenant ask a question answered from the reports.",
+      "Flag reports that look copied or planted."
+    ]
+  },
+  {
+    "id": "P190",
+    "fit": true,
+    "task": "Help a small business pick the 3 applicants worth calling for one job.",
+    "expect": [
+      "An owner can describe a job in plain words.",
+      "An owner can upload a batch of applications for that job.",
+      "The AI flags mismatched and duplicate applicants, with a reason for each.",
+      "It shows the 3 best fits and why each one fits.",
+      "An owner can mark who was called and what happened."
+    ],
+    "further": [
+      "Draft the first message to each shortlisted candidate.",
+      "Write screening questions for the job and score the replies."
+    ]
+  },
+  {
+    "id": "P191",
+    "fit": true,
+    "task": "Get a freelancer clients directly, without depending on one marketplace's ranking.",
+    "expect": [
+      "A freelancer pastes their profile, past work and reviews.",
+      "The AI turns it into a public page with a clear offer.",
+      "A client sends an enquiry from the page.",
+      "The freelancer sees every enquiry and its status.",
+      "The AI drafts a reply and a quote for each enquiry."
+    ],
+    "further": [
+      "Past clients get a check-in message every few months.",
+      "The page shows which links brought the most enquiries."
+    ]
+  },
+  {
+    "id": "P192",
+    "fit": true,
+    "task": "Turn a melted frozen order into a refund claim the seller cannot brush off.",
+    "expect": [
+      "A buyer uploads photos of the item and the order details.",
+      "The AI describes the signs of melting it sees in the photos.",
+      "It notes the delivery time and how long the order took.",
+      "The AI drafts a refund request with the evidence attached.",
+      "A firmer message is ready if support offers a coupon instead."
+    ],
+    "further": [
+      "Claims are saved with the outcome for each seller.",
+      "A reminder goes out if support has not replied in 2 days."
+    ]
+  },
+  {
+    "id": "P193",
+    "fit": true,
+    "task": "Help a buyer prove a delivery attempt never happened and send a complaint.",
+    "expect": [
+      "A buyer can upload the tracking screenshot and their call log.",
+      "The AI reads both and shows where they do not match.",
+      "It builds a timeline of the order from the evidence.",
+      "The AI drafts a complaint with the evidence attached, ready to send."
+    ],
+    "further": [
+      "Track the complaint and prompt a follow-up when nobody replies.",
+      "Show how often the same courier has done this to the buyer."
+    ]
+  },
+  {
+    "id": "P194",
+    "fit": true,
+    "task": "Turn a fitness studio's month of bookings, visits and invoices into one matched record.",
+    "expect": [
+      "An owner can upload a month of bookings, aggregator visits and invoices.",
+      "It matches visits to bookings and invoices, and shows what is unmatched.",
+      "The AI explains each mismatch in plain words and suggests a match.",
+      "An owner can confirm or fix a match and see totals update."
+    ],
+    "further": [
+      "Handle recurring packages that run over more than one month.",
+      "Export the matched record in a form an accountant can use."
+    ]
+  },
+  {
+    "id": "P195",
+    "fit": true,
+    "task": "Let a brand check that it is talking to the real creator or manager.",
+    "expect": [
+      "A creator lists the emails and numbers allowed to speak for them.",
+      "The creator puts their page link in their own social bio.",
+      "A brand types in a contact and sees listed or not listed.",
+      "A brand pastes an offer email and the AI checks the sender.",
+      "The creator is alerted when an unlisted contact is checked."
+    ],
+    "further": [
+      "A brand sends an enquiry straight to the creator from the page.",
+      "The creator posts their real rate range for brands to see."
+    ]
+  },
+  {
+    "id": "P196",
+    "fit": true,
+    "task": "Catch a small business's GST invoice mismatches each month, not at year end.",
+    "expect": [
+      "An owner can upload a month's purchase records and auto-drafted return.",
+      "It lists every invoice that is missing or does not match.",
+      "It shows the input credit at risk, by supplier.",
+      "The AI explains each mismatch and drafts a message to the supplier."
+    ],
+    "further": [
+      "Show which suppliers file late month after month.",
+      "Send the owner a summary on a set day each month."
+    ]
+  },
+  {
+    "id": "P197",
+    "fit": true,
+    "task": "Help a housing society book and track its upkeep jobs through the year.",
+    "expect": [
+      "A committee member adds a job with a date and a vendor.",
+      "Residents see what is due, booked and done on a calendar.",
+      "A job is marked done only with a photo as proof.",
+      "The AI drafts the season's upkeep list from the society's details.",
+      "The committee gets a reminder before each job."
+    ],
+    "further": [
+      "A resident reports a risky tree or a leak with a photo.",
+      "Keep each vendor's past jobs, prices and ratings."
+    ]
+  },
+  {
+    "id": "P198",
+    "fit": true,
+    "task": "Help a learner remember what they read or heard this week.",
+    "expect": [
+      "A learner pastes notes, an article or a lecture transcript.",
+      "The AI turns each one into a short summary and recall questions.",
+      "Questions come back over the next few days, not all at once.",
+      "A learner asks a question and the AI answers from their material."
+    ],
+    "further": [
+      "Take a recorded lecture or podcast as audio.",
+      "Show a learner which topics they keep forgetting."
+    ]
+  },
+  {
+    "id": "P199",
+    "fit": true,
+    "task": "Keep a freelancer's clients, invoices and work history safe outside any one account.",
+    "expect": [
+      "A freelancer uploads invoices, contracts or screenshots of client chats.",
+      "The AI pulls out each client, contact, project and amount.",
+      "Everything is saved as a client list the freelancer owns.",
+      "Unpaid invoices are shown with the amount and due date.",
+      "The whole record downloads as a spreadsheet at any time."
+    ],
+    "further": [
+      "A weekly reminder asks the freelancer to add new work.",
+      "The AI drafts a note telling clients how to reach them directly."
+    ]
+  },
+  {
+    "id": "P200",
+    "fit": true,
+    "task": "Help someone plan tonight's dinner from what is already in their kitchen.",
+    "expect": [
+      "A person uploads a photo of their fridge or shelf.",
+      "The AI lists what it sees, and the person can correct it.",
+      "The AI suggests tonight's meals from those items, with steps and time.",
+      "It shows a short list of anything that still needs buying."
+    ],
+    "further": [
+      "Scale the meal to the number of guests.",
+      "Remember what is in the kitchen without a new photo each time."
+    ]
+  },
+  {
+    "id": "P201",
+    "fit": true,
+    "task": "Help a small seller prove a delivery was never attempted and claim the cost.",
+    "expect": [
+      "A seller logs a returned parcel with its tracking history and photos.",
+      "The AI reads the tracking history and flags attempts that look false.",
+      "The AI drafts a claim with the evidence set out in order.",
+      "It shows every open claim, its amount and days waiting."
+    ],
+    "further": [
+      "Show which courier and which pin codes cost the seller most.",
+      "Send a follow-up when a claim goes unanswered for a week."
+    ]
+  },
+  {
+    "id": "P202",
+    "fit": true,
+    "task": "Help a patient get a refund for an online consult that fell short.",
+    "expect": [
+      "A patient records the doctor they booked, the time and the fee.",
+      "A patient logs who answered, for how long, by video or audio.",
+      "It shows what was booked against what they got, side by side.",
+      "The AI drafts a refund request that states the gap plainly."
+    ],
+    "further": [
+      "Read the booking confirmation from an uploaded screenshot.",
+      "Track the refund and prompt a follow-up when it stalls."
+    ]
+  },
+  {
+    "id": "P203",
+    "fit": true,
+    "task": "Warn a course creator the day their email sending setup changes or breaks.",
+    "expect": [
+      "A creator types in the domain their emails are sent from.",
+      "It looks up the domain's public email records and saves them.",
+      "A daily check compares today's records with the saved ones.",
+      "The creator gets an alert the day anything changes.",
+      "The AI explains the change in plain words and what to do."
+    ],
+    "further": [
+      "The creator logs open rates each week and sees the trend.",
+      "The AI drafts a message to the host asking for a fix."
+    ]
+  },
+  {
+    "id": "P204",
+    "fit": true,
+    "task": "Make sure a freelancer gets paid before handing over the final files.",
+    "expect": [
+      "A freelancer shares a preview of the work with a client.",
+      "The client gets the final files only after paying, in test mode.",
+      "A freelancer sees which invoices are paid, due and overdue.",
+      "The AI drafts follow-ups that get firmer as an invoice gets older."
+    ],
+    "further": [
+      "Send reminders on a schedule without the freelancer doing anything.",
+      "Take part payment before work starts."
+    ]
+  },
+  {
+    "id": "P205",
+    "fit": true,
+    "task": "Help a family claim a repair or pest control warranty in a single message.",
+    "expect": [
+      "A person uploads a photo of a repair bill or warranty card.",
+      "The AI reads the work done, the cost and the end date.",
+      "It shows every job still under warranty and when each ends.",
+      "The AI drafts a claim message with the bill and dates."
+    ],
+    "further": [
+      "Warn the family before a warranty runs out.",
+      "Log each revisit and flag any that is delayed or refused."
+    ]
+  },
+  {
+    "id": "P206",
+    "fit": true,
+    "task": "Show a tutor what each student and each month earned them after fees.",
+    "expect": [
+      "A tutor adds students, fees and payments received.",
+      "The AI reads pasted payment messages and matches each to a student.",
+      "It shows earnings by student and by month, after fees and splits.",
+      "A tutor sees who has not paid this month.",
+      "It works out each partner tutor's share."
+    ],
+    "further": [
+      "Send a family an invoice the tutor has customised.",
+      "Draft a polite fee reminder for each unpaid student."
+    ]
+  },
+  {
+    "id": "P207",
+    "fit": true,
+    "task": "Help a freelancer send correct GST invoices and see who has paid.",
+    "expect": [
+      "A freelancer creates an invoice with their GST details filled in.",
+      "The AI checks each invoice for missing fields before it is sent.",
+      "The AI matches pasted bank or UPI entries to open invoices.",
+      "It shows who has paid, who has not and what is due."
+    ],
+    "further": [
+      "Record the TDS each client deducted, by quarter.",
+      "Export the quarter's invoices and payments for an accountant."
+    ]
+  },
+  {
+    "id": "P208",
+    "fit": true,
+    "task": "Let a neighbourhood food shop take next-day orders from people on its street.",
+    "expect": [
+      "The owner types in the items and prices the shop sells.",
+      "A shopper opens the shop's page and orders for tomorrow.",
+      "The AI turns a shopper's typed or pasted list into an order.",
+      "The owner sees tomorrow's orders as a packing list.",
+      "A shopper gets a confirmation with a pickup or delivery time."
+    ],
+    "further": [
+      "Take payment in test mode when the order is placed.",
+      "Tell regulars when a favourite item is back in stock."
+    ]
+  },
+  {
+    "id": "P209",
+    "fit": true,
+    "task": "Help someone with a stuck parcel show where it stopped and get it moving.",
+    "expect": [
+      "A person pastes a parcel's tracking history.",
+      "The AI says where the parcel stopped and for how long.",
+      "It flags a parcel that has gone quiet or loops between hubs.",
+      "The AI drafts a complaint with the full history, ready to send."
+    ],
+    "further": [
+      "Let a small seller watch all their parcels on a single screen.",
+      "Follow up on its own after 48 hours without movement."
+    ]
+  },
+  {
+    "id": "P210",
+    "fit": true,
+    "task": "Show a patient which tests their home package missed and help them claim a refund.",
+    "expect": [
+      "A patient records the package they booked and what it included.",
+      "A patient uploads the report they received.",
+      "The AI compares the 2 and lists every missing test.",
+      "It shows the days the report took against the days promised.",
+      "The AI drafts a refund request for the missing tests."
+    ],
+    "further": [
+      "Read the booked package from an uploaded confirmation.",
+      "Keep all of a patient's past reports together."
+    ]
+  },
+  {
+    "id": "P211",
+    "fit": true,
+    "task": "Warn a creator when any course or member list has no working second copy.",
+    "expect": [
+      "A creator lists each course with a link to their own copy.",
+      "Anything with no second copy is shown at the top.",
+      "A weekly check opens every link to confirm the copy is there.",
+      "The creator gets an alert when a copy is missing or broken.",
+      "The AI turns a pasted member export into a clean saved list."
+    ],
+    "further": [
+      "New files in a chosen folder are copied to a second place.",
+      "A monthly reminder asks the creator to export their member list."
+    ]
+  },
+  {
+    "id": "P212",
+    "fit": true,
+    "task": "Show a small business where to cut its subscription bills without losing what it uses.",
+    "expect": [
+      "An owner uploads invoices for the subscriptions the business pays for.",
+      "The AI reads each invoice into plan, price, add-ons and renewal date.",
+      "An owner marks which features the team really uses.",
+      "It shows the monthly total and what can be cut safely."
+    ],
+    "further": [
+      "Warn the owner before each renewal date.",
+      "Draft a message asking the vendor to hold last year's price."
+    ]
+  },
+  {
+    "id": "P213",
+    "fit": true,
+    "task": "Help a family find a helper for tonight or this week at short notice.",
+    "expect": [
+      "A helper signs up with their work, area and free hours.",
+      "A family asks for help by date, hours and kind of work.",
+      "The AI reads a family's message and suggests helpers who fit.",
+      "It shows each matching helper and what has been checked about them.",
+      "A family books a helper for an evening or a week."
+    ],
+    "further": [
+      "Let a family rate a helper after the visit.",
+      "Take a booking fee in test mode."
+    ]
+  },
+  {
+    "id": "P214",
+    "fit": true,
+    "task": "Show a small business what each hiring plan delivered for its money before renewing.",
+    "expect": [
+      "An owner records each hiring plan, its price and its expiry date.",
+      "The AI reads a pasted sales message and lists what was promised.",
+      "An owner logs applicants, interviews and hires for each plan.",
+      "It shows the cost per applicant and per hire for each plan."
+    ],
+    "further": [
+      "Warn the owner a week before any plan renews or expires.",
+      "Draft a refund request when a promise was not kept."
+    ]
+  },
+  {
+    "id": "P215",
+    "fit": true,
+    "task": "Turn a person's records of unpaid work into a claim that is hard to ignore.",
+    "expect": [
+      "A person uploads invoices, contracts and messages about the work.",
+      "The AI builds a dated timeline of what was agreed and done.",
+      "It works out what is owed and since when.",
+      "It lists which proof is strong and which is missing.",
+      "The AI drafts a firm payment demand with the proof attached."
+    ],
+    "further": [
+      "A stronger letter is ready if 7 days pass with no reply.",
+      "The claim is saved and each reply is logged."
+    ]
+  },
+  {
+    "id": "P216",
+    "fit": true,
+    "task": "Help a small restaurant leave its billing vendor without losing its menu or customer records.",
+    "expect": [
+      "An owner uploads an export of their menu, customers and loyalty points.",
+      "The AI maps the old columns to a clean format.",
+      "The AI flags rows that look doubtful.",
+      "It shows a before and after count so nothing goes missing.",
+      "An owner fixes flagged rows and downloads the clean file."
+    ],
+    "further": [
+      "Merge duplicate customers while keeping their loyalty points.",
+      "Let the owner search any customer's history after the move."
+    ]
+  },
+  {
+    "id": "P217",
+    "fit": true,
+    "task": "Let a small workshop see the stage and material of every order.",
+    "expect": [
+      "An owner adds an order with its steps and the material needed.",
+      "A worker moves an order to its next stage with a tap.",
+      "It shows every open order, its stage and what holds it up.",
+      "The AI turns a pasted customer order into steps for the workshop."
+    ],
+    "further": [
+      "Track a part held in several places at different costs.",
+      "Warn the owner when an order will miss its due date."
+    ]
+  },
+  {
+    "id": "P218",
+    "fit": true,
+    "task": "Show a small seller what last week's ads taught them and what to try next.",
+    "expect": [
+      "A seller uploads or pastes last week's ad results.",
+      "It shows what each ad cost and what it brought in.",
+      "The AI says in plain words what worked and what did not.",
+      "The AI suggests 1 change to test within the same budget."
+    ],
+    "further": [
+      "Compare 2 weeks to show whether the change helped.",
+      "Draft the next ad's wording from what worked."
+    ]
+  },
+  {
+    "id": "P219",
+    "fit": true,
+    "task": "Get a small firm's PDF invoices ready for e-invoicing in an afternoon.",
+    "expect": [
+      "An owner uploads a PDF invoice.",
+      "The AI reads it into fields the owner can check and correct.",
+      "It flags fields that are missing or do not add up.",
+      "An owner downloads the invoice as structured data."
+    ],
+    "further": [
+      "Process a whole month of invoices in a single upload.",
+      "Show which customers' invoices keep failing the same check."
+    ]
+  },
+  {
+    "id": "P220",
+    "fit": true,
+    "task": "Give a property owner abroad a monthly update they can trust.",
+    "expect": [
+      "A caretaker uploads dated photos and notes from each visit.",
+      "An owner sees rent received and costs paid for the month.",
+      "It shows the statement in the owner's own currency.",
+      "The AI writes a monthly update from the photos, notes and numbers."
+    ],
+    "further": [
+      "Flag what changed between this month's photos and last month's.",
+      "Alert the owner when a planned visit did not happen."
+    ]
+  },
+  {
+    "id": "P221",
+    "fit": true,
+    "task": "Help a shop owner find 3 real, nearby candidates in a pile of downloaded resumes.",
+    "expect": [
+      "An owner uploads a batch of files and enters the job's location.",
+      "The AI separates real resumes from blank pages and unrelated documents.",
+      "The AI reads each candidate's area and contact details.",
+      "It ranks candidates by distance and shows the nearest 3."
+    ],
+    "further": [
+      "Draft a first message to each of the 3 candidates.",
+      "Let nearby job seekers apply from a link in the shop window."
+    ]
+  },
+  {
+    "id": "P222",
+    "fit": true,
+    "task": "Keep a small seller's stock count right across 2 sales channels and its books.",
+    "expect": [
+      "A seller uploads orders from 2 sales channels.",
+      "A seller enters the stock count their books show.",
+      "It keeps a single stock count per item, updated with every order.",
+      "It shows where the count and the books disagree.",
+      "The AI explains the likely cause of each mismatch in plain words."
+    ],
+    "further": [
+      "Warn the seller before an item runs out.",
+      "Pull new orders in on a schedule, with no upload."
+    ]
+  },
+  {
+    "id": "P223",
+    "fit": true,
+    "task": "Tell a follower if a creator's post looks like an ad that was not declared.",
+    "expect": [
+      "A follower uploads a screenshot or pastes the post's caption.",
+      "The AI looks for brand names, discount codes and sales language.",
+      "It checks for a paid label or an ad hashtag.",
+      "It says likely ad, unclear or likely opinion, with reasons.",
+      "The AI drafts a complaint to send to the ad regulator."
+    ],
+    "further": [
+      "Checked posts are saved in case the post is deleted later.",
+      "A creator checks their own draft post before publishing."
+    ]
+  },
+  {
+    "id": "P224",
+    "fit": true,
+    "task": "Show a freelancer their income so far and how close they are to the GST limit.",
+    "expect": [
+      "A freelancer logs income and expenses, or uploads a bank statement.",
+      "The AI sorts each entry into income or a kind of expense.",
+      "It shows a profit and loss summary by month.",
+      "It shows the year's income against a limit the freelancer sets.",
+      "A freelancer downloads a summary an accountant can read."
+    ],
+    "further": [
+      "Warn the freelancer as they near the limit.",
+      "Let the freelancer ask questions about their own numbers."
+    ]
+  },
+  {
+    "id": "P225",
+    "fit": true,
+    "task": "Help a small contractor keep track of every customer, photo and follow-up.",
+    "expect": [
+      "A contractor adds a customer and a job from a phone browser.",
+      "A contractor uploads several job-site photos at once.",
+      "It shows who was contacted and who still needs an appointment.",
+      "The AI turns a typed note into a dated follow-up."
+    ],
+    "further": [
+      "Describe each photo so jobs can be searched by what they show.",
+      "Send the customer a reminder the day before a visit."
+    ]
+  },
+  {
+    "id": "P226",
+    "fit": true,
+    "task": "Let a job seeker pay for one real conversation with a hiring manager.",
+    "expect": [
+      "A hiring manager lists a role and open time slots.",
+      "A job seeker uploads a CV and books a slot.",
+      "The seeker pays in test mode to confirm the booking.",
+      "The AI gives the manager a short fit note from the CV.",
+      "The seeker gets the money back if the manager cancels."
+    ],
+    "further": [
+      "Both get a reminder 1 hour before the call.",
+      "The manager leaves written feedback the seeker can read."
+    ]
+  },
+  {
+    "id": "P227",
+    "fit": true,
+    "task": "Help a small transporter send complete delivery papers the first time and get paid sooner.",
+    "expect": [
+      "A transporter uploads the delivery documents for a load.",
+      "The AI reads the load, date and amount from each document.",
+      "The AI flags a missing, unsigned or unreadable document before sending.",
+      "It shows each load as ready, incomplete or sent, with days waiting."
+    ],
+    "further": [
+      "Show what an early-payment fee would cost on each load.",
+      "Send the complete set of papers to the payer in a message."
+    ]
+  },
+  {
+    "id": "P228",
+    "fit": true,
+    "task": "Help a solo founder find where their first buyers are and what to say there.",
+    "expect": [
+      "A founder describes their product and who it is for.",
+      "The AI names the kinds of buyers and where they gather.",
+      "The AI drafts a different message for each place.",
+      "A founder tracks what was posted where and the replies it got."
+    ],
+    "further": [
+      "Show which place and message brought the most replies.",
+      "Build a waiting list page that collects interested people."
+    ]
+  },
+  {
+    "id": "P229",
+    "fit": true,
+    "task": "Help a shop owner work out monthly salaries from leave, overtime and bonuses in minutes.",
+    "expect": [
+      "An owner adds staff with their monthly pay.",
+      "An owner records leave, overtime and bonuses for the month.",
+      "It works out each person's salary and shows how it got there.",
+      "The AI reads a typed or photographed attendance register into the records.",
+      "An owner shares a payslip that opens properly on a phone."
+    ],
+    "further": [
+      "Carry last month's set-up forward so only changes are entered.",
+      "Create a bill at the counter and share it as a link."
+    ]
+  },
+  {
+    "id": "P230",
+    "fit": true,
+    "task": "Let a solo tradesperson take their own bookings and plan their own day.",
+    "expect": [
+      "A customer requests a visit from the tradesperson's own link.",
+      "The tradesperson sees the day's jobs in order, with addresses.",
+      "The AI turns a customer's message into a job with a time.",
+      "A customer gets a confirmation and a reminder before the visit."
+    ],
+    "further": [
+      "Order the day's jobs to cut travel between them.",
+      "Keep each customer's past jobs and what was charged."
+    ]
+  },
+  {
+    "id": "P231",
+    "fit": true,
+    "task": "Catch payroll mistakes in a small firm's monthly sheet before salaries go out.",
+    "expect": [
+      "An HR person uploads this month's and last month's payroll sheets.",
+      "It flags every figure that changed sharply or is missing.",
+      "The AI explains each flag and suggests what to check.",
+      "An HR person marks each flag as fixed or correct before approving."
+    ],
+    "further": [
+      "Let the firm add its own checks in plain words.",
+      "Send each employee a summary of what changed in their pay."
+    ]
+  },
+  {
+    "id": "P232",
+    "fit": true,
+    "task": "Show a small factory and its buyer where every truck booking stands.",
+    "expect": [
+      "A factory logs a booking with pickup time, driver and goods.",
+      "The driver opens a link and taps picked up or delivered.",
+      "The buyer sees the status on a page without calling.",
+      "The factory gets an alert when pickup time passes with no tap.",
+      "The AI writes a delay update for the buyer."
+    ],
+    "further": [
+      "The driver shares live location from their phone browser.",
+      "A weekly report shows which transporters turned up late."
+    ]
+  },
+  {
+    "id": "P233",
+    "fit": true,
+    "task": "Show a creator which of their own choices moved their reach this week.",
+    "expect": [
+      "A creator logs each post with its time, type and reach.",
+      "It shows reach against each choice, such as time or collaborations.",
+      "The AI names the likely cause and says how sure it is.",
+      "The AI suggests 1 thing to change next week, and nothing else."
+    ],
+    "further": [
+      "Read reach numbers from an uploaded screenshot.",
+      "Compare 2 weeks to show whether the change worked."
+    ]
+  },
+  {
+    "id": "P234",
+    "fit": true,
+    "task": "Tell someone where their money went last month from an uploaded statement.",
+    "expect": [
+      "A person uploads a bank or UPI statement.",
+      "The AI turns unclear merchant names into names a person would recognise.",
+      "The AI sorts every payment into a category.",
+      "It shows last month's spending by category, biggest items first.",
+      "It lists subscriptions and other repeating payments."
+    ],
+    "further": [
+      "Let a person ask questions about their spending in plain words.",
+      "Combine 2 statements, such as a card and a bank account."
+    ]
+  },
+  {
+    "id": "P235",
+    "fit": true,
+    "task": "Make a shop's weekly roster match the hours that reach payroll, with no retyping.",
+    "expect": [
+      "A manager sets a weekly roster and repeats it.",
+      "A worker clocks in and out, and fixes a forgotten clock-in.",
+      "A manager sees who is off on any given day.",
+      "It shows rostered against worked hours and exports them for payroll.",
+      "The AI flags odd entries and applies a typed swap request."
+    ],
+    "further": [
+      "Let a manager approve a clock-in fix in a single tap.",
+      "Add volunteers, whose hours count but are not paid."
+    ]
+  },
+  {
+    "id": "P236",
+    "fit": false,
+    "why": "Saving edits from another company's phone editor needs a native app or that company's cooperation, so no honest web version exists."
+  },
+  {
+    "id": "P237",
+    "fit": true,
+    "task": "Tell each customer about a change that affects them before it ships.",
+    "expect": [
+      "A team member adds customers and what each one uses.",
+      "A team member pastes technical release notes.",
+      "The AI rewrites them for engineers and for non-technical readers.",
+      "The AI picks the customers each change affects and sends a notice.",
+      "It shows who has been told and who has opened it."
+    ],
+    "further": [
+      "Hold a release until every affected customer has been told.",
+      "Let a customer ask what a change means for them."
+    ]
+  },
+  {
+    "id": "P238",
+    "fit": true,
+    "task": "Help someone share their own work in an online community without breaking its rules.",
+    "expect": [
+      "A maker pastes a community's rules and their draft post.",
+      "The AI says whether the post breaks a rule, and which one.",
+      "The AI rewrites the post to fit the rules and stay honest.",
+      "A maker tracks what they posted in each community over a month."
+    ],
+    "further": [
+      "Suggest useful replies the maker can give before sharing their own work.",
+      "Show the balance between helping others and sharing their own work."
+    ]
+  },
+  {
+    "id": "P239",
+    "fit": true,
+    "task": "Give a manager a true picture of a small team's tasks without a meeting.",
+    "expect": [
+      "A team member sends a short update in their own words.",
+      "The AI turns each update into task statuses.",
+      "A manager sees every task as done, in progress or blocked.",
+      "It shows what changed since yesterday and what is stuck."
+    ],
+    "further": [
+      "Build the status from the team's GitHub activity, with no update written.",
+      "Send the manager a daily summary at a set time."
+    ]
+  },
+  {
+    "id": "P240",
+    "fit": true,
+    "task": "Give a small business a week of posts that go out on time, with proof.",
+    "expect": [
+      "An owner plans a week of posts on a calendar.",
+      "The AI drafts each post from a few words about the business.",
+      "Each post goes out at its set time on a chosen channel.",
+      "It logs the time and a link for every post sent.",
+      "It alerts the owner when a post fails."
+    ],
+    "further": [
+      "Retry a failed post and record what happened.",
+      "Post to a second channel from the same calendar."
+    ]
+  },
+  {
+    "id": "P241",
+    "fit": true,
+    "task": "Give a founder a single morning briefing that replaces checking 3 services.",
+    "expect": [
+      "A founder connects 3 services, such as code, email and payments.",
+      "It gathers what changed overnight in each one.",
+      "The AI writes a short briefing with what needs attention first.",
+      "The briefing arrives at a set time each morning."
+    ],
+    "further": [
+      "Let the founder ask a follow-up question about the briefing.",
+      "Learn what the founder ignores and leave it out."
+    ]
+  },
+  {
+    "id": "P242",
+    "fit": true,
+    "task": "Tell a small brand whether a creator's followers look real before it pays.",
+    "expect": [
+      "A founder uploads screenshots of a creator's profile, posts and comments.",
+      "The AI reads followers, likes and comments from the screenshots.",
+      "The AI flags signs of fake followers and explains each one.",
+      "It gives a verdict with reasons and says what it cannot tell."
+    ],
+    "further": [
+      "Compare 2 creators side by side before choosing.",
+      "Track sales against a creator's code after the campaign."
+    ]
+  },
+  {
+    "id": "P243",
+    "fit": true,
+    "task": "Tell a small online store what stops a blind shopper on a page of its site.",
+    "expect": [
+      "An owner enters the address of a public page.",
+      "It lists what a screen reader would trip on, most serious first.",
+      "The AI explains each problem in plain words, with a fix.",
+      "The AI describes the page as a screen reader would read it."
+    ],
+    "further": [
+      "Check whether a buying agent could find the price and buy button.",
+      "Check again after fixes and show what improved."
+    ]
+  },
+  {
+    "id": "P244",
+    "fit": true,
+    "task": "Give someone a daily mix of news, reading and listening that leaves them calmer.",
+    "expect": [
+      "A person says what they like and how much each day.",
+      "It delivers a short daily mix with a clear end.",
+      "The AI rewrites the day's news as a calm, short summary.",
+      "A person saves an article and hears it read aloud.",
+      "A person says what they liked, and tomorrow's mix changes."
+    ],
+    "further": [
+      "Suggest a book that matches what they have enjoyed.",
+      "Send the mix at a time the person chooses."
+    ]
+  },
+  {
+    "id": "P245",
+    "fit": true,
+    "task": "Show a small business what each job ad cost for every real applicant.",
+    "expect": [
+      "An owner records each job ad, where it ran and its cost.",
+      "An owner uploads the applications each ad brought in.",
+      "The AI marks each application genuine, irrelevant or mass-produced, with a reason.",
+      "It shows the cost per genuine applicant for each ad."
+    ],
+    "further": [
+      "Rewrite a job ad so it puts off irrelevant applicants.",
+      "Suggest where to move next month's budget without raising it."
+    ]
+  },
+  {
+    "id": "P246",
+    "fit": false,
+    "why": "Repeats P032: telling whether a job offer is real."
+  },
+  {
+    "id": "P247",
+    "fit": true,
+    "task": "Cut the listings a job seeker must read by 90% without missing a good one.",
+    "expect": [
+      "A job seeker enters skills, location and what they will not accept.",
+      "A job seeker pastes or uploads a batch of job listings.",
+      "The AI keeps only the listings that fit, each with a reason.",
+      "The AI flags remote jobs that are restricted by region.",
+      "A job seeker sees why each rejected listing was dropped."
+    ],
+    "further": [
+      "Learn from the jobs a seeker saves or skips.",
+      "Send a daily shortlist without sharing the seeker's phone number."
+    ]
+  },
+  {
+    "id": "P248",
+    "fit": true,
+    "task": "Let someone find and reuse what they have already told their AI assistants.",
+    "expect": [
+      "A person pastes or uploads past conversations and saved prompts.",
+      "A person searches everything by meaning, not only by exact words.",
+      "The AI writes a short background note from those past conversations.",
+      "A person copies that note into any assistant in a single tap."
+    ],
+    "further": [
+      "Let a small team share prompts and build on each other's.",
+      "Keep the background note current as new conversations are added."
+    ]
+  },
+  {
+    "id": "P249",
+    "fit": true,
+    "task": "Help a solo builder write to small firms in a way that gets a reply.",
+    "expect": [
+      "A builder describes their product and the time it saves a team.",
+      "A builder adds a list of small firms to contact.",
+      "The AI writes each firm a short message specific to that firm.",
+      "It tracks who was contacted, who replied and who paid.",
+      "A firm pays for the product in test mode from a link."
+    ],
+    "further": [
+      "Draft a follow-up for firms that have not replied.",
+      "Show which message wording earned the most replies."
+    ]
+  },
+  {
+    "id": "P250",
+    "fit": true,
+    "task": "Catch the bug in a small team's code change before a customer does.",
+    "expect": [
+      "A developer pastes a code change or links a public GitHub repository.",
+      "The AI reviews the change and lists likely bugs, most serious first.",
+      "The AI explains each risk in plain words and suggests a test.",
+      "It shows a clear ship or hold verdict for each change."
+    ],
+    "further": [
+      "Run on every new pull request without anyone asking.",
+      "Alert the team when a production log shows a new error."
+    ]
+  },
+  {
+    "id": "P251",
+    "fit": true,
+    "task": "Help a farmer report a damaged crop to the insurer before the 72 hours run out.",
+    "expect": [
+      "A farmer can describe the damage in their regional language.",
+      "They can add photos of the field and their policy details.",
+      "The AI writes a complete loss report from what they gave.",
+      "It lists anything still missing before they send it.",
+      "It shows how many of the 72 hours are left."
+    ],
+    "further": [
+      "Let the farmer speak the details instead of typing.",
+      "Draft a complaint if the insurer rejects the report as late."
+    ]
+  },
+  {
+    "id": "P252",
+    "fit": true,
+    "task": "Tell a farmer why their PM-KISAN money stopped and what to fix first.",
+    "expect": [
+      "A farmer can upload a screenshot of their status page.",
+      "The AI reads it and names the step that is pending.",
+      "It explains that step in the farmer's regional language.",
+      "It lists the papers to carry and which office to visit."
+    ],
+    "further": [
+      "Read the answer aloud for a farmer who prefers to listen.",
+      "Draft a complaint letter if the fix does not work."
+    ]
+  },
+  {
+    "id": "P253",
+    "fit": true,
+    "task": "Turn a farmer's soil health card into a shopping list of fertiliser bags.",
+    "expect": [
+      "A farmer can upload a photo of their soil health card.",
+      "They enter the crop and the size of the field.",
+      "The AI reads the card and works out bags per fertiliser.",
+      "It explains the plan in the farmer's regional language."
+    ],
+    "further": [
+      "Show what the farmer saves against their usual dose.",
+      "Split the bags across the crop's growth stages."
+    ]
+  },
+  {
+    "id": "P254",
+    "fit": true,
+    "task": "Tell a farmer the safe dose and precautions from a photo of the pesticide label.",
+    "expect": [
+      "A farmer can upload a photo of a pesticide label.",
+      "The AI reads the dose and safety lines printed on it.",
+      "It works out the amount for the farmer's spray tank.",
+      "It lists the gear to wear and days to wait.",
+      "It says so plainly when the label cannot be read."
+    ],
+    "further": [
+      "Read the answer aloud in the farmer's language.",
+      "Keep a dated list of every spray on each field."
+    ]
+  },
+  {
+    "id": "P255",
+    "fit": true,
+    "task": "Warn a farmer the evening before when rain or hail will hit their field.",
+    "expect": [
+      "A farmer can save their village, crop and phone number.",
+      "It checks tomorrow's forecast for that place every evening.",
+      "The AI turns the forecast into advice for that crop.",
+      "It sends the warning as a message in their language.",
+      "A farmer can see past warnings and what was advised."
+    ],
+    "further": [
+      "Send the warning as a voice note.",
+      "Let a village volunteer forward one warning to many farmers."
+    ]
+  },
+  {
+    "id": "P256",
+    "fit": true,
+    "task": "Show a paddy farmer what was cut from each sale and help them complain.",
+    "expect": [
+      "A farmer can enter the weight they brought and the weight paid.",
+      "They can upload a photo of the sale slip instead.",
+      "The AI reads the slip and works out kilos and rupees cut.",
+      "Every sale is saved and the season's total loss is shown.",
+      "The AI drafts a complaint with the dates and amounts."
+    ],
+    "further": [
+      "Compare one centre's cuts with another's from saved sales.",
+      "Send the complaint to an officer the farmer names."
+    ]
+  },
+  {
+    "id": "P257",
+    "fit": true,
+    "task": "Remind a dairy farmer when each animal needs a heat check, pregnancy check or vaccine.",
+    "expect": [
+      "A farmer can add each animal with its last calving date.",
+      "They record every insemination and vaccination as it happens.",
+      "It shows which animals need attention this week.",
+      "A reminder goes to the farmer's phone before each due date.",
+      "The AI turns a spoken or typed note into a record."
+    ],
+    "further": [
+      "Show how many days each animal has stayed empty.",
+      "Share one animal's history with a vet as a single page."
+    ]
+  },
+  {
+    "id": "P258",
+    "fit": true,
+    "task": "Help a farmer claim compensation after wild animals destroy their crop.",
+    "expect": [
+      "A farmer can upload photos of the damaged field.",
+      "They add the crop, the area lost and land details.",
+      "The AI drafts the claim application in the local language.",
+      "Each claim is saved with its date and current status.",
+      "A weekly reminder goes out while a claim stays unpaid."
+    ],
+    "further": [
+      "Flag when the 72-hour crop insurance window also applies.",
+      "Draft a follow-up letter when a claim crosses 30 days."
+    ]
+  },
+  {
+    "id": "P259",
+    "fit": true,
+    "task": "Let farmers book a harvester and see their turn, the price and any delay.",
+    "expect": [
+      "A machine owner can list a machine, its rate and free days.",
+      "A farmer can book a slot for their field and acres.",
+      "Every farmer sees their place in the queue and the price.",
+      "The owner marks a delay and all later bookings shift.",
+      "The AI messages each affected farmer their new time."
+    ],
+    "further": [
+      "Let a farmer book by sending a plain text message.",
+      "Suggest the order of fields that cuts travel for the machine."
+    ]
+  },
+  {
+    "id": "P260",
+    "fit": true,
+    "task": "Tell a train passenger which refund they can claim and by when.",
+    "expect": [
+      "A passenger can enter the ticket, the delay and what went wrong.",
+      "The AI picks the refund rule that fits the case.",
+      "It shows the deadline to file, as a date and time.",
+      "The AI drafts the claim text, ready to paste.",
+      "It works from refund rules the passenger can paste and update."
+    ],
+    "further": [
+      "Read the ticket details from a screenshot.",
+      "Draft the complaint if the claim is rejected."
+    ]
+  },
+  {
+    "id": "P261",
+    "fit": true,
+    "task": "Help a vehicle owner check a traffic fine and contest it if it is wrong.",
+    "expect": [
+      "An owner can upload the fine notice and its photo.",
+      "The owner enters their own vehicle number, type and colour.",
+      "The AI compares the photo and notice with the owner's vehicle.",
+      "It lists every mismatch, such as plate, vehicle type or place.",
+      "The AI drafts a grievance that cites each mismatch."
+    ],
+    "further": [
+      "Keep a dated record of each grievance and its reply.",
+      "Handle many fines on one vehicle in one go."
+    ]
+  },
+  {
+    "id": "P262",
+    "fit": true,
+    "task": "Tell someone whether a traffic fine message is real before they tap it.",
+    "expect": [
+      "A person can paste the message or upload a screenshot.",
+      "The AI checks the sender, the link and any attached file.",
+      "It gives a clear verdict with the reasons in plain words.",
+      "It shows how to check the fine on the official site.",
+      "It tells a person who already tapped what to do next."
+    ],
+    "further": [
+      "Explain the verdict in Hindi or another Indian language.",
+      "Let a family forward messages to it on WhatsApp."
+    ]
+  },
+  {
+    "id": "P263",
+    "fit": true,
+    "task": "Help a traveller find what is missing in a visa application before paying.",
+    "expect": [
+      "A traveller can paste the consulate's checklist for their visa.",
+      "The traveller uploads documents such as bank statements and letters.",
+      "The AI marks each checklist item as present, weak or missing.",
+      "The AI flags dates, names and amounts that do not match.",
+      "It saves the application so documents can be added later."
+    ],
+    "further": [
+      "Draft a cover letter from the documents uploaded.",
+      "Explain a refusal letter and what to fix."
+    ]
+  },
+  {
+    "id": "P264",
+    "fit": true,
+    "task": "Help a flyer with a damaged or late bag claim what it was worth.",
+    "expect": [
+      "A flyer can enter the flight, the bag and what happened.",
+      "The flyer uploads photos of the damage and any receipts.",
+      "The AI drafts a claim with the bag's value and proof.",
+      "It saves each claim with the airline's replies and offers.",
+      "It reminds the flyer when a reply is overdue."
+    ],
+    "further": [
+      "Draft a consumer complaint if the airline's offer is too low.",
+      "Check an offer against the airline's own baggage rules."
+    ]
+  },
+  {
+    "id": "P265",
+    "fit": true,
+    "task": "Show an electric vehicle driver which nearby chargers worked today.",
+    "expect": [
+      "A driver can add a charger with its place and plug type.",
+      "A driver can report a charger as working or dead.",
+      "The AI reads a driver's note and tags the fault.",
+      "Each charger shows its latest reports and when they came in.",
+      "A driver can search by area and see working chargers first."
+    ],
+    "further": [
+      "Alert drivers who saved a charger when it goes dead.",
+      "Show which operators fix faults fastest."
+    ]
+  },
+  {
+    "id": "P266",
+    "fit": true,
+    "task": "Help a holiday member who cannot get a booking demand a refund.",
+    "expect": [
+      "A member can upload or paste the membership agreement.",
+      "The AI finds what was promised and the refund terms.",
+      "The member lists each booking request that failed, with dates.",
+      "The AI drafts a refund demand that cites those promises."
+    ],
+    "further": [
+      "Draft the consumer helpline complaint from the same facts.",
+      "Warn a buyer about unfair terms before they sign."
+    ]
+  },
+  {
+    "id": "P267",
+    "fit": true,
+    "task": "Warn a vehicle owner before any of the vehicle's papers expire.",
+    "expect": [
+      "An owner can upload photos of insurance, pollution and registration papers.",
+      "The AI reads each paper's type, vehicle number and expiry date.",
+      "The owner confirms the dates, and they are saved per vehicle.",
+      "It sends a reminder before each paper expires.",
+      "A family or fleet owner sees every vehicle's papers by due date."
+    ],
+    "further": [
+      "Send the reminders on WhatsApp.",
+      "Flag a paper whose vehicle number does not match."
+    ]
+  },
+  {
+    "id": "P268",
+    "fit": true,
+    "task": "Help a patient check that a doctor is registered before the first visit.",
+    "expect": [
+      "A patient can upload a photo of a prescription or clinic board.",
+      "The AI reads the doctor's name, degrees and registration number.",
+      "The AI explains each degree and which council registers it.",
+      "It points the patient to the right public register to search.",
+      "It gives a short list of what to ask the clinic."
+    ],
+    "further": [
+      "Draft a complaint to the medical council about a missing record.",
+      "Explain the result in the patient's regional language."
+    ]
+  },
+  {
+    "id": "P269",
+    "fit": true,
+    "task": "Tell a family if a health ad makes a claim the law bans.",
+    "expect": [
+      "A person can paste an ad's text or upload a screenshot.",
+      "The AI lists each health claim the ad makes.",
+      "The AI marks claims of a sure cure and names the disease.",
+      "It explains in plain words why the claim is a problem.",
+      "The AI drafts a complaint ready to send to the regulator."
+    ],
+    "further": [
+      "Check a video ad from its link or transcript.",
+      "Explain the result in Hindi or another Indian language."
+    ]
+  },
+  {
+    "id": "P270",
+    "fit": true,
+    "task": "Help a family find a matching blood donor nearby before each transfusion.",
+    "expect": [
+      "A donor can sign up with blood group and area.",
+      "A family can post a request with group, hospital and date.",
+      "The AI turns a rough request into a clear, complete appeal.",
+      "It sends the appeal only to matching donors nearby.",
+      "A donor can accept, and the family sees who said yes."
+    ],
+    "further": [
+      "Remind a family before the next transfusion is due.",
+      "Skip donors who gave blood in the last 3 months."
+    ]
+  },
+  {
+    "id": "P271",
+    "fit": true,
+    "task": "Tell a coach and players each morning whether the air allows practice.",
+    "expect": [
+      "A coach sets the city and the air reading that stops practice.",
+      "It fetches the latest air quality reading for that city.",
+      "Each morning it checks the reading against the coach's limit.",
+      "The AI writes a short message saying on, moved or off.",
+      "Every player or parent on the coach's list gets the message."
+    ],
+    "further": [
+      "Suggest the cleanest hour of the day from the forecast.",
+      "Keep a log of sessions lost to bad air."
+    ]
+  },
+  {
+    "id": "P272",
+    "fit": true,
+    "task": "Help a shop owner catch UPI payments that never reached the bank.",
+    "expect": [
+      "Staff log each UPI sale with the amount and time.",
+      "The owner pastes or uploads the day's bank statement.",
+      "The AI matches each logged sale to a real credit.",
+      "It lists every sale that has no matching payment.",
+      "The owner marks each one as found or lost."
+    ],
+    "further": [
+      "Read a payment screenshot and point out what looks wrong.",
+      "Alert the owner when a large sale stays unmatched."
+    ]
+  },
+  {
+    "id": "P273",
+    "fit": true,
+    "task": "Show an online shopper every fee and extra added before they pay.",
+    "expect": [
+      "A shopper uploads screenshots of the product page and the checkout.",
+      "The AI reads the price, each fee and each item.",
+      "It lists what was added or changed between the 2 screens.",
+      "It names each trick in plain words, with the rupees added.",
+      "The AI drafts a complaint the shopper can send."
+    ],
+    "further": [
+      "Keep a history of tricks the shopper has met, shop by shop.",
+      "Show which shops other shoppers reported most often."
+    ]
+  },
+  {
+    "id": "P274",
+    "fit": true,
+    "task": "Show a shopper which of 2 packs gives more for the money.",
+    "expect": [
+      "A shopper types or photographs the price and weight of 2 packs.",
+      "The AI reads the price and net weight from each photo.",
+      "It shows the price per gram or millilitre for each pack.",
+      "It says which pack is cheaper, and by how much."
+    ],
+    "further": [
+      "Save a pack so the shopper sees when it gets lighter.",
+      "Compare more than 2 packs or brands at once."
+    ]
+  },
+  {
+    "id": "P275",
+    "fit": true,
+    "task": "Warn a shop owner before any licence or permit runs out.",
+    "expect": [
+      "An owner uploads a photo of each licence or permit.",
+      "The AI reads the type, number and expiry date from it.",
+      "The owner can correct anything the AI got wrong.",
+      "It lists every licence by how soon it runs out.",
+      "A reminder goes out 30 days and 7 days before."
+    ],
+    "further": [
+      "The owner types the late fee rule and sees the penalty.",
+      "Let an accountant see the same list for several shops."
+    ]
+  },
+  {
+    "id": "P276",
+    "fit": true,
+    "task": "Tell a shopper whether a customer care number is real before they call.",
+    "expect": [
+      "A shopper types the company name and the number they found.",
+      "The AI searches the web for the company's official contact page.",
+      "It says whether the number matches, and shows the page used.",
+      "The shopper pastes what the caller asked, and the AI flags risks.",
+      "Reported fake numbers are saved to warn the next person."
+    ],
+    "further": [
+      "List what to do in the first hour if money left.",
+      "Check a link or text message the caller sent."
+    ]
+  },
+  {
+    "id": "P277",
+    "fit": true,
+    "task": "Help a distributor claim for damaged or expired stock and track what is unpaid.",
+    "expect": [
+      "A distributor logs each damaged or expired item with batch and invoice.",
+      "A photo of the stock can be added as proof.",
+      "The AI checks each claim for missing proof before it goes.",
+      "The AI drafts the claim letter to the company.",
+      "It shows every unpaid claim and the days it has waited."
+    ],
+    "further": [
+      "Read the batch number and expiry date from a photo.",
+      "Send a weekly reminder for claims older than 30 days."
+    ]
+  },
+  {
+    "id": "P278",
+    "fit": true,
+    "task": "Show a shopper the real cost of a no-cost EMI before they buy.",
+    "expect": [
+      "A shopper uploads a screenshot of the EMI offer.",
+      "The AI reads the price, months, fee and bank from it.",
+      "The shopper adds the price for paying in full.",
+      "It shows the extra rupees the EMI costs, line by line.",
+      "It says which way of paying is cheaper, and by how much."
+    ],
+    "further": [
+      "Compare EMI offers from 2 banks or 2 shops.",
+      "Warn when all EMIs together pass a set share of income."
+    ]
+  },
+  {
+    "id": "P279",
+    "fit": true,
+    "task": "Explain a gold jewellery bill to a buyer, line by line.",
+    "expect": [
+      "A buyer uploads a photo of the estimate or bill.",
+      "The AI reads weight, gold rate, making charge, wastage and tax.",
+      "It shows each line in rupees and as a percentage.",
+      "It flags wastage charged on top of a making charge.",
+      "It lists 3 questions to ask the jeweller before paying."
+    ],
+    "further": [
+      "Compare estimates from 2 jewellers for the same piece.",
+      "Check the gold rate used against the day's rate the buyer enters."
+    ]
+  },
+  {
+    "id": "P280",
+    "fit": true,
+    "task": "Help a shopper spot a fake Instagram clothing page before they pay.",
+    "expect": [
+      "A shopper uploads screenshots of the page and the chat.",
+      "The AI reads the handle, the offer and how payment is asked.",
+      "It lists each warning sign and why it matters.",
+      "It gives a plain verdict: safe, be careful or do not pay.",
+      "It suggests 2 checks to ask the seller for."
+    ],
+    "further": [
+      "Compare the page with the real shop's handle the shopper enters.",
+      "Let a real shop list its true handle for buyers to check."
+    ]
+  },
+  {
+    "id": "P281",
+    "fit": true,
+    "task": "Help a tailor finish every order before the customer's function.",
+    "expect": [
+      "A tailor adds an order with measurements, advance and function date.",
+      "A photo of the design is saved with the order.",
+      "The AI turns a typed or spoken note into order details.",
+      "It warns when a new order lands in a full week.",
+      "A daily message lists what is due in the next 3 days."
+    ],
+    "further": [
+      "A customer opens a link to see their order status.",
+      "Remind the customer before a trial or pickup date."
+    ]
+  },
+  {
+    "id": "P282",
+    "fit": true,
+    "task": "Help a family check a jeweller's gold scheme and keep proof of each payment.",
+    "expect": [
+      "A person uploads or pastes the terms of the scheme.",
+      "The AI lists what is promised and what is not in writing.",
+      "It flags risks, like a term longer than 12 months.",
+      "The person logs each instalment with a photo of the receipt.",
+      "It shows the total paid and the months left."
+    ],
+    "further": [
+      "Remind the person before each instalment and before the scheme ends.",
+      "Put every payment and receipt into a file to share."
+    ]
+  },
+  {
+    "id": "P283",
+    "fit": true,
+    "task": "Tell a cosmetics shop owner which products on the shelf are banned.",
+    "expect": [
+      "An owner types or uploads the list of products they stock.",
+      "The owner pastes a ban or recall notice from a regulator.",
+      "The AI pulls every product name out of the notice.",
+      "It matches them to the stock list, even when spelt differently.",
+      "It shows what to take off the shelf today."
+    ],
+    "further": [
+      "Flag products whose label photo lacks a batch or expiry date.",
+      "Draft the stock report the regulator asked shops to send."
+    ]
+  }
+]

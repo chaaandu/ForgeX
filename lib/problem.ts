@@ -72,21 +72,57 @@ export const DIFFICULTY_LABEL: Record<Problem['difficulty'], string> = {
 }
 
 /**
- * What a founder's browser receives: the problem without its difficulty or its
- * signal. Built by naming fields, so anything added to a problem later stays
- * on the server until someone decides otherwise.
+ * A problem cut down to what one founder can build in 2 days: the narrower
+ * challenge, what we expect to see working, and where to go if there is time
+ * left. `data/problems.scope.json` holds one per problem that fits; a problem
+ * without one is never offered.
+ */
+const bullet = z.string().trim().min(8).max(140)
+
+export const scopeSchema = z.object({
+  task: z.string().trim().min(10).max(200),
+  expect: z.array(bullet).min(3).max(6),
+  further: z.array(bullet).max(3),
+})
+
+export type Scope = z.infer<typeof scopeSchema>
+
+export const scopeFileSchema = z.array(
+  z.union([
+    scopeSchema.extend({ id: problemIdSchema, fit: z.literal(true) }),
+    z.object({ id: problemIdSchema, fit: z.literal(false), why: z.string() }),
+  ]),
+)
+
+/** One bullet a line: how a list of bullets sits in a Sheet cell and in a textarea. */
+export const bullets = {
+  read: (cell: string) =>
+    cell
+      .split('\n')
+      .map((line) => line.replace(/^\s*[-•*]\s*/, '').trim())
+      .filter(Boolean),
+  write: (items: string[]) => items.join('\n'),
+}
+
+/**
+ * What a founder's browser receives: the 2-day challenge, which is the
+ * problem's headline, and what is broken. No title, no open challenge, no
+ * difficulty and no signal. Built by
+ * naming fields, so anything added to a problem later stays on the server
+ * until someone decides otherwise.
  */
 export type FounderProblem = Pick<
   Problem,
-  'id' | 'title' | 'problem' | 'challenge' | 'industries' | 'side' | 'learn' | 'geo'
->
+  'id' | 'problem' | 'challenge' | 'industries' | 'side' | 'learn' | 'geo'
+> & { expect: string[]; further: string[] }
 
-export function forFounder(problem: Problem): FounderProblem {
+export function forFounder(problem: Problem & { scope: Scope }): FounderProblem {
   return {
     id: problem.id,
-    title: problem.title,
     problem: problem.problem,
-    challenge: problem.challenge,
+    challenge: problem.scope.task,
+    expect: problem.scope.expect,
+    further: problem.scope.further,
     industries: problem.industries,
     side: problem.side,
     learn: problem.learn,

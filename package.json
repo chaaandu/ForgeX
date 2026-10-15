@@ -16,6 +16,7 @@
     "data:students": "tsx scripts/import-students.ts",
     "data:profiles": "tsx scripts/import-profiles.ts",
     "data:archetypes": "tsx scripts/import-archetypes.ts",
+    "data:groups": "tsx scripts/import-groups.ts",
     "sheet:init": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts",
     "sheet:problems": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems",
     "art:relics": "node scripts/render-relics.mjs",
@@ -26,8 +27,10 @@
     "research:validate": "tsx scripts/research/validate.ts",
     "bank:list": "tsx scripts/research/list.ts",
     "bank:lint": "tsx scripts/research/lint-bank.ts",
+    "sheet:hackathon": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --scope",
     "sheet:sync": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --sync",
     "sheet:migrate": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-migrate.ts",
+    "sheet:groups": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --groups",
     "sheet:approve": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-approve.ts"
   },
   "dependencies": {

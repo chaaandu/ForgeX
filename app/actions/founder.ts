@@ -1,14 +1,35 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
 import { archetypeOf, isCompleteTrial, scoreTrial, TRIAL } from '@/lib/archetype'
 import { arrivalRank, logEvent } from '@/lib/data/events'
 import { founderByEmail, LEVELS, levelPatch, patchFounder, type Founder } from '@/lib/data/founders'
-import { addPick, allPicks, allResponses, pickInputSchema, statusOf, withdraw } from '@/lib/data/picks'
-import { problemById } from '@/lib/data/problems'
+import {
+  entryOf,
+  hasProblem,
+  pickProblem,
+  sendProblem,
+  setResearch,
+  setStage,
+  type Entry,
+} from '@/lib/data/hackathon'
+import { isOpen, problemById } from '@/lib/data/problems'
+import { clock, phaseAt, STAGE_IDS } from '@/lib/hackathon'
+import { linkWarnings, type LinkHealth } from '@/lib/link-check'
+import { cleanResearch, mayBuild, ownProblemSchema, RESEARCH_FIELDS } from '@/lib/own-problem'
+import { problemIdSchema } from '@/lib/problem'
 import { LINK_FIELDS, normaliseLink, type LinkField } from '@/lib/links'
 import { list, profilePatchSchema } from '@/lib/profile'
 import { getViewer } from '@/lib/session'
+import {
+  cleanField,
+  fieldsOf,
+  missingIn,
+  requiredOf,
+  type SubmissionField,
+  type SubmissionFields,
+} from '@/lib/submission'
 import { worldSchema } from '@/lib/world'
 
 /**
@@ -19,7 +40,13 @@ import { worldSchema } from '@/lib/world'
  */
 
 export type Result<T = object> = ({ ok: true } & T) | { ok: false; error: ActionError; fields?: Record<string, string> }
-export type ActionError = 'signed-out' | 'forbidden' | 'invalid' | 'closed' | 'locked' | 'failed'
+export type ActionError =
+  | 'signed-out'
+  | 'forbidden'
+  | 'invalid'
+  | 'closed'
+  | 'locked'
+  | 'failed'
 
 async function me(): Promise<Founder | ActionError> {
   const viewer = await getViewer()
@@ -28,14 +55,11 @@ async function me(): Promise<Founder | ActionError> {
   return (await founderByEmail(viewer.email)) ?? 'forbidden'
 }
 
-function picksClosed(): boolean {
-  const close = process.env.PICKS_CLOSE_AT
-  return Boolean(close) && Date.now() > new Date(close as string).getTime()
-}
-
+/** Nothing a founder does counts before the portal opens: it opens to all of them at once. */
 async function guarded<T>(run: (founder: Founder) => Promise<Result<T>>): Promise<Result<T>> {
   const founder = await me()
   if (typeof founder === 'string') return { ok: false, error: founder }
+  if (!phaseAt(clock()).open) return { ok: false, error: 'closed' }
   try {
     return await run(founder)
   } catch (error) {
@@ -133,85 +157,223 @@ export async function saveProfile(raw: unknown): Promise<Result<{ links: Partial
   })
 }
 
-/** Level 3 done. A one-line bio is the only thing we insist on. */
+/** Level 3 done. A GitHub and a LinkedIn are what we insist on; the one line about them is theirs to add or not. */
 export async function finishProfile(): Promise<Result> {
   return guarded<object>(async (founder) => {
-    if (!founder.profile.bio.trim()) return { ok: false, error: 'invalid', fields: { bio: 'required' } }
+    const missing: Record<string, string> = {}
+    if (!founder.profile.github.trim()) missing.github = 'required'
+    if (!founder.profile.linkedin.trim()) missing.linkedin = 'required'
+    if (Object.keys(missing).length) return { ok: false, error: 'invalid', fields: missing }
     await patchFounder(founder, levelPatch(founder, LEVELS.profile))
     await logEvent(founder.email, 'level', { level: LEVELS.profile })
     return { ok: true }
   })
 }
 
-/** Level 4. Nothing is saved until every answer is in: half an answer would skew every match. */
+/**
+ * The three questions, for the bank. Asked only of a founder who ends up
+ * picking from it. Nothing is saved until every answer is in.
+ */
 export async function saveWorld(raw: unknown): Promise<Result> {
   return guarded<object>(async (founder) => {
     const parsed = worldSchema.safeParse(raw)
     if (!parsed.success) return { ok: false, error: 'invalid' }
     if (founder.level < LEVELS.profile) return { ok: false, error: 'forbidden' }
+    if (hasProblem(await entryOf(founder.email))) return { ok: false, error: 'locked' }
     await patchFounder(founder, { World: JSON.stringify(parsed.data), ...levelPatch(founder, LEVELS.world) })
     await logEvent(founder.email, 'world', parsed.data)
     return { ok: true }
   })
 }
 
+type Warnings = { warnings: Partial<Record<string, LinkHealth>> }
+
+/** May this founder still send their own problem: the window is open, or the team reopened it for them. */
+function maySendProblem(entry: Entry | null, now: Date) {
+  return phaseAt(now).problemsOpen || Boolean(entry?.reopened.has('problem'))
+}
+
 /**
- * Level 6. Sends a why for a problem from the bank or one the founder wrote.
- * A pick still waiting is withdrawn in favour of the new one. After Try
- * another, anything goes. After Needs a tweak, only a revision of the same
- * problem: the same bank problem, or their own problem reworded. Approved and
- * Talk to your mentor are settled.
+ * Sends their own problem for review, or sends it again. Unlimited, until the
+ * window closes: a problem in review can be replaced, a rejected one rewritten.
+ * Once approved, or once they pick from the bank, it is settled.
  */
-export async function submitPick(raw: unknown): Promise<Result<{ slug: string }>> {
-  return guarded<{ slug: string }>(async (founder) => {
-    if (picksClosed()) return { ok: false, error: 'closed' }
-    if (founder.level < LEVELS.world) return { ok: false, error: 'forbidden' }
-    const parsed = pickInputSchema.safeParse(raw)
-    if (!parsed.success) return { ok: false, error: 'invalid' }
-    if (parsed.data.problemId) {
-      const problem = await problemById(parsed.data.problemId)
-      if (!problem || problem.status !== 'approved') return { ok: false, error: 'invalid' }
+export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
+  return guarded<Warnings>(async (founder) => {
+    if (founder.level < LEVELS.profile) return { ok: false, error: 'forbidden' }
+    const parsed = ownProblemSchema.safeParse(raw)
+    if (!parsed.success) {
+      const fields = Object.fromEntries(
+        parsed.error.issues.map((issue) => [String(issue.path[0] ?? ''), 'required']),
+      )
+      return { ok: false, error: 'invalid', fields }
     }
-    const [picks, responses] = await Promise.all([allPicks(), allResponses()])
-    const mine = picks.filter((pick) => pick.email === founder.email && !pick.withdrawnAt)
-    const latest = mine.at(-1)
-    let revises: string | null = null
-    if (latest) {
-      const status = statusOf(latest, responses)
-      if (status === 'tweak') {
-        const same = latest.problemId
-          ? parsed.data.problemId === latest.problemId
-          : parsed.data.custom !== null
-        if (!same) return { ok: false, error: 'locked' }
-        revises = latest.id
-      } else if (status !== 'another' && status !== 'waiting') {
-        return { ok: false, error: 'locked' }
+    const primary = cleanResearch(parsed.data.primary)
+    const secondary = cleanResearch(parsed.data.secondary)
+    if (!primary || !secondary) {
+      return {
+        ok: false,
+        error: 'invalid',
+        fields: { ...(primary ? {} : { primary: 'link' }), ...(secondary ? {} : { secondary: 'link' }) },
       }
-      if (status === 'waiting') await withdraw(latest)
     }
-    const id = await addPick(founder.email, parsed.data)
-    await patchFounder(founder, { 'Pick ID': id, Status: 'waiting', ...levelPatch(founder, LEVELS.why) })
-    await logEvent(founder.email, 'pick', {
-      id,
-      problemId: parsed.data.problemId,
-      custom: Boolean(parsed.data.custom),
-      revises,
-    })
-    return { ok: true, slug: founder.slug }
+    const now = clock()
+    const entry = await entryOf(founder.email)
+    if (!maySendProblem(entry, now)) return { ok: false, error: 'closed' }
+    if (entry && mayBuild(entry.state)) return { ok: false, error: 'locked' }
+    const input = { ...parsed.data, primary, secondary }
+    const version = await sendProblem(founder, entry, input, now)
+    await patchFounder(founder, levelPatch(founder, LEVELS.picked))
+    await logEvent(founder.email, 'problem', { version, title: input.title })
+    revalidatePath('/team/reviews')
+    return { ok: true, warnings: await linkWarnings({ primary, secondary }) }
   })
 }
 
-/** Back out of a pick the team has not answered yet. */
-export async function withdrawPick(): Promise<Result> {
+const linksSchema = z.partialRecord(z.enum(RESEARCH_FIELDS), z.string().max(400))
+
+/** Checks research links as they are pasted, before anything is sent, so sharing can be fixed first. */
+export async function checkResearch(raw: unknown): Promise<Result<Warnings & { bad: string[] }>> {
+  return guarded<Warnings & { bad: string[] }>(async () => {
+    const parsed = linksSchema.safeParse(raw)
+    if (!parsed.success) return { ok: false, error: 'invalid' }
+    const clean: Partial<Record<string, string>> = {}
+    const bad: string[] = []
+    for (const [key, value] of Object.entries(parsed.data)) {
+      if (!value?.trim()) continue
+      const url = cleanResearch(value)
+      if (url) clean[key] = url
+      else bad.push(key)
+    }
+    return { ok: true, bad, warnings: await linkWarnings(clean) }
+  })
+}
+
+/**
+ * Picks a problem from the bank: only once the bank is open, and only for a
+ * founder with no approved problem of their own. Final the moment it is made.
+ */
+export async function pickFromBank(raw: unknown): Promise<Result> {
   return guarded<object>(async (founder) => {
-    if (picksClosed()) return { ok: false, error: 'closed' }
-    const [picks, responses] = await Promise.all([allPicks(), allResponses()])
-    const latest = picks.filter((pick) => pick.email === founder.email && !pick.withdrawnAt).at(-1)
-    if (!latest || statusOf(latest, responses) !== 'waiting') return { ok: false, error: 'locked' }
-    await withdraw(latest)
-    await patchFounder(founder, { 'Pick ID': '', Status: '' })
-    await logEvent(founder.email, 'withdraw', { id: latest.id })
+    const now = clock()
+    const phase = phaseAt(now)
+    if (!phase.bankOpen || phase.over) return { ok: false, error: 'closed' }
+    if (founder.level < LEVELS.profile || !founder.world) return { ok: false, error: 'forbidden' }
+    const id = problemIdSchema.safeParse(raw)
+    if (!id.success) return { ok: false, error: 'invalid' }
+    const problem = await problemById(id.data)
+    if (!problem || !isOpen(problem)) return { ok: false, error: 'invalid' }
+    const entry = await entryOf(founder.email)
+    if (hasProblem(entry)) return { ok: false, error: 'locked' }
+    await pickProblem(founder, entry, { id: problem.id, title: problem.scope.task })
+    await patchFounder(founder, levelPatch(founder, LEVELS.picked))
+    await logEvent(founder.email, 'pick', { problemId: problem.id, replaces: entry?.state ?? 'none' })
+    revalidatePath('/')
     return { ok: true }
   })
+}
+
+const researchSchema = z.object({ primary: z.string().max(400), secondary: z.string().max(400) })
+
+/** The research behind a problem picked from the bank. It counts once both links are in. */
+export async function saveResearch(raw: unknown): Promise<Result<Warnings & { research: Record<string, string> }>> {
+  return guarded<Warnings & { research: Record<string, string> }>(async (founder) => {
+    const parsed = researchSchema.safeParse(raw)
+    if (!parsed.success) return { ok: false, error: 'invalid' }
+    const entry = await entryOf(founder.email)
+    if (!entry || entry.state !== 'bank') return { ok: false, error: 'forbidden' }
+    const research = { ...entry.research }
+    const bad: Record<string, string> = {}
+    for (const field of RESEARCH_FIELDS) {
+      const value = parsed.data[field].trim()
+      if (!value) research[field] = ''
+      else {
+        const clean = cleanResearch(value)
+        if (clean) research[field] = clean
+        else bad[field] = 'link'
+      }
+    }
+    await setResearch(founder, entry, research)
+    await logEvent(founder.email, 'research', research)
+    if (Object.keys(bad).length) return { ok: false, error: 'invalid', fields: bad }
+    return { ok: true, research, warnings: await linkWarnings(research) }
+  })
+}
+
+const stageSchema = z.object({
+  stage: z.enum(STAGE_IDS),
+  fields: z.partialRecord(z.string(), z.string().max(1200)),
+})
+
+type StageResult = Result<Warnings & { fields: SubmissionFields; sent: boolean }>
+
+/**
+ * Saves a stage's links, or submits the stage. Every field is cleaned here,
+ * never in the browser. A save keeps whatever is usable and names what is not;
+ * submitting needs every required field. Once submitted, a link can still be
+ * changed until the deadline but a required one cannot be emptied. Each
+ * deadline is hard, unless the team has reopened that stage for this founder.
+ */
+async function writeStage(raw: unknown, submit: boolean): Promise<StageResult> {
+  return guarded<Warnings & { fields: SubmissionFields; sent: boolean }>(async (founder) => {
+    const parsed = stageSchema.safeParse(raw)
+    if (!parsed.success) return { ok: false, error: 'invalid' }
+    const { stage } = parsed.data
+    const now = clock()
+    const entry = await entryOf(founder.email)
+    if (!entry || !mayBuild(entry.state)) return { ok: false, error: 'forbidden' }
+    if (phaseAt(now).locked[stage] && !entry.reopened.has(stage)) return { ok: false, error: 'locked' }
+
+    const own = new Set<string>(fieldsOf(stage).map((field) => field.id))
+    const required = new Set<string>(requiredOf(stage))
+    const submitted = Boolean(entry.sentAt[stage])
+    const fields: SubmissionFields = { ...entry.fields }
+    const bad: Record<string, string> = {}
+    const changed: Partial<Record<SubmissionField, string>> = {}
+    for (const [id, value] of Object.entries(parsed.data.fields) as [SubmissionField, string][]) {
+      if (!own.has(id)) continue
+      const clean = cleanField(id, value)
+      if (clean === null) bad[id] = 'link'
+      else if (clean) {
+        if (clean !== fields[id]) changed[id] = clean
+        fields[id] = clean
+      } else if (submitted && required.has(id)) bad[id] = 'required'
+      else delete fields[id]
+    }
+    if (submit) {
+      for (const id of missingIn(stage, fields)) bad[id] ??= 'required'
+      if (Object.keys(bad).length) return { ok: false, error: 'invalid', fields: bad }
+    }
+    const first = submit && !submitted
+    const dirty = JSON.stringify(fields) !== JSON.stringify(entry.fields)
+    if (first || dirty) await setStage(founder, entry, stage, fields, first ? now : null)
+    if (first) {
+      if (stage === 'pitch') await patchFounder(founder, levelPatch(founder, LEVELS.sent))
+      await logEvent(founder.email, 'submission', {
+        stage,
+        late: phaseAt(now).closed[stage],
+        fields: Object.fromEntries([...own].map((id) => [id, fields[id as SubmissionField] ?? ''])),
+      })
+      // Their progress shows under the wall.
+      revalidatePath('/')
+    } else if (submitted && dirty) {
+      await logEvent(founder.email, 'submission', { stage, changed })
+    }
+    if (Object.keys(bad).length) return { ok: false, error: 'invalid', fields: bad }
+    return {
+      ok: true,
+      fields,
+      sent: submit || submitted,
+      warnings: await linkWarnings(changed),
+    }
+  })
+}
+
+export async function saveStage(raw: unknown): Promise<StageResult> {
+  return writeStage(raw, false)
+}
+
+export async function submitStage(raw: unknown): Promise<StageResult> {
+  return writeStage(raw, true)
 }
 

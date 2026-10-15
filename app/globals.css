@@ -31,6 +31,8 @@
   --color-mythic: #ff6a61;
 
   --color-ok: #6be39a;
+  /* Errors only: a muted coral, never violet, which means go. */
+  --color-error: #e8877f;
 
   --font-display: var(--font-instrument), 'Times New Roman', serif;
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
@@ -122,6 +124,30 @@
   .ask em {
     font-style: italic;
     color: var(--color-violet-ink);
+  }
+
+  .page-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  /* Words a founder typed. A string with no spaces still wraps inside its box. */
+  .user-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .ask {
@@ -287,6 +313,102 @@
     box-shadow: none;
   }
 
+  /* Which list you are looking at: underlined tabs on a rule, never pills, so
+     they never read as filters. */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    box-shadow: inset 0 -1px 0 var(--color-line);
+  }
+  .tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 10px 0 12px;
+    font: 500 15px/1 var(--font-sans);
+    color: var(--color-ink-2);
+    text-decoration: none;
+    box-shadow: inset 0 -2px 0 transparent;
+    transition: color 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+  }
+  .tab:hover {
+    color: var(--color-ink-1);
+  }
+  .tab[aria-current='page'] {
+    color: var(--color-ink-1);
+    box-shadow: inset 0 -2px 0 var(--color-violet);
+  }
+  .tab-count {
+    font: 500 12px/1 var(--font-mono);
+    color: var(--color-ink-3);
+  }
+  .tab[aria-current='page'] .tab-count {
+    color: var(--color-violet-ink);
+  }
+
+  /* A small switch between 2 or 3 ways of narrowing a list. Grey when on, so
+     it never competes with the violet of an action. */
+  .segmented {
+    display: inline-flex;
+    padding: 3px;
+    gap: 2px;
+    border-radius: var(--radius-control);
+    box-shadow: inset 0 0 0 1px var(--color-line-2);
+  }
+  .segment {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: var(--radius-control);
+    font: 500 13px/1 var(--font-sans);
+    color: var(--color-ink-2);
+    text-decoration: none;
+  }
+  .segment:hover {
+    color: var(--color-ink-1);
+  }
+  .segment[aria-current='page'],
+  .segment[aria-pressed='true'] {
+    color: var(--color-ink-1);
+    background: rgb(255 255 255 / 0.1);
+  }
+
+  /* A small label above an icon, on hover or keyboard focus. The words come
+     from data-tip; the same words are the icon's accessible name. */
+  .tip {
+    position: relative;
+  }
+  .tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    z-index: 20;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font: 500 12px/1 var(--font-sans);
+    white-space: nowrap;
+    color: var(--color-ink-1);
+    background: var(--color-s3);
+    box-shadow: 0 0 0 1px var(--color-line-2), 0 6px 16px rgb(0 0 0 / 0.4);
+    opacity: 0;
+    transform: translate(-50%, 2px);
+    pointer-events: none;
+    transition: opacity 120ms var(--ease-out), transform 120ms var(--ease-out);
+  }
+  .tip:hover::after,
+  .tip:focus-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tip::after {
+      transition: none;
+    }
+  }
+
   /* A reason a problem was matched. Not interactive. */
   .tag {
     display: inline-flex;
@@ -327,6 +449,35 @@
   }
 
   /* ---------------------------------------------------------- skeleton */
+
+  /* A native select with our own arrow, set in from the edge like the text. */
+  .select,
+  .select-arrow {
+    appearance: none;
+    padding-right: 38px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b3b0a9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    background-size: 15px;
+    cursor: pointer;
+  }
+
+  /* A filter: the same pill as a chip, so a row of filters reads as one set. */
+  .select {
+    min-height: 36px;
+    padding-left: 14px;
+    border: 0;
+    border-radius: var(--radius-control);
+    font: 500 13px/1 var(--font-sans);
+    color: var(--color-ink-1);
+    background-color: rgb(255 255 255 / 0.04);
+    box-shadow: inset 0 0 0 1px var(--color-line-2);
+  }
+
+  .select:focus-visible {
+    outline: 2px solid var(--color-violet);
+    outline-offset: 2px;
+  }
 
   .skeleton {
     border-radius: 10px;

@@ -4,15 +4,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { consoleCopy as copy } from '@/content/copy'
 
-export function TeamNav({ waiting, drafts }: { waiting: number; drafts: number }) {
+export function TeamNav({ drafts, waiting }: { drafts: number; waiting: number }) {
   const path = usePathname()
   const items = [
-    { href: '/team', label: copy.nav.founders, count: null },
-    { href: '/team/queue', label: copy.nav.queue, count: waiting },
+    { href: '/team', label: copy.nav.founders, count: null as number | null },
+    { href: '/team/reviews', label: copy.nav.reviews, count: waiting },
+    { href: '/team/history', label: copy.nav.history, count: null },
+    { href: '/team/picks', label: copy.nav.picks, count: null },
     { href: '/team/bank', label: copy.nav.bank, count: drafts },
+    { href: '/team/screen', label: copy.nav.screen, count: null },
   ]
   return (
-    <nav aria-label={copy.nav.label} className="flex gap-1">
+    <nav aria-label={copy.nav.label} className="quiet-scroll flex gap-1 overflow-x-auto">
       {items.map((item) => {
         const active = item.href === '/team' ? path === '/team' : path.startsWith(item.href)
         return (

@@ -15,7 +15,6 @@ export const TABS = {
       'First name',
       'Photo',
       'Number',
-      'Track',
       'Wall',
       'Level',
       'Archetype',
@@ -37,10 +36,9 @@ export const TABS = {
       'LinkedIn',
       'Portfolio',
       'World',
-      'Pick ID',
-      'Status',
       'Last active',
       'Updated at',
+      'Reopened',
     ],
   },
   problems: {
@@ -61,42 +59,87 @@ export const TABS = {
       'Signal line',
       'Edited by',
       'Edited at',
+      'Task',
+      'Expect',
+      'Further',
     ],
   },
   internal: {
     name: 'Problems internal',
     headers: ['ID', 'Evidence', 'Sources', 'Why now', 'Players', 'Scores', 'Total'],
   },
-  picks: {
-    name: 'Picks',
+  /**
+   * The hackathon at a glance, one row a founder: their group, who reviews
+   * their problem, their POC at Mesa, where they stand and the problem they
+   * are building. Written for a person to read and filter, so it carries
+   * words, never ids or blobs. The one reference it keeps is the bank's own
+   * number for a problem picked from the bank, at the end. Status and
+   * Progress are written by the site.
+   */
+  hackathon: {
+    name: 'Hackathon',
     headers: [
-      'Pick ID',
+      'Name',
       'Email',
-      'Problem ID',
-      'Custom title',
-      'Custom problem',
-      'Custom challenge',
-      'Custom industry',
-      'Custom side',
-      'Why problem',
-      'Why user',
-      'Why pay',
-      'Contact',
-      'Submitted at',
-      'Withdrawn at',
+      'Group',
+      'Reviewer',
+      'POC',
+      'Status',
+      'Progress',
+      'Problem',
+      'Reopened',
+      'Problem no.',
     ],
   },
-  responses: {
-    name: 'Responses',
+  /**
+   * Everything a founder has handed in, one row a founder, in the order they
+   * hand it in: the research behind their problem, the MVP scope, the
+   * prototype, the launch and the pitch, each stage with when it was
+   * submitted. A cell is the link itself.
+   */
+  submissions: {
+    name: 'Submissions',
     headers: [
-      'Response ID',
-      'Pick ID',
-      'Author',
-      'Type',
-      'Note',
-      'Suggested IDs',
-      'Sent at',
-      'Emailed at',
+      'Name',
+      'Email',
+      'Group',
+      'Problem',
+      'Primary research',
+      'Secondary research',
+      'MVP scope',
+      'Scope at',
+      'GitHub',
+      'Prototype',
+      'Proof of progress',
+      'Prototype at',
+      'LinkedIn post',
+      'More posts',
+      'Live link',
+      'Documentation',
+      'Launch at',
+      'Pitch deck',
+      'Loom',
+      'Pitch at',
+    ],
+  },
+  history: {
+    name: 'Problem history',
+    headers: [
+      'Time',
+      'Name',
+      'Email',
+      'Version',
+      'Event',
+      'By',
+      'Industry',
+      'Title',
+      'Person',
+      'Problem',
+      'Promise',
+      'Plan',
+      'Primary research',
+      'Secondary research',
+      'Notes',
     ],
   },
   events: {

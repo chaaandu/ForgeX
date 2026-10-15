@@ -1,7 +1,7 @@
 node_modules
 .next
 out
-build
+/build
 .DS_Store
 *.pem
 .env
@@ -31,3 +31,4 @@ next-env.d.ts
 scripts/.*.mjs
 /.next-prod
 /.next-test
+/.next-local

@@ -1,56 +1,74 @@
 import 'server-only'
 import { cardFor } from '@/lib/card'
 import { allFounders, type Founder } from '@/lib/data/founders'
-import { threadFor } from '@/lib/data/picks'
-import { bank } from '@/lib/data/problems'
-import type { Problem } from '@/lib/problem'
+import {
+  entries,
+  hasProblem,
+  progress,
+  progressParts,
+  type Entry,
+  type Version,
+} from '@/lib/data/hackathon'
+import { bank, type BankProblem } from '@/lib/data/problems'
+import { labelOf } from '@/lib/taxonomy'
+
+/** What a founder is building, whichever way they came to it. */
+export type Build = {
+  entry: Entry
+  /** The bank problem, or null when the problem is their own. */
+  problem: BankProblem | null
+  /** Their own problem as approved: the newest version they sent. */
+  own: Version | null
+  /** The headline: a bank problem's 2-day challenge, or their own problem's name. */
+  title: string
+  /** The first industry the problem sits in, for the console's filters. */
+  industry: string
+  /** That industry as a person reads it, in the founder's own word when it is Other. */
+  industryName: string
+  reviewer: string
+  poc: string
+}
+
+/** What a founder is building, once they have a problem to build: approved, or picked from the bank. */
+export function buildingOf(
+  entry: Entry | null | undefined,
+  problems: Map<string, BankProblem>,
+): Build | null {
+  if (!entry || !hasProblem(entry)) return null
+  const problem = entry.problemId ? (problems.get(entry.problemId) ?? null) : null
+  if (entry.problemId && !problem) return null
+  const own = problem ? null : entry.latest
+  return {
+    entry,
+    problem,
+    own,
+    title: problem?.scope?.task ?? problem?.title ?? own?.title ?? entry.title,
+    industry: problem?.industries[0] ?? own?.industry ?? '',
+    industryName: problem
+      ? labelOf.industryShort(problem.industries[0] ?? '')
+      : own?.industryOther || (own ? labelOf.industryShort(own.industry) : ''),
+    reviewer: entry.reviewer,
+    poc: entry.poc,
+  }
+}
 
 /**
- * Everything a founder's screens need about them in one read: their card, their
- * picks and our answers, and the one pick that is current.
+ * Everything a founder's screens need about them in one read: their card,
+ * their row in the hackathon, how far they have got, and the problem they are
+ * building if they have one.
  */
 export async function founderContext(founder: Founder) {
-  const [founders, thread, problems] = await Promise.all([
-    allFounders(),
-    threadFor(founder.email),
-    bank(),
-  ])
+  const [founders, all, problems] = await Promise.all([allFounders(), entries(), bank()])
   const of = founders.length
-  const byId = new Map(problems.map((item) => [item.id, item]))
-  const entries = thread.map((entry) => {
-    const problem = entry.pick.problemId ? (byId.get(entry.pick.problemId) ?? null) : null
-    const title = problem?.title ?? entry.pick.custom?.title ?? ''
-    return { ...entry, problem: problem as Problem | null, title }
-  })
-  const current = [...entries].reverse().find((entry) => !entry.pick.withdrawnAt) ?? null
-  const live = current && current.status !== 'another' ? current : null
+  const entry = all.get(founder.email) ?? null
+  const building = buildingOf(entry, new Map(problems.map((item) => [item.id, item])))
   return {
     of,
-    entries,
-    current: live,
-    card: cardFor(
-      founder,
-      of,
-      live ? { title: live.title, problem: live.problem, status: live.status } : null,
-    ),
-    tried: entries
-      .filter((entry) => entry.pick.problemId)
-      .map((entry) => entry.pick.problemId as string),
-    suggested: current?.status === 'another' ? (current.responses.at(-1)?.suggested ?? []) : [],
-    /**
-     * The tweak being answered, while a founder is revising: the current pick
-     * if it was told Needs a tweak, or the one before it if the change has just
-     * been sent and is waiting. Null otherwise.
-     */
-    tweak: (() => {
-      if (!current) return null
-      if (current.status === 'tweak')
-        return { entry: current, note: current.responses.at(-1)?.note ?? '' }
-      if (current.status !== 'waiting') return null
-      const before = entries.filter((entry) => !entry.pick.withdrawnAt && entry !== current).at(-1)
-      return before?.status === 'tweak'
-        ? { entry: before, note: before.responses.at(-1)?.note ?? '' }
-        : null
-    })(),
+    entry,
+    building,
+    all,
+    progress: entry ? progress(entry) : 0,
+    parts: entry ? progressParts(entry) : { problem: 0, scope: 0, prototype: 0, launch: 0, pitch: 0 },
+    card: cardFor(founder, of, building?.title),
   }
 }

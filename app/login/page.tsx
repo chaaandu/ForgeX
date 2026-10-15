@@ -11,20 +11,25 @@ import { getViewer } from '@/lib/session'
 export const metadata: Metadata = { title: meta.pages.signIn }
 
 /**
- * Mock personas, one per track, plus a teammate. Aarav was placed in
- * Hackathon 1; Diya sits the quiz; Aadishwar gets no matches, only the form.
+ * Mock personas: three founders, then the team. Aarav and Aadishwar were placed
+ * in Hackathon 1; Diya sits the quiz. Chandu runs the console, the three
+ * reviewers answer problems, and anyone else at Mesa only watches.
  */
 const PERSONAS = [
   {
     email: 'aarav_shrivastava@forge27.mesaschool.co',
-    label: 'Aarav, guided, placed in Hackathon 1',
+    label: 'Aarav, a founder placed in Hackathon 1',
   },
-  { email: 'diya_agrawal@forge27.mesaschool.co', label: 'Diya, structured, new to archetypes' },
+  { email: 'diya_agrawal@forge27.mesaschool.co', label: 'Diya, a founder who takes the test' },
   {
     email: 'aadishwar_r@forge27.mesaschool.co',
-    label: 'Aadishwar, autonomous, placed in Hackathon 1',
+    label: 'Aadishwar, a founder placed in Hackathon 1',
   },
-  { email: 'team@mesaschool.co', label: 'the team' },
+  { email: 'chandu@mesaschool.co', label: 'Chandu, who runs the console' },
+  { email: 'saurabh@mesaschool.co', label: 'Saurabh, a reviewer' },
+  { email: 'param@joinsquareup.com', label: 'Param, a reviewer, from his own address' },
+  { email: 'eakbari@mesaschool.co', label: 'Ebrahim, a reviewer' },
+  { email: 'team@mesaschool.co', label: 'someone at Mesa who only watches' },
 ]
 
 function Google() {
@@ -53,11 +58,13 @@ function Google() {
 export default async function Login({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; next?: string }>
+  searchParams: Promise<{ error?: string; next?: string; switch?: string }>
 }) {
-  const { error, next: rawNext } = await searchParams
+  const { error, next: rawNext, switch: switching } = await searchParams
   const next = safeNext(rawNext)
-  if (await getViewer()) redirect(next)
+  // Mock mode only: `/login?switch=1` shows the personas to someone already
+  // signed in, so a tester can move between a founder and the team.
+  if ((await getViewer()) && !(isMock() && switching)) redirect(next)
   const refused =
     error === 'domain'
       ? copy.refused.domain

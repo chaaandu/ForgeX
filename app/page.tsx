@@ -1,7 +1,9 @@
 import Link from 'next/link'
+import { ProgressRing } from '@/components/build/ProgressRing'
 import { FounderCard } from '@/components/card/FounderCard'
 import { Brand } from '@/components/shell/Brand'
 import { Wall } from '@/components/landing/Wall'
+import { Lines } from '@/components/ui/Lines'
 import { landing as copy } from '@/content/copy'
 import { building } from '@/lib/building'
 import { allFounders } from '@/lib/data/founders'
@@ -11,8 +13,8 @@ export const revalidate = 300
 
 /**
  * The door. The whole cohort's faces, one line, and one way in. Below the
- * fold, the founders the team has said go to, by title only: what people are
- * building, not a bank to browse from the doorway.
+ * fold, the founders who have picked a problem, by title only: what people
+ * are building, not a bank to browse from the doorway.
  */
 export default async function Landing() {
   const [founders, live] = await Promise.all([allFounders(), building()])
@@ -38,7 +40,6 @@ export default async function Landing() {
           <h1 className="display m-0 text-[clamp(40px,min(7.4vw,10.5svh),116px)] leading-[0.95]">
             <span className="block">{copy.lineStart}</span> <em className="block">{copy.lineEm}</em>
           </h1>
-          <p className="text-lead text-ink-2 m-0 max-w-[36ch]">{copy.sub}</p>
           <div className="pointer-events-auto flex flex-wrap items-center gap-x-6 gap-y-4">
             {/* A plain link: /enter is a redirect, and a full navigation follows it cleanly. */}
             <a href="/enter" className="btn btn-primary press min-h-[52px] px-8 text-[16px]">
@@ -47,7 +48,7 @@ export default async function Landing() {
           </div>
         </main>
       </div>
-      {/* Always there, so a scroll down shows what this becomes, even before the first go. */}
+      {/* Always there, so a scroll down shows what this becomes, even before the first pick. */}
       <section
         className="mx-auto grid max-w-[1400px] gap-10 px-5 pt-16 pb-24 md:px-12 md:pt-24"
         aria-labelledby="building"
@@ -57,7 +58,7 @@ export default async function Landing() {
             {copy.building.title}
           </h2>
           <p className="text-lead text-ink-2 m-0 max-w-[48ch]">
-            {live.length ? copy.building.lead : copy.building.empty}
+            {live.length ? copy.building.lead : <Lines text={copy.building.empty.join(' ')} />}
           </p>
         </div>
         {live.length ? (
@@ -71,7 +72,19 @@ export default async function Landing() {
                   aria-label={copy.building.open(item.card.name)}
                 >
                   <FounderCard data={item.card} />
-                  <span className="text-ink-1 text-[15px] leading-snug">{item.title}</span>
+                  <span className="flex items-start gap-3">
+                    <span
+                      className="text-ink-1 line-clamp-2 min-w-0 flex-1 text-[15px] leading-snug"
+                      title={item.title}
+                    >
+                      {item.title}
+                    </span>
+                    <ProgressRing
+                      value={item.progress}
+                      size={36}
+                      label={copy.building.progress(item.progress)}
+                    />
+                  </span>
                 </Link>
               </li>
             ))}

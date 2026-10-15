@@ -115,7 +115,9 @@ export async function update(tab: string, writes: { a1: string; values: Grid }[]
   })
 }
 
-type SheetMeta = { properties: { sheetId: number; title: string; gridProperties?: { columnCount?: number } } }
+type SheetMeta = {
+  properties: { sheetId: number; title: string; hidden?: boolean; gridProperties?: { columnCount?: number } }
+}
 
 export async function sheetsMeta(): Promise<SheetMeta[]> {
   const body = await call<{ sheets: SheetMeta[] }>(`?fields=sheets.properties`)

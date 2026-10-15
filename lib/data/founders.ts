@@ -6,8 +6,8 @@ import type { Header, Row } from '@/lib/sheet/tabs'
 import { worldSchema, type World } from '@/lib/world'
 
 /**
- * Founders, as the server sees them. `track`, the Hackathon 1 outcome and the
- * H1 level are the team's and never cross to a founder; see `selfView`.
+ * Founders, as the server sees them. The Hackathon 1 outcome and the H1 level
+ * are the team's and never cross to a founder.
  */
 
 export const LEVELS = {
@@ -16,7 +16,7 @@ export const LEVELS = {
   profile: 3,
   world: 4,
   picked: 5,
-  why: 6,
+  sent: 6,
 } as const
 
 export type ArchetypeSource = 'h1' | 'quiz' | 'retake' | ''
@@ -29,7 +29,6 @@ export type Founder = {
   first: string
   photo: string
   number: number | null
-  track: string
   wall: boolean
   level: number
   archetype: ArchetypeId | null
@@ -42,9 +41,9 @@ export type Founder = {
   priorWork: string
   profile: Profile
   world: World | null
-  pickId: string
-  status: string
   lastActive: string
+  /** The team has let this founder send or change their build after the hard stop. */
+  reopened: boolean
 }
 
 function parseJson<T>(cell: string, guard: (value: unknown) => T | null): T | null {
@@ -67,7 +66,6 @@ function toFounder({ row, cells }: Row<'founders'>): Founder {
     first: cells['First name'],
     photo: cells.Photo,
     number: Number(cells.Number) || null,
-    track: cells.Track,
     wall: cells.Wall !== 'no',
     level: Number(cells.Level) || 0,
     archetype,
@@ -98,9 +96,8 @@ function toFounder({ row, cells }: Row<'founders'>): Founder {
       const parsed = worldSchema.safeParse(value)
       return parsed.success ? parsed.data : null
     }),
-    pickId: cells['Pick ID'],
-    status: cells.Status,
     lastActive: cells['Last active'],
+    reopened: cells.Reopened.trim().toLowerCase() === 'yes',
   }
 }
 

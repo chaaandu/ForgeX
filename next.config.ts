@@ -10,9 +10,16 @@ const nextConfig: NextConfig = {
   // the card image's fonts, photos and relics, and the bank for mock seeding.
   outputFileTracingIncludes: {
     '/api/card/[slug]': ['./assets/fonts/**', './public/students/**', './public/relics/**'],
-    '/**': ['./data/problems.json', './data/problems.internal.json'],
+    '/**': [
+      './data/problems.json',
+      './data/problems.internal.json',
+      './data/problems.scope.json',
+    ],
   },
   images: {
+    // Served as they are. The photos (450px webp, about 16 KB) and the art are
+    // already small, and Vercel bills every resize; a resize saves little here.
+    unoptimized: true,
     remotePatterns: [{ protocol: 'https', hostname: 'lh3.googleusercontent.com', pathname: '/**' }],
   },
   eslint: { ignoreDuringBuilds: false },

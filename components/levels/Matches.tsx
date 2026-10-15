@@ -2,42 +2,61 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useState, useTransition } from 'react'
+import { pickFromBank } from '@/app/actions/founder'
 import { ProblemCard } from '@/components/problem/ProblemCard'
 import { ProblemSheet } from '@/components/problem/ProblemSheet'
 import { matches as copy, problem as problemCopy } from '@/content/copy'
 import type { FounderProblem } from '@/lib/problem'
 
-export type FounderMatch = { problem: FounderProblem; gentle: boolean; suggested: boolean }
+export type FounderMatch = { problem: FounderProblem; gentle: boolean; others: number }
 
+/**
+ * The bank, for a founder without an approved problem of their own. Opening a
+ * problem shows what we expect in 2 days; one button makes it theirs, with no
+ * way to swap, which the sheet says before they press it.
+ */
 export function Matches({
   list,
-  waitingFor,
-  again,
+  set,
+  sets,
 }: {
   list: FounderMatch[]
-  waitingFor: string | null
-  again: boolean
+  /** Which set of 4 this is, from 1, and how many there are. */
+  set: number
+  sets: number
 }) {
   const router = useRouter()
   const [open, setOpen] = useState<FounderMatch | null>(null)
+  const [error, setError] = useState<'failed' | 'locked' | 'closed' | null>(null)
+  const [pending, start] = useTransition()
   const gentle = list.length > 0 && list.every((match) => match.gentle)
+
+  function pick(problemId: string) {
+    start(async () => {
+      setError(null)
+      const result = await pickFromBank(problemId)
+      if (result.ok) router.push('/build')
+      else
+        setError(result.error === 'locked' || result.error === 'closed' ? result.error : 'failed')
+    })
+  }
 
   return (
     <div className="grid gap-10">
       <div className="grid gap-3">
         <h1 className="display rise m-0 text-[clamp(40px,5.4vw,68px)] leading-[0.98]">
-          {gentle ? copy.gentleTitle : list.length ? copy.title : copy.empty.title}
+          {gentle
+            ? copy.gentleTitle
+            : list.length
+              ? set > 1
+                ? copy.moreTitle
+                : copy.title
+              : copy.empty.title}
         </h1>
         <p className="rise text-lead text-ink-2 m-0 max-w-[52ch] [animation-delay:80ms]">
           {gentle ? copy.gentleLead : list.length ? copy.lead : copy.empty.lead}
         </p>
-        {again && list.length ? <p className="meta text-violet-ink m-0">{copy.again}</p> : null}
-        {waitingFor ? (
-          <p className="text-ink-2 m-0 rounded-xl px-4 py-3 text-[14px] shadow-[inset_0_0_0_1px_var(--color-line-2)]">
-            {copy.waiting(waitingFor)}
-          </p>
-        ) : null}
       </div>
 
       {list.length ? (
@@ -50,7 +69,7 @@ export function Matches({
             >
               <ProblemCard
                 problem={match.problem}
-                note={match.suggested ? copy.suggestedNote : undefined}
+                others={match.others}
                 onOpen={() => setOpen(match)}
               />
             </li>
@@ -58,41 +77,53 @@ export function Matches({
         </ul>
       ) : null}
 
-      <Link
-        href="/matches/new"
-        className="press group grid gap-1 rounded-[var(--radius-card)] p-6 text-left no-underline shadow-[inset_0_0_0_1px_var(--color-line-2)] hover:bg-white/[0.03]"
-      >
-        <span className="display text-ink-1 text-[clamp(24px,2.6vw,32px)] leading-tight">
-          {copy.writeOwn}{' '}
-          <span
-            aria-hidden="true"
-            className="inline-block transition-transform duration-200 group-hover:translate-x-1"
-          >
-            →
-          </span>
-        </span>
-        <span className="text-ink-2 text-[15px]">{copy.writeOwnLead}</span>
-      </Link>
 
-      <div>
-        <Link href="/world" className="btn btn-quiet press -ml-3">
+      <div className="flex flex-wrap items-center gap-2">
+        {set < sets ? (
+          <Link href={`/matches?set=${set + 1}`} className="btn btn-secondary press">
+            {copy.next}
+          </Link>
+        ) : null}
+        {set > 1 ? (
+          <Link
+            href={set === 2 ? '/matches' : `/matches?set=${set - 1}`}
+            className="btn btn-quiet press"
+          >
+            {copy.previous}
+          </Link>
+        ) : null}
+        <Link href="/world" className="btn btn-quiet press">
           {copy.changeAnswers}
         </Link>
       </div>
 
       <ProblemSheet
         problem={open?.problem ?? null}
+        others={open?.others ?? 0}
         open={open !== null}
-        onOpenChange={(next) => !next && setOpen(null)}
+        onOpenChange={(next) => {
+          if (next || pending) return
+          setOpen(null)
+          setError(null)
+        }}
         action={
           open ? (
-            <button
-              type="button"
-              className="btn btn-primary press min-h-[52px] w-full text-[16px]"
-              onClick={() => router.push(`/why?p=${open.problem.id}`)}
-            >
-              {problemCopy.build}
-            </button>
+            <div className="grid gap-3">
+              <p
+                role={error ? 'alert' : undefined}
+                className={`m-0 text-[14px] ${error ? 'text-error' : 'text-ink-2'}`}
+              >
+                {error ? problemCopy[error] : problemCopy.final}
+              </p>
+              <button
+                type="button"
+                className="btn btn-primary press min-h-[52px] w-full text-[16px]"
+                disabled={pending}
+                onClick={() => pick(open.problem.id)}
+              >
+                {pending ? problemCopy.picking : problemCopy.build}
+              </button>
+            </div>
           ) : null
         }
       />

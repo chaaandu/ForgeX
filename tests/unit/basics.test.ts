@@ -10,6 +10,9 @@ describe('roles', () => {
     expect(roleForEmail('a_b@forge27.mesaschool.co')).toBe('founder')
     expect(roleForEmail('Someone@MesaSchool.co')).toBe('team')
     expect(roleForEmail('x@evilmesaschool.co')).toBeNull()
+    // Param reviews from his own address; nobody else at that company gets in.
+    expect(roleForEmail('Param@JoinSquareUp.com')).toBe('team')
+    expect(roleForEmail('someone@joinsquareup.com')).toBeNull()
     expect(roleForEmail('x@gmail.com')).toBeNull()
     expect(roleForEmail('')).toBeNull()
   })

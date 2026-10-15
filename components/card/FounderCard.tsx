@@ -26,7 +26,6 @@ export type FounderCardData = {
   number: number | null
   of: number
   archetype: ArchetypeId | null
-  bio?: string
   problemTitle?: string
   finish?: CardFinish | null
 }

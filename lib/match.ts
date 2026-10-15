@@ -1,34 +1,25 @@
-import { archetypes as archetypeCopy, chips as chipCopy } from '@/content/copy'
 import type { ArchetypeId } from './archetype'
 import type { Problem } from './problem'
-import { LEARN, labelOf, type Difficulty, type LearnId } from './taxonomy'
+import type { Difficulty, LearnId } from './taxonomy'
 import type { World } from './world'
 
 /**
- * Which four problems to show a founder, and why.
+ * Which problems to show a founder, and in what order.
  *
  * A transparent weighted score with no model, no network and no randomness:
- * the same answers always give the same four. Every chip on a card is the
- * name of a factor that scored for that card, in the founder's own terms, so
- * a recommendation can always be interrogated.
- *
- * Access carries the most weight. In a three-week sprint, being able to talk
- * to the person with the problem this week beats being excited about it.
+ * the same answers always give the same list. The industries a founder chose
+ * carry the most weight, because in 2 days caring about the people with the
+ * problem is what keeps someone building.
  */
 
 export const WEIGHTS = {
-  access: 30,
-  industry: 20,
-  learn: 15,
-  comfort: 15,
-  side: 10,
-  intent: 5,
+  industry: 45,
+  learn: 30,
+  side: 20,
   archetype: 5,
 } as const
 
-type Factor = keyof typeof WEIGHTS
-
-/** The learning each archetype tends to love. A small nudge, never a gate. */
+/** The kind of build each archetype tends to love. A small nudge, never a gate. */
 const AFFINITY: Record<ArchetypeId, LearnId[]> = {
   surveyor: ['data', 'agents'],
   scout: ['voice', 'mobile'],
@@ -38,230 +29,167 @@ const AFFINITY: Record<ArchetypeId, LearnId[]> = {
   builder: ['payments', 'web'],
 }
 
-const RANK: Record<Difficulty, number> = { easy: 0, medium: 1, hard: 2 }
-
-/** Where on the difficulty ladder a founder's comfort and intent point, 0 to 2. */
-export function difficultyTarget(world: Pick<World, 'comfort' | 'intent'>): number {
-  const base = [0, 0, 0.5, 1, 1.4, 1.8][world.comfort] ?? 1
-  const lift = { company: 0.3, both: 0.15, career: 0, exploring: -0.15 }[world.intent]
-  return Math.min(2, Math.max(0, base + lift))
-}
-
 export type MatchInput = {
   world: World
   archetype: ArchetypeId | null
-  /** Problems already tried and passed on. Never shown again. */
-  exclude?: string[]
-  /** Problems the team suggested after a Try another. Shown first. */
-  suggested?: string[]
-  /** The difficulties this founder's track allows. Everything else is never offered. */
-  allowed?: Difficulty[]
 }
 
-export type Match = {
-  problem: Problem
+export type Match<P extends Problem = Problem> = {
+  problem: P
   score: number
-  chips: string[]
+  /** Nothing the founder said points here; shown so the screen is never empty. */
   gentle: boolean
-  suggested: boolean
-}
-
-type Scored = {
-  problem: Problem
-  score: number
-  parts: { factor: Factor; value: number; chip: string | null }[]
-}
-
-function scoreOne(problem: Problem, input: MatchInput): Scored {
-  const { world, archetype } = input
-  const parts: Scored['parts'] = []
-
-  // A problem's first industry is what it is about; the others are where it
-  // also shows up. Those count for a little and never earn a chip, so a
-  // farming problem that touches retail cannot pass itself off as a retail one.
-  const [primary, ...secondary] = problem.industries
-  const reachable = new Set<string>(world.access.flatMap((entry) => entry.worlds))
-  const reach =
-    primary && reachable.has(primary)
-      ? 1
-      : secondary.some((industry) => reachable.has(industry))
-        ? SECONDARY
-        : 0
-  parts.push({ factor: 'access', value: reach, chip: reach === 1 ? chipCopy.access : null })
-
-  const liked = new Set<string>(world.industries)
-  const like =
-    primary && liked.has(primary)
-      ? 1
-      : secondary.some((industry) => liked.has(industry))
-        ? SECONDARY
-        : 0
-  parts.push({
-    factor: 'industry',
-    value: like,
-    chip: like === 1 && primary ? chipCopy.industry(labelOf.industryShort(primary)) : null,
-  })
-
-  const wanted = world.learn.filter((id): id is LearnId => id !== 'other')
-  const overlap = problem.learn.filter((id) => wanted.includes(id))
-  const learnValue = wanted.length ? Math.min(1, overlap.length / Math.min(2, wanted.length)) : 0
-  const firstLearn = LEARN.find((item) => item.id === overlap[0])
-  parts.push({ factor: 'learn', value: learnValue, chip: firstLearn ? firstLearn.chip : null })
-
-  const target = difficultyTarget(world)
-  const rank = RANK[problem.difficulty]
-  const fit = Math.max(0, 1 - Math.abs(rank - target) / 1.5)
-  parts.push({
-    factor: 'comfort',
-    value: fit,
-    chip: fit >= 0.75 ? (rank > target + 0.25 ? chipCopy.stretch : chipCopy.sized) : null,
-  })
-
-  const sideValue = world.side === 'unsure' ? 0.5 : world.side === problem.side ? 1 : 0
-  parts.push({
-    factor: 'side',
-    value: sideValue,
-    chip: sideValue === 1 ? chipCopy.side[problem.side] : null,
-  })
-
-  const intentValue =
-    world.intent === 'company' || world.intent === 'both'
-      ? problem.signal.strength >= 4
-        ? 1
-        : 0
-      : problem.learn.length >= 2
-        ? 1
-        : 0
-  parts.push({
-    factor: 'intent',
-    value: intentValue,
-    chip: intentValue
-      ? world.intent === 'company' || world.intent === 'both'
-        ? chipCopy.demand
-        : chipCopy.portfolio
-      : null,
-  })
-
-  const loves = archetype ? AFFINITY[archetype] : []
-  const suits = problem.learn.some((id) => loves.includes(id))
-  parts.push({
-    factor: 'archetype',
-    value: suits ? 1 : 0,
-    chip: suits && archetype ? chipCopy.archetype(archetypeCopy[archetype].name) : null,
-  })
-
-  const score = parts.reduce((sum, part) => sum + WEIGHTS[part.factor] * part.value, 0)
-  return { problem, score, parts }
-}
-
-/** The best two or three reasons, strongest first. */
-function chipsOf(scored: Scored): string[] {
-  return scored.parts
-    .filter((part) => part.chip !== null && part.value > 0)
-    .sort((a, b) => WEIGHTS[b.factor] * b.value - WEIGHTS[a.factor] * a.value)
-    .slice(0, 3)
-    .map((part) => part.chip as string)
 }
 
 /** How much a problem's secondary industries count, against 1 for its first. */
 const SECONDARY = 0.3
 
+export function scoreOf(problem: Problem, input: MatchInput): number {
+  const { world, archetype } = input
+
+  // A problem's first industry is what it is about; the others are where it
+  // also shows up. Those count for a little, so a farming problem that touches
+  // retail cannot pass itself off as a retail one.
+  const [primary, ...secondary] = problem.industries
+  const liked = new Set<string>(world.industries)
+  const industry =
+    primary && liked.has(primary) ? 1 : secondary.some((item) => liked.has(item)) ? SECONDARY : 0
+
+  const overlap = problem.learn.filter((id) => world.learn.includes(id))
+  const learn = Math.min(1, overlap.length / Math.min(2, world.learn.length))
+
+  const side = world.side === 'unsure' ? 0.5 : world.side === problem.side ? 1 : 0
+
+  const loves = archetype ? AFFINITY[archetype] : []
+  const suits = problem.learn.some((id) => loves.includes(id)) ? 1 : 0
+
+  return (
+    WEIGHTS.industry * industry +
+    WEIGHTS.learn * learn +
+    WEIGHTS.side * side +
+    WEIGHTS.archetype * suits
+  )
+}
+
 /**
- * Spreading the four: each repeat of an industry or a difficulty already on
- * screen costs more, and an industry the founder chose or can reach that is
- * not on screen yet earns a little, so every answer they gave gets a look in.
+ * Spreading the list: each repeat of an industry already chosen costs more,
+ * and an industry the founder picked that has not appeared yet earns a little,
+ * so every answer they gave gets a look in.
  */
-export const SPREAD = { industry: 12, difficulty: 6, coverage: 14 } as const
+export const SPREAD = { industry: 12, coverage: 14 } as const
 
 /** Below this, a problem has not really matched anything the founder said. */
 export const MATCH_FLOOR = 25
 
-/**
- * The four. Greedy by score, with a growing penalty for repeating an
- * industry or a difficulty already chosen, so a founder never gets four of the
- * same thing.
- * If fewer than four clear the floor, the gentlest open problems fill in and
- * say so, because nobody who just answered six questions gets an empty screen.
- */
-export function topMatches(problems: Problem[], input: MatchInput, count = 4): Match[] {
-  const exclude = new Set(input.exclude ?? [])
-  const allowed = input.allowed ? new Set(input.allowed) : null
-  const pool = problems.filter(
-    (problem) => !exclude.has(problem.id) && (!allowed || allowed.has(problem.difficulty)),
-  )
-  const scored = pool.map((problem) => scoreOne(problem, input))
-  const out: Match[] = []
+/** How many problems of each level a founder is shown. */
+export type Mix = Record<Difficulty, number>
 
-  // The team's suggestions skip the track filter: a person chose them on purpose.
-  for (const id of input.suggested ?? []) {
-    const problem = problems.find((item) => item.id === id && !exclude.has(item.id))
-    const found = problem ? scoreOne(problem, input) : null
-    if (found && out.length < count) {
-      out.push({
-        problem: found.problem,
-        score: found.score,
-        chips: [chipCopy.suggested, ...chipsOf(found)].slice(0, 3),
-        gentle: false,
-        suggested: true,
-      })
+/**
+ * What each set of 4 is made of. The first set is 1 easy, 2 medium and 1
+ * hard. Asking for 4 others swaps a medium for an easy; asking again drops
+ * the hard one. After the third set there are no more. The owner's rule.
+ */
+export const MIXES: [Mix, Mix, Mix] = [
+  { easy: 1, medium: 2, hard: 1 },
+  { easy: 2, medium: 1, hard: 1 },
+  { easy: 2, medium: 2, hard: 0 },
+]
+
+export const SETS = MIXES.length
+
+const EASIER: Record<Difficulty, Difficulty[]> = {
+  hard: ['medium', 'easy'],
+  medium: ['easy', 'hard'],
+  easy: ['medium', 'hard'],
+}
+
+/**
+ * The founder's problems, best first, with a set number from each level.
+ * Greedy by score among the levels that still have a place to fill, with a
+ * growing penalty for repeating an industry, so nobody gets four of the same
+ * thing. A place nothing matched is filled by the best-evidenced problem of
+ * that level and says so; a level the bank has run out of gives its place to
+ * the nearest level that has one. Nobody who answered gets fewer than the mix
+ * while the bank can fill it.
+ */
+export function topMatches<P extends Problem>(
+  all: P[],
+  input: MatchInput,
+  mix: Mix = MIXES[0],
+  /** Problems already shown in an earlier set: never shown twice. */
+  exclude: ReadonlySet<string> = new Set(),
+): Match<P>[] {
+  const problems = all.filter((problem) => !exclude.has(problem.id))
+  const scored = problems
+    .map((problem) => ({ problem, score: scoreOf(problem, input) }))
+    .sort((a, b) => b.score - a.score || a.problem.id.localeCompare(b.problem.id))
+  const wanted = new Set<string>(input.world.industries)
+  const left: Mix = { ...mix }
+  const out: Match<P>[] = []
+  const used = new Set<string>()
+
+  // A level with too few problems hands its places to the nearest level.
+  for (const level of ['hard', 'medium', 'easy'] as const) {
+    const have = problems.filter((problem) => problem.difficulty === level).length
+    let spare = Math.max(0, left[level] - have)
+    left[level] -= spare
+    for (const other of EASIER[level]) {
+      if (!spare) break
+      const room = problems.filter((problem) => problem.difficulty === other).length - left[other]
+      const moved = Math.min(spare, Math.max(0, room))
+      left[other] += moved
+      spare -= moved
     }
   }
 
-  const taken = () => new Set(out.map((match) => match.problem.id))
-  const remaining = scored
-    .filter((item) => item.score >= MATCH_FLOOR)
-    .sort((a, b) => b.score - a.score || a.problem.id.localeCompare(b.problem.id))
+  const take = (item: (typeof scored)[number], gentle: boolean) => {
+    used.add(item.problem.id)
+    left[item.problem.difficulty] -= 1
+    out.push({ problem: item.problem, score: gentle ? 0 : item.score, gentle })
+  }
 
-  const wanted = new Set<string>([
-    ...input.world.industries,
-    ...input.world.access.flatMap((entry) => entry.worlds),
-  ])
-
-  while (out.length < count) {
-    const used = taken()
+  for (;;) {
     const industries = out.map((match) => match.problem.industries[0])
-    const levels = out.map((match) => match.problem.difficulty)
-    let best: { item: Scored; adjusted: number } | null = null
-    for (const item of remaining) {
-      if (used.has(item.problem.id)) continue
+    let best: { item: (typeof scored)[number]; adjusted: number } | null = null
+    for (const item of scored) {
+      if (item.score < MATCH_FLOOR) break
+      if (used.has(item.problem.id) || left[item.problem.difficulty] <= 0) continue
+      const primary = item.problem.industries[0] ?? ''
       // Each repeat costs more than the last, so a strong industry can take
       // two cards but rarely four, and the founder's other picks get a look in.
-      const sameIndustry = industries.filter(
-        (industry) => industry === item.problem.industries[0],
-      ).length
-      const sameLevel = levels.filter((level) => level === item.problem.difficulty).length
-      const primary = item.problem.industries[0] ?? ''
-      const fresh =
-        out.length > 0 && wanted.has(primary) && sameIndustry === 0 ? SPREAD.coverage : 0
-      const adjusted =
-        item.score - SPREAD.industry * sameIndustry - SPREAD.difficulty * sameLevel + fresh
+      const same = industries.filter((industry) => industry === primary).length
+      const fresh = out.length > 0 && wanted.has(primary) && same === 0 ? SPREAD.coverage : 0
+      const adjusted = item.score - SPREAD.industry * same * (same + 1) * 0.5 + fresh
       if (!best || adjusted > best.adjusted) best = { item, adjusted }
     }
     if (!best) break
-    out.push({
-      problem: best.item.problem,
-      score: best.item.score,
-      chips: chipsOf(best.item),
-      gentle: false,
-      suggested: false,
-    })
+    take(best.item, false)
   }
 
-  if (out.length < count) {
-    const used = taken()
-    const gentle = pool
-      .filter((problem) => !used.has(problem.id))
-      .sort(
-        (a, b) =>
-          RANK[a.difficulty] - RANK[b.difficulty] ||
-          a.learn.length - b.learn.length ||
-          b.signal.strength - a.signal.strength ||
-          a.id.localeCompare(b.id),
-      )
-    for (const problem of gentle.slice(0, count - out.length)) {
-      out.push({ problem, score: 0, chips: [chipCopy.gentle], gentle: true, suggested: false })
-    }
+  // Places nothing matched: the best-evidenced open problems of that level.
+  const gentle = [...scored].sort(
+    (a, b) =>
+      b.problem.signal.strength - a.problem.signal.strength ||
+      a.problem.id.localeCompare(b.problem.id),
+  )
+  for (const item of gentle) {
+    if (!used.has(item.problem.id) && left[item.problem.difficulty] > 0) take(item, true)
   }
 
-  return out
+  return out.sort((a, b) => b.score - a.score || a.problem.id.localeCompare(b.problem.id))
+}
+
+/**
+ * Every set a founder can see, in order: the first 4, then 4 others, then 4
+ * more, each in its own mix and none repeating a problem from a set before
+ * it. The same answers always give the same sets, so going back to an earlier
+ * one shows exactly what was there.
+ */
+export function matchSets<P extends Problem>(problems: P[], input: MatchInput): Match<P>[][] {
+  const shown = new Set<string>()
+  return MIXES.map((mix) => {
+    const set = topMatches(problems, input, mix, shown)
+    for (const match of set) shown.add(match.problem.id)
+    return set
+  }).filter((set) => set.length > 0)
 }

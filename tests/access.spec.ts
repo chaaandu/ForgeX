@@ -27,11 +27,12 @@ test("a founder cannot see another founder's page, card or the console", async (
   expect((await page.goto('/f/aarav-shrivastava'))?.status()).toBe(404)
   expect((await page.request.get('/api/card/aarav-shrivastava')).status()).toBe(404)
   expect((await page.goto('/team'))?.status()).toBe(404)
+  expect((await page.goto('/team/screen'))?.status()).toBe(404)
   expect((await page.request.get('/api/team/export.csv')).status()).toBe(404)
 })
 
 test('signed out, everything but the door asks you to sign in, remembering where you were going', async ({ page }) => {
-  for (const path of ['/arrive', '/matches', '/f/aarav-shrivastava', '/team']) {
+  for (const path of ['/arrive', '/problem', '/build', '/submit/prototype', '/f/aarav-shrivastava', '/team']) {
     await page.goto(path)
     await expect(page).toHaveURL(new RegExp(`/login\\?next=${encodeURIComponent(path).replace(/%2F/g, '(%2F|/)')}$`))
   }

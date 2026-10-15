@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
 import { approveAll, editProblem, setProblemStatus } from '@/app/actions/team'
+import { Bullets } from '@/components/problem/Bullets'
 import { DifficultyTag } from '@/components/ui/DifficultyTag'
 import { Signal } from '@/components/ui/Signal'
 import { consoleCopy } from '@/content/copy'
@@ -21,6 +22,8 @@ export type BankItem = {
   problem: string
   challenge: string
   difficulty: Difficulty
+  /** The 2-day version, or null: without one a founder is never offered the problem. */
+  scope: { task: string; expect: string[]; further: string[] } | null
   tags: string[]
   signal: string
   strength: number
@@ -43,12 +46,20 @@ export type BankItem = {
  * state: a draft is approved or archived, a live one edited or taken down, an
  * archived one restored. Never a button for the state it is already in.
  */
-export function Bank({ items }: { items: BankItem[] }) {
+export function Bank({
+  items,
+  canEdit,
+}: {
+  items: BankItem[]
+  /** The super admin and the reviewers. Everyone else at Mesa reads the bank, and changes nothing. */
+  canEdit: boolean
+}) {
   const router = useRouter()
   const [filter, setFilter] = useState<Status | 'all'>(() =>
     items.some((item) => item.status === 'draft') ? 'draft' : 'all',
   )
   const [level, setLevel] = useState<Difficulty | 'all'>('all')
+  const [invalid, setInvalid] = useState(false)
   const [index, setIndex] = useState(0)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState({
@@ -56,6 +67,9 @@ export function Bank({ items }: { items: BankItem[] }) {
     problem: '',
     challenge: '',
     difficulty: 'medium' as Difficulty,
+    task: '',
+    expect: '',
+    further: '',
   })
   const [pending, start] = useTransition()
 
@@ -64,7 +78,8 @@ export function Bank({ items }: { items: BankItem[] }) {
     [filter, items],
   )
   const list = useMemo(
-    () => inStatus.filter((item) => level === 'all' || item.difficulty === level),
+    () =>
+      inStatus.filter((item) => level === 'all' || item.difficulty === level),
     [inStatus, level],
   )
   const item = list[Math.min(index, Math.max(0, list.length - 1))]
@@ -90,7 +105,11 @@ export function Bank({ items }: { items: BankItem[] }) {
       problem: item.problem,
       challenge: item.challenge,
       difficulty: item.difficulty,
+      task: item.scope?.task ?? '',
+      expect: (item.scope?.expect ?? []).join('\n'),
+      further: (item.scope?.further ?? []).join('\n'),
     })
+    setInvalid(false)
     setEditing(true)
   }
 
@@ -100,7 +119,7 @@ export function Bank({ items }: { items: BankItem[] }) {
         <h1 className="display m-0 text-[40px] leading-none">
           {copy.title} <span className="text-ink-3 font-mono text-[14px]">{items.length}</span>
         </h1>
-        {drafts.length ? (
+        {canEdit && drafts.length ? (
           <button
             type="button"
             className="btn btn-secondary press"
@@ -179,7 +198,9 @@ export function Bank({ items }: { items: BankItem[] }) {
                     <span className="text-ink-3 font-mono text-[11px]">{entry.id}</span>
                     <DifficultyTag difficulty={entry.difficulty} />
                   </span>
-                  <span className="text-ink-1 text-[14px] leading-snug">{entry.title}</span>
+                  <span className="text-ink-1 text-[14px] leading-snug">
+                    {entry.scope?.task ?? entry.title}
+                  </span>
                 </button>
               </li>
             ))}
@@ -188,26 +209,29 @@ export function Bank({ items }: { items: BankItem[] }) {
           <article className="grid content-start gap-6">
             {editing ? (
               <div className="panel grid gap-4 p-6">
-                <input
-                  className="field display h-14 text-[22px]"
-                  value={draft.title}
-                  onChange={(event) => setDraft({ ...draft, title: event.target.value })}
-                  aria-label={copy.fields.title}
-                />
-                <textarea
-                  className="field"
-                  value={draft.problem}
-                  onChange={(event) => setDraft({ ...draft, problem: event.target.value })}
-                  aria-label={copy.fields.problem}
-                />
-                <input
-                  className="field"
-                  value={draft.challenge}
-                  onChange={(event) => setDraft({ ...draft, challenge: event.target.value })}
-                  aria-label={copy.fields.challenge}
-                />
+                {/* The 2-day challenge is the headline, so it is the first thing to edit. */}
+                <label className="grid gap-2">
+                  <span className="meta text-[11px]">{copy.fields.task}</span>
+                  <textarea
+                    className="field display min-h-0 resize-none text-[22px] leading-tight"
+                    rows={2}
+                    value={draft.task}
+                    maxLength={200}
+                    onChange={(event) =>
+                      setDraft({ ...draft, task: event.target.value.replace(/\n/g, ' ') })
+                    }
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="meta text-[11px]">{copy.fields.problem}</span>
+                  <textarea
+                    className="field"
+                    value={draft.problem}
+                    onChange={(event) => setDraft({ ...draft, problem: event.target.value })}
+                  />
+                </label>
                 <select
-                  className="field"
+                  className="field select-arrow"
                   value={draft.difficulty}
                   onChange={(event) =>
                     setDraft({ ...draft, difficulty: event.target.value as Difficulty })
@@ -220,6 +244,31 @@ export function Bank({ items }: { items: BankItem[] }) {
                     </option>
                   ))}
                 </select>
+                <label className="grid gap-2">
+                  <span className="meta text-[11px]">
+                    {copy.fields.expect} · {copy.perLine}
+                  </span>
+                  <textarea
+                    className="field min-h-[150px]"
+                    value={draft.expect}
+                    onChange={(event) => setDraft({ ...draft, expect: event.target.value })}
+                  />
+                </label>
+                <label className="grid gap-2">
+                  <span className="meta text-[11px]">
+                    {copy.fields.further} · {copy.perLine}
+                  </span>
+                  <textarea
+                    className="field min-h-[84px]"
+                    value={draft.further}
+                    onChange={(event) => setDraft({ ...draft, further: event.target.value })}
+                  />
+                </label>
+                {invalid ? (
+                  <p role="alert" className="text-error m-0 text-[14px]">
+                    {copy.invalid}
+                  </p>
+                ) : null}
                 <div className="flex gap-2">
                   <button
                     type="button"
@@ -228,6 +277,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                     onClick={() =>
                       start(async () => {
                         const result = await editProblem({ id: item.id, ...draft })
+                        setInvalid(!result.ok)
                         if (result.ok) {
                           setEditing(false)
                           router.refresh()
@@ -263,13 +313,31 @@ export function Bank({ items }: { items: BankItem[] }) {
                     </span>
                   </span>
                 </div>
-                <h2 className="display m-0 text-[clamp(28px,3vw,40px)] leading-[1.05]">
-                  {item.title}
+                {/* The 2-day challenge is the headline. A problem without one keeps its old title. */}
+                <h2 className="display m-0 text-[clamp(26px,2.8vw,36px)] leading-[1.08]">
+                  {item.scope?.task ?? item.title}
                 </h2>
                 <p className="text-ink-2 m-0 text-[16px] leading-relaxed">{item.problem}</p>
-                <p className="m-0 rounded-xl bg-black/25 px-4 py-3 text-[16px] shadow-[inset_0_0_0_1px_var(--color-line)]">
-                  {item.challenge}
-                </p>
+                {item.scope ? (
+                  <div className="grid gap-4 rounded-xl px-4 py-4 shadow-[inset_0_0_0_1px_var(--color-line-2)]">
+                    <div className="grid gap-2.5">
+                      <span className="meta text-[11px]">{copy.fields.expect}</span>
+                      <Bullets items={item.scope.expect} label={copy.fields.expect} />
+                    </div>
+                    {item.scope.further.length ? (
+                      <div className="grid gap-2.5">
+                        <span className="meta text-[11px]">{copy.fields.further}</span>
+                        <Bullets
+                          items={item.scope.further}
+                          label={copy.fields.further}
+                          tone="quiet"
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                ) : (
+                  <p className="text-ink-3 m-0 text-[14px]">{copy.unscoped}</p>
+                )}
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((tag) => (
                     <span key={tag} className="tag">
@@ -282,7 +350,7 @@ export function Bank({ items }: { items: BankItem[] }) {
                   {item.signal}
                 </p>
                 <div className="border-line flex flex-wrap items-center gap-2 border-t pt-4">
-                  {item.status === 'draft' ? (
+                  {!canEdit ? null : item.status === 'draft' ? (
                     <>
                       <button
                         type="button"
