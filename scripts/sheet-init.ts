@@ -10,6 +10,8 @@
  *                                   version (Task, Expect, Further) where those cells are still empty
  *   pnpm sheet:groups               writes each founder's Group, Reviewer and POC from
  *                                   data/groups.json, only into cells that are still empty
+ *   pnpm sheet:groups --update      the same, and also changes any of those cells that differ
+ *                                   from the file, printing each one: after the team's list changes
  *
  * It never overwrites a cell somebody has edited, never reorders rows, and
  * never removes anything. Missing headers are added at the end of the row.
@@ -31,6 +33,7 @@ const withProblems = process.argv.includes('--problems')
 const syncWording = process.argv.includes('--sync')
 const fillScope = process.argv.includes('--scope')
 const fillGroups = process.argv.includes('--groups')
+const updateGroups = process.argv.includes('--update')
 
 async function ensureTabs() {
   const meta = await sheetsMeta()
@@ -213,7 +216,7 @@ async function fillProblemScope(): Promise<number> {
  * and Group on every Submissions row, where that cell is empty. A name
  * somebody typed in the Sheet always stays.
  */
-async function fillGroupCells(): Promise<number> {
+async function fillGroupCells(overwrite: boolean): Promise<number> {
   const groups = groupOf()
   let filled = 0
   for (const [key, headers] of [
@@ -235,7 +238,10 @@ async function fillGroupCells(): Promise<number> {
       }
       for (const header of headers) {
         const value = values[header] ?? ''
-        if (col(header) < 0 || (row[col(header)] ?? '').trim() || !value) continue
+        const current = (row[col(header)] ?? '').trim()
+        if (col(header) < 0 || !value || current === value) continue
+        if (current && !overwrite) continue
+        if (current) console.log(`  ${group.email}: ${header} ${current} → ${value}`)
         writes.push({ a1: `${columnLetter(col(header) + 1)}${offset + 2}`, values: [[value]] })
       }
     })
@@ -358,7 +364,7 @@ async function main() {
   if (syncWording) console.log(`· Problems: ${await syncProblemWording()} rows brought up to date`)
   if (fillGroups)
     console.log(
-      `· Hackathon and Submissions: ${await fillGroupCells()} Group, Reviewer and POC cells filled`,
+      `· Hackathon and Submissions: ${await fillGroupCells(updateGroups)} Group, Reviewer and POC cells filled`,
     )
   if (fillScope) console.log(`· Problems: ${await fillProblemScope()} given a 2-day version`)
   console.log('Sheet ready.')

@@ -143,7 +143,7 @@ Only the reviewers and `chandu@mesaschool.co` can answer problems, and only `cha
 
 | Task | Where |
 | --- | --- |
-| Groups, reviewers and POCs | They come from the Mentor groups tab of the AI Hackathon 2 workbook. After a change there, run `pnpm data:groups "/path/to/AI Hackathon 2.xlsx"`, then `pnpm sheet:groups`, which fills only empty cells. Or type straight into the `Group`, `Reviewer` and `POC` columns. Reviewer must read Saurabh, Param or Ebrahim |
+| Groups, reviewers and POCs | They come from the Mentor groups tab of the AI Hackathon 2 workbook. After a change there, run `pnpm data:groups "/path/to/AI Hackathon 2.xlsx"`, then `pnpm sheet:groups --update`, which changes only the cells that differ and lists each one (without `--update` it fills empty cells only). Or type straight into the `Group`, `Reviewer` and `POC` columns. Reviewer must read Saurabh, Param or Ebrahim |
 | Answer problems | `/team/reviews`: what is waiting, oldest first, with every earlier version and answer. A reviewer sees their own students, and **Everyone** shows the rest. Approve, Approve with changes or Reject; the last two need a note, which the founder sees |
 | Every version and answer | `/team/history`, sortable by time or name, or the `Problem history` tab in the Sheet |
 | How far everyone has got | `/team`: status and progress for every founder. Each link icon opens it; hover anything cut short to read it in full. **Export CSV** has every link |
