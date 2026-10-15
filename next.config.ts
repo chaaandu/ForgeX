@@ -7,13 +7,14 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   devIndicators: false,
   // Files read from disk at run time, which the tracer cannot see on its own:
-  // the card image's fonts, photos and relics, and the bank for mock seeding.
+  // the card image's fonts, photos and relics, and the bank and groups for mock seeding.
   outputFileTracingIncludes: {
     '/api/card/[slug]': ['./assets/fonts/**', './public/students/**', './public/relics/**'],
     '/**': [
       './data/problems.json',
       './data/problems.internal.json',
       './data/problems.scope.json',
+      './data/groups.json',
     ],
   },
   images: {
