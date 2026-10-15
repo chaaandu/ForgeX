@@ -439,7 +439,7 @@ export const ownProblem = {
     `Get it approved by ${when}. Send it early, so there is time to change it if it comes back.`,
   reviewer: (name: string) => `${name} will review it.`,
   someone: 'Your reviewer',
-  hint: "Not sure how to research it? Mihirr's session recording on Nexus walks you through it.",
+  hint: "Not sure how to frame the 3Ps or research them? Mihirr's session recording on Nexus walks you through it.",
   threeP: 'The 3Ps',
   research: 'Your research',
   fields: {
@@ -465,9 +465,15 @@ export const ownProblem = {
       placeholder: 'Their regulars always know where to find them, and keep coming back.',
       help: 'The difference you make for them, not the product.',
     },
+    why: {
+      label: 'Why you: why are you the right person to solve this?',
+      placeholder: 'My family runs a stall at the Sunday market, and I help there every weekend.',
+      help: 'Your link to it: your work, your family, your city, people you already know.',
+    },
     plan: {
       label: 'Your plan',
-      placeholder: 'Talk to 5 more stall owners this week, then build a page where a stall posts its next market.',
+      placeholder:
+        'Talk to 5 more stall owners this week, then build a page where a stall posts its next market.',
       help: "What you have done so far, and what you'll do next.",
     },
     primary: {
@@ -543,7 +549,10 @@ export const home = {
   next: 'What to do next',
   allDone: 'All 5 steps are in. Well done.',
   steps: {
-    problem: { name: 'Your problem', line: 'The 3Ps and your research, approved by your reviewer.' },
+    problem: {
+      name: 'Your problem',
+      line: 'The 3Ps and your research, approved by your reviewer.',
+    },
     bank: { name: 'Your problem', line: 'Picked from our bank. Add the research behind it.' },
     bankDone: { name: 'Your problem', line: 'Picked from our bank, with your research.' },
     scope: { name: 'MVP scope', line: 'One Doc: what your MVP does, and what it leaves out.' },
@@ -687,7 +696,8 @@ export const submit = {
     broken: "This link doesn't open. Check it and paste it again.",
     repo: 'This repo is private. Make it public so the judges can see it.',
   },
-  deckHint: "Not sure how to make your pitch deck? Refer to Mohit Kataria's pitch deck session on Nexus.",
+  deckHint:
+    "Not sure how to make your pitch deck? Refer to Mohit Kataria's pitch deck session on Nexus.",
   saving: 'Saving',
   saved: 'Saved',
   failed: "That didn't save. What you typed is still here. Try again.",
@@ -731,7 +741,13 @@ export const page = {
     theirBuilt: 'What they built',
     history: 'Their problem, version by version',
   },
-  threeP: { person: 'Person', problem: 'Problem', promise: 'Promise', plan: 'Plan' },
+  threeP: {
+    person: 'Person',
+    problem: 'Problem',
+    promise: 'Promise',
+    why: 'Why you',
+    plan: 'Plan',
+  },
   links: {
     primary: 'Primary research',
     secondary: 'Secondary research',
@@ -887,7 +903,8 @@ export const consoleCopy = {
   },
   picks: {
     title: 'Picks',
-    lead: (picked: number, total: number) => `${picked} of ${total} founders have a problem to build.`,
+    lead: (picked: number, total: number) =>
+      `${picked} of ${total} founders have a problem to build.`,
     kinds: { all: 'All', own: 'Their own problems', bank: 'From the bank' },
     columns: { problem: 'Problem', industry: 'Industry', who: 'Founders' },
     ownTag: 'Their own',
@@ -972,10 +989,12 @@ export const consoleCopy = {
     rows: (n: number) => `${n} rows`,
     bank: 'Problems on offer',
     live: (n: number) => `${n} approved with a 2-day version. Founders can be matched.`,
-    noneLive: 'None on offer. Approve the bank, and run pnpm sheet:hackathon for the 2-day versions.',
+    noneLive:
+      'None on offer. Approve the bank, and run pnpm sheet:hackathon for the 2-day versions.',
     pocs: 'POCs',
     pocsOk: (n: number, of: number) => `${n} of ${of} founders have a POC on their row.`,
-    pocsMissing: 'No founder has a POC yet. Run pnpm sheet:groups to fill the Group, Reviewer and POC columns.',
+    pocsMissing:
+      'No founder has a POC yet. Run pnpm sheet:groups to fill the Group, Reviewer and POC columns.',
     opens: 'Portal opens',
     problemsClose: 'Own problems close',
     bankOpens: 'Bank opens',
@@ -987,7 +1006,8 @@ export const consoleCopy = {
     },
     reviewers: 'Reviewers',
     reviewersOk: (n: number, of: number) => `${n} of ${of} founders have a reviewer on their row.`,
-    reviewersMissing: 'No founder has a reviewer yet. Write one name a founder in the Reviewer column.',
+    reviewersMissing:
+      'No founder has a reviewer yet. Write one name a founder in the Reviewer column.',
     passed: (when: string) => `${when}. That has passed.`,
   },
 }

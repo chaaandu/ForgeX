@@ -5,7 +5,8 @@ import { INDUSTRY_IDS } from '@/lib/taxonomy'
 /**
  * A founder's own problem, as they send it for review: the industry, a short
  * name, the 3Ps (the Person who has it, the Problem they live with, the
- * Promise of what changes for them), the plan, and the research behind it.
+ * Promise of what changes for them), why they are the one to solve it, the
+ * plan, and the research behind it.
  */
 const text = (min: number, max: number) => z.string().trim().min(min).max(max)
 
@@ -14,7 +15,14 @@ const text = (min: number, max: number) => z.string().trim().min(min).max(max)
  * spaces or blank lines between them. The research lives in the linked docs,
  * so these stay short. The title is under 10 words.
  */
-export const WORD_LIMITS = { title: 9, person: 40, problem: 80, promise: 40, plan: 100 } as const
+export const WORD_LIMITS = {
+  title: 9,
+  person: 40,
+  problem: 80,
+  promise: 40,
+  why: 60,
+  plan: 100,
+} as const
 export type WordField = keyof typeof WORD_LIMITS
 
 export const wordCount = (value: string) => value.trim().split(/\s+/).filter(Boolean).length
@@ -32,6 +40,8 @@ export const ownProblemSchema = z
     person: written('person', 10),
     problem: written('problem', 20),
     promise: written('promise', 10),
+    /** Why they are the right person to solve it. */
+    why: written('why', 10),
     plan: written('plan', 10),
     primary: text(4, 400),
     secondary: text(4, 400),
@@ -43,7 +53,7 @@ export const ownProblemSchema = z
 
 export type OwnProblem = z.infer<typeof ownProblemSchema>
 
-export const OWN_FIELDS = ['title', 'person', 'problem', 'promise', 'plan'] as const
+export const OWN_FIELDS = ['title', 'person', 'problem', 'promise', 'why', 'plan'] as const
 export const RESEARCH_FIELDS = ['primary', 'secondary'] as const
 export type ResearchField = (typeof RESEARCH_FIELDS)[number]
 

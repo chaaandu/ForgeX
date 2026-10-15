@@ -29,7 +29,7 @@ test('a founder sends their problem, is told why it was rejected, sends it again
 }) => {
   await toProblem(page)
   await expect(page.getByRole('heading', { name: 'Your problem' })).toBeVisible()
-  await expect(page.getByText(/Mihirr's session recording on Nexus/)).toBeVisible()
+  await expect(page.getByText(/frame the 3Ps or research them\? Mihirr's session recording on Nexus/)).toBeVisible()
 
   // Nothing goes until every field is in.
   await page.getByRole('button', { name: 'Send for review' }).click()

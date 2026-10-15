@@ -174,6 +174,7 @@ function demoProblem(index: number) {
     Problem:
       'Regulars cannot tell where a stall will be next week, so sales depend on luck and the weather.',
     Promise: 'Their regulars always know where to find them, and keep coming back.',
+    'Why you': `I grew up in ${place} and my aunt runs a stall at the Sunday market there.`,
     Plan: 'Spoke to 6 stall owners and 10 shoppers. Next, a page where a stall posts its next market.',
     'Primary research': `https://drive.google.com/drive/folders/demo-interviews-${index}`,
     'Secondary research': `https://docs.google.com/document/d/demo-reading-${index}`,

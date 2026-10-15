@@ -200,13 +200,15 @@ describe('an own problem', () => {
     person: 'Stall owners at a weekend market.',
     problem: 'Regulars cannot tell where a stall will be next week.',
     promise: 'Their regulars always find them.',
+    why: 'My family runs a stall at the weekend market.',
     plan: 'Spoke to 6 stall owners. Next, a page for the next market.',
     primary: 'https://drive.google.com/drive/folders/1',
     secondary: 'https://docs.google.com/document/d/1',
   }
 
-  it('needs the 3Ps, a plan and both kinds of research, and a short name', () => {
+  it('needs the 3Ps, why them, a plan and both kinds of research, and a short name', () => {
     expect(ownProblemSchema.safeParse(good).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, why: '' }).success).toBe(false)
     expect(ownProblemSchema.safeParse({ ...good, primary: '' }).success).toBe(false)
     expect(ownProblemSchema.safeParse({ ...good, title: 'one two three four five six seven eight nine ten' }).success).toBe(false)
   })
@@ -221,6 +223,8 @@ describe('an own problem', () => {
     expect(ownProblemSchema.safeParse({ ...good, problem: many(81) }).success).toBe(false)
     expect(ownProblemSchema.safeParse({ ...good, plan: many(100) }).success).toBe(true)
     expect(ownProblemSchema.safeParse({ ...good, plan: many(101) }).success).toBe(false)
+    expect(ownProblemSchema.safeParse({ ...good, why: many(60) }).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, why: many(61) }).success).toBe(false)
     const tooLong = ownProblemSchema.safeParse({ ...good, promise: many(41) })
     expect(tooLong.success ? '' : tooLong.error.issues[0]?.message).toBe('words')
   })

@@ -22,6 +22,7 @@ type Version = {
   person: string
   problem: string
   promise: string
+  why: string
   plan: string
   primary: string
   secondary: string

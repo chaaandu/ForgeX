@@ -63,6 +63,7 @@ export default async function ProblemPage() {
     person: latest?.person ?? '',
     problem: latest?.problem ?? '',
     promise: latest?.promise ?? '',
+    why: latest?.why ?? '',
     plan: latest?.plan ?? '',
     primary: latest?.primary ?? '',
     secondary: latest?.secondary ?? '',

@@ -136,6 +136,7 @@ export const TABS = {
       'Person',
       'Problem',
       'Promise',
+      'Why you',
       'Plan',
       'Primary research',
       'Secondary research',

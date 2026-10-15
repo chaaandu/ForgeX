@@ -28,6 +28,7 @@ const EMPTY: Draft = {
   person: '',
   problem: '',
   promise: '',
+  why: '',
   plan: '',
   primary: '',
   secondary: '',
@@ -184,6 +185,8 @@ export function OwnProblemForm({
 
   return (
     <div className="grid max-w-[760px] gap-10">
+      {/* One hint for the whole form: the session covers the 3Ps and the research. */}
+      <Hint>{copy.hint}</Hint>
       <div className="grid gap-3">
         <p className="meta m-0" id="own-industry">
           {copy.fields.industry.label}{' '}
@@ -249,16 +252,14 @@ export function OwnProblemForm({
         {input('person', 3)}
         {input('problem', 4)}
         {input('promise', 3)}
+        {input('why', 3)}
         {input('plan', 4)}
       </section>
 
       <section className="grid gap-7" aria-labelledby="research">
-        <div className="grid gap-3">
-          <h2 id="research" className="section-title m-0">
-            {copy.research}
-          </h2>
-          <Hint>{copy.hint}</Hint>
-        </div>
+        <h2 id="research" className="section-title m-0">
+          {copy.research}
+        </h2>
         {input('primary', 1)}
         {input('secondary', 1)}
       </section>

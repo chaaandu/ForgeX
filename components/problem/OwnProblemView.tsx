@@ -11,6 +11,7 @@ type Version = {
   person: string
   problem: string
   promise: string
+  why: string
   plan: string
   primary: string
   secondary: string
@@ -93,14 +94,17 @@ function Sent({ version }: { version: Version }) {
         <h2 className="section-title user-text m-0">{version.title}</h2>
       </div>
       <dl className="m-0 grid gap-4">
-        {(['person', 'problem', 'promise', 'plan'] as const).map((key) => (
-          <div key={key} className="grid gap-1">
-            <dt className="meta text-[11px]">{page.threeP[key]}</dt>
-            <dd className="user-text text-ink-1 m-0 text-[15px] leading-relaxed whitespace-pre-line">
-              {version[key]}
-            </dd>
-          </div>
-        ))}
+        {(['person', 'problem', 'promise', 'why', 'plan'] as const).map((key) =>
+          // A version sent before Why you was asked has none, and shows none.
+          !version[key] ? null : (
+            <div key={key} className="grid gap-1">
+              <dt className="meta text-[11px]">{page.threeP[key]}</dt>
+              <dd className="user-text text-ink-1 m-0 text-[15px] leading-relaxed whitespace-pre-line">
+                {version[key]}
+              </dd>
+            </div>
+          ),
+        )}
         {(['primary', 'secondary'] as const).map((key) => (
           <div key={key} className="grid gap-1">
             <dt className="meta text-[11px]">{page.links[key]}</dt>
