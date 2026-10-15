@@ -42,6 +42,18 @@ export function staffOf(email: string): Staff {
   return { admin: key === SUPER_ADMIN, reviewer }
 }
 
+/**
+ * Which POC a team member is, if any, by the name in the POC column: their
+ * email's first word or their first name, so akshita@mesaschool.co is
+ * Akshita. Only for where the console opens; a POC acts like anyone else on
+ * the team.
+ */
+export function pocOf(viewer: { email: string; firstName: string }, pocs: string[]): string | null {
+  const local = viewer.email.split('@')[0]?.split(/[._-]/)[0]?.toLowerCase() ?? ''
+  const first = viewer.firstName.trim().toLowerCase()
+  return pocs.find((name) => [local, first].includes(name.trim().toLowerCase())) ?? null
+}
+
 /** May answer problems at all. Only the super admin edits the bank or reopens a deadline. */
 export const mayAct = (staff: Staff) => staff.admin || staff.reviewer !== null
 

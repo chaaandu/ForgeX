@@ -22,7 +22,7 @@ import { labelOf } from '@/lib/taxonomy'
 import type { BoardStatus, FounderRow } from '@/lib/team-rows'
 
 const copy = consoleCopy.founders
-type Key = 'name' | 'title' | 'reviewer' | 'progress' | 'status' | 'lastActive'
+type Key = 'name' | 'title' | 'reviewer' | 'poc' | 'progress' | 'status' | 'lastActive'
 const STATUS_ORDER: BoardStatus[] = ['none', 'review', 'building', 'done']
 // One colour, deeper as a founder gets further: nothing here reads as a warning.
 const TONE: Record<BoardStatus, string> = {
@@ -44,23 +44,27 @@ const ICON: Record<(typeof TICKS)[number], LucideIcon> = {
 
 /**
  * Where every founder stands: four counts the room asks for, then each
- * founder with their problem, reviewer, progress and the links they have
+ * founder with their problem, reviewer, POC, progress and the links they have
  * sent, each one an icon that opens it. Anything cut short shows in full on
  * hover. Sorted by a person, never by progress unless they ask.
  */
 export function FoundersTable({
   rows,
   reviewer: mine,
+  poc: myPoc,
 }: {
   rows: FounderRow[]
   /** The viewer's own name when they are a reviewer: the list opens on their students. */
   reviewer: string
+  /** The viewer's own name when they are a POC: the list opens on the students they look after. */
+  poc: string
 }) {
   const router = useRouter()
   const [query, setQuery] = useState('')
   const [status, setStatus] = useState<'all' | BoardStatus>('all')
   const [industry, setIndustry] = useState('')
   const [reviewer, setReviewer] = useState(mine)
+  const [poc, setPoc] = useState(myPoc)
   const [sort, setSort] = useState<{ key: Key; dir: 1 | -1 }>({ key: 'name', dir: 1 })
 
   // The board is watched while the clock runs down, so it keeps itself fresh.
@@ -71,6 +75,10 @@ export function FoundersTable({
 
   const industries = useMemo(
     () => [...new Set(rows.map((row) => row.industry).filter(Boolean))].sort(),
+    [rows],
+  )
+  const pocs = useMemo(
+    () => [...new Set(rows.map((row) => row.poc).filter(Boolean))].sort(),
     [rows],
   )
   const reviewers = useMemo(
@@ -86,6 +94,7 @@ export function FoundersTable({
           (status === 'all' || row.status === status) &&
           (!industry || row.industry === industry) &&
           (!reviewer || row.reviewer === reviewer) &&
+          (!poc || row.poc === poc) &&
           (!q || row.name.toLowerCase().includes(q)),
       )
       .sort((a, b) => {
@@ -99,11 +108,14 @@ export function FoundersTable({
         const y = by(b)
         return (x < y ? -1 : x > y ? 1 : 0) * sort.dir || a.name.localeCompare(b.name)
       })
-  }, [industry, query, reviewer, rows, sort, status])
+  }, [industry, poc, query, reviewer, rows, sort, status])
 
-  // The counts follow the reviewer and industry chosen, so a reviewer sees their own group.
+  // The counts follow the reviewer, POC and industry chosen, so each sees their own group.
   const scoped = rows.filter(
-    (row) => (!reviewer || row.reviewer === reviewer) && (!industry || row.industry === industry),
+    (row) =>
+      (!reviewer || row.reviewer === reviewer) &&
+      (!poc || row.poc === poc) &&
+      (!industry || row.industry === industry),
   )
   const count = (key: BoardStatus) => scoped.filter((row) => row.status === key).length
 
@@ -204,6 +216,19 @@ export function FoundersTable({
         </select>
         <select
           className="select shrink-0"
+          aria-label={copy.pocs}
+          value={poc}
+          onChange={(event) => setPoc(event.target.value)}
+        >
+          <option value="">{copy.anyPoc}</option>
+          {pocs.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+        <select
+          className="select shrink-0"
           aria-label={copy.industries}
           value={industry}
           onChange={(event) => setIndustry(event.target.value)}
@@ -218,14 +243,15 @@ export function FoundersTable({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[1000px] table-fixed border-collapse text-[14px]">
+        <table className="w-full min-w-[1100px] table-fixed border-collapse text-[14px]">
           <thead className="border-line border-b">
             <tr>
-              {header('name', copy.columns.name, 'w-[22%]')}
-              {header('title', copy.columns.pick, 'w-[27%]')}
-              {header('reviewer', copy.columns.reviewer, 'w-[10%]')}
-              {header('progress', copy.columns.progress, 'w-[18%]')}
-              <th scope="col" className="meta w-[15%] py-3 pr-4 text-left font-normal">
+              {header('name', copy.columns.name, 'w-[20%]')}
+              {header('title', copy.columns.pick, 'w-[21%]')}
+              {header('reviewer', copy.columns.reviewer, 'w-[9%]')}
+              {header('poc', copy.columns.poc, 'w-[9%]')}
+              {header('progress', copy.columns.progress, 'w-[16%]')}
+              <th scope="col" className="meta w-[17%] py-3 pr-4 text-left font-normal">
                 {copy.columns.links}
               </th>
               {header('lastActive', copy.columns.active, 'w-[8%]')}
@@ -271,6 +297,9 @@ export function FoundersTable({
                   </td>
                   <td className="text-ink-2 truncate py-3 pr-4" title={row.reviewer || undefined}>
                     {row.reviewer || copy.noPick}
+                  </td>
+                  <td className="text-ink-2 truncate py-3 pr-4" title={row.poc || undefined}>
+                    {row.poc || copy.noPick}
                   </td>
                   <td className="py-3 pr-4">
                     <span className="flex items-center gap-2.5">

@@ -49,6 +49,27 @@ test('only the reviewers and the super admin can answer; everyone else at Mesa w
   }
 })
 
+test('a POC opens on the students they look after, and a reviewer on theirs', async ({ page }) => {
+  await signIn(page, 'akshita@mesaschool.co')
+  await page.goto('/team')
+  await expect(page.getByRole('combobox', { name: 'POC' })).toHaveValue('Akshita')
+  await expect(page.getByText('of 15', { exact: true }).first()).toBeVisible()
+  await expect(page.getByRole('combobox', { name: 'Reviewer' })).toHaveValue('')
+
+  await page.context().clearCookies()
+  await signIn(page, SAURABH)
+  await page.goto('/team')
+  await expect(page.getByRole('combobox', { name: 'Reviewer' })).toHaveValue('Saurabh')
+  await expect(page.getByRole('combobox', { name: 'POC' })).toHaveValue('')
+
+  // The super admin sees everyone, though he looks after a group too.
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/team')
+  await expect(page.getByRole('combobox', { name: 'POC' })).toHaveValue('')
+  await expect(page.getByText('of 117', { exact: true }).first()).toBeVisible()
+})
+
 test('approve with changes and reject both need a note', async ({ page }) => {
   await toProblem(page)
   await sendProblem(page)

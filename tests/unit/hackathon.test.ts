@@ -6,7 +6,7 @@ import { currentPath, mayEnter } from '@/lib/journey'
 import { normaliseWorkLink } from '@/lib/links'
 import { mayBuild, needsNote, ownProblemSchema, wordCount } from '@/lib/own-problem'
 import { bullets, problemSchema, scopeFileSchema } from '@/lib/problem'
-import { mayAct, mayDecide, staffOf } from '@/lib/staff'
+import { mayAct, mayDecide, pocOf, staffOf } from '@/lib/staff'
 import { nextDue, stepsFor, type StepInput } from '@/lib/steps'
 import { cleanField, isStageComplete, missingIn, progressOf } from '@/lib/submission'
 import { bannedIn, decorativeQuotes } from '@/lib/voice'
@@ -313,6 +313,13 @@ describe('the team', () => {
     expect(mayAct(staffOf('param@mesaschool.co'))).toBe(false)
     expect(staffOf('param@joinsquareup.com').reviewer).toBe('Param')
     expect(staffOf('eakbari@mesaschool.co').reviewer).toBe('Ebrahim')
+  })
+
+  it('knows a POC by their email or their first name', () => {
+    const pocs = ['Akshita', 'Vedansh', 'Chandu']
+    expect(pocOf({ email: 'akshita@mesaschool.co', firstName: '' }, pocs)).toBe('Akshita')
+    expect(pocOf({ email: 'v.k@mesaschool.co', firstName: 'Vedansh' }, pocs)).toBe('Vedansh')
+    expect(pocOf({ email: 'team@mesaschool.co', firstName: 'Team' }, pocs)).toBeNull()
   })
 
   it('lets a reviewer answer their own group and anyone unassigned', () => {

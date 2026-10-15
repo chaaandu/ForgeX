@@ -29,6 +29,7 @@ const PERSONAS = [
   { email: 'saurabh@mesaschool.co', label: 'Saurabh, a reviewer' },
   { email: 'param@joinsquareup.com', label: 'Param, a reviewer, from his own address' },
   { email: 'eakbari@mesaschool.co', label: 'Ebrahim, a reviewer' },
+  { email: 'akshita@mesaschool.co', label: 'Akshita, a POC' },
   { email: 'team@mesaschool.co', label: 'someone at Mesa who only watches' },
 ]
 
