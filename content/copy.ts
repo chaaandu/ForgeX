@@ -477,14 +477,14 @@ export const ownProblem = {
       help: "What you have done so far, and what you'll do next.",
     },
     primary: {
-      label: 'Primary research',
+      label: 'Primary research: what you heard',
       placeholder: 'drive.google.com/drive/folders/1AbC',
-      help: 'Your user interviews: recordings and notes. Make sure anyone with the link can view it.',
+      help: 'What you found out yourself. Video recordings of talks with at least 5 people who have this problem, in one Drive folder. Make sure anyone with the link can view it.',
     },
     secondary: {
-      label: 'Secondary research',
+      label: 'Secondary research: what you read',
       placeholder: 'docs.google.com/document/d/1AbC',
-      help: 'What you read: reports, articles, data. Make sure anyone with the link can view it.',
+      help: 'What others have already found. Online reports, articles, numbers, and the products or competitors already out there, in one Doc or folder. Make sure anyone with the link can view it.',
     },
   },
   required: '(required)',
