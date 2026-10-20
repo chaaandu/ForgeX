@@ -40,6 +40,11 @@ test('a founder sends their problem, is told why it was rejected, sends it again
   await page.goto('/build')
   await expect(page.getByText('In review').first()).toBeVisible()
   await expect(page.getByText('Opens once your problem is approved').first()).toBeVisible()
+  // In review never reads as approved: the line says who has it, the date is a deadline.
+  await expect(page.getByText(/^Your problem is in review\. You'll see the response here\.$/)).toBeVisible()
+  await expect(page.getByText(/^Sent to \w+\. You'll see the response here\.$/)).toBeVisible()
+  await expect(page.getByText(/^Get it approved by 20 Oct at 11:59 pm IST$/)).toBeVisible()
+  await expect(page.getByText(/^Approved by/)).toHaveCount(0)
   await expect(page.getByRole('img', { name: /^10% done/ }).first()).toBeAttached()
   await page.goto('/submit/prototype')
   await page.waitForURL('**/build')

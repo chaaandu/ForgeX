@@ -63,14 +63,21 @@ export default async function HomePage() {
         <div className="grid min-w-0 content-start gap-12">
           <div className="grid gap-3">
             <h1 className="page-title m-0">{copy.title(founder.first)}</h1>
-            <p className="text-lead text-ink-2 m-0">{done ? copy.allDone : copy.next}</p>
+            <p className="text-lead text-ink-2 m-0">
+              {done ? copy.allDone : state === 'waiting' ? copy.inReview : copy.next}
+            </p>
             {/* On a phone the side column falls to the bottom, so how far they have got sits here. */}
             <div className="pt-4 lg:hidden">
               <ProgressTrack value={context.progress} parts={context.parts} />
             </div>
           </div>
 
-          <Timeline steps={steps} bank={bank} />
+          <Timeline
+            steps={steps}
+            reviewer={entry?.reviewer ?? ''}
+            sentAt={entry?.sentAt ?? { scope: '', prototype: '', launch: '', pitch: '' }}
+            phase={phase}
+          />
 
           {bank && entry ? <ResearchForm initial={entry.research} /> : null}
 
