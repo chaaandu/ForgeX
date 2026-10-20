@@ -165,7 +165,7 @@ export const hasProblem = (entry: Entry | null | undefined) =>
 
 /** Research is in for a bank pick once both links are. Their own problem carries it when sent. */
 export const researchDone = (entry: Entry) =>
-  Boolean(entry.research.primary && entry.research.secondary)
+  Boolean(entry.research.secondary)
 
 function progressInput(entry: Entry) {
   return {

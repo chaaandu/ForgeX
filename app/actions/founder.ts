@@ -220,14 +220,15 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
       )
       return { ok: false, error: 'invalid', fields }
     }
-    const primary = cleanResearch(parsed.data.primary)
+    // Primary research is optional: empty stays empty, anything else must be a link.
+    const primary = parsed.data.primary ? cleanResearch(parsed.data.primary) : ''
     const secondary = cleanResearch(parsed.data.secondary)
-    if (!primary || !secondary) {
+    if (primary === null || !secondary) {
       return {
         ok: false,
         error: 'invalid',
         fields: {
-          ...(primary ? {} : { primary: 'link' }),
+          ...(primary === null ? { primary: 'link' } : {}),
           ...(secondary ? {} : { secondary: 'link' }),
         },
       }
@@ -236,12 +237,15 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
     const entry = await entryOf(founder.email)
     if (!maySendProblem(entry, now)) return { ok: false, error: 'closed' }
     if (entry && mayBuild(entry.state)) return { ok: false, error: 'locked' }
-    const input = { ...parsed.data, primary, secondary }
+    const input = { ...parsed.data, primary: primary ?? '', secondary }
     const version = await sendProblem(founder, entry, input, now)
     await patchFounder(founder, levelPatch(founder, LEVELS.picked))
     await logEvent(founder.email, 'problem', { version, title: input.title })
     revalidatePath('/team/reviews')
-    return { ok: true, warnings: await linkWarnings({ primary, secondary }) }
+    return {
+      ok: true,
+      warnings: await linkWarnings({ ...(primary ? { primary } : {}), secondary }),
+    }
   })
 }
 
@@ -294,7 +298,7 @@ export async function pickFromBank(raw: unknown): Promise<Result> {
 
 const researchSchema = z.object({ primary: z.string().max(400), secondary: z.string().max(400) })
 
-/** The research behind a problem picked from the bank. It counts once both links are in. */
+/** The research behind a problem picked from the bank. It counts once the secondary link is in. */
 export async function saveResearch(
   raw: unknown,
 ): Promise<Result<Warnings & { research: Record<string, string> }>> {

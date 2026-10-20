@@ -73,6 +73,18 @@ test('a founder sends their problem, is told why it was rejected, sends it again
   await expect(page.getByRole('img', { name: /^100% done/ }).first()).toBeAttached()
 })
 
+test('primary research is optional, and secondary research is required', async ({ page }) => {
+  await toProblem(page)
+  await fillProblem(page, { ...OWN, primary: '', secondary: '' })
+  await expect(page.getByText('(optional)')).toBeVisible()
+  await page.getByRole('button', { name: 'Send for review' }).click()
+  await expect(page.getByLabel(/^Secondary research/)).toHaveAttribute('aria-invalid', 'true')
+  await expect(page.getByLabel(/^Primary research/)).not.toHaveAttribute('aria-invalid', 'true')
+  await page.getByLabel(/^Secondary research/).fill(OWN.secondary)
+  await page.getByRole('button', { name: 'Send for review' }).click()
+  await expect(page.getByRole('heading', { name: 'In review.' })).toBeVisible()
+})
+
 test('a problem in review can still be changed and sent again', async ({ page }) => {
   await toProblem(page)
   await sendProblem(page)

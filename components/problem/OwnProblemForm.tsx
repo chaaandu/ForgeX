@@ -8,6 +8,7 @@ import { ownProblem as copy, submit as submitCopy, world as worldCopy } from '@/
 import type { LinkHealth } from '@/lib/link-check'
 import {
   OWN_FIELDS,
+  REQUIRED_RESEARCH,
   RESEARCH_FIELDS,
   WORD_LIMITS,
   wordCount,
@@ -81,7 +82,7 @@ export function OwnProblemForm({
     if (!draft.industry) missing.industry = 'required'
     if (draft.industry === 'other' && draft.industryOther.trim().length < 2)
       missing.industryOther = 'required'
-    for (const field of [...OWN_FIELDS, ...RESEARCH_FIELDS]) {
+    for (const field of [...OWN_FIELDS, ...REQUIRED_RESEARCH]) {
       if (!draft[field].trim()) missing[field] = 'required'
     }
     for (const field of OWN_FIELDS) {
@@ -135,7 +136,10 @@ export function OwnProblemForm({
     return (
       <div key={field} className="grid gap-2">
         <label htmlFor={id} className="text-ink-1 text-[15px] font-medium">
-          {copy.fields[field].label} <span className="text-ink-3 font-normal">{copy.required}</span>
+          {copy.fields[field].label}{' '}
+          <span className="text-ink-3 font-normal">
+            {field === 'primary' ? copy.optional : copy.required}
+          </span>
         </label>
         {rows === 1 ? (
           <input

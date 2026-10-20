@@ -206,10 +206,12 @@ describe('an own problem', () => {
     secondary: 'https://docs.google.com/document/d/1',
   }
 
-  it('needs the 3Ps, why them, a plan and both kinds of research, and a short name', () => {
+  it('needs the 3Ps, why them, a plan, secondary research and a short name', () => {
     expect(ownProblemSchema.safeParse(good).success).toBe(true)
     expect(ownProblemSchema.safeParse({ ...good, why: '' }).success).toBe(false)
-    expect(ownProblemSchema.safeParse({ ...good, primary: '' }).success).toBe(false)
+    // Primary research is optional; secondary is not.
+    expect(ownProblemSchema.safeParse({ ...good, primary: '' }).success).toBe(true)
+    expect(ownProblemSchema.safeParse({ ...good, secondary: '' }).success).toBe(false)
     expect(ownProblemSchema.safeParse({ ...good, title: 'one two three four five six seven eight nine ten' }).success).toBe(false)
   })
 

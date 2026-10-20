@@ -57,7 +57,10 @@ export function ResearchForm({ initial }: { initial: Record<Key, string> }) {
         return (
           <div key={key} className="grid gap-2">
             <label htmlFor={id} className="text-ink-1 text-[15px] font-medium">
-              {ownProblem.fields[key].label}
+              {ownProblem.fields[key].label}{' '}
+              <span className="text-ink-3 font-normal">
+                {key === 'primary' ? ownProblem.optional : ownProblem.required}
+              </span>
             </label>
             <input
               id={id}
@@ -68,7 +71,9 @@ export function ResearchForm({ initial }: { initial: Record<Key, string> }) {
               placeholder={ownProblem.fields[key].placeholder}
               aria-describedby={`${id}-help`}
               aria-invalid={bad || undefined}
-              onChange={(event) => setValues((current) => ({ ...current, [key]: event.target.value }))}
+              onChange={(event) =>
+                setValues((current) => ({ ...current, [key]: event.target.value }))
+              }
             />
             <p id={`${id}-help`} className={`m-0 text-[13px] ${bad ? 'text-error' : 'text-ink-3'}`}>
               {note}

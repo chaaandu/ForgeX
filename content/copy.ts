@@ -479,7 +479,7 @@ export const ownProblem = {
     primary: {
       label: 'Primary research: what you heard',
       placeholder: 'drive.google.com/drive/folders/1AbC',
-      help: 'What you found out yourself. Video recordings of talks with at least 5 people who have this problem, in one Drive folder. Make sure anyone with the link can view it.',
+      help: 'What you found out yourself. Talks with people who have this problem, as recordings or notes, in one Drive folder. Make sure anyone with the link can view it.',
     },
     secondary: {
       label: 'Secondary research: what you read',
@@ -488,6 +488,7 @@ export const ownProblem = {
     },
   },
   required: '(required)',
+  optional: '(optional)',
   errors: {
     required: 'This one is required.',
     link: 'Paste a full link, like drive.google.com/drive/folders/1AbC.',

@@ -105,16 +105,19 @@ function Sent({ version }: { version: Version }) {
             </div>
           ),
         )}
-        {(['primary', 'secondary'] as const).map((key) => (
-          <div key={key} className="grid gap-1">
-            <dt className="meta text-[11px]">{page.links[key]}</dt>
-            <dd className="user-text m-0 text-[15px]">
-              <a href={version[key]} target="_blank" rel="noreferrer" className="text-violet-ink">
-                {workLabel(version[key])}
-              </a>
-            </dd>
-          </div>
-        ))}
+        {(['primary', 'secondary'] as const).map((key) =>
+          // Primary research is optional; a version without it shows none.
+          !version[key] ? null : (
+            <div key={key} className="grid gap-1">
+              <dt className="meta text-[11px]">{page.links[key]}</dt>
+              <dd className="user-text m-0 text-[15px]">
+                <a href={version[key]} target="_blank" rel="noreferrer" className="text-violet-ink">
+                  {workLabel(version[key])}
+                </a>
+              </dd>
+            </div>
+          ),
+        )}
       </dl>
     </article>
   )

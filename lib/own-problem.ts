@@ -43,7 +43,8 @@ export const ownProblemSchema = z
     /** Why they are the right person to solve it. */
     why: written('why', 10),
     plan: written('plan', 10),
-    primary: text(4, 400),
+    /** Optional: what they found out themselves. */
+    primary: z.string().trim().max(400).default(''),
     secondary: text(4, 400),
   })
   .refine((value) => value.industry !== 'other' || value.industryOther.length > 1, {
@@ -55,6 +56,8 @@ export type OwnProblem = z.infer<typeof ownProblemSchema>
 
 export const OWN_FIELDS = ['title', 'person', 'problem', 'promise', 'why', 'plan'] as const
 export const RESEARCH_FIELDS = ['primary', 'secondary'] as const
+/** Secondary research is required; primary is optional. */
+export const REQUIRED_RESEARCH = ['secondary'] as const
 export type ResearchField = (typeof RESEARCH_FIELDS)[number]
 
 /** A research link, cleaned: any page that opens, never a script. */
