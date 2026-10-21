@@ -77,6 +77,7 @@ export default async function HomePage() {
           <Timeline
             steps={steps}
             reviewer={entry?.reviewer ?? ''}
+            answeredBy={entry?.answer?.by ?? ''}
             sentAt={entry?.sentAt ?? { scope: '', prototype: '', launch: '', pitch: '' }}
             phase={phase}
           />

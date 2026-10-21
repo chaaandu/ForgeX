@@ -15,6 +15,8 @@ import {
   TEAM,
   toProblem,
   WHEN,
+  fillProblem,
+  pickFromBank,
 } from './helpers'
 
 test.beforeEach(async ({ page }) => {
@@ -26,7 +28,12 @@ test('only the reviewers and the super admin can answer; everyone else at Mesa w
 }) => {
   await toProblem(page)
   await sendProblem(page)
-  const reviewer = (await page.getByText(/will review it\.$|will reply here/).first().innerText()).split(' ')[0]
+  const reviewer = (
+    await page
+      .getByText(/will review it\.$|will reply here/)
+      .first()
+      .innerText()
+  ).split(' ')[0]
 
   await page.context().clearCookies()
   await signIn(page, TEAM)
@@ -41,7 +48,11 @@ test('only the reviewers and the super admin can answer; everyone else at Mesa w
   await page.context().clearCookies()
   await signIn(page, theirs)
   await page.goto('/team/reviews?scope=all')
-  await expect(page.getByRole('article', { name: 'Aarav Shrivastava' }).getByRole('button', { name: 'Send answer' })).toHaveCount(0)
+  await expect(
+    page
+      .getByRole('article', { name: 'Aarav Shrivastava' })
+      .getByRole('button', { name: 'Send answer' }),
+  ).toHaveCount(0)
   if (reviewer === 'Saurabh' || reviewer === 'Param') {
     await page.context().clearCookies()
     await signIn(page, mine)
@@ -82,7 +93,9 @@ test('approve with changes and reject both need a note', async ({ page }) => {
   await expect(item.getByText('Add a note for this answer.')).toBeVisible()
 })
 
-test('every version and answer is in the history, newest first, and sorts by name', async ({ page }) => {
+test('every version and answer is in the history, newest first, and sorts by name', async ({
+  page,
+}) => {
   await toProblem(page)
   await sendProblem(page)
   await page.context().clearCookies()
@@ -95,7 +108,9 @@ test('every version and answer is in the history, newest first, and sorts by nam
   await expect(page.getByText('Too broad.')).toBeVisible()
 })
 
-test('the progress board counts each status, and Chandu alone reopens a deadline', async ({ page }) => {
+test('the progress board counts each status, and Chandu alone reopens a deadline', async ({
+  page,
+}) => {
   await approved(page)
   await sendStage(page, 'prototype')
   await page.context().clearCookies()
@@ -117,7 +132,9 @@ test('the progress board counts each status, and Chandu alone reopens a deadline
   await page.context().clearCookies()
   await signIn(page, AARAV)
   await page.goto('/submit/launch')
-  await expect(page.getByText('The team has reopened this for you. Submit it as soon as you can.')).toBeVisible()
+  await expect(
+    page.getByText('The team has reopened this for you. Submit it as soon as you can.'),
+  ).toBeVisible()
   await sendStage(page, 'launch')
   await page.goto('/submit/pitch')
   await expect(page.getByText(/This closed before you submitted/)).toBeVisible()
@@ -187,4 +204,59 @@ test('the bank shows each 2-day version and level, only Chandu edits it, and the
 
   await page.getByRole('button', { name: /^Account:/ }).click()
   await expect(page.getByRole('button', { name: 'Sign out' })).toBeVisible()
+})
+
+test('a problem the super admin reopens for an approved founder is approved on arrival, in his name', async ({
+  page,
+}) => {
+  await approved(page)
+  await setClock(page, WHEN.bank)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/f/aarav-shrivastava')
+  await page.getByRole('button', { name: 'Reopen Problem' }).click()
+  await expect(page.getByText('Reopened: Problem.')).toBeVisible()
+
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/build')
+  await expect(page.getByText(/^Reopened for you\./)).toBeVisible()
+  await page.goto('/problem')
+  await page.getByRole('button', { name: 'Edit and send again' }).click()
+  await page.getByLabel(/^Title of your problem/).fill('Sunday markets lose their regulars')
+  await page.getByRole('button', { name: 'Send it again' }).click()
+  await expect(page.getByRole('heading', { name: 'Approved.' })).toBeVisible()
+  await expect(page.getByText('Sunday markets lose their regulars').first()).toBeVisible()
+  // The reopen closes with it: no second change.
+  await expect(page.getByRole('button', { name: 'Edit and send again' })).toHaveCount(0)
+
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/team/history')
+  await expect(page.getByRole('row').nth(1)).toContainText('Approved')
+  await expect(page.getByRole('row').nth(1)).toContainText('Chandu')
+})
+
+test('a bank pick the super admin reopens can be replaced by an own problem, approved on arrival', async ({
+  page,
+}) => {
+  await toProblem(page)
+  await setClock(page, WHEN.bank)
+  await pickFromBank(page)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await page.goto('/f/aarav-shrivastava')
+  await page.getByRole('button', { name: 'Reopen Problem' }).click()
+  await expect(page.getByText('Reopened: Problem.')).toBeVisible()
+
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/build')
+  await page.getByRole('link', { name: 'Write my problem' }).click()
+  await page.waitForURL('**/problem')
+  await fillProblem(page)
+  await page.getByRole('button', { name: 'Send for review' }).click()
+  await expect(page.getByRole('heading', { name: 'Approved.' })).toBeVisible()
+  await page.goto('/build')
+  await expect(page.getByText(/^Approved by Chandu\./)).toBeVisible()
 })

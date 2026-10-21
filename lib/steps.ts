@@ -79,6 +79,9 @@ function problemStep(input: StepInput, phase: Phase): Omit<StepView, 'current'> 
         ? { id: 'problem', state: 'rejected', due, href: '/problem', action: 'fix' }
         : { id: 'problem', state: 'rejected', due, href: toBank, action: toBank ? 'pick' : null }
     case 'bank':
+      // Reopened by the super admin: they may write their own in its place.
+      if (input.reopened.includes('problem'))
+        return { id: 'problem', state: 'bank', due, href: '/problem', action: 'write' }
       return {
         id: 'problem',
         state: 'bank',
@@ -87,7 +90,14 @@ function problemStep(input: StepInput, phase: Phase): Omit<StepView, 'current'> 
         action: input.researchDone ? null : 'add',
       }
     default:
-      return { id: 'problem', state: input.state, due, href: '/problem', action: 'view' }
+      // Approved, and reopened by the super admin: they may send a changed one.
+      return {
+        id: 'problem',
+        state: input.state,
+        due,
+        href: '/problem',
+        action: input.reopened.includes('problem') ? 'change' : 'view',
+      }
   }
 }
 

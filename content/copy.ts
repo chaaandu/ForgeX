@@ -577,6 +577,7 @@ export const home = {
       closedSoon: (when: string) => `The window has closed. Our bank opens on ${when}.`,
       bank: 'Picked from our bank. Add your secondary research below.',
       bankDone: 'Picked from our bank. Your research is in.',
+      reopened: 'Reopened for you. Send your new problem, and it is approved as soon as you send it.',
     },
     reviewer: 'your reviewer',
     locked: 'Opens once your problem is approved.',

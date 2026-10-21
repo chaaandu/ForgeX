@@ -6,16 +6,19 @@ import { archetypeOf, isCompleteTrial, scoreTrial, TRIAL } from '@/lib/archetype
 import { arrivalRank, logEvent } from '@/lib/data/events'
 import { founderByEmail, LEVELS, levelPatch, patchFounder, type Founder } from '@/lib/data/founders'
 import {
+  answerProblem,
+  type Entry,
   entryOf,
   hasProblem,
   pickProblem,
   sendProblem,
+  setReopened,
   setResearch,
   setStage,
-  type Entry,
 } from '@/lib/data/hackathon'
 import { isOpen, problemById } from '@/lib/data/problems'
 import { mayUseBank } from '@/lib/bank-access'
+import { SUPER_ADMIN_NAME } from '@/lib/staff'
 import { writeProfileLinks } from '@/lib/data/profiles'
 import { problemWindow } from '@/lib/steps'
 import { stampToIso } from '@/lib/stamp'
@@ -253,11 +256,26 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
     const now = clock()
     const entry = await entryOf(founder.email)
     if (!maySendProblem(entry, now)) return { ok: false, error: 'closed' }
-    if (entry && mayBuild(entry.state)) return { ok: false, error: 'locked' }
+    // A founder who already has a problem to build may change it only when the
+    // super admin has reopened their Problem step: a change already agreed,
+    // so it is approved on arrival in the super admin's name, and the reopen closes.
+    const agreed = Boolean(entry && mayBuild(entry.state) && entry.reopened.has('problem'))
+    if (entry && mayBuild(entry.state) && !agreed) return { ok: false, error: 'locked' }
     const input = { ...parsed.data, primary: primary ?? '', secondary }
     const version = await sendProblem(founder, entry, input, now)
     await patchFounder(founder, levelPatch(founder, LEVELS.picked))
-    await logEvent(founder.email, 'problem', { version, title: input.title })
+    if (agreed) {
+      const fresh = await entryOf(founder.email)
+      if (fresh) {
+        await answerProblem(
+          fresh,
+          { version, decision: 'approved', by: SUPER_ADMIN_NAME, notes: '' },
+          now,
+        )
+        await setReopened(fresh, 'problem', false)
+      }
+    }
+    await logEvent(founder.email, 'problem', { version, title: input.title, agreed })
     revalidatePath('/team/reviews')
     return {
       ok: true,

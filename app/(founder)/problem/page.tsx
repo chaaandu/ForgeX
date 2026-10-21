@@ -29,7 +29,11 @@ export default async function ProblemPage() {
   const context = await founderContext(founder)
   const entry = context.entry
   const state = entry?.state ?? 'none'
-  if (state === 'bank') redirect('/build')
+  // A bank pick has no problem of its own to show, unless the super admin reopened it.
+  const replacing =
+    Boolean(entry?.reopened.has('problem')) &&
+    (state === 'bank' || state === 'approved' || state === 'changes')
+  if (state === 'bank' && !replacing) redirect('/build')
 
   const now = clock()
   const phase = phaseAt(now)
@@ -115,7 +119,7 @@ export default async function ProblemPage() {
         {latest && entry ? (
           <ProblemPanel
             initial={initial}
-            editable={mayWrite && (state === 'waiting' || state === 'rejected')}
+            editable={mayWrite && (state === 'waiting' || state === 'rejected' || replacing)}
             startEditing={state === 'rejected'}
             notice={
               <Answers items={entry.reviews.filter((item) => item.version === latest.version)} />

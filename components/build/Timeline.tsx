@@ -29,23 +29,32 @@ function label(step: StepView): string {
  * The line under a step: what is happening, and what to do next. It changes
  * with where the founder stands, so a problem in review never reads as approved.
  */
-function line(step: StepView, reviewer: string, sentAt: Record<StageId, string>, phase: Phase) {
+function line(
+  step: StepView,
+  reviewer: string,
+  answeredBy: string,
+  sentAt: Record<StageId, string>,
+  phase: Phase,
+) {
   const words = copy.lines
   if (step.id === 'problem') {
     const closed = phase.bankOpen
       ? words.problem.closed
       : words.problem.closedSoon(closeLabel(HACKATHON.bankOpens))
+    // Reopened by the super admin for a change already agreed.
+    if ((step.state === 'bank' && step.action === 'write') || step.action === 'change')
+      return words.problem.reopened
     switch (step.state) {
       case 'todo':
         return words.problem.todo
       case 'waiting':
         return words.problem.waiting(reviewer)
       case 'approved':
-        return words.problem.approved(reviewer)
+        return words.problem.approved(answeredBy)
       case 'changes':
-        return words.problem.changes(reviewer)
+        return words.problem.changes(answeredBy)
       case 'rejected':
-        return step.action === 'fix' ? words.problem.rejected(reviewer) : closed
+        return step.action === 'fix' ? words.problem.rejected(answeredBy) : closed
       case 'bank':
         return step.action ? words.problem.bank : words.problem.bankDone
       default:
@@ -83,12 +92,15 @@ function dateLine(step: StepView): string | null {
 export function Timeline({
   steps,
   reviewer,
+  answeredBy,
   sentAt,
   phase,
 }: {
   steps: StepView[]
   /** Their reviewer's name, or empty until the team names one. */
   reviewer: string
+  /** Who gave the newest answer, which may not be their reviewer. */
+  answeredBy?: string
   sentAt: Record<StageId, string>
   phase: Phase
 }) {
@@ -127,7 +139,9 @@ export function Timeline({
                 </h3>
                 <span className={`text-[13px] font-medium ${tone[step.state]}`}>{label(step)}</span>
               </div>
-              <p className="text-ink-2 m-0 text-[14px]">{line(step, who, sentAt, phase)}</p>
+              <p className="text-ink-2 m-0 text-[14px]">
+                {line(step, who, answeredBy || who, sentAt, phase)}
+              </p>
               {date || (step.href && step.action) ? (
                 <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
                   <span className="text-ink-3 font-mono text-[12px]">{date}</span>

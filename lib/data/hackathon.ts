@@ -164,8 +164,7 @@ export const hasProblem = (entry: Entry | null | undefined) =>
   )
 
 /** Research is in for a bank pick once both links are. Their own problem carries it when sent. */
-export const researchDone = (entry: Entry) =>
-  Boolean(entry.research.secondary)
+export const researchDone = (entry: Entry) => Boolean(entry.research.secondary)
 
 function progressInput(entry: Entry) {
   return {
@@ -405,10 +404,12 @@ export async function sendProblem(who: Who, entry: Entry | null, input: OwnProbl
     entry,
     {
       Problem: input.title,
+      // Their own problem replaces any bank pick.
+      'Problem no.': '',
       'Primary research': input.primary,
       'Secondary research': input.secondary,
     },
-    next,
+    { ...next, problemId: null },
   )
   return version
 }

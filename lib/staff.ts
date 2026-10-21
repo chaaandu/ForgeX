@@ -7,6 +7,8 @@ import { isMock } from '@/lib/store/mode'
  * The super admin can do everything, and alone edits the bank and reopens a deadline.
  */
 export const SUPER_ADMIN = 'chandu@mesaschool.co'
+/** The super admin's name, as Problem history writes it. */
+export const SUPER_ADMIN_NAME = 'Chandu'
 
 /**
  * The reviewers, by the name the Reviewer column uses. Param signs in with his
