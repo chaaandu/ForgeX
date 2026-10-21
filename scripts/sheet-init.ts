@@ -24,6 +24,7 @@ import {
   groupOf,
   hackathonSeedRows,
   submissionsSeedRows,
+  profilesSeedRows,
   internalSeedRows,
   problemSeedRows,
   scopeSeedCells,
@@ -222,6 +223,7 @@ async function fillGroupCells(overwrite: boolean): Promise<number> {
   for (const [key, headers] of [
     ['hackathon', ['Group', 'Reviewer', 'POC']],
     ['submissions', ['Group']],
+    ['profiles', ['Group']],
   ] as const) {
     const name = TABS[key].name
     const grid = (await batchGet([name]))[name] ?? []
@@ -253,7 +255,7 @@ async function fillGroupCells(overwrite: boolean): Promise<number> {
 }
 
 /** The tabs a person reads. Every other tab is hidden; the site reads it all the same. */
-const VISIBLE: readonly TabKey[] = ['hackathon', 'submissions', 'history']
+const VISIBLE: readonly TabKey[] = ['hackathon', 'submissions', 'profiles', 'history']
 
 /**
  * Sets a tab a person reads up for reading: the header bold, every other row
@@ -352,10 +354,17 @@ async function main() {
 
   const listed = await addMissing('hackathon', 'Email', hackathonSeedRows())
   const handed = await addMissing('submissions', 'Email', submissionsSeedRows())
+  // Links come from the live Founders tab (pnpm sheet:profiles), never from the seed.
+  const linked = await addMissing(
+    'profiles',
+    'Email',
+    profilesSeedRows().map(({ Name, Email, Group }) => ({ Name, Email, Group })),
+  )
   await formatForReading()
   console.log(`· Hackathon: ${listed} founders added, text wrapped, Status is a dropdown`)
   console.log(`· Submissions: ${handed} founders added`)
-  console.log('· Hackathon, Submissions and Problem history are shown, every other tab is hidden')
+  console.log(`· Profiles: ${linked} founders added`)
+  console.log('· Hackathon, Submissions, Profiles and Problem history are shown, every other tab is hidden')
   if (withProblems) {
     const problems = await addMissing('problems', 'ID', problemSeedRows('draft'))
     const internal = await addMissing('internal', 'ID', internalSeedRows())

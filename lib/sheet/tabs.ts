@@ -122,6 +122,15 @@ export const TABS = {
       'Pitch at',
     ],
   },
+  /**
+   * Where to find each founder's work, one row a founder: the GitHub,
+   * LinkedIn and portfolio from their profile, written again whenever they
+   * change one. For a person to read; the site keeps the record in Founders.
+   */
+  profiles: {
+    name: 'Profiles',
+    headers: ['Name', 'Email', 'Group', 'GitHub', 'LinkedIn', 'Portfolio', 'Updated at'],
+  },
   history: {
     name: 'Problem history',
     headers: [

@@ -16,6 +16,7 @@ import {
 } from '@/lib/data/hackathon'
 import { isOpen, problemById } from '@/lib/data/problems'
 import { mayUseBank } from '@/lib/bank-access'
+import { writeProfileLinks } from '@/lib/data/profiles'
 import { problemWindow } from '@/lib/steps'
 import { stampToIso } from '@/lib/stamp'
 import { clock, phaseAt, STAGE_IDS } from '@/lib/hackathon'
@@ -160,6 +161,13 @@ export async function saveProfile(
       ...(links.linkedin !== undefined ? { LinkedIn: links.linkedin } : {}),
       ...(links.portfolio !== undefined ? { Portfolio: links.portfolio } : {}),
     })
+    // Their links also go to the Profiles tab, for the team to read in one place.
+    if (links.github !== undefined || links.linkedin !== undefined || links.portfolio !== undefined)
+      await writeProfileLinks(founder, {
+        github: links.github ?? founder.profile.github,
+        linkedin: links.linkedin ?? founder.profile.linkedin,
+        portfolio: links.portfolio ?? founder.profile.portfolio,
+      })
     await logEvent(founder.email, 'profile', { fields: Object.keys(patch) })
     return { ok: true, links }
   })

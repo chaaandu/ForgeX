@@ -181,6 +181,19 @@ function demoProblem(index: number) {
   }
 }
 
+/** One row a founder in the Profiles tab, with the links their profile already has. */
+export function profilesSeedRows(): Partial<Record<Header<'profiles'>, string>>[] {
+  const groups = groupOf()
+  return founderSeedRows().map((founder) => ({
+    Name: founder.Name,
+    Email: founder.Email,
+    Group: groups.get((founder.Email ?? '').toLowerCase())?.group ?? '',
+    GitHub: founder.GitHub ?? '',
+    LinkedIn: founder.LinkedIn ?? '',
+    Portfolio: founder.Portfolio ?? '',
+  }))
+}
+
 /** One row a founder in the Submissions tab, empty until they hand something in. */
 export function submissionsSeedRows(): Partial<Record<Header<'submissions'>, string>>[] {
   return hackathonSeedRows().map((row) => ({ Name: row.Name, Email: row.Email, Group: row.Group }))
@@ -403,7 +416,11 @@ export function seedGrids(withDemo = false): Record<TabKey, string[][]> {
     internal: toGrid('internal', internalSeedRows()),
     hackathon: toGrid('hackathon', hackathon),
     // The demo writes every cell on one object; each tab keeps its own columns.
-    submissions: toGrid('submissions', hackathon as Partial<Record<Header<'submissions'>, string>>[]),
+    submissions: toGrid(
+      'submissions',
+      hackathon as Partial<Record<Header<'submissions'>, string>>[],
+    ),
+    profiles: toGrid('profiles', profilesSeedRows()),
     history: toGrid('history', extra.history),
     events: toGrid('events', extra.events),
   }

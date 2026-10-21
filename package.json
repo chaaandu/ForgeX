@@ -31,6 +31,7 @@
     "sheet:sync": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --problems --sync",
     "sheet:migrate": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-migrate.ts",
     "sheet:groups": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-init.ts --groups",
+    "sheet:profiles": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-profiles.ts",
     "sheet:approve": "node --env-file=.env.local --conditions=react-server --import tsx scripts/sheet-approve.ts"
   },
   "dependencies": {
