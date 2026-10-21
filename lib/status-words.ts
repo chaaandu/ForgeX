@@ -24,4 +24,8 @@ export const EVENT_WORDS = {
   approved: 'Approved',
   changes: 'Approved with changes',
   rejected: 'Rejected',
+  picked: 'Picked from bank',
 } as const
+
+/** Where a problem came from, in the Source column of Problem history. */
+export const SOURCE_WORDS = { own: 'Own', bank: 'Bank' } as const

@@ -141,6 +141,7 @@ export const TABS = {
       'Event',
       'By',
       'Industry',
+      'Source',
       'Title',
       'Person',
       'Problem',

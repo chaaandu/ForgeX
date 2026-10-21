@@ -9,7 +9,7 @@ import {
 } from '@/lib/own-problem'
 import { problemIdSchema } from '@/lib/problem'
 import { TABS, type Header } from '@/lib/sheet/tabs'
-import { EVENT_WORDS, STATUS_WORDS } from '@/lib/status-words'
+import { EVENT_WORDS, SOURCE_WORDS, STATUS_WORDS } from '@/lib/status-words'
 import { appendRows, rows, updateRow } from '@/lib/store'
 import {
   partsOf,
@@ -383,6 +383,7 @@ export async function sendProblem(who: Who, entry: Entry | null, input: OwnProbl
         input.industry === 'other' && input.industryOther
           ? input.industryOther
           : industryWord(input.industry),
+      Source: SOURCE_WORDS.own,
       Title: input.title,
       Person: input.person,
       Problem: input.problem,
@@ -420,6 +421,8 @@ export async function answerProblem(
   input: { version: number; decision: Decision; by: string; notes: string },
   at: Date,
 ) {
+  // The answer carries the problem it answers, so every line reads on its own.
+  const answered = entry.versions.find((item) => item.version === input.version)
   await appendRows('history', [
     {
       Time: stamp(at),
@@ -428,6 +431,20 @@ export async function answerProblem(
       Version: String(input.version),
       Event: EVENT_WORDS[input.decision],
       By: input.by,
+      ...(answered
+        ? {
+            Industry: answered.industryOther || industryWord(answered.industry),
+            Source: SOURCE_WORDS.own,
+            Title: answered.title,
+            Person: answered.person,
+            Problem: answered.problem,
+            Promise: answered.promise,
+            'Why you': answered.why,
+            Plan: answered.plan,
+            'Primary research': answered.primary,
+            'Secondary research': answered.secondary,
+          }
+        : {}),
       Notes: input.notes,
     },
   ])
@@ -442,9 +459,26 @@ export async function answerProblem(
 export async function pickProblem(
   who: Who,
   entry: Entry | null,
-  input: { id: string; title: string },
+  input: { id: string; title: string; industry: string; problem: string },
+  at: Date,
 ) {
   const base = entry ?? blank(who)
+  // A line in Problem history too, so every founder's choice is in one place.
+  // It has no version, so it never counts as a problem sent for review.
+  await appendRows('history', [
+    {
+      Time: stamp(at),
+      Name: who.name,
+      Email: who.email,
+      Event: EVENT_WORDS.picked,
+      By: who.name,
+      Industry: industryWord(input.industry),
+      Source: SOURCE_WORDS.bank,
+      Title: input.title,
+      Problem: input.problem,
+      Notes: input.id,
+    },
+  ])
   await write(
     who,
     entry,

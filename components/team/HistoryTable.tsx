@@ -13,7 +13,13 @@ type Key = 'time' | 'name'
  * name or time, and search by name. Nothing here can be changed: it is the
  * record.
  */
-export function HistoryTable({ lines, slugs }: { lines: HistoryLine[]; slugs: Record<string, string> }) {
+export function HistoryTable({
+  lines,
+  slugs,
+}: {
+  lines: HistoryLine[]
+  slugs: Record<string, string>
+}) {
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<{ key: Key; dir: 1 | -1 }>({ key: 'time', dir: -1 })
 
@@ -24,7 +30,11 @@ export function HistoryTable({ lines, slugs }: { lines: HistoryLine[]; slugs: Re
       .sort((a, b) => {
         const x = sort.key === 'time' ? a.time : a.name.toLowerCase()
         const y = sort.key === 'time' ? b.time : b.name.toLowerCase()
-        return (x < y ? -1 : x > y ? 1 : 0) * sort.dir || b.time.localeCompare(a.time) || b.order - a.order
+        return (
+          (x < y ? -1 : x > y ? 1 : 0) * sort.dir ||
+          b.time.localeCompare(a.time) ||
+          b.order - a.order
+        )
       })
   }, [lines, query, sort])
 
@@ -38,7 +48,10 @@ export function HistoryTable({ lines, slugs }: { lines: HistoryLine[]; slugs: Re
         type="button"
         className="meta press hover:text-ink-1 cursor-pointer border-0 bg-transparent p-0"
         onClick={() =>
-          setSort((current) => ({ key, dir: current.key === key ? (current.dir === 1 ? -1 : 1) : 1 }))
+          setSort((current) => ({
+            key,
+            dir: current.key === key ? (current.dir === 1 ? -1 : 1) : 1,
+          }))
         }
       >
         {label}
@@ -78,11 +91,17 @@ export function HistoryTable({ lines, slugs }: { lines: HistoryLine[]; slugs: Re
           </thead>
           <tbody>
             {shown.map((line, index) => (
-              <tr key={`${line.email}-${line.time}-${index}`} className="border-line border-b align-top">
+              <tr
+                key={`${line.email}-${line.time}-${index}`}
+                className="border-line border-b align-top"
+              >
                 <td className="text-ink-3 py-3 pr-4 font-mono text-[12px]">{line.time}</td>
                 <td className="py-3 pr-4">
                   {slugs[line.email] ? (
-                    <Link href={`/f/${slugs[line.email]}`} className="text-ink-1 hover:text-violet-ink no-underline">
+                    <Link
+                      href={`/f/${slugs[line.email]}`}
+                      className="text-ink-1 hover:text-violet-ink no-underline"
+                    >
                       {line.name}
                     </Link>
                   ) : (
@@ -93,7 +112,8 @@ export function HistoryTable({ lines, slugs }: { lines: HistoryLine[]; slugs: Re
                 <td className="text-ink-1 py-3 pr-4">{line.event}</td>
                 <td className="text-ink-2 py-3 pr-4">{line.by}</td>
                 <td className="user-text text-ink-2 py-3 pr-4 whitespace-pre-line">
-                  {line.title || line.notes}
+                  {line.title}
+                  {line.notes ? <span className="text-ink-2 block pt-1">{line.notes}</span> : null}
                 </td>
               </tr>
             ))}

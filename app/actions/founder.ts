@@ -256,10 +256,15 @@ export async function submitProblem(raw: unknown): Promise<Result<Warnings>> {
     const now = clock()
     const entry = await entryOf(founder.email)
     if (!maySendProblem(entry, now)) return { ok: false, error: 'closed' }
-    // A founder who already has a problem to build may change it only when the
-    // super admin has reopened their Problem step: a change already agreed,
-    // so it is approved on arrival in the super admin's name, and the reopen closes.
-    const agreed = Boolean(entry && mayBuild(entry.state) && entry.reopened.has('problem'))
+    // A founder who already has a problem to build, or had one rejected, may
+    // send a new one when the super admin has reopened their Problem step: a
+    // change already agreed, so it is approved on arrival in the super admin's
+    // name, and the reopen closes.
+    const agreed = Boolean(
+      entry &&
+      (mayBuild(entry.state) || entry.state === 'rejected') &&
+      entry.reopened.has('problem'),
+    )
     if (entry && mayBuild(entry.state) && !agreed) return { ok: false, error: 'locked' }
     const input = { ...parsed.data, primary: primary ?? '', secondary }
     const version = await sendProblem(founder, entry, input, now)
@@ -320,7 +325,17 @@ export async function pickFromBank(raw: unknown): Promise<Result> {
     if (!problem || !isOpen(problem)) return { ok: false, error: 'invalid' }
     const entry = await entryOf(founder.email)
     if (!mayUseBank(entry, phase)) return { ok: false, error: 'locked' }
-    await pickProblem(founder, entry, { id: problem.id, title: problem.scope.task })
+    await pickProblem(
+      founder,
+      entry,
+      {
+        id: problem.id,
+        title: problem.scope.task,
+        industry: problem.industries[0] ?? '',
+        problem: problem.problem,
+      },
+      now,
+    )
     await patchFounder(founder, levelPatch(founder, LEVELS.picked))
     await logEvent(founder.email, 'pick', {
       problemId: problem.id,

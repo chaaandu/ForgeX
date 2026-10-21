@@ -260,3 +260,26 @@ test('a bank pick the super admin reopens can be replaced by an own problem, app
   await page.goto('/build')
   await expect(page.getByText(/^Approved by Chandu\./)).toBeVisible()
 })
+
+test('a rejected problem the super admin reopens after the window is approved on arrival', async ({
+  page,
+}) => {
+  await toProblem(page)
+  await sendProblem(page)
+  await setClock(page, WHEN.bank)
+  await page.context().clearCookies()
+  await signIn(page, CHANDU)
+  await answer(page, 'Aarav Shrivastava', 'Reject', 'Too broad.')
+  await page.goto('/f/aarav-shrivastava')
+  await page.getByRole('button', { name: 'Reopen Problem' }).click()
+  await expect(page.getByText('Reopened: Problem.')).toBeVisible()
+
+  await page.context().clearCookies()
+  await signIn(page, AARAV)
+  await page.goto('/build')
+  await expect(page.getByText(/^Reopened for you\./)).toBeVisible()
+  await page.goto('/problem')
+  await page.getByLabel(/^Title of your problem/).fill('Sunday markets lose their regulars')
+  await page.getByRole('button', { name: 'Send it again' }).click()
+  await expect(page.getByRole('heading', { name: 'Approved.' })).toBeVisible()
+})

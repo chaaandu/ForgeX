@@ -42,7 +42,13 @@ function line(
       ? words.problem.closed
       : words.problem.closedSoon(closeLabel(HACKATHON.bankOpens))
     // Reopened by the super admin for a change already agreed.
-    if ((step.state === 'bank' && step.action === 'write') || step.action === 'change')
+    const reopenedRejected =
+      step.state === 'rejected' && step.action === 'fix' && !phase.problemsOpen && !phase.extended
+    if (
+      (step.state === 'bank' && step.action === 'write') ||
+      step.action === 'change' ||
+      reopenedRejected
+    )
       return words.problem.reopened
     switch (step.state) {
       case 'todo':
