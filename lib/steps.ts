@@ -1,4 +1,4 @@
-import { dueOf, STAGE_IDS, type Phase, type StageId, type StepId } from '@/lib/hackathon'
+import { dueOf, HACKATHON, STAGE_IDS, type Phase, type StageId, type StepId } from '@/lib/hackathon'
 import { mayBuild, type ProblemState } from '@/lib/own-problem'
 import { fieldsOf, type SubmissionFields } from '@/lib/submission'
 
@@ -39,11 +39,33 @@ export type StepInput = {
   researchDone: boolean
   /** They have answered the three questions the bank needs. */
   answered: boolean
+  /** When their newest version was sent, as an ISO time, if they have sent one. */
+  latestSent?: string
+}
+
+/**
+ * Whether a founder may still send their problem, and by when. The window
+ * itself; then the extra time for anyone with nothing sent or a rejected
+ * problem, which also covers a problem sent in that time; then a reopen.
+ */
+export function problemWindow(
+  input: Pick<StepInput, 'state' | 'reopened' | 'latestSent'>,
+  phase: Phase,
+): { open: boolean; due: string } {
+  if (phase.problemsOpen) return { open: true, due: HACKATHON.problemsClose }
+  const sentLate =
+    Boolean(input.latestSent) &&
+    Date.parse(input.latestSent ?? '') >= Date.parse(HACKATHON.problemsClose)
+  const extended =
+    input.state === 'none' || input.state === 'rejected' || (input.state === 'waiting' && sentLate)
+  if (phase.extended && extended) return { open: true, due: HACKATHON.problemsExtended }
+  return { open: input.reopened.includes('problem'), due: HACKATHON.problemsClose }
 }
 
 function problemStep(input: StepInput, phase: Phase): Omit<StepView, 'current'> {
-  const due = dueOf('problem')
-  const mayWrite = phase.problemsOpen || input.reopened.includes('problem')
+  const window = problemWindow(input, phase)
+  const due = window.due
+  const mayWrite = window.open
   const toBank = phase.bankOpen ? (input.answered ? '/matches' : '/world') : null
   switch (input.state) {
     case 'none':
@@ -107,10 +129,14 @@ export function stepsFor(input: StepInput, phase: Phase): StepView[] {
 export function nextDue(steps: StepView[], phase: Phase): { step: StepId; at: string } | null {
   // A problem that is approved or picked is finished, like a submitted stage.
   const finished = ['done', 'approved', 'changes', 'bank']
+  // A problem in the extra time is still open, though the window has shut.
+  const live = (step: StepView) =>
+    !phase.closed[step.id] ||
+    (step.id === 'problem' && phase.extended && step.due === HACKATHON.problemsExtended)
   const open = steps.find(
-    (step) => !phase.closed[step.id] && step.state !== 'locked' && !finished.includes(step.state),
+    (step) => live(step) && step.state !== 'locked' && !finished.includes(step.state),
   )
+  if (open) return { step: open.id, at: open.due }
   const fallback = (['problem', ...STAGE_IDS] as StepId[]).find((step) => !phase.closed[step])
-  const id = open?.id ?? fallback
-  return id ? { step: id, at: dueOf(id) } : null
+  return fallback ? { step: fallback, at: dueOf(fallback) } : null
 }

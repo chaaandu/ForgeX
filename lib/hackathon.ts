@@ -10,8 +10,15 @@ export const HACKATHON = {
   opens: '2026-10-15T00:00:00+05:30',
   /** The last moment a founder can send their own problem, or send it again. */
   problemsClose: '2026-10-20T23:59:00+05:30',
+  /**
+   * Extra time, on the owner's call on 21 Oct, for founders who had sent
+   * nothing or had their problem rejected when the window shut: they may
+   * still send one until this time. A problem sent in this time may be
+   * changed until it ends. Everyone else stays as the window left them.
+   */
+  problemsExtended: '2026-10-21T12:30:00+05:30',
   /** From here a founder with no approved problem picks one from the bank. */
-  bankOpens: '2026-10-21T00:00:00+05:30',
+  bankOpens: '2026-10-21T12:30:00+05:30',
   /** Each submission after the problem, and when it is due. Every one locks then, except the MVP scope. */
   stages: {
     scope: '2026-10-21T23:59:00+05:30',
@@ -66,6 +73,8 @@ export type Phase = {
   open: boolean
   /** Founders may still send their own problem. */
   problemsOpen: boolean
+  /** The window has shut, but the extra time for new and rejected problems runs. */
+  extended: boolean
   /** Founders without an approved problem may pick from the bank. */
   bankOpen: boolean
   /** Which deadlines have passed. */
@@ -90,6 +99,7 @@ export function phaseAt(now: Date): Phase {
   return {
     open,
     problemsOpen: open && !closed.problem,
+    extended: open && closed.problem && !after(HACKATHON.problemsExtended, now),
     bankOpen: after(HACKATHON.bankOpens, now),
     closed,
     locked,

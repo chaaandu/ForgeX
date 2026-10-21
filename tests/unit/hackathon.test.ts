@@ -7,7 +7,7 @@ import { normaliseWorkLink } from '@/lib/links'
 import { mayBuild, needsNote, ownProblemSchema, wordCount } from '@/lib/own-problem'
 import { bullets, problemSchema, scopeFileSchema } from '@/lib/problem'
 import { mayAct, mayDecide, pocOf, staffOf } from '@/lib/staff'
-import { nextDue, stepsFor, type StepInput } from '@/lib/steps'
+import { nextDue, problemWindow, stepsFor, type StepInput } from '@/lib/steps'
 import { cleanField, isStageComplete, missingIn, progressOf } from '@/lib/submission'
 import { bannedIn, decorativeQuotes } from '@/lib/voice'
 import type { World } from '@/lib/world'
@@ -23,7 +23,9 @@ describe('the clock', () => {
     expect(at('2026-10-15T00:00:00+05:30')).toMatchObject({ open: true, problemsOpen: true, bankOpen: false })
     expect(at('2026-10-20T23:58:59+05:30').problemsOpen).toBe(true)
     expect(at('2026-10-20T23:59:00+05:30')).toMatchObject({ problemsOpen: false, bankOpen: false })
-    expect(at('2026-10-21T00:00:00+05:30')).toMatchObject({ problemsOpen: false, bankOpen: true })
+    // The extra time for new and rejected problems runs to 12:30 pm on the 21st; the bank opens then.
+    expect(at('2026-10-21T12:29:59+05:30')).toMatchObject({ extended: true, bankOpen: false })
+    expect(at('2026-10-21T12:30:00+05:30')).toMatchObject({ extended: false, bankOpen: true })
   })
 
   it('shuts each stage at its own hour, and the last one ends it', () => {
@@ -250,7 +252,8 @@ describe('the steps on a founder\'s home', () => {
     answered: false,
   }
   const during = at('2026-10-17T12:00:00+05:30')
-  const afterClose = at('2026-10-21T10:00:00+05:30')
+  const afterClose = at('2026-10-21T13:00:00+05:30')
+  const extra = at('2026-10-21T10:00:00+05:30')
   const byId = (input: StepInput, phase = during) =>
     Object.fromEntries(stepsFor(input, phase).map((step) => [step.id, step]))
 
@@ -279,8 +282,22 @@ describe('the steps on a founder\'s home', () => {
     expect(byId(blank, afterClose).problem).toMatchObject({ state: 'missed', href: '/world', action: 'pick' })
     expect(byId({ ...blank, answered: true }, afterClose).problem?.href).toBe('/matches')
     expect(byId({ ...blank, state: 'rejected' }, afterClose).problem).toMatchObject({ action: 'pick' })
-    // Shut but the bank not open yet: nothing to do but wait.
-    expect(byId(blank, at('2026-10-20T23:59:30+05:30')).problem).toMatchObject({ href: null, action: null })
+  })
+
+  it('gives extra time to anyone with nothing sent or a rejected problem, and no one else', () => {
+    expect(byId(blank, extra).problem).toMatchObject({ action: 'write', due: HACKATHON.problemsExtended })
+    expect(byId({ ...blank, state: 'rejected' }, extra).problem?.action).toBe('fix')
+    // Sent before the window shut: it waits for its response.
+    const before = { ...blank, state: 'waiting' as const, latestSent: '2026-10-20T18:00:00+05:30' }
+    expect(problemWindow(before, extra).open).toBe(false)
+    // Sent in the extra time: it can still be changed until it ends.
+    const inExtra = { ...blank, state: 'waiting' as const, latestSent: '2026-10-21T10:00:00+05:30' }
+    expect(problemWindow(inExtra, extra)).toEqual({ open: true, due: HACKATHON.problemsExtended })
+    expect(problemWindow({ ...blank, state: 'approved' }, extra).open).toBe(false)
+    // The countdown runs to the end of the extra time.
+    expect(nextDue(stepsFor(blank, extra), extra)).toEqual({ step: 'problem', at: HACKATHON.problemsExtended })
+    // Once it ends, nothing to write: the bank.
+    expect(byId(blank, afterClose).problem?.action).toBe('pick')
   })
 
   it('lets a problem be written again after the window only when reopened', () => {

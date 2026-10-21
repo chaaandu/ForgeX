@@ -14,6 +14,7 @@ import { researchDone } from '@/lib/data/hackathon'
 import { clock, phaseAt } from '@/lib/hackathon'
 import { currentPath } from '@/lib/journey'
 import { requireFounder } from '@/lib/session'
+import { stampToIso } from '@/lib/stamp'
 import { nextDue, stepsFor } from '@/lib/steps'
 
 export const metadata: Metadata = { title: meta.pages.home }
@@ -39,6 +40,7 @@ export default async function HomePage() {
       reopened: entry ? [...entry.reopened] : [],
       researchDone: entry ? researchDone(entry) : false,
       answered: Boolean(founder.world),
+      latestSent: entry?.latest ? stampToIso(entry.latest.time) : undefined,
     },
     phase,
   )

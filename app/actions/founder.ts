@@ -16,6 +16,8 @@ import {
 } from '@/lib/data/hackathon'
 import { isOpen, problemById } from '@/lib/data/problems'
 import { mayUseBank } from '@/lib/bank-access'
+import { problemWindow } from '@/lib/steps'
+import { stampToIso } from '@/lib/stamp'
 import { clock, phaseAt, STAGE_IDS } from '@/lib/hackathon'
 import { linkWarnings, type LinkHealth } from '@/lib/link-check'
 import { cleanResearch, mayBuild, ownProblemSchema, RESEARCH_FIELDS } from '@/lib/own-problem'
@@ -199,7 +201,14 @@ type Warnings = { warnings: Partial<Record<string, LinkHealth>> }
 
 /** May this founder still send their own problem: the window is open, or the team reopened it for them. */
 function maySendProblem(entry: Entry | null, now: Date) {
-  return phaseAt(now).problemsOpen || Boolean(entry?.reopened.has('problem'))
+  return problemWindow(
+    {
+      state: entry?.state ?? 'none',
+      reopened: entry ? [...entry.reopened] : [],
+      latestSent: entry?.latest ? stampToIso(entry.latest.time) : undefined,
+    },
+    phaseAt(now),
+  ).open
 }
 
 /**

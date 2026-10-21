@@ -13,7 +13,8 @@ import { closeLabel } from '@/lib/dates'
 import { clock, HACKATHON, phaseAt } from '@/lib/hackathon'
 import { currentPath } from '@/lib/journey'
 import { requireFounder } from '@/lib/session'
-import { nextDue, stepsFor } from '@/lib/steps'
+import { stampToIso } from '@/lib/stamp'
+import { nextDue, problemWindow, stepsFor } from '@/lib/steps'
 
 export const metadata: Metadata = { title: meta.pages.problem }
 
@@ -32,7 +33,6 @@ export default async function ProblemPage() {
 
   const now = clock()
   const phase = phaseAt(now)
-  const mayWrite = phase.problemsOpen || Boolean(entry?.reopened.has('problem'))
   const reviewer = entry?.reviewer || copy.someone
   const steps = stepsFor(
     {
@@ -42,13 +42,26 @@ export default async function ProblemPage() {
       reopened: entry ? [...entry.reopened] : [],
       researchDone: entry ? researchDone(entry) : false,
       answered: Boolean(founder.world),
+      latestSent: entry?.latest ? stampToIso(entry.latest.time) : undefined,
     },
     phase,
   )
+  // The same rule as the home and the server: the window, the extra time, or a reopen.
+  const sending = problemWindow(
+    {
+      state,
+      reopened: entry ? [...entry.reopened] : [],
+      latestSent: entry?.latest ? stampToIso(entry.latest.time) : undefined,
+    },
+    phase,
+  )
+  const mayWrite = sending.open
+  const due = sending.due
   const toBank = phase.bankOpen ? (founder.world ? '/matches' : '/world') : null
 
   const banner = (() => {
-    if (state === 'waiting') return { ...copy.states.waiting, lead: copy.states.waiting.lead(reviewer) }
+    if (state === 'waiting')
+      return { ...copy.states.waiting, lead: copy.states.waiting.lead(reviewer) }
     if (state === 'approved') return copy.states.approved
     if (state === 'changes') return copy.states.changes
     if (state === 'rejected') return mayWrite ? copy.states.rejected : copy.states.rejectedClosed
@@ -78,7 +91,7 @@ export default async function ProblemPage() {
           <p className="text-lead text-ink-2 m-0">{banner?.lead ?? copy.lead}</p>
           {mayWrite && (state === 'none' || state === 'waiting' || state === 'rejected') ? (
             <p className="text-ink-2 m-0 text-[15px]">
-              {copy.due(closeLabel(HACKATHON.problemsClose))}{' '}
+              {copy.due(closeLabel(due))}{' '}
               {entry?.reviewer ? (
                 <strong className="text-ink-1 font-semibold italic">
                   {copy.reviewer(entry.reviewer)}
@@ -104,7 +117,9 @@ export default async function ProblemPage() {
             initial={initial}
             editable={mayWrite && (state === 'waiting' || state === 'rejected')}
             startEditing={state === 'rejected'}
-            notice={<Answers items={entry.reviews.filter((item) => item.version === latest.version)} />}
+            notice={
+              <Answers items={entry.reviews.filter((item) => item.version === latest.version)} />
+            }
             view={
               <OwnProblemView latest={latest} versions={entry.versions} reviews={entry.reviews} />
             }

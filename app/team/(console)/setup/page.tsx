@@ -85,6 +85,7 @@ export default async function SetupPage() {
     [
       [copy.opens, HACKATHON.opens],
       [copy.problemsClose, HACKATHON.problemsClose],
+      [copy.problemsExtended, HACKATHON.problemsExtended],
       [copy.bankOpens, HACKATHON.bankOpens],
       [copy.stages.scope, HACKATHON.stages.scope],
       [copy.stages.prototype, HACKATHON.stages.prototype],

@@ -13,7 +13,9 @@ export const WHEN = {
   during: '2026-10-17T12:00:00+05:30',
   /** The problem window has shut, and the bank is not open yet. */
   shut: '2026-10-20T23:59:30+05:30',
-  bank: '2026-10-21T10:00:00+05:30',
+  /** The window has shut; the extra time for new and rejected problems runs. */
+  extra: '2026-10-21T10:00:00+05:30',
+  bank: '2026-10-21T13:00:00+05:30',
   afterPrototype: '2026-10-22T13:05:00+05:30',
   over: '2026-10-23T13:05:00+05:30',
 }

@@ -36,6 +36,7 @@ import { currentPath } from '@/lib/journey'
 import { LINK_FIELDS, workLabel } from '@/lib/links'
 import { requireViewer } from '@/lib/session'
 import { staffOf } from '@/lib/staff'
+import { stampToIso } from '@/lib/stamp'
 import { nextDue, stepsFor } from '@/lib/steps'
 import { fieldsOf, type SubmissionField } from '@/lib/submission'
 import { BUILD_WITH, labelOf } from '@/lib/taxonomy'
@@ -155,9 +156,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
             ) : null}
           </div>
           <div className="grid min-w-0 content-start gap-5">
-            {full ? (
-              <PersonCard name={building.poc}>{own ? home.pocLead : null}</PersonCard>
-            ) : null}
+            {full ? <PersonCard name={building.poc}>{own ? home.pocLead : null}</PersonCard> : null}
             {links.length || research.length ? (
               <dl
                 className="m-0 grid gap-4"
@@ -311,6 +310,7 @@ export default async function FounderPage({ params }: { params: Promise<{ slug: 
         reopened: entry ? [...entry.reopened] : [],
         researchDone: entry ? researchDone(entry) : false,
         answered: Boolean(founder.world),
+        latestSent: entry?.latest ? stampToIso(entry.latest.time) : undefined,
       },
       phase,
     )

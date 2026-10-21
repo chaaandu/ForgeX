@@ -248,16 +248,42 @@ test('rejected after the window, a founder picks from the bank, adds research, a
   await expect(page.getByText('Saved', { exact: true })).toBeVisible()
 })
 
-test('a founder who sent nothing is sent to the bank once it opens', async ({ page }) => {
+test('a founder who sent nothing gets extra time, then the bank', async ({ page }) => {
   await toProblem(page)
-  await setClock(page, WHEN.shut)
+  // In the extra time the form is still there, with its own deadline.
+  await setClock(page, WHEN.extra)
+  await page.goto('/build')
+  await expect(page.getByText('Get it approved by 21 Oct at 12:30 pm IST')).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Pick from the bank' })).toHaveCount(0)
+  await page.goto('/problem')
+  await expect(page.getByRole('button', { name: 'Send for review' })).toBeVisible()
+  // Once it ends, no form: the bank.
+  await setClock(page, WHEN.bank)
   await page.goto('/problem')
   await expect(page.getByRole('heading', { name: 'The window has closed.' })).toBeVisible()
-  await expect(page.getByText(/The bank opens on/)).toBeVisible()
-  await setClock(page, WHEN.bank)
   await page.goto('/build')
   await page.getByRole('link', { name: 'Pick from the bank' }).first().click()
   await page.waitForURL('**/world')
+})
+
+test('the extra time lets a problem be sent and changed, but not one sent before the window shut', async ({
+  page,
+}) => {
+  await toProblem(page)
+  await setClock(page, WHEN.extra)
+  await page.goto('/problem')
+  await sendProblem(page)
+  // Sent in the extra time: still open to change until it ends.
+  await expect(page.getByRole('button', { name: 'Edit and send again' })).toBeVisible()
+
+  await page.context().clearCookies()
+  await setClock(page, WHEN.during)
+  await toProblem(page, DIYA)
+  await sendProblem(page)
+  await setClock(page, WHEN.extra)
+  await page.goto('/problem')
+  await expect(page.getByRole('heading', { name: 'In review.' })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Edit and send again' })).toHaveCount(0)
 })
 
 test('Show 4 others gives 2 more sets, never repeats a problem, and then stops', async ({

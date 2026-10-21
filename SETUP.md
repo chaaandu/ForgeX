@@ -121,7 +121,8 @@ Every date is in `lib/hackathon.ts`, not in Vercel. Change one there and redeplo
 | --- | --- | --- |
 | Opens | Thu 15 Oct 2026 | The portal opens to founders. Before it, a founder who signs in sees the day it opens and nothing else. No hour is shown |
 | Problems close | Tue 20 Oct, 11:59 pm IST | Nobody can send or resend a problem. Ones already sent are still answered |
-| Bank opens | Wed 21 Oct, 12 am IST | Anyone without an approved problem picks one of ours |
+| Extra time | Wed 21 Oct, 12:30 pm IST | Only for founders with nothing sent or a rejected problem: they may still send one. One sent in this time may be changed until it ends |
+| Bank opens | Wed 21 Oct, 12:30 pm IST | Anyone without an approved problem picks one of ours |
 | MVP scope | Wed 21 Oct, 11:59 pm IST | One Doc. Due then, but it never locks: one sent late is still taken, and marked late |
 | Prototype | Thu 22 Oct, 1 pm IST | GitHub repo, prototype link, proof of progress |
 | Launch | Thu 22 Oct, 7:30 pm IST | Vercel live link, LinkedIn post, documentation |

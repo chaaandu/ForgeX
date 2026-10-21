@@ -1021,6 +1021,7 @@ export const consoleCopy = {
       'No founder has a POC yet. Run pnpm sheet:groups to fill the Group, Reviewer and POC columns.',
     opens: 'Portal opens',
     problemsClose: 'Own problems close',
+    problemsExtended: 'Extra time for new and rejected problems',
     bankOpens: 'Bank opens',
     stages: {
       scope: 'MVP scope due',
