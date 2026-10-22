@@ -28,6 +28,24 @@ export const HACKATHON = {
   },
 } as const
 
+/**
+ * Extra time for one founder on one step, granted by the owner, ending on its
+ * own. Read as a reopen until the time passes. By email.
+ */
+export const EXTENSIONS: Record<
+  string,
+  Partial<Record<'scope' | 'prototype' | 'launch' | 'pitch', string>>
+> = {
+  'sinchan_rai@forge27.mesaschool.co': {
+    scope: '2026-10-22T20:00:00+05:30',
+    prototype: '2026-10-22T20:00:00+05:30',
+  },
+  'madhuresh_binzani@forge27.mesaschool.co': {
+    scope: '2026-10-22T20:00:00+05:30',
+    prototype: '2026-10-22T20:00:00+05:30',
+  },
+}
+
 export const STAGE_IDS = ['scope', 'prototype', 'launch', 'pitch'] as const
 export type StageId = (typeof STAGE_IDS)[number]
 

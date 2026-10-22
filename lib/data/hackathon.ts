@@ -1,5 +1,5 @@
 import 'server-only'
-import { STAGE_IDS, type StageId, type StepId } from '@/lib/hackathon'
+import { clock, EXTENSIONS, STAGE_IDS, type StageId, type StepId } from '@/lib/hackathon'
 import {
   DECISIONS,
   type Decision,
@@ -269,6 +269,10 @@ export async function allEntries(): Promise<Entry[]> {
         cells.Reopened.toLowerCase().includes(STEP_WORDS[step].toLowerCase()),
       ),
     )
+    // Extra time granted to this founder reads as a reopen until it runs out.
+    const now = clock().getTime()
+    for (const [step, until] of Object.entries(EXTENSIONS[email] ?? {}))
+      if (until && now < Date.parse(until)) reopened.add(step as StepId)
     return [
       {
         row,
