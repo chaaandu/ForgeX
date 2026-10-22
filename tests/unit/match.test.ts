@@ -108,7 +108,9 @@ describe('topMatches', () => {
 
   it('leans to the industries a founder chose', () => {
     const top = topMatches(bank, { world: world({ industries: ['agri'] }), archetype: null })
-    expect(top.filter((match) => match.problem.industries.includes('agri')).length).toBeGreaterThan(0)
+    expect(top.filter((match) => match.problem.industries.includes('agri')).length).toBeGreaterThan(
+      0,
+    )
   })
 
   it('counts a secondary industry for less than the first', () => {

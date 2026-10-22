@@ -563,7 +563,7 @@ export const home = {
     },
     pitch: {
       name: 'Pitch',
-      line: 'Submit your pitch deck, a Loom of at least 5 minutes, a LinkedIn post and your documentation.',
+      line: 'Submit your pitch deck, a Loom of at least 5 minutes and your LinkedIn post.',
     },
   },
   /** The line under each step, by where it stands: what is happening, and what to do. */
@@ -651,8 +651,7 @@ export const submit = {
     scope: 'What your MVP will do in these 2 days, and what it will not.',
     prototype: 'Your code, your prototype, and proof of how far you have got.',
     launch: 'Your product, live on Vercel.',
-    pitch:
-      'Your deck, a Loom of it working on real data, your LinkedIn post and your documentation.',
+    pitch: 'Your deck, a Loom of it working on real data, and your LinkedIn post.',
   },
   due: (when: string) => `It saves as you go, and locks on ${when}.`,
   saves: 'It saves as you go.',
@@ -693,11 +692,6 @@ export const submit = {
       placeholder: 'kirana-orders.vercel.app',
       help: 'Your product, open to anyone with the link.',
     },
-    docs: {
-      label: 'Documentation',
-      placeholder: 'docs.google.com/document/d/1AbC',
-      help: 'User journeys, your research, how you used AI and your tech stack, in one Doc. Make sure anyone with the link can view it.',
-    },
     deck: {
       label: 'Pitch deck',
       placeholder: 'docs.google.com/presentation/d/1AbC',
@@ -718,7 +712,6 @@ export const submit = {
     linkedin: 'Paste the link to the post, not your profile.',
     linkedinMore: 'Each line needs a link to a LinkedIn post.',
     live: 'Paste the link to the live product, not the repo or a doc.',
-    docs: 'Paste a Google Doc or Drive link.',
     deck: 'Paste a Google Slides, Docs or Drive link.',
     video: 'Paste a Loom link, like loom.com/share/1a2b3c.',
   },
@@ -787,7 +780,6 @@ export const page = {
     prototype: 'Prototype',
     proof: 'Proof of progress',
     live: 'Live link',
-    docs: 'Documentation',
     deck: 'Pitch deck',
     linkedin: 'LinkedIn post',
     linkedinMore: 'More posts',
@@ -868,7 +860,6 @@ export const consoleCopy = {
       prototype: 'Prototype',
       proof: 'Proof of progress',
       live: 'Live link',
-      docs: 'Documentation',
       deck: 'Pitch deck',
       video: 'Loom',
     },

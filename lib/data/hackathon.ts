@@ -86,7 +86,6 @@ const COLUMN: Record<SubmissionField, Header<'submissions'>> = {
   linkedin: 'LinkedIn post',
   linkedinMore: 'More posts',
   live: 'Live link',
-  docs: 'Documentation',
   deck: 'Pitch deck',
   video: 'Loom',
 }

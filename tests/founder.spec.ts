@@ -348,8 +348,9 @@ test('the launch asks only for the Vercel link; the post and the documentation c
   await expect(page.getByLabel(/^Live link on Vercel/)).toBeVisible()
   await expect(page.getByLabel(/^LinkedIn post/)).toHaveCount(0)
   await page.goto('/submit/pitch')
-  for (const label of [/^Pitch deck/, /^Loom video/, /^LinkedIn post/, /^Documentation/])
+  for (const label of [/^Pitch deck/, /^Loom video/, /^LinkedIn post/])
     await expect(page.getByLabel(label)).toBeVisible()
+  await expect(page.getByLabel(/^Documentation/)).toHaveCount(0)
 })
 
 test('the MVP scope is still taken after its date, because it never locks', async ({ page }) => {

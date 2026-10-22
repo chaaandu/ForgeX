@@ -17,7 +17,6 @@ export const SUBMISSION_FIELDS = [
   { id: 'video', stage: 'pitch', kind: 'video', required: true },
   { id: 'linkedin', stage: 'pitch', kind: 'post', required: true },
   { id: 'linkedinMore', stage: 'pitch', kind: 'posts', required: false },
-  { id: 'docs', stage: 'pitch', kind: 'doc', required: true },
 ] as const satisfies readonly {
   id: string
   stage: StageId
@@ -45,7 +44,6 @@ export const TICKS = [
   'prototype',
   'proof',
   'live',
-  'docs',
   'deck',
   'video',
 ] as const satisfies readonly SubmissionField[]

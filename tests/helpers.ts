@@ -177,7 +177,6 @@ export const STAGE = {
   proof: 'drive.google.com/drive/folders/market-day-proof',
   linkedin: 'linkedin.com/posts/aarav_forgex-activity-1',
   live: 'market-day.vercel.app',
-  docs: 'docs.google.com/document/d/market-day',
   deck: 'docs.google.com/presentation/d/1AbC/edit',
   video: 'loom.com/share/1a2b3c',
 }
@@ -186,7 +185,7 @@ const STAGE_FIELDS = {
   scope: ['scope'],
   prototype: ['github', 'prototype', 'proof'],
   launch: ['live'],
-  pitch: ['deck', 'video', 'linkedin', 'docs'],
+  pitch: ['deck', 'video', 'linkedin'],
 } as const
 
 const STAGE_LABELS: Record<keyof typeof STAGE, RegExp> = {
@@ -196,7 +195,6 @@ const STAGE_LABELS: Record<keyof typeof STAGE, RegExp> = {
   proof: /^Proof of progress/,
   linkedin: /^LinkedIn post/,
   live: /^Live link on Vercel/,
-  docs: /^Documentation/,
   deck: /^Pitch deck/,
   video: /^Loom video/,
 }
@@ -204,8 +202,11 @@ const STAGE_LABELS: Record<keyof typeof STAGE, RegExp> = {
 /** Fills a stage's required links and submits it. */
 export async function sendStage(page: Page, stage: keyof typeof STAGE_FIELDS) {
   await page.goto(`/submit/${stage}`)
-  for (const field of STAGE_FIELDS[stage]) await page.getByLabel(STAGE_LABELS[field]).fill(STAGE[field])
-  await page.getByRole('button', { name: `Submit my ${stage === 'scope' ? 'MVP scope' : stage}` }).click()
+  for (const field of STAGE_FIELDS[stage])
+    await page.getByLabel(STAGE_LABELS[field]).fill(STAGE[field])
+  await page
+    .getByRole('button', { name: `Submit my ${stage === 'scope' ? 'MVP scope' : stage}` })
+    .click()
   await expect(page.getByRole('heading', { name: 'Submitted.' })).toBeVisible()
 }
 

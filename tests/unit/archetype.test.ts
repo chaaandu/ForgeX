@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import h1 from '@/data/archetypes.json'
-import { archetypeOf, ARCHETYPES, classify, isCompleteTrial, scoreTrial, TRIAL } from '@/lib/archetype'
+import {
+  archetypeOf,
+  ARCHETYPES,
+  classify,
+  isCompleteTrial,
+  scoreTrial,
+  TRIAL,
+} from '@/lib/archetype'
 import { trial as trialCopy } from '@/content/copy'
 
 type Row = { archetype: string; axes: { u: number; e: number; s: number } }
@@ -16,7 +23,14 @@ describe('six archetypes from the Hackathon 1 axes', () => {
     const counts: Record<string, number> = {}
     for (const row of rows) counts[archetypeOf(row.axes)] = (counts[archetypeOf(row.axes)] ?? 0) + 1
     expect(rows).toHaveLength(110)
-    expect(counts).toEqual({ surveyor: 20, scout: 39, inventor: 15, tinkerer: 13, strategist: 11, builder: 12 })
+    expect(counts).toEqual({
+      surveyor: 20,
+      scout: 39,
+      inventor: 15,
+      tinkerer: 13,
+      strategist: 11,
+      builder: 12,
+    })
   })
 
   it('breaks ties experiment, then understand, then structure', () => {
@@ -27,7 +41,9 @@ describe('six archetypes from the Hackathon 1 axes', () => {
   })
 
   it('scores only complete trials, by option key', () => {
-    const answers = Object.fromEntries(TRIAL.map((question) => [question.id, question.options[0]!.key]))
+    const answers = Object.fromEntries(
+      TRIAL.map((question) => [question.id, question.options[0]!.key]),
+    )
     expect(isCompleteTrial(answers)).toBe(true)
     expect(isCompleteTrial({ ...answers, 'it-broke': 'nonsense' })).toBe(false)
     expect(scoreTrial(answers).u).toBeGreaterThan(0)

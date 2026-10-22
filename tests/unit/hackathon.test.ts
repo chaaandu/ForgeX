@@ -20,7 +20,11 @@ const at = (iso: string) => phaseAt(new Date(iso))
 describe('the clock', () => {
   it('opens at the announcement, and the problem window shuts on the 20th', () => {
     expect(at('2026-10-14T23:59:00+05:30').open).toBe(false)
-    expect(at('2026-10-15T00:00:00+05:30')).toMatchObject({ open: true, problemsOpen: true, bankOpen: false })
+    expect(at('2026-10-15T00:00:00+05:30')).toMatchObject({
+      open: true,
+      problemsOpen: true,
+      bankOpen: false,
+    })
     expect(at('2026-10-20T23:58:59+05:30').problemsOpen).toBe(true)
     expect(at('2026-10-20T23:59:00+05:30')).toMatchObject({ problemsOpen: false, bankOpen: false })
     // The extra time for new and rejected problems runs to 12:30 pm on the 21st; the bank opens then.
@@ -81,7 +85,8 @@ describe('the 2-day versions', () => {
       perIndustry.set(first, (perIndustry.get(first) ?? 0) + 1)
     }
     // Enough of each level that 117 founders are not all handed the same few.
-    for (const [level, count] of Object.entries(perLevel)) expect(count, level).toBeGreaterThanOrEqual(30)
+    for (const [level, count] of Object.entries(perLevel))
+      expect(count, level).toBeGreaterThanOrEqual(30)
     // Enough in each industry that a founder who picks only that one still gets 4.
     for (const [industry, count] of perIndustry) expect(count, industry).toBeGreaterThanOrEqual(4)
     expect(perIndustry.size).toBe(12)
@@ -111,7 +116,10 @@ describe('the 2-day versions', () => {
   it('survive a round trip through a Sheet cell', () => {
     const list = ['A customer can book a slot.', 'The AI reminds them.']
     expect(bullets.read(bullets.write(list))).toEqual(list)
-    expect(bullets.read('- One thing.\n• Another thing.\n\n')).toEqual(['One thing.', 'Another thing.'])
+    expect(bullets.read('- One thing.\n• Another thing.\n\n')).toEqual([
+      'One thing.',
+      'Another thing.',
+    ])
   })
 })
 
@@ -136,9 +144,9 @@ describe('work links', () => {
       'https://docs.google.com/presentation/d/1AbC/edit?usp=sharing',
     )
     expect(normaliseWorkLink('deck', 'canva.com/design/1')).toBeNull()
-    expect(normaliseWorkLink('post', 'https://www.linkedin.com/posts/ananya_forgex-activity-1?utm=x')).toBe(
-      'https://www.linkedin.com/posts/ananya_forgex-activity-1',
-    )
+    expect(
+      normaliseWorkLink('post', 'https://www.linkedin.com/posts/ananya_forgex-activity-1?utm=x'),
+    ).toBe('https://www.linkedin.com/posts/ananya_forgex-activity-1')
     expect(normaliseWorkLink('post', 'linkedin.com/in/ananya-rao')).toBeNull()
     expect(normaliseWorkLink('post', 'https://lnkd.in/abc123')).toBe('https://lnkd.in/abc123')
     expect(normaliseWorkLink('video', 'loom.com/share/1a2b')).toBe('https://loom.com/share/1a2b')
@@ -158,7 +166,6 @@ describe('the stages', () => {
     proof: 'https://drive.google.com/drive/folders/proof',
     linkedin: 'https://www.linkedin.com/posts/a_b',
     live: 'https://b.vercel.app',
-    docs: 'https://docs.google.com/document/d/1',
     deck: 'https://docs.google.com/presentation/d/1',
     video: 'https://www.loom.com/share/1',
   }
@@ -170,13 +177,15 @@ describe('the stages', () => {
     expect(missingIn('prototype', { github: full.github })).toEqual(['prototype', 'proof'])
     // The launch is the Vercel link alone; the post and the documentation come with the pitch.
     expect(missingIn('launch', {})).toEqual(['live'])
-    expect(missingIn('pitch', { deck: full.deck })).toEqual(['video', 'linkedin', 'docs'])
+    expect(missingIn('pitch', { deck: full.deck })).toEqual(['video', 'linkedin'])
   })
 
   it('cleans each field, and says when it cannot', () => {
     expect(cleanField('github', '')).toBe('')
     expect(cleanField('github', 'not a link')).toBeNull()
-    expect(cleanField('docs', 'docs.google.com/document/d/1')).toBe('https://docs.google.com/document/d/1')
+    expect(cleanField('scope', 'docs.google.com/document/d/1')).toBe(
+      'https://docs.google.com/document/d/1',
+    )
     expect(cleanField('linkedinMore', 'linkedin.com/posts/a_1\nlinkedin.com/posts/a_2')).toBe(
       'https://linkedin.com/posts/a_1\nhttps://linkedin.com/posts/a_2',
     )
@@ -185,7 +194,12 @@ describe('the stages', () => {
 })
 
 describe('progress', () => {
-  const none: Record<StageId, boolean> = { scope: false, prototype: false, launch: false, pitch: false }
+  const none: Record<StageId, boolean> = {
+    scope: false,
+    prototype: false,
+    launch: false,
+    pitch: false,
+  }
 
   it('is 10 when sent, 20 when approved, then 30, 55, 80 and 100', () => {
     expect(progressOf({ sent: false, approved: false, submitted: none })).toBe(0)
@@ -197,7 +211,9 @@ describe('progress', () => {
     expect(progressOf({ sent: true, approved: true, submitted: prototype })).toBe(55)
     const launch = { ...prototype, launch: true }
     expect(progressOf({ sent: true, approved: true, submitted: launch })).toBe(80)
-    expect(progressOf({ sent: true, approved: true, submitted: { ...launch, pitch: true } })).toBe(100)
+    expect(progressOf({ sent: true, approved: true, submitted: { ...launch, pitch: true } })).toBe(
+      100,
+    )
   })
 })
 
@@ -220,7 +236,12 @@ describe('an own problem', () => {
     // Primary research is optional; secondary is not.
     expect(ownProblemSchema.safeParse({ ...good, primary: '' }).success).toBe(true)
     expect(ownProblemSchema.safeParse({ ...good, secondary: '' }).success).toBe(false)
-    expect(ownProblemSchema.safeParse({ ...good, title: 'one two three four five six seven eight nine ten' }).success).toBe(false)
+    expect(
+      ownProblemSchema.safeParse({
+        ...good,
+        title: 'one two three four five six seven eight nine ten',
+      }).success,
+    ).toBe(false)
   })
 
   it('counts only words, and holds each field to its limit', () => {
@@ -240,15 +261,23 @@ describe('an own problem', () => {
   })
 
   it('is built only once approved, approved with changes, or picked from the bank', () => {
-    expect(['none', 'waiting', 'rejected'].map((state) => mayBuild(state as 'none'))).toEqual([false, false, false])
-    expect(['approved', 'changes', 'bank'].map((state) => mayBuild(state as 'bank'))).toEqual([true, true, true])
+    expect(['none', 'waiting', 'rejected'].map((state) => mayBuild(state as 'none'))).toEqual([
+      false,
+      false,
+      false,
+    ])
+    expect(['approved', 'changes', 'bank'].map((state) => mayBuild(state as 'bank'))).toEqual([
+      true,
+      true,
+      true,
+    ])
     expect(needsNote('approved')).toBe(false)
     expect(needsNote('changes')).toBe(true)
     expect(needsNote('rejected')).toBe(true)
   })
 })
 
-describe('the steps on a founder\'s home', () => {
+describe("the steps on a founder's home", () => {
   const blank: StepInput = {
     state: 'none',
     sentAt: { scope: '', prototype: '', launch: '', pitch: '' },
@@ -281,17 +310,29 @@ describe('the steps on a founder\'s home', () => {
 
   it('keeps taking the MVP scope after its date, so it is never missed', () => {
     const late = at('2026-10-22T10:00:00+05:30')
-    expect(byId({ ...blank, state: 'approved' }, late).scope).toMatchObject({ state: 'todo', action: 'add' })
+    expect(byId({ ...blank, state: 'approved' }, late).scope).toMatchObject({
+      state: 'todo',
+      action: 'add',
+    })
   })
 
   it('sends anyone without an approved problem to the bank once the window shuts', () => {
-    expect(byId(blank, afterClose).problem).toMatchObject({ state: 'missed', href: '/world', action: 'pick' })
+    expect(byId(blank, afterClose).problem).toMatchObject({
+      state: 'missed',
+      href: '/world',
+      action: 'pick',
+    })
     expect(byId({ ...blank, answered: true }, afterClose).problem?.href).toBe('/matches')
-    expect(byId({ ...blank, state: 'rejected' }, afterClose).problem).toMatchObject({ action: 'pick' })
+    expect(byId({ ...blank, state: 'rejected' }, afterClose).problem).toMatchObject({
+      action: 'pick',
+    })
   })
 
   it('gives extra time to anyone with nothing sent or a rejected problem, and no one else', () => {
-    expect(byId(blank, extra).problem).toMatchObject({ action: 'write', due: HACKATHON.problemsExtended })
+    expect(byId(blank, extra).problem).toMatchObject({
+      action: 'write',
+      due: HACKATHON.problemsExtended,
+    })
     expect(byId({ ...blank, state: 'rejected' }, extra).problem?.action).toBe('fix')
     // Sent before the window shut: it waits for its response.
     const before = { ...blank, state: 'waiting' as const, latestSent: '2026-10-20T18:00:00+05:30' }
@@ -301,7 +342,10 @@ describe('the steps on a founder\'s home', () => {
     expect(problemWindow(inExtra, extra)).toEqual({ open: true, due: HACKATHON.problemsExtended })
     expect(problemWindow({ ...blank, state: 'approved' }, extra).open).toBe(false)
     // The countdown runs to the end of the extra time.
-    expect(nextDue(stepsFor(blank, extra), extra)).toEqual({ step: 'problem', at: HACKATHON.problemsExtended })
+    expect(nextDue(stepsFor(blank, extra), extra)).toEqual({
+      step: 'problem',
+      at: HACKATHON.problemsExtended,
+    })
     // Once it ends, nothing to write: the bank.
     expect(byId(blank, afterClose).problem?.action).toBe('pick')
   })
@@ -311,19 +355,29 @@ describe('the steps on a founder\'s home', () => {
   })
 
   it('asks a bank pick for research, and never shuts a stage after its date', () => {
-    expect(byId({ ...blank, state: 'bank' }, afterClose).problem).toMatchObject({ action: 'add', current: true })
+    expect(byId({ ...blank, state: 'bank' }, afterClose).problem).toMatchObject({
+      action: 'add',
+      current: true,
+    })
     const late = at('2026-10-24T14:15:00+05:30')
     const approved = { ...blank, state: 'approved' as const }
     expect(byId(approved, late).prototype).toMatchObject({ state: 'todo', action: 'add' })
-    expect(byId({ ...approved, sentAt: { ...blank.sentAt, prototype: 'x' } }, late).prototype?.action).toBe('change')
+    expect(
+      byId({ ...approved, sentAt: { ...blank.sentAt, prototype: 'x' } }, late).prototype?.action,
+    ).toBe('change')
   })
 
   it('counts down to the next deadline still open', () => {
-    expect(nextDue(stepsFor(blank, during), during)).toEqual({ step: 'problem', at: HACKATHON.problemsClose })
+    expect(nextDue(stepsFor(blank, during), during)).toEqual({
+      step: 'problem',
+      at: HACKATHON.problemsClose,
+    })
     // Approved, the problem is behind them: the MVP scope is next.
     expect(nextDue(stepsFor({ ...blank, state: 'approved' }, during), during)?.step).toBe('scope')
     // A bank pick still owes its research, but the countdown is to the MVP scope.
-    expect(nextDue(stepsFor({ ...blank, state: 'bank', researchDone: true }, during), during)?.step).toBe('scope')
+    expect(
+      nextDue(stepsFor({ ...blank, state: 'bank', researchDone: true }, during), during)?.step,
+    ).toBe('scope')
     // Once its date passes, the countdown moves on even if it is not in.
     const after = at('2026-10-22T10:00:00+05:30')
     expect(nextDue(stepsFor({ ...blank, state: 'approved' }, after), after)?.step).toBe('prototype')

@@ -4,7 +4,6 @@ import {
   Camera,
   ClipboardList,
   Code2,
-  FileText,
   FlaskConical,
   Globe,
   Presentation,
@@ -37,7 +36,6 @@ const ICON: Record<(typeof TICKS)[number], LucideIcon> = {
   prototype: FlaskConical,
   proof: Camera,
   live: Globe,
-  docs: FileText,
   deck: Presentation,
   video: Video,
 }
