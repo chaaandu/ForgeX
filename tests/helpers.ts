@@ -16,7 +16,7 @@ export const WHEN = {
   /** The window has shut; the extra time for new and rejected problems runs. */
   extra: '2026-10-21T10:00:00+05:30',
   bank: '2026-10-21T13:00:00+05:30',
-  afterPrototype: '2026-10-22T13:35:00+05:30',
+  afterPrototype: '2026-10-22T14:05:00+05:30',
   over: '2026-10-23T13:05:00+05:30',
 }
 

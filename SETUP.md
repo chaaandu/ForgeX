@@ -124,7 +124,7 @@ Every date is in `lib/hackathon.ts`, not in Vercel. Change one there and redeplo
 | Extra time | Wed 21 Oct, 12:30 pm IST | Only for founders with nothing sent or a rejected problem: they may still send one. One sent in this time may be changed until it ends |
 | Bank opens | Wed 21 Oct, 12:30 pm IST | Anyone without an approved problem picks one of ours |
 | MVP scope | Wed 21 Oct, 11:59 pm IST | One Doc. Due then, but it never locks: one sent late is still taken, and marked late |
-| Prototype | Thu 22 Oct, 1:30 pm IST | GitHub repo, prototype link, proof of progress |
+| Prototype | Thu 22 Oct, 2 pm IST | GitHub repo, prototype link, proof of progress |
 | Launch | Thu 22 Oct, 7:30 pm IST | Vercel live link, LinkedIn post, documentation |
 | Pitch | Fri 23 Oct, 1 pm IST | Pitch deck and a Loom of at least 5 minutes |
 
