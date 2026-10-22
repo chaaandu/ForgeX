@@ -29,8 +29,8 @@ describe('the clock', () => {
   })
 
   it('shuts each stage at its own hour, and the last one ends it', () => {
-    expect(at('2026-10-22T12:59:59+05:30').closed.prototype).toBe(false)
-    expect(at('2026-10-22T13:00:00+05:30').closed).toMatchObject({ prototype: true, launch: false })
+    expect(at('2026-10-22T13:29:59+05:30').closed.prototype).toBe(false)
+    expect(at('2026-10-22T13:30:00+05:30').closed).toMatchObject({ prototype: true, launch: false })
     expect(at('2026-10-22T19:29:59+05:30').closed.launch).toBe(false)
     expect(at('2026-10-22T19:30:00+05:30').closed).toMatchObject({ launch: true, pitch: false })
     expect(at('2026-10-23T13:00:00+05:30')).toMatchObject({ over: true })
@@ -306,7 +306,7 @@ describe('the steps on a founder\'s home', () => {
 
   it('asks a bank pick for research, and locks a missed stage unless reopened', () => {
     expect(byId({ ...blank, state: 'bank' }, afterClose).problem).toMatchObject({ action: 'add', current: true })
-    const late = at('2026-10-22T13:30:00+05:30')
+    const late = at('2026-10-22T13:45:00+05:30')
     const approved = { ...blank, state: 'approved' as const }
     expect(byId(approved, late).prototype).toMatchObject({ state: 'missed', action: null })
     expect(byId({ ...approved, reopened: ['prototype'] }, late).prototype?.action).toBe('add')
@@ -322,7 +322,7 @@ describe('the steps on a founder\'s home', () => {
     // Once its date passes, the countdown moves on even if it is not in.
     const after = at('2026-10-22T10:00:00+05:30')
     expect(nextDue(stepsFor({ ...blank, state: 'approved' }, after), after)?.step).toBe('prototype')
-    const late = at('2026-10-22T13:30:00+05:30')
+    const late = at('2026-10-22T13:45:00+05:30')
     expect(nextDue(stepsFor({ ...blank, state: 'approved' }, late), late)?.step).toBe('launch')
   })
 })

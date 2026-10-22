@@ -22,7 +22,7 @@ export const HACKATHON = {
   /** Each submission after the problem, and when it is due. Every one locks then, except the MVP scope. */
   stages: {
     scope: '2026-10-21T23:59:00+05:30',
-    prototype: '2026-10-22T13:00:00+05:30',
+    prototype: '2026-10-22T13:30:00+05:30',
     launch: '2026-10-22T19:30:00+05:30',
     pitch: '2026-10-23T13:00:00+05:30',
   },
