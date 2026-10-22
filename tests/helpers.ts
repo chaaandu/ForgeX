@@ -185,8 +185,8 @@ export const STAGE = {
 const STAGE_FIELDS = {
   scope: ['scope'],
   prototype: ['github', 'prototype', 'proof'],
-  launch: ['linkedin', 'live', 'docs'],
-  pitch: ['deck', 'video'],
+  launch: ['live'],
+  pitch: ['deck', 'video', 'linkedin', 'docs'],
 } as const
 
 const STAGE_LABELS: Record<keyof typeof STAGE, RegExp> = {

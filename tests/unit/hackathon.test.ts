@@ -36,12 +36,17 @@ describe('the clock', () => {
     expect(at('2026-10-23T13:00:00+05:30')).toMatchObject({ over: true })
   })
 
-  it('lets the MVP scope pass its date without ever locking', () => {
+  it('lets every stage pass its date without ever locking', () => {
     expect(at('2026-10-21T23:58:59+05:30').closed.scope).toBe(false)
     const after = at('2026-10-21T23:59:00+05:30')
     expect(after.closed.scope).toBe(true)
     expect(after.locked.scope).toBe(false)
-    expect(at('2026-10-23T13:00:00+05:30').locked).toMatchObject({ scope: false, prototype: true, pitch: true })
+    expect(at('2026-10-24T13:00:00+05:30').locked).toMatchObject({
+      scope: false,
+      prototype: false,
+      launch: false,
+      pitch: false,
+    })
   })
 
   it('runs in order', () => {
@@ -163,8 +168,9 @@ describe('the stages', () => {
     expect(missingIn('scope', {})).toEqual(['scope'])
     expect(missingIn('prototype', { ...full, prototype: '' })).toEqual(['prototype'])
     expect(missingIn('prototype', { github: full.github })).toEqual(['prototype', 'proof'])
-    expect(missingIn('launch', {})).toEqual(['linkedin', 'live', 'docs'])
-    expect(missingIn('pitch', { deck: full.deck })).toEqual(['video'])
+    // The launch is the Vercel link alone; the post and the documentation come with the pitch.
+    expect(missingIn('launch', {})).toEqual(['live'])
+    expect(missingIn('pitch', { deck: full.deck })).toEqual(['video', 'linkedin', 'docs'])
   })
 
   it('cleans each field, and says when it cannot', () => {
@@ -304,13 +310,12 @@ describe('the steps on a founder\'s home', () => {
     expect(byId({ ...blank, reopened: ['problem'] }, afterClose).problem?.action).toBe('write')
   })
 
-  it('asks a bank pick for research, and locks a missed stage unless reopened', () => {
+  it('asks a bank pick for research, and never shuts a stage after its date', () => {
     expect(byId({ ...blank, state: 'bank' }, afterClose).problem).toMatchObject({ action: 'add', current: true })
-    const late = at('2026-10-22T14:15:00+05:30')
+    const late = at('2026-10-24T14:15:00+05:30')
     const approved = { ...blank, state: 'approved' as const }
-    expect(byId(approved, late).prototype).toMatchObject({ state: 'missed', action: null })
-    expect(byId({ ...approved, reopened: ['prototype'] }, late).prototype?.action).toBe('add')
-    expect(byId({ ...approved, sentAt: { ...blank.sentAt, prototype: 'x' } }, late).prototype?.action).toBe('view2')
+    expect(byId(approved, late).prototype).toMatchObject({ state: 'todo', action: 'add' })
+    expect(byId({ ...approved, sentAt: { ...blank.sentAt, prototype: 'x' } }, late).prototype?.action).toBe('change')
   })
 
   it('counts down to the next deadline still open', () => {

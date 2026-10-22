@@ -12,12 +12,12 @@ export const SUBMISSION_FIELDS = [
   { id: 'github', stage: 'prototype', kind: 'github', required: true },
   { id: 'prototype', stage: 'prototype', kind: 'proof', required: true },
   { id: 'proof', stage: 'prototype', kind: 'proof', required: true },
-  { id: 'linkedin', stage: 'launch', kind: 'post', required: true },
-  { id: 'linkedinMore', stage: 'launch', kind: 'posts', required: false },
   { id: 'live', stage: 'launch', kind: 'live', required: true },
-  { id: 'docs', stage: 'launch', kind: 'doc', required: true },
   { id: 'deck', stage: 'pitch', kind: 'deck', required: true },
   { id: 'video', stage: 'pitch', kind: 'video', required: true },
+  { id: 'linkedin', stage: 'pitch', kind: 'post', required: true },
+  { id: 'linkedinMore', stage: 'pitch', kind: 'posts', required: false },
+  { id: 'docs', stage: 'pitch', kind: 'doc', required: true },
 ] as const satisfies readonly {
   id: string
   stage: StageId

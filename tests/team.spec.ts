@@ -108,7 +108,7 @@ test('every version and answer is in the history, newest first, and sorts by nam
   await expect(page.getByText('Too broad.')).toBeVisible()
 })
 
-test('the progress board counts each status, and Chandu alone reopens a deadline', async ({
+test('the progress board counts each status, and a stage is never shut to reopen', async ({
   page,
 }) => {
   await approved(page)
@@ -124,20 +124,18 @@ test('the progress board counts each status, and Chandu alone reopens a deadline
   await page.goto('/team')
   await expect(page.getByRole('link', { name: /Aarav Shrivastava/ }).first()).toBeVisible()
   await setClock(page, WHEN.over)
+  // Only the problem locks, so it is the only step there is to reopen.
   await page.goto('/f/aarav-shrivastava')
-  await page.getByRole('button', { name: 'Reopen Launch' }).click()
-  await expect(page.getByText('Reopened: Launch.')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Reopen Problem' })).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: /^Reopen (Prototype|Launch|Pitch|MVP)/ }),
+  ).toHaveCount(0)
 
-  // Reopened, Aarav can send that one stage, late; the pitch stays shut.
+  // Long after every date, Aarav still submits the launch and the pitch.
   await page.context().clearCookies()
   await signIn(page, AARAV)
-  await page.goto('/submit/launch')
-  await expect(
-    page.getByText('The team has reopened this for you. Submit it as soon as you can.'),
-  ).toBeVisible()
   await sendStage(page, 'launch')
-  await page.goto('/submit/pitch')
-  await expect(page.getByText(/This closed before you submitted/)).toBeVisible()
+  await sendStage(page, 'pitch')
 })
 
 test('a founder who is building shows on the landing with their progress, and the cohort sees only the live link and repo', async ({

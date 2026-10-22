@@ -35,7 +35,5 @@ export function Countdown({
   }, [])
   const ms = new Date(closes).getTime() - (Date.now() + offset)
   if (ms <= 0) return <span suppressHydrationWarning>{copy.closed}</span>
-  return (
-    <span suppressHydrationWarning>{bare ? timeLeft(ms) : copy.left(timeLeft(ms))}</span>
-  )
+  return <span suppressHydrationWarning>{bare ? timeLeft(ms) : copy.left(timeLeft(ms))}</span>
 }

@@ -6,6 +6,9 @@ import { HACKATHON, SOFT_STAGES, type Phase, type StageId } from '@/lib/hackatho
 import { stampToIso } from '@/lib/stamp'
 import type { StepView } from '@/lib/steps'
 
+/** Dates are kept off: the owner removed every deadline a founder sees, on 22 Oct. */
+const showDates = false
+
 const tone: Record<StepView['state'], string> = {
   todo: 'text-ink-2',
   locked: 'text-ink-3',
@@ -71,6 +74,8 @@ function line(
   if (step.state === 'locked') return words.locked
   if (step.state === 'missed') return words.missed
   if (step.state === 'done') {
+    // No times for founders: the Sheet keeps when each stage was submitted.
+    if (!showDates) return words.sentNoTime
     const when = closeLabel(stampToIso(sentAt[stage]))
     if (step.action !== 'change') return words.sent(when)
     return SOFT_STAGES.includes(stage)
@@ -119,7 +124,8 @@ export function Timeline({
           step.state === 'approved' ||
           step.state === 'changes' ||
           (step.state === 'bank' && !step.action)
-        const date = dateLine(step)
+        // No dates on the home: no step has a deadline a founder sees.
+        const date = showDates ? dateLine(step) : null
         return (
           <li
             key={step.id}

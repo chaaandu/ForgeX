@@ -559,9 +559,12 @@ export const home = {
     },
     launch: {
       name: 'Launch',
-      line: 'Submit your live Vercel link, a LinkedIn post and your documentation.',
+      line: 'Submit your live Vercel link.',
     },
-    pitch: { name: 'Pitch', line: 'Submit your pitch deck and a Loom of at least 5 minutes.' },
+    pitch: {
+      name: 'Pitch',
+      line: 'Submit your pitch deck, a Loom of at least 5 minutes, a LinkedIn post and your documentation.',
+    },
   },
   /** The line under each step, by where it stands: what is happening, and what to do. */
   lines: {
@@ -577,7 +580,8 @@ export const home = {
       closedSoon: (when: string) => `The window has closed. Our bank opens on ${when}.`,
       bank: 'Picked from our bank. Add your secondary research below.',
       bankDone: 'Picked from our bank. Your research is in.',
-      reopened: 'Reopened for you. Send your new problem, and it is approved as soon as you send it.',
+      reopened:
+        'Reopened for you. Send your new problem, and it is approved as soon as you send it.',
     },
     reviewer: 'your reviewer',
     locked: 'Opens once your problem is approved.',
@@ -585,6 +589,7 @@ export const home = {
     sentOpen: (when: string, until: string) =>
       `Submitted on ${when}. You can change it until ${until}.`,
     sentSoft: (when: string) => `Submitted on ${when}. You can still change it.`,
+    sentNoTime: 'Submitted. You can still change it.',
     missed: 'This closed before you submitted. Talk to Pragati or the Forge team.',
   },
   due: (when: string) => `Due ${when}`,
@@ -645,11 +650,12 @@ export const submit = {
   leads: {
     scope: 'What your MVP will do in these 2 days, and what it will not.',
     prototype: 'Your code, your prototype, and proof of how far you have got.',
-    launch: 'Your product live, and the story of how you built it.',
-    pitch: 'Your deck, and a Loom that shows it working on real data.',
+    launch: 'Your product, live on Vercel.',
+    pitch:
+      'Your deck, a Loom of it working on real data, your LinkedIn post and your documentation.',
   },
   due: (when: string) => `It saves as you go, and locks on ${when}.`,
-  dueSoft: (when: string) => `It saves as you go. Add it by ${when}.`,
+  saves: 'It saves as you go.',
   required: '(required)',
   fields: {
     scope: {
@@ -748,7 +754,7 @@ export const submit = {
   back: 'Back to home',
   added: (n: number, of: number) => `${n} of ${of} added.`,
   list: 'What to submit',
-  listLead: (count: number, when: string) => `All ${count}, by ${when}.`,
+  listLead: (count: number) => (count === 1 ? 'It is needed.' : `All ${count} are needed.`),
   done: 'Added',
   todo: 'Add',
 }

@@ -128,7 +128,7 @@ Every date is in `lib/hackathon.ts`, not in Vercel. Change one there and redeplo
 | Launch | Thu 22 Oct, 7:30 pm IST | Vercel live link, LinkedIn post, documentation |
 | Pitch | Fri 23 Oct, 1 pm IST | Pitch deck and a Loom of at least 5 minutes |
 
-Each one but the MVP scope locks for everyone not reopened for that step.
+Since 22 Oct no stage locks: students can submit or change any stage at any time, and the portal shows them no dates. The Sheet's Submissions tab records when each was submitted. Only the problem window still closes.
 
 ## 8. Photos and the roster
 

@@ -11,6 +11,9 @@ import { Countdown } from './Countdown'
  * header that changes, so it is the only thing in violet. No sign out: a
  * founder mid-build has nowhere better to be.
  */
+/** Founders see no dates or countdowns any more; kept off rather than removed. */
+const showClock = false
+
 export function BuildShell({
   slug,
   next,
@@ -36,7 +39,8 @@ export function BuildShell({
           <div className="order-last -mx-1 w-full md:order-none md:mx-0 md:mr-auto md:w-auto">
             <BuildNav slug={slug} ownProblem={ownProblem} />
           </div>
-          {next ? (
+          {/* No countdown: no step has a deadline a founder sees. */}
+          {showClock && next ? (
             <p className="m-0 flex items-baseline gap-2 font-mono text-[13px]" role="timer">
               <span className="text-ink-3">{label}</span>
               <span className="text-violet-ink">

@@ -11,12 +11,10 @@ import type { SubmissionField, SubmissionFields } from '@/lib/submission'
 export function Checklist({
   ids,
   fields,
-  closesAt,
   onPick,
 }: {
   ids: SubmissionField[]
   fields: SubmissionFields
-  closesAt: string
   onPick: (id: SubmissionField) => void
 }) {
   const added = ids.filter((id) => fields[id]).length
@@ -27,7 +25,7 @@ export function Checklist({
           {copy.list}
         </h2>
         <p className="text-ink-2 m-0 text-[15px]">
-          {copy.listLead(ids.length, closesAt)}{' '}
+          {copy.listLead(ids.length)}{' '}
           <span className="text-ink-1">{copy.added(added, ids.length)}</span>
         </p>
       </div>

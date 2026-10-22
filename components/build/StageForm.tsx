@@ -193,9 +193,7 @@ export function StageForm({
         <div className="grid gap-3">
           <h1 className="page-title m-0">{copy.titles[stage]}</h1>
           <p className="text-lead text-ink-2 m-0">{copy.leads[stage]}</p>
-          <p className="text-ink-2 m-0 text-[15px]">
-            {soft ? copy.dueSoft(closesAt) : copy.due(closesAt)}
-          </p>
+          <p className="text-ink-2 m-0 text-[15px]">{soft ? copy.saves : copy.due(closesAt)}</p>
           {reopened ? <p className="text-violet-ink m-0 text-[15px]">{copy.reopened}</p> : null}
         </div>
 
@@ -283,7 +281,7 @@ export function StageForm({
       {/* Beside the form on a wide screen: what is in, what is not, and a way to each. */}
       <aside className="hidden lg:block">
         <div className="panel sticky top-24 p-6">
-          <Checklist ids={required} fields={kept} closesAt={closesAt} onPick={jumpTo} />
+          <Checklist ids={required} fields={kept} onPick={jumpTo} />
         </div>
       </aside>
     </div>

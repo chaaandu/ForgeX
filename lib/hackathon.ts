@@ -50,10 +50,11 @@ export const STAGE_IDS = ['scope', 'prototype', 'launch', 'pitch'] as const
 export type StageId = (typeof STAGE_IDS)[number]
 
 /**
- * Due on a date, but never locked: the MVP scope is required, and one sent
- * late is still taken (and marked late), so nobody needs it reopened.
+ * Stages that never lock, on the owner's call on 22 Oct: every one of them.
+ * A founder may submit or change any stage at any time; the Sheet keeps when
+ * each was submitted, and the dates stay here only to mark what came late.
  */
-export const SOFT_STAGES: readonly StageId[] = ['scope']
+export const SOFT_STAGES: readonly StageId[] = ['scope', 'prototype', 'launch', 'pitch']
 
 /** Every step that has a deadline, in order: the problem, then the three submissions. */
 export type StepId = 'problem' | StageId

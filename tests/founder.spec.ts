@@ -29,7 +29,9 @@ test('a founder sends their problem, is told why it was rejected, sends it again
 }) => {
   await toProblem(page)
   await expect(page.getByRole('heading', { name: 'Your problem' })).toBeVisible()
-  await expect(page.getByText(/frame the 3Ps or research them\? Mihirr's session recording on Nexus/)).toBeVisible()
+  await expect(
+    page.getByText(/frame the 3Ps or research them\? Mihirr's session recording on Nexus/),
+  ).toBeVisible()
 
   // Nothing goes until every field is in.
   await page.getByRole('button', { name: 'Send for review' }).click()
@@ -41,9 +43,12 @@ test('a founder sends their problem, is told why it was rejected, sends it again
   await expect(page.getByText('In review').first()).toBeVisible()
   await expect(page.getByText('Opens once your problem is approved').first()).toBeVisible()
   // In review never reads as approved: the line says who has it, the date is a deadline.
-  await expect(page.getByText(/^Your problem is in review\. You'll see the response here\.$/)).toBeVisible()
+  await expect(
+    page.getByText(/^Your problem is in review\. You'll see the response here\.$/),
+  ).toBeVisible()
   await expect(page.getByText(/^Sent to \w+\. You'll see the response here\.$/)).toBeVisible()
-  await expect(page.getByText(/^Get it approved by 20 Oct at 11:59 pm IST$/)).toBeVisible()
+  // No date: no step has a deadline a founder sees.
+  await expect(page.getByText(/ IST$/)).toHaveCount(0)
   await expect(page.getByText(/^Approved by/)).toHaveCount(0)
   await expect(page.getByRole('img', { name: /^10% done/ }).first()).toBeAttached()
   await page.goto('/submit/prototype')
@@ -112,10 +117,14 @@ test('an industry outside our list is named in their own words', async ({ page }
   await page.context().clearCookies()
   await signIn(page, CHANDU)
   await page.goto('/team/reviews')
-  await expect(page.getByRole('article', { name: 'Aarav Shrivastava' }).getByText('Sports', { exact: true })).toBeVisible()
+  await expect(
+    page.getByRole('article', { name: 'Aarav Shrivastava' }).getByText('Sports', { exact: true }),
+  ).toBeVisible()
 })
 
-test('each written field shows its word count, and nothing goes over the limit', async ({ page }) => {
+test('each written field shows its word count, and nothing goes over the limit', async ({
+  page,
+}) => {
   await toProblem(page)
   await fillProblem(page)
   await expect(page.getByText(`${OWN.person.split(' ').length} / 40 words`)).toBeVisible()
@@ -156,7 +165,9 @@ test('a founder without an archetype sits the quiz, and the server decides the r
   await expect(page.getByRole('link', { name: 'Retake the test' })).toBeVisible()
 })
 
-test('a founder placed in Hackathon 1 sees their archetype from the first step', async ({ page }) => {
+test('a founder placed in Hackathon 1 sees their archetype from the first step', async ({
+  page,
+}) => {
   await signIn(page, AARAV)
   await page.goto('/arrive')
   await expect(page.getByText(/^#\d{3} \/ 117$/).first()).toBeVisible()
@@ -193,7 +204,9 @@ test('the bank stays shut while the problem window is open', async ({ page }) =>
   await page.waitForURL(/\/(build|problem)$/)
 })
 
-test('after 20 Oct nobody can send a problem; a pending one is still answered', async ({ page }) => {
+test('after 20 Oct nobody can send a problem; a pending one is still answered', async ({
+  page,
+}) => {
   await toProblem(page)
   await sendProblem(page)
   await setClock(page, WHEN.shut)
@@ -253,7 +266,7 @@ test('a founder who sent nothing gets extra time, then the bank', async ({ page 
   // In the extra time the form is still there, with its own deadline.
   await setClock(page, WHEN.extra)
   await page.goto('/build')
-  await expect(page.getByText('Get it approved by 21 Oct at 12:30 pm IST')).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Write my problem' })).toBeVisible()
   await expect(page.getByRole('link', { name: 'Pick from the bank' })).toHaveCount(0)
   await page.goto('/problem')
   await expect(page.getByRole('button', { name: 'Send for review' })).toBeVisible()
@@ -309,30 +322,41 @@ test('Show 4 others gives 2 more sets, never repeats a problem, and then stops',
   await expect(page.getByRole('link', { name: 'Show 4 others' })).toHaveCount(0)
 })
 
-test('each stage locks at its hour; what was sent stays, what was not is missed', async ({ page }) => {
+test('no stage ever locks, and no date or countdown is shown', async ({ page }) => {
   await approved(page)
   await sendStage(page, 'prototype')
-  await setClock(page, WHEN.afterPrototype)
+  // Days after every date, everything still takes a submission or a change.
+  await setClock(page, '2026-10-25T12:00:00+05:30')
   await page.goto('/submit/prototype')
-  await expect(page.getByText('This step is closed. What you submitted is what we have.')).toBeVisible()
-  await expect(page.getByRole('button', { name: /Submit|Save changes/ })).toHaveCount(0)
-  // The launch is still open.
+  await expect(
+    page.getByText('This step is closed. What you submitted is what we have.'),
+  ).toHaveCount(0)
   await sendStage(page, 'launch')
-
-  await setClock(page, WHEN.over)
-  await page.goto('/submit/pitch')
-  await expect(page.getByText(/This closed before you submitted. Talk to Pragati/)).toBeVisible()
-  await expect(page.getByRole('textbox')).toHaveCount(0)
+  await sendStage(page, 'pitch')
   await page.goto('/build')
-  // Prototype and launch, without the MVP scope: 20 + 25 + 25.
-  await expect(page.getByRole('img', { name: /^70% done/ }).first()).toBeAttached()
+  await expect(page.getByRole('timer')).toHaveCount(0)
+  await expect(page.getByText(/ IST/)).toHaveCount(0)
+  // Prototype, launch and pitch, without the MVP scope: 20 + 25 + 25 + 20.
+  await expect(page.getByRole('img', { name: /^90% done/ }).first()).toBeAttached()
+})
+
+test('the launch asks only for the Vercel link; the post and the documentation come with the pitch', async ({
+  page,
+}) => {
+  await approved(page)
+  await page.goto('/submit/launch')
+  await expect(page.getByLabel(/^Live link on Vercel/)).toBeVisible()
+  await expect(page.getByLabel(/^LinkedIn post/)).toHaveCount(0)
+  await page.goto('/submit/pitch')
+  for (const label of [/^Pitch deck/, /^Loom video/, /^LinkedIn post/, /^Documentation/])
+    await expect(page.getByLabel(label)).toBeVisible()
 })
 
 test('the MVP scope is still taken after its date, because it never locks', async ({ page }) => {
   await approved(page)
   await setClock(page, '2026-10-22T09:00:00+05:30')
   await page.goto('/submit/scope')
-  await expect(page.getByText(/^It saves as you go\. Add it by 21 Oct/)).toBeVisible()
+  await expect(page.getByText('It saves as you go.')).toBeVisible()
   await sendStage(page, 'scope')
   await expect(page.getByText('We have it. You can still change it.')).toBeVisible()
 })

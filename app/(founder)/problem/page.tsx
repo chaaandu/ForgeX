@@ -60,7 +60,6 @@ export default async function ProblemPage() {
     phase,
   )
   const mayWrite = sending.open
-  const due = sending.due
   const toBank = phase.bankOpen ? (founder.world ? '/matches' : '/world') : null
 
   const banner = (() => {
@@ -95,7 +94,6 @@ export default async function ProblemPage() {
           <p className="text-lead text-ink-2 m-0">{banner?.lead ?? copy.lead}</p>
           {mayWrite && (state === 'none' || state === 'waiting' || state === 'rejected') ? (
             <p className="text-ink-2 m-0 text-[15px]">
-              {copy.due(closeLabel(due))}{' '}
               {entry?.reviewer ? (
                 <strong className="text-ink-1 font-semibold italic">
                   {copy.reviewer(entry.reviewer)}
