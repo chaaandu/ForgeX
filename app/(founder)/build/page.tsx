@@ -48,7 +48,8 @@ export default async function HomePage() {
   const scope = building?.problem?.scope ?? null
   const own = building?.own ?? null
   const bank = state === 'bank'
-  const missed = steps.some((step) => step.state === 'missed')
+  // No deadline talk: only a stage could be missed, and no stage locks any more.
+  const missed = steps.some((step) => step.id !== 'problem' && step.state === 'missed')
   const done =
     steps.every((step) => step.state === 'done' || step.id === 'problem') &&
     Boolean(entry?.sentAt.pitch)
